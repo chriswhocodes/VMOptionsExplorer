@@ -1,0 +1,401 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html lang='en-GB'>
+<head>
+<title>Ultimate OpenJ9 VM Options Cheat Sheet - OpenJ9</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta name="author" content="Chris Newland" />
+<meta name="copyright" content="Chris Newland 2018" />
+<meta name="viewport" content="width=device-width" />
+<link rel="stylesheet" type="text/css"
+	href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css">
+<script type="text/javascript"
+	src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<script type="text/javascript"
+	src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+<style>
+body {
+	font-family: sans-serif;
+	font-size: 12px;
+}
+
+th, td {
+	text-align: left;
+}
+
+.dataTables_filter {
+	float: left !important;
+	font-size: 24px;
+}
+
+.dataTables_filter input {
+	height: 32px;
+	font-size: 24px;
+	border: 2px solid black;
+}
+
+.footer {
+	margin-top: 12px;
+	text-align: center;
+	font-weight: bold;
+}
+</style>
+</head>
+<body>
+	<script type="text/javascript">
+		$(document)
+				.ready(
+						function() {
+							$('#myTable')
+									.DataTable(
+											{
+												"pageLength" : 50,
+												"lengthChange" : false,
+												"columnDefs" : [ {
+													"targets" : [ 0,1 ],
+													"orderable" : false,
+												} ],
+												"oLanguage" : {
+													"sSearch" : "Search OpenJ9 VM Options: "
+												},
+												initComplete : function() {
+													this
+															.api()
+															.columns([ ])
+															.every(
+																	function() {
+																		var column = this;
+																		var select = $(
+																				'<select><option value="">Show All</option></select>')
+																				.appendTo(
+																						$(
+																								column
+																										.header())
+																								.empty())
+																				.on(
+																						'change',
+																						function() {
+																							var val = $.fn.dataTable.util
+																									.escapeRegex($(
+																											this)
+																											.val());
+
+																							column
+																									.search(
+																											val ? '^'
+																													+ val
+																													+ '$'
+																													: '',
+																											true,
+																											false)
+																									.draw();
+																						});
+
+																		column
+																				.data()
+																				.unique()
+																				.sort()
+																				.each(
+																						function(
+																								d,
+																								j) {
+																							select
+																									.append('<option value="'+d+'">'
+																											+ d
+																											+ '</option>')
+																						});
+																	});
+												}
+											});
+						});
+	</script>
+
+	<h1>OpenJ9 VM Options for OpenJ9</h1>
+	<hr>
+	Switch to:
+	<a href="/">Home</a>&nbsp;|&nbsp;
+	<a href="hotspot_options_jdk6.html">JDK6</a>&nbsp;|&nbsp;
+	<a href="hotspot_options_jdk7.html">JDK7</a>&nbsp;|&nbsp;
+	<a href="hotspot_options_jdk8.html">JDK8</a>&nbsp;|&nbsp;
+	<a href="hotspot_options_jdk9.html">JDK9</a>&nbsp;|&nbsp;
+	<a href="hotspot_options_jdk10.html">JDK10</a>&nbsp;|&nbsp;
+	<a href="hotspot_options_jdk11.html">JDK11</a>&nbsp;|&nbsp;
+	<a href="graal_options_graal_ce_1.0.html">Graal CE 1.0</a>&nbsp;|&nbsp;
+	<a href="graal_options_graal_ee_1.0.html">Graal EE 1.0</a>&nbsp;|&nbsp;
+	<a href="openj9_options_openj9.html">OpenJ9</a>&nbsp;|&nbsp;
+	<a target="_blank" href="https://www.amazon.co.uk/gp/product/1492025798/ref=as_li_tl?ie=UTF8&camp=1634&creative=6738&creativeASIN=1492025798&linkCode=as2&tag=wwwchrisnewla-21&linkId=bfb09cda8c2184d0467d3b419d479967">Optimizing Java: Practical techniques for improving JVM application performance</a><img src="//ir-uk.amazon-adsystem.com/e/ir?t=wwwchrisnewla-21&l=am2&o=2&a=1492025798" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
+	<hr>
+	<table id="myTable" class="display cell-border">
+		<thead>
+			<tr><th>Name</th><th>Description</th></tr>
+			<tr>
+				<th></th><th></th>
+			</tr>
+		</thead>
+		<tbody><tr><td>--add-exports</td><td></td></tr>
+<tr><td>--add-modules</td><td></td></tr>
+<tr><td>--add-opens</td><td></td></tr>
+<tr><td>--add-reads</td><td></td></tr>
+<tr><td>--illegal-access</td><td></td></tr>
+<tr><td>--limit-modules</td><td></td></tr>
+<tr><td>--module-path</td><td></td></tr>
+<tr><td>--patch-module</td><td></td></tr>
+<tr><td>--upgrade-module-path</td><td></td></tr>
+<tr><td>-X142BoostGCThrPrio</td><td></td></tr>
+<tr><td>-XCEEHDLR</td><td></td></tr>
+<tr><td>-XSoftRefThreshold</td><td></td></tr>
+<tr><td>-XX:+AllowNonVirtualCalls</td><td></td></tr>
+<tr><td>-XX:+AlwaysCopyJNICritical</td><td></td></tr>
+<tr><td>-XX:+AlwaysUseJNICritical</td><td></td></tr>
+<tr><td>-XX:+CompactStrings</td><td></td></tr>
+<tr><td>-XX:+ContendedFields</td><td></td></tr>
+<tr><td>-XX:+DebugInterpreter</td><td></td></tr>
+<tr><td>-XX:+DebugVMAccess</td><td></td></tr>
+<tr><td>-XX:+DisclaimJitScratch</td><td></td></tr>
+<tr><td>-XX:+DisclaimVirtualMemory</td><td></td></tr>
+<tr><td>-XX:+EnableCPUMonitor</td><td></td></tr>
+<tr><td>-XX:+EnableHCR</td><td></td></tr>
+<tr><td>-XX:+FastClassHashTable</td><td></td></tr>
+<tr><td>-XX:+HandleSIGXFSZ</td><td></td></tr>
+<tr><td>-XX:+IdleTuningCompactOnIdle</td><td></td></tr>
+<tr><td>-XX:+IdleTuningGcOnIdle</td><td></td></tr>
+<tr><td>-XX:+IdleTuningIgnoreUnrecognizedOptions</td><td></td></tr>
+<tr><td>-XX:+IgnoreUnrecognizedVMOptions</td><td></td></tr>
+<tr><td>-XX:+InterleaveMemory</td><td></td></tr>
+<tr><td>-XX:+JITInlineWatches</td><td></td></tr>
+<tr><td>-XX:+LazySymbolResolution</td><td></td></tr>
+<tr><td>-XX:+MHAllowI2J</td><td></td></tr>
+<tr><td>-XX:+MHDebugTargets</td><td></td></tr>
+<tr><td>-XX:+OSRSafePointFV</td><td></td></tr>
+<tr><td>-XX:+OSRSafePoint</td><td></td></tr>
+<tr><td>-XX:+PageAlignDirectMemory</td><td></td></tr>
+<tr><td>-XX:+ReduceCPUMonitorOverhead</td><td></td></tr>
+<tr><td>-XX:+RestrictContended</td><td></td></tr>
+<tr><td>-XX:+RestrictIFA</td><td></td></tr>
+<tr><td>-XX:+StackTraceInThrowable</td><td></td></tr>
+<tr><td>-XX:+StoreIntermediateClassfile</td><td><pre>store raw class data to be used during re-transformation</pre></td></tr>
+<tr><td>-XX:+UseContainerSupport</td><td></td></tr>
+<tr><td>-XX:+UseJ9JImageReader</td><td></td></tr>
+<tr><td>-XX:+VMLockClassLoader</td><td></td></tr>
+<tr><td>-XX:+VerboseVerification</td><td></td></tr>
+<tr><td>-XX:+VerifyErrorDetails</td><td></td></tr>
+<tr><td>-XX:-AllowNonVirtualCalls</td><td></td></tr>
+<tr><td>-XX:-AlwaysCopyJNICritical</td><td></td></tr>
+<tr><td>-XX:-AlwaysUseJNICritical</td><td></td></tr>
+<tr><td>-XX:-CompactStrings</td><td></td></tr>
+<tr><td>-XX:-ContendedFields</td><td></td></tr>
+<tr><td>-XX:-DebugInterpreter</td><td></td></tr>
+<tr><td>-XX:-DebugVMAccess</td><td></td></tr>
+<tr><td>-XX:-DisclaimJitScratch</td><td></td></tr>
+<tr><td>-XX:-DisclaimVirtualMemory</td><td></td></tr>
+<tr><td>-XX:-EnableCPUMonitor</td><td></td></tr>
+<tr><td>-XX:-EnableHCR</td><td></td></tr>
+<tr><td>-XX:-FastClassHashTable</td><td></td></tr>
+<tr><td>-XX:-HandleSIGXFSZ</td><td></td></tr>
+<tr><td>-XX:-IdleTuningCompactOnIdle</td><td></td></tr>
+<tr><td>-XX:-IdleTuningGcOnIdle</td><td></td></tr>
+<tr><td>-XX:-IdleTuningIgnoreUnrecognizedOptions</td><td></td></tr>
+<tr><td>-XX:-IgnoreUnrecognizedVMOptions</td><td></td></tr>
+<tr><td>-XX:-InterleaveMemory</td><td></td></tr>
+<tr><td>-XX:-JITInlineWatches</td><td></td></tr>
+<tr><td>-XX:-LazySymbolResolution</td><td></td></tr>
+<tr><td>-XX:-MHAllowI2J</td><td></td></tr>
+<tr><td>-XX:-MHDebugTargets</td><td></td></tr>
+<tr><td>-XX:-OSRSafePointFV</td><td></td></tr>
+<tr><td>-XX:-OSRSafePoint</td><td></td></tr>
+<tr><td>-XX:-PageAlignDirectMemory</td><td></td></tr>
+<tr><td>-XX:-ReduceCPUMonitorOverhead</td><td></td></tr>
+<tr><td>-XX:-RestrictContended</td><td></td></tr>
+<tr><td>-XX:-RestrictIFA</td><td></td></tr>
+<tr><td>-XX:-StackTraceInThrowable</td><td></td></tr>
+<tr><td>-XX:-UseContainerSupport</td><td></td></tr>
+<tr><td>-XX:-UseJ9JImageReader</td><td></td></tr>
+<tr><td>-XX:-VMLockClassLoader</td><td></td></tr>
+<tr><td>-XX:-VerboseVerification</td><td></td></tr>
+<tr><td>-XX:-VerifyErrorDetails</td><td></td></tr>
+<tr><td>-XX:DumpLoadedClassList</td><td></td></tr>
+<tr><td>-XX:ForceClassfileAsIntermediateData</td><td></td></tr>
+<tr><td>-XX:IdleTuningMinFreeHeapOnIdle</td><td></td></tr>
+<tr><td>-XX:IdleTuningMinIdleWaitTime</td><td></td></tr>
+<tr><td>-XX:MHCompileCount</td><td></td></tr>
+<tr><td>-XX:MaxDirectMemorySize</td><td></td></tr>
+<tr><td>-XX:ROMMethodSortThreshold</td><td></td></tr>
+<tr><td>-XX:RecreateClassfileOnload</td><td></td></tr>
+<tr><td>-XX:ShareClassesDisableBCI</td><td><pre>create shared class cache without support for byte-code instrumentation</pre></td></tr>
+<tr><td>-XX:ShareClassesEnableBCI</td><td><pre>create shared class cache with support for byte-code instrumentation</pre></td></tr>
+<tr><td>-XX:SharedCacheHardLimit=&lt;x&gt;</td><td><pre>set size of new shared class cache to &lt;x&gt;</pre></td></tr>
+<tr><td>-XX:SharedCacheHardLimit</td><td></td></tr>
+<tr><td>-XX</td><td></td></tr>
+<tr><td>-XXallowvmshutdown:false</td><td></td></tr>
+<tr><td>-XXallowvmshutdown:true</td><td></td></tr>
+<tr><td>-XXdecomp</td><td></td></tr>
+<tr><td>-XXjitdirectory</td><td></td></tr>
+<tr><td>-XXlazyclassverification</td><td></td></tr>
+<tr><td>-XXnosuballoc32bitmem</td><td></td></tr>
+<tr><td>-XXsetHWPrefetch:none</td><td></td></tr>
+<tr><td>-XXsetHWPrefetch:os-default</td><td></td></tr>
+<tr><td>-XXsetHWPrefetch</td><td></td></tr>
+<tr><td>-XXvm:ignoreUnrecognized</td><td></td></tr>
+<tr><td>-Xaggressive</td><td></td></tr>
+<tr><td>-Xallowcontendedclassloads</td><td></td></tr>
+<tr><td>-Xalwaysclassgc</td><td><pre>enable dynamic class unloading on every GC</pre></td></tr>
+<tr><td>-Xaot</td><td></td></tr>
+<tr><td>-Xargencoding:latin</td><td></td></tr>
+<tr><td>-Xargencoding:utf8</td><td></td></tr>
+<tr><td>-Xargencoding</td><td></td></tr>
+<tr><td>-Xascii_filetag</td><td></td></tr>
+<tr><td>-Xbatch</td><td></td></tr>
+<tr><td>-Xbootclasspath/a:&lt;path&gt;</td><td><pre>append &lt;path&gt; to bootstrap classpath</pre></td></tr>
+<tr><td>-Xbootclasspath/p:&lt;path&gt;</td><td><pre>prepend &lt;path&gt; to bootstrap classpath</pre></td></tr>
+<tr><td>-Xbootclasspath:&lt;path&gt;</td><td><pre>set bootstrap classpath to &lt;path&gt;</pre></td></tr>
+<tr><td>-Xcheck[:option[:...]]</td><td><pre>control checking use -Xcheck:help for more details</pre></td></tr>
+<tr><td>-Xclassgc</td><td><pre>enable dynamic class unloading</pre></td></tr>
+<tr><td>-Xcompactexplicitgc</td><td><pre>enable compaction on every system GC</pre></td></tr>
+<tr><td>-Xcompactgc</td><td><pre>enable compaction</pre></td></tr>
+<tr><td>-Xcompressedrefs</td><td><pre>use compressed heap references</pre></td></tr>
+<tr><td>-Xdbg:&lt;options&gt;</td><td><pre>enable debug, JDWP standard options</pre></td></tr>
+<tr><td>-Xdbginfo:&lt;symbol</td><td><pre>file path&gt; enable debug info server</pre></td></tr>
+<tr><td>-Xdebug</td><td></td></tr>
+<tr><td>-Xdfpbd</td><td></td></tr>
+<tr><td>-Xdiagnosticscollector</td><td><pre>enable the Diagnostics Collector</pre></td></tr>
+<tr><td>-Xdump:none</td><td></td></tr>
+<tr><td>-Xdump[:option,...]</td><td><pre>control dumps use -Xdump:help for more details</pre></td></tr>
+<tr><td>-Xdump</td><td></td></tr>
+<tr><td>-Xfastresolve</td><td></td></tr>
+<tr><td>-Xfuture</td><td><pre>enable strictest checks, anticipating future default</pre></td></tr>
+<tr><td>-Xgcpolicy:metronome -Xnortsj</td><td><pre>enable soft realtime</pre></td></tr>
+<tr><td>-Xgcpolicy:metronome</td><td><pre>enable soft realtime</pre></td></tr>
+<tr><td>-Xgcthreads&lt;x&gt;</td><td><pre>set number of GC threads</pre></td></tr>
+<tr><td>-Xhealthcenter</td><td><pre>enable the Health Center agent</pre></td></tr>
+<tr><td>-Xheaponlyrtsj</td><td></td></tr>
+<tr><td>-Xincgc</td><td></td></tr>
+<tr><td>-Xint</td><td><pre>run interpreted only (equivalent to -Xnojit -Xnoaot)</pre></td></tr>
+<tr><td>-Xinternalversion</td><td></td></tr>
+<tr><td>-Xipt</td><td></td></tr>
+<tr><td>-Xiss&lt;x&gt;</td><td><pre>set initial java thread stack size to &lt;x&gt;</pre></td></tr>
+<tr><td>-Xitn</td><td></td></tr>
+<tr><td>-Xits</td><td></td></tr>
+<tr><td>-Xitsn</td><td></td></tr>
+<tr><td>-Xj9</td><td></td></tr>
+<tr><td>-Xjcl</td><td></td></tr>
+<tr><td>-Xjit</td><td></td></tr>
+<tr><td>-Xjni:&lt;options&gt;</td><td><pre>set JNI options</pre></td></tr>
+<tr><td>-Xjni</td><td></td></tr>
+<tr><td>-Xjvm</td><td></td></tr>
+<tr><td>-Xlinenumbers</td><td></td></tr>
+<tr><td>-Xlockword</td><td></td></tr>
+<tr><td>-Xlp&lt;x&gt;</td><td><pre>set the large page size to &lt;x&gt;</pre></td></tr>
+<tr><td>-Xlp:codecache</td><td></td></tr>
+<tr><td>-Xmaxe&lt;x&gt;</td><td><pre>set maximum size for heap expansion to &lt;x&gt;</pre></td></tr>
+<tr><td>-Xmaxf&lt;x&gt;</td><td><pre>maximum percentage of heap free after GC</pre></td></tr>
+<tr><td>-Xmca&lt;x&gt;</td><td><pre>set RAM class segment increment to &lt;x&gt;</pre></td></tr>
+<tr><td>-Xmco&lt;x&gt;</td><td><pre>set ROM class segment increment to &lt;x&gt;</pre></td></tr>
+<tr><td>-Xmine&lt;x&gt;</td><td><pre>set minimum size for heap expansion to &lt;x&gt;</pre></td></tr>
+<tr><td>-Xminf&lt;x&gt;</td><td><pre>minimum percentage of heap free after GC</pre></td></tr>
+<tr><td>-Xmixed</td><td></td></tr>
+<tr><td>-Xmn&lt;x&gt;</td><td><pre>set initial/maximum new space size to &lt;x&gt;</pre></td></tr>
+<tr><td>-Xmns&lt;x&gt;</td><td><pre>set initial new space size to &lt;x&gt;</pre></td></tr>
+<tr><td>-Xmnx&lt;x&gt;</td><td><pre>set maximum new space size to &lt;x&gt;</pre></td></tr>
+<tr><td>-Xmo&lt;x&gt;</td><td><pre>set initial/maximum old space size to &lt;x&gt;</pre></td></tr>
+<tr><td>-Xmoi&lt;x&gt;</td><td><pre>set old space increment to &lt;x&gt;</pre></td></tr>
+<tr><td>-XmonitorLookupCacheBits</td><td></td></tr>
+<tr><td>-Xmos&lt;x&gt;</td><td><pre>set initial old space size to &lt;x&gt;</pre></td></tr>
+<tr><td>-Xmox&lt;x&gt;</td><td><pre>set maximum old space size to &lt;x&gt;</pre></td></tr>
+<tr><td>-Xmr&lt;x&gt;</td><td><pre>set remembered set size to &lt;x&gt;</pre></td></tr>
+<tr><td>-Xmrx&lt;x&gt;</td><td><pre>set maximum size of remembered set to &lt;x&gt;</pre></td></tr>
+<tr><td>-Xms&lt;x&gt;</td><td><pre>set initial memory size to &lt;x&gt;</pre></td></tr>
+<tr><td>-Xmscl</td><td></td></tr>
+<tr><td>-Xmso&lt;x&gt;</td><td><pre>set OS thread stack size to &lt;x&gt;</pre></td></tr>
+<tr><td>-Xmx&lt;x&gt;</td><td><pre>set memory maximum to &lt;x&gt;</pre></td></tr>
+<tr><td>-Xmxcl</td><td></td></tr>
+<tr><td>-Xnoagent</td><td></td></tr>
+<tr><td>-Xnoaot</td><td><pre>do not run precompiled code</pre></td></tr>
+<tr><td>-Xnoargsconversion</td><td></td></tr>
+<tr><td>-Xnoclassgc</td><td><pre>disable dynamic class unloading</pre></td></tr>
+<tr><td>-Xnocompactexplicitgc</td><td><pre>disable compaction on a system GC</pre></td></tr>
+<tr><td>-Xnocompactgc</td><td><pre>disable compaction</pre></td></tr>
+<tr><td>-Xnojit</td><td><pre>disable the JIT</pre></td></tr>
+<tr><td>-Xnolinenumbers</td><td></td></tr>
+<tr><td>-Xnopreloaduser32</td><td></td></tr>
+<tr><td>-Xnoprotectcontiguous</td><td></td></tr>
+<tr><td>-Xnoquickstart</td><td></td></tr>
+<tr><td>-Xnortsj</td><td></td></tr>
+<tr><td>-Xnosigchain</td><td></td></tr>
+<tr><td>-Xnosigint</td><td></td></tr>
+<tr><td>-Xpreloaduser32</td><td></td></tr>
+<tr><td>-Xprof</td><td></td></tr>
+<tr><td>-Xprotectcontiguous</td><td></td></tr>
+<tr><td>-Xquickstart</td><td><pre>improve startup time by delaying optimizations</pre></td></tr>
+<tr><td>-Xrdbginfo:&lt;host&gt;:&lt;port&gt;</td><td><pre>enable remote debug information server</pre></td></tr>
+<tr><td>-Xrealtime -Xnortsj</td><td><pre>enable soft realtime</pre></td></tr>
+<tr><td>-Xrealtime</td><td><pre>enable soft realtime</pre></td></tr>
+<tr><td>-Xrs</td><td></td></tr>
+<tr><td>-Xrun&lt;library&gt;[:options]</td><td><pre>load native agent library\n\</pre></td></tr>
+<tr><td>-Xrun</td><td></td></tr>
+<tr><td>-Xrunjdwp:&lt;options&gt;</td><td><pre>enable debug, JDWP standard options</pre></td></tr>
+<tr><td>-Xscdmx&lt;x&gt;</td><td><pre>set size of shared class cache debug attribute area to &lt;x&gt;</pre></td></tr>
+<tr><td>-Xscmaxaot&lt;x&gt;</td><td><pre>set maximum shared classes cache space allowed for AOT data to &lt;x&gt;</pre></td></tr>
+<tr><td>-Xscmaxjit&lt;x&gt;</td><td><pre>set maximum shared classes cache space allowed for JIT data to &lt;x&gt;</pre></td></tr>
+<tr><td>-Xscmaxjitdata&lt;x&gt;</td><td><pre>set maximum shared classes cache space allowed for JIT data to &lt;x&gt;</pre></td></tr>
+<tr><td>-Xscminaot&lt;x&gt;</td><td><pre>set minimum shared classes cache space reserved for AOT data to &lt;x&gt;</pre></td></tr>
+<tr><td>-Xscminjit&lt;x&gt;</td><td><pre>set minimum shared classes cache space reserved for JIT data to &lt;x&gt;</pre></td></tr>
+<tr><td>-Xscminjitdata&lt;x&gt;</td><td><pre>set minimum shared classes cache space reserved for JIT data to &lt;x&gt;</pre></td></tr>
+<tr><td>-Xscmx&lt;x&gt;</td><td><pre>set size (or soft max size if option -XX:SharedCacheHardLimit= is present) of new shared class cache to &lt;x&gt;</pre></td></tr>
+<tr><td>-Xscsoftmx&lt;x&gt;</td><td><pre>set soft max size of new shared class cache to &lt;x&gt;</pre></td></tr>
+<tr><td>-Xservice</td><td></td></tr>
+<tr><td>-Xshareclasses[:options]</td><td><pre>Enable class data sharing (use help for details)\n</pre></td></tr>
+<tr><td>-Xshareclasses</td><td></td></tr>
+<tr><td>-Xsigchain</td><td></td></tr>
+<tr><td>-Xsignal:posixSignalHandler=cooperativeShutdown</td><td></td></tr>
+<tr><td>-Xsignal:userConditionHandler=percolate</td><td></td></tr>
+<tr><td>-XsigquitToFile</td><td></td></tr>
+<tr><td>-Xsnw</td><td></td></tr>
+<tr><td>-Xsoftmx</td><td></td></tr>
+<tr><td>-Xss&lt;x&gt;</td><td><pre>set thread stack size to &lt;x&gt;</pre></td></tr>
+<tr><td>-Xssi&lt;x&gt;</td><td><pre>set java thread stack increment to &lt;x&gt;</pre></td></tr>
+<tr><td>-Xthr</td><td></td></tr>
+<tr><td>-XtlhPrefetch</td><td></td></tr>
+<tr><td>-Xtrace[:option,...]</td><td><pre>control tracing use -Xtrace:help for more details</pre></td></tr>
+<tr><td>-Xtune:virtualized</td><td></td></tr>
+<tr><td>-Xverify</td><td></td></tr>
+<tr><td>-Xzero:nosharebootzip</td><td><pre>do not share bootstrap jar entry caches in the shared class cache</pre></td></tr>
+<tr><td>-Xzero</td><td></td></tr>
+<tr><td>-agentlib:dgcollector</td><td></td></tr>
+<tr><td>-agentlib:healthcenter</td><td></td></tr>
+<tr><td>-agentlib</td><td></td></tr>
+<tr><td>-agentpath</td><td></td></tr>
+<tr><td>-client</td><td></td></tr>
+<tr><td>-da</td><td></td></tr>
+<tr><td>-disableassertions</td><td></td></tr>
+<tr><td>-disablesystemassertions</td><td></td></tr>
+<tr><td>-dsa</td><td></td></tr>
+<tr><td>-ea</td><td></td></tr>
+<tr><td>-enableassertions</td><td></td></tr>
+<tr><td>-enablesystemassertions</td><td></td></tr>
+<tr><td>-esa</td><td></td></tr>
+<tr><td>-server</td><td></td></tr>
+<tr><td>-showversion</td><td></td></tr>
+<tr><td>_bfu_java</td><td></td></tr>
+<tr><td>_j2se_j9</td><td></td></tr>
+<tr><td>_jxe</td><td></td></tr>
+<tr><td>_needs_jcl</td><td></td></tr>
+<tr><td>_org.apache.harmony.vmi.portlib</td><td></td></tr>
+<tr><td>_port_library</td><td></td></tr>
+<tr><td>abort</td><td></td></tr>
+<tr><td>all</td><td></td></tr>
+<tr><td>describe</td><td></td></tr>
+<tr><td>exit</td><td></td></tr>
+<tr><td>j9zip</td><td></td></tr>
+<tr><td>none</td><td></td></tr>
+<tr><td>sharebootzip</td><td></td></tr>
+<tr><td>sharestring</td><td></td></tr>
+<tr><td>sharezip</td><td></td></tr>
+<tr><td>vfprintf</td><td></td></tr>
+
+		</tbody>
+	</table>
+	<div class="footer">
+		Autogenerated on Tue Jul 10 09:45:28 BST 2018 from OpenJ9 sources by <a
+			href="https://twitter.com/chriswhocodes">@chriswhocodes</a>
+	</div>
+</body>
+</html>
