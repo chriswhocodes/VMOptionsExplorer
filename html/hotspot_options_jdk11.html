@@ -42,72 +42,60 @@ th, td {
 </head>
 <body>
 	<script type="text/javascript">
-		$(document)
-				.ready(
-						function() {
-							$('#myTable')
-									.DataTable(
-											{
-												"pageLength" : 50,
-												"lengthChange" : false,
-												"columnDefs" : [ {
-													"targets" : [ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 ],
-													"orderable" : false,
-												} ],
-												"oLanguage" : {
-													"sSearch" : "Search HotSpot VM Options: "
-												},
-												initComplete : function() {
-													this
-															.api()
-															.columns([ 1, 2, 3, 4, 5, 7 ])
-															.every(
-																	function() {
-																		var column = this;
-																		var select = $(
-																				'<select><option value="">Show All</option></select>')
-																				.appendTo(
-																						$(
-																								column
-																										.header())
-																								.empty())
-																				.on(
-																						'change',
-																						function() {
-																							var val = $.fn.dataTable.util
-																									.escapeRegex($(
-																											this)
-																											.val());
+    function getParam() {
+      return window.location.href.slice(window.location.href.indexOf('?') + 1)
+          .split('=')[1];
+    };
 
-																							column
-																									.search(
-																											val ? '^'
-																													+ val
-																													+ '$'
-																													: '',
-																											true,
-																											false)
-																									.draw();
-																						});
+    $(document)
+        .ready(
+            function() {
+              $('#myTable')
+                  .DataTable(
+                      {
+                        "pageLength" : 50,
+                        "lengthChange" : false,
+                        "columnDefs" : [ {
+                          "targets" : [ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 ],
+                          "orderable" : false,
+                        } ],
+                        "oLanguage" : {
+                          "sSearch" : "Search HotSpot VM Options: "
+                        },
+                        initComplete : function() {
+                          this.api().search(getParam()).draw();
 
-																		column
-																				.data()
-																				.unique()
-																				.sort()
-																				.each(
-																						function(
-																								d,
-																								j) {
-																							select
-																									.append('<option value="'+d+'">'
-																											+ d
-																											+ '</option>')
-																						});
-																	});
-												}
-											});
-						});
-	</script>
+                          this
+                              .api()
+                              .columns([ 1, 2, 3, 4, 5, 7 ])
+                              .every(
+                                  function() {
+                                    var column = this;
+                                    var select = $(
+                                        '<select><option value="">Show All</option></select>')
+                                        .appendTo($(column.header()).empty())
+                                        .on(
+                                            'change',
+                                            function() {
+                                              var val = $.fn.dataTable.util
+                                                  .escapeRegex($(this).val());
+
+                                              column.search(
+                                                  val ? '^' + val + '$' : '',
+                                                  true, false).draw();
+                                            });
+
+                                    column.data().unique().sort().each(
+                                        function(d, j) {
+                                          select
+                                              .append('<option value="'+d+'">'
+                                                  + d + '</option>')
+                                        });
+                                  });
+                        }
+                      });
+            });
+  </script>
 
 	<h1>HotSpot VM Options for JDK11</h1>
 	<hr>
@@ -122,13 +110,15 @@ th, td {
 	<a href="graal_options_graal_ce_1.0.html">Graal CE 1.0</a>&nbsp;|&nbsp;
 	<a href="graal_options_graal_ee_1.0.html">Graal EE 1.0</a>&nbsp;|&nbsp;
 	<a href="openj9_options_openj9.html">OpenJ9</a>&nbsp;|&nbsp;
-	<a target="_blank" href="https://www.amazon.co.uk/gp/product/1492025798/ref=as_li_tl?ie=UTF8&camp=1634&creative=6738&creativeASIN=1492025798&linkCode=as2&tag=wwwchrisnewla-21&linkId=bfb09cda8c2184d0467d3b419d479967">Optimizing Java: Practical techniques for improving JVM application performance</a><img src="//ir-uk.amazon-adsystem.com/e/ir?t=wwwchrisnewla-21&l=am2&o=2&a=1492025798" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
+	<a href="hotspot_option_differences.html">HotSpot VM Differences</a>&nbsp;|&nbsp;
+	<a target="_blank"
+		href="https://www.amazon.co.uk/gp/product/1492025798/ref=as_li_tl?ie=UTF8&camp=1634&creative=6738&creativeASIN=1492025798&linkCode=as2&tag=wwwchrisnewla-21&linkId=bfb09cda8c2184d0467d3b419d479967">Optimizing
+		Java: Practical techniques for improving JVM application performance</a>
 	<hr>
 	<table id="myTable" class="display cell-border">
 		<thead>
 			<tr><th>Name</th><th>Since</th><th>Type</th><th>OS</th><th>CPU</th><th>Component</th><th>Default</th><th>Availability</th><th>Description</th><th>Defined in</th></tr>
-			<tr>
-				<th></th><th>Since</th><th>Type</th><th>OS</th><th>CPU</th><th>Component</th><th></th><th>Availability</th><th></th><th></th>
+			<tr><th></th><th>Since</th><th>Type</th><th>OS</th><th>CPU</th><th>Component</th><th></th><th>Availability</th><th></th><th></th>
 			</tr>
 		</thead>
 		<tbody><tr><td>AOTLibrary</td><td>JDK9</td><td>ccstrlist</td><td></td><td></td><td></td><td>NULL</td><td>product</td><td>AOT library</td><td>share/runtime/globals.hpp</td></tr>
@@ -149,7 +139,7 @@ th, td {
 <tr><td>AggressiveOpts</td><td>JDK6</td><td>bool</td><td></td><td></td><td></td><td>false</td><td>product</td><td>(Deprecated) Enable aggressive optimizations - see arguments.cpp</td><td>share/runtime/globals.hpp</td></tr>
 <tr><td>AggressiveUnboxing</td><td>JDK8</td><td>bool</td><td></td><td></td><td></td><td>false</td><td>experimental</td><td>Control optimizations for aggressive boxing elimination</td><td>share/opto/c2_globals.hpp</td></tr>
 <tr><td>AliasLevel</td><td>JDK6</td><td>intx</td><td></td><td></td><td></td><td>3<br>range(0, 3)</td><td>product</td><td>0 for no aliasing, 1 for oop/field/static/array split, 2 for class split, 3 for unique instances</td><td>share/opto/c2_globals.hpp</td></tr>
-<tr><td>AlignVector</td><td>JDK8</td><td>bool</td><td></td><td></td><td></td><td>true</td><td>product</td><td>Perform vector store/load alignment in loop</td><td>share/opto/c2_globals.hpp</td></tr>
+<tr><td>AlignVector</td><td>JDK7</td><td>bool</td><td></td><td></td><td></td><td>true</td><td>product</td><td>Perform vector store/load alignment in loop</td><td>share/opto/c2_globals.hpp</td></tr>
 <tr><td>AllocateHeapAt</td><td>JDK10</td><td>ccstr</td><td></td><td></td><td></td><td>NULL</td><td>product</td><td>Path to the directoy where a temporary file will be created to use as the backing store for Java Heap.</td><td>share/runtime/globals.hpp</td></tr>
 <tr><td>AllocateInstancePrefetchLines</td><td>JDK6</td><td>intx</td><td></td><td></td><td></td><td>1<br>range(1, 64)</td><td>product</td><td>Number of lines to prefetch ahead of instance allocation pointer</td><td>share/runtime/globals.hpp</td></tr>
 <tr><td>AllocatePrefetchDistance</td><td>JDK6</td><td>intx</td><td></td><td></td><td></td><td>-1</td><td>product</td><td>Distance to prefetch ahead of allocation pointer. -1: use system-specific value (automatically determined</td><td>share/runtime/globals.hpp</td></tr>
@@ -166,13 +156,13 @@ th, td {
 <tr><td>AlwaysActAsServerClassMachine</td><td>JDK6</td><td>bool</td><td></td><td></td><td></td><td>false</td><td>product</td><td>Always act like a server-class machine</td><td>share/gc/shared/gc_globals.hpp</td></tr>
 <tr><td>AlwaysAtomicAccesses</td><td>JDK9</td><td>bool</td><td></td><td></td><td></td><td>false</td><td>experimental</td><td>Accesses to all variables should always be atomic</td><td>share/runtime/globals.hpp</td></tr>
 <tr><td>AlwaysCompileLoopMethods</td><td>JDK6</td><td>bool</td><td></td><td></td><td></td><td>false</td><td>product</td><td>When using recompilation, never interpret methods containing loops</td><td>share/runtime/globals.hpp</td></tr>
-<tr><td>AlwaysIncrementalInline</td><td>JDK8</td><td>bool</td><td></td><td></td><td></td><td>false</td><td>develop</td><td>do all inlining incrementally</td><td>share/opto/c2_globals.hpp</td></tr>
+<tr><td>AlwaysIncrementalInline</td><td>JDK7</td><td>bool</td><td></td><td></td><td></td><td>false</td><td>develop</td><td>do all inlining incrementally</td><td>share/opto/c2_globals.hpp</td></tr>
 <tr><td>AlwaysLockClassLoader</td><td>JDK6</td><td>bool</td><td></td><td></td><td></td><td>false</td><td>product</td><td>Require the VM to acquire the class loader lock before calling loadClass() even for class loaders registering as parallel capable</td><td>share/runtime/globals.hpp</td></tr>
 <tr><td>AlwaysPreTouch</td><td>JDK6</td><td>bool</td><td></td><td></td><td></td><td>false</td><td>product</td><td>Force all freshly committed pages to be pre-touched</td><td>share/gc/shared/gc_globals.hpp</td></tr>
 <tr><td>AlwaysRestoreFPU</td><td>JDK6</td><td>bool</td><td></td><td></td><td></td><td>false</td><td>product</td><td>Restore the FPU control word after every JNI call (expensive)</td><td>share/runtime/globals.hpp</td></tr>
 <tr><td>AlwaysSafeConstructors</td><td>JDK9</td><td>bool</td><td></td><td></td><td></td><td>false</td><td>experimental</td><td>Force safe construction, as if all fields are final.</td><td>share/runtime/globals.hpp</td></tr>
 <tr><td>AlwaysTenure</td><td>JDK6</td><td>bool</td><td></td><td></td><td></td><td>false</td><td>product</td><td>Always tenure objects in eden (ParallelGC only)</td><td>share/gc/shared/gc_globals.hpp</td></tr>
-<tr><td>ArrayAllocatorMallocLimit</td><td>JDK8</td><td>size_t</td><td></td><td></td><td></td><td>SOLARIS_ONLY(64*K) NOT_SOLARIS((size_t)-1)</td><td>experimental</td><td>Allocation less than this value will be allocated using malloc. Larger allocations will use mmap.</td><td>share/runtime/globals.hpp</td></tr>
+<tr><td>ArrayAllocatorMallocLimit</td><td>JDK7</td><td>size_t</td><td></td><td></td><td></td><td>SOLARIS_ONLY(64*K) NOT_SOLARIS((size_t)-1)</td><td>experimental</td><td>Allocation less than this value will be allocated using malloc. Larger allocations will use mmap.</td><td>share/runtime/globals.hpp</td></tr>
 <tr><td>ArrayCopyLoadStoreMaxElem</td><td>JDK9</td><td>intx</td><td></td><td></td><td></td><td>8<br>range(0, max_intx)</td><td>product</td><td>Maximum number of arraycopy elements inlined as a sequence ofloads/stores</td><td>share/opto/c2_globals.hpp</td></tr>
 <tr><td>ArraycopyDstPrefetchDistance</td><td>JDK6</td><td>uintx</td><td></td><td>sparc</td><td></td><td>0</td><td>product</td><td>Distance to prefetch destination array in arraycopy</td><td>cpu/sparc/globals_sparc.hpp</td></tr>
 <tr><td>ArraycopySrcPrefetchDistance</td><td>JDK6</td><td>uintx</td><td></td><td>sparc</td><td></td><td>0</td><td>product</td><td>Distance to prefetch source array in arraycopy</td><td>cpu/sparc/globals_sparc.hpp</td></tr>
@@ -263,7 +253,7 @@ th, td {
 <tr><td>CMSConcMarkMultiple</td><td>JDK6</td><td>size_t</td><td></td><td></td><td></td><td>32<br>range(1, SIZE_MAX / 4096)</td><td>product</td><td>Size (in cards) of CMS concurrent MT marking task</td><td>share/gc/cms/cms_globals.hpp</td></tr>
 <tr><td>CMSConcurrentMTEnabled</td><td>JDK6</td><td>bool</td><td></td><td></td><td></td><td>true</td><td>product</td><td>Whether multi-threaded concurrent work enabled (effective only if ParNewGC)</td><td>share/gc/cms/cms_globals.hpp</td></tr>
 <tr><td>CMSCoordinatorYieldSleepCount</td><td>JDK6</td><td>uintx</td><td></td><td></td><td></td><td>10<br>range(0, max_juint)</td><td>product</td><td>Number of times the coordinator GC thread will sleep while yielding before giving up and resuming GC</td><td>share/gc/cms/cms_globals.hpp</td></tr>
-<tr><td>CMSEdenChunksRecordAlways</td><td>JDK8</td><td>bool</td><td></td><td></td><td></td><td>true</td><td>product</td><td>Always record eden chunks used for the parallel initial mark or remark of eden</td><td>share/gc/cms/cms_globals.hpp</td></tr>
+<tr><td>CMSEdenChunksRecordAlways</td><td>JDK7</td><td>bool</td><td></td><td></td><td></td><td>true</td><td>product</td><td>Always record eden chunks used for the parallel initial mark or remark of eden</td><td>share/gc/cms/cms_globals.hpp</td></tr>
 <tr><td>CMSExpAvgFactor</td><td>JDK6</td><td>uintx</td><td></td><td></td><td></td><td>50<br>range(0, 100)</td><td>product</td><td>Percentage (0-100) used to weight the current sample when computing exponential averages for CMS statistics</td><td>share/gc/cms/cms_globals.hpp</td></tr>
 <tr><td>CMSExtrapolateSweep</td><td>JDK6</td><td>bool</td><td></td><td></td><td></td><td>false</td><td>product</td><td>CMS: cushion for block demand during sweep</td><td>share/gc/cms/cms_globals.hpp</td></tr>
 <tr><td>CMSIncrementalSafetyFactor</td><td>JDK6</td><td>uintx</td><td></td><td></td><td></td><td>10<br>range(0, 100)</td><td>product</td><td>Percentage (0-100) used to add conservatism when computing the duty cycle</td><td>share/gc/cms/cms_globals.hpp</td></tr>
@@ -284,7 +274,7 @@ th, td {
 <tr><td>CMSOldPLABResizeQuicker</td><td>JDK6</td><td>bool</td><td></td><td></td><td></td><td>false</td><td>product</td><td>React on-the-fly during a scavenge to a sudden change in block demand rate</td><td>share/gc/cms/cms_globals.hpp</td></tr>
 <tr><td>CMSOldPLABToleranceFactor</td><td>JDK6</td><td>uintx</td><td></td><td></td><td></td><td>4<br>range(1, max_uintx)</td><td>product</td><td>The tolerance of the phase-change detector for on-the-fly PLAB resizing during a scavenge</td><td>share/gc/cms/cms_globals.hpp</td></tr>
 <tr><td>CMSPLABRecordAlways</td><td>JDK6</td><td>bool</td><td></td><td></td><td></td><td>true</td><td>product</td><td>Always record survivor space PLAB boundaries (effective only if CMSParallelSurvivorRemarkEnabled)</td><td>share/gc/cms/cms_globals.hpp</td></tr>
-<tr><td>CMSParallelInitialMarkEnabled</td><td>JDK8</td><td>bool</td><td></td><td></td><td></td><td>true</td><td>product</td><td>Use the parallel initial mark.</td><td>share/gc/cms/cms_globals.hpp</td></tr>
+<tr><td>CMSParallelInitialMarkEnabled</td><td>JDK7</td><td>bool</td><td></td><td></td><td></td><td>true</td><td>product</td><td>Use the parallel initial mark.</td><td>share/gc/cms/cms_globals.hpp</td></tr>
 <tr><td>CMSParallelRemarkEnabled</td><td>JDK6</td><td>bool</td><td></td><td></td><td></td><td>true</td><td>product</td><td>Whether parallel remark enabled (only if ParNewGC)</td><td>share/gc/cms/cms_globals.hpp</td></tr>
 <tr><td>CMSParallelSurvivorRemarkEnabled</td><td>JDK6</td><td>bool</td><td></td><td></td><td></td><td>true</td><td>product</td><td>Whether parallel remark of survivor space enabled (effective only if CMSParallelRemarkEnabled)</td><td>share/gc/cms/cms_globals.hpp</td></tr>
 <tr><td>CMSPrecleanDenominator</td><td>JDK6</td><td>uintx</td><td></td><td></td><td></td><td>3<br>range(1, max_uintx)</td><td>product</td><td>CMSPrecleanNumerator:CMSPrecleanDenominator yields convergence ratio</td><td>share/gc/cms/cms_globals.hpp</td></tr>
@@ -538,11 +528,11 @@ th, td {
 <tr><td>ErrorHandlerTest</td><td>JDK6</td><td>uintx</td><td></td><td></td><td></td><td>0</td><td>notproduct</td><td>If > 0, provokes an error after VM initialization; the value determines which error to provoke. See test_error_handler() in vmError.cpp.</td><td>share/runtime/globals.hpp</td></tr>
 <tr><td>ErrorLogTimeout</td><td>JDK9</td><td>uint64_t</td><td></td><td></td><td></td><td>2 * 60<br>range(0, (uint64_t)max_jlong/1000)</td><td>product</td><td>Timeout, in seconds, to limit the time spent on writing an error log in case of a crash.</td><td>share/runtime/globals.hpp</td></tr>
 <tr><td>ErrorReportServer</td><td>JDK6</td><td>ccstr</td><td></td><td></td><td></td><td>NULL</td><td>product</td><td>Override built-in error report server address</td><td>share/runtime/globals.hpp</td></tr>
-<tr><td>EscapeAnalysisTimeout</td><td>JDK8</td><td>double</td><td></td><td></td><td></td><td>20. DEBUG_ONLY(+40.)<br>range(0, DBL_MAX)</td><td>product</td><td>Abort EA when it reaches time limit (in sec)</td><td>share/opto/c2_globals.hpp</td></tr>
+<tr><td>EscapeAnalysisTimeout</td><td>JDK7</td><td>double</td><td></td><td></td><td></td><td>20. DEBUG_ONLY(+40.)<br>range(0, DBL_MAX)</td><td>product</td><td>Abort EA when it reaches time limit (in sec)</td><td>share/opto/c2_globals.hpp</td></tr>
 <tr><td>EstimateArgEscape</td><td>JDK6</td><td>bool</td><td></td><td></td><td></td><td>true</td><td>product</td><td>Analyze bytecodes to estimate escape state of arguments</td><td>share/runtime/globals.hpp</td></tr>
 <tr><td>ExecuteInternalVMTests</td><td>JDK6</td><td>bool</td><td></td><td></td><td></td><td>false</td><td>notproduct</td><td>Enable execution of internal VM tests</td><td>share/gc/shared/gc_globals.hpp</td></tr>
 <tr><td>ExecutingUnitTests</td><td>JDK9</td><td>bool</td><td></td><td></td><td></td><td>false</td><td>product</td><td>Whether the JVM is running unit tests or not</td><td>share/gc/shared/gc_globals.hpp</td></tr>
-<tr><td>ExitEscapeAnalysisOnTimeout</td><td>JDK8</td><td>bool</td><td></td><td></td><td></td><td>true</td><td>develop</td><td>Exit or throw assert in EA when it reaches time limit</td><td>share/opto/c2_globals.hpp</td></tr>
+<tr><td>ExitEscapeAnalysisOnTimeout</td><td>JDK7</td><td>bool</td><td></td><td></td><td></td><td>true</td><td>develop</td><td>Exit or throw assert in EA when it reaches time limit</td><td>share/opto/c2_globals.hpp</td></tr>
 <tr><td>ExitOnFullCodeCache</td><td>JDK6</td><td>bool</td><td></td><td></td><td></td><td>false</td><td>notproduct</td><td>Exit the VM if we fill the code cache</td><td>share/runtime/globals.hpp</td></tr>
 <tr><td>ExitOnOutOfMemoryError</td><td>JDK8</td><td>bool</td><td></td><td></td><td></td><td>false</td><td>product</td><td>JVM exits on the first occurrence of an out-of-memory error</td><td>share/runtime/globals.hpp</td></tr>
 <tr><td>ExitVMOnVerifyError</td><td>JDK6</td><td>bool</td><td></td><td></td><td></td><td>false</td><td>notproduct</td><td>standard exit from VM if bytecode verify error (only in debug mode)</td><td>share/runtime/globals.hpp</td></tr>
@@ -604,24 +594,24 @@ th, td {
 <tr><td>G1DummyRegionsPerGC</td><td>JDK6</td><td>uintx</td><td></td><td></td><td></td><td>0</td><td>develop</td><td>The number of dummy regions G1 will allocate at the end of each evacuation pause in order to artificially fill up the heap and stress the marking implementation.</td><td>share/gc/g1/g1_globals.hpp</td></tr>
 <tr><td>G1EagerReclaimHumongousObjectsWithStaleRefs</td><td>JDK8</td><td>bool</td><td></td><td></td><td></td><td>true</td><td>experimental</td><td>Try to reclaim dead large objects that have a few stale references at every young GC.</td><td>share/gc/g1/g1_globals.hpp</td></tr>
 <tr><td>G1EagerReclaimHumongousObjects</td><td>JDK8</td><td>bool</td><td></td><td></td><td></td><td>true</td><td>experimental</td><td>Try to reclaim dead large objects at every young GC.</td><td>share/gc/g1/g1_globals.hpp</td></tr>
-<tr><td>G1EvacuationFailureALotCount</td><td>JDK8</td><td>uintx</td><td></td><td></td><td></td><td>1000</td><td>develop</td><td>Number of successful evacuations between evacuation failures occurring at object copying</td><td>share/gc/g1/g1_globals.hpp</td></tr>
-<tr><td>G1EvacuationFailureALotDuringConcMark</td><td>JDK8</td><td>bool</td><td></td><td></td><td></td><td>true</td><td>develop</td><td>Force use of evacuation failure handling during evacuation pauses when marking is in progress</td><td>share/gc/g1/g1_globals.hpp</td></tr>
-<tr><td>G1EvacuationFailureALotDuringInitialMark</td><td>JDK8</td><td>bool</td><td></td><td></td><td></td><td>true</td><td>develop</td><td>Force use of evacuation failure handling during initial mark evacuation pauses</td><td>share/gc/g1/g1_globals.hpp</td></tr>
-<tr><td>G1EvacuationFailureALotDuringMixedGC</td><td>JDK8</td><td>bool</td><td></td><td></td><td></td><td>true</td><td>develop</td><td>Force use of evacuation failure handling during mixed evacuation pauses</td><td>share/gc/g1/g1_globals.hpp</td></tr>
-<tr><td>G1EvacuationFailureALotDuringYoungGC</td><td>JDK8</td><td>bool</td><td></td><td></td><td></td><td>true</td><td>develop</td><td>Force use of evacuation failure handling during young evacuation pauses</td><td>share/gc/g1/g1_globals.hpp</td></tr>
-<tr><td>G1EvacuationFailureALotInterval</td><td>JDK8</td><td>uintx</td><td></td><td></td><td></td><td>5</td><td>develop</td><td>Total collections between forced triggering of evacuation failures</td><td>share/gc/g1/g1_globals.hpp</td></tr>
-<tr><td>G1EvacuationFailureALot</td><td>JDK8</td><td>bool</td><td></td><td></td><td></td><td>false</td><td>notproduct</td><td>Force use of evacuation failure handling during certain evacuation pauses</td><td>share/gc/g1/g1_globals.hpp</td></tr>
+<tr><td>G1EvacuationFailureALotCount</td><td>JDK7</td><td>uintx</td><td></td><td></td><td></td><td>1000</td><td>develop</td><td>Number of successful evacuations between evacuation failures occurring at object copying</td><td>share/gc/g1/g1_globals.hpp</td></tr>
+<tr><td>G1EvacuationFailureALotDuringConcMark</td><td>JDK7</td><td>bool</td><td></td><td></td><td></td><td>true</td><td>develop</td><td>Force use of evacuation failure handling during evacuation pauses when marking is in progress</td><td>share/gc/g1/g1_globals.hpp</td></tr>
+<tr><td>G1EvacuationFailureALotDuringInitialMark</td><td>JDK7</td><td>bool</td><td></td><td></td><td></td><td>true</td><td>develop</td><td>Force use of evacuation failure handling during initial mark evacuation pauses</td><td>share/gc/g1/g1_globals.hpp</td></tr>
+<tr><td>G1EvacuationFailureALotDuringMixedGC</td><td>JDK7</td><td>bool</td><td></td><td></td><td></td><td>true</td><td>develop</td><td>Force use of evacuation failure handling during mixed evacuation pauses</td><td>share/gc/g1/g1_globals.hpp</td></tr>
+<tr><td>G1EvacuationFailureALotDuringYoungGC</td><td>JDK7</td><td>bool</td><td></td><td></td><td></td><td>true</td><td>develop</td><td>Force use of evacuation failure handling during young evacuation pauses</td><td>share/gc/g1/g1_globals.hpp</td></tr>
+<tr><td>G1EvacuationFailureALotInterval</td><td>JDK7</td><td>uintx</td><td></td><td></td><td></td><td>5</td><td>develop</td><td>Total collections between forced triggering of evacuation failures</td><td>share/gc/g1/g1_globals.hpp</td></tr>
+<tr><td>G1EvacuationFailureALot</td><td>JDK7</td><td>bool</td><td></td><td></td><td></td><td>false</td><td>notproduct</td><td>Force use of evacuation failure handling during certain evacuation pauses</td><td>share/gc/g1/g1_globals.hpp</td></tr>
 <tr><td>G1ExitOnExpansionFailure</td><td>JDK6</td><td>bool</td><td></td><td></td><td></td><td>false</td><td>develop</td><td>Raise a fatal VM exit out of memory failure in the eventthat heap expansion fails due to running out of swap.</td><td>share/gc/g1/g1_globals.hpp</td></tr>
 <tr><td>G1ExpandByPercentOfAvailable</td><td>JDK6</td><td>intx</td><td></td><td></td><td></td><td>20<br>range(0, 100)</td><td>experimental</td><td>When expanding, % of uncommitted space to claim.</td><td>share/gc/g1/g1_globals.hpp</td></tr>
 <tr><td>G1HRRSUseSparseTable</td><td>JDK6</td><td>bool</td><td></td><td></td><td></td><td>true</td><td>develop</td><td>When true, use sparse table to save space.</td><td>share/gc/g1/g1_globals.hpp</td></tr>
 <tr><td>G1HeapRegionSize</td><td>JDK6</td><td>size_t</td><td></td><td></td><td></td><td>0<br>range(0, 32*M)</td><td>product</td><td>Size of the G1 regions.</td><td>share/gc/g1/g1_globals.hpp</td></tr>
-<tr><td>G1HeapWastePercent</td><td>JDK8</td><td>uintx</td><td></td><td></td><td></td><td>5<br>range(0, 100)</td><td>product</td><td>Amount of space, expressed as a percentage of the heap size, that G1 is willing not to collect to avoid expensive GCs.</td><td>share/gc/g1/g1_globals.hpp</td></tr>
+<tr><td>G1HeapWastePercent</td><td>JDK7</td><td>uintx</td><td></td><td></td><td></td><td>5<br>range(0, 100)</td><td>product</td><td>Amount of space, expressed as a percentage of the heap size, that G1 is willing not to collect to avoid expensive GCs.</td><td>share/gc/g1/g1_globals.hpp</td></tr>
 <tr><td>G1LastPLABAverageOccupancy</td><td>JDK9</td><td>double</td><td></td><td></td><td></td><td>50.0<br>range(0.001, 100.0)</td><td>experimental</td><td>The expected average occupancy of the last PLAB in percent.</td><td>share/gc/g1/g1_globals.hpp</td></tr>
-<tr><td>G1MaxNewSizePercent</td><td>JDK8</td><td>uintx</td><td></td><td></td><td></td><td>60<br>range(0, 100)</td><td>experimental</td><td>Percentage (0-100) of the heap size to use as defaultmaximum young gen size.</td><td>share/gc/g1/g1_globals.hpp</td></tr>
+<tr><td>G1MaxNewSizePercent</td><td>JDK7</td><td>uintx</td><td></td><td></td><td></td><td>60<br>range(0, 100)</td><td>experimental</td><td>Percentage (0-100) of the heap size to use as defaultmaximum young gen size.</td><td>share/gc/g1/g1_globals.hpp</td></tr>
 <tr><td>G1MaxVerifyFailures</td><td>JDK6</td><td>intx</td><td></td><td></td><td></td><td>-1<br>range(-1, max_jint)</td><td>develop</td><td>The maximum number of verification failures to print.-1 means print all.</td><td>share/gc/g1/g1_globals.hpp</td></tr>
-<tr><td>G1MixedGCCountTarget</td><td>JDK8</td><td>uintx</td><td></td><td></td><td></td><td>8<br>range(0, max_uintx)</td><td>product</td><td>The target number of mixed GCs after a marking cycle.</td><td>share/gc/g1/g1_globals.hpp</td></tr>
-<tr><td>G1MixedGCLiveThresholdPercent</td><td>JDK8</td><td>uintx</td><td></td><td></td><td></td><td>85<br>range(0, 100)</td><td>experimental</td><td>Threshold for regions to be considered for inclusion in the collection set of mixed GCs. Regions with live bytes exceeding this will not be collected.</td><td>share/gc/g1/g1_globals.hpp</td></tr>
-<tr><td>G1NewSizePercent</td><td>JDK8</td><td>uintx</td><td></td><td></td><td></td><td>5<br>range(0, 100)</td><td>experimental</td><td>Percentage (0-100) of the heap size to use as default minimum young gen size.</td><td>share/gc/g1/g1_globals.hpp</td></tr>
+<tr><td>G1MixedGCCountTarget</td><td>JDK7</td><td>uintx</td><td></td><td></td><td></td><td>8<br>range(0, max_uintx)</td><td>product</td><td>The target number of mixed GCs after a marking cycle.</td><td>share/gc/g1/g1_globals.hpp</td></tr>
+<tr><td>G1MixedGCLiveThresholdPercent</td><td>JDK7</td><td>uintx</td><td></td><td></td><td></td><td>85<br>range(0, 100)</td><td>experimental</td><td>Threshold for regions to be considered for inclusion in the collection set of mixed GCs. Regions with live bytes exceeding this will not be collected.</td><td>share/gc/g1/g1_globals.hpp</td></tr>
+<tr><td>G1NewSizePercent</td><td>JDK7</td><td>uintx</td><td></td><td></td><td></td><td>5<br>range(0, 100)</td><td>experimental</td><td>Percentage (0-100) of the heap size to use as default minimum young gen size.</td><td>share/gc/g1/g1_globals.hpp</td></tr>
 <tr><td>G1OldCSetRegionThresholdPercent</td><td>JDK6</td><td>uintx</td><td></td><td></td><td></td><td>10<br>range(0, 100)</td><td>experimental</td><td>An upper bound for the number of old CSet regions expressed as a percentage of the heap size.</td><td>share/gc/g1/g1_globals.hpp</td></tr>
 <tr><td>G1PretouchAuxiliaryMemory</td><td>JDK9</td><td>bool</td><td></td><td></td><td></td><td>false</td><td>experimental</td><td>Pre-touch large auxiliary data structures used by the GC.</td><td>share/gc/g1/g1_globals.hpp</td></tr>
 <tr><td>G1RSetRegionEntriesBase</td><td>JDK6</td><td>intx</td><td></td><td></td><td></td><td>256<br>range(1, max_jint/wordSize)</td><td>develop</td><td>Max number of regions in a fine-grain table per MB.</td><td>share/gc/g1/g1_globals.hpp</td></tr>
@@ -643,8 +633,8 @@ th, td {
 <tr><td>G1UseReferencePrecleaning</td><td>JDK11</td><td>bool</td><td></td><td></td><td></td><td>true</td><td>experimental</td><td>Concurrently preclean java.lang.ref.references instances before the Remark pause.</td><td>share/gc/g1/g1_globals.hpp</td></tr>
 <tr><td>G1VerifyBitmaps</td><td>JDK8</td><td>bool</td><td></td><td></td><td></td><td>false</td><td>develop</td><td>Verifies the consistency of the marking bitmaps</td><td>share/gc/g1/g1_globals.hpp</td></tr>
 <tr><td>G1VerifyCTCleanup</td><td>JDK6</td><td>bool</td><td></td><td></td><td></td><td>false</td><td>develop</td><td>Verify card table cleanup.</td><td>share/gc/g1/g1_globals.hpp</td></tr>
-<tr><td>G1VerifyHeapRegionCodeRoots</td><td>JDK8</td><td>bool</td><td></td><td></td><td></td><td>false</td><td>diagnostic</td><td>Verify the code root lists attached to each heap region.</td><td>share/gc/g1/g1_globals.hpp</td></tr>
-<tr><td>G1VerifyRSetsDuringFullGC</td><td>JDK8</td><td>bool</td><td></td><td></td><td></td><td>false</td><td>diagnostic</td><td>If true, perform verification of each heap region's remembered set when verifying the heap during a full GC.</td><td>share/gc/g1/g1_globals.hpp</td></tr>
+<tr><td>G1VerifyHeapRegionCodeRoots</td><td>JDK7</td><td>bool</td><td></td><td></td><td></td><td>false</td><td>diagnostic</td><td>Verify the code root lists attached to each heap region.</td><td>share/gc/g1/g1_globals.hpp</td></tr>
+<tr><td>G1VerifyRSetsDuringFullGC</td><td>JDK7</td><td>bool</td><td></td><td></td><td></td><td>false</td><td>diagnostic</td><td>If true, perform verification of each heap region's remembered set when verifying the heap during a full GC.</td><td>share/gc/g1/g1_globals.hpp</td></tr>
 <tr><td>GCALotAtAllSafepoints</td><td>JDK6</td><td>bool</td><td></td><td></td><td></td><td>false</td><td>notproduct</td><td>Enforce ScavengeALot/GCALot at all potential safepoints</td><td>share/gc/shared/gc_globals.hpp</td></tr>
 <tr><td>GCDrainStackTargetSize</td><td>JDK6</td><td>uintx</td><td></td><td></td><td></td><td>64<br>range(0, max_juint)</td><td>product</td><td>Number of entries we will try to leave on the stack during parallel gc</td><td>share/gc/shared/gc_globals.hpp</td></tr>
 <tr><td>GCExpandToAllocateDelayMillis</td><td>JDK6</td><td>uintx</td><td></td><td></td><td></td><td>0</td><td>develop</td><td>Delay between expansion and allocation (in milliseconds)</td><td>share/gc/shared/gc_globals.hpp</td></tr>
@@ -718,7 +708,7 @@ th, td {
 <tr><td>ImplicitNullChecks</td><td>JDK6</td><td>bool</td><td></td><td>x86</td><td></td><td>true</td><td>define_pd_global</td><td>// Generate code for implicit null checks</td><td>cpu/x86/globals_x86.hpp</td></tr>
 <tr><td>ImplicitNullChecks</td><td>JDK6</td><td>bool</td><td></td><td>zero</td><td></td><td>true</td><td>define_pd_global</td><td></td><td>cpu/zero/globals_zero.hpp</td></tr>
 <tr><td>IncreaseFirstTierCompileThresholdAt</td><td>JDK8</td><td>uintx</td><td></td><td></td><td></td><td>50<br>range(0, 99)</td><td>product</td><td>Increase the compile threshold for C1 compilation if the code cache is filled by the specified percentage</td><td>share/runtime/globals.hpp</td></tr>
-<tr><td>IncrementalInline</td><td>JDK8</td><td>bool</td><td></td><td></td><td></td><td>true</td><td>product</td><td>do post parse inlining</td><td>share/opto/c2_globals.hpp</td></tr>
+<tr><td>IncrementalInline</td><td>JDK7</td><td>bool</td><td></td><td></td><td></td><td>true</td><td>product</td><td>do post parse inlining</td><td>share/opto/c2_globals.hpp</td></tr>
 <tr><td>IndexSetWatch</td><td>JDK6</td><td>intx</td><td></td><td></td><td></td><td>0<br>range(-1, 0)</td><td>notproduct</td><td>Trace all operations on this IndexSet (-1 means all, 0 none)</td><td>share/opto/c2_globals.hpp</td></tr>
 <tr><td>InitArrayShortSize</td><td>JDK9</td><td>intx</td><td></td><td>aarch64</td><td></td><td>BytesPerLong</td><td>define_pd_global</td><td></td><td>cpu/aarch64/globals_aarch64.hpp</td></tr>
 <tr><td>InitArrayShortSize</td><td>JDK9</td><td>intx</td><td></td><td>arm</td><td></td><td>8*BytesPerLong</td><td>define_pd_global</td><td></td><td>cpu/arm/globals_arm.hpp</td></tr>
@@ -784,7 +774,7 @@ th, td {
 <tr><td>InlineUnsafeOps</td><td>JDK6</td><td>bool</td><td></td><td></td><td></td><td>true</td><td>diagnostic</td><td>Inline memory ops (native methods) from Unsafe</td><td>share/runtime/globals.hpp</td></tr>
 <tr><td>InlineWarmCalls</td><td>JDK6</td><td>bool</td><td></td><td></td><td></td><td>false</td><td>develop</td><td>Use a heat-based priority queue to govern inlining</td><td>share/opto/c2_globals.hpp</td></tr>
 <tr><td>Inline</td><td>JDK6</td><td>bool</td><td></td><td></td><td></td><td>true</td><td>product</td><td>Enable inlining</td><td>share/runtime/globals.hpp</td></tr>
-<tr><td>InsertEndGroupPPC64</td><td>JDK8</td><td>bool</td><td></td><td>ppc</td><td></td><td>false</td><td>product</td><td>Insert EndGroup instructions to optimize for Power6.</td><td>cpu/ppc/globals_ppc.hpp</td></tr>
+<tr><td>InsertEndGroupPPC64</td><td>JDK7</td><td>bool</td><td></td><td>ppc</td><td></td><td>false</td><td>product</td><td>Insert EndGroup instructions to optimize for Power6.</td><td>cpu/ppc/globals_ppc.hpp</td></tr>
 <tr><td>InsertMemBarAfterArraycopy</td><td>JDK6</td><td>bool</td><td></td><td></td><td></td><td>true</td><td>product</td><td>Insert memory barrier after arraycopy call</td><td>share/opto/c2_globals.hpp</td></tr>
 <tr><td>InstallMethods</td><td>JDK6</td><td>bool</td><td></td><td></td><td></td><td>true</td><td>develop</td><td>Install methods at the end of successful compilations</td><td>share/c1/c1_globals.hpp</td></tr>
 <tr><td>InstructionCountCutoff</td><td>JDK6</td><td>intx</td><td></td><td></td><td></td><td>37000<br>range(0, max_jint)</td><td>develop</td><td>If GraphBuilder adds this many instructions, bails out</td><td>share/c1/c1_globals.hpp</td></tr>
@@ -841,8 +831,8 @@ th, td {
 <tr><td>LargePageHeapSizeThreshold</td><td>JDK6</td><td>size_t</td><td></td><td></td><td></td><td>128*M<br>range(0, max_uintx)</td><td>product</td><td>Use large pages if maximum heap is at least this big</td><td>share/runtime/globals.hpp</td></tr>
 <tr><td>LargePageSizeInBytes</td><td>JDK6</td><td>size_t</td><td></td><td></td><td></td><td>0<br>range(0, max_uintx)</td><td>product</td><td>Large page size (0 to let VM choose the page size)</td><td>share/runtime/globals.hpp</td></tr>
 <tr><td>LargePagesIndividualAllocationInjectError</td><td>JDK6</td><td>bool</td><td></td><td></td><td></td><td>false</td><td>develop</td><td>Fail large pages individual allocation</td><td>share/runtime/globals.hpp</td></tr>
-<tr><td>LiveNodeCountInliningCutoff</td><td>JDK8</td><td>intx</td><td></td><td></td><td></td><td>40000<br>range(0, max_juint / 8)</td><td>product</td><td>max number of live nodes in a method</td><td>share/opto/c2_globals.hpp</td></tr>
-<tr><td>LoadExecStackDllInVMThread</td><td>JDK8</td><td>bool</td><td>linux</td><td></td><td></td><td>true</td><td>product</td><td>Load DLLs with executable-stack attribute in the VM Thread</td><td>os/linux/globals_linux.hpp</td></tr>
+<tr><td>LiveNodeCountInliningCutoff</td><td>JDK7</td><td>intx</td><td></td><td></td><td></td><td>40000<br>range(0, max_juint / 8)</td><td>product</td><td>max number of live nodes in a method</td><td>share/opto/c2_globals.hpp</td></tr>
+<tr><td>LoadExecStackDllInVMThread</td><td>JDK7</td><td>bool</td><td>linux</td><td></td><td></td><td>true</td><td>product</td><td>Load DLLs with executable-stack attribute in the VM Thread</td><td>os/linux/globals_linux.hpp</td></tr>
 <tr><td>LoadLineNumberTables</td><td>JDK6</td><td>bool</td><td></td><td></td><td></td><td>true</td><td>develop</td><td>Tell whether the class file parser loads line number tables</td><td>share/runtime/globals.hpp</td></tr>
 <tr><td>LoadLocalVariableTables</td><td>JDK6</td><td>bool</td><td></td><td></td><td></td><td>true</td><td>develop</td><td>Tell whether the class file parser loads local variable tables</td><td>share/runtime/globals.hpp</td></tr>
 <tr><td>LoadLocalVariableTypeTables</td><td>JDK6</td><td>bool</td><td></td><td></td><td></td><td>true</td><td>develop</td><td>Tell whether the class file parser loads local variable typetables</td><td>share/runtime/globals.hpp</td></tr>
@@ -854,7 +844,7 @@ th, td {
 <tr><td>LogTouchedMethods</td><td>JDK9</td><td>bool</td><td></td><td></td><td></td><td>false</td><td>diagnostic</td><td>Log methods which have been ever touched in runtime</td><td>share/runtime/globals.hpp</td></tr>
 <tr><td>LogVMOutput</td><td>JDK6</td><td>bool</td><td></td><td></td><td></td><td>false</td><td>diagnostic</td><td>Save VM output to LogFile</td><td>share/runtime/globals.hpp</td></tr>
 <tr><td>LongCompileThreshold</td><td>JDK6</td><td>intx</td><td></td><td></td><td></td><td>50</td><td>develop</td><td>Used with +TraceLongCompiles</td><td>share/runtime/globals.hpp</td></tr>
-<tr><td>LoopMaxUnroll</td><td>JDK8</td><td>intx</td><td></td><td></td><td></td><td>16<br>range(0, max_jint)</td><td>product</td><td>Maximum number of unrolls for main loop</td><td>share/opto/c2_globals.hpp</td></tr>
+<tr><td>LoopMaxUnroll</td><td>JDK7</td><td>intx</td><td></td><td></td><td></td><td>16<br>range(0, max_jint)</td><td>product</td><td>Maximum number of unrolls for main loop</td><td>share/opto/c2_globals.hpp</td></tr>
 <tr><td>LoopOptsCount</td><td>JDK6</td><td>intx</td><td></td><td></td><td></td><td>43<br>range(5, 43)</td><td>product</td><td>Set level of loop optimization for tier 1 compiles</td><td>share/opto/c2_globals.hpp</td></tr>
 <tr><td>LoopPercentProfileLimit</td><td>JDK9</td><td>intx</td><td></td><td>aarch64</td><td></td><td>10</td><td>define_pd_global</td><td></td><td>cpu/aarch64/c2_globals_aarch64.hpp</td></tr>
 <tr><td>LoopPercentProfileLimit</td><td>JDK9</td><td>intx</td><td></td><td>arm</td><td></td><td>10</td><td>define_pd_global</td><td></td><td>cpu/arm/c2_globals_arm.hpp</td></tr>
@@ -888,7 +878,7 @@ th, td {
 <tr><td>MaxElementPrintSize</td><td>JDK6</td><td>intx</td><td></td><td></td><td></td><td>256</td><td>notproduct</td><td>maximum number of elements to print</td><td>share/runtime/globals.hpp</td></tr>
 <tr><td>MaxExpectedDataSegmentSize</td><td>JDK9</td><td>uintx</td><td>aix</td><td></td><td></td><td>8*G</td><td>product</td><td>Maximum expected Data Segment Size.</td><td>os/aix/globals_aix.hpp</td></tr>
 <tr><td>MaxFDLimit</td><td>JDK6</td><td>bool</td><td></td><td></td><td></td><td>true</td><td>product</td><td>Bump the number of file descriptors to maximum in Solaris</td><td>share/runtime/globals.hpp</td></tr>
-<tr><td>MaxForceInlineLevel</td><td>JDK8</td><td>intx</td><td></td><td></td><td></td><td>100<br>range(0, max_jint)</td><td>develop</td><td>maximum number of nested calls that are forced for inlining (using CompileCommand or marked w/ @ForceInline)</td><td>share/runtime/globals.hpp</td></tr>
+<tr><td>MaxForceInlineLevel</td><td>JDK7</td><td>intx</td><td></td><td></td><td></td><td>100<br>range(0, max_jint)</td><td>develop</td><td>maximum number of nested calls that are forced for inlining (using CompileCommand or marked w/ @ForceInline)</td><td>share/runtime/globals.hpp</td></tr>
 <tr><td>MaxGCMinorPauseMillis</td><td>JDK6</td><td>uintx</td><td></td><td></td><td></td><td>max_uintx<br>range(0, max_uintx)</td><td>product</td><td>Adaptive size policy maximum GC minor pause time goal in millisecond</td><td>share/gc/shared/gc_globals.hpp</td></tr>
 <tr><td>MaxGCPauseMillis</td><td>JDK6</td><td>uintx</td><td></td><td></td><td></td><td>max_uintx - 1<br>range(1, max_uintx - 1)</td><td>product</td><td>Adaptive size policy maximum GC pause time goal in millisecond, or (G1 Only) the maximum GC time per MMU time slice</td><td>share/gc/shared/gc_globals.hpp</td></tr>
 <tr><td>MaxHeapSize</td><td>JDK6</td><td>size_t</td><td></td><td></td><td></td><td>ScaleForWordSize(96*M)</td><td>product</td><td>Maximum heap size (in bytes)</td><td>share/gc/shared/gc_globals.hpp</td></tr>
@@ -920,8 +910,8 @@ th, td {
 <tr><td>MaxSubklassPrintSize</td><td>JDK6</td><td>intx</td><td></td><td></td><td></td><td>4</td><td>notproduct</td><td>maximum number of subklasses to print when printing klass</td><td>share/runtime/globals.hpp</td></tr>
 <tr><td>MaxTenuringThreshold</td><td>JDK6</td><td>uintx</td><td></td><td></td><td></td><td>15<br>range(0, markOopDesc::max_age + 1)</td><td>product</td><td>Maximum value for tenuring threshold</td><td>share/gc/shared/gc_globals.hpp</td></tr>
 <tr><td>MaxTrivialSize</td><td>JDK6</td><td>intx</td><td></td><td></td><td></td><td>6<br>range(0, max_jint)</td><td>product</td><td>The maximum bytecode size of a trivial method to be inlined</td><td>share/runtime/globals.hpp</td></tr>
-<tr><td>MaxVectorSize</td><td>JDK8</td><td>intx</td><td></td><td></td><td></td><td>64<br>range(0, max_jint)</td><td>product</td><td>Max vector size in bytes, actual size could be less depending on elements type</td><td>share/opto/c2_globals.hpp</td></tr>
-<tr><td>MaxVirtMemFraction</td><td>JDK8</td><td>uintx</td><td></td><td></td><td></td><td>2</td><td>develop</td><td>Maximum fraction (1/n) of virtual memory used for ergonomically determining maximum heap size</td><td>share/gc/shared/gc_globals.hpp</td></tr>
+<tr><td>MaxVectorSize</td><td>JDK7</td><td>intx</td><td></td><td></td><td></td><td>64<br>range(0, max_jint)</td><td>product</td><td>Max vector size in bytes, actual size could be less depending on elements type</td><td>share/opto/c2_globals.hpp</td></tr>
+<tr><td>MaxVirtMemFraction</td><td>JDK7</td><td>uintx</td><td></td><td></td><td></td><td>2</td><td>develop</td><td>Maximum fraction (1/n) of virtual memory used for ergonomically determining maximum heap size</td><td>share/gc/shared/gc_globals.hpp</td></tr>
 <tr><td>MemProfilingInterval</td><td>JDK6</td><td>intx</td><td></td><td></td><td></td><td>500</td><td>notproduct</td><td>Time between each invocation of the MemProfiler</td><td>share/runtime/globals.hpp</td></tr>
 <tr><td>MemProfiling</td><td>JDK6</td><td>bool</td><td></td><td></td><td></td><td>false</td><td>develop</td><td>Write memory usage profiling to log file</td><td>share/runtime/globals.hpp</td></tr>
 <tr><td>MetadataAllocationFailALotInterval</td><td>JDK8</td><td>uintx</td><td></td><td></td><td></td><td>1000</td><td>develop</td><td>Metadata allocation failure a lot interval</td><td>share/gc/shared/gc_globals.hpp</td></tr>
@@ -964,7 +954,7 @@ th, td {
 <tr><td>NUMAPageScanRate</td><td>JDK6</td><td>uintx</td><td></td><td></td><td></td><td>256<br>range(0, max_uintx)</td><td>product</td><td>Maximum number of pages to include in the page scan procedure</td><td>share/runtime/globals.hpp</td></tr>
 <tr><td>NUMASpaceResizeRate</td><td>JDK6</td><td>size_t</td><td></td><td></td><td></td><td>1*G<br>range(0, max_uintx)</td><td>product</td><td>Do not reallocate more than this amount per collection</td><td>share/runtime/globals.hpp</td></tr>
 <tr><td>NUMAStats</td><td>JDK6</td><td>bool</td><td></td><td></td><td></td><td>false</td><td>product</td><td>Print NUMA stats in detailed heap information</td><td>share/runtime/globals.hpp</td></tr>
-<tr><td>NativeMemoryTracking</td><td>JDK8</td><td>ccstr</td><td></td><td></td><td></td><td>off</td><td>product</td><td>Native memory tracking options</td><td>share/runtime/globals.hpp</td></tr>
+<tr><td>NativeMemoryTracking</td><td>JDK7</td><td>ccstr</td><td></td><td></td><td></td><td>off</td><td>product</td><td>Native memory tracking options</td><td>share/runtime/globals.hpp</td></tr>
 <tr><td>NearCpool</td><td>JDK9</td><td>bool</td><td></td><td>aarch64</td><td></td><td>true</td><td>product</td><td>constant pool is close to instructions</td><td>cpu/aarch64/globals_aarch64.hpp</td></tr>
 <tr><td>NeedsDeoptSuspend</td><td>JDK6</td><td>bool</td><td></td><td>aarch64</td><td></td><td>false</td><td>define_pd_global</td><td>// only register window machines need this</td><td>cpu/aarch64/globals_aarch64.hpp</td></tr>
 <tr><td>NeedsDeoptSuspend</td><td>JDK6</td><td>bool</td><td></td><td>arm</td><td></td><td>false</td><td>define_pd_global</td><td>// only register window machines need this</td><td>cpu/arm/globals_arm.hpp</td></tr>
@@ -1016,7 +1006,7 @@ th, td {
 <tr><td>OSROnlyBCI</td><td>JDK6</td><td>intx</td><td></td><td></td><td></td><td>-1</td><td>develop</td><td>OSR only at this bci.Negative values mean exclude that bci</td><td>share/runtime/globals.hpp</td></tr>
 <tr><td>ObjArrayMarkingStride</td><td>JDK6</td><td>uintx</td><td></td><td></td><td></td><td>2048</td><td>develop</td><td>Number of object array elements to push onto the marking stack before pushing a continuation entry</td><td>share/gc/shared/gc_globals.hpp</td></tr>
 <tr><td>ObjectAlignmentInBytes</td><td>JDK6</td><td>intx</td><td></td><td></td><td></td><td>8<br>range(8, 256)</td><td>lp64_product</td><td>Default object alignment in bytes, 8 is minimum</td><td>share/runtime/globals.hpp</td></tr>
-<tr><td>ObjectCountCutOffPercent</td><td>JDK8</td><td>double</td><td></td><td></td><td></td><td>0.5<br>range(0.0, 100.0)</td><td>experimental</td><td>The percentage of the used heap that the instances of a class must occupy for the class to generate a trace event</td><td>share/runtime/globals.hpp</td></tr>
+<tr><td>ObjectCountCutOffPercent</td><td>JDK7</td><td>double</td><td></td><td></td><td></td><td>0.5<br>range(0.0, 100.0)</td><td>experimental</td><td>The percentage of the used heap that the instances of a class must occupy for the class to generate a trace event</td><td>share/runtime/globals.hpp</td></tr>
 <tr><td>OldPLABSize</td><td>JDK6</td><td>size_t</td><td></td><td></td><td></td><td>1024</td><td>product</td><td>Size of old gen promotion LAB's (in HeapWords), or Number of blocks to attempt to claim when refilling CMS LAB's</td><td>share/gc/shared/gc_globals.hpp</td></tr>
 <tr><td>OldPLABWeight</td><td>JDK6</td><td>uintx</td><td></td><td></td><td></td><td>50<br>range(0, 100)</td><td>product</td><td>Percentage (0-100) used to weight the current sample when computing exponentially decaying average for resizing OldPLABSize</td><td>share/gc/shared/gc_globals.hpp</td></tr>
 <tr><td>OldSize</td><td>JDK6</td><td>size_t</td><td></td><td></td><td></td><td>ScaleForWordSize(4*M)<br>range(0, max_uintx)</td><td>product</td><td>Initial tenured generation size (in bytes)</td><td>share/gc/shared/gc_globals.hpp</td></tr>
@@ -1030,10 +1020,10 @@ th, td {
 <tr><td>OnStackReplacePercentage</td><td>JDK6</td><td>intx</td><td></td><td>s390</td><td></td><td>1400</td><td>define_pd_global</td><td></td><td>cpu/s390/c1_globals_s390.hpp</td></tr>
 <tr><td>OnStackReplacePercentage</td><td>JDK6</td><td>intx</td><td></td><td>sparc</td><td></td><td>140</td><td>define_pd_global</td><td></td><td>cpu/sparc/c2_globals_sparc.hpp</td></tr>
 <tr><td>OnStackReplacePercentage</td><td>JDK6</td><td>intx</td><td></td><td>x86</td><td></td><td>933</td><td>define_pd_global</td><td></td><td>cpu/x86/c1_globals_x86.hpp</td></tr>
-<tr><td>OptimizeExpensiveOps</td><td>JDK8</td><td>bool</td><td></td><td></td><td></td><td>true</td><td>diagnostic</td><td>Find best control for expensive operations</td><td>share/opto/c2_globals.hpp</td></tr>
+<tr><td>OptimizeExpensiveOps</td><td>JDK7</td><td>bool</td><td></td><td></td><td></td><td>true</td><td>diagnostic</td><td>Find best control for expensive operations</td><td>share/opto/c2_globals.hpp</td></tr>
 <tr><td>OptimizeFill</td><td>JDK6</td><td>bool</td><td></td><td></td><td></td><td>true PPC64_ONLY(&& false)</td><td>product</td><td>convert fill/copy loops into intrinsic</td><td>share/opto/c2_globals.hpp</td></tr>
 <tr><td>OptimizeIfOps</td><td>JDK6</td><td>bool</td><td></td><td></td><td></td><td>true</td><td>develop</td><td>Optimize multiple IfOps</td><td>share/c1/c1_globals.hpp</td></tr>
-<tr><td>OptimizePollingPageLocation</td><td>JDK8</td><td>bool</td><td>aix</td><td></td><td></td><td>true</td><td>product</td><td>Optimize the location of the polling page used for Safepoints</td><td>os/aix/globals_aix.hpp</td></tr>
+<tr><td>OptimizePollingPageLocation</td><td>JDK7</td><td>bool</td><td>aix</td><td></td><td></td><td>true</td><td>product</td><td>Optimize the location of the polling page used for Safepoints</td><td>os/aix/globals_aix.hpp</td></tr>
 <tr><td>OptimizePtrCompare</td><td>JDK6</td><td>bool</td><td></td><td></td><td></td><td>true</td><td>product</td><td>Use escape analysis to optimize pointers compare</td><td>share/opto/c2_globals.hpp</td></tr>
 <tr><td>OptimizeSinglePrecision</td><td>JDK6</td><td>bool</td><td></td><td>aarch64</td><td></td><td>true</td><td>define_pd_global</td><td></td><td>cpu/aarch64/c1_globals_aarch64.hpp</td></tr>
 <tr><td>OptimizeSinglePrecision</td><td>JDK6</td><td>bool</td><td></td><td>arm</td><td></td><td>true</td><td>define_pd_global</td><td></td><td>cpu/arm/c1_globals_arm.hpp</td></tr>
@@ -1129,7 +1119,7 @@ th, td {
 <tr><td>PinAllInstructions</td><td>JDK6</td><td>bool</td><td></td><td></td><td></td><td>false</td><td>develop</td><td>All instructions are pinned</td><td>share/c1/c1_globals.hpp</td></tr>
 <tr><td>PoisonOSREntry</td><td>JDK6</td><td>bool</td><td></td><td></td><td></td><td>true</td><td>develop</td><td>Detect abnormal calls to OSR code</td><td>share/opto/c2_globals.hpp</td></tr>
 <tr><td>PostLoopMultiversioning</td><td>JDK9</td><td>bool</td><td></td><td></td><td></td><td>false</td><td>experimental</td><td>Multi versioned post loops to eliminate range checks</td><td>share/opto/c2_globals.hpp</td></tr>
-<tr><td>PowerArchitecturePPC64</td><td>JDK8</td><td>uintx</td><td></td><td>ppc</td><td></td><td>0</td><td>product</td><td>CPU Version: x for PowerX. Currently recognizes Power5 to Power8. Default is 0. Newer CPUs will be recognized as Power8.</td><td>cpu/ppc/globals_ppc.hpp</td></tr>
+<tr><td>PowerArchitecturePPC64</td><td>JDK7</td><td>uintx</td><td></td><td>ppc</td><td></td><td>0</td><td>product</td><td>CPU Version: x for PowerX. Currently recognizes Power5 to Power8. Default is 0. Newer CPUs will be recognized as Power8.</td><td>cpu/ppc/globals_ppc.hpp</td></tr>
 <tr><td>PreTouchParallelChunkSize</td><td>JDK9</td><td>size_t</td><td></td><td></td><td></td><td>1 * G<br>range(1, SIZE_MAX / 2)</td><td>product</td><td>Per-thread chunk size for parallel memory pre-touch.</td><td>share/gc/shared/gc_globals.hpp</td></tr>
 <tr><td>PreallocatedOutOfMemoryErrorCount</td><td>JDK6</td><td>uintx</td><td></td><td></td><td></td><td>4</td><td>develop</td><td>Number of OutOfMemoryErrors preallocated with backtrace</td><td>share/runtime/globals.hpp</td></tr>
 <tr><td>PreferContainerQuotaForCPUCount</td><td>JDK11</td><td>bool</td><td>linux</td><td></td><td></td><td>true</td><td>product</td><td>Calculate the container CPU availability based on the value of quotas (if set), when true. Otherwise, use the CPU shares value, provided it is less than quota.</td><td>os/linux/globals_linux.hpp</td></tr>
@@ -1210,7 +1200,7 @@ th, td {
 <tr><td>PrintIdealGraphLevel</td><td>JDK6</td><td>intx</td><td></td><td></td><td></td><td>0<br>range(0, 4)</td><td>notproduct</td><td>Level of detail of the ideal graph printout. System-wide value, 0=nothing is printed, 4=all details printed. Level of detail of printouts can be set on a per-method level as well by using CompileCommand=option.</td><td>share/opto/c2_globals.hpp</td></tr>
 <tr><td>PrintIdealGraphPort</td><td>JDK6</td><td>intx</td><td></td><td></td><td></td><td>4444<br>range(0, SHRT_MAX)</td><td>notproduct</td><td>Ideal graph printer to network port</td><td>share/opto/c2_globals.hpp</td></tr>
 <tr><td>PrintIdealGraph</td><td>JDK9</td><td>bool</td><td></td><td></td><td></td><td>false</td><td>notproduct</td><td>Print ideal graph to XML file / network interface. By default attempts to connect to the visualizer on a socket.</td><td>share/opto/c2_globals.hpp</td></tr>
-<tr><td>PrintIdealNodeCount</td><td>JDK8</td><td>bool</td><td></td><td></td><td></td><td>false</td><td>notproduct</td><td>Print liveness counts of ideal nodes</td><td>share/opto/c2_globals.hpp</td></tr>
+<tr><td>PrintIdealNodeCount</td><td>JDK7</td><td>bool</td><td></td><td></td><td></td><td>false</td><td>notproduct</td><td>Print liveness counts of ideal nodes</td><td>share/opto/c2_globals.hpp</td></tr>
 <tr><td>PrintIdeal</td><td>JDK6</td><td>bool</td><td></td><td></td><td></td><td>false</td><td>notproduct</td><td>Print ideal graph before code generation</td><td>share/opto/c2_globals.hpp</td></tr>
 <tr><td>PrintInitialBlockList</td><td>JDK6</td><td>bool</td><td></td><td></td><td></td><td>false</td><td>notproduct</td><td>Print block list of BlockListBuilder</td><td>share/c1/c1_globals.hpp</td></tr>
 <tr><td>PrintInlining</td><td>JDK6</td><td>bool</td><td></td><td></td><td></td><td>false</td><td>diagnostic</td><td>Print inlining optimizations</td><td>share/runtime/globals.hpp</td></tr>
@@ -1226,7 +1216,7 @@ th, td {
 <tr><td>PrintMethodFlushing</td><td>JDK6</td><td>bool</td><td></td><td></td><td></td><td>false</td><td>develop</td><td>Print the nmethods being flushed</td><td>share/runtime/globals.hpp</td></tr>
 <tr><td>PrintMethodHandleStubs</td><td>JDK6</td><td>bool</td><td></td><td></td><td></td><td>false</td><td>diagnostic</td><td>Print generated stub code for method handles</td><td>share/runtime/globals.hpp</td></tr>
 <tr><td>PrintMiscellaneous</td><td>JDK6</td><td>bool</td><td></td><td></td><td></td><td>false</td><td>develop</td><td>Print uncategorized debugging information (requires +Verbose)</td><td>share/runtime/globals.hpp</td></tr>
-<tr><td>PrintNMTStatistics</td><td>JDK8</td><td>bool</td><td></td><td></td><td></td><td>false</td><td>diagnostic</td><td>Print native memory tracking summary data if it is on</td><td>share/runtime/globals.hpp</td></tr>
+<tr><td>PrintNMTStatistics</td><td>JDK7</td><td>bool</td><td></td><td></td><td></td><td>false</td><td>diagnostic</td><td>Print native memory tracking summary data if it is on</td><td>share/runtime/globals.hpp</td></tr>
 <tr><td>PrintNMethodStatistics</td><td>JDK9</td><td>bool</td><td></td><td></td><td></td><td>false</td><td>notproduct</td><td>Print a summary statistic for the generated nmethods</td><td>share/runtime/globals.hpp</td></tr>
 <tr><td>PrintNMethods</td><td>JDK6</td><td>bool</td><td></td><td></td><td></td><td>false</td><td>diagnostic</td><td>Print assembly code for nmethods when generated</td><td>share/runtime/globals.hpp</td></tr>
 <tr><td>PrintNativeNMethods</td><td>JDK6</td><td>bool</td><td></td><td></td><td></td><td>false</td><td>diagnostic</td><td>Print assembly code for native nmethods when generated</td><td>share/runtime/globals.hpp</td></tr>
@@ -1340,8 +1330,8 @@ th, td {
 <tr><td>RegisterReferences</td><td>JDK6</td><td>bool</td><td></td><td></td><td></td><td>true</td><td>develop</td><td>Tell whether the VM should register soft/weak/final/phantom references</td><td>share/runtime/globals.hpp</td></tr>
 <tr><td>RelaxAccessControlCheck</td><td>JDK6</td><td>bool</td><td></td><td></td><td></td><td>false</td><td>product</td><td>Relax the access control checks in the verifier</td><td>share/runtime/globals.hpp</td></tr>
 <tr><td>RenumberLiveNodes</td><td>JDK8</td><td>bool</td><td></td><td></td><td></td><td>true</td><td>develop</td><td>Renumber live nodes</td><td>share/opto/c2_globals.hpp</td></tr>
-<tr><td>ReoptimizeCallSequences</td><td>JDK8</td><td>bool</td><td></td><td>ppc</td><td></td><td>true</td><td>product</td><td>Reoptimize code-sequences of calls at runtime.</td><td>cpu/ppc/globals_ppc.hpp</td></tr>
-<tr><td>ReoptimizeCallSequences</td><td>JDK8</td><td>bool</td><td></td><td>s390</td><td></td><td>true</td><td>product</td><td>Reoptimize code-sequences of calls at runtime.</td><td>cpu/s390/globals_s390.hpp</td></tr>
+<tr><td>ReoptimizeCallSequences</td><td>JDK7</td><td>bool</td><td></td><td>ppc</td><td></td><td>true</td><td>product</td><td>Reoptimize code-sequences of calls at runtime.</td><td>cpu/ppc/globals_ppc.hpp</td></tr>
+<tr><td>ReoptimizeCallSequences</td><td>JDK7</td><td>bool</td><td></td><td>s390</td><td></td><td>true</td><td>product</td><td>Reoptimize code-sequences of calls at runtime.</td><td>cpu/s390/globals_s390.hpp</td></tr>
 <tr><td>ReplayCompiles</td><td>JDK8</td><td>bool</td><td></td><td></td><td></td><td>false</td><td>develop</td><td>Enable replay of compilations from ReplayDataFile</td><td>share/runtime/globals.hpp</td></tr>
 <tr><td>ReplayDataFile</td><td>JDK8</td><td>ccstr</td><td></td><td></td><td></td><td>NULL</td><td>product</td><td>File containing compilation replay information[default: ./replay_pid%p.log] (%p replaced with pid)</td><td>share/runtime/globals.hpp</td></tr>
 <tr><td>ReplayIgnoreInitErrors</td><td>JDK8</td><td>bool</td><td></td><td></td><td></td><td>false</td><td>develop</td><td>Ignore exceptions thrown during initialization for replay</td><td>share/runtime/globals.hpp</td></tr>
@@ -1411,7 +1401,7 @@ th, td {
 <tr><td>SharedBaseAddress</td><td>JDK8</td><td>size_t</td><td></td><td></td><td></td><td>LP64_ONLY(32*G)NOT_LP64(LINUX_ONLY(2*G) NOT_LINUX(0))<br>range(0, SIZE_MAX)</td><td>product</td><td>Address to allocate shared memory region for class data</td><td>share/runtime/globals.hpp</td></tr>
 <tr><td>SharedClassListFile</td><td>JDK8</td><td>ccstr</td><td></td><td></td><td></td><td>NULL</td><td>product</td><td>Override the default CDS class list</td><td>share/runtime/globals.hpp</td></tr>
 <tr><td>SharedSymbolTableBucketSize</td><td>JDK9</td><td>uintx</td><td></td><td></td><td></td><td>4<br>range(2, 246)</td><td>product</td><td>Average number of symbols per bucket in shared table</td><td>share/runtime/globals.hpp</td></tr>
-<tr><td>ShowHiddenFrames</td><td>JDK8</td><td>bool</td><td></td><td></td><td></td><td>false</td><td>diagnostic</td><td>show method handle implementation frames (usually hidden)</td><td>share/runtime/globals.hpp</td></tr>
+<tr><td>ShowHiddenFrames</td><td>JDK7</td><td>bool</td><td></td><td></td><td></td><td>false</td><td>diagnostic</td><td>show method handle implementation frames (usually hidden)</td><td>share/runtime/globals.hpp</td></tr>
 <tr><td>ShowMessageBoxOnError</td><td>JDK6</td><td>bool</td><td></td><td></td><td></td><td>false</td><td>product</td><td>Keep process alive on VM fatal error</td><td>share/runtime/globals.hpp</td></tr>
 <tr><td>ShowRegistersOnAssert</td><td>JDK11</td><td>bool</td><td></td><td></td><td></td><td>false</td><td>diagnostic</td><td>On internal errors, include registers in error report.</td><td>share/runtime/globals.hpp</td></tr>
 <tr><td>ShrinkHeapInSteps</td><td>JDK9</td><td>bool</td><td></td><td></td><td></td><td>true</td><td>product</td><td>When disabled, informs the GC to shrink the java heap directly to the target size at the next full GC rather than requiring smaller steps during multiple full GCs.</td><td>share/runtime/globals.hpp</td></tr>
@@ -1466,7 +1456,7 @@ th, td {
 <tr><td>StressArrayCopyMacroNode</td><td>JDK9</td><td>bool</td><td></td><td></td><td></td><td>false</td><td>develop</td><td>Perform ArrayCopy load/store replacement during IGVN only</td><td>share/opto/c2_globals.hpp</td></tr>
 <tr><td>StressCodeAging</td><td>JDK9</td><td>bool</td><td></td><td></td><td></td><td>false</td><td>diagnostic</td><td>Start with counters compiled in</td><td>share/runtime/globals.hpp</td></tr>
 <tr><td>StressCodeBuffers</td><td>JDK6</td><td>bool</td><td></td><td></td><td></td><td>false</td><td>develop</td><td>Exercise code buffer expansion and other rare state changes</td><td>share/runtime/globals.hpp</td></tr>
-<tr><td>StressCompiledExceptionHandlers</td><td>JDK8</td><td>bool</td><td></td><td></td><td></td><td>false</td><td>develop</td><td>Exercise compiled exception handlers</td><td>share/runtime/globals.hpp</td></tr>
+<tr><td>StressCompiledExceptionHandlers</td><td>JDK7</td><td>bool</td><td></td><td></td><td></td><td>false</td><td>develop</td><td>Exercise compiled exception handlers</td><td>share/runtime/globals.hpp</td></tr>
 <tr><td>StressCriticalJNINatives</td><td>JDK6</td><td>bool</td><td></td><td></td><td></td><td>false</td><td>notproduct</td><td>Exercise register saving code in critical natives</td><td>share/runtime/globals.hpp</td></tr>
 <tr><td>StressDerivedPointers</td><td>JDK6</td><td>bool</td><td></td><td></td><td></td><td>false</td><td>notproduct</td><td>Force scavenge when a derived pointer is detected on stack after rtm call</td><td>share/runtime/globals.hpp</td></tr>
 <tr><td>StressGCM</td><td>JDK8</td><td>bool</td><td></td><td></td><td></td><td>false</td><td>diagnostic</td><td>Randomize instruction scheduling in GCM</td><td>share/opto/c2_globals.hpp</td></tr>
@@ -1628,7 +1618,7 @@ th, td {
 <tr><td>TraceNMethodInstalls</td><td>JDK6</td><td>bool</td><td></td><td></td><td></td><td>false</td><td>diagnostic</td><td>Trace nmethod installation</td><td>share/runtime/globals.hpp</td></tr>
 <tr><td>TraceNewOopMapGenerationDetailed</td><td>JDK6</td><td>bool</td><td></td><td></td><td></td><td>false</td><td>develop</td><td>Trace OopMapGeneration: print detailed cell states</td><td>share/runtime/globals.hpp</td></tr>
 <tr><td>TraceNewOopMapGeneration</td><td>JDK6</td><td>bool</td><td></td><td></td><td></td><td>false</td><td>develop</td><td>Trace OopMapGeneration</td><td>share/runtime/globals.hpp</td></tr>
-<tr><td>TraceNewVectors</td><td>JDK8</td><td>bool</td><td></td><td></td><td></td><td>false</td><td>notproduct</td><td>Trace creation of Vector nodes</td><td>share/opto/c2_globals.hpp</td></tr>
+<tr><td>TraceNewVectors</td><td>JDK7</td><td>bool</td><td></td><td></td><td></td><td>false</td><td>notproduct</td><td>Trace creation of Vector nodes</td><td>share/opto/c2_globals.hpp</td></tr>
 <tr><td>TraceOnStackReplacement</td><td>JDK6</td><td>bool</td><td></td><td></td><td></td><td>false</td><td>notproduct</td><td>Trace on stack replacement</td><td>share/runtime/globals.hpp</td></tr>
 <tr><td>TraceOopMapRewrites</td><td>JDK6</td><td>bool</td><td></td><td></td><td></td><td>false</td><td>develop</td><td>Trace rewriting of method oops during oop map generation</td><td>share/runtime/globals.hpp</td></tr>
 <tr><td>TraceOptimizeFill</td><td>JDK6</td><td>bool</td><td></td><td></td><td></td><td>false</td><td>develop</td><td>print detailed information about fill conversion</td><td>share/opto/c2_globals.hpp</td></tr>
@@ -1643,7 +1633,7 @@ th, td {
 <tr><td>TracePhaseCCP</td><td>JDK6</td><td>bool</td><td></td><td></td><td></td><td>false</td><td>notproduct</td><td>Print progress during Conditional Constant Propagation</td><td>share/opto/c2_globals.hpp</td></tr>
 <tr><td>TracePostallocExpand</td><td>JDK8</td><td>bool</td><td></td><td></td><td></td><td>false</td><td>develop</td><td>Trace expanding nodes after register allocation.</td><td>share/opto/c2_globals.hpp</td></tr>
 <tr><td>TracePredicateFailedTraps</td><td>JDK8</td><td>bool</td><td></td><td></td><td></td><td>false</td><td>develop</td><td>trace runtime traps caused by predicate failure</td><td>share/c1/c1_globals.hpp</td></tr>
-<tr><td>TraceProfileInterpreter</td><td>JDK8</td><td>bool</td><td></td><td></td><td></td><td>false</td><td>develop</td><td>Trace profiling at the bytecode level during interpretation. This outputs the profiling information collected to improve jit compilation.</td><td>share/runtime/globals.hpp</td></tr>
+<tr><td>TraceProfileInterpreter</td><td>JDK7</td><td>bool</td><td></td><td></td><td></td><td>false</td><td>develop</td><td>Trace profiling at the bytecode level during interpretation. This outputs the profiling information collected to improve jit compilation.</td><td>share/runtime/globals.hpp</td></tr>
 <tr><td>TraceProfileTripCount</td><td>JDK6</td><td>bool</td><td></td><td></td><td></td><td>false</td><td>notproduct</td><td>Trace profile loop trip count information</td><td>share/opto/c2_globals.hpp</td></tr>
 <tr><td>TraceRangeCheckElimination</td><td>JDK8</td><td>bool</td><td></td><td></td><td></td><td>false</td><td>develop</td><td>Trace Range Check Elimination</td><td>share/c1/c1_globals.hpp</td></tr>
 <tr><td>TraceRangeLimitCheck</td><td>JDK6</td><td>bool</td><td></td><td></td><td></td><td>false</td><td>develop</td><td>Trace additional overflow checks in RCE</td><td>share/opto/c2_globals.hpp</td></tr>
@@ -1652,30 +1642,30 @@ th, td {
 <tr><td>TraceSuperWordLoopUnrollAnalysis</td><td>JDK9</td><td>bool</td><td></td><td></td><td></td><td>false</td><td>notproduct</td><td>Trace what Superword Level Parallelism analysis applies</td><td>share/opto/c2_globals.hpp</td></tr>
 <tr><td>TraceSuperWord</td><td>JDK6</td><td>bool</td><td></td><td></td><td></td><td>false</td><td>notproduct</td><td>Trace superword transforms</td><td>share/opto/c2_globals.hpp</td></tr>
 <tr><td>TraceSuspendWaitFailures</td><td>JDK6</td><td>bool</td><td></td><td></td><td></td><td>false</td><td>product</td><td>Trace external suspend wait failures</td><td>share/runtime/globals.hpp</td></tr>
-<tr><td>TraceTraps</td><td>JDK8</td><td>bool</td><td></td><td>aarch64</td><td></td><td>false</td><td>product</td><td>Trace all traps the signal handler</td><td>cpu/aarch64/globals_aarch64.hpp</td></tr>
-<tr><td>TraceTraps</td><td>JDK8</td><td>bool</td><td></td><td>ppc</td><td></td><td>false</td><td>product</td><td>Trace all traps the signal handlerhandles.</td><td>cpu/ppc/globals_ppc.hpp</td></tr>
-<tr><td>TraceTraps</td><td>JDK8</td><td>bool</td><td></td><td>s390</td><td></td><td>false</td><td>product</td><td>Trace all traps the signal handlerhandles.</td><td>cpu/s390/globals_s390.hpp</td></tr>
+<tr><td>TraceTraps</td><td>JDK7</td><td>bool</td><td></td><td>aarch64</td><td></td><td>false</td><td>product</td><td>Trace all traps the signal handler</td><td>cpu/aarch64/globals_aarch64.hpp</td></tr>
+<tr><td>TraceTraps</td><td>JDK7</td><td>bool</td><td></td><td>ppc</td><td></td><td>false</td><td>product</td><td>Trace all traps the signal handlerhandles.</td><td>cpu/ppc/globals_ppc.hpp</td></tr>
+<tr><td>TraceTraps</td><td>JDK7</td><td>bool</td><td></td><td>s390</td><td></td><td>false</td><td>product</td><td>Trace all traps the signal handlerhandles.</td><td>cpu/s390/globals_s390.hpp</td></tr>
 <tr><td>TraceTypeProfile</td><td>JDK6</td><td>bool</td><td></td><td></td><td></td><td>false</td><td>diagnostic</td><td>Trace type profile</td><td>share/opto/c2_globals.hpp</td></tr>
 <tr><td>TraceUncollectedSpeculations</td><td>JDK9</td><td>bool</td><td></td><td></td><td></td><td>false</td><td>develop</td><td>Print message when a failed speculation was not collected</td><td>share/jvmci/jvmci_globals.hpp</td></tr>
 <tr><td>TrackedInitializationLimit</td><td>JDK6</td><td>intx</td><td></td><td></td><td></td><td>50<br>range(0, 65535)</td><td>product</td><td>When initializing fields, track up to this many words</td><td>share/opto/c2_globals.hpp</td></tr>
 <tr><td>TransmitErrorReport</td><td>JDK6</td><td>bool</td><td></td><td></td><td></td><td>false</td><td>product</td><td>Enable error report transmission on erroneous termination</td><td>share/runtime/globals.hpp</td></tr>
-<tr><td>TrapBasedICMissChecks</td><td>JDK8</td><td>bool</td><td></td><td>ppc</td><td></td><td>true</td><td>product</td><td>Raise and handle SIGTRAP if inline cache miss detected.</td><td>cpu/ppc/globals_ppc.hpp</td></tr>
-<tr><td>TrapBasedNotEntrantChecks</td><td>JDK8</td><td>bool</td><td></td><td>ppc</td><td></td><td>true</td><td>product</td><td>Raise and handle SIGTRAP if calling not entrant or zombie method.</td><td>cpu/ppc/globals_ppc.hpp</td></tr>
-<tr><td>TrapBasedNullChecks</td><td>JDK8</td><td>bool</td><td></td><td>aarch64</td><td></td><td>false</td><td>define_pd_global</td><td></td><td>cpu/aarch64/globals_aarch64.hpp</td></tr>
-<tr><td>TrapBasedNullChecks</td><td>JDK8</td><td>bool</td><td></td><td>arm</td><td></td><td>false</td><td>define_pd_global</td><td>// Not needed</td><td>cpu/arm/globals_arm.hpp</td></tr>
-<tr><td>TrapBasedNullChecks</td><td>JDK8</td><td>bool</td><td></td><td></td><td></td><td></td><td>product_pd</td><td>Generate code for null checks that uses a cmp and trap instruction raising SIGTRAP.This is only used if an access tonull (+offset) will not raise a SIGSEGV, i.e.,ImplicitNullChecks don't work (PPC64).</td><td>share/runtime/globals.hpp</td></tr>
-<tr><td>TrapBasedNullChecks</td><td>JDK8</td><td>bool</td><td></td><td>ppc</td><td></td><td>true</td><td>define_pd_global</td><td></td><td>cpu/ppc/globals_ppc.hpp</td></tr>
-<tr><td>TrapBasedNullChecks</td><td>JDK8</td><td>bool</td><td></td><td>s390</td><td></td><td>true</td><td>define_pd_global</td><td></td><td>cpu/s390/globals_s390.hpp</td></tr>
-<tr><td>TrapBasedNullChecks</td><td>JDK8</td><td>bool</td><td></td><td>sparc</td><td></td><td>false</td><td>define_pd_global</td><td>// Not needed on sparc.</td><td>cpu/sparc/globals_sparc.hpp</td></tr>
-<tr><td>TrapBasedNullChecks</td><td>JDK8</td><td>bool</td><td></td><td>x86</td><td></td><td>false</td><td>define_pd_global</td><td>// Not needed on x86.</td><td>cpu/x86/globals_x86.hpp</td></tr>
-<tr><td>TrapBasedNullChecks</td><td>JDK8</td><td>bool</td><td></td><td>zero</td><td></td><td>false</td><td>define_pd_global</td><td></td><td>cpu/zero/globals_zero.hpp</td></tr>
-<tr><td>TrapBasedRangeChecks</td><td>JDK8</td><td>bool</td><td></td><td>aarch64</td><td></td><td>false</td><td>define_pd_global</td><td>// Not needed.</td><td>cpu/aarch64/c2_globals_aarch64.hpp</td></tr>
-<tr><td>TrapBasedRangeChecks</td><td>JDK8</td><td>bool</td><td></td><td>arm</td><td></td><td>false</td><td>define_pd_global</td><td>// Not needed</td><td>cpu/arm/c2_globals_arm.hpp</td></tr>
-<tr><td>TrapBasedRangeChecks</td><td>JDK8</td><td>bool</td><td></td><td></td><td></td><td></td><td>product_pd</td><td>Generate code for range checks that uses a cmp and trap instruction raising SIGTRAP. Used on PPC64.</td><td>share/opto/c2_globals.hpp</td></tr>
-<tr><td>TrapBasedRangeChecks</td><td>JDK8</td><td>bool</td><td></td><td>ppc</td><td></td><td>true</td><td>define_pd_global</td><td></td><td>cpu/ppc/c2_globals_ppc.hpp</td></tr>
-<tr><td>TrapBasedRangeChecks</td><td>JDK8</td><td>bool</td><td></td><td>s390</td><td></td><td>false</td><td>define_pd_global</td><td>// Not needed on z/Architecture.</td><td>cpu/s390/c2_globals_s390.hpp</td></tr>
-<tr><td>TrapBasedRangeChecks</td><td>JDK8</td><td>bool</td><td></td><td>sparc</td><td></td><td>false</td><td>define_pd_global</td><td>// Not needed on sparc.</td><td>cpu/sparc/c2_globals_sparc.hpp</td></tr>
-<tr><td>TrapBasedRangeChecks</td><td>JDK8</td><td>bool</td><td></td><td>x86</td><td></td><td>false</td><td>define_pd_global</td><td>// Not needed on x86.</td><td>cpu/x86/c2_globals_x86.hpp</td></tr>
+<tr><td>TrapBasedICMissChecks</td><td>JDK7</td><td>bool</td><td></td><td>ppc</td><td></td><td>true</td><td>product</td><td>Raise and handle SIGTRAP if inline cache miss detected.</td><td>cpu/ppc/globals_ppc.hpp</td></tr>
+<tr><td>TrapBasedNotEntrantChecks</td><td>JDK7</td><td>bool</td><td></td><td>ppc</td><td></td><td>true</td><td>product</td><td>Raise and handle SIGTRAP if calling not entrant or zombie method.</td><td>cpu/ppc/globals_ppc.hpp</td></tr>
+<tr><td>TrapBasedNullChecks</td><td>JDK7</td><td>bool</td><td></td><td>aarch64</td><td></td><td>false</td><td>define_pd_global</td><td></td><td>cpu/aarch64/globals_aarch64.hpp</td></tr>
+<tr><td>TrapBasedNullChecks</td><td>JDK7</td><td>bool</td><td></td><td>arm</td><td></td><td>false</td><td>define_pd_global</td><td>// Not needed</td><td>cpu/arm/globals_arm.hpp</td></tr>
+<tr><td>TrapBasedNullChecks</td><td>JDK7</td><td>bool</td><td></td><td></td><td></td><td></td><td>product_pd</td><td>Generate code for null checks that uses a cmp and trap instruction raising SIGTRAP.This is only used if an access tonull (+offset) will not raise a SIGSEGV, i.e.,ImplicitNullChecks don't work (PPC64).</td><td>share/runtime/globals.hpp</td></tr>
+<tr><td>TrapBasedNullChecks</td><td>JDK7</td><td>bool</td><td></td><td>ppc</td><td></td><td>true</td><td>define_pd_global</td><td></td><td>cpu/ppc/globals_ppc.hpp</td></tr>
+<tr><td>TrapBasedNullChecks</td><td>JDK7</td><td>bool</td><td></td><td>s390</td><td></td><td>true</td><td>define_pd_global</td><td></td><td>cpu/s390/globals_s390.hpp</td></tr>
+<tr><td>TrapBasedNullChecks</td><td>JDK7</td><td>bool</td><td></td><td>sparc</td><td></td><td>false</td><td>define_pd_global</td><td>// Not needed on sparc.</td><td>cpu/sparc/globals_sparc.hpp</td></tr>
+<tr><td>TrapBasedNullChecks</td><td>JDK7</td><td>bool</td><td></td><td>x86</td><td></td><td>false</td><td>define_pd_global</td><td>// Not needed on x86.</td><td>cpu/x86/globals_x86.hpp</td></tr>
+<tr><td>TrapBasedNullChecks</td><td>JDK7</td><td>bool</td><td></td><td>zero</td><td></td><td>false</td><td>define_pd_global</td><td></td><td>cpu/zero/globals_zero.hpp</td></tr>
+<tr><td>TrapBasedRangeChecks</td><td>JDK7</td><td>bool</td><td></td><td>aarch64</td><td></td><td>false</td><td>define_pd_global</td><td>// Not needed.</td><td>cpu/aarch64/c2_globals_aarch64.hpp</td></tr>
+<tr><td>TrapBasedRangeChecks</td><td>JDK7</td><td>bool</td><td></td><td>arm</td><td></td><td>false</td><td>define_pd_global</td><td>// Not needed</td><td>cpu/arm/c2_globals_arm.hpp</td></tr>
+<tr><td>TrapBasedRangeChecks</td><td>JDK7</td><td>bool</td><td></td><td></td><td></td><td></td><td>product_pd</td><td>Generate code for range checks that uses a cmp and trap instruction raising SIGTRAP. Used on PPC64.</td><td>share/opto/c2_globals.hpp</td></tr>
+<tr><td>TrapBasedRangeChecks</td><td>JDK7</td><td>bool</td><td></td><td>ppc</td><td></td><td>true</td><td>define_pd_global</td><td></td><td>cpu/ppc/c2_globals_ppc.hpp</td></tr>
+<tr><td>TrapBasedRangeChecks</td><td>JDK7</td><td>bool</td><td></td><td>s390</td><td></td><td>false</td><td>define_pd_global</td><td>// Not needed on z/Architecture.</td><td>cpu/s390/c2_globals_s390.hpp</td></tr>
+<tr><td>TrapBasedRangeChecks</td><td>JDK7</td><td>bool</td><td></td><td>sparc</td><td></td><td>false</td><td>define_pd_global</td><td>// Not needed on sparc.</td><td>cpu/sparc/c2_globals_sparc.hpp</td></tr>
+<tr><td>TrapBasedRangeChecks</td><td>JDK7</td><td>bool</td><td></td><td>x86</td><td></td><td>false</td><td>define_pd_global</td><td>// Not needed on x86.</td><td>cpu/x86/c2_globals_x86.hpp</td></tr>
 <tr><td>TrustFinalNonStaticFields</td><td>JDK6</td><td>bool</td><td></td><td></td><td></td><td>false</td><td>experimental</td><td>trust final non-static declarations for constant folding</td><td>share/runtime/globals.hpp</td></tr>
 <tr><td>TwoOperandLIRForm</td><td>JDK6</td><td>bool</td><td></td><td>aarch64</td><td></td><td>false</td><td>define_pd_global</td><td></td><td>cpu/aarch64/c1_globals_aarch64.hpp</td></tr>
 <tr><td>TwoOperandLIRForm</td><td>JDK6</td><td>bool</td><td></td><td>arm</td><td></td><td>false</td><td>define_pd_global</td><td></td><td>cpu/arm/c1_globals_arm.hpp</td></tr>
@@ -1713,8 +1703,8 @@ th, td {
 <tr><td>Use64KPagesThreshold</td><td>JDK9</td><td>uintx</td><td>aix</td><td></td><td></td><td>0</td><td>develop</td><td>4K/64K page allocation threshold.</td><td>os/aix/globals_aix.hpp</td></tr>
 <tr><td>Use64KPages</td><td>JDK9</td><td>bool</td><td>aix</td><td></td><td></td><td>true</td><td>product</td><td>Use 64K pages if available.</td><td>os/aix/globals_aix.hpp</td></tr>
 <tr><td>UseAESCTRIntrinsics</td><td>JDK9</td><td>bool</td><td></td><td></td><td></td><td>false</td><td>diagnostic</td><td>Use intrinsics for the paralleled version of AES/CTR crypto</td><td>share/runtime/globals.hpp</td></tr>
-<tr><td>UseAESIntrinsics</td><td>JDK8</td><td>bool</td><td></td><td></td><td></td><td>false</td><td>diagnostic</td><td>Use intrinsics for AES versions of crypto</td><td>share/runtime/globals.hpp</td></tr>
-<tr><td>UseAES</td><td>JDK8</td><td>bool</td><td></td><td></td><td></td><td>false</td><td>product</td><td>Control whether AES instructions are used when available</td><td>share/runtime/globals.hpp</td></tr>
+<tr><td>UseAESIntrinsics</td><td>JDK7</td><td>bool</td><td></td><td></td><td></td><td>false</td><td>diagnostic</td><td>Use intrinsics for AES versions of crypto</td><td>share/runtime/globals.hpp</td></tr>
+<tr><td>UseAES</td><td>JDK7</td><td>bool</td><td></td><td></td><td></td><td>false</td><td>product</td><td>Control whether AES instructions are used when available</td><td>share/runtime/globals.hpp</td></tr>
 <tr><td>UseAOTStrictLoading</td><td>JDK9</td><td>bool</td><td></td><td></td><td></td><td>false</td><td>diagnostic</td><td>Exit the VM if any of the AOT libraries has invalid config</td><td>share/runtime/globals.hpp</td></tr>
 <tr><td>UseAOT</td><td>JDK9</td><td>bool</td><td></td><td></td><td></td><td>AOT_ONLY(true) NOT_AOT(false)</td><td>product</td><td>Use AOT compiled files</td><td>share/runtime/globals.hpp</td></tr>
 <tr><td>UseAVX</td><td>JDK6</td><td>intx</td><td></td><td>x86</td><td></td><td>3<br>range(0, 99)</td><td>product</td><td>Highest supported AVX instructions set on x86/x64</td><td>cpu/x86/globals_x86.hpp</td></tr>
@@ -1766,9 +1756,9 @@ th, td {
 <tr><td>UseCondCardMark</td><td>JDK6</td><td>bool</td><td></td><td></td><td></td><td>false</td><td>product</td><td>Check for already marked card before updating card table</td><td>share/gc/shared/gc_globals.hpp</td></tr>
 <tr><td>UseContainerSupport</td><td>JDK10</td><td>bool</td><td>linux</td><td></td><td></td><td>true</td><td>product</td><td>Enable detection and runtime container configuration support</td><td>os/linux/globals_linux.hpp</td></tr>
 <tr><td>UseCountLeadingZerosInstruction</td><td>JDK6</td><td>bool</td><td></td><td>x86</td><td></td><td>false</td><td>product</td><td>Use count leading zeros instruction</td><td>cpu/x86/globals_x86.hpp</td></tr>
-<tr><td>UseCountLeadingZerosInstructionsPPC64</td><td>JDK8</td><td>bool</td><td></td><td>ppc</td><td></td><td>true</td><td>product</td><td>Use count leading zeros instructions.</td><td>cpu/ppc/globals_ppc.hpp</td></tr>
+<tr><td>UseCountLeadingZerosInstructionsPPC64</td><td>JDK7</td><td>bool</td><td></td><td>ppc</td><td></td><td>true</td><td>product</td><td>Use count leading zeros instructions.</td><td>cpu/ppc/globals_ppc.hpp</td></tr>
 <tr><td>UseCountTrailingZerosInstruction</td><td>JDK8</td><td>bool</td><td></td><td>x86</td><td></td><td>false</td><td>product</td><td>Use count trailing zeros instruction</td><td>cpu/x86/globals_x86.hpp</td></tr>
-<tr><td>UseCountedLoopSafepoints</td><td>JDK8</td><td>bool</td><td></td><td></td><td></td><td>false</td><td>product</td><td>Force counted loops to keep a safepoint</td><td>share/opto/c2_globals.hpp</td></tr>
+<tr><td>UseCountedLoopSafepoints</td><td>JDK7</td><td>bool</td><td></td><td></td><td></td><td>false</td><td>product</td><td>Force counted loops to keep a safepoint</td><td>share/opto/c2_globals.hpp</td></tr>
 <tr><td>UseCounterDecay</td><td>JDK6</td><td>bool</td><td></td><td></td><td></td><td>true</td><td>product</td><td>Adjust recompilation counters</td><td>share/runtime/globals.hpp</td></tr>
 <tr><td>UseCpuAllocPath</td><td>JDK9</td><td>bool</td><td>linux</td><td></td><td></td><td>false</td><td>diagnostic</td><td>Use CPU_ALLOC code path in os::active_processor_count</td><td>os/linux/globals_linux.hpp</td></tr>
 <tr><td>UseCriticalCMSThreadPriority</td><td>JDK6</td><td>bool</td><td></td><td></td><td></td><td>false</td><td>experimental</td><td>ConcurrentMarkSweep thread runs at critical scheduling priority</td><td>share/runtime/globals.hpp</td></tr>
@@ -1782,7 +1772,7 @@ th, td {
 <tr><td>UseExactTypes</td><td>JDK6</td><td>bool</td><td></td><td></td><td></td><td>true</td><td>develop</td><td>Use exact types to eliminate array store checks and v-calls</td><td>share/opto/c2_globals.hpp</td></tr>
 <tr><td>UseExplicitCommit</td><td>JDK9</td><td>bool</td><td>aix</td><td></td><td></td><td>false</td><td>product</td><td>Explicit commit for virtual memory.</td><td>os/aix/globals_aix.hpp</td></tr>
 <tr><td>UseExtendedFileIO</td><td>JDK6</td><td>bool</td><td>solaris</td><td></td><td></td><td>true</td><td>product</td><td>Enable workaround for limitations of stdio FILE structure</td><td>os/solaris/globals_solaris.hpp</td></tr>
-<tr><td>UseExtendedLoadAndReserveInstructionsPPC64</td><td>JDK8</td><td>bool</td><td></td><td>ppc</td><td></td><td>false</td><td>product</td><td>Use extended versions of load-and-reserve instructions.</td><td>cpu/ppc/globals_ppc.hpp</td></tr>
+<tr><td>UseExtendedLoadAndReserveInstructionsPPC64</td><td>JDK7</td><td>bool</td><td></td><td>ppc</td><td></td><td>false</td><td>product</td><td>Use extended versions of load-and-reserve instructions.</td><td>cpu/ppc/globals_ppc.hpp</td></tr>
 <tr><td>UseFMA</td><td>JDK9</td><td>bool</td><td></td><td></td><td></td><td>false</td><td>product</td><td>Control whether FMA instructions are used when available</td><td>share/runtime/globals.hpp</td></tr>
 <tr><td>UseFPUForSpilling</td><td>JDK6</td><td>bool</td><td></td><td></td><td></td><td>false</td><td>product</td><td>Spill integer registers to FPU instead of stack when possible</td><td>share/opto/c2_globals.hpp</td></tr>
 <tr><td>UseFakeTimers</td><td>JDK6</td><td>bool</td><td></td><td></td><td></td><td>false</td><td>develop</td><td>Tell whether the VM should use system time or a fake timer</td><td>share/runtime/globals.hpp</td></tr>
@@ -1794,7 +1784,7 @@ th, td {
 <tr><td>UseFastNewObjectArray</td><td>JDK6</td><td>bool</td><td></td><td></td><td></td><td>true</td><td>develop</td><td>Use fast inlined object array allocation</td><td>share/c1/c1_globals.hpp</td></tr>
 <tr><td>UseFastNewTypeArray</td><td>JDK6</td><td>bool</td><td></td><td></td><td></td><td>true</td><td>develop</td><td>Use fast inlined type array allocation</td><td>share/c1/c1_globals.hpp</td></tr>
 <tr><td>UseFastSignatureHandlers</td><td>JDK6</td><td>bool</td><td></td><td></td><td></td><td>true</td><td>develop</td><td>Use fast signature handlers for native calls</td><td>share/runtime/globals.hpp</td></tr>
-<tr><td>UseFastStosb</td><td>JDK8</td><td>bool</td><td></td><td>x86</td><td></td><td>false</td><td>product</td><td>Use fast-string operation for zeroing: rep stosb</td><td>cpu/x86/globals_x86.hpp</td></tr>
+<tr><td>UseFastStosb</td><td>JDK7</td><td>bool</td><td></td><td>x86</td><td></td><td>false</td><td>product</td><td>Use fast-string operation for zeroing: rep stosb</td><td>cpu/x86/globals_x86.hpp</td></tr>
 <tr><td>UseFastUnorderedTimeStamps</td><td>JDK11</td><td>bool</td><td></td><td></td><td></td><td>false</td><td>experimental</td><td>Use platform unstable time where supported for timestamps only</td><td>share/runtime/globals.hpp</td></tr>
 <tr><td>UseG1GC</td><td>JDK6</td><td>bool</td><td></td><td></td><td></td><td>false</td><td>product</td><td>Use the Garbage-First garbage collector</td><td>share/gc/shared/gc_globals.hpp</td></tr>
 <tr><td>UseGCOverheadLimit</td><td>JDK6</td><td>bool</td><td></td><td></td><td></td><td>true</td><td>product</td><td>Use policy to limit of proportion of time spent in GC before an OutOfMemory error is thrown</td><td>share/gc/shared/gc_globals.hpp</td></tr>
@@ -1828,7 +1818,7 @@ th, td {
 <tr><td>UseLargePages</td><td>JDK6</td><td>bool</td><td>windows</td><td></td><td></td><td>false</td><td>define_pd_global</td><td></td><td>os/windows/globals_windows.hpp</td></tr>
 <tr><td>UseLibmIntrinsic</td><td>JDK9</td><td>bool</td><td></td><td>x86</td><td></td><td>true</td><td>diagnostic</td><td>Use Libm Intrinsics</td><td>cpu/x86/globals_x86.hpp</td></tr>
 <tr><td>UseLinuxPosixThreadCPUClocks</td><td>JDK6</td><td>bool</td><td>linux</td><td></td><td></td><td>true</td><td>product</td><td>enable fast Linux Posix clocks where available</td><td>os/linux/globals_linux.hpp</td></tr>
-<tr><td>UseLoadInstructionsForStackBangingPPC64</td><td>JDK8</td><td>bool</td><td></td><td>ppc</td><td></td><td>false</td><td>product</td><td>Use load instructions for stack banging.</td><td>cpu/ppc/globals_ppc.hpp</td></tr>
+<tr><td>UseLoadInstructionsForStackBangingPPC64</td><td>JDK7</td><td>bool</td><td></td><td>ppc</td><td></td><td>false</td><td>product</td><td>Use load instructions for stack banging.</td><td>cpu/ppc/globals_ppc.hpp</td></tr>
 <tr><td>UseLocalValueNumbering</td><td>JDK6</td><td>bool</td><td></td><td></td><td></td><td>true</td><td>develop</td><td>Use Local Value Numbering (embedded in GraphBuilder)</td><td>share/c1/c1_globals.hpp</td></tr>
 <tr><td>UseLoopCounter</td><td>JDK6</td><td>bool</td><td></td><td></td><td></td><td>true</td><td>product</td><td>Increment invocation counter on backward branch</td><td>share/runtime/globals.hpp</td></tr>
 <tr><td>UseLoopInvariantCodeMotion</td><td>JDK8</td><td>bool</td><td></td><td></td><td></td><td>true</td><td>product</td><td>Simple loop invariant code motion for short loops during GVN</td><td>share/c1/c1_globals.hpp</td></tr>
@@ -1880,7 +1870,7 @@ th, td {
 <tr><td>UseParallelOldGC</td><td>JDK6</td><td>bool</td><td></td><td></td><td></td><td>false</td><td>product</td><td>Use the Parallel Old garbage collector</td><td>share/gc/shared/gc_globals.hpp</td></tr>
 <tr><td>UsePerfData</td><td>JDK6</td><td>bool</td><td></td><td></td><td></td><td>true</td><td>product</td><td>Flag to disable jvmstat instrumentation for performance testing and problem isolation purposes</td><td>share/runtime/globals.hpp</td></tr>
 <tr><td>UsePopCountInstruction</td><td>JDK6</td><td>bool</td><td></td><td></td><td></td><td>false</td><td>product</td><td>Use population count instruction</td><td>share/runtime/globals.hpp</td></tr>
-<tr><td>UsePower6SchedulerPPC64</td><td>JDK8</td><td>bool</td><td></td><td>ppc</td><td></td><td>false</td><td>product</td><td>Use Power6 Scheduler.</td><td>cpu/ppc/globals_ppc.hpp</td></tr>
+<tr><td>UsePower6SchedulerPPC64</td><td>JDK7</td><td>bool</td><td></td><td>ppc</td><td></td><td>false</td><td>product</td><td>Use Power6 Scheduler.</td><td>cpu/ppc/globals_ppc.hpp</td></tr>
 <tr><td>UsePrivilegedStack</td><td>JDK6</td><td>bool</td><td></td><td></td><td></td><td>true</td><td>develop</td><td>Enable the security JVM functions</td><td>share/runtime/globals.hpp</td></tr>
 <tr><td>UseProfiledLoopPredicate</td><td>JDK11</td><td>bool</td><td></td><td></td><td></td><td>true</td><td>product</td><td>move predicates out of loops based on profiling data</td><td>share/opto/c2_globals.hpp</td></tr>
 <tr><td>UsePthreads</td><td>JDK6</td><td>bool</td><td></td><td></td><td></td><td>false</td><td>develop</td><td>Use pthread-based instead of libthread-based synchronization (SPARC only)</td><td>share/runtime/globals.hpp</td></tr>
@@ -1893,14 +1883,14 @@ th, td {
 <tr><td>UseRTMLocking</td><td>JDK8</td><td>bool</td><td></td><td>x86</td><td></td><td>false</td><td>product</td><td>Enable RTM lock eliding for inflated locks in compiled code</td><td>cpu/x86/globals_x86.hpp</td></tr>
 <tr><td>UseRTMXendForLockBusy</td><td>JDK8</td><td>bool</td><td></td><td>ppc</td><td></td><td>true</td><td>experimental</td><td>Use RTM Xend instead of Xabort when lock busy</td><td>cpu/ppc/globals_ppc.hpp</td></tr>
 <tr><td>UseRTMXendForLockBusy</td><td>JDK8</td><td>bool</td><td></td><td>x86</td><td></td><td>true</td><td>experimental</td><td>Use RTM Xend instead of Xabort when lock busy</td><td>cpu/x86/globals_x86.hpp</td></tr>
-<tr><td>UseRotateAndMaskInstructionsPPC64</td><td>JDK8</td><td>bool</td><td></td><td>ppc</td><td></td><td>true</td><td>product</td><td>Use rotate and mask instructions.</td><td>cpu/ppc/globals_ppc.hpp</td></tr>
+<tr><td>UseRotateAndMaskInstructionsPPC64</td><td>JDK7</td><td>bool</td><td></td><td>ppc</td><td></td><td>true</td><td>product</td><td>Use rotate and mask instructions.</td><td>cpu/ppc/globals_ppc.hpp</td></tr>
 <tr><td>UseSHA1Intrinsics</td><td>JDK8</td><td>bool</td><td></td><td></td><td></td><td>false</td><td>diagnostic</td><td>Use intrinsics for SHA-1 crypto hash function. Requires that UseSHA is enabled.</td><td>share/runtime/globals.hpp</td></tr>
 <tr><td>UseSHA256Intrinsics</td><td>JDK8</td><td>bool</td><td></td><td></td><td></td><td>false</td><td>diagnostic</td><td>Use intrinsics for SHA-224 and SHA-256 crypto hash functions. Requires that UseSHA is enabled.</td><td>share/runtime/globals.hpp</td></tr>
 <tr><td>UseSHA512Intrinsics</td><td>JDK8</td><td>bool</td><td></td><td></td><td></td><td>false</td><td>diagnostic</td><td>Use intrinsics for SHA-384 and SHA-512 crypto hash functions. Requires that UseSHA is enabled.</td><td>share/runtime/globals.hpp</td></tr>
 <tr><td>UseSHA</td><td>JDK8</td><td>bool</td><td></td><td></td><td></td><td>false</td><td>product</td><td>Control whether SHA instructions are used when available</td><td>share/runtime/globals.hpp</td></tr>
 <tr><td>UseSHM</td><td>JDK6</td><td>bool</td><td>bsd</td><td></td><td></td><td>false</td><td>product</td><td>Use SYSV shared memory for large pages</td><td>os/bsd/globals_bsd.hpp</td></tr>
 <tr><td>UseSHM</td><td>JDK6</td><td>bool</td><td>linux</td><td></td><td></td><td>false</td><td>product</td><td>Use SYSV shared memory for large pages</td><td>os/linux/globals_linux.hpp</td></tr>
-<tr><td>UseSIGTRAP</td><td>JDK8</td><td>bool</td><td></td><td>ppc</td><td></td><td>true</td><td>product</td><td>Allow trap instructions that make use of SIGTRAP. Use this to switch off all optimizations requiring SIGTRAP.</td><td>cpu/ppc/globals_ppc.hpp</td></tr>
+<tr><td>UseSIGTRAP</td><td>JDK7</td><td>bool</td><td></td><td>ppc</td><td></td><td>true</td><td>product</td><td>Allow trap instructions that make use of SIGTRAP. Use this to switch off all optimizations requiring SIGTRAP.</td><td>cpu/ppc/globals_ppc.hpp</td></tr>
 <tr><td>UseSIMDForArrayEquals</td><td>JDK11</td><td>bool</td><td></td><td>aarch64</td><td></td><td>true</td><td>product</td><td>Use SIMD instructions in generated array equals code</td><td>cpu/aarch64/globals_aarch64.hpp</td></tr>
 <tr><td>UseSIMDForMemoryOps</td><td>JDK9</td><td>bool</td><td></td><td>aarch64</td><td></td><td>false</td><td>product</td><td>Use SIMD instructions in generated memory move code</td><td>cpu/aarch64/globals_aarch64.hpp</td></tr>
 <tr><td>UseSSE42Intrinsics</td><td>JDK6</td><td>bool</td><td></td><td>x86</td><td></td><td>false</td><td>product</td><td>SSE4.2 versions of intrinsics</td><td>cpu/x86/globals_x86.hpp</td></tr>
@@ -1914,8 +1904,8 @@ th, td {
 <tr><td>UseSlowPath</td><td>JDK6</td><td>bool</td><td></td><td></td><td></td><td>false</td><td>develop</td><td>For debugging: test slow cases by always using them</td><td>share/c1/c1_globals.hpp</td></tr>
 <tr><td>UseSquareToLenIntrinsic</td><td>JDK8</td><td>bool</td><td></td><td></td><td></td><td>false</td><td>diagnostic</td><td>Enables intrinsification of BigInteger.squareToLen()</td><td>share/opto/c2_globals.hpp</td></tr>
 <tr><td>UseStackBanging</td><td>JDK6</td><td>bool</td><td></td><td></td><td></td><td>true</td><td>develop</td><td>use stack banging for stack overflow checks (required for proper StackOverflow handling; disable only to measure cost of stackbanging)</td><td>share/runtime/globals.hpp</td></tr>
-<tr><td>UseStaticBranchPredictionForUncommonPathsPPC64</td><td>JDK8</td><td>bool</td><td></td><td>ppc</td><td></td><td>false</td><td>product</td><td>Use static branch prediction hints for uncommon paths.</td><td>cpu/ppc/globals_ppc.hpp</td></tr>
-<tr><td>UseStaticBranchPredictionInCompareAndSwapPPC64</td><td>JDK8</td><td>bool</td><td></td><td>ppc</td><td></td><td>true</td><td>product</td><td>Use static branch prediction hints in CAS operations.</td><td>cpu/ppc/globals_ppc.hpp</td></tr>
+<tr><td>UseStaticBranchPredictionForUncommonPathsPPC64</td><td>JDK7</td><td>bool</td><td></td><td>ppc</td><td></td><td>false</td><td>product</td><td>Use static branch prediction hints for uncommon paths.</td><td>cpu/ppc/globals_ppc.hpp</td></tr>
+<tr><td>UseStaticBranchPredictionInCompareAndSwapPPC64</td><td>JDK7</td><td>bool</td><td></td><td>ppc</td><td></td><td>true</td><td>product</td><td>Use static branch prediction hints in CAS operations.</td><td>cpu/ppc/globals_ppc.hpp</td></tr>
 <tr><td>UseStoreImmI16</td><td>JDK6</td><td>bool</td><td></td><td>x86</td><td></td><td>true</td><td>product</td><td>Use store immediate 16-bits value instruction on x86</td><td>cpu/x86/globals_x86.hpp</td></tr>
 <tr><td>UseStrictFP</td><td>JDK6</td><td>bool</td><td></td><td></td><td></td><td>true</td><td>develop</td><td>use strict fp if modifier strictfp is set</td><td>share/runtime/globals.hpp</td></tr>
 <tr><td>UseStringDeduplication</td><td>JDK8</td><td>bool</td><td></td><td></td><td></td><td>false</td><td>product</td><td>Use string deduplication</td><td>share/runtime/globals.hpp</td></tr>
@@ -1932,7 +1922,7 @@ th, td {
 <tr><td>UseTableRanges</td><td>JDK6</td><td>bool</td><td></td><td></td><td></td><td>true</td><td>develop</td><td>Faster versions of lookup table using ranges</td><td>share/c1/c1_globals.hpp</td></tr>
 <tr><td>UseThreadPriorities</td><td>JDK6</td><td>bool</td><td></td><td></td><td></td><td></td><td>product_pd</td><td>Use native thread priorities</td><td>share/runtime/globals.hpp</td></tr>
 <tr><td>UseThreadPriorities</td><td>JDK6</td><td>bool</td><td>solaris</td><td></td><td></td><td>false</td><td>define_pd_global</td><td></td><td>os/solaris/globals_solaris.hpp</td></tr>
-<tr><td>UseTransparentHugePages</td><td>JDK8</td><td>bool</td><td>linux</td><td></td><td></td><td>false</td><td>product</td><td>Use MADV_HUGEPAGE for large pages</td><td>os/linux/globals_linux.hpp</td></tr>
+<tr><td>UseTransparentHugePages</td><td>JDK7</td><td>bool</td><td>linux</td><td></td><td></td><td>false</td><td>product</td><td>Use MADV_HUGEPAGE for large pages</td><td>os/linux/globals_linux.hpp</td></tr>
 <tr><td>UseTypeProfile</td><td>JDK6</td><td>bool</td><td></td><td>aarch64</td><td></td><td>false</td><td>define_pd_global</td><td></td><td>cpu/aarch64/c1_globals_aarch64.hpp</td></tr>
 <tr><td>UseTypeProfile</td><td>JDK6</td><td>bool</td><td></td><td>arm</td><td></td><td>false</td><td>define_pd_global</td><td></td><td>cpu/arm/c1_globals_arm.hpp</td></tr>
 <tr><td>UseTypeProfile</td><td>JDK6</td><td>bool</td><td></td><td></td><td></td><td>true</td><td>product</td><td>Check interpreter profile for historically monomorphic calls</td><td>share/runtime/globals.hpp</td></tr>
@@ -1972,10 +1962,10 @@ th, td {
 <tr><td>ValueMapInitialSize</td><td>JDK6</td><td>intx</td><td></td><td></td><td></td><td>11<br>range(1, NOT_LP64(1*K) LP64_ONLY(32*K))</td><td>product</td><td>Initial size of a value map</td><td>share/c1/c1_globals.hpp</td></tr>
 <tr><td>ValueMapMaxLoopSize</td><td>JDK6</td><td>intx</td><td></td><td></td><td></td><td>8<br>range(0, 128)</td><td>product</td><td>maximum size of a loop optimized by global value numbering</td><td>share/c1/c1_globals.hpp</td></tr>
 <tr><td>ValueSearchLimit</td><td>JDK6</td><td>intx</td><td></td><td></td><td></td><td>1000<br>range(0, max_jint)</td><td>product</td><td>Recursion limit in PhaseMacroExpand::value_from_mem_phi</td><td>share/opto/c2_globals.hpp</td></tr>
-<tr><td>VerboseInternalVMTests</td><td>JDK8</td><td>bool</td><td></td><td></td><td></td><td>false</td><td>notproduct</td><td>Turn on logging for internal VM tests.</td><td>share/gc/shared/gc_globals.hpp</td></tr>
+<tr><td>VerboseInternalVMTests</td><td>JDK7</td><td>bool</td><td></td><td></td><td></td><td>false</td><td>notproduct</td><td>Turn on logging for internal VM tests.</td><td>share/gc/shared/gc_globals.hpp</td></tr>
 <tr><td>Verbose</td><td>JDK6</td><td>bool</td><td></td><td></td><td></td><td>false</td><td>develop</td><td>Print additional debugging information from other modes</td><td>share/runtime/globals.hpp</td></tr>
 <tr><td>VerifyActivationFrameSize</td><td>JDK6</td><td>bool</td><td></td><td></td><td></td><td>false</td><td>develop</td><td>Verify that activation frame didn't become smaller than its minimal size</td><td>share/runtime/globals.hpp</td></tr>
-<tr><td>VerifyAdapterCalls</td><td>JDK8</td><td>bool</td><td></td><td></td><td></td><td>trueInDebug</td><td>diagnostic</td><td>Verify that i2c/c2i adapters are called properly</td><td>share/runtime/globals.hpp</td></tr>
+<tr><td>VerifyAdapterCalls</td><td>JDK7</td><td>bool</td><td></td><td></td><td></td><td>trueInDebug</td><td>diagnostic</td><td>Verify that i2c/c2i adapters are called properly</td><td>share/runtime/globals.hpp</td></tr>
 <tr><td>VerifyAdapterSharing</td><td>JDK6</td><td>bool</td><td></td><td></td><td></td><td>false</td><td>develop</td><td>Verify that the code for shared adapters is the equivalent</td><td>share/runtime/globals.hpp</td></tr>
 <tr><td>VerifyAfterGC</td><td>JDK6</td><td>bool</td><td></td><td></td><td></td><td>false</td><td>diagnostic</td><td>Verify memory system after GC</td><td>share/gc/shared/gc_globals.hpp</td></tr>
 <tr><td>VerifyAliases</td><td>JDK6</td><td>bool</td><td></td><td></td><td></td><td>false</td><td>develop</td><td>perform extra checks on the results of alias analysis</td><td>share/opto/c2_globals.hpp</td></tr>
@@ -1985,19 +1975,19 @@ th, td {
 <tr><td>VerifyBlockOffsetArray</td><td>JDK6</td><td>bool</td><td></td><td></td><td></td><td>false</td><td>develop</td><td>Do (expensive) block offset array verification</td><td>share/gc/shared/gc_globals.hpp</td></tr>
 <tr><td>VerifyCodeCache</td><td>JDK9</td><td>bool</td><td></td><td></td><td></td><td>false</td><td>notproduct</td><td>Verify code cache on memory allocation/deallocation</td><td>share/runtime/globals.hpp</td></tr>
 <tr><td>VerifyCompiledCode</td><td>JDK6</td><td>bool</td><td></td><td></td><td></td><td>false</td><td>develop</td><td>Include miscellaneous runtime verifications in nmethod code; default off because it disturbs nmethod size heuristics</td><td>share/runtime/globals.hpp</td></tr>
-<tr><td>VerifyConnectionGraph</td><td>JDK8</td><td>bool</td><td></td><td></td><td></td><td>true</td><td>notproduct</td><td>Verify Connection Graph construction in Escape Analysis</td><td>share/opto/c2_globals.hpp</td></tr>
+<tr><td>VerifyConnectionGraph</td><td>JDK7</td><td>bool</td><td></td><td></td><td></td><td>true</td><td>notproduct</td><td>Verify Connection Graph construction in Escape Analysis</td><td>share/opto/c2_globals.hpp</td></tr>
 <tr><td>VerifyDUIterators</td><td>JDK6</td><td>bool</td><td></td><td></td><td></td><td>true</td><td>notproduct</td><td>Verify the safety of all iterations of Bi-directional Edges</td><td>share/opto/c2_globals.hpp</td></tr>
 <tr><td>VerifyDataPointer</td><td>JDK6</td><td>bool</td><td></td><td></td><td></td><td>trueInDebug</td><td>develop</td><td>Verify the method data pointer during interpreter profiling</td><td>share/runtime/globals.hpp</td></tr>
 <tr><td>VerifyDependencies</td><td>JDK6</td><td>bool</td><td></td><td></td><td></td><td>trueInDebug</td><td>develop</td><td>Exercise and verify the compilation dependency mechanism</td><td>share/runtime/globals.hpp</td></tr>
 <tr><td>VerifyDuringGC</td><td>JDK6</td><td>bool</td><td></td><td></td><td></td><td>false</td><td>diagnostic</td><td>Verify memory system during GC (between phases)</td><td>share/gc/shared/gc_globals.hpp</td></tr>
-<tr><td>VerifyDuringStartup</td><td>JDK8</td><td>bool</td><td></td><td></td><td></td><td>false</td><td>diagnostic</td><td>Verify memory system before executing any Java code during VM initialization</td><td>share/gc/shared/gc_globals.hpp</td></tr>
+<tr><td>VerifyDuringStartup</td><td>JDK7</td><td>bool</td><td></td><td></td><td></td><td>false</td><td>diagnostic</td><td>Verify memory system before executing any Java code during VM initialization</td><td>share/gc/shared/gc_globals.hpp</td></tr>
 <tr><td>VerifyFPU</td><td>JDK6</td><td>bool</td><td></td><td></td><td></td><td>false</td><td>develop</td><td>Verify FPU state (check for NaN's, etc.)</td><td>share/runtime/globals.hpp</td></tr>
 <tr><td>VerifyGCLevel</td><td>JDK6</td><td>intx</td><td></td><td></td><td></td><td>0<br>range(0, 1)</td><td>diagnostic</td><td>Generation level at which to start +VerifyBefore/AfterGC</td><td>share/gc/shared/gc_globals.hpp</td></tr>
 <tr><td>VerifyGCStartAt</td><td>JDK6</td><td>uintx</td><td></td><td></td><td></td><td>0<br>range(0, max_uintx)</td><td>diagnostic</td><td>GC invoke count where +VerifyBefore/AfterGC kicks in</td><td>share/gc/shared/gc_globals.hpp</td></tr>
 <tr><td>VerifyGCType</td><td>JDK10</td><td>ccstrlist</td><td></td><td></td><td></td><td>GC type(s) to verify when Verify*GC is enabled.Available types are collector specific.</td><td>diagnostic</td><td></td><td>share/gc/shared/gc_globals.hpp</td></tr>
 <tr><td>VerifyGraphEdges</td><td>JDK6</td><td>bool</td><td></td><td></td><td></td><td>false</td><td>notproduct</td><td>Verify Bi-directional Edges</td><td>share/opto/c2_globals.hpp</td></tr>
 <tr><td>VerifyHashTableKeys</td><td>JDK6</td><td>bool</td><td></td><td></td><td></td><td>true</td><td>notproduct</td><td>Verify the immutability of keys in the VN hash tables</td><td>share/opto/c2_globals.hpp</td></tr>
-<tr><td>VerifyIdealNodeCount</td><td>JDK8</td><td>bool</td><td></td><td></td><td></td><td>false</td><td>notproduct</td><td>Verify that tracked dead ideal node count is accurate</td><td>share/opto/c2_globals.hpp</td></tr>
+<tr><td>VerifyIdealNodeCount</td><td>JDK7</td><td>bool</td><td></td><td></td><td></td><td>false</td><td>notproduct</td><td>Verify that tracked dead ideal node count is accurate</td><td>share/opto/c2_globals.hpp</td></tr>
 <tr><td>VerifyInterpreterStackTop</td><td>JDK9</td><td>bool</td><td></td><td>arm</td><td></td><td>false</td><td>develop</td><td>Verify interpreter stack top at every stack expansion (AArch64 only)</td><td>cpu/arm/globals_arm.hpp</td></tr>
 <tr><td>VerifyIterativeGVN</td><td>JDK6</td><td>bool</td><td></td><td></td><td></td><td>false</td><td>develop</td><td>Verify Def-Use modifications during sparse Iterative Global Value Numbering</td><td>share/opto/c2_globals.hpp</td></tr>
 <tr><td>VerifyJNIEnvThread</td><td>JDK6</td><td>bool</td><td></td><td></td><td></td><td>false</td><td>notproduct</td><td>Verify JNIEnv.thread == Thread::current() when entering VM from JNI</td><td>share/runtime/globals.hpp</td></tr>
@@ -2025,7 +2015,7 @@ th, td {
 <tr><td>WarmCallMinCount</td><td>JDK6</td><td>intx</td><td></td><td></td><td></td><td>-1<br>range(-1, ((intx)MIN2((int64_t)max_intx,(int64_t)(+1.0e10))))</td><td>develop</td><td>number of calls (per method invocation) to enable inlining</td><td>share/opto/c2_globals.hpp</td></tr>
 <tr><td>WarmCallMinProfit</td><td>JDK6</td><td>intx</td><td></td><td></td><td></td><td>-1<br>range(-1, ((intx)MIN2((int64_t)max_intx,(int64_t)(+1.0e10))))</td><td>develop</td><td>number of calls (per method invocation) to enable inlining</td><td>share/opto/c2_globals.hpp</td></tr>
 <tr><td>WarnOnStalledSpinLock</td><td>JDK6</td><td>uintx</td><td></td><td></td><td></td><td>0</td><td>notproduct</td><td>Print warnings for stalled SpinLocks</td><td>share/runtime/globals.hpp</td></tr>
-<tr><td>WhiteBoxAPI</td><td>JDK8</td><td>bool</td><td></td><td></td><td></td><td>false</td><td>diagnostic</td><td>Enable internal testing APIs</td><td>share/runtime/globals.hpp</td></tr>
+<tr><td>WhiteBoxAPI</td><td>JDK7</td><td>bool</td><td></td><td></td><td></td><td>false</td><td>diagnostic</td><td>Enable internal testing APIs</td><td>share/runtime/globals.hpp</td></tr>
 <tr><td>WizardMode</td><td>JDK6</td><td>bool</td><td></td><td></td><td></td><td>false</td><td>develop</td><td>Print much more debugging information</td><td>share/runtime/globals.hpp</td></tr>
 <tr><td>WorkStealingHardSpins</td><td>JDK6</td><td>uintx</td><td></td><td></td><td></td><td>4096</td><td>experimental</td><td>Number of iterations in a spin loop between checks on time out of hard spin</td><td>share/gc/shared/gc_globals.hpp</td></tr>
 <tr><td>WorkStealingSleepMillis</td><td>JDK6</td><td>uintx</td><td></td><td></td><td></td><td>1</td><td>experimental</td><td>Sleep time when sleep is used for yields</td><td>share/gc/shared/gc_globals.hpp</td></tr>
@@ -2057,7 +2047,7 @@ th, td {
 <tr><td>ZapEmptyStackFields</td><td>JDK9</td><td>bool</td><td></td><td>s390</td><td></td><td>false</td><td>develop</td><td>Write 0x0101... to empty stack fields. Use this to ease stack debugging.</td><td>cpu/s390/globals_s390.hpp</td></tr>
 <tr><td>ZapFillerObjects</td><td>JDK6</td><td>bool</td><td></td><td></td><td></td><td>trueInDebug</td><td>develop</td><td>Zap filler objects with 0xDEAFBABE</td><td>share/runtime/globals.hpp</td></tr>
 <tr><td>ZapHighNonSignificantBits</td><td>JDK9</td><td>bool</td><td></td><td>arm</td><td></td><td>false</td><td>develop</td><td>Zap high non-significant bits of values (AArch64 only)</td><td>cpu/arm/globals_arm.hpp</td></tr>
-<tr><td>ZapMemory</td><td>JDK8</td><td>bool</td><td></td><td>ppc</td><td></td><td>false</td><td>product</td><td>Write 0x0101... to empty memory. Use this to ease debugging.</td><td>cpu/ppc/globals_ppc.hpp</td></tr>
+<tr><td>ZapMemory</td><td>JDK7</td><td>bool</td><td></td><td>ppc</td><td></td><td>false</td><td>product</td><td>Write 0x0101... to empty memory. Use this to ease debugging.</td><td>cpu/ppc/globals_ppc.hpp</td></tr>
 <tr><td>ZapResourceArea</td><td>JDK6</td><td>bool</td><td></td><td></td><td></td><td>trueInDebug</td><td>develop</td><td>Zap freed resource/arena space with 0xABABABAB</td><td>share/runtime/globals.hpp</td></tr>
 <tr><td>ZapStackSegments</td><td>JDK6</td><td>bool</td><td></td><td></td><td></td><td>trueInDebug</td><td>notproduct</td><td>Zap allocated/freed stack segments with 0xFADFADED</td><td>share/runtime/globals.hpp</td></tr>
 <tr><td>ZapUnusedHeapArea</td><td>JDK6</td><td>bool</td><td></td><td></td><td></td><td>trueInDebug</td><td>develop</td><td>Zap unused heap space with 0xBAADBABE</td><td>share/runtime/globals.hpp</td></tr>
@@ -2070,7 +2060,7 @@ th, td {
 		</tbody>
 	</table>
 	<div class="footer">
-		Autogenerated on Tue Jul 10 09:45:28 BST 2018 from HotSpot sources by <a
+		Autogenerated on Fri Jul 13 17:00:36 BST 2018 from HotSpot sources by <a
 			href="https://twitter.com/chriswhocodes">@chriswhocodes</a>
 	</div>
 </body>

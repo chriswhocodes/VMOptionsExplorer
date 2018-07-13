@@ -12,5 +12,5 @@ import com.chrisnewland.vmswitch.SwitchInfo;
 
 public interface ISwitchParser
 {
-    void process(File vmPath, Map<String, SwitchInfo> switchMap) throws IOException;
+    Map<String, SwitchInfo> process(File vmPath) throws IOException;
 }

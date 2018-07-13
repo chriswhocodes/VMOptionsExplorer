@@ -9,6 +9,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.util.List;
 import java.util.Map;
+import java.util.TreeMap;
 
 import com.chrisnewland.vmswitch.SwitchInfo;
 
@@ -17,14 +18,18 @@ public class OpenJ9SwitchParser extends AbstractSwitchParser
 	private static final String SWITCH_START = "-X";
 
 	@Override
-	public void process(File vmPath, Map<String, SwitchInfo> switchMap) throws IOException
+	public Map<String, SwitchInfo> process(File vmPath) throws IOException
 	{
-		parseJVMInitHeader(new File(vmPath, "runtime/oti/jvminit.h"), switchMap);
+		switchMap = new TreeMap<>();
 		
-		parseNLSFile(new File(vmPath, "runtime/nls/exel/exelib.nls"), switchMap);
+		parseJVMInitHeader(new File(vmPath, "runtime/oti/jvminit.h"));
+		
+		parseNLSFile(new File(vmPath, "runtime/nls/exel/exelib.nls"));
+		
+		return switchMap;
 	}
 
-	private void parseJVMInitHeader(File file, Map<String, SwitchInfo> switchMap) throws IOException
+	private void parseJVMInitHeader(File file) throws IOException
 	{
 		List<String> lines = Files.readAllLines(file.toPath());
 
@@ -45,7 +50,7 @@ public class OpenJ9SwitchParser extends AbstractSwitchParser
 		}
 	}
 
-	private void parseNLSFile(File file, Map<String, SwitchInfo> switchMap) throws IOException
+	private void parseNLSFile(File file) throws IOException
 	{
 		List<String> lines = Files.readAllLines(file.toPath());
 

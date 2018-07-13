@@ -10,21 +10,26 @@ import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.TreeMap;
 
 import com.chrisnewland.vmswitch.SwitchInfo;
 
 public class HotSpotSwitchParser extends AbstractSwitchParser
 {
 	@Override
-	public void process(File vmPath, Map<String, SwitchInfo> switchMap) throws IOException
+	public Map<String, SwitchInfo> process(File vmPath) throws IOException
     {
+		switchMap = new TreeMap<>();
+		
 		for (File hotspotFile : findSwitchFilesHotSpot(vmPath))
 		{
-			parseFile(hotspotFile, vmPath, switchMap);
+			parseFile(hotspotFile, vmPath);
 		}
+		
+		return switchMap;
     }
 	
-	private void parseFile(File hotspotFile, File vmPath, Map<String, SwitchInfo> switchMap) throws IOException
+	private void parseFile(File hotspotFile, File vmPath) throws IOException
 	{
         List<String> lines = Files.readAllLines(hotspotFile.toPath());
 

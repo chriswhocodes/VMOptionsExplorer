@@ -15,6 +15,8 @@ import com.chrisnewland.vmswitch.SwitchInfo;
 
 public abstract class AbstractSwitchParser implements ISwitchParser
 {
+	protected Map<String, SwitchInfo> switchMap;
+
 	protected List<String> explodeLine(String line)
 	{
 		List<String> result = new ArrayList<>();

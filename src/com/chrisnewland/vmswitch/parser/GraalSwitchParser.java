@@ -9,14 +9,17 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.util.List;
 import java.util.Map;
+import java.util.TreeMap;
 
 import com.chrisnewland.vmswitch.SwitchInfo;
 
 public class GraalSwitchParser extends AbstractSwitchParser
 {
 	@Override
-	public void process(File vmPath, Map<String, SwitchInfo> switchMap) throws IOException
+	public Map<String, SwitchInfo> process(File vmPath) throws IOException
 	{
+		switchMap = new TreeMap<>();
+		
 		List<String> lines = Files.readAllLines(vmPath.toPath());
 
 		StringBuilder builder = new StringBuilder();
@@ -100,6 +103,8 @@ public class GraalSwitchParser extends AbstractSwitchParser
 			info.setDescription("<pre>" + description + "</pre>");
 			builder.setLength(0);
 		}
+		
+		return switchMap;
 
 	}
 

@@ -33,4 +33,26 @@ public class VMData
         this.vmPath = vmPath;
         this.vmType = vmType;
     }
+    
+	public String getHTMLFilename()
+	{
+		StringBuilder builder = new StringBuilder();
+				
+		switch (vmType)
+		{
+		case GRAAL:
+			builder.append("graal_options_");
+			break;
+		case OPENJ9:
+			builder.append("openj9_options_");
+			break;
+		case HOTSPOT:
+			builder.append("hotspot_options_");
+			break;
+		}
+		
+		builder.append(jdkName.toLowerCase().replace(" ", "_")).append(".html");
+		
+		return builder.toString();
+	}
 }
