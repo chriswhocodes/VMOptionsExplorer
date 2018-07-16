@@ -326,6 +326,7 @@ public class VMSwitch
 		vms.addVM(new VMData("JDK9", new File("/home/chris/openjdk/jdk9-dev/hotspot"), VMType.HOTSPOT));
 		vms.addVM(new VMData("JDK10", new File("/home/chris/openjdk/jdk10/src/hotspot"), VMType.HOTSPOT));
 		vms.addVM(new VMData("JDK11", new File("/home/chris/openjdk/jdk11/src/hotspot"), VMType.HOTSPOT));
+		vms.addVM(new VMData("JDK12", new File("/home/chris/openjdk/jdk12/src/hotspot"), VMType.HOTSPOT));
 
 		// Generate these files with -XX:+JVMCIPrintProperties
 		vms.addVM(new VMData("Graal CE 1.0", new File("/home/chris/openjdk/VMSwitch/graal_ce.out"), VMType.GRAAL));

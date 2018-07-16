@@ -7,11 +7,11 @@
 <meta name="copyright" content="Chris Newland 2018" />
 <meta name="viewport" content="width=device-width" />
 <link rel="stylesheet" type="text/css"
-	href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css">
+	href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css">
 <script type="text/javascript"
 	src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 <script type="text/javascript"
-	src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+	src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
 <style>
 body {
 	font-family: sans-serif;
@@ -63,35 +63,43 @@ th, td {
                           "sSearch" : "Search HotSpot VM Options: "
                         },
                         initComplete : function() {
-                          this.api().search(getParam()).draw();
+                              this.api().search(getParam());
 
-                          this
-                              .api()
-                              .columns([ 1, 2, 3, 4, 5, 7 ])
-                              .every(
-                                  function() {
-                                    var column = this;
-                                    var select = $(
-                                        '<select><option value="">Show All</option></select>')
-                                        .appendTo($(column.header()).empty())
-                                        .on(
-                                            'change',
-                                            function() {
-                                              var val = $.fn.dataTable.util
-                                                  .escapeRegex($(this).val());
+                              this.api().draw();
+                              
+                              this
+                                  .api()
+                                  .columns([ 1, 2, 3, 4, 5, 7 ])
+                                  .every(
+                                      function() {
+                                        var column = this;
+                                        var select = $(
+                                            '<select><option value="">Show All</option></select>')
+                                            .appendTo(
+                                                $(column.header()).empty()).on(
+                                                'change',
+                                                function() {
+                                                  var val = $.fn.dataTable.util
+                                                      .escapeRegex($(this)
+                                                          .val());
 
-                                              column.search(
-                                                  val ? '^' + val + '$' : '',
-                                                  true, false).draw();
-                                            });
+                                                  column.search(
+                                                      val ? '^' + val + '$'
+                                                          : '', true, false)
+                                                      .draw();
+                                                });
 
-                                    column.data().unique().sort().each(
-                                        function(d, j) {
-                                          select
-                                              .append('<option value="'+d+'">'
-                                                  + d + '</option>')
-                                        });
-                                  });
+                                        column
+                                            .data()
+                                            .unique()
+                                            .sort()
+                                            .each(
+                                                function(d, j) {
+                                                  select
+                                                      .append('<option value="'+d+'">'
+                                                          + d + '</option>')
+                                                });
+                                      });
                         }
                       });
             });
@@ -107,6 +115,7 @@ th, td {
 	<a href="hotspot_options_jdk9.html">JDK9</a>&nbsp;|&nbsp;
 	<a href="hotspot_options_jdk10.html">JDK10</a>&nbsp;|&nbsp;
 	<a href="hotspot_options_jdk11.html">JDK11</a>&nbsp;|&nbsp;
+	<a href="hotspot_options_jdk12.html">JDK12</a>&nbsp;|&nbsp;
 	<a href="graal_options_graal_ce_1.0.html">Graal CE 1.0</a>&nbsp;|&nbsp;
 	<a href="graal_options_graal_ee_1.0.html">Graal EE 1.0</a>&nbsp;|&nbsp;
 	<a href="openj9_options_openj9.html">OpenJ9</a>&nbsp;|&nbsp;
@@ -1407,7 +1416,7 @@ th, td {
 <tr><td>ShrinkHeapInSteps</td><td>JDK9</td><td>bool</td><td></td><td></td><td></td><td>true</td><td>product</td><td>When disabled, informs the GC to shrink the java heap directly to the target size at the next full GC rather than requiring smaller steps during multiple full GCs.</td><td>share/runtime/globals.hpp</td></tr>
 <tr><td>SoftMatchFailure</td><td>JDK6</td><td>bool</td><td></td><td></td><td></td><td>trueInProduct</td><td>develop</td><td>If the DFA fails to match a node, print a message and bail out</td><td>share/opto/c2_globals.hpp</td></tr>
 <tr><td>SoftRefLRUPolicyMSPerMB</td><td>JDK6</td><td>intx</td><td></td><td></td><td></td><td>1000<br>range(0, max_intx)</td><td>product</td><td>Number of milliseconds per MB of free space in the heap</td><td>share/runtime/globals.hpp</td></tr>
-<tr><td>SoftwarePrefetchHintDistance</td><td>JDK10</td><td>int</td><td></td><td>aarch64</td><td></td><td>-1<br>range(-1, 32760)</td><td>product</td><td>Use prfm hint with specified distance in compiled code.Value -1 means off.</td><td>cpu/aarch64/globals_aarch64.hpp</td></tr>
+<tr><td>SoftwarePrefetchHintDistance</td><td>JDK10</td><td>int</td><td></td><td>aarch64</td><td></td><td>-1<br>range(-1, 4096)</td><td>product</td><td>Use prfm hint with specified distance in compiled code.Value -1 means off.</td><td>cpu/aarch64/globals_aarch64.hpp</td></tr>
 <tr><td>SparcV9RegsHiBitsZero</td><td>JDK6</td><td>bool</td><td></td><td></td><td></td><td>true</td><td>develop</td><td>Assume Sparc V9 I&L registers on V8+ systems are zero-extended</td><td>share/opto/c2_globals.hpp</td></tr>
 <tr><td>SpecTrapLimitExtraEntries</td><td>JDK8</td><td>intx</td><td></td><td></td><td></td><td>3</td><td>experimental</td><td>Extra method data trap entries for speculation</td><td>share/runtime/globals.hpp</td></tr>
 <tr><td>SpecialArraysEquals</td><td>JDK6</td><td>bool</td><td></td><td></td><td></td><td>true</td><td>diagnostic</td><td>special version of Arrays.equals(char[],char[])</td><td>share/opto/c2_globals.hpp</td></tr>
@@ -2060,7 +2069,7 @@ th, td {
 		</tbody>
 	</table>
 	<div class="footer">
-		Autogenerated on Fri Jul 13 17:00:36 BST 2018 from HotSpot sources by <a
+		Autogenerated on Mon Jul 16 21:46:39 BST 2018 from HotSpot sources by <a
 			href="https://twitter.com/chriswhocodes">@chriswhocodes</a>
 	</div>
 </body>

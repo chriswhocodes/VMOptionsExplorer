@@ -7,11 +7,11 @@
 <meta name="copyright" content="Chris Newland 2018" />
 <meta name="viewport" content="width=device-width" />
 <link rel="stylesheet" type="text/css"
-	href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css">
+	href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css">
 <script type="text/javascript"
 	src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 <script type="text/javascript"
-	src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+	src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
 <style>
 body {
 	font-family: sans-serif;
@@ -63,35 +63,43 @@ th, td {
                           "sSearch" : "Search HotSpot VM Options: "
                         },
                         initComplete : function() {
-                          this.api().search(getParam()).draw();
+                              this.api().search(getParam());
 
-                          this
-                              .api()
-                              .columns([ 1, 2, 3, 4, 5, 7 ])
-                              .every(
-                                  function() {
-                                    var column = this;
-                                    var select = $(
-                                        '<select><option value="">Show All</option></select>')
-                                        .appendTo($(column.header()).empty())
-                                        .on(
-                                            'change',
-                                            function() {
-                                              var val = $.fn.dataTable.util
-                                                  .escapeRegex($(this).val());
+                              this.api().draw();
+                              
+                              this
+                                  .api()
+                                  .columns([ 1, 2, 3, 4, 5, 7 ])
+                                  .every(
+                                      function() {
+                                        var column = this;
+                                        var select = $(
+                                            '<select><option value="">Show All</option></select>')
+                                            .appendTo(
+                                                $(column.header()).empty()).on(
+                                                'change',
+                                                function() {
+                                                  var val = $.fn.dataTable.util
+                                                      .escapeRegex($(this)
+                                                          .val());
 
-                                              column.search(
-                                                  val ? '^' + val + '$' : '',
-                                                  true, false).draw();
-                                            });
+                                                  column.search(
+                                                      val ? '^' + val + '$'
+                                                          : '', true, false)
+                                                      .draw();
+                                                });
 
-                                    column.data().unique().sort().each(
-                                        function(d, j) {
-                                          select
-                                              .append('<option value="'+d+'">'
-                                                  + d + '</option>')
-                                        });
-                                  });
+                                        column
+                                            .data()
+                                            .unique()
+                                            .sort()
+                                            .each(
+                                                function(d, j) {
+                                                  select
+                                                      .append('<option value="'+d+'">'
+                                                          + d + '</option>')
+                                                });
+                                      });
                         }
                       });
             });
@@ -107,6 +115,7 @@ th, td {
 	<a href="hotspot_options_jdk9.html">JDK9</a>&nbsp;|&nbsp;
 	<a href="hotspot_options_jdk10.html">JDK10</a>&nbsp;|&nbsp;
 	<a href="hotspot_options_jdk11.html">JDK11</a>&nbsp;|&nbsp;
+	<a href="hotspot_options_jdk12.html">JDK12</a>&nbsp;|&nbsp;
 	<a href="graal_options_graal_ce_1.0.html">Graal CE 1.0</a>&nbsp;|&nbsp;
 	<a href="graal_options_graal_ee_1.0.html">Graal EE 1.0</a>&nbsp;|&nbsp;
 	<a href="openj9_options_openj9.html">OpenJ9</a>&nbsp;|&nbsp;
@@ -1841,7 +1850,7 @@ th, td {
 		</tbody>
 	</table>
 	<div class="footer">
-		Autogenerated on Fri Jul 13 17:00:36 BST 2018 from HotSpot sources by <a
+		Autogenerated on Mon Jul 16 21:46:37 BST 2018 from HotSpot sources by <a
 			href="https://twitter.com/chriswhocodes">@chriswhocodes</a>
 	</div>
 </body>
