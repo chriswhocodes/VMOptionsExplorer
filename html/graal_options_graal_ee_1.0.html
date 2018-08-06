@@ -451,6 +451,9 @@ the intrinsic does not support.
 <tr><td>InlinedCompilerNodeLimit</td><td>Integer</td><td>50000</td><td><pre>Controls the maximum number of compiler nodes that can be inlined into
 the compiled method.
 </pre></td></tr>
+<tr><td>InliningCoefficient</td><td>Double</td><td>0.02</td><td><pre>The coefficient used to compute the inlining threshold; the higher, the
+more to inline.
+</pre></td></tr>
 <tr><td>InliningDepthError</td><td>Integer</td><td>1000</td><td><pre>Maximum inlining depth during partial evaluation before reporting an
 infinite recursion
 </pre></td></tr>
@@ -663,7 +666,8 @@ before the VM exits on the basis of a stuck compilation.
 </pre></td></tr>
 <tr><td>OptStringConcat</td><td>Boolean</td><td>true</td><td><pre>Optimize StringBuilder construction
 </pre></td></tr>
-<tr><td>OptWriteBarrierElimination</td><td>Boolean</td><td>true</td><td></td></tr>
+<tr><td>OptWriteBarrierElimination</td><td>Boolean</td><td>true</td><td><pre>Eliminate redundant write barriers.
+</pre></td></tr>
 <tr><td>OptimisticAliasingAnalysis</td><td>Boolean</td><td>true</td><td></td></tr>
 <tr><td>OptimizeDiv</td><td>Boolean</td><td>true</td><td></td></tr>
 <tr><td>OptimizeLoopAccesses</td><td>Boolean</td><td>true</td><td><pre>Enable access node optimizations for loops
@@ -681,8 +685,7 @@ before the VM exits on the basis of a stuck compilation.
 <tr><td>PrintBackendCFG</td><td>Boolean</td><td>true</td><td><pre>Enable dumping LIR, register allocation and code generation info to the
 C1Visualizer.
 </pre></td></tr>
-<tr><td>PrintBinaryGraphPort</td><td>Integer</td><td>4445</td><td><pre>Port part of the address to which graphs are dumped in binary format
-(ignored if PrintBinaryGraphs=false).
+<tr><td>PrintBinaryGraphPort</td><td>Integer</td><td>4445</td><td><pre>Port part of the address to which graphs are dumped in binary format.
 </pre></td></tr>
 <tr><td>PrintCFG</td><td>Boolean</td><td>false</td><td><pre>Enable dumping to the C1Visualizer. Enabling this option implies
 PrintBackendCFG.
@@ -711,16 +714,6 @@ compilation.
 </pre></td></tr>
 <tr><td>PrintIRWithLIR</td><td>Boolean</td><td>false</td><td><pre>Print HIR along side LIR as the latter is generated
 </pre></td></tr>
-<tr><td>PrintIdealGraphAddress</td><td>String</td><td>"127.0.0.1"</td><td><pre>Deprecated - use PrintGraphHost instead.
-</pre></td></tr>
-<tr><td>PrintIdealGraphFile</td><td>Boolean</td><td>false</td><td><pre>Deprecated - use PrintGraphFile instead.
-</pre></td></tr>
-<tr><td>PrintIdealGraphPort</td><td>Integer</td><td>4444</td><td><pre>Deprecated - use PrintXmlGraphPort instead.
-</pre></td></tr>
-<tr><td>PrintIdealGraphSchedule</td><td>Boolean</td><td>false</td><td><pre>Deprecated - use PrintGraphWithSchedule instead.
-</pre></td></tr>
-<tr><td>PrintIdealGraph</td><td>Boolean</td><td>true</td><td><pre>Deprecated - use PrintGraph instead.
-</pre></td></tr>
 <tr><td>PrintLIRWithAssembly</td><td>Boolean</td><td>false</td><td><pre>Include the LIR as comments with the final assembly.
 </pre></td></tr>
 <tr><td>PrintProfilingInformation</td><td>Boolean</td><td>false</td><td><pre>Print profiling information when parsing a method's bytecode
@@ -728,9 +721,6 @@ compilation.
 <tr><td>PrintTruffleExpansionHistogram</td><td>Boolean</td><td>false</td><td><pre>Prints a histogram of all expanded Java methods.
 </pre></td></tr>
 <tr><td>PrintTruffleTrees</td><td>Boolean</td><td>true</td><td><pre>Enable dumping Truffle ASTs to the IdealGraphVisualizer.
-</pre></td></tr>
-<tr><td>PrintXmlGraphPort</td><td>Integer</td><td>4444</td><td><pre>Port part of the address to which graphs are dumped in XML format
-(ignored if PrintBinaryGraphs=true).
 </pre></td></tr>
 <tr><td>PriorityInliningPolicy</td><td>String</td><td>""</td><td><pre>The policy to use, must be empty for automatic resolution.
 </pre></td></tr>
@@ -801,7 +791,6 @@ threshold, it is not inlined.
 </pre></td></tr>
 <tr><td>SnippetCounters</td><td>Boolean</td><td>false</td><td><pre>Enable counters for various paths in snippets.
 </pre></td></tr>
-<tr><td>SpeculativeRewriteCompare</td><td>Boolean</td><td>true</td><td></td></tr>
 <tr><td>SpeculativeStoreCheck</td><td>Boolean</td><td>true</td><td><pre>Speculates that arrays have exact type to optimize store checks
 </pre></td></tr>
 <tr><td>StressExplicitExceptionCode</td><td>Boolean</td><td>false</td><td><pre>Stress the code emitting explicit exception throwing code.
@@ -849,8 +838,8 @@ unconditionally.
 instruction tracing and any greater value emits a frame state trace
 just prior to each instruction trace.Instruction tracing output from
 multiple compiler threads will be interleaved so use of this option
-make most sense for single threaded compilation.The MethodFilter option
-can be used to refine tracing to selected methods.
+make most sense for single threaded compilation. The MethodFilter
+option can be used to refine tracing to selected methods.
 </pre></td></tr>
 <tr><td>TraceEscapeAnalysis</td><td>Boolean</td><td>false</td><td></td></tr>
 <tr><td>TraceExceptionHandlerStub</td><td>Boolean</td><td>false</td><td><pre>Trace execution of stub used to handle an exception thrown by a callee.
@@ -864,8 +853,8 @@ Output format:
   compilation of 'Signature of the compilation root method':
     at 'Signature of the root method' ['Bytecode index']: <'Phase'> 'Child method signature': 'Decision made about this callsite'
       at 'Signature of the child method' ['Bytecode index']: 
-         ├──<'Phase 1'> 'Grandchild method signature': 'First decision made about this callsite'
-         └──<'Phase 2'> 'Grandchild method signature': 'Second decision made about this callsite'
+         |--<'Phase 1'> 'Grandchild method signature': 'First decision made about this callsite'
+         \--<'Phase 2'> 'Grandchild method signature': 'Second decision made about this callsite'
       at 'Signature of the child method' ['Bytecode index']: <'Phase'> 'Another grandchild method signature': 'The only decision made about this callsite.'
 </pre></td></tr>
 <tr><td>TraceLIRGeneratorLevel</td><td>Integer</td><td>0</td><td><pre>The trace level for the LIR generator
@@ -916,7 +905,7 @@ boundaries
 </pre></td></tr>
 <tr><td>TraceTruffleAssumptions</td><td>Boolean</td><td>false</td><td><pre>Print stack trace on assumption invalidation
 </pre></td></tr>
-<tr><td>TraceTruffleCompilationAST</td><td>Boolean</td><td>false</td><td><pre>Print all polymorphic and generic nodes after each compilation
+<tr><td>TraceTruffleCompilationAST</td><td>Boolean</td><td>false</td><td><pre>Print the entire AST after each compilation
 </pre></td></tr>
 <tr><td>TraceTruffleCompilationCallTree</td><td>Boolean</td><td>false</td><td><pre>Print the inlined call tree for each compiled method
 </pre></td></tr>
@@ -926,11 +915,9 @@ boundaries
 </pre></td></tr>
 <tr><td>TraceTruffleCompilation</td><td>Boolean</td><td>false</td><td><pre>Print information for compilation results
 </pre></td></tr>
-<tr><td>TraceTruffleExpansionSource</td><td>Boolean</td><td>false</td><td><pre>Print source secions for printed expansion trees
+<tr><td>TraceTruffleExpansionSource</td><td>Boolean</td><td>false</td><td><pre>Print source sections for printed expansion trees
 </pre></td></tr>
 <tr><td>TraceTruffleInlining</td><td>Boolean</td><td>false</td><td><pre>Print information for inlining for each compilation.
-</pre></td></tr>
-<tr><td>TraceTruffleLoopPeeling</td><td>Boolean</td><td>false</td><td><pre>Traces loop peeling decisions.
 </pre></td></tr>
 <tr><td>TraceTrufflePerformanceWarnings</td><td>Boolean</td><td>false</td><td><pre>Print potential performance problems
 </pre></td></tr>
@@ -975,6 +962,8 @@ of a run.
 </pre></td></tr>
 <tr><td>TruffleCompilationThreshold</td><td>Integer</td><td>1000</td><td><pre>Compile call target when call count exceeds this threshold
 </pre></td></tr>
+<tr><td>TruffleCompilation</td><td>Boolean</td><td>true</td><td><pre>Enable or disable truffle compilation.
+</pre></td></tr>
 <tr><td>TruffleCompileImmediately</td><td>Boolean</td><td>false</td><td><pre>Compile immediately to test truffle compiler
 </pre></td></tr>
 <tr><td>TruffleCompileOnly</td><td>String</td><td>null</td><td><pre>Restrict compilation to comma-separated list of includes (or excludes
@@ -989,7 +978,7 @@ use Graal system compiler configuration).
 </pre></td></tr>
 <tr><td>TruffleExcludeAssertions</td><td>Boolean</td><td>true</td><td><pre>Exclude assertion code from Truffle compilations
 </pre></td></tr>
-<tr><td>TruffleExperimentalSplittingAllowForcedSplits</td><td>Boolean</td><td>false</td><td><pre>Should forced splits be allowed (when using experimental splitting)
+<tr><td>TruffleExperimentalSplittingAllowForcedSplits</td><td>Boolean</td><td>true</td><td><pre>Should forced splits be allowed (when using experimental splitting)
 </pre></td></tr>
 <tr><td>TruffleExperimentalSplittingDumpDecisions</td><td>Boolean</td><td>false</td><td><pre>Dumps to IGV information on polymorphic events
 </pre></td></tr>
@@ -997,7 +986,7 @@ use Graal system compiler configuration).
 call targets
 </pre></td></tr>
 <tr><td>TruffleExperimentalSplitting</td><td>Boolean</td><td>false</td><td><pre>Use the splitting strategy that relies on language implementations
-reporting polymorpic specializations. Disables forced splits.
+reporting polymorphic specializations. Disables forced splits.
 </pre></td></tr>
 <tr><td>TruffleFunctionInlining</td><td>Boolean</td><td>true</td><td><pre>Enable automatic inlining of call targets
 </pre></td></tr>
@@ -1033,13 +1022,6 @@ compilation time
 <tr><td>TruffleInvalidationReprofileCount</td><td>Integer</td><td>3</td><td><pre>Delay compilation after an invalidation to allow for reprofiling
 </pre></td></tr>
 <tr><td>TruffleIterativePartialEscape</td><td>Boolean</td><td>false</td><td><pre>Run the partial escape analysis iteratively in Truffle compilation.
-</pre></td></tr>
-<tr><td>TruffleLoopPeelingMaximumSize</td><td>Integer</td><td>250</td><td><pre>Maximum loop body node count for loop peeling or a value <= 0 for no
-limit.
-</pre></td></tr>
-<tr><td>TruffleLoopPeelingProfiling</td><td>Integer</td><td>2</td><td><pre>Number of loop invocations until loop peeling is decided.
-</pre></td></tr>
-<tr><td>TruffleLoopPeeling</td><td>Boolean</td><td>true</td><td><pre>Enables loop peeling.
 </pre></td></tr>
 <tr><td>TruffleMaximumRecursiveInlining</td><td>Integer</td><td>4</td><td><pre>Maximum level of recursive inlining
 </pre></td></tr>
@@ -1156,8 +1138,7 @@ a graph
 <tr><td>VerifyKillCFGUnusedNodes</td><td>Boolean</td><td>false</td><td><pre>Verify that there are no new unused nodes when performing killCFG
 </pre></td></tr>
 <tr><td>VerifyPhases</td><td>Boolean</td><td>false</td><td></td></tr>
-<tr><td>VerifyWriteBarrierElimination</td><td>Boolean</td><td>false</td><td><pre>Add code to verify that eliminated barriers weren't needed. Not
-implemented for G1.
+<tr><td>VerifyWriteBarrierElimination</td><td>Boolean</td><td>false</td><td><pre>Add code to verify that eliminated barriers weren't needed.
 </pre></td></tr>
 <tr><td>Verify</td><td>String</td><td>null</td><td><pre>Pattern for specifying scopes in which logging is enabled. See the Dump
 option for the pattern syntax.
@@ -1167,7 +1148,7 @@ option for the pattern syntax.
 		</tbody>
 	</table>
 	<div class="footer">
-		Autogenerated on Mon Jul 16 21:46:39 BST 2018 from Graal sources by <a
+		Autogenerated on Mon Aug 06 22:29:17 BST 2018 from Graal sources by <a
 			href="https://twitter.com/chriswhocodes">@chriswhocodes</a>
 	</div>
 </body>

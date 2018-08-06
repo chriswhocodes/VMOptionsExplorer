@@ -1,2 +1,6 @@
 #!/bin/sh
-../graal_ee/graalvm-1.0.0-rc1/bin/java -XX:+JVMCIPrintProperties > graal_ee.out
+
+../graalvm-ce-1.0.0-rc5/bin/java -XX:+JVMCIPrintProperties > graal_ce.out
+
+../graalvm-ee-1.0.0-rc5/bin/java -XX:+JVMCIPrintProperties > graal_ee.out
+

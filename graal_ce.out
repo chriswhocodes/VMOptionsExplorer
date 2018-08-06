@@ -1,6 +1,6 @@
 [JVMCI properties]
-jvmci.Compiler = null                                                     [String]
-          Selects the system compiler. This must match the getCompilerName() value returned by a jdk.vm.ci.runtime.JVMCICompilerFactory provider. An empty string or the value "null" selects a compiler that will raise an exception upon receiving a compilation request.
+jvmci.Compiler := "graal"                                                 [String]
+          Selects the system compiler. This must match the getCompilerName() value returned by a jdk.vm.ci.runtime.JVMCICompilerFactory provider. An empty string or the value "null" selects a compiler that will raise an exception upon receiving a compilation request. This property can also be defined by the contents of <java.home>/lib/jvmci/compiler-name.
 jvmci.InitTimer = false                                                  [Boolean]
           Specifies if initialization timing is enabled.
 jvmci.PrintConfig = false                                                [Boolean]
@@ -9,8 +9,6 @@ jvmci.TraceMethodDataFilter = null                                        [Strin
           Enables tracing of profiling info when read by JVMCI.
           Empty value: trace all methods
           Non-empty value: trace methods whose fully qualified name contains the value.
-jvmci.UseProfilingInformation = true                                     [Boolean]
-          
 [Graal properties]
 graal.AOTInliningDepthToSizeRate = 2.5                                    [Double]
 graal.AOTInliningSizeMaximum = 300                                       [Integer]
@@ -648,7 +646,7 @@ graal.TraceTruffleAssumptions = false                                    [Boolea
 graal.TraceTruffleCompilation = false                                    [Boolean]
           Print information for compilation results
 graal.TraceTruffleCompilationAST = false                                 [Boolean]
-          Print all polymorphic and generic nodes after each compilation
+          Print the entire AST after each compilation
 graal.TraceTruffleCompilationCallTree = false                            [Boolean]
           Print the inlined call tree for each compiled method
 graal.TraceTruffleCompilationDetails = false                             [Boolean]
@@ -656,7 +654,7 @@ graal.TraceTruffleCompilationDetails = false                             [Boolea
 graal.TraceTruffleCompilationPolymorphism = false                        [Boolean]
           Print all polymorphic and generic nodes after each compilation
 graal.TraceTruffleExpansionSource = false                                [Boolean]
-          Print source secions for printed expansion trees
+          Print source sections for printed expansion trees
 graal.TraceTruffleInlining = false                                       [Boolean]
           Print information for inlining for each compilation.
 graal.TraceTrufflePerformanceWarnings = false                            [Boolean]
@@ -685,6 +683,8 @@ graal.TrivialInliningSize = 10                                           [Intege
 graal.TruffleArgumentTypeSpeculation = true                              [Boolean]
 graal.TruffleBackgroundCompilation = true                                [Boolean]
           Enable asynchronous truffle compilation in background thread
+graal.TruffleCompilation = true                                          [Boolean]
+          Enable or disable truffle compilation.
 graal.TruffleCompilationExceptionsAreFatal = false                       [Boolean]
           Treat compilation exceptions as fatal exceptions that will exit the
           application
@@ -715,8 +715,8 @@ graal.TruffleExcludeAssertions = true                                    [Boolea
           Exclude assertion code from Truffle compilations
 graal.TruffleExperimentalSplitting = false                               [Boolean]
           Use the splitting strategy that relies on language implementations
-          reporting polymorpic specializations. Disables forced splits.
-graal.TruffleExperimentalSplittingAllowForcedSplits = false              [Boolean]
+          reporting polymorphic specializations. Disables forced splits.
+graal.TruffleExperimentalSplittingAllowForcedSplits = true               [Boolean]
           Should forced splits be allowed (when using experimental splitting)
 graal.TruffleExperimentalSplittingDumpDecisions = false                  [Boolean]
           Dumps to IGV information on polymorphic events

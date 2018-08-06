@@ -327,6 +327,9 @@ graal.InlineVTableStubs = true                                           [Boolea
 graal.InlinedCompilerNodeLimit = 50000                                   [Integer]
           Controls the maximum number of compiler nodes that can be inlined into
           the compiled method.
+graal.InliningCoefficient = 0.02                                          [Double]
+          The coefficient used to compute the inlining threshold; the higher, the
+          more to inline.
 graal.InliningDepthError = 1000                                          [Integer]
           Maximum inlining depth during partial evaluation before reporting an
           infinite recursion
@@ -540,6 +543,7 @@ graal.OptStringConcat = true                                             [Boolea
 graal.OptStringConcatDump = false                                        [Boolean]
           Dump graphs to help debug operation
 graal.OptWriteBarrierElimination = true                                  [Boolean]
+          Eliminate redundant write barriers.
 graal.OptimisticAliasingAnalysis = true                                  [Boolean]
 graal.OptimizeDiv = true                                                 [Boolean]
 graal.OptimizeLoopAccesses = true                                        [Boolean]
@@ -558,8 +562,7 @@ graal.PrintBackendCFG = true                                             [Boolea
           Enable dumping LIR, register allocation and code generation info to the
           C1Visualizer.
 graal.PrintBinaryGraphPort = 4445                                        [Integer]
-          Port part of the address to which graphs are dumped in binary format
-          (ignored if PrintBinaryGraphs=false).
+          Port part of the address to which graphs are dumped in binary format.
 graal.PrintCFG = false                                                   [Boolean]
           Enable dumping to the C1Visualizer. Enabling this option implies
           PrintBackendCFG.
@@ -585,16 +588,6 @@ graal.PrintGraphWithSchedule = false                                     [Boolea
           Schedule graphs as they are dumped.
 graal.PrintIRWithLIR = false                                             [Boolean]
           Print HIR along side LIR as the latter is generated
-graal.PrintIdealGraph = true                                             [Boolean]
-          Deprecated - use PrintGraph instead.
-graal.PrintIdealGraphAddress = "127.0.0.1"                                [String]
-          Deprecated - use PrintGraphHost instead.
-graal.PrintIdealGraphFile = false                                        [Boolean]
-          Deprecated - use PrintGraphFile instead.
-graal.PrintIdealGraphPort = 4444                                         [Integer]
-          Deprecated - use PrintXmlGraphPort instead.
-graal.PrintIdealGraphSchedule = false                                    [Boolean]
-          Deprecated - use PrintGraphWithSchedule instead.
 graal.PrintLIRWithAssembly = false                                       [Boolean]
           Include the LIR as comments with the final assembly.
 graal.PrintProfilingInformation = false                                  [Boolean]
@@ -603,9 +596,6 @@ graal.PrintTruffleExpansionHistogram = false                             [Boolea
           Prints a histogram of all expanded Java methods.
 graal.PrintTruffleTrees = true                                           [Boolean]
           Enable dumping Truffle ASTs to the IdealGraphVisualizer.
-graal.PrintXmlGraphPort = 4444                                           [Integer]
-          Port part of the address to which graphs are dumped in XML format
-          (ignored if PrintBinaryGraphs=true).
 graal.PriorityInliningPolicy = ""                                         [String]
           The policy to use, must be empty for automatic resolution.
 graal.ProbabilisticProfiling = true                                      [Boolean]
@@ -675,7 +665,6 @@ graal.SmallCompiledLowLevelGraphSize = 300                               [Intege
           threshold, it is not inlined.
 graal.SnippetCounters = false                                            [Boolean]
           Enable counters for various paths in snippets.
-graal.SpeculativeRewriteCompare = true                                   [Boolean]
 graal.SpeculativeStoreCheck = true                                       [Boolean]
           Speculates that arrays have exact type to optimize store checks
 graal.StressExplicitExceptionCode = false                                [Boolean]
@@ -724,8 +713,8 @@ graal.TraceBytecodeParserLevel = 0                                       [Intege
           instruction tracing and any greater value emits a frame state trace
           just prior to each instruction trace.Instruction tracing output from
           multiple compiler threads will be interleaved so use of this option
-          make most sense for single threaded compilation.The MethodFilter option
-          can be used to refine tracing to selected methods.
+          make most sense for single threaded compilation. The MethodFilter
+          option can be used to refine tracing to selected methods.
 graal.TraceEscapeAnalysis = false                                        [Boolean]
 graal.TraceExceptionHandlerStub = false                                  [Boolean]
           Trace execution of stub used to handle an exception thrown by a callee.
@@ -737,8 +726,8 @@ graal.TraceInlining = false                                              [Boolea
             compilation of 'Signature of the compilation root method':
               at 'Signature of the root method' ['Bytecode index']: <'Phase'> 'Child method signature': 'Decision made about this callsite'
                 at 'Signature of the child method' ['Bytecode index']: 
-                   ├──<'Phase 1'> 'Grandchild method signature': 'First decision made about this callsite'
-                   └──<'Phase 2'> 'Grandchild method signature': 'Second decision made about this callsite'
+                   |--<'Phase 1'> 'Grandchild method signature': 'First decision made about this callsite'
+                   \--<'Phase 2'> 'Grandchild method signature': 'Second decision made about this callsite'
                 at 'Signature of the child method' ['Bytecode index']: <'Phase'> 'Another grandchild method signature': 'The only decision made about this callsite.'
 graal.TraceInliningForStubsAndSnippets = false                           [Boolean]
           Enable inlining decision tracing in stubs and snippets.
@@ -789,7 +778,7 @@ graal.TraceTruffleAssumptions = false                                    [Boolea
 graal.TraceTruffleCompilation = false                                    [Boolean]
           Print information for compilation results
 graal.TraceTruffleCompilationAST = false                                 [Boolean]
-          Print all polymorphic and generic nodes after each compilation
+          Print the entire AST after each compilation
 graal.TraceTruffleCompilationCallTree = false                            [Boolean]
           Print the inlined call tree for each compiled method
 graal.TraceTruffleCompilationDetails = false                             [Boolean]
@@ -797,11 +786,9 @@ graal.TraceTruffleCompilationDetails = false                             [Boolea
 graal.TraceTruffleCompilationPolymorphism = false                        [Boolean]
           Print all polymorphic and generic nodes after each compilation
 graal.TraceTruffleExpansionSource = false                                [Boolean]
-          Print source secions for printed expansion trees
+          Print source sections for printed expansion trees
 graal.TraceTruffleInlining = false                                       [Boolean]
           Print information for inlining for each compilation.
-graal.TraceTruffleLoopPeeling = false                                    [Boolean]
-          Traces loop peeling decisions.
 graal.TraceTrufflePerformanceWarnings = false                            [Boolean]
           Print potential performance problems
 graal.TraceTruffleSplitting = false                                      [Boolean]
@@ -831,6 +818,8 @@ graal.TrivialInliningSize = 10                                           [Intege
 graal.TruffleArgumentTypeSpeculation = true                              [Boolean]
 graal.TruffleBackgroundCompilation = true                                [Boolean]
           Enable asynchronous truffle compilation in background thread
+graal.TruffleCompilation = true                                          [Boolean]
+          Enable or disable truffle compilation.
 graal.TruffleCompilationExceptionsAreFatal = false                       [Boolean]
           Treat compilation exceptions as fatal exceptions that will exit the
           application
@@ -861,8 +850,8 @@ graal.TruffleExcludeAssertions = true                                    [Boolea
           Exclude assertion code from Truffle compilations
 graal.TruffleExperimentalSplitting = false                               [Boolean]
           Use the splitting strategy that relies on language implementations
-          reporting polymorpic specializations. Disables forced splits.
-graal.TruffleExperimentalSplittingAllowForcedSplits = false              [Boolean]
+          reporting polymorphic specializations. Disables forced splits.
+graal.TruffleExperimentalSplittingAllowForcedSplits = true               [Boolean]
           Should forced splits be allowed (when using experimental splitting)
 graal.TruffleExperimentalSplittingDumpDecisions = false                  [Boolean]
           Dumps to IGV information on polymorphic events
@@ -904,13 +893,6 @@ graal.TruffleInvalidationReprofileCount = 3                              [Intege
           Delay compilation after an invalidation to allow for reprofiling
 graal.TruffleIterativePartialEscape = false                              [Boolean]
           Run the partial escape analysis iteratively in Truffle compilation.
-graal.TruffleLoopPeeling = true                                          [Boolean]
-          Enables loop peeling.
-graal.TruffleLoopPeelingMaximumSize = 250                                [Integer]
-          Maximum loop body node count for loop peeling or a value <= 0 for no
-          limit.
-graal.TruffleLoopPeelingProfiling = 2                                    [Integer]
-          Number of loop invocations until loop peeling is decided.
 graal.TruffleMaximumRecursiveInlining = 4                                [Integer]
           Maximum level of recursive inlining
 graal.TruffleMinInvokeThreshold = 3                                      [Integer]
@@ -1030,6 +1012,5 @@ graal.VerifyKillCFGUnusedNodes = false                                   [Boolea
           Verify that there are no new unused nodes when performing killCFG
 graal.VerifyPhases = false                                               [Boolean]
 graal.VerifyWriteBarrierElimination = false                              [Boolean]
-          Add code to verify that eliminated barriers weren't needed. Not
-          implemented for G1.
+          Add code to verify that eliminated barriers weren't needed.
 graal.ZapStackOnMethodEntry = false                                      [Boolean]
