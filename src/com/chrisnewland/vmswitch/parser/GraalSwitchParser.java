@@ -36,7 +36,7 @@ public class GraalSwitchParser extends AbstractSwitchParser
 			{
 				String[] parts = trimmed.split("\\s+");
 
-				String type = getBetween(parts[3], "[", "]");
+				String type = ParseUtil.getBetween(parts[3], "[", "]");
 				String name = parts[0];
 
 				if (name.indexOf('.') != -1)

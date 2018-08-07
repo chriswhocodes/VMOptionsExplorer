@@ -19,6 +19,7 @@ import com.chrisnewland.vmswitch.parser.GraalSwitchParser;
 import com.chrisnewland.vmswitch.parser.HotSpotSwitchParser;
 import com.chrisnewland.vmswitch.parser.ISwitchParser;
 import com.chrisnewland.vmswitch.parser.OpenJ9SwitchParser;
+import com.chrisnewland.vmswitch.parser.intrinsic.IntrinsicParser;
 
 import java.util.Set;
 import java.util.HashSet;
@@ -72,10 +73,14 @@ public class VMSwitch
 		}
 
 		String template = new String(Files.readAllBytes(Paths.get("html/template_delta.html")), StandardCharsets.UTF_8);
-
+		
+		String headerHTML = new String(Files.readAllBytes(Paths.get("html/header.html")), StandardCharsets.UTF_8);
+				
+		template = template.replace("$HEADER_HTML", headerHTML);
 		template = template.replace("$DELTA_BODY", builder.toString());
 		template = template.replace("$DATE", new Date().toString());
-
+		template = template.replace("$H1_TITLE", "Differences between HotSpot VM Versions");
+		
 		Files.write(Paths.get("html/hotspot_option_differences.html"), template.getBytes(StandardCharsets.UTF_8));
 	}
 
@@ -249,6 +254,8 @@ public class VMSwitch
 		Map<String, SwitchInfo> switchMap = switchParser.process(vmPath);
 
 		String template = new String(Files.readAllBytes(Paths.get("html/template.html")), StandardCharsets.UTF_8);
+		
+		String headerHTML = new String(Files.readAllBytes(Paths.get("html/header.html")), StandardCharsets.UTF_8);
 
 		StringBuilder htmlBuilder = new StringBuilder();
 
@@ -281,6 +288,8 @@ public class VMSwitch
 			switchNames.add(switchName);
 		}
 
+		template = template.replace("$HEADER_HTML", headerHTML);
+		template = template.replace("$H1_TITLE", "$VMNAME VM Options Explorer - $JDK");
 		template = template.replace("$THEAD", SwitchInfo.getHeaderRow(vmType));
 		template = template.replace("$VMNAME", vmName);
 		template = template.replace("$JDK", jdkName);
@@ -337,5 +346,28 @@ public class VMSwitch
 		vms.process();
 
 		vms.processVMDeltas(VMType.HOTSPOT);
+		
+		IntrinsicParser parser = new IntrinsicParser();
+
+		parser.parseFile(Paths.get("/home/chris/openjdk/jdk6/hotspot/src/share/vm/classfile/vmSymbols.hpp"));
+		parser.createHTMLForVM("JDK6");
+
+		parser.parseFile(Paths.get("/home/chris/openjdk/jdk7u/hotspot/src/share/vm/classfile/vmSymbols.hpp"));
+		parser.createHTMLForVM("JDK7");
+		
+		parser.parseFile(Paths.get("/home/chris/openjdk/jdk8u/hotspot/src/share/vm/classfile/vmSymbols.hpp"));
+		parser.createHTMLForVM("JDK8");
+		
+		parser.parseFile(Paths.get("/home/chris/openjdk/jdk9-dev/hotspot/src/share/vm/classfile/vmSymbols.hpp"));
+		parser.createHTMLForVM("JDK9");
+		
+		parser.parseFile(Paths.get("/home/chris/openjdk/jdk10/src/hotspot/share/classfile/vmSymbols.hpp"));
+		parser.createHTMLForVM("JDK10");
+		
+		parser.parseFile(Paths.get("/home/chris/openjdk/jdk11/src/hotspot/share/classfile/vmSymbols.hpp"));
+		parser.createHTMLForVM("JDK11");
+		
+		parser.parseFile(Paths.get("/home/chris/openjdk/jdk12/src/hotspot/share/classfile/vmSymbols.hpp"));
+		parser.createHTMLForVM("JDK12");
 	}
 }

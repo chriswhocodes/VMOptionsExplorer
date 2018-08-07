@@ -41,7 +41,7 @@ public class OpenJ9SwitchParser extends AbstractSwitchParser
 			{
 				trimmed = trimmed.replace("<", "&lt;").replace(">", "&gt;");
 				
-				String name = cleanName(getBetween(trimmed, "\"", "\""));
+				String name = cleanName(ParseUtil.getBetween(trimmed, "\"", "\""));
 
 				SwitchInfo info = new SwitchInfo(name.trim());
 

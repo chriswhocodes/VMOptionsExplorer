@@ -133,26 +133,6 @@ public abstract class AbstractSwitchParser implements ISwitchParser
 		}
 	}
 
-	protected String getBetween(String input, String start, String end)
-	{
-		String result = null;
-
-		int startIndex = input.indexOf(start);
-
-		if (startIndex != -1)
-		{
-			int endIndex = input.lastIndexOf(end);
-
-			if (endIndex != -1)
-			{
-
-				result = input.substring(startIndex + start.length(), endIndex);
-			}
-		}
-
-		return result;
-	}
-
 	protected void removeSwitch(String name, Map<String, SwitchInfo> switchMap)
 	{
 		Iterator<String> iter = switchMap.keySet().iterator();

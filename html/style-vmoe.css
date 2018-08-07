@@ -1,0 +1,66 @@
+body {
+	font-family: sans-serif;
+	font-size: 12px;
+}
+
+th, td {
+	text-align: left;
+}
+
+.dataTables_filter {
+	float: left !important;
+	font-size: 24px;
+}
+
+.dataTables_filter input {
+	height: 32px;
+	font-size: 24px;
+	border: 2px solid black;
+}
+
+.footer {
+	margin-top: 12px;
+	text-align: center;
+	font-weight: bold;
+}
+
+.delta, .delta td, .delta th {
+	border: 1px solid black;
+	border-collapse: collapse;
+	font-family: monospace;
+	vertical-align: top;
+	padding: 8px;
+}
+
+.removed {
+	background-color: #ffcccc;
+}
+
+.added {
+	background-color: #ccffcc;
+}
+
+a, a:visited {
+	color: blue;
+}
+
+.menu {
+	border-collapse: collapse;
+	background-color: #ffee99;
+	margin-bottom: 12px;
+}
+
+.menu th, .menu td {
+	border: 1px solid black;
+	font-size: 24px;
+	text-align: center;
+	margin: 8px;
+}
+
+.menu td {
+	font-size: 14px;
+	text-align: center;
+	vertical-align: top;
+	min-width:120px;
+	padding: 4px;
+}

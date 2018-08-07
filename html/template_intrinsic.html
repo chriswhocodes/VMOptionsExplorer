@@ -6,9 +6,9 @@
 <meta name="author" content="Chris Newland" />
 <meta name="copyright" content="Chris Newland 2018" />
 <meta name="viewport" content="width=device-width" />
+<link rel="stylesheet" type="text/css" href="style-vmoe.css">
 <link rel="stylesheet" type="text/css"
 	href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css">
-<link rel="stylesheet" type="text/css" href="style-vmoe.css">
 <script type="text/javascript"
 	src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 <script type="text/javascript"
@@ -21,7 +21,7 @@
           .split('=')[1];
     };
 
-    $(document)
+     $(document)
         .ready(
             function() {
               $('#myTable')
@@ -34,7 +34,7 @@
                           "orderable" : true,
                         } ],
                         "oLanguage" : {
-                          "sSearch" : "Search $VMNAME VM $JDK Options: "
+                          "sSearch" : "Search $VMNAME VM $JDK Intrinsics: "
                         },
                         initComplete : function() {
                               this.api().search(getParam());

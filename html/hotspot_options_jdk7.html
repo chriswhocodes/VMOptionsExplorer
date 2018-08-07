@@ -1,44 +1,18 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html lang='en-GB'>
 <head>
-<title>Ultimate HotSpot VM Options Cheat Sheet - JDK7</title>
+<title>HotSpot VM Options Explorer - JDK7</title>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <meta name="author" content="Chris Newland" />
 <meta name="copyright" content="Chris Newland 2018" />
 <meta name="viewport" content="width=device-width" />
 <link rel="stylesheet" type="text/css"
 	href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css">
+<link rel="stylesheet" type="text/css" href="style-vmoe.css">
 <script type="text/javascript"
 	src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 <script type="text/javascript"
 	src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
-<style>
-body {
-	font-family: sans-serif;
-	font-size: 12px;
-}
-
-th, td {
-	text-align: left;
-}
-
-.dataTables_filter {
-	float: left !important;
-	font-size: 24px;
-}
-
-.dataTables_filter input {
-	height: 32px;
-	font-size: 24px;
-	border: 2px solid black;
-}
-
-.footer {
-	margin-top: 12px;
-	text-align: center;
-	font-weight: bold;
-}
-</style>
 </head>
 <body>
 	<script type="text/javascript">
@@ -57,10 +31,10 @@ th, td {
                         "lengthChange" : false,
                         "columnDefs" : [ {
                           "targets" : [ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 ],
-                          "orderable" : false,
+                          "orderable" : true,
                         } ],
                         "oLanguage" : {
-                          "sSearch" : "Search HotSpot VM Options: "
+                          "sSearch" : "Search HotSpot VM JDK7 Options: "
                         },
                         initComplete : function() {
                               this.api().search(getParam());
@@ -105,25 +79,57 @@ th, td {
             });
   </script>
 
-	<h1>HotSpot VM Options for JDK7</h1>
-	<hr>
-	Switch to:
-	<a href="/">Home</a>&nbsp;|&nbsp;
-	<a href="hotspot_options_jdk6.html">JDK6</a>&nbsp;|&nbsp;
-	<a href="hotspot_options_jdk7.html">JDK7</a>&nbsp;|&nbsp;
-	<a href="hotspot_options_jdk8.html">JDK8</a>&nbsp;|&nbsp;
-	<a href="hotspot_options_jdk9.html">JDK9</a>&nbsp;|&nbsp;
-	<a href="hotspot_options_jdk10.html">JDK10</a>&nbsp;|&nbsp;
-	<a href="hotspot_options_jdk11.html">JDK11</a>&nbsp;|&nbsp;
-	<a href="hotspot_options_jdk12.html">JDK12</a>&nbsp;|&nbsp;
-	<a href="graal_options_graal_ce_1.0.html">Graal CE 1.0</a>&nbsp;|&nbsp;
-	<a href="graal_options_graal_ee_1.0.html">Graal EE 1.0</a>&nbsp;|&nbsp;
-	<a href="openj9_options_openj9.html">OpenJ9</a>&nbsp;|&nbsp;
-	<a href="hotspot_option_differences.html">HotSpot VM Differences</a>&nbsp;|&nbsp;
-	<a target="_blank"
-		href="https://www.amazon.co.uk/gp/product/1492025798/ref=as_li_tl?ie=UTF8&camp=1634&creative=6738&creativeASIN=1492025798&linkCode=as2&tag=wwwchrisnewla-21&linkId=bfb09cda8c2184d0467d3b419d479967">Optimizing
-		Java: Practical techniques for improving JVM application performance</a>
-	<hr>
+	<h1>HotSpot VM Options Explorer - JDK7</h1>
+<table class="menu">
+	<tr>
+		<th>Home</th>
+		<th colspan="7">HotSpot</th>
+		<th>VM differences</th>
+		<th colspan="2">Graal</th>
+		<th>OpenJ9</th>
+		<th>Book</th>
+	</tr>
+	<tr>
+		<td rowspan="2"><a href="/">Home</a></td>
+
+		<td><a href="hotspot_options_jdk6.html">JDK6 Options</a></td>
+		<td><a href="hotspot_options_jdk7.html">JDK7 Options</a></td>
+		<td><a href="hotspot_options_jdk8.html">JDK8 Options</a></td>
+		<td><a href="hotspot_options_jdk9.html">JDK9 Options</a></td>
+		<td><a href="hotspot_options_jdk10.html">JDK10 Options</a></td>
+		<td><a href="hotspot_options_jdk11.html">JDK11 Options</a></td>
+		<td><a href="hotspot_options_jdk12.html">JDK12 Options</a></td>
+
+		<td rowspan="2"><a href="hotspot_option_differences.html">HotSpot
+				VM Differences</a></td>
+
+		<td rowspan="2"><a href="graal_options_graal_ce_1.0.html">Graal
+				CE 1.0</a></td>
+		<td rowspan="2"><a href="graal_options_graal_ee_1.0.html">Graal
+				EE 1.0</a></td>
+
+		<td rowspan="2"><a href="openj9_options_openj9.html">OpenJ9</a></td>
+
+		<td rowspan="2"><a target="_blank"
+			href="https://www.amazon.co.uk/gp/product/1492025798/ref=as_li_tl?ie=UTF8&camp=1634&creative=6738&creativeASIN=1492025798&linkCode=as2&tag=wwwchrisnewla-21&linkId=bfb09cda8c2184d0467d3b419d479967">Optimizing
+				Java:<br>Practical techniques for improving JVM application
+				performance
+		</a></td>
+	</tr>
+
+	<tr>
+		<td><a href="hotspot_intrinsics_jdk6.html">JDK6 Intrinsics</a></td>
+		<td><a href="hotspot_intrinsics_jdk7.html">JDK7 Intrinsics</a></td>
+		<td><a href="hotspot_intrinsics_jdk8.html">JDK8 Intrinsics</a></td>
+		<td><a href="hotspot_intrinsics_jdk9.html">JDK9 Intrinsics</a></td>
+		<td><a href="hotspot_intrinsics_jdk10.html">JDK10 Intrinsics</a>
+		</td>
+		<td><a href="hotspot_intrinsics_jdk11.html">JDK11 Intrinsics</a>
+		</td>
+		<td><a href="hotspot_intrinsics_jdk12.html">JDK12 Intrinsics</a>
+		</td>
+	</tr>
+</table>
 	<table id="myTable" class="display cell-border">
 		<thead>
 			<tr><th>Name</th><th>Since</th><th>Type</th><th>OS</th><th>CPU</th><th>Component</th><th>Default</th><th>Availability</th><th>Description</th><th>Defined in</th></tr>
@@ -1850,7 +1856,7 @@ th, td {
 		</tbody>
 	</table>
 	<div class="footer">
-		Autogenerated on Mon Aug 06 22:29:02 BST 2018 from HotSpot sources by <a
+		Autogenerated on Tue Aug 07 23:49:01 BST 2018 from HotSpot sources by <a
 			href="https://twitter.com/chriswhocodes">@chriswhocodes</a>
 	</div>
 </body>
