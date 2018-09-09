@@ -54,13 +54,20 @@ a, a:visited {
 	border: 1px solid black;
 	font-size: 24px;
 	text-align: center;
-	margin: 8px;
+	padding: 8px;
 }
 
 .menu td {
 	font-size: 14px;
 	text-align: center;
 	vertical-align: top;
-	min-width:120px;
+	min-width: 120px;
 	padding: 4px;
+}
+
+.diffs {
+	float: right;
+	clear: none;
+	margin-right: 8px;
+	font-size: 14px;
 }

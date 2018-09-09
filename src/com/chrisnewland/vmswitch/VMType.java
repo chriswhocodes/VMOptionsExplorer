@@ -6,5 +6,5 @@ package com.chrisnewland.vmswitch;
 
 public enum VMType
 {
-    HOTSPOT, GRAAL, OPENJ9;
+	HOTSPOT, GRAAL, OPENJ9, ZING;
 }

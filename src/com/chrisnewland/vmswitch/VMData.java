@@ -40,18 +40,21 @@ public class VMData
 				
 		switch (vmType)
 		{
+		case HOTSPOT:
+			builder.append("hotspot_options_").append(jdkName.toLowerCase().replace(" ", "_"));
+			break;
 		case GRAAL:
-			builder.append("graal_options_");
+			builder.append("graal_options_").append(jdkName.toLowerCase().replace(" ", "_"));
 			break;
 		case OPENJ9:
-			builder.append("openj9_options_");
+			builder.append("openj9_options");
 			break;
-		case HOTSPOT:
-			builder.append("hotspot_options_");
-			break;
+		case ZING:
+			builder.append("zing_options");
+			break;			
 		}
 		
-		builder.append(jdkName.toLowerCase().replace(" ", "_")).append(".html");
+		builder.append(".html");
 		
 		return builder.toString();
 	}

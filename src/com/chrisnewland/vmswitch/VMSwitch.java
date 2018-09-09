@@ -19,6 +19,7 @@ import com.chrisnewland.vmswitch.parser.GraalSwitchParser;
 import com.chrisnewland.vmswitch.parser.HotSpotSwitchParser;
 import com.chrisnewland.vmswitch.parser.ISwitchParser;
 import com.chrisnewland.vmswitch.parser.OpenJ9SwitchParser;
+import com.chrisnewland.vmswitch.parser.ZingSwitchParser;
 import com.chrisnewland.vmswitch.parser.intrinsic.IntrinsicParser;
 
 import java.util.Set;
@@ -72,15 +73,15 @@ public class VMSwitch
 			}
 		}
 
-		String template = new String(Files.readAllBytes(Paths.get("html/template_delta.html")), StandardCharsets.UTF_8);
-		
-		String headerHTML = new String(Files.readAllBytes(Paths.get("html/header.html")), StandardCharsets.UTF_8);
-				
+		String template = new String(Files.readAllBytes(Paths.get("templates/template_delta.html")), StandardCharsets.UTF_8);
+
+		String headerHTML = new String(Files.readAllBytes(Paths.get("templates/header.html")), StandardCharsets.UTF_8);
+
 		template = template.replace("$HEADER_HTML", headerHTML);
 		template = template.replace("$DELTA_BODY", builder.toString());
 		template = template.replace("$DATE", new Date().toString());
 		template = template.replace("$H1_TITLE", "Differences between HotSpot VM Versions");
-		
+
 		Files.write(Paths.get("html/hotspot_option_differences.html"), template.getBytes(StandardCharsets.UTF_8));
 	}
 
@@ -148,7 +149,7 @@ public class VMSwitch
 				deltaTable.recordAddition(inLater);
 			}
 		}
-		
+
 		System.out.println("Removed " + deltaTable.getRemovalCount() + " Added " + deltaTable.getAdditionCount());
 
 		builder.append(deltaTable.toString());
@@ -219,6 +220,8 @@ public class VMSwitch
 			return new OpenJ9SwitchParser();
 		case HOTSPOT:
 			return new HotSpotSwitchParser();
+		case ZING:
+			return new ZingSwitchParser();
 		default:
 			throw new RuntimeException("Unexpected VM Type: " + vmType);
 		}
@@ -234,6 +237,8 @@ public class VMSwitch
 			return "OpenJ9";
 		case HOTSPOT:
 			return "HotSpot";
+		case ZING:
+			return "Zing";
 		default:
 			throw new RuntimeException("Unexpected VM Type: " + vmType);
 		}
@@ -253,9 +258,9 @@ public class VMSwitch
 
 		Map<String, SwitchInfo> switchMap = switchParser.process(vmPath);
 
-		String template = new String(Files.readAllBytes(Paths.get("html/template.html")), StandardCharsets.UTF_8);
-		
-		String headerHTML = new String(Files.readAllBytes(Paths.get("html/header.html")), StandardCharsets.UTF_8);
+		String template = new String(Files.readAllBytes(Paths.get("templates/template.html")), StandardCharsets.UTF_8);
+
+		String headerHTML = new String(Files.readAllBytes(Paths.get("templates/header.html")), StandardCharsets.UTF_8);
 
 		StringBuilder htmlBuilder = new StringBuilder();
 
@@ -289,7 +294,15 @@ public class VMSwitch
 		}
 
 		template = template.replace("$HEADER_HTML", headerHTML);
-		template = template.replace("$H1_TITLE", "$VMNAME VM Options Explorer - $JDK");
+
+		String title = jdkName;
+
+		if (vmData.getVmType() == VMType.HOTSPOT)
+		{
+			title = title + " HotSpot";
+		}
+
+		template = template.replace("$H1_TITLE", title);
 		template = template.replace("$THEAD", SwitchInfo.getHeaderRow(vmType));
 		template = template.replace("$VMNAME", vmName);
 		template = template.replace("$JDK", jdkName);
@@ -318,6 +331,11 @@ public class VMSwitch
 			template = template.replace("$ALLCOLUMNS", "[ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 ]");
 			template = template.replace("$SORTCOLUMNS", "[ 1, 2, 3, 4, 5, 7 ]");
 			break;
+		case ZING:
+			template = template.replace("$TOPHEADER", "<th></th><th>Type</th><th></th>");
+			template = template.replace("$ALLCOLUMNS", "[ 0,1,2 ]");
+			template = template.replace("$SORTCOLUMNS", "[ 1 ]");
+			break;
 		}
 
 		Files.write(Paths.get(outputFilename), template.getBytes(StandardCharsets.UTF_8));
@@ -329,45 +347,51 @@ public class VMSwitch
 	{
 		VMSwitch vms = new VMSwitch();
 
-		vms.addVM(new VMData("JDK6", new File("/home/chris/openjdk/jdk6/hotspot"), VMType.HOTSPOT));
-		vms.addVM(new VMData("JDK7", new File("/home/chris/openjdk/jdk7u/hotspot"), VMType.HOTSPOT));
-		vms.addVM(new VMData("JDK8", new File("/home/chris/openjdk/jdk8u/hotspot"), VMType.HOTSPOT));
-		vms.addVM(new VMData("JDK9", new File("/home/chris/openjdk/jdk9-dev/hotspot"), VMType.HOTSPOT));
-		vms.addVM(new VMData("JDK10", new File("/home/chris/openjdk/jdk10/src/hotspot"), VMType.HOTSPOT));
-		vms.addVM(new VMData("JDK11", new File("/home/chris/openjdk/jdk11/src/hotspot"), VMType.HOTSPOT));
-		vms.addVM(new VMData("JDK12", new File("/home/chris/openjdk/jdk12/src/hotspot"), VMType.HOTSPOT));
+		String baseDir = "/home/chris/openjdk/";
+
+		vms.addVM(new VMData("JDK6", new File(baseDir + "jdk6/hotspot"), VMType.HOTSPOT));
+		vms.addVM(new VMData("JDK7", new File(baseDir + "jdk7u/hotspot"), VMType.HOTSPOT));
+		vms.addVM(new VMData("JDK8", new File(baseDir + "jdk8u/hotspot"), VMType.HOTSPOT));
+		vms.addVM(new VMData("JDK9", new File(baseDir + "jdk9-dev/hotspot"), VMType.HOTSPOT));
+		vms.addVM(new VMData("JDK10", new File(baseDir + "jdk10/src/hotspot"), VMType.HOTSPOT));
+		vms.addVM(new VMData("JDK11", new File(baseDir + "jdk11/src/hotspot"), VMType.HOTSPOT));
+		vms.addVM(new VMData("JDK12", new File(baseDir + "jdk12/src/hotspot"), VMType.HOTSPOT));
 
 		// Generate these files with -XX:+JVMCIPrintProperties
-		vms.addVM(new VMData("Graal CE 1.0", new File("/home/chris/openjdk/VMSwitch/graal_ce.out"), VMType.GRAAL));
-		vms.addVM(new VMData("Graal EE 1.0", new File("/home/chris/openjdk/VMSwitch/graal_ee.out"), VMType.GRAAL));
+		vms.addVM(new VMData("Graal CE 1.0", new File(baseDir + "VMSwitch/graal_ce.out"), VMType.GRAAL));
+		vms.addVM(new VMData("Graal EE 1.0", new File(baseDir + "VMSwitch/graal_ee.out"), VMType.GRAAL));
 
-		vms.addVM(new VMData("OpenJ9", new File("/home/chris/openjdk/openj9"), VMType.OPENJ9));
+		vms.addVM(new VMData("OpenJ9", new File(baseDir + "openj9"), VMType.OPENJ9));
+
+		// /opt/zing/zing-jdk8/bin/java \
+		// -XX:+PrintFlagsFinal >zing.out 2>/dev/null
+		vms.addVM(new VMData("Zing", new File(baseDir + "VMSwitch/zing.out"), VMType.ZING));
 
 		vms.process();
 
 		vms.processVMDeltas(VMType.HOTSPOT);
-		
+
 		IntrinsicParser parser = new IntrinsicParser();
 
-		parser.parseFile(Paths.get("/home/chris/openjdk/jdk6/hotspot/src/share/vm/classfile/vmSymbols.hpp"));
+		parser.parseFile(Paths.get(baseDir + "jdk6/hotspot/src/share/vm/classfile/vmSymbols.hpp"));
 		parser.createHTMLForVM("JDK6");
 
-		parser.parseFile(Paths.get("/home/chris/openjdk/jdk7u/hotspot/src/share/vm/classfile/vmSymbols.hpp"));
+		parser.parseFile(Paths.get(baseDir + "jdk7u/hotspot/src/share/vm/classfile/vmSymbols.hpp"));
 		parser.createHTMLForVM("JDK7");
-		
-		parser.parseFile(Paths.get("/home/chris/openjdk/jdk8u/hotspot/src/share/vm/classfile/vmSymbols.hpp"));
+
+		parser.parseFile(Paths.get(baseDir + "jdk8u/hotspot/src/share/vm/classfile/vmSymbols.hpp"));
 		parser.createHTMLForVM("JDK8");
-		
-		parser.parseFile(Paths.get("/home/chris/openjdk/jdk9-dev/hotspot/src/share/vm/classfile/vmSymbols.hpp"));
+
+		parser.parseFile(Paths.get(baseDir + "jdk9-dev/hotspot/src/share/vm/classfile/vmSymbols.hpp"));
 		parser.createHTMLForVM("JDK9");
-		
-		parser.parseFile(Paths.get("/home/chris/openjdk/jdk10/src/hotspot/share/classfile/vmSymbols.hpp"));
+
+		parser.parseFile(Paths.get(baseDir + "jdk10/src/hotspot/share/classfile/vmSymbols.hpp"));
 		parser.createHTMLForVM("JDK10");
-		
-		parser.parseFile(Paths.get("/home/chris/openjdk/jdk11/src/hotspot/share/classfile/vmSymbols.hpp"));
+
+		parser.parseFile(Paths.get(baseDir + "jdk11/src/hotspot/share/classfile/vmSymbols.hpp"));
 		parser.createHTMLForVM("JDK11");
-		
-		parser.parseFile(Paths.get("/home/chris/openjdk/jdk12/src/hotspot/share/classfile/vmSymbols.hpp"));
+
+		parser.parseFile(Paths.get(baseDir + "jdk12/src/hotspot/share/classfile/vmSymbols.hpp"));
 		parser.createHTMLForVM("JDK12");
 	}
 }

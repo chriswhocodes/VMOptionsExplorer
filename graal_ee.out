@@ -266,8 +266,6 @@ graal.ExpansionInertiaMax = 2000                                         [Intege
           size.
 graal.FailedLoopExplosionIsFatal = false                                 [Boolean]
           Do not bail out but throw an exception on failed loop explosion.
-graal.ForceUseOfNewInstanceStub = false                                  [Boolean]
-          Force non-array object allocation to always use the slow path.
 graal.FullUnroll = true                                                  [Boolean]
 graal.FullUnrollAsPEACleanup = true                                      [Boolean]
           Perform full unrolling as a Partial Escape Analysis Cleanup
@@ -738,10 +736,6 @@ graal.TraceMonitorsMethodFilter = null                                    [Strin
           this substring.
 graal.TraceMonitorsTypeFilter = null                                      [String]
           Trace monitor operations on objects whose type contains this substring.
-graal.TraceNewArrayStub = false                                          [Boolean]
-          Trace execution of slow path stub for array allocation.
-graal.TraceNewInstanceStub = false                                       [Boolean]
-          Trace execution of slow path stub for non-array object allocation.
 graal.TraceParserPlugins = false                                         [Boolean]
           Traces use of plugins during bytecode parsing.
 graal.TraceRA = false                                                    [Boolean]

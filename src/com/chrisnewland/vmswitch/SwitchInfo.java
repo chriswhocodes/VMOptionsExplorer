@@ -155,7 +155,7 @@ public class SwitchInfo
 	}
 
 	public static String getHeaderRow(VMType vmType)
-	{
+	{		
 		StringBuilder builder = new StringBuilder();
 
 		builder.append("<tr>");
@@ -188,7 +188,10 @@ public class SwitchInfo
 			builder.append("<th>").append("Availability").append("</th>");
 		}
 
-		builder.append("<th>").append("Description").append("</th>");
+		if (vmType != VMType.ZING)
+		{
+			builder.append("<th>").append("Description").append("</th>");
+		}
 
 		if (vmType == VMType.HOTSPOT)
 		{
@@ -207,17 +210,17 @@ public class SwitchInfo
 		builder.append("<tr>");
 
 		builder.append(getRow(name));
-		
+
 		if (vmType == VMType.HOTSPOT)
 		{
 			builder.append(getRow(since));
 		}
-		
+
 		if (vmType != VMType.OPENJ9)
 		{
 			builder.append(getRow(type));
 		}
-		
+
 		if (vmType == VMType.HOTSPOT)
 		{
 			builder.append(getRow(os));
@@ -241,23 +244,26 @@ public class SwitchInfo
 		{
 			builder.append(getRow(availability));
 		}
-		
-		String descriptionComment = "";
 
-		if (description != null)
+		if (vmType != VMType.ZING)
 		{
-			descriptionComment += description;
-			if (comment != null)
+			String descriptionComment = "";
+
+			if (description != null)
 			{
-				descriptionComment += "<br>" + comment;
+				descriptionComment += description;
+				if (comment != null)
+				{
+					descriptionComment += "<br>" + comment;
+				}
 			}
-		}
-		else if (comment != null)
-		{
-			descriptionComment += comment;
-		}
+			else if (comment != null)
+			{
+				descriptionComment += comment;
+			}
 
-		builder.append(getRow(descriptionComment));
+			builder.append(getRow(descriptionComment));
+		}
 
 		if (vmType == VMType.HOTSPOT)
 		{

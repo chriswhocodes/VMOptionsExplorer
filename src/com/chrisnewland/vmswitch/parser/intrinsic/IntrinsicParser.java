@@ -370,8 +370,8 @@ public class IntrinsicParser
 
 	public void createHTMLForVM(String jdkName) throws IOException
 	{
-		String template = new String(Files.readAllBytes(Paths.get("html/template_intrinsic.html")), StandardCharsets.UTF_8);
-		String headerHTML = new String(Files.readAllBytes(Paths.get("html/header.html")), StandardCharsets.UTF_8);
+		String template = new String(Files.readAllBytes(Paths.get("templates/template_intrinsic.html")), StandardCharsets.UTF_8);
+		String headerHTML = new String(Files.readAllBytes(Paths.get("templates/header.html")), StandardCharsets.UTF_8);
 
 		StringBuilder htmlBuilder = new StringBuilder();
 

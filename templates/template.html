@@ -1,14 +1,14 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html lang='en-GB'>
 <head>
-<title>$H1_TITLE</title>
+<title>VM Options Explorer - $H1_TITLE</title>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <meta name="author" content="Chris Newland" />
 <meta name="copyright" content="Chris Newland 2018" />
 <meta name="viewport" content="width=device-width" />
 <link rel="stylesheet" type="text/css"
 	href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css">
-<link rel="stylesheet" type="text/css" href="style-vmoe.css">
+<link rel="stylesheet" type="text/css" href="css/style-vmoe.css">
 <script type="text/javascript"
 	src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 <script type="text/javascript"
@@ -34,7 +34,7 @@
                           "orderable" : true,
                         } ],
                         "oLanguage" : {
-                          "sSearch" : "Search $VMNAME VM $JDK Options: "
+                          "sSearch" : "Search $H1_TITLE VM Options: "
                         },
                         initComplete : function() {
                               this.api().search(getParam());
