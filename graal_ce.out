@@ -334,7 +334,8 @@ graal.MatchExpressions = true                                            [Boolea
 graal.MaxCompilationProblemsPerAction = 2                                [Integer]
           The maximum number of compilation failures or bailouts to handle with
           the action specified by CompilationFailureAction or
-          CompilationBailoutAction before changing to a less verbose action.
+          CompilationBailoutAction before changing to a less verbose action. This
+          does not apply to the ExitVM action.
 graal.MaxTemplatesPerSnippet = 50                                        [Integer]
 graal.MaximumDesiredSize = 20000                                         [Integer]
           Maximum desired size of the compiler graph in nodes.
@@ -416,8 +417,9 @@ graal.MetricsThreadFilter = null                                          [Strin
           Only report metrics for threads whose name matches the regular
           expression.
 graal.MinimumPeelProbability = 0.35                                        [Float]
-graal.MitigateSpeculativeExecutionAttacks = false                        [Boolean]
-          AMD64: Emit lfence instructions at the beginning of basic blocks
+graal.MitigateSpeculativeExecutionAttacks = None                          [String]
+          Select a strategy to mitigate speculative execution attacks (e.g.,
+          SPECTRE)
 graal.NDCV = 0                                                           [Integer]
           Run level for NoDeadCodeVerifyHandler (0 = off, 1 = info, 2 = verbose,
           3 = fatal)
@@ -468,8 +470,6 @@ graal.PrintGraphFile = false                                             [Boolea
           Print graphs to files instead of sending them over the network.
 graal.PrintGraphHost = "127.0.0.1"                                        [String]
           Host part of the address to which graphs are dumped.
-graal.PrintGraphProbabilities = false                                    [Boolean]
-          Output probabilities for fixed nodes during binary graph dumping.
 graal.PrintGraphWithSchedule = false                                     [Boolean]
           Schedule graphs as they are dumped.
 graal.PrintIRWithLIR = false                                             [Boolean]
@@ -620,17 +620,17 @@ graal.TraceRAalmostTrivialSize = 2                                       [Intege
           instructions
 graal.TraceRAbottomUpRatio = 0.0                                          [Double]
           Use LSRA / BottomUp ratio
+graal.TraceRAfrequencyThreshold = 0.8                                     [Double]
+          Frequency Threshold
 graal.TraceRAnumVariables = null                                         [Integer]
           Use BottomUp for traces with low number of variables at block
           boundaries
-graal.TraceRAprobalilityThreshold = 0.8                                   [Double]
-          Probability Threshold
 graal.TraceRAreuseStackSlotsForMoveResolutionCycleBreaking = true        [Boolean]
           Reuse spill slots for global move resolution cycle breaking.
 graal.TraceRAshareSpillInformation = true                                [Boolean]
           Share information about spilled values to other traces.
 graal.TraceRAsumBudget = 0.5                                              [Double]
-          Sum Probability Budget Threshold
+          Sum Frequency Budget Threshold
 graal.TraceRAtrivialBlockAllocator = true                                [Boolean]
           Use special allocator for trivial blocks.
 graal.TraceRAuseInterTraceHints = true                                   [Boolean]
@@ -804,6 +804,9 @@ graal.UseExceptionProbability = true                                     [Boolea
 graal.UseGuardedIntrinsics = true                                        [Boolean]
           Use intrinsics guarded by a virtual dispatch test at indirect call
           sites.
+graal.UseIndexMasking = false                                            [Boolean]
+          Use index masking after bounds check to mitigate speculative execution
+          attacks
 graal.UseLoopLimitChecks = true                                          [Boolean]
 graal.UseSnippetGraphCache = true                                        [Boolean]
           Use a cache for snippet graphs.
