@@ -18,162 +18,164 @@ public class HotSpotSwitchParser extends AbstractSwitchParser
 {
 	@Override
 	public Map<String, SwitchInfo> process(File vmPath) throws IOException
-    {
+	{
 		switchMap = new TreeMap<>();
-		
+
 		for (File hotspotFile : findSwitchFilesHotSpot(vmPath))
 		{
 			parseFile(hotspotFile, vmPath);
 		}
-		
+
 		return switchMap;
-    }
-	
+	}
+
 	private void parseFile(File hotspotFile, File vmPath) throws IOException
 	{
-        List<String> lines = Files.readAllLines(hotspotFile.toPath());
+		List<String> lines = Files.readAllLines(hotspotFile.toPath());
 
-        StringBuilder lineBuilder = new StringBuilder();
+		StringBuilder lineBuilder = new StringBuilder();
 
-        boolean inLine = false;
+		boolean inLine = false;
 
-        String expectedLineEnding = null;
+		String expectedLineEnding = null;
 
-        String availability = null;
+		String availability = null;
 
-        int descriptionField = -1;
-        int defaultValueField = -1;
+		int descriptionField = -1;
+		int defaultValueField = -1;
 
-        SwitchInfo info = null;
+		SwitchInfo info = null;
 
-        for (String line : lines)
-        {
-            String trimmed = line.replace("\\\"", "'").replace("\\", "").replace("\" )", "\")").trim();
+		for (String line : lines)
+		{
+			String trimmed = line.replace("\\\"", "'").replace("\\", "").replace("\" )", "\")").replace("JFR_ONLY(", "").trim();
 
-            // System.out.println(trimmed);
+			// System.out.println(trimmed);
 
-            if (!inLine)
-            {
-                int bracketPos = trimmed.indexOf('(');
+			if (!inLine)
+			{
+				int bracketPos = trimmed.indexOf('(');
 
-                if (bracketPos == -1)
-                {
-                    continue;
-                }
+				if (bracketPos == -1)
+				{
+					continue;
+				}
 
-                availability = trimmed.substring(0, bracketPos);
+				availability = trimmed.substring(0, bracketPos);
 
-                if ("define_pd_global".equals(availability))
-                {
-                    inLine = true;
-                    defaultValueField = 2;
-                    expectedLineEnding = ");";
-                }
-                else if ("product_pd".equals(availability))
-                {
-                    inLine = true;
-                    expectedLineEnding = "\")";
-                    descriptionField = 2;
-                }
-                else if ("product".equals(availability) || "develop".equals(availability) || "lp64_product".equals(availability)
-                        || "notproduct".equals(availability) || "diagnostic".equals(availability)
-                        || "experimental".equals(availability))
-                {
-                    inLine = true;
-                    expectedLineEnding = "\")";
-                    defaultValueField = 2;
-                    descriptionField = 3;
-                }
-                else if ("range".equals(availability))
-                {
-                    if (info != null)
-                    {
-                        info.setRange(trimmed);
-                    }
-                }
-                else
-                {
-                    continue;
-                }
-            }
+				if ("define_pd_global".equals(availability))
+				{
+					inLine = true;
+					defaultValueField = 2;
+					expectedLineEnding = ");";
+				}
+				else if ("product_pd".equals(availability))
+				{
+					inLine = true;
+					expectedLineEnding = "\")";
+					descriptionField = 2;
+				}
+				else if ("product".equals(availability) || "develop".equals(availability) || "lp64_product".equals(availability)
+						|| "notproduct".equals(availability) || "diagnostic".equals(availability)
+						|| "experimental".equals(availability))
+				{
+					inLine = true;
+					expectedLineEnding = "\")";
+					defaultValueField = 2;
+					descriptionField = 3;
+				}
+				else if ("range".equals(availability))
+				{
+					if (info != null)
+					{
+						info.setRange(trimmed);
+					}
+				}
+				else
+				{
+					continue;
+				}
+			}
 
-            if (inLine)
-            {
-                lineBuilder.append(trimmed);
+			if (inLine)
+			{
+				lineBuilder.append(trimmed);
 
-                if (trimmed.contains(expectedLineEnding))
-                {
-                    String result = lineBuilder.toString().replace("\"\"", "").replace("\n", "").replace("  ", "");
+				if (trimmed.contains(expectedLineEnding))
+				{
+					String result = lineBuilder.toString().replace("\"\"", "").replace("\n", "").replace("  ", "");
 
-                    int lineEndingPos = result.indexOf(expectedLineEnding);
+					int lineEndingPos = result.indexOf(expectedLineEnding);
 
-                    int commentPos = result.indexOf("//", lineEndingPos);
+					int commentPos = result.indexOf("//", lineEndingPos);
 
-                    String comment = null;
+					String comment = null;
 
-                    if (commentPos != -1)
-                    {
-                        comment = result.substring(commentPos);
-                    }
+					if (commentPos != -1)
+					{
+						comment = result.substring(commentPos);
+					}
 
-                    result = result.substring(0, lineEndingPos);
+					result = result.substring(0, lineEndingPos);
 
-                    lineBuilder.delete(0, lineBuilder.length());
-                    inLine = false;
+					lineBuilder.delete(0, lineBuilder.length());
+					inLine = false;
 
-                    result = result.substring(result.indexOf('(') + 1);
+					result = result.substring(result.indexOf('(') + 1);
 
-                    List<String> parts = explodeLine(result);
+					List<String> parts = explodeLine(result);
 
-                    final int partCount = parts.size();
+					final int partCount = parts.size();
 
-                    String type = partCount > 0 ? parts.get(0) : null;
-                    String name = partCount > 1 ? parts.get(1) : null;
+					String type = partCount > 0 ? parts.get(0) : null;
+					String name = partCount > 1 ? parts.get(1) : null;
 
-                    info = switchMap.get(name);
+					info = switchMap.get(name);
 
-                    if (info == null)
-                    {
-                        info = new SwitchInfo(name);
-                        info.setType(type);
-                        info.setAvailability(availability);
-                        info.setComment(comment);
-                        info.setDefinedIn(hotspotFile.getCanonicalPath().substring(vmPath.getCanonicalFile().toString().length() + 1));
-                    }
+					if (info == null)
+					{
+						info = new SwitchInfo(name);
+						info.setType(type);
+						info.setAvailability(availability);
+						info.setComment(comment);
+						info
+							.setDefinedIn(
+									hotspotFile.getCanonicalPath().substring(vmPath.getCanonicalFile().toString().length() + 1));
+					}
 
-                    setFieldsFromPath(info, hotspotFile);
+					setFieldsFromPath(info, hotspotFile);
 
-                    if (defaultValueField != -1)
-                    {
-                        String defaultValue = partCount > defaultValueField ? parts.get(defaultValueField) : null;
+					if (defaultValueField != -1)
+					{
+						String defaultValue = partCount > defaultValueField ? parts.get(defaultValueField) : null;
 
-                        if (defaultValue != null)
-                        {
-                            info.setDefaultValue(defaultValue);
-                        }
-                    }
+						if (defaultValue != null)
+						{
+							info.setDefaultValue(defaultValue);
+						}
+					}
 
-                    if (descriptionField != -1)
-                    {
-                        String description = partCount > descriptionField ? parts.get(descriptionField) : null;
+					if (descriptionField != -1)
+					{
+						String description = partCount > descriptionField ? parts.get(descriptionField) : null;
 
-                        if (description != null)
-                        {
-                            info.setDescription(description);
-                        }
-                    }
+						if (description != null)
+						{
+							info.setDescription(description);
+						}
+					}
 
-                    switchMap.put(info.getKey(), info);
+					switchMap.put(info.getKey(), info);
 
-                    descriptionField = -1;
-                    defaultValueField = -1;
+					descriptionField = -1;
+					defaultValueField = -1;
 
-                    // System.out.println(parts);
-                }
-            }
-        }
-    }
-	
+					// System.out.println(parts);
+				}
+			}
+		}
+	}
+
 	private List<File> findSwitchFilesHotSpot(File dir)
 	{
 		List<File> result = new ArrayList<>();
