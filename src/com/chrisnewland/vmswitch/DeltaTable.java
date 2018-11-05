@@ -50,7 +50,7 @@ public class DeltaTable
 		builder.append("<tr>");
 		builder.append("<th>Removed in ").append(laterVM.getJdkName()).append("</th>");
 		builder.append("<th>Added in ").append(laterVM.getJdkName()).append("</th>");
-		builder.append("</tr>");
+		builder.append("</tr>\n");
 
 		builder.append("<tr>");
 
@@ -65,7 +65,7 @@ public class DeltaTable
 					.append("\">")
 					.append(removedSwitch)
 					.append("</a>")
-					.append("<br>");
+					.append("<br>\n");
 		}
 		builder.append("</td>");
 
@@ -80,7 +80,7 @@ public class DeltaTable
 					.append("\">")
 					.append(addedSwitch)
 					.append("</a>")
-					.append("<br>");
+					.append("<br>\n");
 		}
 		builder.append("</td>");
 

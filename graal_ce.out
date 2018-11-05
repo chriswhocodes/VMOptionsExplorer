@@ -17,6 +17,12 @@ graal.ASMInstructionProfiling = null                                      [Strin
           Enables instruction profiling on assembler level. Valid values are a
           comma separated list of supported instructions. Compare with subclasses
           of Assembler.InstructionCounter.
+graal.AbortOnBenchmarkCounterOverflow = false                            [Boolean]
+          Abort VM with SIGILL if benchmark counters controlled by the
+          (Generic|Timed|Benchmark)DynamicCounters
+          option overflow. This feature is only supported on AMD64.
+          WARNING: No descriptive error message will be printed! In case of an overflow,
+          manual inspection of the emitted code is required.
 graal.AggregatedMetricsFile = null                                        [String]
           File to which aggregated metrics are dumped at shutdown. A CSV format
           is used if the file ends with .csv otherwise a more human readable
@@ -33,12 +39,11 @@ graal.BenchmarkCountersFile = null                                        [Strin
           the file ends with .csv otherwise a more human readable format is used.
           The fields in the CSV format are: category, group, name, value
 graal.BenchmarkDynamicCounters = null                                     [String]
-          Turn on the benchmark counters, and listen for specific patterns on
-          System.out/System.err.
-          The format of this option is:
+          Turn on the benchmark counters. The format of this option is:
           
             (err|out),start pattern,end pattern
             
+          Start counting when the start pattern matches on the given stream and stop when the end pattern occurs.
           You can use "~" to match 1 or more digits.
           Examples:
           
@@ -58,6 +63,9 @@ graal.BenchmarkDynamicCounters = null                                     [Strin
           10000 should be sufficient. Omit JVMCICountersExcludeCompiler to exclude
           counting allocations on the compiler threads.
           The counters can be further configured by the ProfileAllocationsContext option.
+          
+          We highly recommend the use of -Dgraal.AbortOnBenchmarkCounterOverflow=true to
+          detect counter overflows eagerly.
 graal.BootstrapInitializeOnly = false                                    [Boolean]
           Do not compile anything on bootstrap but just initialize the compiler.
 graal.BootstrapTimeout = 15.0                                             [Double]
@@ -717,6 +725,9 @@ graal.TruffleExperimentalSplittingDumpDecisions = false                  [Boolea
 graal.TruffleExperimentalSplittingMaxPropagationDepth = 5                [Integer]
           Propagate info about a polymorphic specialize through maximum this many
           call targets
+graal.TruffleFirstTierMinInvokeThreshold = 1                             [Integer]
+          Minimum number of calls before a call target is compiled in the first
+          tier.
 graal.TruffleFunctionInlining = true                                     [Boolean]
           Enable automatic inlining of call targets
 graal.TruffleInlineAcrossTruffleBoundary = false                         [Boolean]
@@ -756,6 +767,8 @@ graal.TruffleMaximumRecursiveInlining = 4                                [Intege
           Maximum level of recursive inlining
 graal.TruffleMinInvokeThreshold = 3                                      [Integer]
           Minimum number of calls before a call target is compiled
+graal.TruffleMultiTier = false                                           [Boolean]
+          Whether to use multiple compilation tiers by default.
 graal.TruffleOSR = true                                                  [Boolean]
           Enable on stack replacement for Truffle loops.
 graal.TruffleOSRCompilationThreshold = 100000                            [Integer]
@@ -779,9 +792,6 @@ graal.TruffleSplittingMaxCalleeSize = 100                                [Intege
 graal.TruffleSplittingMaxNumberOfSplitNodes = 500000                     [Integer]
           Disable call target splitting if number of nodes created by splitting
           exceeds this limit
-graal.TruffleTimeThreshold = 50000                                       [Integer]
-          Defines the maximum timespan in milliseconds that is required for a
-          call target to be queued for compilation.
 graal.TruffleTraceSplittingSummary = false                               [Boolean]
           Used for debugging the splitting implementation. Prints splitting
           summary directly to stdout on shutdown

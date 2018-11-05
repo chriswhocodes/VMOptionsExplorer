@@ -99,11 +99,19 @@ public class HotSpotSwitchParser extends AbstractSwitchParser
 
 			if (inLine)
 			{
-				lineBuilder.append(trimmed);
+				if (looksLikeListItem(trimmed))
+				{
+					lineBuilder.append("\"<br>");
+					lineBuilder.append(trimmed.substring(1));
+				}
+				else
+				{
+					lineBuilder.append(trimmed);
+				}
 
 				if (trimmed.contains(expectedLineEnding))
 				{
-					String result = lineBuilder.toString().replace("\"\"", "").replace("\n", "").replace("  ", "");
+					String result = lineBuilder.toString().replace("\"\"", "").replace("\n", "").replaceAll("\\s+", " ");
 
 					int lineEndingPos = result.indexOf(expectedLineEnding);
 
@@ -161,6 +169,11 @@ public class HotSpotSwitchParser extends AbstractSwitchParser
 
 						if (description != null)
 						{
+							if (description.startsWith("<br>"))
+							{
+								description = description.substring(4);
+							}
+
 							info.setDescription(description);
 						}
 					}
@@ -173,7 +186,12 @@ public class HotSpotSwitchParser extends AbstractSwitchParser
 					// System.out.println(parts);
 				}
 			}
-		}
+		} // for
+	}
+
+	private boolean looksLikeListItem(String line)
+	{
+		return line.length() > 1 && line.charAt(0) == '"' && Character.isDigit(line.charAt(1));
 	}
 
 	private List<File> findSwitchFilesHotSpot(File dir)
