@@ -4,6 +4,9 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import com.chrisnewland.vmswitch.parser.deprecated.DeprecatedInfo;
+import com.chrisnewland.vmswitch.parser.deprecated.DeprecatedParser;
+
 public class DeltaTable
 {
 	private List<String> added = new ArrayList<>();
@@ -37,7 +40,7 @@ public class DeltaTable
 	{
 		return removed.size();
 	}
-	
+
 	public String toString()
 	{
 		StringBuilder builder = new StringBuilder();
@@ -58,14 +61,22 @@ public class DeltaTable
 		for (String removedSwitch : removed)
 		{
 			builder
-					.append("<a href=\"")
+					.append("<div><a href=\"")
 					.append(earlierVM.getHTMLFilename())
 					.append("?s=")
 					.append(removedSwitch)
 					.append("\">")
 					.append(removedSwitch)
-					.append("</a>")
-					.append("<br>\n");
+					.append("</a>");
+
+			DeprecatedInfo deprecatedInfo = DeprecatedParser.getDeprecatedInfo(removedSwitch);
+
+			if (deprecatedInfo != null)
+			{
+				builder.append(" ").append(deprecatedInfo.toHTMLStringHorizontal());
+			}
+
+			builder.append("</div>\n");
 		}
 		builder.append("</td>");
 
@@ -73,14 +84,14 @@ public class DeltaTable
 		for (String addedSwitch : added)
 		{
 			builder
-					.append("<a href=\"")
+					.append("<div><a href=\"")
 					.append(laterVM.getHTMLFilename())
 					.append("?s=")
 					.append(addedSwitch)
 					.append("\">")
 					.append(addedSwitch)
 					.append("</a>")
-					.append("<br>\n");
+					.append("</div>\n");
 		}
 		builder.append("</td>");
 
@@ -89,6 +100,5 @@ public class DeltaTable
 		builder.append("</table>");
 
 		return builder.toString();
-
 	}
 }

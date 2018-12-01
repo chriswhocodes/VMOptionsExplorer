@@ -1,4 +1,3 @@
-
 /*
  * Copyright (c) 2018 Chris Newland.
  * Licensed under https://github.com/chriswhocodes/VMSwitch/blob/master/LICENSE
@@ -20,6 +19,7 @@ public class SwitchInfo
 	private String definedIn;
 	private String since;
 	private String range;
+	private String deprecation;
 
 	public String getRange()
 	{
@@ -125,6 +125,16 @@ public class SwitchInfo
 	{
 		this.description = description;
 	}
+	
+	public String getDeprecation()
+	{
+		return deprecation;
+	}
+
+	public void setDeprecation(String deprecation)
+	{
+		this.deprecation = deprecation;
+	}
 
 	public String getComment()
 	{
@@ -164,6 +174,7 @@ public class SwitchInfo
 		if (vmType == VMType.HOTSPOT)
 		{
 			builder.append("<th>").append("Since").append("</th>");
+			builder.append("<th>").append("Deprecated").append("</th>");
 		}
 
 		if (vmType != VMType.OPENJ9)
@@ -214,6 +225,7 @@ public class SwitchInfo
 		if (vmType == VMType.HOTSPOT)
 		{
 			builder.append(getRow(since));
+			builder.append(getRow(deprecation));
 		}
 
 		if (vmType != VMType.OPENJ9)

@@ -36,6 +36,10 @@ th, td {
 	background-color: #ffcccc;
 }
 
+.removed div, .added div {
+	padding-bottom:8px;
+}
+
 .added {
 	background-color: #ccffcc;
 }

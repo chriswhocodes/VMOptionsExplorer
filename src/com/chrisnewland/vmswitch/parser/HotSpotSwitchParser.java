@@ -13,6 +13,8 @@ import java.util.Map;
 import java.util.TreeMap;
 
 import com.chrisnewland.vmswitch.SwitchInfo;
+import com.chrisnewland.vmswitch.parser.deprecated.DeprecatedInfo;
+import com.chrisnewland.vmswitch.parser.deprecated.DeprecatedParser;
 
 public class HotSpotSwitchParser extends AbstractSwitchParser
 {
@@ -178,6 +180,13 @@ public class HotSpotSwitchParser extends AbstractSwitchParser
 						}
 					}
 
+					DeprecatedInfo deprecatedInfo = DeprecatedParser.getDeprecatedInfo(name);
+					
+					if (deprecatedInfo != null)
+					{
+						info.setDeprecation(deprecatedInfo.toHTMLStringVertical());
+					}
+					
 					switchMap.put(info.getKey(), info);
 
 					descriptionField = -1;

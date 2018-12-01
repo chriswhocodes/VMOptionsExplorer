@@ -103,6 +103,7 @@ public abstract class AbstractSwitchParser implements ISwitchParser
 				info.setCpu(nextPart);
 				break;
 			case "vm":
+			case "share":
 				if (nextPart.startsWith("c1"))
 				{
 					info.setComponent("c1");

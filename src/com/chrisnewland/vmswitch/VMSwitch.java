@@ -20,6 +20,7 @@ import com.chrisnewland.vmswitch.parser.HotSpotSwitchParser;
 import com.chrisnewland.vmswitch.parser.ISwitchParser;
 import com.chrisnewland.vmswitch.parser.OpenJ9SwitchParser;
 import com.chrisnewland.vmswitch.parser.ZingSwitchParser;
+import com.chrisnewland.vmswitch.parser.deprecated.DeprecatedParser;
 import com.chrisnewland.vmswitch.parser.intrinsic.IntrinsicParser;
 
 import java.util.Set;
@@ -327,9 +328,9 @@ public class VMSwitch
 		case HOTSPOT:
 			template = template
 								.replace("$TOPHEADER",
-										"<th></th><th>Since</th><th>Type</th><th>OS</th><th>CPU</th><th>Component</th><th></th><th>Availability</th><th></th><th></th>");
-			template = template.replace("$ALLCOLUMNS", "[ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 ]");
-			template = template.replace("$SORTCOLUMNS", "[ 1, 2, 3, 4, 5, 7 ]");
+										"<th></th><th>Since</th><th>Deprecated</th><th>Type</th><th>OS</th><th>CPU</th><th>Component</th><th></th><th>Availability</th><th></th><th></th>");
+			template = template.replace("$ALLCOLUMNS", "[ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 ]");
+			template = template.replace("$SORTCOLUMNS", "[ 1, 3, 4, 5, 6, 8 ]");
 			break;
 		case ZING:
 			template = template.replace("$TOPHEADER", "<th></th><th>Type</th><th></th>");
@@ -345,9 +346,17 @@ public class VMSwitch
 
 	public static void main(String[] args) throws Exception
 	{
-		VMSwitch vms = new VMSwitch();
-
 		String baseDir = "/home/chris/openjdk/";
+
+		// parse deprecation info in JDK release order
+
+		DeprecatedParser.parseFile(Paths.get(baseDir + "jdk10"));
+
+		DeprecatedParser.parseFile(Paths.get(baseDir + "jdk11"));
+
+		DeprecatedParser.parseFile(Paths.get(baseDir + "jdk12"));
+
+		VMSwitch vms = new VMSwitch();
 
 		vms.addVM(new VMData("JDK6", new File(baseDir + "jdk6/hotspot"), VMType.HOTSPOT));
 		vms.addVM(new VMData("JDK7", new File(baseDir + "jdk7u/hotspot"), VMType.HOTSPOT));
@@ -371,27 +380,28 @@ public class VMSwitch
 
 		vms.processVMDeltas(VMType.HOTSPOT);
 
-		IntrinsicParser parser = new IntrinsicParser();
+		IntrinsicParser intrinsicParser = new IntrinsicParser();
 
-		parser.parseFile(Paths.get(baseDir + "jdk6/hotspot/src/share/vm/classfile/vmSymbols.hpp"));
-		parser.createHTMLForVM("JDK6");
+		intrinsicParser.parseFile(Paths.get(baseDir + "jdk6/hotspot/src/share/vm/classfile/vmSymbols.hpp"));
+		intrinsicParser.createHTMLForVM("JDK6");
 
-		parser.parseFile(Paths.get(baseDir + "jdk7u/hotspot/src/share/vm/classfile/vmSymbols.hpp"));
-		parser.createHTMLForVM("JDK7");
+		intrinsicParser.parseFile(Paths.get(baseDir + "jdk7u/hotspot/src/share/vm/classfile/vmSymbols.hpp"));
+		intrinsicParser.createHTMLForVM("JDK7");
 
-		parser.parseFile(Paths.get(baseDir + "jdk8u/hotspot/src/share/vm/classfile/vmSymbols.hpp"));
-		parser.createHTMLForVM("JDK8");
+		intrinsicParser.parseFile(Paths.get(baseDir + "jdk8u/hotspot/src/share/vm/classfile/vmSymbols.hpp"));
+		intrinsicParser.createHTMLForVM("JDK8");
 
-		parser.parseFile(Paths.get(baseDir + "jdk9-dev/hotspot/src/share/vm/classfile/vmSymbols.hpp"));
-		parser.createHTMLForVM("JDK9");
+		intrinsicParser.parseFile(Paths.get(baseDir + "jdk9-dev/hotspot/src/share/vm/classfile/vmSymbols.hpp"));
+		intrinsicParser.createHTMLForVM("JDK9");
 
-		parser.parseFile(Paths.get(baseDir + "jdk10/src/hotspot/share/classfile/vmSymbols.hpp"));
-		parser.createHTMLForVM("JDK10");
+		intrinsicParser.parseFile(Paths.get(baseDir + "jdk10/src/hotspot/share/classfile/vmSymbols.hpp"));
+		intrinsicParser.createHTMLForVM("JDK10");
 
-		parser.parseFile(Paths.get(baseDir + "jdk11/src/hotspot/share/classfile/vmSymbols.hpp"));
-		parser.createHTMLForVM("JDK11");
+		intrinsicParser.parseFile(Paths.get(baseDir + "jdk11/src/hotspot/share/classfile/vmSymbols.hpp"));
+		intrinsicParser.createHTMLForVM("JDK11");
 
-		parser.parseFile(Paths.get(baseDir + "jdk12/src/hotspot/share/classfile/vmSymbols.hpp"));
-		parser.createHTMLForVM("JDK12");
+		intrinsicParser.parseFile(Paths.get(baseDir + "jdk12/src/hotspot/share/classfile/vmSymbols.hpp"));
+		intrinsicParser.createHTMLForVM("JDK12");
+
 	}
 }
