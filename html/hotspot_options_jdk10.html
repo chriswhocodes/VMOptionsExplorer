@@ -190,10 +190,10 @@
 <tr><td>AvoidUnalignedAccesses</td><td>JDK9</td><td></td><td>bool</td><td></td><td>aarch64</td><td></td><td>false</td><td>product</td><td>Avoid generating unaligned memory accesses</td><td>cpu/aarch64/globals_aarch64.hpp</td></tr>
 <tr><td>BCEATraceLevel</td><td>JDK6</td><td></td><td>intx</td><td></td><td></td><td>runtime</td><td>0<br>range(0, 3)</td><td>product</td><td>How much tracing to do of bytecode escape analysis estimates (0-3)</td><td>share/runtime/globals.hpp</td></tr>
 <tr><td>BackgroundCompilation</td><td>JDK6</td><td></td><td>bool</td><td></td><td>aarch64</td><td></td><td>true</td><td>define_pd_global</td><td></td><td>cpu/aarch64/c1_globals_aarch64.hpp</td></tr>
-<tr><td>BackgroundCompilation</td><td>JDK6</td><td></td><td>bool</td><td></td><td>arm</td><td></td><td>true</td><td>define_pd_global</td><td></td><td>cpu/arm/c1_globals_arm.hpp</td></tr>
+<tr><td>BackgroundCompilation</td><td>JDK6</td><td></td><td>bool</td><td></td><td>arm</td><td></td><td>true</td><td>define_pd_global</td><td></td><td>cpu/arm/c2_globals_arm.hpp</td></tr>
 <tr><td>BackgroundCompilation</td><td>JDK6</td><td></td><td>bool</td><td></td><td></td><td>runtime</td><td></td><td>product_pd</td><td>A thread requesting compilation is not blocked during compilation</td><td>share/runtime/globals.hpp</td></tr>
-<tr><td>BackgroundCompilation</td><td>JDK6</td><td></td><td>bool</td><td></td><td>ppc</td><td></td><td>true</td><td>define_pd_global</td><td></td><td>cpu/ppc/c1_globals_ppc.hpp</td></tr>
-<tr><td>BackgroundCompilation</td><td>JDK6</td><td></td><td>bool</td><td></td><td>s390</td><td></td><td>true</td><td>define_pd_global</td><td></td><td>cpu/s390/c1_globals_s390.hpp</td></tr>
+<tr><td>BackgroundCompilation</td><td>JDK6</td><td></td><td>bool</td><td></td><td>ppc</td><td></td><td>true</td><td>define_pd_global</td><td></td><td>cpu/ppc/c2_globals_ppc.hpp</td></tr>
+<tr><td>BackgroundCompilation</td><td>JDK6</td><td></td><td>bool</td><td></td><td>s390</td><td></td><td>true</td><td>define_pd_global</td><td></td><td>cpu/s390/c2_globals_s390.hpp</td></tr>
 <tr><td>BackgroundCompilation</td><td>JDK6</td><td></td><td>bool</td><td></td><td>sparc</td><td></td><td>true</td><td>define_pd_global</td><td></td><td>cpu/sparc/c2_globals_sparc.hpp</td></tr>
 <tr><td>BackgroundCompilation</td><td>JDK6</td><td></td><td>bool</td><td></td><td>x86</td><td></td><td>true</td><td>define_pd_global</td><td></td><td>cpu/x86/c1_globals_x86.hpp</td></tr>
 <tr><td>BailoutAfterHIR</td><td>JDK6</td><td></td><td>bool</td><td></td><td></td><td>c1</td><td>false</td><td>develop</td><td>bailout of compilation after building of HIR</td><td>share/c1/c1_globals.hpp</td></tr>
@@ -234,10 +234,10 @@
 <tr><td>CIBreakAt</td><td>JDK6</td><td></td><td>intx</td><td></td><td></td><td>runtime</td><td>-1</td><td>develop</td><td>The id of compilation to break at</td><td>share/runtime/globals.hpp</td></tr>
 <tr><td>CICompileNatives</td><td>JDK6</td><td></td><td>bool</td><td></td><td></td><td>runtime</td><td>true</td><td>develop</td><td>compile native methods if supported by the compiler</td><td>share/runtime/globals.hpp</td></tr>
 <tr><td>CICompileOSR</td><td>JDK6</td><td></td><td>bool</td><td></td><td>aarch64</td><td></td><td>true</td><td>define_pd_global</td><td></td><td>cpu/aarch64/c1_globals_aarch64.hpp</td></tr>
-<tr><td>CICompileOSR</td><td>JDK6</td><td></td><td>bool</td><td></td><td>arm</td><td></td><td>true</td><td>define_pd_global</td><td></td><td>cpu/arm/c1_globals_arm.hpp</td></tr>
+<tr><td>CICompileOSR</td><td>JDK6</td><td></td><td>bool</td><td></td><td>arm</td><td></td><td>true</td><td>define_pd_global</td><td></td><td>cpu/arm/c2_globals_arm.hpp</td></tr>
 <tr><td>CICompileOSR</td><td>JDK6</td><td></td><td>bool</td><td></td><td></td><td>runtime</td><td>false</td><td>define_pd_global</td><td></td><td>share/runtime/globals.hpp</td></tr>
-<tr><td>CICompileOSR</td><td>JDK6</td><td></td><td>bool</td><td></td><td>ppc</td><td></td><td>true</td><td>define_pd_global</td><td></td><td>cpu/ppc/c1_globals_ppc.hpp</td></tr>
-<tr><td>CICompileOSR</td><td>JDK6</td><td></td><td>bool</td><td></td><td>s390</td><td></td><td>true</td><td>define_pd_global</td><td></td><td>cpu/s390/c1_globals_s390.hpp</td></tr>
+<tr><td>CICompileOSR</td><td>JDK6</td><td></td><td>bool</td><td></td><td>ppc</td><td></td><td>true</td><td>define_pd_global</td><td></td><td>cpu/ppc/c2_globals_ppc.hpp</td></tr>
+<tr><td>CICompileOSR</td><td>JDK6</td><td></td><td>bool</td><td></td><td>s390</td><td></td><td>true</td><td>define_pd_global</td><td></td><td>cpu/s390/c2_globals_s390.hpp</td></tr>
 <tr><td>CICompileOSR</td><td>JDK6</td><td></td><td>bool</td><td></td><td>sparc</td><td></td><td>true</td><td>define_pd_global</td><td></td><td>cpu/sparc/c2_globals_sparc.hpp</td></tr>
 <tr><td>CICompileOSR</td><td>JDK6</td><td></td><td>bool</td><td></td><td>x86</td><td></td><td>true</td><td>define_pd_global</td><td></td><td>cpu/x86/c1_globals_x86.hpp</td></tr>
 <tr><td>CICompilerCountPerCPU</td><td>JDK6</td><td></td><td>bool</td><td></td><td></td><td>runtime</td><td>false</td><td>product</td><td>1 compiler thread for log(N CPUs)</td><td>share/runtime/globals.hpp</td></tr>
@@ -357,24 +357,24 @@
 <tr><td>CleanChunkPoolAsync</td><td>JDK6</td><td></td><td>bool</td><td></td><td></td><td>runtime</td><td>true</td><td>develop</td><td>Clean the chunk pool asynchronously</td><td>share/runtime/globals.hpp</td></tr>
 <tr><td>ClipInlining</td><td>JDK6</td><td></td><td>bool</td><td></td><td></td><td>runtime</td><td>true</td><td>product</td><td>Clip inlining if aggregate method exceeds DesiredMethodLimit</td><td>share/runtime/globals.hpp</td></tr>
 <tr><td>CodeCacheExpansionSize</td><td>JDK6</td><td></td><td>intx</td><td></td><td>aarch64</td><td></td><td>32*K</td><td>define_pd_global</td><td></td><td>cpu/aarch64/c1_globals_aarch64.hpp</td></tr>
-<tr><td>CodeCacheExpansionSize</td><td>JDK6</td><td></td><td>size_t</td><td></td><td>arm</td><td></td><td>32*K</td><td>define_pd_global</td><td></td><td>cpu/arm/c1_globals_arm.hpp</td></tr>
+<tr><td>CodeCacheExpansionSize</td><td>JDK6</td><td></td><td>size_t</td><td></td><td>arm</td><td></td><td>32*K</td><td>define_pd_global</td><td></td><td>cpu/arm/c2_globals_arm.hpp</td></tr>
 <tr><td>CodeCacheExpansionSize</td><td>JDK6</td><td></td><td>uintx</td><td></td><td></td><td>runtime</td><td></td><td>product_pd</td><td>Code cache expansion size (in bytes)</td><td>share/runtime/globals.hpp</td></tr>
-<tr><td>CodeCacheExpansionSize</td><td>JDK6</td><td></td><td>intx</td><td></td><td>ppc</td><td></td><td>32*K</td><td>define_pd_global</td><td></td><td>cpu/ppc/c1_globals_ppc.hpp</td></tr>
-<tr><td>CodeCacheExpansionSize</td><td>JDK6</td><td></td><td>uintx</td><td></td><td>s390</td><td></td><td>32*K</td><td>define_pd_global</td><td></td><td>cpu/s390/c1_globals_s390.hpp</td></tr>
+<tr><td>CodeCacheExpansionSize</td><td>JDK6</td><td></td><td>intx</td><td></td><td>ppc</td><td></td><td>64*K</td><td>define_pd_global</td><td></td><td>cpu/ppc/c2_globals_ppc.hpp</td></tr>
+<tr><td>CodeCacheExpansionSize</td><td>JDK6</td><td></td><td>uintx</td><td></td><td>s390</td><td></td><td>64*K</td><td>define_pd_global</td><td></td><td>cpu/s390/c2_globals_s390.hpp</td></tr>
 <tr><td>CodeCacheExpansionSize</td><td>JDK6</td><td></td><td>intx</td><td></td><td>sparc</td><td></td><td>64*K</td><td>define_pd_global</td><td></td><td>cpu/sparc/c2_globals_sparc.hpp</td></tr>
 <tr><td>CodeCacheExpansionSize</td><td>JDK6</td><td></td><td>intx</td><td></td><td>x86</td><td></td><td>32*K</td><td>define_pd_global</td><td></td><td>cpu/x86/c1_globals_x86.hpp</td></tr>
 <tr><td>CodeCacheMinBlockLength</td><td>JDK6</td><td></td><td>uintx</td><td></td><td>aarch64</td><td></td><td>1</td><td>define_pd_global</td><td></td><td>cpu/aarch64/c1_globals_aarch64.hpp</td></tr>
-<tr><td>CodeCacheMinBlockLength</td><td>JDK6</td><td></td><td>uintx</td><td></td><td>arm</td><td></td><td>1</td><td>define_pd_global</td><td></td><td>cpu/arm/c1_globals_arm.hpp</td></tr>
+<tr><td>CodeCacheMinBlockLength</td><td>JDK6</td><td></td><td>uintx</td><td></td><td>arm</td><td></td><td>4</td><td>define_pd_global</td><td></td><td>cpu/arm/c2_globals_arm.hpp</td></tr>
 <tr><td>CodeCacheMinBlockLength</td><td>JDK6</td><td></td><td>intx</td><td></td><td></td><td>runtime</td><td>1</td><td>define_pd_global</td><td></td><td>share/runtime/globals.hpp</td></tr>
-<tr><td>CodeCacheMinBlockLength</td><td>JDK6</td><td></td><td>uintx</td><td></td><td>ppc</td><td></td><td>1</td><td>define_pd_global</td><td></td><td>cpu/ppc/c1_globals_ppc.hpp</td></tr>
-<tr><td>CodeCacheMinBlockLength</td><td>JDK6</td><td></td><td>uintx</td><td></td><td>s390</td><td></td><td>1</td><td>define_pd_global</td><td></td><td>cpu/s390/c1_globals_s390.hpp</td></tr>
+<tr><td>CodeCacheMinBlockLength</td><td>JDK6</td><td></td><td>uintx</td><td></td><td>ppc</td><td></td><td>4</td><td>define_pd_global</td><td></td><td>cpu/ppc/c2_globals_ppc.hpp</td></tr>
+<tr><td>CodeCacheMinBlockLength</td><td>JDK6</td><td></td><td>uintx</td><td></td><td>s390</td><td></td><td>4</td><td>define_pd_global</td><td></td><td>cpu/s390/c2_globals_s390.hpp</td></tr>
 <tr><td>CodeCacheMinBlockLength</td><td>JDK6</td><td></td><td>uintx</td><td></td><td>sparc</td><td></td><td>4</td><td>define_pd_global</td><td></td><td>cpu/sparc/c2_globals_sparc.hpp</td></tr>
 <tr><td>CodeCacheMinBlockLength</td><td>JDK6</td><td></td><td>uintx</td><td></td><td>x86</td><td></td><td>1</td><td>define_pd_global</td><td></td><td>cpu/x86/c1_globals_x86.hpp</td></tr>
 <tr><td>CodeCacheMinimumUseSpace</td><td>JDK8</td><td></td><td>uintx</td><td></td><td>aarch64</td><td></td><td>400*K</td><td>define_pd_global</td><td></td><td>cpu/aarch64/c1_globals_aarch64.hpp</td></tr>
-<tr><td>CodeCacheMinimumUseSpace</td><td>JDK8</td><td></td><td>size_t</td><td></td><td>arm</td><td></td><td>400*K</td><td>define_pd_global</td><td></td><td>cpu/arm/c1_globals_arm.hpp</td></tr>
+<tr><td>CodeCacheMinimumUseSpace</td><td>JDK8</td><td></td><td>size_t</td><td></td><td>arm</td><td></td><td>400*K</td><td>define_pd_global</td><td></td><td>cpu/arm/c2_globals_arm.hpp</td></tr>
 <tr><td>CodeCacheMinimumUseSpace</td><td>JDK8</td><td></td><td>intx</td><td></td><td></td><td>runtime</td><td>200*K</td><td>define_pd_global</td><td></td><td>share/runtime/globals.hpp</td></tr>
 <tr><td>CodeCacheMinimumUseSpace</td><td>JDK8</td><td></td><td>uintx</td><td></td><td>ppc</td><td></td><td>400*K</td><td>define_pd_global</td><td></td><td>cpu/ppc/c2_globals_ppc.hpp</td></tr>
-<tr><td>CodeCacheMinimumUseSpace</td><td>JDK8</td><td></td><td>uintx</td><td></td><td>s390</td><td></td><td>400*K</td><td>define_pd_global</td><td></td><td>cpu/s390/c1_globals_s390.hpp</td></tr>
+<tr><td>CodeCacheMinimumUseSpace</td><td>JDK8</td><td></td><td>uintx</td><td></td><td>s390</td><td></td><td>400*K</td><td>define_pd_global</td><td></td><td>cpu/s390/c2_globals_s390.hpp</td></tr>
 <tr><td>CodeCacheMinimumUseSpace</td><td>JDK8</td><td></td><td>uintx</td><td></td><td>sparc</td><td></td><td>400*K</td><td>define_pd_global</td><td></td><td>cpu/sparc/c2_globals_sparc.hpp</td></tr>
 <tr><td>CodeCacheMinimumUseSpace</td><td>JDK8</td><td></td><td>uintx</td><td></td><td>x86</td><td></td><td>400*K</td><td>define_pd_global</td><td></td><td>cpu/x86/c1_globals_x86.hpp</td></tr>
 <tr><td>CodeCacheSegmentSize</td><td>JDK6</td><td></td><td>uintx</td><td></td><td>aarch64</td><td></td><td>64 TIERED_ONLY(+64)</td><td>define_pd_global</td><td>// Tiered compilation has large code-entry alignment.</td><td>cpu/aarch64/globals_aarch64.hpp</td></tr>
@@ -413,10 +413,10 @@
 <tr><td>CompileTheWorld</td><td>JDK6</td><td></td><td>bool</td><td></td><td></td><td>runtime</td><td>false</td><td>develop</td><td>Compile all methods in all classes in bootstrap class path (stress test)</td><td>share/runtime/globals.hpp</td></tr>
 <tr><td>CompileThresholdScaling</td><td>JDK9</td><td></td><td>double</td><td></td><td></td><td>runtime</td><td>1.0<br>range(0.0, DBL_MAX)</td><td>product</td><td>Factor to control when first compilation happens (both with and without tiered compilation): values greater than 1.0 delay counter overflow, values between 0 and 1.0 rush counter overflow, value of 1.0 leaves compilation thresholds unchanged value of 0.0 is equivalent to -Xint. Flag can be set as per-method option. If a value is specified for a method, compilation thresholds for that method are scaled by both the value of the global flag and the value of the per-method flag.</td><td>share/runtime/globals.hpp</td></tr>
 <tr><td>CompileThreshold</td><td>JDK6</td><td></td><td>intx</td><td></td><td>aarch64</td><td></td><td>1500</td><td>define_pd_global</td><td></td><td>cpu/aarch64/c1_globals_aarch64.hpp</td></tr>
-<tr><td>CompileThreshold</td><td>JDK6</td><td></td><td>intx</td><td></td><td>arm</td><td></td><td>1500</td><td>define_pd_global</td><td></td><td>cpu/arm/c1_globals_arm.hpp</td></tr>
+<tr><td>CompileThreshold</td><td>JDK6</td><td></td><td>intx</td><td></td><td>arm</td><td></td><td>10000</td><td>define_pd_global</td><td></td><td>cpu/arm/c2_globals_arm.hpp</td></tr>
 <tr><td>CompileThreshold</td><td>JDK6</td><td></td><td>intx</td><td></td><td></td><td>runtime</td><td></td><td>product_pd</td><td>number of interpreted method invocations before (re-)compiling</td><td>share/runtime/globals.hpp</td></tr>
-<tr><td>CompileThreshold</td><td>JDK6</td><td></td><td>intx</td><td></td><td>ppc</td><td></td><td>1000</td><td>define_pd_global</td><td></td><td>cpu/ppc/c1_globals_ppc.hpp</td></tr>
-<tr><td>CompileThreshold</td><td>JDK6</td><td></td><td>intx</td><td></td><td>s390</td><td></td><td>1000</td><td>define_pd_global</td><td></td><td>cpu/s390/c1_globals_s390.hpp</td></tr>
+<tr><td>CompileThreshold</td><td>JDK6</td><td></td><td>intx</td><td></td><td>ppc</td><td></td><td>10000</td><td>define_pd_global</td><td></td><td>cpu/ppc/c2_globals_ppc.hpp</td></tr>
+<tr><td>CompileThreshold</td><td>JDK6</td><td></td><td>intx</td><td></td><td>s390</td><td></td><td>10000</td><td>define_pd_global</td><td></td><td>cpu/s390/c2_globals_s390.hpp</td></tr>
 <tr><td>CompileThreshold</td><td>JDK6</td><td></td><td>intx</td><td></td><td>sparc</td><td></td><td>10000</td><td>define_pd_global</td><td></td><td>cpu/sparc/c2_globals_sparc.hpp</td></tr>
 <tr><td>CompileThreshold</td><td>JDK6</td><td></td><td>intx</td><td></td><td>x86</td><td></td><td>1500</td><td>define_pd_global</td><td></td><td>cpu/x86/c1_globals_x86.hpp</td></tr>
 <tr><td>CompilerDirectivesFile</td><td>JDK9</td><td></td><td>ccstr</td><td></td><td></td><td>runtime</td><td>NULL</td><td>diagnostic</td><td>Read compiler directives from this file</td><td>share/runtime/globals.hpp</td></tr>
@@ -584,10 +584,10 @@
 <tr><td>ForceUnreachable</td><td>JDK6</td><td></td><td>bool</td><td></td><td></td><td>runtime</td><td>false</td><td>diagnostic</td><td>Make all non code cache addresses to be unreachable by forcing use of 64bit literal fixups</td><td>share/runtime/globals.hpp</td></tr>
 <tr><td>FreqCountInvocations</td><td>JDK6</td><td></td><td>intx</td><td></td><td></td><td>c2</td><td>1<br>range(1, max_intx)</td><td>develop</td><td>Scaling factor for branch frequencies (deprecated)</td><td>share/opto/c2_globals.hpp</td></tr>
 <tr><td>FreqInlineSize</td><td>JDK6</td><td></td><td>intx</td><td></td><td>aarch64</td><td></td><td>325</td><td>define_pd_global</td><td></td><td>cpu/aarch64/c1_globals_aarch64.hpp</td></tr>
-<tr><td>FreqInlineSize</td><td>JDK6</td><td></td><td>intx</td><td></td><td>arm</td><td></td><td>325</td><td>define_pd_global</td><td></td><td>cpu/arm/c1_globals_arm.hpp</td></tr>
+<tr><td>FreqInlineSize</td><td>JDK6</td><td></td><td>intx</td><td></td><td>arm</td><td></td><td>175</td><td>define_pd_global</td><td></td><td>cpu/arm/c2_globals_arm.hpp</td></tr>
 <tr><td>FreqInlineSize</td><td>JDK6</td><td></td><td>intx</td><td></td><td></td><td>runtime</td><td></td><td>product_pd</td><td>The maximum bytecode size of a frequent method to be inlined</td><td>share/runtime/globals.hpp</td></tr>
-<tr><td>FreqInlineSize</td><td>JDK6</td><td></td><td>intx</td><td></td><td>ppc</td><td></td><td>325</td><td>define_pd_global</td><td></td><td>cpu/ppc/c1_globals_ppc.hpp</td></tr>
-<tr><td>FreqInlineSize</td><td>JDK6</td><td></td><td>intx</td><td></td><td>s390</td><td></td><td>325</td><td>define_pd_global</td><td></td><td>cpu/s390/c1_globals_s390.hpp</td></tr>
+<tr><td>FreqInlineSize</td><td>JDK6</td><td></td><td>intx</td><td></td><td>ppc</td><td></td><td>175</td><td>define_pd_global</td><td></td><td>cpu/ppc/c2_globals_ppc.hpp</td></tr>
+<tr><td>FreqInlineSize</td><td>JDK6</td><td></td><td>intx</td><td></td><td>s390</td><td></td><td>175</td><td>define_pd_global</td><td></td><td>cpu/s390/c2_globals_s390.hpp</td></tr>
 <tr><td>FreqInlineSize</td><td>JDK6</td><td></td><td>intx</td><td></td><td>sparc</td><td></td><td>175</td><td>define_pd_global</td><td></td><td>cpu/sparc/c2_globals_sparc.hpp</td></tr>
 <tr><td>FreqInlineSize</td><td>JDK6</td><td></td><td>intx</td><td></td><td>x86</td><td></td><td>325</td><td>define_pd_global</td><td></td><td>cpu/x86/c1_globals_x86.hpp</td></tr>
 <tr><td>FullGCALotDummies</td><td>JDK6</td><td></td><td>intx</td><td></td><td></td><td>runtime</td><td>32*K</td><td>notproduct</td><td>Dummy object allocated with +FullGCALot, forcing all objects to move</td><td>share/runtime/globals.hpp</td></tr>
@@ -736,10 +736,10 @@
 <tr><td>InitArrayShortSize</td><td>JDK9</td><td></td><td>intx</td><td></td><td>zero</td><td></td><td>0</td><td>define_pd_global</td><td></td><td>cpu/zero/globals_zero.hpp</td></tr>
 <tr><td>InitialBootClassLoaderMetaspaceSize</td><td>JDK8</td><td></td><td>size_t</td><td></td><td></td><td>runtime</td><td>NOT_LP64(2200*K) LP64_ONLY(4*M)<br>range(30*K, max_uintx/BytesPerWord)</td><td>product</td><td>Initial size of the boot class loader data metaspace</td><td>share/runtime/globals.hpp</td></tr>
 <tr><td>InitialCodeCacheSize</td><td>JDK6</td><td></td><td>intx</td><td></td><td>aarch64</td><td></td><td>160*K</td><td>define_pd_global</td><td></td><td>cpu/aarch64/c1_globals_aarch64.hpp</td></tr>
-<tr><td>InitialCodeCacheSize</td><td>JDK6</td><td></td><td>size_t</td><td></td><td>arm</td><td></td><td>160*K</td><td>define_pd_global</td><td></td><td>cpu/arm/c1_globals_arm.hpp</td></tr>
+<tr><td>InitialCodeCacheSize</td><td>JDK6</td><td></td><td>size_t</td><td></td><td>arm</td><td></td><td>1536*K</td><td>define_pd_global</td><td>// Integral multiple of CodeCacheExpansionSize</td><td>cpu/arm/c2_globals_arm.hpp</td></tr>
 <tr><td>InitialCodeCacheSize</td><td>JDK6</td><td></td><td>uintx</td><td></td><td></td><td>runtime</td><td></td><td>product_pd</td><td>Initial code cache size (in bytes)</td><td>share/runtime/globals.hpp</td></tr>
-<tr><td>InitialCodeCacheSize</td><td>JDK6</td><td></td><td>intx</td><td></td><td>ppc</td><td></td><td>160*K</td><td>define_pd_global</td><td></td><td>cpu/ppc/c1_globals_ppc.hpp</td></tr>
-<tr><td>InitialCodeCacheSize</td><td>JDK6</td><td></td><td>uintx</td><td></td><td>s390</td><td></td><td>160*K</td><td>define_pd_global</td><td></td><td>cpu/s390/c1_globals_s390.hpp</td></tr>
+<tr><td>InitialCodeCacheSize</td><td>JDK6</td><td></td><td>intx</td><td></td><td>ppc</td><td></td><td>2048*K</td><td>define_pd_global</td><td>// Integral multiple of CodeCacheExpansionSize</td><td>cpu/ppc/c2_globals_ppc.hpp</td></tr>
+<tr><td>InitialCodeCacheSize</td><td>JDK6</td><td></td><td>uintx</td><td></td><td>s390</td><td></td><td>2048*K</td><td>define_pd_global</td><td>// Integral multiple of CodeCacheExpansionSize</td><td>cpu/s390/c2_globals_s390.hpp</td></tr>
 <tr><td>InitialCodeCacheSize</td><td>JDK6</td><td></td><td>intx</td><td></td><td>sparc</td><td></td><td>2048*K</td><td>define_pd_global</td><td>// Integral multiple of CodeCacheExpansionSize</td><td>cpu/sparc/c2_globals_sparc.hpp</td></tr>
 <tr><td>InitialCodeCacheSize</td><td>JDK6</td><td></td><td>intx</td><td></td><td>x86</td><td></td><td>160*K</td><td>define_pd_global</td><td></td><td>cpu/x86/c1_globals_x86.hpp</td></tr>
 <tr><td>InitialHeapSize</td><td>JDK6</td><td></td><td>size_t</td><td></td><td></td><td>runtime</td><td>0</td><td>product</td><td>Initial heap size (in bytes); zero means use ergonomics</td><td>share/runtime/globals.hpp</td></tr>
@@ -762,10 +762,10 @@
 <tr><td>InlineFrequencyCount</td><td>JDK6</td><td></td><td>intx</td><td></td><td>zero</td><td></td><td>100</td><td>define_pd_global</td><td></td><td>cpu/zero/globals_zero.hpp</td></tr>
 <tr><td>InlineFrequencyRatio</td><td>JDK6</td><td></td><td>intx</td><td></td><td></td><td>runtime</td><td>20<br>range(0, max_jint)</td><td>develop</td><td>Ratio of call site execution to caller method invocation</td><td>share/runtime/globals.hpp</td></tr>
 <tr><td>InlineIntrinsics</td><td>JDK6</td><td></td><td>bool</td><td></td><td>aarch64</td><td></td><td>true</td><td>define_pd_global</td><td></td><td>cpu/aarch64/c1_globals_aarch64.hpp</td></tr>
-<tr><td>InlineIntrinsics</td><td>JDK6</td><td></td><td>bool</td><td></td><td>arm</td><td></td><td>false</td><td>define_pd_global</td><td>// TODO: ARM</td><td>cpu/arm/c1_globals_arm.hpp</td></tr>
+<tr><td>InlineIntrinsics</td><td>JDK6</td><td></td><td>bool</td><td></td><td>arm</td><td></td><td>false</td><td>define_pd_global</td><td></td><td>cpu/arm/c2_globals_arm.hpp</td></tr>
 <tr><td>InlineIntrinsics</td><td>JDK6</td><td></td><td>bool</td><td></td><td></td><td>runtime</td><td>false</td><td>define_pd_global</td><td></td><td>share/runtime/globals.hpp</td></tr>
-<tr><td>InlineIntrinsics</td><td>JDK6</td><td></td><td>bool</td><td></td><td>ppc</td><td></td><td>true</td><td>define_pd_global</td><td></td><td>cpu/ppc/c1_globals_ppc.hpp</td></tr>
-<tr><td>InlineIntrinsics</td><td>JDK6</td><td></td><td>bool</td><td></td><td>s390</td><td></td><td>true</td><td>define_pd_global</td><td></td><td>cpu/s390/c1_globals_s390.hpp</td></tr>
+<tr><td>InlineIntrinsics</td><td>JDK6</td><td></td><td>bool</td><td></td><td>ppc</td><td></td><td>true</td><td>define_pd_global</td><td></td><td>cpu/ppc/c2_globals_ppc.hpp</td></tr>
+<tr><td>InlineIntrinsics</td><td>JDK6</td><td></td><td>bool</td><td></td><td>s390</td><td></td><td>true</td><td>define_pd_global</td><td></td><td>cpu/s390/c2_globals_s390.hpp</td></tr>
 <tr><td>InlineIntrinsics</td><td>JDK6</td><td></td><td>bool</td><td></td><td>sparc</td><td></td><td>true</td><td>define_pd_global</td><td></td><td>cpu/sparc/c2_globals_sparc.hpp</td></tr>
 <tr><td>InlineIntrinsics</td><td>JDK6</td><td></td><td>bool</td><td></td><td>x86</td><td></td><td>true</td><td>define_pd_global</td><td></td><td>cpu/x86/c1_globals_x86.hpp</td></tr>
 <tr><td>InlineMathNatives</td><td>JDK6</td><td></td><td>bool</td><td></td><td></td><td>runtime</td><td>true</td><td>diagnostic</td><td>Inline SinD, CosD, etc.</td><td>share/runtime/globals.hpp</td></tr>
@@ -916,10 +916,10 @@
 <tr><td>MaxRAMFraction</td><td>JDK6</td><td><span style="white-space:nowrap">Deprecated in JDK10</span></td><td>uintx</td><td></td><td></td><td>runtime</td><td>4<br>range(1, max_uintx)</td><td>product</td><td>Maximum fraction (1/n) of real memory used for maximum heap size. Deprecated, use MaxRAMPercentage instead</td><td>share/runtime/globals.hpp</td></tr>
 <tr><td>MaxRAMPercentage</td><td>JDK10</td><td></td><td>double</td><td></td><td></td><td>runtime</td><td>25.0<br>range(0.0, 100.0)</td><td>product</td><td>Maximum percentage of real memory used for maximum heap size</td><td>share/runtime/globals.hpp</td></tr>
 <tr><td>MaxRAM</td><td>JDK6</td><td></td><td>uint64_t</td><td></td><td>aarch64</td><td></td><td>1ULL*G</td><td>define_pd_global</td><td></td><td>cpu/aarch64/c1_globals_aarch64.hpp</td></tr>
-<tr><td>MaxRAM</td><td>JDK6</td><td></td><td>uint64_t</td><td></td><td>arm</td><td></td><td>1ULL*G</td><td>define_pd_global</td><td></td><td>cpu/arm/c1_globals_arm.hpp</td></tr>
+<tr><td>MaxRAM</td><td>JDK6</td><td></td><td>uint64_t</td><td></td><td>arm</td><td></td><td>4ULL*G</td><td>define_pd_global</td><td></td><td>cpu/arm/c2_globals_arm.hpp</td></tr>
 <tr><td>MaxRAM</td><td>JDK6</td><td></td><td>uint64_t</td><td></td><td></td><td>runtime</td><td></td><td>product_pd</td><td>Real memory size (in bytes) used to set maximum heap size</td><td>share/runtime/globals.hpp</td></tr>
-<tr><td>MaxRAM</td><td>JDK6</td><td></td><td>uint64_t</td><td></td><td>ppc</td><td></td><td>1ULL*G</td><td>define_pd_global</td><td></td><td>cpu/ppc/c1_globals_ppc.hpp</td></tr>
-<tr><td>MaxRAM</td><td>JDK6</td><td></td><td>uint64_t</td><td></td><td>s390</td><td></td><td>1ULL*G</td><td>define_pd_global</td><td></td><td>cpu/s390/c1_globals_s390.hpp</td></tr>
+<tr><td>MaxRAM</td><td>JDK6</td><td></td><td>uint64_t</td><td></td><td>ppc</td><td></td><td>4ULL*G</td><td>define_pd_global</td><td></td><td>cpu/ppc/c2_globals_ppc.hpp</td></tr>
+<tr><td>MaxRAM</td><td>JDK6</td><td></td><td>uint64_t</td><td></td><td>s390</td><td></td><td>128ULL*G</td><td>define_pd_global</td><td></td><td>cpu/s390/c2_globals_s390.hpp</td></tr>
 <tr><td>MaxRAM</td><td>JDK6</td><td></td><td>uint64_t</td><td></td><td>sparc</td><td></td><td>128ULL*G</td><td>define_pd_global</td><td></td><td>cpu/sparc/c2_globals_sparc.hpp</td></tr>
 <tr><td>MaxRAM</td><td>JDK6</td><td></td><td>uint64_t</td><td></td><td>x86</td><td></td><td>1ULL*G</td><td>define_pd_global</td><td></td><td>cpu/x86/c1_globals_x86.hpp</td></tr>
 <tr><td>MaxRecompilationSearchLength</td><td>JDK6</td><td></td><td>intx</td><td></td><td></td><td>runtime</td><td>10</td><td>develop</td><td>The maximum number of frames to inspect when searching for recompilee</td><td>share/runtime/globals.hpp</td></tr>
@@ -934,10 +934,10 @@
 <tr><td>MetadataAllocationFailALotInterval</td><td>JDK8</td><td></td><td>uintx</td><td></td><td></td><td>runtime</td><td>1000</td><td>develop</td><td>Metadata allocation failure a lot interval</td><td>share/runtime/globals.hpp</td></tr>
 <tr><td>MetadataAllocationFailALot</td><td>JDK8</td><td></td><td>bool</td><td></td><td></td><td>runtime</td><td>false</td><td>develop</td><td>Fail metadata allocations at intervals controlled by MetadataAllocationFailALotInterval</td><td>share/runtime/globals.hpp</td></tr>
 <tr><td>MetaspaceSize</td><td>JDK8</td><td></td><td>uintx</td><td></td><td>aarch64</td><td></td><td>12*M</td><td>define_pd_global</td><td></td><td>cpu/aarch64/c1_globals_aarch64.hpp</td></tr>
-<tr><td>MetaspaceSize</td><td>JDK8</td><td></td><td>size_t</td><td></td><td>arm</td><td></td><td>12*M</td><td>define_pd_global</td><td></td><td>cpu/arm/c1_globals_arm.hpp</td></tr>
+<tr><td>MetaspaceSize</td><td>JDK8</td><td></td><td>size_t</td><td></td><td>arm</td><td></td><td>ScaleForWordSize(16*M)</td><td>define_pd_global</td><td></td><td>cpu/arm/c2_globals_arm.hpp</td></tr>
 <tr><td>MetaspaceSize</td><td>JDK8</td><td></td><td>size_t</td><td></td><td></td><td>runtime</td><td></td><td>product_pd</td><td>Initial threshold (in bytes) at which a garbage collection is done to reduce Metaspace usage</td><td>share/runtime/globals.hpp</td></tr>
-<tr><td>MetaspaceSize</td><td>JDK8</td><td></td><td>uintx</td><td></td><td>ppc</td><td></td><td>12*M</td><td>define_pd_global</td><td></td><td>cpu/ppc/c1_globals_ppc.hpp</td></tr>
-<tr><td>MetaspaceSize</td><td>JDK8</td><td></td><td>size_t</td><td></td><td>s390</td><td></td><td>12*M</td><td>define_pd_global</td><td></td><td>cpu/s390/c1_globals_s390.hpp</td></tr>
+<tr><td>MetaspaceSize</td><td>JDK8</td><td></td><td>size_t</td><td></td><td>ppc</td><td></td><td>ScaleForWordSize(16*M)</td><td>define_pd_global</td><td></td><td>cpu/ppc/c2_globals_ppc.hpp</td></tr>
+<tr><td>MetaspaceSize</td><td>JDK8</td><td></td><td>size_t</td><td></td><td>s390</td><td></td><td>ScaleForWordSize(16*M)</td><td>define_pd_global</td><td></td><td>cpu/s390/c2_globals_s390.hpp</td></tr>
 <tr><td>MetaspaceSize</td><td>JDK8</td><td></td><td>size_t</td><td></td><td>sparc</td><td></td><td>ScaleForWordSize(16*M)</td><td>define_pd_global</td><td></td><td>cpu/sparc/c2_globals_sparc.hpp</td></tr>
 <tr><td>MetaspaceSize</td><td>JDK8</td><td></td><td>size_t</td><td></td><td>x86</td><td></td><td>12*M</td><td>define_pd_global</td><td></td><td>cpu/x86/c1_globals_x86.hpp</td></tr>
 <tr><td>MethodFlushing</td><td>JDK6</td><td></td><td>bool</td><td></td><td></td><td>runtime</td><td>true</td><td>product</td><td>Reclamation of zombie and not-entrant methods</td><td>share/runtime/globals.hpp</td></tr>
@@ -987,20 +987,20 @@
 <tr><td>NeedsDeoptSuspend</td><td>JDK6</td><td></td><td>bool</td><td></td><td>zero</td><td></td><td>false</td><td>define_pd_global</td><td></td><td>cpu/zero/globals_zero.hpp</td></tr>
 <tr><td>NestedInliningSizeRatio</td><td>JDK6</td><td></td><td>intx</td><td></td><td></td><td>c1</td><td>90<br>range(0, 100)</td><td>develop</td><td>Percentage of prev. allowed inline size in recursive inlining</td><td>share/c1/c1_globals.hpp</td></tr>
 <tr><td>NeverActAsServerClassMachine</td><td>JDK6</td><td></td><td>bool</td><td></td><td>aarch64</td><td></td><td>true</td><td>define_pd_global</td><td></td><td>cpu/aarch64/c1_globals_aarch64.hpp</td></tr>
-<tr><td>NeverActAsServerClassMachine</td><td>JDK6</td><td></td><td>bool</td><td></td><td>arm</td><td></td><td>true</td><td>define_pd_global</td><td></td><td>cpu/arm/c1_globals_arm.hpp</td></tr>
+<tr><td>NeverActAsServerClassMachine</td><td>JDK6</td><td></td><td>bool</td><td></td><td>arm</td><td></td><td>false</td><td>define_pd_global</td><td></td><td>cpu/arm/c2_globals_arm.hpp</td></tr>
 <tr><td>NeverActAsServerClassMachine</td><td>JDK6</td><td></td><td>bool</td><td></td><td></td><td>runtime</td><td></td><td>product_pd</td><td>Never act like a server-class machine</td><td>share/runtime/globals.hpp</td></tr>
-<tr><td>NeverActAsServerClassMachine</td><td>JDK6</td><td></td><td>bool</td><td></td><td>ppc</td><td></td><td>true</td><td>define_pd_global</td><td></td><td>cpu/ppc/c1_globals_ppc.hpp</td></tr>
-<tr><td>NeverActAsServerClassMachine</td><td>JDK6</td><td></td><td>bool</td><td></td><td>s390</td><td></td><td>true</td><td>define_pd_global</td><td></td><td>cpu/s390/c1_globals_s390.hpp</td></tr>
+<tr><td>NeverActAsServerClassMachine</td><td>JDK6</td><td></td><td>bool</td><td></td><td>ppc</td><td></td><td>false</td><td>define_pd_global</td><td></td><td>cpu/ppc/c2_globals_ppc.hpp</td></tr>
+<tr><td>NeverActAsServerClassMachine</td><td>JDK6</td><td></td><td>bool</td><td></td><td>s390</td><td></td><td>false</td><td>define_pd_global</td><td></td><td>cpu/s390/c2_globals_s390.hpp</td></tr>
 <tr><td>NeverActAsServerClassMachine</td><td>JDK6</td><td></td><td>bool</td><td></td><td>sparc</td><td></td><td>false</td><td>define_pd_global</td><td></td><td>cpu/sparc/c2_globals_sparc.hpp</td></tr>
 <tr><td>NeverActAsServerClassMachine</td><td>JDK6</td><td></td><td>bool</td><td></td><td>x86</td><td></td><td>true</td><td>define_pd_global</td><td></td><td>cpu/x86/c1_globals_x86.hpp</td></tr>
 <tr><td>NeverTenure</td><td>JDK6</td><td></td><td>bool</td><td></td><td></td><td>runtime</td><td>false</td><td>product</td><td>Never tenure objects in eden, may tenure on overflow (ParallelGC only)</td><td>share/runtime/globals.hpp</td></tr>
 <tr><td>NewCodeParameter</td><td>JDK6</td><td></td><td>intx</td><td></td><td></td><td>runtime</td><td>0</td><td>develop</td><td>Testing Only: Create a dedicated integer parameter before putback</td><td>share/runtime/globals.hpp</td></tr>
 <tr><td>NewRatio</td><td>JDK6</td><td></td><td>uintx</td><td></td><td></td><td>runtime</td><td>2<br>range(0, max_uintx-1)</td><td>product</td><td>Ratio of old/new generation sizes</td><td>share/runtime/globals.hpp</td></tr>
 <tr><td>NewSizeThreadIncrease</td><td>JDK6</td><td></td><td>intx</td><td></td><td>aarch64</td><td></td><td>4*K</td><td>define_pd_global</td><td></td><td>cpu/aarch64/c1_globals_aarch64.hpp</td></tr>
-<tr><td>NewSizeThreadIncrease</td><td>JDK6</td><td></td><td>size_t</td><td></td><td>arm</td><td></td><td>4*K</td><td>define_pd_global</td><td></td><td>cpu/arm/c1_globals_arm.hpp</td></tr>
+<tr><td>NewSizeThreadIncrease</td><td>JDK6</td><td></td><td>size_t</td><td></td><td>arm</td><td></td><td>ScaleForWordSize(4*K)</td><td>define_pd_global</td><td></td><td>cpu/arm/c2_globals_arm.hpp</td></tr>
 <tr><td>NewSizeThreadIncrease</td><td>JDK6</td><td></td><td>size_t</td><td></td><td></td><td>runtime</td><td></td><td>product_pd</td><td>Additional size added to desired new generation size per non-daemon thread (in bytes)</td><td>share/runtime/globals.hpp</td></tr>
-<tr><td>NewSizeThreadIncrease</td><td>JDK6</td><td></td><td>intx</td><td></td><td>ppc</td><td></td><td>16*K</td><td>define_pd_global</td><td></td><td>cpu/ppc/c1_globals_ppc.hpp</td></tr>
-<tr><td>NewSizeThreadIncrease</td><td>JDK6</td><td></td><td>size_t</td><td></td><td>s390</td><td></td><td>16*K</td><td>define_pd_global</td><td></td><td>cpu/s390/c1_globals_s390.hpp</td></tr>
+<tr><td>NewSizeThreadIncrease</td><td>JDK6</td><td></td><td>size_t</td><td></td><td>ppc</td><td></td><td>ScaleForWordSize(4*K)</td><td>define_pd_global</td><td></td><td>cpu/ppc/c2_globals_ppc.hpp</td></tr>
+<tr><td>NewSizeThreadIncrease</td><td>JDK6</td><td></td><td>size_t</td><td></td><td>s390</td><td></td><td>ScaleForWordSize(4*K)</td><td>define_pd_global</td><td></td><td>cpu/s390/c2_globals_s390.hpp</td></tr>
 <tr><td>NewSizeThreadIncrease</td><td>JDK6</td><td></td><td>size_t</td><td></td><td>sparc</td><td></td><td>ScaleForWordSize(4*K)</td><td>define_pd_global</td><td></td><td>cpu/sparc/c2_globals_sparc.hpp</td></tr>
 <tr><td>NewSizeThreadIncrease</td><td>JDK6</td><td></td><td>size_t</td><td></td><td>x86</td><td></td><td>4*K</td><td>define_pd_global</td><td></td><td>cpu/x86/c1_globals_x86.hpp</td></tr>
 <tr><td>NewSize</td><td>JDK6</td><td></td><td>size_t</td><td></td><td></td><td>runtime</td><td>ScaleForWordSize(1*M)</td><td>product</td><td>Initial new generation size (in bytes)</td><td>share/runtime/globals.hpp</td></tr>
@@ -1009,17 +1009,17 @@
 <tr><td>NodeCountInliningStep</td><td>JDK6</td><td></td><td>intx</td><td></td><td></td><td>c2</td><td>1000<br>range(0, max_jint)</td><td>develop</td><td>Target size of warm calls inlined between optimization passes</td><td>share/opto/c2_globals.hpp</td></tr>
 <tr><td>NodeLimitFudgeFactor</td><td>JDK6</td><td></td><td>intx</td><td></td><td></td><td>c2</td><td>2000</td><td>product</td><td>Fudge Factor for certain optimizations</td><td>share/opto/c2_globals.hpp</td></tr>
 <tr><td>NonNMethodCodeHeapSize</td><td>JDK9</td><td></td><td>intx</td><td></td><td>aarch64</td><td></td><td>5*M</td><td>define_pd_global</td><td></td><td>cpu/aarch64/c1_globals_aarch64.hpp</td></tr>
-<tr><td>NonNMethodCodeHeapSize</td><td>JDK9</td><td></td><td>size_t</td><td></td><td>arm</td><td></td><td>5*M</td><td>define_pd_global</td><td></td><td>cpu/arm/c1_globals_arm.hpp</td></tr>
+<tr><td>NonNMethodCodeHeapSize</td><td>JDK9</td><td></td><td>size_t</td><td></td><td>arm</td><td></td><td>5*M</td><td>define_pd_global</td><td></td><td>cpu/arm/c2_globals_arm.hpp</td></tr>
 <tr><td>NonNMethodCodeHeapSize</td><td>JDK9</td><td></td><td>uintx</td><td></td><td></td><td>runtime</td><td></td><td>product_pd</td><td>Size of code heap with non-nmethods (in bytes)</td><td>share/runtime/globals.hpp</td></tr>
 <tr><td>NonNMethodCodeHeapSize</td><td>JDK9</td><td></td><td>intx</td><td></td><td>ppc</td><td></td><td>5*M</td><td>define_pd_global</td><td></td><td>cpu/ppc/c2_globals_ppc.hpp</td></tr>
-<tr><td>NonNMethodCodeHeapSize</td><td>JDK9</td><td></td><td>uintx</td><td></td><td>s390</td><td></td><td>5*M</td><td>define_pd_global</td><td></td><td>cpu/s390/c1_globals_s390.hpp</td></tr>
+<tr><td>NonNMethodCodeHeapSize</td><td>JDK9</td><td></td><td>uintx</td><td></td><td>s390</td><td></td><td>5*M</td><td>define_pd_global</td><td></td><td>cpu/s390/c2_globals_s390.hpp</td></tr>
 <tr><td>NonNMethodCodeHeapSize</td><td>JDK9</td><td></td><td>intx</td><td></td><td>sparc</td><td></td><td>5*M</td><td>define_pd_global</td><td></td><td>cpu/sparc/c2_globals_sparc.hpp</td></tr>
 <tr><td>NonNMethodCodeHeapSize</td><td>JDK9</td><td></td><td>intx</td><td></td><td>x86</td><td></td><td>5*M</td><td>define_pd_global</td><td></td><td>cpu/x86/c1_globals_x86.hpp</td></tr>
 <tr><td>NonProfiledCodeHeapSize</td><td>JDK9</td><td></td><td>intx</td><td></td><td>aarch64</td><td></td><td>13*M</td><td>define_pd_global</td><td></td><td>cpu/aarch64/c1_globals_aarch64.hpp</td></tr>
-<tr><td>NonProfiledCodeHeapSize</td><td>JDK9</td><td></td><td>size_t</td><td></td><td>arm</td><td></td><td>13*M</td><td>define_pd_global</td><td></td><td>cpu/arm/c1_globals_arm.hpp</td></tr>
+<tr><td>NonProfiledCodeHeapSize</td><td>JDK9</td><td></td><td>size_t</td><td></td><td>arm</td><td></td><td>13*M</td><td>define_pd_global</td><td></td><td>cpu/arm/c2_globals_arm.hpp</td></tr>
 <tr><td>NonProfiledCodeHeapSize</td><td>JDK9</td><td></td><td>uintx</td><td></td><td></td><td>runtime</td><td></td><td>product_pd</td><td>Size of code heap with non-profiled methods (in bytes)</td><td>share/runtime/globals.hpp</td></tr>
 <tr><td>NonProfiledCodeHeapSize</td><td>JDK9</td><td></td><td>intx</td><td></td><td>ppc</td><td></td><td>125*M</td><td>define_pd_global</td><td></td><td>cpu/ppc/c2_globals_ppc.hpp</td></tr>
-<tr><td>NonProfiledCodeHeapSize</td><td>JDK9</td><td></td><td>uintx</td><td></td><td>s390</td><td></td><td>13*M</td><td>define_pd_global</td><td></td><td>cpu/s390/c1_globals_s390.hpp</td></tr>
+<tr><td>NonProfiledCodeHeapSize</td><td>JDK9</td><td></td><td>uintx</td><td></td><td>s390</td><td></td><td>21*M</td><td>define_pd_global</td><td></td><td>cpu/s390/c2_globals_s390.hpp</td></tr>
 <tr><td>NonProfiledCodeHeapSize</td><td>JDK9</td><td></td><td>intx</td><td></td><td>sparc</td><td></td><td>21*M</td><td>define_pd_global</td><td></td><td>cpu/sparc/c2_globals_sparc.hpp</td></tr>
 <tr><td>NonProfiledCodeHeapSize</td><td>JDK9</td><td></td><td>intx</td><td></td><td>x86</td><td></td><td>13*M</td><td>define_pd_global</td><td></td><td>cpu/x86/c1_globals_x86.hpp</td></tr>
 <tr><td>NotifySimulator</td><td>JDK9</td><td></td><td>bool</td><td></td><td>aarch64</td><td></td><td>UseBuiltinSim</td><td>product</td><td>tell the AArch64 sim where we are in method code</td><td>cpu/aarch64/globals_aarch64.hpp</td></tr>
@@ -1035,10 +1035,10 @@
 <tr><td>OnError</td><td>JDK6</td><td></td><td>ccstrlist</td><td></td><td></td><td>runtime</td><td>Run user-defined commands on fatal error; see VMError.cpp for examples</td><td>product</td><td></td><td>share/runtime/globals.hpp</td></tr>
 <tr><td>OnOutOfMemoryError</td><td>JDK6</td><td></td><td>ccstrlist</td><td></td><td></td><td>runtime</td><td>Run user-defined commands on first java.lang.OutOfMemoryError</td><td>product</td><td></td><td>share/runtime/globals.hpp</td></tr>
 <tr><td>OnStackReplacePercentage</td><td>JDK6</td><td></td><td>intx</td><td></td><td>aarch64</td><td></td><td>933</td><td>define_pd_global</td><td></td><td>cpu/aarch64/c1_globals_aarch64.hpp</td></tr>
-<tr><td>OnStackReplacePercentage</td><td>JDK6</td><td></td><td>intx</td><td></td><td>arm</td><td></td><td>933</td><td>define_pd_global</td><td></td><td>cpu/arm/c1_globals_arm.hpp</td></tr>
+<tr><td>OnStackReplacePercentage</td><td>JDK6</td><td></td><td>intx</td><td></td><td>arm</td><td></td><td>140</td><td>define_pd_global</td><td></td><td>cpu/arm/c2_globals_arm.hpp</td></tr>
 <tr><td>OnStackReplacePercentage</td><td>JDK6</td><td></td><td>intx</td><td></td><td></td><td>runtime</td><td></td><td>product_pd</td><td>NON_TIERED number of method invocations/branches (expressed as % of CompileThreshold) before (re-)compiling OSR code</td><td>share/runtime/globals.hpp</td></tr>
-<tr><td>OnStackReplacePercentage</td><td>JDK6</td><td></td><td>intx</td><td></td><td>ppc</td><td></td><td>1400</td><td>define_pd_global</td><td></td><td>cpu/ppc/c1_globals_ppc.hpp</td></tr>
-<tr><td>OnStackReplacePercentage</td><td>JDK6</td><td></td><td>intx</td><td></td><td>s390</td><td></td><td>1400</td><td>define_pd_global</td><td></td><td>cpu/s390/c1_globals_s390.hpp</td></tr>
+<tr><td>OnStackReplacePercentage</td><td>JDK6</td><td></td><td>intx</td><td></td><td>ppc</td><td></td><td>140</td><td>define_pd_global</td><td></td><td>cpu/ppc/c2_globals_ppc.hpp</td></tr>
+<tr><td>OnStackReplacePercentage</td><td>JDK6</td><td></td><td>intx</td><td></td><td>s390</td><td></td><td>140</td><td>define_pd_global</td><td></td><td>cpu/s390/c2_globals_s390.hpp</td></tr>
 <tr><td>OnStackReplacePercentage</td><td>JDK6</td><td></td><td>intx</td><td></td><td>sparc</td><td></td><td>140</td><td>define_pd_global</td><td></td><td>cpu/sparc/c2_globals_sparc.hpp</td></tr>
 <tr><td>OnStackReplacePercentage</td><td>JDK6</td><td></td><td>intx</td><td></td><td>x86</td><td></td><td>933</td><td>define_pd_global</td><td></td><td>cpu/x86/c1_globals_x86.hpp</td></tr>
 <tr><td>OptimizeExpensiveOps</td><td>JDK7</td><td></td><td>bool</td><td></td><td></td><td>c2</td><td>true</td><td>diagnostic</td><td>Find best control for expensive operations</td><td>share/opto/c2_globals.hpp</td></tr>
@@ -1144,10 +1144,10 @@
 <tr><td>PreTouchParallelChunkSize</td><td>JDK9</td><td></td><td>size_t</td><td></td><td></td><td>runtime</td><td>1 * G<br>range(1, SIZE_MAX / 2)</td><td>product</td><td>Per-thread chunk size for parallel memory pre-touch.</td><td>share/runtime/globals.hpp</td></tr>
 <tr><td>PreallocatedOutOfMemoryErrorCount</td><td>JDK6</td><td></td><td>uintx</td><td></td><td></td><td>runtime</td><td>4</td><td>develop</td><td>Number of OutOfMemoryErrors preallocated with backtrace</td><td>share/runtime/globals.hpp</td></tr>
 <tr><td>PreferInterpreterNativeStubs</td><td>JDK6</td><td></td><td>bool</td><td></td><td>aarch64</td><td></td><td>false</td><td>define_pd_global</td><td></td><td>cpu/aarch64/c1_globals_aarch64.hpp</td></tr>
-<tr><td>PreferInterpreterNativeStubs</td><td>JDK6</td><td></td><td>bool</td><td></td><td>arm</td><td></td><td>false</td><td>define_pd_global</td><td></td><td>cpu/arm/c1_globals_arm.hpp</td></tr>
+<tr><td>PreferInterpreterNativeStubs</td><td>JDK6</td><td></td><td>bool</td><td></td><td>arm</td><td></td><td>false</td><td>define_pd_global</td><td></td><td>cpu/arm/c2_globals_arm.hpp</td></tr>
 <tr><td>PreferInterpreterNativeStubs</td><td>JDK6</td><td></td><td>bool</td><td></td><td></td><td>runtime</td><td></td><td>product_pd</td><td>Use always interpreter stubs for native methods invoked via interpreter</td><td>share/runtime/globals.hpp</td></tr>
-<tr><td>PreferInterpreterNativeStubs</td><td>JDK6</td><td></td><td>bool</td><td></td><td>ppc</td><td></td><td>false</td><td>define_pd_global</td><td></td><td>cpu/ppc/c1_globals_ppc.hpp</td></tr>
-<tr><td>PreferInterpreterNativeStubs</td><td>JDK6</td><td></td><td>bool</td><td></td><td>s390</td><td></td><td>false</td><td>define_pd_global</td><td></td><td>cpu/s390/c1_globals_s390.hpp</td></tr>
+<tr><td>PreferInterpreterNativeStubs</td><td>JDK6</td><td></td><td>bool</td><td></td><td>ppc</td><td></td><td>false</td><td>define_pd_global</td><td></td><td>cpu/ppc/c2_globals_ppc.hpp</td></tr>
+<tr><td>PreferInterpreterNativeStubs</td><td>JDK6</td><td></td><td>bool</td><td></td><td>s390</td><td></td><td>false</td><td>define_pd_global</td><td></td><td>cpu/s390/c2_globals_s390.hpp</td></tr>
 <tr><td>PreferInterpreterNativeStubs</td><td>JDK6</td><td></td><td>bool</td><td></td><td>sparc</td><td></td><td>false</td><td>define_pd_global</td><td></td><td>cpu/sparc/c2_globals_sparc.hpp</td></tr>
 <tr><td>PreferInterpreterNativeStubs</td><td>JDK6</td><td></td><td>bool</td><td></td><td>x86</td><td></td><td>false</td><td>define_pd_global</td><td></td><td>cpu/x86/c1_globals_x86.hpp</td></tr>
 <tr><td>PreferLAoverADD</td><td>JDK9</td><td></td><td>bool</td><td></td><td>s390</td><td></td><td>false</td><td>product</td><td>Use LA/LAY instructions over ADD instructions (z/Architecture).</td><td>cpu/s390/globals_s390.hpp</td></tr>
@@ -1279,28 +1279,28 @@
 <tr><td>ProcessDistributionStride</td><td>JDK6</td><td></td><td>uintx</td><td></td><td></td><td>runtime</td><td>4<br>range(0, max_juint)</td><td>product</td><td>Stride through processors when distributing processes</td><td>share/runtime/globals.hpp</td></tr>
 <tr><td>ProfileDynamicTypes</td><td>JDK6</td><td></td><td>bool</td><td></td><td></td><td>c2</td><td>true</td><td>diagnostic</td><td>do extra type profiling and use it more aggressively</td><td>share/opto/c2_globals.hpp</td></tr>
 <tr><td>ProfileInterpreter</td><td>JDK6</td><td></td><td>bool</td><td></td><td>aarch64</td><td></td><td>false</td><td>define_pd_global</td><td></td><td>cpu/aarch64/c1_globals_aarch64.hpp</td></tr>
-<tr><td>ProfileInterpreter</td><td>JDK6</td><td></td><td>bool</td><td></td><td>arm</td><td></td><td>false</td><td>define_pd_global</td><td></td><td>cpu/arm/c1_globals_arm.hpp</td></tr>
+<tr><td>ProfileInterpreter</td><td>JDK6</td><td></td><td>bool</td><td></td><td>arm</td><td></td><td>true</td><td>define_pd_global</td><td></td><td>cpu/arm/c2_globals_arm.hpp</td></tr>
 <tr><td>ProfileInterpreter</td><td>JDK6</td><td></td><td>bool</td><td></td><td></td><td>runtime</td><td></td><td>product_pd</td><td>Profile at the bytecode level during interpretation</td><td>share/runtime/globals.hpp</td></tr>
-<tr><td>ProfileInterpreter</td><td>JDK6</td><td></td><td>bool</td><td></td><td>ppc</td><td></td><td>false</td><td>define_pd_global</td><td></td><td>cpu/ppc/c1_globals_ppc.hpp</td></tr>
-<tr><td>ProfileInterpreter</td><td>JDK6</td><td></td><td>bool</td><td></td><td>s390</td><td></td><td>false</td><td>define_pd_global</td><td></td><td>cpu/s390/c1_globals_s390.hpp</td></tr>
+<tr><td>ProfileInterpreter</td><td>JDK6</td><td></td><td>bool</td><td></td><td>ppc</td><td></td><td>true</td><td>define_pd_global</td><td></td><td>cpu/ppc/c2_globals_ppc.hpp</td></tr>
+<tr><td>ProfileInterpreter</td><td>JDK6</td><td></td><td>bool</td><td></td><td>s390</td><td></td><td>true</td><td>define_pd_global</td><td></td><td>cpu/s390/c2_globals_s390.hpp</td></tr>
 <tr><td>ProfileInterpreter</td><td>JDK6</td><td></td><td>bool</td><td></td><td>sparc</td><td></td><td>true</td><td>define_pd_global</td><td></td><td>cpu/sparc/c2_globals_sparc.hpp</td></tr>
 <tr><td>ProfileInterpreter</td><td>JDK6</td><td></td><td>bool</td><td></td><td>x86</td><td></td><td>false</td><td>define_pd_global</td><td></td><td>cpu/x86/c1_globals_x86.hpp</td></tr>
 <tr><td>ProfileIntervalsTicks</td><td>JDK6</td><td></td><td>intx</td><td></td><td></td><td>runtime</td><td>100<br>range(0, max_intx)</td><td>product</td><td>Number of ticks between printing of interval profile (+ProfileIntervals)</td><td>share/runtime/globals.hpp</td></tr>
 <tr><td>ProfileIntervals</td><td>JDK6</td><td></td><td>bool</td><td></td><td></td><td>runtime</td><td>false</td><td>product</td><td>Print profiles for each interval (see ProfileIntervalsTicks)</td><td>share/runtime/globals.hpp</td></tr>
 <tr><td>ProfileMaturityPercentage</td><td>JDK6</td><td></td><td>intx</td><td></td><td></td><td>runtime</td><td>20<br>range(0, 100)</td><td>product</td><td>number of method invocations/branches (expressed as % of CompileThreshold) before using the method's profile</td><td>share/runtime/globals.hpp</td></tr>
 <tr><td>ProfileTraps</td><td>JDK6</td><td></td><td>bool</td><td></td><td>aarch64</td><td></td><td>false</td><td>define_pd_global</td><td></td><td>cpu/aarch64/c1_globals_aarch64.hpp</td></tr>
-<tr><td>ProfileTraps</td><td>JDK6</td><td></td><td>bool</td><td></td><td>arm</td><td></td><td>false</td><td>define_pd_global</td><td></td><td>cpu/arm/c1_globals_arm.hpp</td></tr>
+<tr><td>ProfileTraps</td><td>JDK6</td><td></td><td>bool</td><td></td><td>arm</td><td></td><td>true</td><td>define_pd_global</td><td></td><td>cpu/arm/c2_globals_arm.hpp</td></tr>
 <tr><td>ProfileTraps</td><td>JDK6</td><td></td><td>bool</td><td></td><td></td><td>runtime</td><td>false</td><td>define_pd_global</td><td></td><td>share/runtime/globals.hpp</td></tr>
-<tr><td>ProfileTraps</td><td>JDK6</td><td></td><td>bool</td><td></td><td>ppc</td><td></td><td>false</td><td>define_pd_global</td><td></td><td>cpu/ppc/c1_globals_ppc.hpp</td></tr>
-<tr><td>ProfileTraps</td><td>JDK6</td><td></td><td>bool</td><td></td><td>s390</td><td></td><td>false</td><td>define_pd_global</td><td></td><td>cpu/s390/c1_globals_s390.hpp</td></tr>
+<tr><td>ProfileTraps</td><td>JDK6</td><td></td><td>bool</td><td></td><td>ppc</td><td></td><td>true</td><td>define_pd_global</td><td></td><td>cpu/ppc/c2_globals_ppc.hpp</td></tr>
+<tr><td>ProfileTraps</td><td>JDK6</td><td></td><td>bool</td><td></td><td>s390</td><td></td><td>true</td><td>define_pd_global</td><td></td><td>cpu/s390/c2_globals_s390.hpp</td></tr>
 <tr><td>ProfileTraps</td><td>JDK6</td><td></td><td>bool</td><td></td><td>sparc</td><td></td><td>true</td><td>define_pd_global</td><td></td><td>cpu/sparc/c2_globals_sparc.hpp</td></tr>
 <tr><td>ProfileTraps</td><td>JDK6</td><td></td><td>bool</td><td></td><td>x86</td><td></td><td>false</td><td>define_pd_global</td><td></td><td>cpu/x86/c1_globals_x86.hpp</td></tr>
 <tr><td>ProfileVM</td><td>JDK6</td><td></td><td>bool</td><td></td><td></td><td>runtime</td><td>false</td><td>product</td><td>Profile ticks that fall within VM (either in the VM Thread or VM code called through stubs)</td><td>share/runtime/globals.hpp</td></tr>
 <tr><td>ProfiledCodeHeapSize</td><td>JDK9</td><td></td><td>intx</td><td></td><td>aarch64</td><td></td><td>14*M</td><td>define_pd_global</td><td></td><td>cpu/aarch64/c1_globals_aarch64.hpp</td></tr>
-<tr><td>ProfiledCodeHeapSize</td><td>JDK9</td><td></td><td>size_t</td><td></td><td>arm</td><td></td><td>14*M</td><td>define_pd_global</td><td></td><td>cpu/arm/c1_globals_arm.hpp</td></tr>
+<tr><td>ProfiledCodeHeapSize</td><td>JDK9</td><td></td><td>size_t</td><td></td><td>arm</td><td></td><td>14*M</td><td>define_pd_global</td><td></td><td>cpu/arm/c2_globals_arm.hpp</td></tr>
 <tr><td>ProfiledCodeHeapSize</td><td>JDK9</td><td></td><td>uintx</td><td></td><td></td><td>runtime</td><td></td><td>product_pd</td><td>Size of code heap with profiled methods (in bytes)</td><td>share/runtime/globals.hpp</td></tr>
 <tr><td>ProfiledCodeHeapSize</td><td>JDK9</td><td></td><td>intx</td><td></td><td>ppc</td><td></td><td>126*M</td><td>define_pd_global</td><td></td><td>cpu/ppc/c2_globals_ppc.hpp</td></tr>
-<tr><td>ProfiledCodeHeapSize</td><td>JDK9</td><td></td><td>uintx</td><td></td><td>s390</td><td></td><td>14*M</td><td>define_pd_global</td><td></td><td>cpu/s390/c1_globals_s390.hpp</td></tr>
+<tr><td>ProfiledCodeHeapSize</td><td>JDK9</td><td></td><td>uintx</td><td></td><td>s390</td><td></td><td>22*M</td><td>define_pd_global</td><td></td><td>cpu/s390/c2_globals_s390.hpp</td></tr>
 <tr><td>ProfiledCodeHeapSize</td><td>JDK9</td><td></td><td>intx</td><td></td><td>sparc</td><td></td><td>22*M</td><td>define_pd_global</td><td></td><td>cpu/sparc/c2_globals_sparc.hpp</td></tr>
 <tr><td>ProfiledCodeHeapSize</td><td>JDK9</td><td></td><td>intx</td><td></td><td>x86</td><td></td><td>14*M</td><td>define_pd_global</td><td></td><td>cpu/x86/c1_globals_x86.hpp</td></tr>
 <tr><td>ProfilerCheckIntervals</td><td>JDK6</td><td></td><td>bool</td><td></td><td></td><td>runtime</td><td>false</td><td>notproduct</td><td>Collect and print information on spacing of profiler ticks</td><td>share/runtime/globals.hpp</td></tr>
@@ -1357,19 +1357,19 @@
 <tr><td>ReplaySuppressInitializers</td><td>JDK8</td><td></td><td>intx</td><td></td><td></td><td>runtime</td><td>2<br>range(0, 3)</td><td>develop</td><td>Control handling of class initialization during replay: <br>0 - don't do anything special; <br>1 - treat all class initializers as empty; <br>2 - treat class initializers for application classes as empty; <br>3 - allow all class initializers to run during bootstrap but pretend they are empty after starting replay</td><td>share/runtime/globals.hpp</td></tr>
 <tr><td>RequireSharedSpaces</td><td>JDK6</td><td></td><td>bool</td><td></td><td></td><td>runtime</td><td>false</td><td>product</td><td>Require shared spaces for metadata</td><td>share/runtime/globals.hpp</td></tr>
 <tr><td>ReservedCodeCacheSize</td><td>JDK6</td><td></td><td>intx</td><td></td><td>aarch64</td><td></td><td>32*M</td><td>define_pd_global</td><td></td><td>cpu/aarch64/c1_globals_aarch64.hpp</td></tr>
-<tr><td>ReservedCodeCacheSize</td><td>JDK6</td><td></td><td>size_t</td><td></td><td>arm</td><td></td><td>32*M</td><td>define_pd_global</td><td></td><td>cpu/arm/c1_globals_arm.hpp</td></tr>
+<tr><td>ReservedCodeCacheSize</td><td>JDK6</td><td></td><td>size_t</td><td></td><td>arm</td><td></td><td>32*M</td><td>define_pd_global</td><td></td><td>cpu/arm/c2_globals_arm.hpp</td></tr>
 <tr><td>ReservedCodeCacheSize</td><td>JDK6</td><td></td><td>uintx</td><td></td><td></td><td>runtime</td><td></td><td>product_pd</td><td>Reserved code cache size (in bytes) - maximum code cache size</td><td>share/runtime/globals.hpp</td></tr>
-<tr><td>ReservedCodeCacheSize</td><td>JDK6</td><td></td><td>intx</td><td></td><td>ppc</td><td></td><td>32*M</td><td>define_pd_global</td><td></td><td>cpu/ppc/c1_globals_ppc.hpp</td></tr>
-<tr><td>ReservedCodeCacheSize</td><td>JDK6</td><td></td><td>intx</td><td></td><td>s390</td><td></td><td>32*M</td><td>define_pd_global</td><td></td><td>cpu/s390/c1_globals_s390.hpp</td></tr>
+<tr><td>ReservedCodeCacheSize</td><td>JDK6</td><td></td><td>intx</td><td></td><td>ppc</td><td></td><td>256*M</td><td>define_pd_global</td><td></td><td>cpu/ppc/c2_globals_ppc.hpp</td></tr>
+<tr><td>ReservedCodeCacheSize</td><td>JDK6</td><td></td><td>uintx</td><td></td><td>s390</td><td></td><td>48*M</td><td>define_pd_global</td><td></td><td>cpu/s390/c2_globals_s390.hpp</td></tr>
 <tr><td>ReservedCodeCacheSize</td><td>JDK6</td><td></td><td>intx</td><td></td><td>sparc</td><td></td><td>48*M</td><td>define_pd_global</td><td></td><td>cpu/sparc/c2_globals_sparc.hpp</td></tr>
 <tr><td>ReservedCodeCacheSize</td><td>JDK6</td><td></td><td>intx</td><td></td><td>x86</td><td></td><td>32*M</td><td>define_pd_global</td><td></td><td>cpu/x86/c1_globals_x86.hpp</td></tr>
 <tr><td>ResizeOldPLAB</td><td>JDK6</td><td></td><td>bool</td><td></td><td></td><td>runtime</td><td>true</td><td>product</td><td>Dynamically resize (old gen) promotion LAB's</td><td>share/runtime/globals.hpp</td></tr>
 <tr><td>ResizePLAB</td><td>JDK6</td><td></td><td>bool</td><td></td><td></td><td>runtime</td><td>true</td><td>product</td><td>Dynamically resize (survivor space) promotion LAB's</td><td>share/runtime/globals.hpp</td></tr>
 <tr><td>ResizeTLAB</td><td>JDK6</td><td></td><td>bool</td><td></td><td>aarch64</td><td></td><td>true</td><td>define_pd_global</td><td></td><td>cpu/aarch64/c1_globals_aarch64.hpp</td></tr>
-<tr><td>ResizeTLAB</td><td>JDK6</td><td></td><td>bool</td><td></td><td>arm</td><td></td><td>true</td><td>define_pd_global</td><td></td><td>cpu/arm/c1_globals_arm.hpp</td></tr>
+<tr><td>ResizeTLAB</td><td>JDK6</td><td></td><td>bool</td><td></td><td>arm</td><td></td><td>true</td><td>define_pd_global</td><td></td><td>cpu/arm/c2_globals_arm.hpp</td></tr>
 <tr><td>ResizeTLAB</td><td>JDK6</td><td></td><td>bool</td><td></td><td></td><td>runtime</td><td></td><td>product_pd</td><td>Dynamically resize TLAB size for threads</td><td>share/runtime/globals.hpp</td></tr>
-<tr><td>ResizeTLAB</td><td>JDK6</td><td></td><td>bool</td><td></td><td>ppc</td><td></td><td>true</td><td>define_pd_global</td><td></td><td>cpu/ppc/c1_globals_ppc.hpp</td></tr>
-<tr><td>ResizeTLAB</td><td>JDK6</td><td></td><td>bool</td><td></td><td>s390</td><td></td><td>true</td><td>define_pd_global</td><td></td><td>cpu/s390/c1_globals_s390.hpp</td></tr>
+<tr><td>ResizeTLAB</td><td>JDK6</td><td></td><td>bool</td><td></td><td>ppc</td><td></td><td>true</td><td>define_pd_global</td><td></td><td>cpu/ppc/c2_globals_ppc.hpp</td></tr>
+<tr><td>ResizeTLAB</td><td>JDK6</td><td></td><td>bool</td><td></td><td>s390</td><td></td><td>true</td><td>define_pd_global</td><td></td><td>cpu/s390/c2_globals_s390.hpp</td></tr>
 <tr><td>ResizeTLAB</td><td>JDK6</td><td></td><td>bool</td><td></td><td>sparc</td><td></td><td>true</td><td>define_pd_global</td><td></td><td>cpu/sparc/c2_globals_sparc.hpp</td></tr>
 <tr><td>ResizeTLAB</td><td>JDK6</td><td></td><td>bool</td><td></td><td>x86</td><td></td><td>true</td><td>define_pd_global</td><td></td><td>cpu/x86/c1_globals_x86.hpp</td></tr>
 <tr><td>RestoreMXCSROnJNICalls</td><td>JDK6</td><td></td><td>bool</td><td></td><td></td><td>runtime</td><td>false</td><td>product</td><td>Restore MXCSR when returning from JNI calls</td><td>share/runtime/globals.hpp</td></tr>
@@ -1581,10 +1581,10 @@
 <tr><td>Tier4LoadFeedback</td><td>JDK6</td><td></td><td>intx</td><td></td><td></td><td>runtime</td><td>3<br>range(0, max_jint)</td><td>product</td><td>Tier 4 thresholds will increase twofold when C2 queue size reaches this amount per compiler thread</td><td>share/runtime/globals.hpp</td></tr>
 <tr><td>Tier4MinInvocationThreshold</td><td>JDK6</td><td></td><td>intx</td><td></td><td></td><td>runtime</td><td>600<br>range(0, max_jint)</td><td>product</td><td>Minimum invocation to compile at tier 4</td><td>share/runtime/globals.hpp</td></tr>
 <tr><td>TieredCompilation</td><td>JDK6</td><td></td><td>bool</td><td></td><td>aarch64</td><td></td><td>false</td><td>define_pd_global</td><td></td><td>cpu/aarch64/c1_globals_aarch64.hpp</td></tr>
-<tr><td>TieredCompilation</td><td>JDK6</td><td></td><td>bool</td><td></td><td>arm</td><td></td><td>false</td><td>define_pd_global</td><td></td><td>cpu/arm/c1_globals_arm.hpp</td></tr>
+<tr><td>TieredCompilation</td><td>JDK6</td><td></td><td>bool</td><td></td><td>arm</td><td></td><td>false</td><td>define_pd_global</td><td></td><td>cpu/arm/c2_globals_arm.hpp</td></tr>
 <tr><td>TieredCompilation</td><td>JDK6</td><td></td><td>bool</td><td></td><td></td><td>runtime</td><td></td><td>product_pd</td><td>Enable tiered compilation</td><td>share/runtime/globals.hpp</td></tr>
-<tr><td>TieredCompilation</td><td>JDK6</td><td></td><td>bool</td><td></td><td>ppc</td><td></td><td>false</td><td>define_pd_global</td><td></td><td>cpu/ppc/c1_globals_ppc.hpp</td></tr>
-<tr><td>TieredCompilation</td><td>JDK6</td><td></td><td>bool</td><td></td><td>s390</td><td></td><td>false</td><td>define_pd_global</td><td></td><td>cpu/s390/c1_globals_s390.hpp</td></tr>
+<tr><td>TieredCompilation</td><td>JDK6</td><td></td><td>bool</td><td></td><td>ppc</td><td></td><td>true</td><td>define_pd_global</td><td></td><td>cpu/ppc/c2_globals_ppc.hpp</td></tr>
+<tr><td>TieredCompilation</td><td>JDK6</td><td></td><td>bool</td><td></td><td>s390</td><td></td><td>trueInTiered</td><td>define_pd_global</td><td></td><td>cpu/s390/c2_globals_s390.hpp</td></tr>
 <tr><td>TieredCompilation</td><td>JDK6</td><td></td><td>bool</td><td></td><td>sparc</td><td></td><td>trueInTiered</td><td>define_pd_global</td><td></td><td>cpu/sparc/c2_globals_sparc.hpp</td></tr>
 <tr><td>TieredCompilation</td><td>JDK6</td><td></td><td>bool</td><td></td><td>x86</td><td></td><td>false</td><td>define_pd_global</td><td></td><td>cpu/x86/c1_globals_x86.hpp</td></tr>
 <tr><td>TieredCompileTaskTimeout</td><td>JDK6</td><td></td><td>intx</td><td></td><td></td><td>runtime</td><td>50<br>range(0, max_intx)</td><td>product</td><td>Kill compile task if method was not used within given timeout in milliseconds</td><td>share/runtime/globals.hpp</td></tr>
@@ -1873,10 +1873,10 @@
 <tr><td>UseOSErrorReporting</td><td>JDK6</td><td></td><td>bool</td><td>solaris</td><td></td><td></td><td>false</td><td>define_pd_global</td><td></td><td>os/solaris/globals_solaris.hpp</td></tr>
 <tr><td>UseOSErrorReporting</td><td>JDK6</td><td></td><td>bool</td><td>windows</td><td></td><td></td><td>false</td><td>define_pd_global</td><td>// for now.</td><td>os/windows/globals_windows.hpp</td></tr>
 <tr><td>UseOnStackReplacement</td><td>JDK6</td><td></td><td>bool</td><td></td><td>aarch64</td><td></td><td>true</td><td>define_pd_global</td><td></td><td>cpu/aarch64/c1_globals_aarch64.hpp</td></tr>
-<tr><td>UseOnStackReplacement</td><td>JDK6</td><td></td><td>bool</td><td></td><td>arm</td><td></td><td>true</td><td>define_pd_global</td><td></td><td>cpu/arm/c1_globals_arm.hpp</td></tr>
+<tr><td>UseOnStackReplacement</td><td>JDK6</td><td></td><td>bool</td><td></td><td>arm</td><td></td><td>true</td><td>define_pd_global</td><td></td><td>cpu/arm/c2_globals_arm.hpp</td></tr>
 <tr><td>UseOnStackReplacement</td><td>JDK6</td><td></td><td>bool</td><td></td><td></td><td>runtime</td><td></td><td>product_pd</td><td>Use on stack replacement, calls runtime if invoc. counter overflows in loop</td><td>share/runtime/globals.hpp</td></tr>
-<tr><td>UseOnStackReplacement</td><td>JDK6</td><td></td><td>bool</td><td></td><td>ppc</td><td></td><td>true</td><td>define_pd_global</td><td></td><td>cpu/ppc/c1_globals_ppc.hpp</td></tr>
-<tr><td>UseOnStackReplacement</td><td>JDK6</td><td></td><td>bool</td><td></td><td>s390</td><td></td><td>true</td><td>define_pd_global</td><td></td><td>cpu/s390/c1_globals_s390.hpp</td></tr>
+<tr><td>UseOnStackReplacement</td><td>JDK6</td><td></td><td>bool</td><td></td><td>ppc</td><td></td><td>true</td><td>define_pd_global</td><td></td><td>cpu/ppc/c2_globals_ppc.hpp</td></tr>
+<tr><td>UseOnStackReplacement</td><td>JDK6</td><td></td><td>bool</td><td></td><td>s390</td><td></td><td>true</td><td>define_pd_global</td><td></td><td>cpu/s390/c2_globals_s390.hpp</td></tr>
 <tr><td>UseOnStackReplacement</td><td>JDK6</td><td></td><td>bool</td><td></td><td>sparc</td><td></td><td>true</td><td>define_pd_global</td><td></td><td>cpu/sparc/c2_globals_sparc.hpp</td></tr>
 <tr><td>UseOnStackReplacement</td><td>JDK6</td><td></td><td>bool</td><td></td><td>x86</td><td></td><td>true</td><td>define_pd_global</td><td></td><td>cpu/x86/c1_globals_x86.hpp</td></tr>
 <tr><td>UseOnlyInlinedBimorphic</td><td>JDK6</td><td></td><td>bool</td><td></td><td></td><td>c2</td><td>true</td><td>product</td><td>Don't use BimorphicInlining if can't inline a second method</td><td>share/opto/c2_globals.hpp</td></tr>
@@ -1927,10 +1927,10 @@
 <tr><td>UseSubwordForMaxVector</td><td>JDK10</td><td></td><td>bool</td><td></td><td></td><td>c2</td><td>true</td><td>product</td><td>Use Subword Analysis to set maximum vector size</td><td>share/opto/c2_globals.hpp</td></tr>
 <tr><td>UseSuperWord</td><td>JDK6</td><td></td><td>bool</td><td></td><td></td><td>c2</td><td>true</td><td>product</td><td>Transform scalar operations into superword operations</td><td>share/opto/c2_globals.hpp</td></tr>
 <tr><td>UseTLAB</td><td>JDK6</td><td></td><td>bool</td><td></td><td>aarch64</td><td></td><td>true</td><td>define_pd_global</td><td></td><td>cpu/aarch64/c1_globals_aarch64.hpp</td></tr>
-<tr><td>UseTLAB</td><td>JDK6</td><td></td><td>bool</td><td></td><td>arm</td><td></td><td>true</td><td>define_pd_global</td><td></td><td>cpu/arm/c1_globals_arm.hpp</td></tr>
+<tr><td>UseTLAB</td><td>JDK6</td><td></td><td>bool</td><td></td><td>arm</td><td></td><td>true</td><td>define_pd_global</td><td></td><td>cpu/arm/c2_globals_arm.hpp</td></tr>
 <tr><td>UseTLAB</td><td>JDK6</td><td></td><td>bool</td><td></td><td></td><td>runtime</td><td></td><td>product_pd</td><td>Use thread-local object allocation</td><td>share/runtime/globals.hpp</td></tr>
-<tr><td>UseTLAB</td><td>JDK6</td><td></td><td>bool</td><td></td><td>ppc</td><td></td><td>true</td><td>define_pd_global</td><td></td><td>cpu/ppc/c1_globals_ppc.hpp</td></tr>
-<tr><td>UseTLAB</td><td>JDK6</td><td></td><td>bool</td><td></td><td>s390</td><td></td><td>true</td><td>define_pd_global</td><td></td><td>cpu/s390/c1_globals_s390.hpp</td></tr>
+<tr><td>UseTLAB</td><td>JDK6</td><td></td><td>bool</td><td></td><td>ppc</td><td></td><td>true</td><td>define_pd_global</td><td></td><td>cpu/ppc/c2_globals_ppc.hpp</td></tr>
+<tr><td>UseTLAB</td><td>JDK6</td><td></td><td>bool</td><td></td><td>s390</td><td></td><td>true</td><td>define_pd_global</td><td></td><td>cpu/s390/c2_globals_s390.hpp</td></tr>
 <tr><td>UseTLAB</td><td>JDK6</td><td></td><td>bool</td><td></td><td>sparc</td><td></td><td>true</td><td>define_pd_global</td><td></td><td>cpu/sparc/c2_globals_sparc.hpp</td></tr>
 <tr><td>UseTLAB</td><td>JDK6</td><td></td><td>bool</td><td></td><td>x86</td><td></td><td>true</td><td>define_pd_global</td><td></td><td>cpu/x86/c1_globals_x86.hpp</td></tr>
 <tr><td>UseTableRanges</td><td>JDK6</td><td></td><td>bool</td><td></td><td></td><td>c1</td><td>true</td><td>develop</td><td>Faster versions of lookup table using ranges</td><td>share/c1/c1_globals.hpp</td></tr>
@@ -2053,7 +2053,7 @@
 		</tbody>
 	</table>
 	<div class="footer">
-		Autogenerated on Sat Dec 01 01:00:25 GMT 2018 from HotSpot sources by <a
+		Autogenerated on Wed Dec 19 12:33:02 GMT 2018 from HotSpot sources by <a
 			href="https://twitter.com/chriswhocodes">@chriswhocodes</a>
 	</div>
 </body>
