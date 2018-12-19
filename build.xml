@@ -1,0 +1,26 @@
+<project name="vmswitch" default="all" basedir=".">
+	<property name="target" location="${basedir}/target" />
+	<property name="src" value="${basedir}/src/main/java" />
+
+	<target name="clean">
+		<delete quiet="true" dir="${target}" />
+	</target>
+
+	<target name="init">
+		<mkdir dir="${target}" />
+	</target>
+
+	<target name="compile" depends="init">
+		<mkdir dir="${target}" />
+		<javac srcdir="${src}" destdir="${target}" includeantruntime="false" debug="true" debuglevel="lines,vars,source">
+		</javac>
+	</target>
+
+	<target name="jar" depends="compile">
+		<jar destfile="${target}/vmswitch.jar">
+			<fileset dir="${target}" />
+		</jar>
+	</target>
+
+	<target name="all" depends="jar" />
+</project>
