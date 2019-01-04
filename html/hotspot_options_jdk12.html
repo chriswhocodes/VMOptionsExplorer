@@ -83,7 +83,7 @@
 <table class="menu">
 	<tr>
 		<th>Home</th>
-		<th colspan="7">HotSpot <div class="diffs"><a
+		<th colspan="8">HotSpot <div class="diffs"><a
 				href="hotspot_option_differences.html">View differences between HotSpot versions</a></div></th>
 		<th colspan="2">Graal</th>
 		<th>OpenJ9</th>
@@ -100,11 +100,12 @@
 		<td><a href="hotspot_options_jdk10.html">JDK10 Options</a></td>
 		<td><a href="hotspot_options_jdk11.html">JDK11 Options</a></td>
 		<td><a href="hotspot_options_jdk12.html">JDK12 Options</a></td>
+		<td><a href="hotspot_options_jdk13.html">JDK13 Options</a></td>
 
 		<td rowspan="2"><a href="graal_options_graal_ce_1.0.html">Graal
-				CE 1.0rc9</a></td>
+				CE 1.0rc10</a></td>
 		<td rowspan="2"><a href="graal_options_graal_ee_1.0.html">Graal
-				EE 1.0rc9</a></td>
+				EE 1.0rc10</a></td>
 
 		<td rowspan="2"><a href="openj9_options.html">OpenJ9</a></td>
 
@@ -116,18 +117,15 @@
 				performance
 		</a></td>
 	</tr>
-
 	<tr>
 		<td><a href="hotspot_intrinsics_jdk6.html">JDK6 Intrinsics</a></td>
 		<td><a href="hotspot_intrinsics_jdk7.html">JDK7 Intrinsics</a></td>
 		<td><a href="hotspot_intrinsics_jdk8.html">JDK8 Intrinsics</a></td>
 		<td><a href="hotspot_intrinsics_jdk9.html">JDK9 Intrinsics</a></td>
-		<td><a href="hotspot_intrinsics_jdk10.html">JDK10 Intrinsics</a>
-		</td>
-		<td><a href="hotspot_intrinsics_jdk11.html">JDK11 Intrinsics</a>
-		</td>
-		<td><a href="hotspot_intrinsics_jdk12.html">JDK12 Intrinsics</a>
-		</td>
+		<td><a href="hotspot_intrinsics_jdk10.html">JDK10 Intrinsics</a></td>
+		<td><a href="hotspot_intrinsics_jdk11.html">JDK11 Intrinsics</a></td>
+		<td><a href="hotspot_intrinsics_jdk12.html">JDK12 Intrinsics</a></td>
+		<td><a href="hotspot_intrinsics_jdk13.html">JDK13 Intrinsics</a></td>
 	</tr>
 </table>
 
@@ -161,6 +159,7 @@
 <tr><td>AlignVector</td><td>JDK7</td><td></td><td>bool</td><td></td><td></td><td>c2</td><td>true</td><td>product</td><td>Perform vector store/load alignment in loop</td><td>share/opto/c2_globals.hpp</td></tr>
 <tr><td>AllocateHeapAt</td><td>JDK10</td><td></td><td>ccstr</td><td></td><td></td><td>runtime</td><td>NULL</td><td>product</td><td>Path to the directoy where a temporary file will be created to use as the backing store for Java Heap.</td><td>share/runtime/globals.hpp</td></tr>
 <tr><td>AllocateInstancePrefetchLines</td><td>JDK6</td><td></td><td>intx</td><td></td><td></td><td>runtime</td><td>1<br>range(1, 64)</td><td>product</td><td>Number of lines to prefetch ahead of instance allocation pointer</td><td>share/runtime/globals.hpp</td></tr>
+<tr><td>AllocateOldGenAt</td><td>JDK12</td><td></td><td>ccstr</td><td></td><td></td><td>runtime</td><td>NULL</td><td>experimental</td><td>Path to the directoy where a temporary file will be created to use as the backing store for old generation.File of size Xmx is pre-allocated for performance reason, sowe need that much space available</td><td>share/runtime/globals.hpp</td></tr>
 <tr><td>AllocatePrefetchDistance</td><td>JDK6</td><td></td><td>intx</td><td></td><td></td><td>runtime</td><td>-1</td><td>product</td><td>Distance to prefetch ahead of allocation pointer. -1: use system-specific value (automatically determined</td><td>share/runtime/globals.hpp</td></tr>
 <tr><td>AllocatePrefetchInstr</td><td>JDK6</td><td></td><td>intx</td><td></td><td></td><td>runtime</td><td>0</td><td>product</td><td>Select instruction to prefetch ahead of allocation pointer</td><td>share/runtime/globals.hpp</td></tr>
 <tr><td>AllocatePrefetchLines</td><td>JDK6</td><td></td><td>intx</td><td></td><td></td><td>runtime</td><td>3<br>range(1, 64)</td><td>product</td><td>Number of lines to prefetch ahead of array allocation pointer</td><td>share/runtime/globals.hpp</td></tr>
@@ -624,7 +623,7 @@
 <tr><td>G1MixedGCLiveThresholdPercent</td><td>JDK7</td><td></td><td>uintx</td><td></td><td></td><td>gc</td><td>85<br>range(0, 100)</td><td>experimental</td><td>Threshold for regions to be considered for inclusion in the collection set of mixed GCs. Regions with live bytes exceeding this will not be collected.</td><td>share/gc/g1/g1_globals.hpp</td></tr>
 <tr><td>G1NewSizePercent</td><td>JDK7</td><td></td><td>uintx</td><td></td><td></td><td>gc</td><td>5<br>range(0, 100)</td><td>experimental</td><td>Percentage (0-100) of the heap size to use as default minimum young gen size.</td><td>share/gc/g1/g1_globals.hpp</td></tr>
 <tr><td>G1OldCSetRegionThresholdPercent</td><td>JDK6</td><td></td><td>uintx</td><td></td><td></td><td>gc</td><td>10<br>range(0, 100)</td><td>experimental</td><td>An upper bound for the number of old CSet regions expressed as a percentage of the heap size.</td><td>share/gc/g1/g1_globals.hpp</td></tr>
-<tr><td>G1PeriodicGCInvokesConcurrent</td><td>JDK12</td><td></td><td>bool</td><td></td><td></td><td>gc</td><td>true</td><td>product</td><td>Determines the kind of periodic GC. Set to true to have G1 perform a concurrent GC as periodic GC, otherwise use a STW Full GC.</td><td>share/gc/g1/g1_globals.hpp</td></tr>
+<tr><td>G1PeriodicGCInvokesConcurrent</td><td>JDK12</td><td></td><td>bool</td><td></td><td></td><td>gc</td><td>true<br>range(0.0, (double)max_uintx)</td><td>product</td><td>Determines the kind of periodic GC. Set to true to have G1 perform a concurrent GC as periodic GC, otherwise use a STW Full GC.</td><td>share/gc/g1/g1_globals.hpp</td></tr>
 <tr><td>G1PretouchAuxiliaryMemory</td><td>JDK9</td><td></td><td>bool</td><td></td><td></td><td>gc</td><td>false</td><td>experimental</td><td>Pre-touch large auxiliary data structures used by the GC.</td><td>share/gc/g1/g1_globals.hpp</td></tr>
 <tr><td>G1RSetRegionEntriesBase</td><td>JDK6</td><td></td><td>intx</td><td></td><td></td><td>gc</td><td>256<br>range(1, max_jint/wordSize)</td><td>develop</td><td>Max number of regions in a fine-grain table per MB.</td><td>share/gc/g1/g1_globals.hpp</td></tr>
 <tr><td>G1RSetRegionEntries</td><td>JDK6</td><td></td><td>intx</td><td></td><td></td><td>gc</td><td>0<br>range(0, max_jint/wordSize)</td><td>product</td><td>Max number of regions for which we keep bitmaps.Will be set ergonomically by default</td><td>share/gc/g1/g1_globals.hpp</td></tr>
@@ -647,6 +646,7 @@
 <tr><td>G1VerifyCTCleanup</td><td>JDK6</td><td></td><td>bool</td><td></td><td></td><td>gc</td><td>false</td><td>develop</td><td>Verify card table cleanup.</td><td>share/gc/g1/g1_globals.hpp</td></tr>
 <tr><td>G1VerifyHeapRegionCodeRoots</td><td>JDK7</td><td></td><td>bool</td><td></td><td></td><td>gc</td><td>false</td><td>diagnostic</td><td>Verify the code root lists attached to each heap region.</td><td>share/gc/g1/g1_globals.hpp</td></tr>
 <tr><td>G1VerifyRSetsDuringFullGC</td><td>JDK7</td><td></td><td>bool</td><td></td><td></td><td>gc</td><td>false</td><td>diagnostic</td><td>If true, perform verification of each heap region's remembered set when verifying the heap during a full GC.</td><td>share/gc/g1/g1_globals.hpp</td></tr>
+<tr><td>G1YoungExpansionBufferPercent</td><td>JDK12</td><td></td><td>uintx</td><td></td><td></td><td>gc</td><td>10<br>range(0, 100)</td><td>experimental</td><td>When heterogenous heap is enabled by AllocateOldGenAt option, after every GC, young gen is re-sized which involves system calls to commit/uncommit memory. To reduce these calls, we keep a buffer of extra regions to absorb small changes in young gen length. This flag takes the buffer size as an percentage of young gen length</td><td>share/gc/g1/g1_globals.hpp</td></tr>
 <tr><td>GCALotAtAllSafepoints</td><td>JDK6</td><td></td><td>bool</td><td></td><td></td><td>gc</td><td>false</td><td>notproduct</td><td>Enforce ScavengeALot/GCALot at all potential safepoints</td><td>share/gc/shared/gc_globals.hpp</td></tr>
 <tr><td>GCDrainStackTargetSize</td><td>JDK6</td><td></td><td>uintx</td><td></td><td></td><td>gc</td><td>64<br>range(0, max_juint)</td><td>product</td><td>Number of entries we will try to leave on the stack during parallel gc</td><td>share/gc/shared/gc_globals.hpp</td></tr>
 <tr><td>GCExpandToAllocateDelayMillis</td><td>JDK6</td><td></td><td>uintx</td><td></td><td></td><td>gc</td><td>0</td><td>develop</td><td>Delay between expansion and allocation (in milliseconds)</td><td>share/gc/shared/gc_globals.hpp</td></tr>
@@ -2135,7 +2135,7 @@
 		</tbody>
 	</table>
 	<div class="footer">
-		Autogenerated on Wed Dec 19 12:33:02 GMT 2018 from HotSpot sources by <a
+		Autogenerated on Fri Jan 04 22:24:12 GMT 2019 from HotSpot sources by <a
 			href="https://twitter.com/chriswhocodes">@chriswhocodes</a>
 	</div>
 </body>

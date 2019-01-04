@@ -9,6 +9,8 @@ jvmci.TraceMethodDataFilter = null                                        [Strin
           Enables tracing of profiling info when read by JVMCI.
           Empty value: trace all methods
           Non-empty value: trace methods whose fully qualified name contains the value.
+jvmci.UseProfilingInformation = true                                     [Boolean]
+          
 [Graal properties]
 graal.AOTInliningDepthToSizeRate = 2.5                                    [Double]
 graal.AOTInliningSizeMaximum = 300                                       [Integer]
@@ -125,10 +127,10 @@ graal.CompilationWatchDogStartDelay = 0.0                                 [Doubl
 graal.CompileGraalWithC1Only = true                                      [Boolean]
           In tiered mode compile Graal and JVMCI using optimized first tier code.
 graal.CompilerConfiguration = null                                        [String]
-          Names the Graal compiler configuration to use. If ommitted, the
-          compiler configuration with the highest auto-selection priority is
-          used. To see the set of available configurations, supply the value
-          'help' to this option.
+          Names the Graal compiler configuration to use. If omitted, the compiler
+          configuration with the highest auto-selection priority is used. To see
+          the set of available configurations, supply the value 'help' to this
+          option.
 graal.CompilerNodePenaltyCoefficient = 0.01                               [Double]
           Controls the likelihood of exploring subtrees that already have a lot
           of code during inlining.
@@ -655,6 +657,10 @@ graal.ShowConfiguration = none                                            [Strin
           selected.
 graal.ShowDumpFiles = false                                              [Boolean]
           Print the name of each dump file path as it's created.
+graal.ShowSubstitutionSourceInfo = false                                 [Boolean]
+          Controls whether the source position information of snippets and method
+          substitutions are exposed to HotSpot. Can be useful when profiling to
+          get more precise position information.
 graal.SimpleFastInflatedLocking = true                                   [Boolean]
           Handle simple cases for inflated monitors in the fast-path.
 graal.SimpleMethodCalls = 1                                              [Integer]
@@ -799,7 +805,7 @@ graal.TraceTruffleStackTraceLimit = 20                                   [Intege
           Number of stack trace elements printed by
           TraceTruffleTransferToInterpreter and TraceTruffleAssumptions
 graal.TraceTruffleTransferToInterpreter = false                          [Boolean]
-          Print stack trace on transfer to interpreter
+          Print stack trace on transfer to interpreter.
 graal.TraceUnwindStub = false                                            [Boolean]
           Trace execution of the stub that routes an exception to a handler in
           the calling frame.
@@ -835,12 +841,13 @@ graal.TruffleCompilationStatisticDetails = false                         [Boolea
 graal.TruffleCompilationStatistics = false                               [Boolean]
           Print Truffle compilation statistics at the end of a run.
 graal.TruffleCompilationThreshold = 1000                                 [Integer]
-          Compile call target when call count exceeds this threshold
+          Compile call target when call count exceeds this threshold.
 graal.TruffleCompileImmediately = false                                  [Boolean]
           Compile immediately to test truffle compiler
 graal.TruffleCompileOnly = null                                           [String]
           Restrict compilation to comma-separated list of includes (or excludes
-          prefixed with tilde)
+          prefixed with tilde).
+          EBNF format of argument value:  CompileOnly = Element, { ',', Element } ;
 graal.TruffleCompilerConfiguration = null                                 [String]
           Select a Graal compiler configuration for Truffle compilation (default:
           use Graal system compiler configuration).
@@ -903,7 +910,7 @@ graal.TruffleMaximumRecursiveInlining = 4                                [Intege
 graal.TruffleMinInvokeThreshold = 3                                      [Integer]
           Minimum number of calls before a call target is compiled
 graal.TruffleMultiTier = false                                           [Boolean]
-          Whether to use multiple compilation tiers by default.
+          Whether to use multiple Truffle compilation tiers by default.
 graal.TruffleOSR = true                                                  [Boolean]
           Enable on stack replacement for Truffle loops.
 graal.TruffleOSRCompilationThreshold = 100000                            [Integer]
@@ -927,6 +934,9 @@ graal.TruffleSplittingMaxCalleeSize = 100                                [Intege
 graal.TruffleSplittingMaxNumberOfSplitNodes = 500000                     [Integer]
           Disable call target splitting if number of nodes created by splitting
           exceeds this limit
+graal.TruffleTimeThreshold = 50000                                       [Integer]
+          Defines the maximum timespan in milliseconds that is required for a
+          call target to be queued for compilation.
 graal.TruffleTraceSplittingSummary = false                               [Boolean]
           Used for debugging the splitting implementation. Prints splitting
           summary directly to stdout on shutdown

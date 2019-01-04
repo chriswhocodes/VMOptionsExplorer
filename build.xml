@@ -6,7 +6,7 @@
 		<delete quiet="true" dir="${target}" />
 	</target>
 
-	<target name="init">
+	<target name="init" depends="clean">
 		<mkdir dir="${target}" />
 	</target>
 

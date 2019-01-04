@@ -1,7 +1,7 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html lang='en-GB'>
 <head>
-<title>HotSpot Intrinsics for JDK10</title>
+<title>HotSpot Intrinsics for JDK13</title>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <meta name="author" content="Chris Newland" />
 <meta name="copyright" content="Chris Newland 2018" />
@@ -34,7 +34,7 @@
                           "orderable" : true,
                         } ],
                         "oLanguage" : {
-                          "sSearch" : "Search HotSpot VM JDK10 Intrinsics: "
+                          "sSearch" : "Search HotSpot VM JDK13 Intrinsics: "
                         },
                         initComplete : function() {
                               this.api().search(getParam());
@@ -79,7 +79,7 @@
             });
   </script>
 
-	<h1>VM Options Explorer - HotSpot Intrinsics for JDK10</h1>
+	<h1>VM Options Explorer - HotSpot Intrinsics for JDK13</h1>
 <table class="menu">
 	<tr>
 		<th>Home</th>
@@ -167,6 +167,10 @@
 <tr><td>_subtractExactL</td><td>java.lang.Math</td><td>subtractExact</td><td>(JJ)J</td><td>F_S</td></tr>
 <tr><td>_fmaD</td><td>java.lang.Math</td><td>fma</td><td>(DDD)D</td><td>F_S</td></tr>
 <tr><td>_fmaF</td><td>java.lang.Math</td><td>fma</td><td>(FFF)F</td><td>F_S</td></tr>
+<tr><td>_maxF</td><td>java.lang.Math</td><td>max</td><td>(FF)F</td><td>F_S</td></tr>
+<tr><td>_minF</td><td>java.lang.Math</td><td>min</td><td>(FF)F</td><td>F_S</td></tr>
+<tr><td>_maxD</td><td>java.lang.Math</td><td>max</td><td>(DD)D</td><td>F_S</td></tr>
+<tr><td>_minD</td><td>java.lang.Math</td><td>min</td><td>(DD)D</td><td>F_S</td></tr>
 <tr><td>_floatToRawIntBits</td><td>java.lang.Float</td><td>floatToRawIntBits</td><td>(F)I</td><td>F_S</td></tr>
 <tr><td>_floatToIntBits</td><td>java.lang.Float</td><td>floatToIntBits</td><td>(F)I</td><td>F_S</td></tr>
 <tr><td>_intBitsToFloat</td><td>java.lang.Float</td><td>intBitsToFloat</td><td>(I)F</td><td>F_S</td></tr>
@@ -227,6 +231,10 @@
 <tr><td>_indexOfU_char</td><td>java.lang.StringUTF16</td><td>indexOfChar</td><td>([BIII)I</td><td>F_S</td></tr>
 <tr><td>_equalsL</td><td>java.lang.StringLatin1</td><td>equals</td><td>([B[B)Z</td><td>F_S</td></tr>
 <tr><td>_equalsU</td><td>java.lang.StringUTF16</td><td>equals</td><td>([B[B)Z</td><td>F_S</td></tr>
+<tr><td>_isDigit</td><td>java.lang.CharacterDataLatin1</td><td>isDigit</td><td>(I)Z</td><td>F_R</td></tr>
+<tr><td>_isLowerCase</td><td>java.lang.CharacterDataLatin1</td><td>isLowerCase</td><td>(I)Z</td><td>F_R</td></tr>
+<tr><td>_isUpperCase</td><td>java.lang.CharacterDataLatin1</td><td>isUpperCase</td><td>(I)Z</td><td>F_R</td></tr>
+<tr><td>_isWhitespace</td><td>java.lang.CharacterDataLatin1</td><td>isWhitespace</td><td>(I)Z</td><td>F_R</td></tr>
 <tr><td>_Preconditions_checkIndex</td><td>jdk.internal.util.Preconditions</td><td>checkIndex</td><td>(IILjava/util/function/BiFunction;)I</td><td>F_S</td></tr>
 <tr><td>_checkIndex</td><td>java.nio.Buffer</td><td>checkIndex</td><td>(I)I</td><td>F_R</td></tr>
 <tr><td>_hasNegatives</td><td>java.lang.StringCoding</td><td>hasNegatives</td><td>([BII)Z</td><td>F_S</td></tr>
@@ -237,7 +245,7 @@
 <tr><td>_mulAdd</td><td>java.math.BigInteger</td><td>implMulAdd</td><td>([I[IIII)I</td><td>F_S</td></tr>
 <tr><td>_montgomeryMultiply</td><td>java.math.BigInteger</td><td>implMontgomeryMultiply</td><td>([I[I[IIJ[I)[I</td><td>F_S</td></tr>
 <tr><td>_montgomerySquare</td><td>java.math.BigInteger</td><td>implMontgomerySquare</td><td>([I[IIJ[I)[I</td><td>F_S</td></tr>
-<tr><td>_vectorizedMismatch</td><td>java.util.ArraysSupport</td><td>vectorizedMismatch</td><td>(Ljava/lang/Object;JLjava/lang/Object;JII)I</td><td>F_S</td></tr>
+<tr><td>_vectorizedMismatch</td><td>jdk.internal.util.ArraysSupport</td><td>vectorizedMismatch</td><td>(Ljava/lang/Object;JLjava/lang/Object;JII)I</td><td>F_S</td></tr>
 <tr><td>_Reference_get</td><td>java.lang.ref.Reference</td><td>get</td><td>()Ljava/lang/Object;</td><td>F_R</td></tr>
 <tr><td>_aescrypt_encryptBlock</td><td>com.sun.crypto.provider.AESCrypt</td><td>implEncryptBlock</td><td>([BI[BI)V</td><td>F_R</td></tr>
 <tr><td>_aescrypt_decryptBlock</td><td>com.sun.crypto.provider.AESCrypt</td><td>implDecryptBlock</td><td>([BI[BI)V</td><td>F_R</td></tr>
@@ -248,6 +256,7 @@
 <tr><td>_sha2_implCompress</td><td>sun.security.provider.SHA2</td><td>implCompress0</td><td>([BI)V</td><td>F_R</td></tr>
 <tr><td>_sha5_implCompress</td><td>sun.security.provider.SHA5</td><td>implCompress0</td><td>([BI)V</td><td>F_R</td></tr>
 <tr><td>_digestBase_implCompressMB</td><td>sun.security.provider.DigestBase</td><td>implCompressMultiBlock0</td><td>([BII)I</td><td>F_R</td></tr>
+<tr><td>_base64_encodeBlock</td><td>java.util.Base64$Encoder</td><td>encodeBlock</td><td>([BII[BIZ)V</td><td>F_R</td></tr>
 <tr><td>_ghash_processBlocks</td><td>com.sun.crypto.provider.GHASH</td><td>processBlocks</td><td>([BII[J[J)V</td><td>F_S</td></tr>
 <tr><td>_updateCRC32</td><td>java.util.zip.CRC32</td><td>update</td><td>(II)I</td><td>F_SN</td></tr>
 <tr><td>_updateBytesCRC32</td><td>java.util.zip.CRC32</td><td>updateBytes0</td><td>(I[BII)I</td><td>F_SN</td></tr>
@@ -264,7 +273,7 @@
 <tr><td>_fullFence</td><td>jdk.internal.misc.Unsafe</td><td>fullFence</td><td>()V</td><td>F_RN</td></tr>
 <tr><td>_profileBoolean</td><td>java.lang.invoke.MethodHandleImpl</td><td>profileBoolean</td><td>(Z[I)Z</td><td>F_S</td></tr>
 <tr><td>_isCompileConstant</td><td>java.lang.invoke.MethodHandleImpl</td><td>isCompileConstant</td><td>(Ljava/lang/Object;)Z</td><td>F_S</td></tr>
-<tr><td>_getObject</td><td>jdk.internal.misc.Unsafe</td><td>getObject</td><td>(Ljava/lang/Object;J)Ljava/lang/Object;</td><td>F_RN</td></tr>
+<tr><td>_getReference</td><td>jdk.internal.misc.Unsafe</td><td>getReference</td><td>(Ljava/lang/Object;J)Ljava/lang/Object;</td><td>F_RN</td></tr>
 <tr><td>_getBoolean</td><td>jdk.internal.misc.Unsafe</td><td>getBoolean</td><td>(Ljava/lang/Object;J)Z</td><td>F_RN</td></tr>
 <tr><td>_getByte</td><td>jdk.internal.misc.Unsafe</td><td>getByte</td><td>(Ljava/lang/Object;J)B</td><td>F_RN</td></tr>
 <tr><td>_getShort</td><td>jdk.internal.misc.Unsafe</td><td>getShort</td><td>(Ljava/lang/Object;J)S</td><td>F_RN</td></tr>
@@ -273,7 +282,7 @@
 <tr><td>_getLong</td><td>jdk.internal.misc.Unsafe</td><td>getLong</td><td>(Ljava/lang/Object;J)J</td><td>F_RN</td></tr>
 <tr><td>_getFloat</td><td>jdk.internal.misc.Unsafe</td><td>getFloat</td><td>(Ljava/lang/Object;J)F</td><td>F_RN</td></tr>
 <tr><td>_getDouble</td><td>jdk.internal.misc.Unsafe</td><td>getDouble</td><td>(Ljava/lang/Object;J)D</td><td>F_RN</td></tr>
-<tr><td>_putObject</td><td>jdk.internal.misc.Unsafe</td><td>putObject</td><td>(Ljava/lang/Object;JLjava/lang/Object;)V</td><td>F_RN</td></tr>
+<tr><td>_putReference</td><td>jdk.internal.misc.Unsafe</td><td>putReference</td><td>(Ljava/lang/Object;JLjava/lang/Object;)V</td><td>F_RN</td></tr>
 <tr><td>_putBoolean</td><td>jdk.internal.misc.Unsafe</td><td>putBoolean</td><td>(Ljava/lang/Object;JZ)V</td><td>F_RN</td></tr>
 <tr><td>_putByte</td><td>jdk.internal.misc.Unsafe</td><td>putByte</td><td>(Ljava/lang/Object;JB)V</td><td>F_RN</td></tr>
 <tr><td>_putShort</td><td>jdk.internal.misc.Unsafe</td><td>putShort</td><td>(Ljava/lang/Object;JS)V</td><td>F_RN</td></tr>
@@ -282,7 +291,7 @@
 <tr><td>_putLong</td><td>jdk.internal.misc.Unsafe</td><td>putLong</td><td>(Ljava/lang/Object;JJ)V</td><td>F_RN</td></tr>
 <tr><td>_putFloat</td><td>jdk.internal.misc.Unsafe</td><td>putFloat</td><td>(Ljava/lang/Object;JF)V</td><td>F_RN</td></tr>
 <tr><td>_putDouble</td><td>jdk.internal.misc.Unsafe</td><td>putDouble</td><td>(Ljava/lang/Object;JD)V</td><td>F_RN</td></tr>
-<tr><td>_getObjectVolatile</td><td>jdk.internal.misc.Unsafe</td><td>getObjectVolatile</td><td>(Ljava/lang/Object;J)Ljava/lang/Object;</td><td>F_RN</td></tr>
+<tr><td>_getReferenceVolatile</td><td>jdk.internal.misc.Unsafe</td><td>getReferenceVolatile</td><td>(Ljava/lang/Object;J)Ljava/lang/Object;</td><td>F_RN</td></tr>
 <tr><td>_getBooleanVolatile</td><td>jdk.internal.misc.Unsafe</td><td>getBooleanVolatile</td><td>(Ljava/lang/Object;J)Z</td><td>F_RN</td></tr>
 <tr><td>_getByteVolatile</td><td>jdk.internal.misc.Unsafe</td><td>getByteVolatile</td><td>(Ljava/lang/Object;J)B</td><td>F_RN</td></tr>
 <tr><td>_getShortVolatile</td><td>jdk.internal.misc.Unsafe</td><td>getShortVolatile</td><td>(Ljava/lang/Object;J)S</td><td>F_RN</td></tr>
@@ -291,7 +300,7 @@
 <tr><td>_getLongVolatile</td><td>jdk.internal.misc.Unsafe</td><td>getLongVolatile</td><td>(Ljava/lang/Object;J)J</td><td>F_RN</td></tr>
 <tr><td>_getFloatVolatile</td><td>jdk.internal.misc.Unsafe</td><td>getFloatVolatile</td><td>(Ljava/lang/Object;J)F</td><td>F_RN</td></tr>
 <tr><td>_getDoubleVolatile</td><td>jdk.internal.misc.Unsafe</td><td>getDoubleVolatile</td><td>(Ljava/lang/Object;J)D</td><td>F_RN</td></tr>
-<tr><td>_putObjectVolatile</td><td>jdk.internal.misc.Unsafe</td><td>putObjectVolatile</td><td>(Ljava/lang/Object;JLjava/lang/Object;)V</td><td>F_RN</td></tr>
+<tr><td>_putReferenceVolatile</td><td>jdk.internal.misc.Unsafe</td><td>putReferenceVolatile</td><td>(Ljava/lang/Object;JLjava/lang/Object;)V</td><td>F_RN</td></tr>
 <tr><td>_putBooleanVolatile</td><td>jdk.internal.misc.Unsafe</td><td>putBooleanVolatile</td><td>(Ljava/lang/Object;JZ)V</td><td>F_RN</td></tr>
 <tr><td>_putByteVolatile</td><td>jdk.internal.misc.Unsafe</td><td>putByteVolatile</td><td>(Ljava/lang/Object;JB)V</td><td>F_RN</td></tr>
 <tr><td>_putShortVolatile</td><td>jdk.internal.misc.Unsafe</td><td>putShortVolatile</td><td>(Ljava/lang/Object;JS)V</td><td>F_RN</td></tr>
@@ -300,7 +309,7 @@
 <tr><td>_putLongVolatile</td><td>jdk.internal.misc.Unsafe</td><td>putLongVolatile</td><td>(Ljava/lang/Object;JJ)V</td><td>F_RN</td></tr>
 <tr><td>_putFloatVolatile</td><td>jdk.internal.misc.Unsafe</td><td>putFloatVolatile</td><td>(Ljava/lang/Object;JF)V</td><td>F_RN</td></tr>
 <tr><td>_putDoubleVolatile</td><td>jdk.internal.misc.Unsafe</td><td>putDoubleVolatile</td><td>(Ljava/lang/Object;JD)V</td><td>F_RN</td></tr>
-<tr><td>_getObjectOpaque</td><td>jdk.internal.misc.Unsafe</td><td>getObjectOpaque</td><td>(Ljava/lang/Object;J)Ljava/lang/Object;</td><td>F_R</td></tr>
+<tr><td>_getReferenceOpaque</td><td>jdk.internal.misc.Unsafe</td><td>getReferenceOpaque</td><td>(Ljava/lang/Object;J)Ljava/lang/Object;</td><td>F_R</td></tr>
 <tr><td>_getBooleanOpaque</td><td>jdk.internal.misc.Unsafe</td><td>getBooleanOpaque</td><td>(Ljava/lang/Object;J)Z</td><td>F_R</td></tr>
 <tr><td>_getByteOpaque</td><td>jdk.internal.misc.Unsafe</td><td>getByteOpaque</td><td>(Ljava/lang/Object;J)B</td><td>F_R</td></tr>
 <tr><td>_getShortOpaque</td><td>jdk.internal.misc.Unsafe</td><td>getShortOpaque</td><td>(Ljava/lang/Object;J)S</td><td>F_R</td></tr>
@@ -309,7 +318,7 @@
 <tr><td>_getLongOpaque</td><td>jdk.internal.misc.Unsafe</td><td>getLongOpaque</td><td>(Ljava/lang/Object;J)J</td><td>F_R</td></tr>
 <tr><td>_getFloatOpaque</td><td>jdk.internal.misc.Unsafe</td><td>getFloatOpaque</td><td>(Ljava/lang/Object;J)F</td><td>F_R</td></tr>
 <tr><td>_getDoubleOpaque</td><td>jdk.internal.misc.Unsafe</td><td>getDoubleOpaque</td><td>(Ljava/lang/Object;J)D</td><td>F_R</td></tr>
-<tr><td>_putObjectOpaque</td><td>jdk.internal.misc.Unsafe</td><td>putObjectOpaque</td><td>(Ljava/lang/Object;JLjava/lang/Object;)V</td><td>F_R</td></tr>
+<tr><td>_putReferenceOpaque</td><td>jdk.internal.misc.Unsafe</td><td>putReferenceOpaque</td><td>(Ljava/lang/Object;JLjava/lang/Object;)V</td><td>F_R</td></tr>
 <tr><td>_putBooleanOpaque</td><td>jdk.internal.misc.Unsafe</td><td>putBooleanOpaque</td><td>(Ljava/lang/Object;JZ)V</td><td>F_R</td></tr>
 <tr><td>_putByteOpaque</td><td>jdk.internal.misc.Unsafe</td><td>putByteOpaque</td><td>(Ljava/lang/Object;JB)V</td><td>F_R</td></tr>
 <tr><td>_putShortOpaque</td><td>jdk.internal.misc.Unsafe</td><td>putShortOpaque</td><td>(Ljava/lang/Object;JS)V</td><td>F_R</td></tr>
@@ -318,7 +327,7 @@
 <tr><td>_putLongOpaque</td><td>jdk.internal.misc.Unsafe</td><td>putLongOpaque</td><td>(Ljava/lang/Object;JJ)V</td><td>F_R</td></tr>
 <tr><td>_putFloatOpaque</td><td>jdk.internal.misc.Unsafe</td><td>putFloatOpaque</td><td>(Ljava/lang/Object;JF)V</td><td>F_R</td></tr>
 <tr><td>_putDoubleOpaque</td><td>jdk.internal.misc.Unsafe</td><td>putDoubleOpaque</td><td>(Ljava/lang/Object;JD)V</td><td>F_R</td></tr>
-<tr><td>_getObjectAcquire</td><td>jdk.internal.misc.Unsafe</td><td>getObjectAcquire</td><td>(Ljava/lang/Object;J)Ljava/lang/Object;</td><td>F_R</td></tr>
+<tr><td>_getReferenceAcquire</td><td>jdk.internal.misc.Unsafe</td><td>getReferenceAcquire</td><td>(Ljava/lang/Object;J)Ljava/lang/Object;</td><td>F_R</td></tr>
 <tr><td>_getBooleanAcquire</td><td>jdk.internal.misc.Unsafe</td><td>getBooleanAcquire</td><td>(Ljava/lang/Object;J)Z</td><td>F_R</td></tr>
 <tr><td>_getByteAcquire</td><td>jdk.internal.misc.Unsafe</td><td>getByteAcquire</td><td>(Ljava/lang/Object;J)B</td><td>F_R</td></tr>
 <tr><td>_getShortAcquire</td><td>jdk.internal.misc.Unsafe</td><td>getShortAcquire</td><td>(Ljava/lang/Object;J)S</td><td>F_R</td></tr>
@@ -327,7 +336,7 @@
 <tr><td>_getLongAcquire</td><td>jdk.internal.misc.Unsafe</td><td>getLongAcquire</td><td>(Ljava/lang/Object;J)J</td><td>F_R</td></tr>
 <tr><td>_getFloatAcquire</td><td>jdk.internal.misc.Unsafe</td><td>getFloatAcquire</td><td>(Ljava/lang/Object;J)F</td><td>F_R</td></tr>
 <tr><td>_getDoubleAcquire</td><td>jdk.internal.misc.Unsafe</td><td>getDoubleAcquire</td><td>(Ljava/lang/Object;J)D</td><td>F_R</td></tr>
-<tr><td>_putObjectRelease</td><td>jdk.internal.misc.Unsafe</td><td>putObjectRelease</td><td>(Ljava/lang/Object;JLjava/lang/Object;)V</td><td>F_R</td></tr>
+<tr><td>_putReferenceRelease</td><td>jdk.internal.misc.Unsafe</td><td>putReferenceRelease</td><td>(Ljava/lang/Object;JLjava/lang/Object;)V</td><td>F_R</td></tr>
 <tr><td>_putBooleanRelease</td><td>jdk.internal.misc.Unsafe</td><td>putBooleanRelease</td><td>(Ljava/lang/Object;JZ)V</td><td>F_R</td></tr>
 <tr><td>_putByteRelease</td><td>jdk.internal.misc.Unsafe</td><td>putByteRelease</td><td>(Ljava/lang/Object;JB)V</td><td>F_R</td></tr>
 <tr><td>_putShortRelease</td><td>jdk.internal.misc.Unsafe</td><td>putShortRelease</td><td>(Ljava/lang/Object;JS)V</td><td>F_R</td></tr>
@@ -344,10 +353,10 @@
 <tr><td>_putCharUnaligned</td><td>jdk.internal.misc.Unsafe</td><td>putCharUnaligned</td><td>(Ljava/lang/Object;JC)V</td><td>F_R</td></tr>
 <tr><td>_putIntUnaligned</td><td>jdk.internal.misc.Unsafe</td><td>putIntUnaligned</td><td>(Ljava/lang/Object;JI)V</td><td>F_R</td></tr>
 <tr><td>_putLongUnaligned</td><td>jdk.internal.misc.Unsafe</td><td>putLongUnaligned</td><td>(Ljava/lang/Object;JJ)V</td><td>F_R</td></tr>
-<tr><td>_compareAndSetObject</td><td>jdk.internal.misc.Unsafe</td><td>compareAndSetObject</td><td>(Ljava/lang/Object;JLjava/lang/Object;Ljava/lang/Object;)Z</td><td>F_RN</td></tr>
-<tr><td>_compareAndExchangeObject</td><td>jdk.internal.misc.Unsafe</td><td>compareAndExchangeObject</td><td>(Ljava/lang/Object;JLjava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;</td><td>F_RN</td></tr>
-<tr><td>_compareAndExchangeObjectAcquire</td><td>jdk.internal.misc.Unsafe</td><td>compareAndExchangeObjectAcquire</td><td>(Ljava/lang/Object;JLjava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;</td><td>F_R</td></tr>
-<tr><td>_compareAndExchangeObjectRelease</td><td>jdk.internal.misc.Unsafe</td><td>compareAndExchangeObjectRelease</td><td>(Ljava/lang/Object;JLjava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;</td><td>F_R</td></tr>
+<tr><td>_compareAndSetReference</td><td>jdk.internal.misc.Unsafe</td><td>compareAndSetReference</td><td>(Ljava/lang/Object;JLjava/lang/Object;Ljava/lang/Object;)Z</td><td>F_RN</td></tr>
+<tr><td>_compareAndExchangeReference</td><td>jdk.internal.misc.Unsafe</td><td>compareAndExchangeReference</td><td>(Ljava/lang/Object;JLjava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;</td><td>F_RN</td></tr>
+<tr><td>_compareAndExchangeReferenceAcquire</td><td>jdk.internal.misc.Unsafe</td><td>compareAndExchangeReferenceAcquire</td><td>(Ljava/lang/Object;JLjava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;</td><td>F_R</td></tr>
+<tr><td>_compareAndExchangeReferenceRelease</td><td>jdk.internal.misc.Unsafe</td><td>compareAndExchangeReferenceRelease</td><td>(Ljava/lang/Object;JLjava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;</td><td>F_R</td></tr>
 <tr><td>_compareAndSetLong</td><td>jdk.internal.misc.Unsafe</td><td>compareAndSetLong</td><td>(Ljava/lang/Object;JJJ)Z</td><td>F_RN</td></tr>
 <tr><td>_compareAndExchangeLong</td><td>jdk.internal.misc.Unsafe</td><td>compareAndExchangeLong</td><td>(Ljava/lang/Object;JJJ)J</td><td>F_RN</td></tr>
 <tr><td>_compareAndExchangeLongAcquire</td><td>jdk.internal.misc.Unsafe</td><td>compareAndExchangeLongAcquire</td><td>(Ljava/lang/Object;JJJ)J</td><td>F_R</td></tr>
@@ -364,10 +373,10 @@
 <tr><td>_compareAndExchangeShort</td><td>jdk.internal.misc.Unsafe</td><td>compareAndExchangeShort</td><td>(Ljava/lang/Object;JSS)S</td><td>F_R</td></tr>
 <tr><td>_compareAndExchangeShortAcquire</td><td>jdk.internal.misc.Unsafe</td><td>compareAndExchangeShortAcquire</td><td>(Ljava/lang/Object;JSS)S</td><td>F_R</td></tr>
 <tr><td>_compareAndExchangeShortRelease</td><td>jdk.internal.misc.Unsafe</td><td>compareAndExchangeShortRelease</td><td>(Ljava/lang/Object;JSS)S</td><td>F_R</td></tr>
-<tr><td>_weakCompareAndSetObjectPlain</td><td>jdk.internal.misc.Unsafe</td><td>weakCompareAndSetObjectPlain</td><td>(Ljava/lang/Object;JLjava/lang/Object;Ljava/lang/Object;)Z</td><td>F_R</td></tr>
-<tr><td>_weakCompareAndSetObjectAcquire</td><td>jdk.internal.misc.Unsafe</td><td>weakCompareAndSetObjectAcquire</td><td>(Ljava/lang/Object;JLjava/lang/Object;Ljava/lang/Object;)Z</td><td>F_R</td></tr>
-<tr><td>_weakCompareAndSetObjectRelease</td><td>jdk.internal.misc.Unsafe</td><td>weakCompareAndSetObjectRelease</td><td>(Ljava/lang/Object;JLjava/lang/Object;Ljava/lang/Object;)Z</td><td>F_R</td></tr>
-<tr><td>_weakCompareAndSetObject</td><td>jdk.internal.misc.Unsafe</td><td>weakCompareAndSetObject</td><td>(Ljava/lang/Object;JLjava/lang/Object;Ljava/lang/Object;)Z</td><td>F_R</td></tr>
+<tr><td>_weakCompareAndSetReferencePlain</td><td>jdk.internal.misc.Unsafe</td><td>weakCompareAndSetReferencePlain</td><td>(Ljava/lang/Object;JLjava/lang/Object;Ljava/lang/Object;)Z</td><td>F_R</td></tr>
+<tr><td>_weakCompareAndSetReferenceAcquire</td><td>jdk.internal.misc.Unsafe</td><td>weakCompareAndSetReferenceAcquire</td><td>(Ljava/lang/Object;JLjava/lang/Object;Ljava/lang/Object;)Z</td><td>F_R</td></tr>
+<tr><td>_weakCompareAndSetReferenceRelease</td><td>jdk.internal.misc.Unsafe</td><td>weakCompareAndSetReferenceRelease</td><td>(Ljava/lang/Object;JLjava/lang/Object;Ljava/lang/Object;)Z</td><td>F_R</td></tr>
+<tr><td>_weakCompareAndSetReference</td><td>jdk.internal.misc.Unsafe</td><td>weakCompareAndSetReference</td><td>(Ljava/lang/Object;JLjava/lang/Object;Ljava/lang/Object;)Z</td><td>F_R</td></tr>
 <tr><td>_weakCompareAndSetLongPlain</td><td>jdk.internal.misc.Unsafe</td><td>weakCompareAndSetLongPlain</td><td>(Ljava/lang/Object;JJJ)Z</td><td>F_R</td></tr>
 <tr><td>_weakCompareAndSetLongAcquire</td><td>jdk.internal.misc.Unsafe</td><td>weakCompareAndSetLongAcquire</td><td>(Ljava/lang/Object;JJJ)Z</td><td>F_R</td></tr>
 <tr><td>_weakCompareAndSetLongRelease</td><td>jdk.internal.misc.Unsafe</td><td>weakCompareAndSetLongRelease</td><td>(Ljava/lang/Object;JJJ)Z</td><td>F_R</td></tr>
@@ -392,7 +401,7 @@
 <tr><td>_getAndSetLong</td><td>jdk.internal.misc.Unsafe</td><td>getAndSetLong</td><td>(Ljava/lang/Object;JJ)J</td><td>F_R</td></tr>
 <tr><td>_getAndSetByte</td><td>jdk.internal.misc.Unsafe</td><td>getAndSetByte</td><td>(Ljava/lang/Object;JB)B</td><td>F_R</td></tr>
 <tr><td>_getAndSetShort</td><td>jdk.internal.misc.Unsafe</td><td>getAndSetShort</td><td>(Ljava/lang/Object;JS)S</td><td>F_R</td></tr>
-<tr><td>_getAndSetObject</td><td>jdk.internal.misc.Unsafe</td><td>getAndSetObject</td><td>(Ljava/lang/Object;JLjava/lang/Object;)Ljava/lang/Object;</td><td>F_R</td></tr>
+<tr><td>_getAndSetReference</td><td>jdk.internal.misc.Unsafe</td><td>getAndSetReference</td><td>(Ljava/lang/Object;JLjava/lang/Object;)Ljava/lang/Object;</td><td>F_R</td></tr>
 <tr><td>_park</td><td>jdk.internal.misc.Unsafe</td><td>park</td><td>(ZJ)V</td><td>F_R</td></tr>
 <tr><td>_unpark</td><td>jdk.internal.misc.Unsafe</td><td>unpark</td><td>(Ljava/lang/Object;)V</td><td>F_R</td></tr>
 <tr><td>_StringBuilder_void</td><td>java.lang.StringBuilder</td><td>&lt;init&gt;</td><td>()V</td><td>F_R</td></tr>

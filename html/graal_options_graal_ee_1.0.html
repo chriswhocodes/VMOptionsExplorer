@@ -83,7 +83,7 @@
 <table class="menu">
 	<tr>
 		<th>Home</th>
-		<th colspan="7">HotSpot <div class="diffs"><a
+		<th colspan="8">HotSpot <div class="diffs"><a
 				href="hotspot_option_differences.html">View differences between HotSpot versions</a></div></th>
 		<th colspan="2">Graal</th>
 		<th>OpenJ9</th>
@@ -100,11 +100,12 @@
 		<td><a href="hotspot_options_jdk10.html">JDK10 Options</a></td>
 		<td><a href="hotspot_options_jdk11.html">JDK11 Options</a></td>
 		<td><a href="hotspot_options_jdk12.html">JDK12 Options</a></td>
+		<td><a href="hotspot_options_jdk13.html">JDK13 Options</a></td>
 
 		<td rowspan="2"><a href="graal_options_graal_ce_1.0.html">Graal
-				CE 1.0rc9</a></td>
+				CE 1.0rc10</a></td>
 		<td rowspan="2"><a href="graal_options_graal_ee_1.0.html">Graal
-				EE 1.0rc9</a></td>
+				EE 1.0rc10</a></td>
 
 		<td rowspan="2"><a href="openj9_options.html">OpenJ9</a></td>
 
@@ -116,18 +117,15 @@
 				performance
 		</a></td>
 	</tr>
-
 	<tr>
 		<td><a href="hotspot_intrinsics_jdk6.html">JDK6 Intrinsics</a></td>
 		<td><a href="hotspot_intrinsics_jdk7.html">JDK7 Intrinsics</a></td>
 		<td><a href="hotspot_intrinsics_jdk8.html">JDK8 Intrinsics</a></td>
 		<td><a href="hotspot_intrinsics_jdk9.html">JDK9 Intrinsics</a></td>
-		<td><a href="hotspot_intrinsics_jdk10.html">JDK10 Intrinsics</a>
-		</td>
-		<td><a href="hotspot_intrinsics_jdk11.html">JDK11 Intrinsics</a>
-		</td>
-		<td><a href="hotspot_intrinsics_jdk12.html">JDK12 Intrinsics</a>
-		</td>
+		<td><a href="hotspot_intrinsics_jdk10.html">JDK10 Intrinsics</a></td>
+		<td><a href="hotspot_intrinsics_jdk11.html">JDK11 Intrinsics</a></td>
+		<td><a href="hotspot_intrinsics_jdk12.html">JDK12 Intrinsics</a></td>
+		<td><a href="hotspot_intrinsics_jdk13.html">JDK13 Intrinsics</a></td>
 	</tr>
 </table>
 
@@ -251,10 +249,10 @@ monitoring).
 </pre></td></tr>
 <tr><td>CompileGraalWithC1Only</td><td>Boolean</td><td>true</td><td><pre>In tiered mode compile Graal and JVMCI using optimized first tier code.
 </pre></td></tr>
-<tr><td>CompilerConfiguration</td><td>String</td><td>null</td><td><pre>Names the Graal compiler configuration to use. If ommitted, the
-compiler configuration with the highest auto-selection priority is
-used. To see the set of available configurations, supply the value
-'help' to this option.
+<tr><td>CompilerConfiguration</td><td>String</td><td>null</td><td><pre>Names the Graal compiler configuration to use. If omitted, the compiler
+configuration with the highest auto-selection priority is used. To see
+the set of available configurations, supply the value 'help' to this
+option.
 </pre></td></tr>
 <tr><td>CompilerNodePenaltyCoefficient</td><td>Double</td><td>0.01</td><td><pre>Controls the likelihood of exploring subtrees that already have a lot
 of code during inlining.
@@ -788,6 +786,10 @@ selected.
 </pre></td></tr>
 <tr><td>ShowDumpFiles</td><td>Boolean</td><td>false</td><td><pre>Print the name of each dump file path as it's created.
 </pre></td></tr>
+<tr><td>ShowSubstitutionSourceInfo</td><td>Boolean</td><td>false</td><td><pre>Controls whether the source position information of snippets and method
+substitutions are exposed to HotSpot. Can be useful when profiling to
+get more precise position information.
+</pre></td></tr>
 <tr><td>SimpleFastInflatedLocking</td><td>Boolean</td><td>true</td><td><pre>Handle simple cases for inflated monitors in the fast-path.
 </pre></td></tr>
 <tr><td>SimpleMethodCalls</td><td>Integer</td><td>1</td><td><pre>Maximum number of calls in a simple method
@@ -935,7 +937,7 @@ boundaries
 <tr><td>TraceTruffleStackTraceLimit</td><td>Integer</td><td>20</td><td><pre>Number of stack trace elements printed by
 TraceTruffleTransferToInterpreter and TraceTruffleAssumptions
 </pre></td></tr>
-<tr><td>TraceTruffleTransferToInterpreter</td><td>Boolean</td><td>false</td><td><pre>Print stack trace on transfer to interpreter
+<tr><td>TraceTruffleTransferToInterpreter</td><td>Boolean</td><td>false</td><td><pre>Print stack trace on transfer to interpreter.
 </pre></td></tr>
 <tr><td>TraceUnwindStub</td><td>Boolean</td><td>false</td><td><pre>Trace execution of the stub that routes an exception to a handler in
 the calling frame.
@@ -969,14 +971,15 @@ of a run.
 </pre></td></tr>
 <tr><td>TruffleCompilationStatistics</td><td>Boolean</td><td>false</td><td><pre>Print Truffle compilation statistics at the end of a run.
 </pre></td></tr>
-<tr><td>TruffleCompilationThreshold</td><td>Integer</td><td>1000</td><td><pre>Compile call target when call count exceeds this threshold
+<tr><td>TruffleCompilationThreshold</td><td>Integer</td><td>1000</td><td><pre>Compile call target when call count exceeds this threshold.
 </pre></td></tr>
 <tr><td>TruffleCompilation</td><td>Boolean</td><td>true</td><td><pre>Enable or disable truffle compilation.
 </pre></td></tr>
 <tr><td>TruffleCompileImmediately</td><td>Boolean</td><td>false</td><td><pre>Compile immediately to test truffle compiler
 </pre></td></tr>
 <tr><td>TruffleCompileOnly</td><td>String</td><td>null</td><td><pre>Restrict compilation to comma-separated list of includes (or excludes
-prefixed with tilde)
+prefixed with tilde).
+EBNF format of argument value:  CompileOnly = Element, { ',', Element } ;
 </pre></td></tr>
 <tr><td>TruffleCompilerConfiguration</td><td>String</td><td>null</td><td><pre>Select a Graal compiler configuration for Truffle compilation (default:
 use Graal system compiler configuration).
@@ -1039,7 +1042,7 @@ compilation time
 </pre></td></tr>
 <tr><td>TruffleMinInvokeThreshold</td><td>Integer</td><td>3</td><td><pre>Minimum number of calls before a call target is compiled
 </pre></td></tr>
-<tr><td>TruffleMultiTier</td><td>Boolean</td><td>false</td><td><pre>Whether to use multiple compilation tiers by default.
+<tr><td>TruffleMultiTier</td><td>Boolean</td><td>false</td><td><pre>Whether to use multiple Truffle compilation tiers by default.
 </pre></td></tr>
 <tr><td>TruffleOSRCompilationThreshold</td><td>Integer</td><td>100000</td><td><pre>Number of loop iterations until on-stack-replacement compilation is
 triggered.
@@ -1063,6 +1066,9 @@ splitting exceeds this factor times node count
 exceeds this limit
 </pre></td></tr>
 <tr><td>TruffleSplitting</td><td>Boolean</td><td>true</td><td><pre>Enable call target splitting
+</pre></td></tr>
+<tr><td>TruffleTimeThreshold</td><td>Integer</td><td>50000</td><td><pre>Defines the maximum timespan in milliseconds that is required for a
+call target to be queued for compilation.
 </pre></td></tr>
 <tr><td>TruffleTraceSplittingSummary</td><td>Boolean</td><td>false</td><td><pre>Used for debugging the splitting implementation. Prints splitting
 summary directly to stdout on shutdown
@@ -1104,6 +1110,8 @@ attacks
 <tr><td>UsePolymorphicInlining</td><td>Boolean</td><td>true</td><td><pre>Inline polymorphic calls based on callsite receiver profiles.
 </pre></td></tr>
 <tr><td>UsePriorityInlining</td><td>Boolean</td><td>true</td><td><pre>Use priority-based inlining.
+</pre></td></tr>
+<tr><td>UseProfilingInformation</td><td>Boolean</td><td>true</td><td><pre>          
 </pre></td></tr>
 <tr><td>UseSnippetGraphCache</td><td>Boolean</td><td>true</td><td><pre>Use a cache for snippet graphs.
 </pre></td></tr>
@@ -1162,7 +1170,7 @@ option for the pattern syntax.
 		</tbody>
 	</table>
 	<div class="footer">
-		Autogenerated on Wed Dec 19 12:33:02 GMT 2018 from Graal sources by <a
+		Autogenerated on Fri Jan 04 22:24:12 GMT 2019 from Graal sources by <a
 			href="https://twitter.com/chriswhocodes">@chriswhocodes</a>
 	</div>
 </body>
