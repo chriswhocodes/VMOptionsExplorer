@@ -11,6 +11,7 @@ public class Intrinsic
 	private String name;
 	private String signature;
 	private String flags;
+	private String since;
 
 	public String getId()
 	{
@@ -37,6 +38,16 @@ public class Intrinsic
 		return flags;
 	}
 
+	public String getSince()
+	{
+		return since;
+	}
+
+	public void setSince(String since)
+	{
+		this.since = since;
+	}
+
 	public Intrinsic(String id, String klass, String name, String signature, String flags)
 	{
 		super();
@@ -47,8 +58,7 @@ public class Intrinsic
 		this.flags = flags;
 	}
 
-	@Override
-	public String toString()
+	@Override public String toString()
 	{
 		return "Intrinsic [id=" + id + ", klass=" + klass + ", name=" + name + ", signature=" + signature + ", flags=" + flags
 				+ "]";
@@ -60,6 +70,7 @@ public class Intrinsic
 
 		builder.append("<tr>");
 		builder.append("<th>").append("Id").append("</th>");
+		builder.append("<th>").append("Since").append("</th>");
 		builder.append("<th>").append("Class").append("</th>");
 		builder.append("<th>").append("Name").append("</th>");
 		builder.append("<th>").append("Signature").append("</th>");
@@ -75,6 +86,7 @@ public class Intrinsic
 
 		builder.append("<tr>");
 		builder.append("<td>").append(id).append("</td>");
+		builder.append("<td>").append(since).append("</td>");
 		builder.append("<td>").append(klass).append("</td>");
 		builder.append("<td>").append(name).append("</td>");
 		builder.append("<td>").append(signature).append("</td>");

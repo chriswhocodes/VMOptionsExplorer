@@ -15,6 +15,7 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
 import com.chrisnewland.vmoe.parser.ParseUtil;
 
 public class IntrinsicParser
@@ -24,6 +25,8 @@ public class IntrinsicParser
 	private Map<String, String> mapName;
 	private Map<String, String> mapSignature;
 	private Map<String, String> mapAlias;
+
+	private Map<String, String> seenInJDK = new HashMap<>();
 
 	private static final String TEMPLATE = "template";
 	private static final String DO_INTRINSIC = "do_intrinsic";
@@ -379,6 +382,17 @@ public class IntrinsicParser
 
 		for (Intrinsic intrinsic : intrinsics)
 		{
+			String firstSeenInJDK = seenInJDK.get(intrinsic.getId());
+
+			if (firstSeenInJDK == null)
+			{
+				firstSeenInJDK = jdkName;
+
+				seenInJDK.put(intrinsic.getId(), firstSeenInJDK);
+			}
+
+			intrinsic.setSince(firstSeenInJDK);
+
 			htmlBuilder.append(intrinsic.toRow()).append("\n");
 		}
 
@@ -394,9 +408,8 @@ public class IntrinsicParser
 		template = template.replace("$ALLCOLUMNS", "[ 0, 1, 2, 3, 4 ]");
 		template = template.replace("$SORTCOLUMNS", "[ 1 ]");
 
-		Files
-				.write(Paths.get("html/hotspot_intrinsics_" + jdkName.toLowerCase() + ".html"),
-						template.getBytes(StandardCharsets.UTF_8));
+		Files.write(Paths.get("html/hotspot_intrinsics_" + jdkName.toLowerCase() + ".html"),
+				template.getBytes(StandardCharsets.UTF_8));
 
 		System.out.println(jdkName + " has " + intrinsics.size() + " intrinsics");
 	}
