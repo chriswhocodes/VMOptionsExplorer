@@ -404,9 +404,9 @@ public class IntrinsicParser
 		template = template.replace("$DATE", new Date().toString());
 		template = template.replace("$TBODY", htmlBuilder.toString());
 
-		template = template.replace("$TOPHEADER", "<th></th><th>Class</th><th></th><th></th><th></th>");
-		template = template.replace("$ALLCOLUMNS", "[ 0, 1, 2, 3, 4 ]");
-		template = template.replace("$SORTCOLUMNS", "[ 1 ]");
+		template = template.replace("$TOPHEADER", "<th></th><th></th><th>Class</th><th></th><th></th><th></th>");
+		template = template.replace("$ALLCOLUMNS", "[ 0, 1, 2, 3, 4, 5 ]");
+		template = template.replace("$SORTCOLUMNS", "[ 2 ]");
 
 		Files.write(Paths.get("html/hotspot_intrinsics_" + jdkName.toLowerCase() + ".html"),
 				template.getBytes(StandardCharsets.UTF_8));
