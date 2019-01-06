@@ -1,4 +1,8 @@
-package com.chrisnewland.vmswitch.parser;
+/*
+ * Copyright (c) 2018-2019 Chris Newland.
+ * Licensed under https://github.com/chriswhocodes/VMSOptionsExplorer/blob/master/LICENSE
+ */
+package com.chrisnewland.vmoe.parser;
 
 public class ParseUtil
 {

@@ -1,6 +1,10 @@
-package com.chrisnewland.vmswitch.parser.deprecated;
+/*
+ * Copyright (c) 2018-2019 Chris Newland.
+ * Licensed under https://github.com/chriswhocodes/VMSOptionsExplorer/blob/master/LICENSE
+ */
+package com.chrisnewland.vmoe.parser.deprecated;
 
-import com.chrisnewland.vmswitch.parser.ParseUtil;
+import com.chrisnewland.vmoe.parser.ParseUtil;
 
 public class DeprecatedInfo
 {

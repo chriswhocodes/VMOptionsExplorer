@@ -17,8 +17,11 @@
 	</target>
 
 	<target name="jar" depends="compile">
-		<jar destfile="${target}/vmswitch.jar">
+		<jar destfile="${target}/vmoe.jar">
 			<fileset dir="${target}" />
+			<manifest>
+				<attribute name="Main-Class" value="com.chrisnewland.vmoe.VMOptionsExplorer" />
+			</manifest>
 		</jar>
 	</target>
 

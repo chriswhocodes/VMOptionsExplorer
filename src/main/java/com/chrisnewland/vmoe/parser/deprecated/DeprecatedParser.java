@@ -1,8 +1,8 @@
 /*
- * Copyright (c) 2018 Chris Newland.
- * Licensed under https://github.com/chriswhocodes/VMSwitch/blob/master/LICENSE
+ * Copyright (c) 2018-2019 Chris Newland.
+ * Licensed under https://github.com/chriswhocodes/VMSOptionsExplorer/blob/master/LICENSE
  */
-package com.chrisnewland.vmswitch.parser.deprecated;
+package com.chrisnewland.vmoe.parser.deprecated;
 
 import java.io.IOException;
 import java.nio.file.Files;
@@ -11,8 +11,6 @@ import java.nio.file.Paths;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
-import com.chrisnewland.vmswitch.parser.deprecated.DeprecatedInfo;
 
 public class DeprecatedParser
 {

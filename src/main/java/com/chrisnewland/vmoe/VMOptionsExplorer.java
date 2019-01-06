@@ -1,8 +1,8 @@
 /*
- * Copyright (c) 2018 Chris Newland.
- * Licensed under https://github.com/chriswhocodes/VMSwitch/blob/master/LICENSE
+ * Copyright (c) 2018-2019 Chris Newland.
+ * Licensed under https://github.com/chriswhocodes/VMSOptionsExplorer/blob/master/LICENSE
  */
-package com.chrisnewland.vmswitch;
+package com.chrisnewland.vmoe;
 
 import java.io.File;
 import java.io.IOException;
@@ -15,20 +15,20 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
 
-import com.chrisnewland.vmswitch.parser.GraalSwitchParser;
-import com.chrisnewland.vmswitch.parser.HotSpotSwitchParser;
-import com.chrisnewland.vmswitch.parser.ISwitchParser;
-import com.chrisnewland.vmswitch.parser.OpenJ9SwitchParser;
-import com.chrisnewland.vmswitch.parser.ZingSwitchParser;
-import com.chrisnewland.vmswitch.parser.deprecated.DeprecatedParser;
-import com.chrisnewland.vmswitch.parser.intrinsic.IntrinsicParser;
+import com.chrisnewland.vmoe.parser.GraalSwitchParser;
+import com.chrisnewland.vmoe.parser.HotSpotSwitchParser;
+import com.chrisnewland.vmoe.parser.ISwitchParser;
+import com.chrisnewland.vmoe.parser.OpenJ9SwitchParser;
+import com.chrisnewland.vmoe.parser.ZingSwitchParser;
+import com.chrisnewland.vmoe.parser.deprecated.DeprecatedParser;
+import com.chrisnewland.vmoe.parser.intrinsic.IntrinsicParser;
 
 import java.util.Set;
 import java.util.HashSet;
 import java.util.Date;
 import java.util.HashMap;
 
-public class VMSwitch
+public class VMOptionsExplorer
 {
 	private File vmPath;
 
@@ -36,7 +36,7 @@ public class VMSwitch
 
 	private Map<String, String> switchNameVersions = new HashMap<>();
 
-	public VMSwitch()
+	public VMOptionsExplorer()
 	{
 	}
 
@@ -355,7 +355,7 @@ public class VMSwitch
 		DeprecatedParser.parseFile(Paths.get(baseDir + "jdk12"));
 		DeprecatedParser.parseFile(Paths.get(baseDir + "jdk13"));
 
-		VMSwitch vms = new VMSwitch();
+		VMOptionsExplorer vms = new VMOptionsExplorer();
 
 		vms.addVM(new VMData("JDK6", new File(baseDir + "jdk6/hotspot"), VMType.HOTSPOT));
 		vms.addVM(new VMData("JDK7", new File(baseDir + "jdk7u/hotspot"), VMType.HOTSPOT));
@@ -367,14 +367,14 @@ public class VMSwitch
 		vms.addVM(new VMData("JDK13", new File(baseDir + "jdk13/src/hotspot"), VMType.HOTSPOT));
 
 		// Generate these files with -XX:+JVMCIPrintProperties
-		vms.addVM(new VMData("Graal CE 1.0", new File(baseDir + "VMSwitch/graal_ce.out"), VMType.GRAAL));
-		vms.addVM(new VMData("Graal EE 1.0", new File(baseDir + "VMSwitch/graal_ee.out"), VMType.GRAAL));
+		vms.addVM(new VMData("Graal CE 1.0", new File(baseDir + "VMOptionsExplorer/graal_ce.out"), VMType.GRAAL));
+		vms.addVM(new VMData("Graal EE 1.0", new File(baseDir + "VMOptionsExplorer/graal_ee.out"), VMType.GRAAL));
 
 		vms.addVM(new VMData("OpenJ9", new File(baseDir + "openj9"), VMType.OPENJ9));
 
 		// /opt/zing/zing-jdk8/bin/java \
 		// -XX:+PrintFlagsFinal >zing.out 2>/dev/null
-		vms.addVM(new VMData("Zing", new File(baseDir + "VMSwitch/zing.out"), VMType.ZING));
+		vms.addVM(new VMData("Zing", new File(baseDir + "VMOptionsExplorer/zing.out"), VMType.ZING));
 
 		vms.process();
 

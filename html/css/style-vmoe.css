@@ -75,3 +75,10 @@ a, a:visited {
 	margin-right: 8px;
 	font-size: 14px;
 }
+
+.book {
+	text-align: left;
+	padding:0px 0px 16px 0px;
+	font-size: 14px;
+	font-weight: bold;
+}

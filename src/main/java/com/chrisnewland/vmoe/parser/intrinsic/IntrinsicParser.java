@@ -1,8 +1,8 @@
 /*
- * Copyright (c) 2018 Chris Newland.
- * Licensed under https://github.com/chriswhocodes/VMSwitch/blob/master/LICENSE
+ * Copyright (c) 2018-2019 Chris Newland.
+ * Licensed under https://github.com/chriswhocodes/VMSOptionsExplorer/blob/master/LICENSE
  */
-package com.chrisnewland.vmswitch.parser.intrinsic;
+package com.chrisnewland.vmoe.parser.intrinsic;
 
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
@@ -15,7 +15,7 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import com.chrisnewland.vmswitch.parser.ParseUtil;
+import com.chrisnewland.vmoe.parser.ParseUtil;
 
 public class IntrinsicParser
 {

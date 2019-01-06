@@ -1,8 +1,8 @@
 /*
- * Copyright (c) 2018 Chris Newland.
- * Licensed under https://github.com/chriswhocodes/VMSwitch/blob/master/LICENSE
+ * Copyright (c) 2018-2019 Chris Newland.
+ * Licensed under https://github.com/chriswhocodes/VMSOptionsExplorer/blob/master/LICENSE
  */
-package com.chrisnewland.vmswitch;
+package com.chrisnewland.vmoe;
 
 import java.io.File;
 

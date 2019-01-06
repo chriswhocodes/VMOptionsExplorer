@@ -1,8 +1,8 @@
 /*
- * Copyright (c) 2018 Chris Newland.
- * Licensed under https://github.com/chriswhocodes/VMSwitch/blob/master/LICENSE
+ * Copyright (c) 2018-2019 Chris Newland.
+ * Licensed under https://github.com/chriswhocodes/VMSOptionsExplorer/blob/master/LICENSE
  */
-package com.chrisnewland.vmswitch.parser;
+package com.chrisnewland.vmoe.parser;
 
 import java.io.File;
 import java.nio.file.Path;
@@ -11,7 +11,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
-import com.chrisnewland.vmswitch.SwitchInfo;
+import com.chrisnewland.vmoe.SwitchInfo;
 
 public abstract class AbstractSwitchParser implements ISwitchParser
 {

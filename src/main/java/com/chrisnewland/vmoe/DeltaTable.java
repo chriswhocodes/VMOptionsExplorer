@@ -1,11 +1,15 @@
-package com.chrisnewland.vmswitch;
+/*
+ * Copyright (c) 2018-2019 Chris Newland.
+ * Licensed under https://github.com/chriswhocodes/VMSOptionsExplorer/blob/master/LICENSE
+ */
+package com.chrisnewland.vmoe;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import com.chrisnewland.vmswitch.parser.deprecated.DeprecatedInfo;
-import com.chrisnewland.vmswitch.parser.deprecated.DeprecatedParser;
+import com.chrisnewland.vmoe.parser.deprecated.DeprecatedInfo;
+import com.chrisnewland.vmoe.parser.deprecated.DeprecatedParser;
 
 public class DeltaTable
 {
