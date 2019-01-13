@@ -126,7 +126,7 @@ public class VMOptionsExplorer
 		}
 
 		builder
-				.append("<h2>")
+				.append("<h2 id=\"").append(later.getJdkName()).append("\">")
 				.append("Differences between ")
 				.append(earlier.getJdkName())
 				.append(" and ")

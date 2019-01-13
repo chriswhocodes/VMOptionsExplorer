@@ -30,7 +30,7 @@
                         "pageLength" : 50,
                         "lengthChange" : false,
                         "columnDefs" : [ {
-                          "targets" : [ 0, 1, 2, 3, 4 ],
+                          "targets" : [ 0, 1, 2, 3, 4, 5 ],
                           "orderable" : true,
                         } ],
                         "oLanguage" : {
@@ -43,7 +43,7 @@
                               
                               this
                                   .api()
-                                  .columns([ 1 ])
+                                  .columns([ 2 ])
                                   .every(
                                       function() {
                                         var column = this;
@@ -129,7 +129,7 @@
 	<table id="myTable" class="display cell-border">
 		<thead>
 			<tr><th>Id</th><th>Since</th><th>Class</th><th>Name</th><th>Signature</th><th>Flags</th></tr>
-			<tr><th></th><th>Class</th><th></th><th></th><th></th>
+			<tr><th></th><th></th><th>Class</th><th></th><th></th><th></th>
 			</tr>
 		</thead>
 		<tbody><tr><td>_hashCode</td><td>JDK6</td><td>java.lang.Object</td><td>hashCode</td><td>()I</td><td>F_R</td></tr>
@@ -447,7 +447,7 @@
 		</tbody>
 	</table>
 	<div class="footer">
-		Built on Sun Jan 06 23:45:10 GMT 2019 from HotSpot sources by <a
+		Built on Sun Jan 13 10:06:11 GMT 2019 from HotSpot sources by <a
 			href="https://twitter.com/chriswhocodes">@chriswhocodes</a>
 	</div>
 </body>
