@@ -101,9 +101,9 @@
         <td><a href="hotspot_options_jdk13.html">JDK13 Options</a></td>
 
         <td rowspan="2"><a href="graal_options_graal_ce_1.0.html">Graal
-            CE 1.0rc10</a></td>
+            CE 1.0rc12</a></td>
         <td rowspan="2"><a href="graal_options_graal_ee_1.0.html">Graal
-            EE 1.0rc10</a></td>
+            EE 1.0rc12</a></td>
 
         <td rowspan="2"><a href="openj9_options.html">OpenJ9</a></td>
 
@@ -151,7 +151,7 @@
 <tr><td>AdaptiveSizeThroughPutPolicy</td><td>JDK6</td><td></td><td>uintx</td><td></td><td></td><td>gc</td><td>0<br>range(0, 1)</td><td>product</td><td>Policy for changing generation size for throughput goals</td><td>share/gc/shared/gc_globals.hpp</td></tr>
 <tr><td>AdaptiveTimeWeight</td><td>JDK6</td><td></td><td>uintx</td><td></td><td></td><td>gc</td><td>25<br>range(0, 100)</td><td>product</td><td>Weight given to time in adaptive policy, between 0 and 100</td><td>share/gc/shared/gc_globals.hpp</td></tr>
 <tr><td>AggressiveHeap</td><td>JDK10</td><td></td><td>bool</td><td></td><td></td><td>gc</td><td>false</td><td>product</td><td>Optimize heap options for long-running memory intensive apps</td><td>share/gc/shared/gc_globals.hpp</td></tr>
-<tr><td>AggressiveUnboxing</td><td>JDK8</td><td></td><td>bool</td><td></td><td></td><td>c2</td><td>false</td><td>experimental</td><td>Control optimizations for aggressive boxing elimination</td><td>share/opto/c2_globals.hpp</td></tr>
+<tr><td>AggressiveUnboxing</td><td>JDK8</td><td></td><td>bool</td><td></td><td></td><td>c2</td><td>true</td><td>experimental</td><td>Control optimizations for aggressive boxing elimination</td><td>share/opto/c2_globals.hpp</td></tr>
 <tr><td>AliasLevel</td><td>JDK6</td><td></td><td>intx</td><td></td><td></td><td>c2</td><td>3<br>range(0, 3)</td><td>product</td><td>0 for no aliasing, 1 for oop/field/static/array split, <br>2 for class split, 3 for unique instances</td><td>share/opto/c2_globals.hpp</td></tr>
 <tr><td>AlignVector</td><td>JDK7</td><td></td><td>bool</td><td></td><td></td><td>c2</td><td>true</td><td>product</td><td>Perform vector store/load alignment in loop</td><td>share/opto/c2_globals.hpp</td></tr>
 <tr><td>AllocateHeapAt</td><td>JDK10</td><td></td><td>ccstr</td><td></td><td></td><td>runtime</td><td>NULL</td><td>product</td><td>Path to the directoy where a temporary file will be created to use as the backing store for Java Heap.</td><td>share/runtime/globals.hpp</td></tr>
@@ -241,7 +241,6 @@
 <tr><td>CICompilerCount</td><td>JDK6</td><td></td><td>intx</td><td></td><td></td><td>runtime</td><td>CI_COMPILER_COUNT<br>range(0, max_jint)</td><td>product</td><td>Number of compiler threads to run</td><td>share/runtime/globals.hpp</td></tr>
 <tr><td>CICountOSR</td><td>JDK6</td><td></td><td>bool</td><td></td><td></td><td>runtime</td><td>false</td><td>develop</td><td>use a separate counter when assigning ids to osr compilations</td><td>share/runtime/globals.hpp</td></tr>
 <tr><td>CICrashAt</td><td>JDK8</td><td></td><td>intx</td><td></td><td></td><td>runtime</td><td>-1</td><td>notproduct</td><td>id of compilation to trigger assert in compiler thread for the purpose of testing, e.g. generation of replay data</td><td>share/runtime/globals.hpp</td></tr>
-<tr><td>CIFireOOMAt</td><td>JDK6</td><td></td><td>intx</td><td></td><td></td><td>runtime</td><td>-1</td><td>develop</td><td>Fire OutOfMemoryErrors throughout CI for testing the compiler (non-negative value throws OOM after this many CI accesses in each compile)</td><td>share/runtime/globals.hpp</td></tr>
 <tr><td>CIObjectFactoryVerify</td><td>JDK6</td><td></td><td>bool</td><td></td><td></td><td>runtime</td><td>false</td><td>notproduct</td><td>enable potentially expensive verification in ciObjectFactory</td><td>share/runtime/globals.hpp</td></tr>
 <tr><td>CIPrintCompileQueue</td><td>JDK6</td><td></td><td>bool</td><td></td><td></td><td>runtime</td><td>false</td><td>diagnostic</td><td>display the contents of the compile queue whenever a compilation is enqueued</td><td>share/runtime/globals.hpp</td></tr>
 <tr><td>CIPrintCompilerName</td><td>JDK6</td><td></td><td>bool</td><td></td><td></td><td>runtime</td><td>false</td><td>develop</td><td>when CIPrint is active, print the name of the active compiler</td><td>share/runtime/globals.hpp</td></tr>
@@ -1292,7 +1291,6 @@
 <tr><td>ProfilerNumberOfInterpretedMethods</td><td>JDK6</td><td></td><td>intx</td><td></td><td></td><td>runtime</td><td>25</td><td>diagnostic</td><td>Number of interpreted methods to show in profile</td><td>share/runtime/globals.hpp</td></tr>
 <tr><td>ProfilerNumberOfRuntimeStubNodes</td><td>JDK6</td><td></td><td>intx</td><td></td><td></td><td>runtime</td><td>25</td><td>diagnostic</td><td>Number of runtime stub nodes to show in profile</td><td>share/runtime/globals.hpp</td></tr>
 <tr><td>ProfilerNumberOfStubMethods</td><td>JDK6</td><td></td><td>intx</td><td></td><td></td><td>runtime</td><td>25</td><td>diagnostic</td><td>Number of stub methods to show in profile</td><td>share/runtime/globals.hpp</td></tr>
-<tr><td>ProfilerPCTickThreshold</td><td>JDK6</td><td></td><td>intx</td><td></td><td></td><td>runtime</td><td>15</td><td>develop</td><td>Number of ticks in a PC buckets to be a hotspot</td><td>share/runtime/globals.hpp</td></tr>
 <tr><td>ProfilerPrintByteCodeStatistics</td><td>JDK6</td><td></td><td>bool</td><td></td><td></td><td>runtime</td><td>false</td><td>product</td><td>Print bytecode statistics when dumping profiler output</td><td>share/runtime/globals.hpp</td></tr>
 <tr><td>ProfilerRecordPC</td><td>JDK6</td><td></td><td>bool</td><td></td><td></td><td>runtime</td><td>false</td><td>product</td><td>Collect ticks for each 16 byte interval of compiled code</td><td>share/runtime/globals.hpp</td></tr>
 <tr><td>PromotedPadding</td><td>JDK6</td><td></td><td>uintx</td><td></td><td></td><td>gc</td><td>3<br>range(0, max_juint)</td><td>product</td><td>How much buffer to keep for promotion failure</td><td>share/gc/shared/gc_globals.hpp</td></tr>
@@ -1423,6 +1421,7 @@
 <tr><td>ShenandoahControlIntervalAdjustPeriod</td><td>JDK12</td><td></td><td>uintx</td><td></td><td></td><td>gc</td><td>1000</td><td>experimental</td><td>The time period for one step in control loop interval adjustment. Lower values make adjustments faster, at the expense of higher perf overhead. Time is in milliseconds.</td><td>share/gc/shenandoah/shenandoah_globals.hpp</td></tr>
 <tr><td>ShenandoahControlIntervalMax</td><td>JDK12</td><td></td><td>uintx</td><td></td><td></td><td>gc</td><td>10</td><td>experimental</td><td>The maximum sleep interval for control loop that drives the cycles. Lower values would increase GC responsiveness to changing heap conditions, at the expense of higher perf overhead. Time is in milliseconds.</td><td>share/gc/shenandoah/shenandoah_globals.hpp</td></tr>
 <tr><td>ShenandoahControlIntervalMin</td><td>JDK12</td><td></td><td>uintx</td><td></td><td></td><td>gc</td><td>1</td><td>experimental</td><td>The minumum sleep interval for control loop that drives the cycles. Lower values would increase GC responsiveness to changing heap conditions, at the expense of higher perf overhead. Time is in milliseconds.</td><td>share/gc/shenandoah/shenandoah_globals.hpp</td></tr>
+<tr><td>ShenandoahCriticalControlThreadPriority</td><td>JDK13</td><td></td><td>bool</td><td></td><td></td><td>gc</td><td>false</td><td>experimental</td><td>Shenandoah control thread runs at critical scheduling priority.</td><td>share/gc/shenandoah/shenandoah_globals.hpp</td></tr>
 <tr><td>ShenandoahCriticalFreeThreshold</td><td>JDK12</td><td></td><td>uintx</td><td></td><td></td><td>gc</td><td>1<br>range(0, 100)</td><td>experimental</td><td>Percent of heap that needs to be free after recovery cycles, either Degenerated or Full GC. If this much space is not available, next recovery step would triggered.</td><td>share/gc/shenandoah/shenandoah_globals.hpp</td></tr>
 <tr><td>ShenandoahDecreaseRegisterPressure</td><td>JDK12</td><td></td><td>bool</td><td></td><td></td><td>gc</td><td>false</td><td>diagnostic</td><td>Try to reuse after-barrier values to reduce register pressure</td><td>share/gc/shenandoah/shenandoah_globals.hpp</td></tr>
 <tr><td>ShenandoahDegeneratedGC</td><td>JDK12</td><td></td><td>bool</td><td></td><td></td><td>gc</td><td>true</td><td>diagnostic</td><td>Use Degenerated GC as the graceful degradation step. Disabling this leads to degradation to Full GC</td><td>share/gc/shenandoah/shenandoah_globals.hpp</td></tr>
@@ -1658,7 +1657,6 @@
 <tr><td>TieredStopAtLevel</td><td>JDK6</td><td></td><td>intx</td><td></td><td></td><td>runtime</td><td>4<br>range(0, 4)</td><td>product</td><td>Stop at given compilation level</td><td>share/runtime/globals.hpp</td></tr>
 <tr><td>TimeEachLinearScan</td><td>JDK6</td><td></td><td>bool</td><td></td><td></td><td>c1</td><td>false</td><td>develop</td><td>print detailed timing of each LinearScan run</td><td>share/c1/c1_globals.hpp</td></tr>
 <tr><td>TimeLinearScan</td><td>JDK6</td><td></td><td>bool</td><td></td><td></td><td>c1</td><td>false</td><td>product</td><td>detailed timing of LinearScan phases</td><td>share/c1/c1_globals.hpp</td></tr>
-<tr><td>TimeLivenessAnalysis</td><td>JDK6</td><td></td><td>bool</td><td></td><td></td><td>runtime</td><td>false</td><td>develop</td><td>Time computation of bytecode liveness analysis</td><td>share/runtime/globals.hpp</td></tr>
 <tr><td>TimeOopMap2</td><td>JDK6</td><td></td><td>bool</td><td></td><td></td><td>runtime</td><td>false</td><td>develop</td><td>Time calls to GenerateOopMap::compute_map() individually</td><td>share/runtime/globals.hpp</td></tr>
 <tr><td>TimeOopMap</td><td>JDK6</td><td></td><td>bool</td><td></td><td></td><td>runtime</td><td>false</td><td>develop</td><td>Time calls to GenerateOopMap::compute_map() in sum</td><td>share/runtime/globals.hpp</td></tr>
 <tr><td>TraceBytecodesAt</td><td>JDK6</td><td></td><td>intx</td><td></td><td></td><td>runtime</td><td>0</td><td>develop</td><td>Trace bytecodes starting with specified bytecode number</td><td>share/runtime/globals.hpp</td></tr>
@@ -2126,7 +2124,7 @@
 		</tbody>
 	</table>
 	<div class="footer">
-		Built on Sun Jan 13 10:06:10 GMT 2019 from HotSpot sources by <a
+		Built on Tue Feb 05 09:20:02 GMT 2019 from HotSpot sources by <a
 			href="https://twitter.com/chriswhocodes">@chriswhocodes</a>
 	</div>
 </body>

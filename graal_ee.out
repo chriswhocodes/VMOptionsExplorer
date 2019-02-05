@@ -83,6 +83,8 @@ graal.BootstrapTimeout = 15.0                                             [Doubl
 graal.BootstrapWatchDogCriticalRateRatio = 0.25                           [Double]
           Ratio of the maximum compilation rate below which the bootstrap
           compilation rate must not fall (0 or less disables monitoring).
+graal.BreakChainedPhis = true                                            [Boolean]
+          Break chained phis
 graal.CallArrayCopy = true                                               [Boolean]
 graal.CallGraphCompilerNodeLimit = 100000                                [Integer]
           Controls the maximum number of compiler nodes that can appear in the
@@ -252,7 +254,7 @@ graal.EagerSnippets = false                                              [Boolea
 graal.EscapeAnalysisIterations = 2                                       [Integer]
 graal.EscapeAnalysisLoopCutoff = 20                                      [Integer]
 graal.EscapeAnalyzeOnly = null                                            [String]
-graal.ExactFullUnrollMaxNodes = 1200                                     [Integer]
+graal.ExactFullUnrollMaxNodes = 800                                      [Integer]
 graal.ExactPartialUnrollMaxNodes = 200                                   [Integer]
 graal.ExcludeFunctionFromDuplication = null                               [String]
           Exclude compilations that MethodFilter.match this string from the
@@ -279,8 +281,9 @@ graal.FailedLoopExplosionIsFatal = false                                 [Boolea
 graal.FullUnroll = true                                                  [Boolean]
 graal.FullUnrollAsPEACleanup = true                                      [Boolean]
           Perform full unrolling as a Partial Escape Analysis Cleanup
+graal.FullUnrollConstantCompareBoost = 15                                [Integer]
 graal.FullUnrollMaxIterations = 600                                      [Integer]
-graal.FullUnrollMaxNodes = 300                                           [Integer]
+graal.FullUnrollMaxNodes = 400                                           [Integer]
 graal.GCDebugStartCycle = -1                                             [Integer]
 graal.GenLoopSafepoints = true                                           [Boolean]
 graal.GenSafepoints = true                                               [Boolean]
@@ -360,8 +363,6 @@ graal.LIROptLSStackSlotAllocator = true                                  [Boolea
 graal.LIROptNullCheckOptimizer = true                                    [Boolean]
 graal.LIROptRedundantMoveElimination = true                              [Boolean]
 graal.LIROptStackMoveOptimizer = true                                    [Boolean]
-graal.LIROptTraceRAEliminateSpillMoves = true                            [Boolean]
-          Enable spill position optimization
 graal.LIROptimization = true                                             [Boolean]
           Enable LIR level optimiztations.
 graal.LIRProfileMethods = false                                          [Boolean]
@@ -633,6 +634,8 @@ graal.ProfileSimpleMethods = true                                        [Boolea
 graal.ProfileTypeSwitches = false                                        [Boolean]
           Turn on typeswitch profiling. This tracks the stability of typeswitches
           after compilation.
+graal.ProfilesCollectExperimental = false                                [Boolean]
+          Collect AOT Profiling Information
 graal.PruneLargeDominatorUsageTrees = true                               [Boolean]
 graal.PullThroughPhiBudget = 4096.0                                       [Double]
 graal.RawConditionalElimination = true                                   [Boolean]
@@ -648,7 +651,6 @@ graal.RelativeBenefitInliningCoefficient = 0.005                          [Doubl
           hard to inline.
 graal.RemoveNeverExecutedCode = true                                     [Boolean]
 graal.ReplaceInputsWithConstantsBasedOnStamps = true                     [Boolean]
-graal.ResolveClassBeforeStaticInvoke = false                             [Boolean]
 graal.ScheduledDuplicationSimulation = false                             [Boolean]
           Simulation can either only process fixed nodes or schedule the graph
           and also process floating nodes.
@@ -688,7 +690,7 @@ graal.StressTestEarlyReads = false                                       [Boolea
 graal.SupportJsrBytecodes = true                                         [Boolean]
 graal.SupportOSRWithLocks = true                                         [Boolean]
           Support OSR compilations with locks. If DeoptAfterOSR is true we can
-          per definition not have unbalaced enter/extis mappings. If
+          per definition not have unbalanced enter/exits mappings. If
           DeoptAfterOSR is false insert artificial monitor enters after the
           OSRStart to have balanced enter/exits in the graph.
 graal.TailDupOnly = ""                                                    [String]
@@ -718,8 +720,6 @@ graal.Timers = null                                                       [Strin
           Comma separated names of timers that are enabled irrespective of the
           value for Time option. An empty value enables all timers
           unconditionally.
-graal.TraceBuilding = UniDirectional                                      [String]
-          Trace building algorithm.
 graal.TraceBytecodeParserLevel = 0                                       [Integer]
           The trace level for the bytecode parser. A value of 1 enables
           instruction tracing and any greater value emits a frame state trace
@@ -752,35 +752,6 @@ graal.TraceMonitorsTypeFilter = null                                      [Strin
           Trace monitor operations on objects whose type contains this substring.
 graal.TraceParserPlugins = false                                         [Boolean]
           Traces use of plugins during bytecode parsing.
-graal.TraceRA = false                                                    [Boolean]
-          Enable experimental Trace Register Allocation.
-graal.TraceRACacheStackSlots = true                                      [Boolean]
-          Cache stack slots globally (i.e. a variable always gets the same slot
-          in every trace).
-graal.TraceRAPolicy = Default                                             [String]
-          TraceRA allocation policy to use.
-graal.TraceRAScheduleTrivialTracesEarly = true                           [Boolean]
-          Schedule trivial traces as early as possible.
-graal.TraceRAalmostTrivialSize = 2                                       [Integer]
-          Use BottomUp if there is only one block with at most this number of
-          instructions
-graal.TraceRAbottomUpRatio = 0.0                                          [Double]
-          Use LSRA / BottomUp ratio
-graal.TraceRAfrequencyThreshold = 0.8                                     [Double]
-          Frequency Threshold
-graal.TraceRAnumVariables = null                                         [Integer]
-          Use BottomUp for traces with low number of variables at block
-          boundaries
-graal.TraceRAreuseStackSlotsForMoveResolutionCycleBreaking = true        [Boolean]
-          Reuse spill slots for global move resolution cycle breaking.
-graal.TraceRAshareSpillInformation = true                                [Boolean]
-          Share information about spilled values to other traces.
-graal.TraceRAsumBudget = 0.5                                              [Double]
-          Sum Frequency Budget Threshold
-graal.TraceRAtrivialBlockAllocator = true                                [Boolean]
-          Use special allocator for trivial blocks.
-graal.TraceRAuseInterTraceHints = true                                   [Boolean]
-          Use inter-trace register hints.
 graal.TraceTruffleAssumptions = false                                    [Boolean]
           Print stack trace on assumption invalidation
 graal.TraceTruffleCompilation = false                                    [Boolean]
@@ -867,6 +838,11 @@ graal.TruffleExperimentalSplittingDumpDecisions = false                  [Boolea
 graal.TruffleExperimentalSplittingMaxPropagationDepth = 5                [Integer]
           Propagate info about a polymorphic specialize through maximum this many
           call targets
+graal.TruffleExperimentalSplittingTraceEvents = false                    [Boolean]
+          Trace details of experimental splitting events and decisions.
+graal.TruffleFirstTierCompilationThreshold = 100                         [Integer]
+          Compile call target in the first tier when call count exceeds this
+          threshold.
 graal.TruffleFirstTierMinInvokeThreshold = 1                             [Integer]
           Minimum number of calls before a call target is compiled in the first
           tier.
@@ -964,6 +940,8 @@ graal.TypicalGraphSizeMax = 10000                                        [Intege
 graal.UnrollMaxIterations = 16                                           [Integer]
 graal.UseCompilationStatistics = false                                   [Boolean]
           Enables CompilationStatistics.
+graal.UseEncodedSnippets = false                                         [Boolean]
+          This is a testing option to exercise the SymbolicSnippetEncoder
 graal.UseExceptionProbability = true                                     [Boolean]
 graal.UseGraphCache = true                                               [Boolean]
           Turn on graph caching.

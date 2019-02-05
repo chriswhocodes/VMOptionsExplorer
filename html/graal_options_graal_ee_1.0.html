@@ -101,9 +101,9 @@
         <td><a href="hotspot_options_jdk13.html">JDK13 Options</a></td>
 
         <td rowspan="2"><a href="graal_options_graal_ce_1.0.html">Graal
-            CE 1.0rc10</a></td>
+            CE 1.0rc12</a></td>
         <td rowspan="2"><a href="graal_options_graal_ee_1.0.html">Graal
-            EE 1.0rc10</a></td>
+            EE 1.0rc12</a></td>
 
         <td rowspan="2"><a href="openj9_options.html">OpenJ9</a></td>
 
@@ -202,6 +202,8 @@ limit).
 </pre></td></tr>
 <tr><td>BootstrapWatchDogCriticalRateRatio</td><td>Double</td><td>0.25</td><td><pre>Ratio of the maximum compilation rate below which the bootstrap
 compilation rate must not fall (0 or less disables monitoring).
+</pre></td></tr>
+<tr><td>BreakChainedPhis</td><td>Boolean</td><td>true</td><td><pre>Break chained phis
 </pre></td></tr>
 <tr><td>CallArrayCopy</td><td>Boolean</td><td>true</td><td></td></tr>
 <tr><td>CallGraphCompilerNodeLimit</td><td>Integer</td><td>100000</td><td><pre>Controls the maximum number of compiler nodes that can appear in the
@@ -374,7 +376,7 @@ relative to the methods code size.
 <tr><td>EscapeAnalysisIterations</td><td>Integer</td><td>2</td><td></td></tr>
 <tr><td>EscapeAnalysisLoopCutoff</td><td>Integer</td><td>20</td><td></td></tr>
 <tr><td>EscapeAnalyzeOnly</td><td>String</td><td>null</td><td></td></tr>
-<tr><td>ExactFullUnrollMaxNodes</td><td>Integer</td><td>1200</td><td></td></tr>
+<tr><td>ExactFullUnrollMaxNodes</td><td>Integer</td><td>800</td><td></td></tr>
 <tr><td>ExactPartialUnrollMaxNodes</td><td>Integer</td><td>200</td><td></td></tr>
 <tr><td>ExcludeFunctionFromDuplication</td><td>String</td><td>null</td><td><pre>Exclude compilations that MethodFilter.match this string from the
 duplication optimization.
@@ -400,8 +402,9 @@ size.
 </pre></td></tr>
 <tr><td>FullUnrollAsPEACleanup</td><td>Boolean</td><td>true</td><td><pre>Perform full unrolling as a Partial Escape Analysis Cleanup
 </pre></td></tr>
+<tr><td>FullUnrollConstantCompareBoost</td><td>Integer</td><td>15</td><td></td></tr>
 <tr><td>FullUnrollMaxIterations</td><td>Integer</td><td>600</td><td></td></tr>
-<tr><td>FullUnrollMaxNodes</td><td>Integer</td><td>300</td><td></td></tr>
+<tr><td>FullUnrollMaxNodes</td><td>Integer</td><td>400</td><td></td></tr>
 <tr><td>FullUnroll</td><td>Boolean</td><td>true</td><td></td></tr>
 <tr><td>GCDebugStartCycle</td><td>Integer</td><td>-1</td><td></td></tr>
 <tr><td>GenLoopSafepoints</td><td>Boolean</td><td>true</td><td></td></tr>
@@ -484,8 +487,6 @@ infinite recursion
 <tr><td>LIROptNullCheckOptimizer</td><td>Boolean</td><td>true</td><td></td></tr>
 <tr><td>LIROptRedundantMoveElimination</td><td>Boolean</td><td>true</td><td></td></tr>
 <tr><td>LIROptStackMoveOptimizer</td><td>Boolean</td><td>true</td><td></td></tr>
-<tr><td>LIROptTraceRAEliminateSpillMoves</td><td>Boolean</td><td>true</td><td><pre>Enable spill position optimization
-</pre></td></tr>
 <tr><td>LIROptimization</td><td>Boolean</td><td>true</td><td><pre>Enable LIR level optimiztations.
 </pre></td></tr>
 <tr><td>LIRProfileMethods</td><td>Boolean</td><td>false</td><td><pre>Enables profiling of methods.
@@ -759,6 +760,8 @@ The accepted values are:
 <tr><td>ProfileTypeSwitches</td><td>Boolean</td><td>false</td><td><pre>Turn on typeswitch profiling. This tracks the stability of typeswitches
 after compilation.
 </pre></td></tr>
+<tr><td>ProfilesCollectExperimental</td><td>Boolean</td><td>false</td><td><pre>Collect AOT Profiling Information
+</pre></td></tr>
 <tr><td>PruneLargeDominatorUsageTrees</td><td>Boolean</td><td>true</td><td></td></tr>
 <tr><td>PullThroughPhiBudget</td><td>Double</td><td>4096.0</td><td></td></tr>
 <tr><td>RawConditionalElimination</td><td>Boolean</td><td>true</td><td></td></tr>
@@ -774,7 +777,6 @@ hard to inline.
 </pre></td></tr>
 <tr><td>RemoveNeverExecutedCode</td><td>Boolean</td><td>true</td><td></td></tr>
 <tr><td>ReplaceInputsWithConstantsBasedOnStamps</td><td>Boolean</td><td>true</td><td></td></tr>
-<tr><td>ResolveClassBeforeStaticInvoke</td><td>Boolean</td><td>false</td><td></td></tr>
 <tr><td>ScheduledDuplicationSimulation</td><td>Boolean</td><td>false</td><td><pre>Simulation can either only process fixed nodes or schedule the graph
 and also process floating nodes.
 </pre></td></tr>
@@ -813,7 +815,7 @@ threshold, it is not inlined.
 </pre></td></tr>
 <tr><td>SupportJsrBytecodes</td><td>Boolean</td><td>true</td><td></td></tr>
 <tr><td>SupportOSRWithLocks</td><td>Boolean</td><td>true</td><td><pre>Support OSR compilations with locks. If DeoptAfterOSR is true we can
-per definition not have unbalaced enter/extis mappings. If
+per definition not have unbalanced enter/exits mappings. If
 DeoptAfterOSR is false insert artificial monitor enters after the
 OSRStart to have balanced enter/exits in the graph.
 </pre></td></tr>
@@ -843,8 +845,6 @@ milliseconds
 <tr><td>Timers</td><td>String</td><td>null</td><td><pre>Comma separated names of timers that are enabled irrespective of the
 value for Time option. An empty value enables all timers
 unconditionally.
-</pre></td></tr>
-<tr><td>TraceBuilding</td><td>String</td><td>UniDirectional</td><td><pre>Trace building algorithm.
 </pre></td></tr>
 <tr><td>TraceBytecodeParserLevel</td><td>Integer</td><td>0</td><td><pre>The trace level for the bytecode parser. A value of 1 enables
 instruction tracing and any greater value emits a frame state trace
@@ -881,35 +881,6 @@ this substring.
 <tr><td>TraceMonitorsTypeFilter</td><td>String</td><td>null</td><td><pre>Trace monitor operations on objects whose type contains this substring.
 </pre></td></tr>
 <tr><td>TraceParserPlugins</td><td>Boolean</td><td>false</td><td><pre>Traces use of plugins during bytecode parsing.
-</pre></td></tr>
-<tr><td>TraceRACacheStackSlots</td><td>Boolean</td><td>true</td><td><pre>Cache stack slots globally (i.e. a variable always gets the same slot
-in every trace).
-</pre></td></tr>
-<tr><td>TraceRAPolicy</td><td>String</td><td>Default</td><td><pre>TraceRA allocation policy to use.
-</pre></td></tr>
-<tr><td>TraceRAScheduleTrivialTracesEarly</td><td>Boolean</td><td>true</td><td><pre>Schedule trivial traces as early as possible.
-</pre></td></tr>
-<tr><td>TraceRA</td><td>Boolean</td><td>false</td><td><pre>Enable experimental Trace Register Allocation.
-</pre></td></tr>
-<tr><td>TraceRAalmostTrivialSize</td><td>Integer</td><td>2</td><td><pre>Use BottomUp if there is only one block with at most this number of
-instructions
-</pre></td></tr>
-<tr><td>TraceRAbottomUpRatio</td><td>Double</td><td>0.0</td><td><pre>Use LSRA / BottomUp ratio
-</pre></td></tr>
-<tr><td>TraceRAfrequencyThreshold</td><td>Double</td><td>0.8</td><td><pre>Frequency Threshold
-</pre></td></tr>
-<tr><td>TraceRAnumVariables</td><td>Integer</td><td>null</td><td><pre>Use BottomUp for traces with low number of variables at block
-boundaries
-</pre></td></tr>
-<tr><td>TraceRAreuseStackSlotsForMoveResolutionCycleBreaking</td><td>Boolean</td><td>true</td><td><pre>Reuse spill slots for global move resolution cycle breaking.
-</pre></td></tr>
-<tr><td>TraceRAshareSpillInformation</td><td>Boolean</td><td>true</td><td><pre>Share information about spilled values to other traces.
-</pre></td></tr>
-<tr><td>TraceRAsumBudget</td><td>Double</td><td>0.5</td><td><pre>Sum Frequency Budget Threshold
-</pre></td></tr>
-<tr><td>TraceRAtrivialBlockAllocator</td><td>Boolean</td><td>true</td><td><pre>Use special allocator for trivial blocks.
-</pre></td></tr>
-<tr><td>TraceRAuseInterTraceHints</td><td>Boolean</td><td>true</td><td><pre>Use inter-trace register hints.
 </pre></td></tr>
 <tr><td>TraceTruffleAssumptions</td><td>Boolean</td><td>false</td><td><pre>Print stack trace on assumption invalidation
 </pre></td></tr>
@@ -994,8 +965,13 @@ use Graal system compiler configuration).
 <tr><td>TruffleExperimentalSplittingMaxPropagationDepth</td><td>Integer</td><td>5</td><td><pre>Propagate info about a polymorphic specialize through maximum this many
 call targets
 </pre></td></tr>
+<tr><td>TruffleExperimentalSplittingTraceEvents</td><td>Boolean</td><td>false</td><td><pre>Trace details of experimental splitting events and decisions.
+</pre></td></tr>
 <tr><td>TruffleExperimentalSplitting</td><td>Boolean</td><td>false</td><td><pre>Use the splitting strategy that relies on language implementations
 reporting polymorphic specializations. Disables forced splits.
+</pre></td></tr>
+<tr><td>TruffleFirstTierCompilationThreshold</td><td>Integer</td><td>100</td><td><pre>Compile call target in the first tier when call count exceeds this
+threshold.
 </pre></td></tr>
 <tr><td>TruffleFirstTierMinInvokeThreshold</td><td>Integer</td><td>1</td><td><pre>Minimum number of calls before a call target is compiled in the first
 tier.
@@ -1094,6 +1070,8 @@ extra invoke.
 <tr><td>UnrollMaxIterations</td><td>Integer</td><td>16</td><td></td></tr>
 <tr><td>UseCompilationStatistics</td><td>Boolean</td><td>false</td><td><pre>Enables CompilationStatistics.
 </pre></td></tr>
+<tr><td>UseEncodedSnippets</td><td>Boolean</td><td>false</td><td><pre>This is a testing option to exercise the SymbolicSnippetEncoder
+</pre></td></tr>
 <tr><td>UseExceptionProbability</td><td>Boolean</td><td>true</td><td></td></tr>
 <tr><td>UseGraphCache</td><td>Boolean</td><td>true</td><td><pre>Turn on graph caching.
 </pre></td></tr>
@@ -1167,7 +1145,7 @@ option for the pattern syntax.
 		</tbody>
 	</table>
 	<div class="footer">
-		Built on Sun Jan 13 10:06:10 GMT 2019 from Graal sources by <a
+		Built on Tue Feb 05 09:20:02 GMT 2019 from Graal sources by <a
 			href="https://twitter.com/chriswhocodes">@chriswhocodes</a>
 	</div>
 </body>
