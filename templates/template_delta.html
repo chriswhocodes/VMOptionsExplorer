@@ -1,18 +1,69 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html lang='en-GB'>
 <head>
-<title>$H1_TITLE</title>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<meta name="author" content="Chris Newland" />
-<meta name="copyright" content="Chris Newland 2018-2019" />
-<meta name="viewport" content="width=device-width" />
-<link rel="stylesheet" type="text/css" href="css/style-vmoe.css">
+    <title>$H1_TITLE</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <meta name="author" content="Chris Newland"/>
+    <meta name="copyright" content="Chris Newland 2018-2019"/>
+    <meta name="viewport" content="width=device-width"/>
+    <link rel="stylesheet" type="text/css" href="css/style-vmoe.css">
 </head>
 <body>
-	$HEADER_HTML
-	$DELTA_BODY
-	<div class="footer">
-		Built on $DATE by <a href="https://twitter.com/chriswhocodes">@chriswhocodes</a>
-	</div>
+$HEADER_HTML
+$DELTA_BODY
+<div class="glossary" id="glossary">
+    <h3>What do 'Deprecated', 'Obsoleted', and 'Expired' mean?</h3>
+
+    <div>Definitions abridged from the OpenJDK source code file <a
+            href="http://hg.openjdk.java.net/jdk/jdk11/file/1ddf9a99e4ad/src/hotspot/share/runtime/arguments.cpp#l446">src/hotspot/share/runtime/arguments.cpp</a>
+        <br><br>Using the example of <a href="hotspot_options_jdk11.html?s=AggressiveOpts">-XX:+AggressiveOpts</a> which was
+        Deprecated in
+        JDK11, Obsoleted in JDK12, Expired in JDK13.
+    </div>
+
+    <h4>Deprecated</h4>
+    <div>An option that is supported, but a warning is printed to let the user know that support may be removed in the future.</div>
+
+    <pre class="example">./jdk11/build/linux-x86_64-normal-server-release/jdk/bin/java -XX:+AggressiveOpts
+OpenJDK 64-Bit Server VM warning: Option AggressiveOpts was deprecated in version 11.0 and will likely be removed in a future release.
+    </pre>
+
+
+    <h4>Obsoleted</h4>
+    <div>An option that has been removed, but is still accepted on the command line. A warning is printed to let the user know that
+        option might not be accepted in the future.
+    </div>
+
+    <pre class="example">./jdk12/build/linux-x86_64-server-release/jdk/bin/java -XX:+AggressiveOpts
+OpenJDK 64-Bit Server VM warning: Ignoring option AggressiveOpts; support was removed in 12.0
+    </pre>
+
+
+    <h4>Expired</h4>
+    <div>A deprecated or obsolete option that has an "accept_until" version less than or equal to the current JDK version. It will
+        just print a warning when used in the JDK version in which it expired.
+    </div>
+
+    <pre class="example">./jdk13/build/linux-x86_64-server-release/jdk/bin/java -XX:+AggressiveOpts
+OpenJDK 64-Bit Server VM warning: Ignoring option AggressiveOpts; support was removed in 12.0
+    </pre>
+
+    <div class="glossWarn">Once you go past the JDK version in which the option was expired the VM will fail to start when the
+        option is passed:
+    </div>
+
+    <div>Using the example of <a href="hotspot_options_jdk10.html?s=DeferPollingPageLoopCount">-XX:+DeferPollingPageLoopCount</a>
+        which was Deprecated in JDK10, Obsoleted in JDK11, Expired in JDK12.
+    </div>
+
+    <pre class="example">./jdk13/build/linux-x86_64-server-release/jdk/bin/java -XX:+DeferPollingPageLoopCount
+Unrecognized VM option 'DeferPollingPageLoopCount'
+Error: Could not create the Java Virtual Machine.
+Error: A fatal exception has occurred. Program will exit.
+    </pre>
+</div>
+<div class="footer">
+    Built on $DATE by <a href="https://twitter.com/chriswhocodes">@chriswhocodes</a>
+</div>
 </body>
 </html>

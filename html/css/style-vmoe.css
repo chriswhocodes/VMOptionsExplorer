@@ -1,84 +1,118 @@
 body {
-	font-family: sans-serif;
-	font-size: 12px;
+    font-family: sans-serif;
+    font-size: 12px;
 }
 
 th, td {
-	text-align: left;
+    text-align: left;
 }
 
 .dataTables_filter {
-	float: left !important;
-	font-size: 24px;
+    float: left !important;
+    font-size: 24px;
 }
 
 .dataTables_filter input {
-	height: 32px;
-	font-size: 24px;
-	border: 2px solid black;
+    height: 32px;
+    font-size: 24px;
+    border: 2px solid black;
 }
 
 .footer {
-	margin-top: 12px;
-	text-align: center;
-	font-weight: bold;
+    margin-top: 12px;
+    text-align: center;
+    font-weight: bold;
+}
+
+.deltaH2 {
+    margin-bottom: 4px;
 }
 
 .delta, .delta td, .delta th {
-	border: 1px solid black;
-	border-collapse: collapse;
-	font-family: monospace;
-	vertical-align: top;
-	padding: 8px;
+    border: 1px solid black;
+    border-collapse: collapse;
+    font-family: monospace;
+    vertical-align: top;
+    padding: 8px;
 }
 
 .removed {
-	background-color: #ffcccc;
+    background-color: #ffcccc;
 }
 
 .removed div, .added div {
-	padding-bottom:8px;
+    padding-bottom: 8px;
 }
 
 .added {
-	background-color: #ccffcc;
+    background-color: #ccffcc;
 }
 
 a, a:visited {
-	color: blue;
+    color: blue;
+}
+
+.preInline {
+    display: inline;
+    font-weight: bold;
+}
+
+.glossary {
+    border: 1px dotted black;
+    background-color: #ffee99;
+    margin: 8px auto;
+    padding: 8px;
+}
+
+.glossWarn {
+    background-color: red;
+    font-weight: bold;
+    padding: 8px;
+    margin-bottom: 8px;
+}
+
+.glossaryLink {
+    margin-top: 2px;
+    font-weight: normal;
+}
+
+.example {
+    background-color: black;
+    color: white;
+    padding: 8px;
 }
 
 .menu {
-	border-collapse: collapse;
-	background-color: #ffee99;
-	margin-bottom: 12px;
+    border-collapse: collapse;
+    background-color: #ffee99;
+    margin-bottom: 12px;
 }
 
 .menu th, .menu td {
-	border: 1px solid black;
-	font-size: 24px;
-	text-align: center;
-	padding: 8px;
+    border: 1px solid black;
+    font-size: 24px;
+    text-align: center;
+    padding: 8px;
 }
 
 .menu td {
-	font-size: 14px;
-	text-align: center;
-	vertical-align: top;
-	min-width: 120px;
-	padding: 4px;
+    font-size: 14px;
+    text-align: center;
+    vertical-align: top;
+    min-width: 120px;
+    padding: 4px;
 }
 
 .diffs {
-	float: right;
-	clear: none;
-	margin-right: 8px;
-	font-size: 14px;
+    float: right;
+    clear: none;
+    margin-right: 8px;
+    font-size: 14px;
 }
 
 .book {
-	text-align: left;
-	padding:0px 0px 16px 0px;
-	font-size: 14px;
-	font-weight: bold;
+    text-align: left;
+    padding: 0px 0px 16px 0px;
+    font-size: 14px;
+    font-weight: bold;
 }

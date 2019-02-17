@@ -88,6 +88,8 @@ public class VMOptionsExplorer
 
 	private void addChangesBetweenVMs(VMData earlier, VMData later, StringBuilder builder) throws IOException
 	{
+		String glossaryLink = "<a class=\"glossaryLink\" href=\"#glossary\">What do 'Deprecated', 'Obsoleted', and 'Expired' mean?</a>";
+
 		System.out.println("Calculating changes between " + earlier.getJdkName() + " and " + later.getJdkName());
 
 		Map<String, SwitchInfo> switchMapEarlier = getParser(earlier.getVmType()).process(earlier.getVmPath());
@@ -126,12 +128,14 @@ public class VMOptionsExplorer
 		}
 
 		builder
-				.append("<h2 id=\"").append(later.getJdkName()).append("\">")
+				.append("<h2 class=\"deltaH2\" id=\"").append(later.getJdkName()).append("\">")
 				.append("Differences between ")
 				.append(earlier.getJdkName())
 				.append(" and ")
 				.append(later.getJdkName())
 				.append("</h2>");
+
+		builder.append("<h3 class=\"glossaryLink\">").append(glossaryLink).append("</h3>");
 
 		DeltaTable deltaTable = new DeltaTable(earlier, later);
 
