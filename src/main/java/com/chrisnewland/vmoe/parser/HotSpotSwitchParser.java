@@ -79,7 +79,7 @@ public class HotSpotSwitchParser extends AbstractSwitchParser
 				}
 				else if ("product".equals(availability) || "develop".equals(availability) || "lp64_product".equals(availability)
 						|| "notproduct".equals(availability) || "diagnostic".equals(availability)
-						|| "experimental".equals(availability))
+						|| "experimental".equals(availability) || "manageable".equals(availability))
 				{
 					inLine = true;
 					expectedLineEnding = "\")";
