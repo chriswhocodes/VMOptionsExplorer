@@ -76,7 +76,6 @@ graal.BootstrapTimeout = 15.0                                             [Doubl
 graal.BootstrapWatchDogCriticalRateRatio = 0.25                           [Double]
           Ratio of the maximum compilation rate below which the bootstrap
           compilation rate must not fall (0 or less disables monitoring).
-graal.CallArrayCopy = true                                               [Boolean]
 graal.CanOmitFrame = true                                                [Boolean]
 graal.CanonicalGraphStringsCheckConstants = false                        [Boolean]
           Exclude virtual nodes when dumping canonical text for graphs.
@@ -212,7 +211,7 @@ graal.DumpOnPhaseChange = null                                            [Strin
           Dump a before and after graph if the named phase changes the
           graph.%nThe argument is substring matched against the simple name of
           the phase class
-graal.DumpPath = "dumps"                                                  [String]
+graal.DumpPath = "graal_dumps"                                            [String]
           The directory where various Graal dump files are written.
 graal.DumpingErrorsAreFatal = false                                      [Boolean]
           Treat any exceptions during dumping as fatal.
@@ -234,6 +233,8 @@ graal.FullUnrollConstantCompareBoost = 15                                [Intege
 graal.FullUnrollMaxIterations = 600                                      [Integer]
 graal.FullUnrollMaxNodes = 400                                           [Integer]
 graal.GCDebugStartCycle = -1                                             [Integer]
+          Start tracing compiled GC barriers after N garbage collections
+          (disabled if N <= 0).
 graal.GenLoopSafepoints = true                                           [Boolean]
 graal.GenSafepoints = true                                               [Boolean]
 graal.GeneratePIC = false                                                [Boolean]
@@ -348,7 +349,8 @@ graal.MaxCompilationProblemsPerAction = 2                                [Intege
 graal.MaxTemplatesPerSnippet = 50                                        [Integer]
 graal.MaximumDesiredSize = 20000                                         [Integer]
           Maximum desired size of the compiler graph in nodes.
-graal.MaximumEscapeAnalysisArrayLength = 32                              [Integer]
+graal.MaximumEscapeAnalysisArrayLength = 128                             [Integer]
+          The maximum length of an array that will be escape analyzed.
 graal.MaximumInliningSize = 300                                          [Integer]
           Inlining is explored up to this number of nodes in the graph for each
           call site.
@@ -428,7 +430,15 @@ graal.MetricsThreadFilter = null                                          [Strin
 graal.MinimumPeelProbability = 0.35                                        [Float]
 graal.MitigateSpeculativeExecutionAttacks = None                          [String]
           Select a strategy to mitigate speculative execution attacks (e.g.,
-          SPECTRE)
+          SPECTRE).
+          The accepted values are:
+                            None - No mitigations are used in JIT compiled code.
+                      AllTargets - All branches are protected against speculative attacks.
+                                   This has a significant performance impact.
+                    GuardTargets - Only branches that preserve Java memory safety are protected.
+                                   This has less performance impact than AllTargets.
+            NonDeoptGuardTargets - GuardTargets except that branches which deoptimize are not
+                                   protected since they can not be executed repeatedly.
 graal.NDCV = 0                                                           [Integer]
           Run level for NoDeadCodeVerifyHandler (0 = off, 1 = info, 2 = verbose,
           3 = fatal)
@@ -458,8 +468,6 @@ graal.PartialUnroll = true                                               [Boolea
 graal.PrintBackendCFG = true                                             [Boolean]
           Enable dumping LIR, register allocation and code generation info to the
           C1Visualizer.
-graal.PrintBinaryGraphPort = 4445                                        [Integer]
-          Port part of the address to which graphs are dumped in binary format.
 graal.PrintCFG = false                                                   [Boolean]
           Enable dumping to the C1Visualizer. Enabling this option implies
           PrintBackendCFG.
@@ -473,12 +481,21 @@ graal.PrintCanonicalGraphStrings = false                                 [Boolea
 graal.PrintCompilation = false                                           [Boolean]
           Print an informational line to the console for each completed
           compilation.
-graal.PrintGraph = true                                                  [Boolean]
-          Enable dumping to the IdealGraphVisualizer.
-graal.PrintGraphFile = false                                             [Boolean]
-          Print graphs to files instead of sending them over the network.
+graal.PrintGraph = File                                                   [String]
+          Where IdealGraphVisualizer graph dumps triggered by Dump or DumpOnError
+          should be written.
+          The accepted values are:
+                File - Dump IGV graphs to the local file system (see DumpPath).
+             Network - Dump IGV graphs to the network destination specified by PrintGraphHost and PrintGraphPort.
+                       If a network connection cannot be opened, dumping falls back to file dumping. 
+             Disable - Do not dump IGV graphs.
+graal.PrintGraphFile = true                                              [Boolean]
+          Setting to true sets PrintGraph=file, setting to false sets
+          PrintGraph=network
 graal.PrintGraphHost = "127.0.0.1"                                        [String]
           Host part of the address to which graphs are dumped.
+graal.PrintGraphPort = 4445                                              [Integer]
+          Port part of the address to which graphs are dumped in binary format.
 graal.PrintGraphWithSchedule = false                                     [Boolean]
           Schedule graphs as they are dumped.
 graal.PrintIRWithLIR = false                                             [Boolean]
@@ -689,18 +706,6 @@ graal.TruffleEnableInfopoints = false                                    [Boolea
           Enable support for simple infopoints in truffle partial evaluations.
 graal.TruffleExcludeAssertions = true                                    [Boolean]
           Exclude assertion code from Truffle compilations
-graal.TruffleExperimentalSplitting = false                               [Boolean]
-          Use the splitting strategy that relies on language implementations
-          reporting polymorphic specializations. Disables forced splits.
-graal.TruffleExperimentalSplittingAllowForcedSplits = true               [Boolean]
-          Should forced splits be allowed (when using experimental splitting)
-graal.TruffleExperimentalSplittingDumpDecisions = false                  [Boolean]
-          Dumps to IGV information on polymorphic events
-graal.TruffleExperimentalSplittingMaxPropagationDepth = 5                [Integer]
-          Propagate info about a polymorphic specialize through maximum this many
-          call targets
-graal.TruffleExperimentalSplittingTraceEvents = false                    [Boolean]
-          Trace details of experimental splitting events and decisions.
 graal.TruffleFirstTierCompilationThreshold = 100                         [Integer]
           Compile call target in the first tier when call count exceeds this
           threshold.
@@ -742,6 +747,8 @@ graal.TruffleInvalidationReprofileCount = 3                              [Intege
           Delay compilation after an invalidation to allow for reprofiling
 graal.TruffleIterativePartialEscape = false                              [Boolean]
           Run the partial escape analysis iteratively in Truffle compilation.
+graal.TruffleLegacySplitting = false                                     [Boolean]
+          Use legacy splitting heuristic. This option will be removed.
 graal.TruffleMaximumRecursiveInlining = 4                                [Integer]
           Maximum level of recursive inlining
 graal.TruffleMinInvokeThreshold = 3                                      [Integer]
@@ -763,6 +770,10 @@ graal.TruffleReplaceReprofileCount = 3                                   [Intege
 graal.TruffleReturnTypeSpeculation = true                                [Boolean]
 graal.TruffleSplitting = true                                            [Boolean]
           Enable call target splitting
+graal.TruffleSplittingAllowForcedSplits = true                           [Boolean]
+          Should forced splits be allowed.
+graal.TruffleSplittingDumpDecisions = false                              [Boolean]
+          Dumps to IGV information on polymorphic events
 graal.TruffleSplittingGrowthLimit = 1.5                                   [Double]
           Disable call target splitting if the number of nodes created by
           splitting exceeds this factor times node count
@@ -771,6 +782,11 @@ graal.TruffleSplittingMaxCalleeSize = 100                                [Intege
 graal.TruffleSplittingMaxNumberOfSplitNodes = 500000                     [Integer]
           Disable call target splitting if number of nodes created by splitting
           exceeds this limit
+graal.TruffleSplittingMaxPropagationDepth = 5                            [Integer]
+          Propagate info about a polymorphic specialize through maximum this many
+          call targets
+graal.TruffleSplittingTraceEvents = false                                [Boolean]
+          Trace details of splitting events and decisions.
 graal.TruffleTimeThreshold = 50000                                       [Integer]
           Defines the maximum timespan in milliseconds that is required for a
           call target to be queued for compilation.
@@ -800,7 +816,7 @@ graal.UseGuardedIntrinsics = true                                        [Boolea
           sites.
 graal.UseIndexMasking = false                                            [Boolean]
           Use index masking after bounds check to mitigate speculative execution
-          attacks
+          attacks.
 graal.UseLoopLimitChecks = true                                          [Boolean]
 graal.UseSnippetGraphCache = true                                        [Boolean]
           Use a cache for snippet graphs.

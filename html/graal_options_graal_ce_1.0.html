@@ -196,7 +196,6 @@ limit).
 <tr><td>BootstrapWatchDogCriticalRateRatio</td><td>Double</td><td>0.25</td><td><pre>Ratio of the maximum compilation rate below which the bootstrap
 compilation rate must not fall (0 or less disables monitoring).
 </pre></td></tr>
-<tr><td>CallArrayCopy</td><td>Boolean</td><td>true</td><td></td></tr>
 <tr><td>CanOmitFrame</td><td>Boolean</td><td>true</td><td></td></tr>
 <tr><td>CanonicalGraphStringsCheckConstants</td><td>Boolean</td><td>false</td><td><pre>Exclude virtual nodes when dumping canonical text for graphs.
 </pre></td></tr>
@@ -272,7 +271,7 @@ enabled.
 graph.%nThe argument is substring matched against the simple name of
 the phase class
 </pre></td></tr>
-<tr><td>DumpPath</td><td>String</td><td>"dumps"</td><td><pre>The directory where various Graal dump files are written.
+<tr><td>DumpPath</td><td>String</td><td>"graal_dumps"</td><td><pre>The directory where various Graal dump files are written.
 </pre></td></tr>
 <tr><td>Dump</td><td>String</td><td>null</td><td><pre>Filter pattern for specifying scopes in which dumping is enabled.
           
@@ -355,7 +354,9 @@ Examples of debug filters:
 <tr><td>FullUnrollMaxIterations</td><td>Integer</td><td>600</td><td></td></tr>
 <tr><td>FullUnrollMaxNodes</td><td>Integer</td><td>400</td><td></td></tr>
 <tr><td>FullUnroll</td><td>Boolean</td><td>true</td><td></td></tr>
-<tr><td>GCDebugStartCycle</td><td>Integer</td><td>-1</td><td></td></tr>
+<tr><td>GCDebugStartCycle</td><td>Integer</td><td>-1</td><td><pre>Start tracing compiled GC barriers after N garbage collections
+(disabled if N <= 0).
+</pre></td></tr>
 <tr><td>GenLoopSafepoints</td><td>Boolean</td><td>true</td><td></td></tr>
 <tr><td>GenSafepoints</td><td>Boolean</td><td>true</td><td></td></tr>
 <tr><td>GeneratePIC</td><td>Boolean</td><td>false</td><td><pre>Generate position independent code
@@ -472,7 +473,8 @@ does not apply to the ExitVM action.
 <tr><td>MaxTemplatesPerSnippet</td><td>Integer</td><td>50</td><td></td></tr>
 <tr><td>MaximumDesiredSize</td><td>Integer</td><td>20000</td><td><pre>Maximum desired size of the compiler graph in nodes.
 </pre></td></tr>
-<tr><td>MaximumEscapeAnalysisArrayLength</td><td>Integer</td><td>32</td><td></td></tr>
+<tr><td>MaximumEscapeAnalysisArrayLength</td><td>Integer</td><td>128</td><td><pre>The maximum length of an array that will be escape analyzed.
+</pre></td></tr>
 <tr><td>MaximumInliningSize</td><td>Integer</td><td>300</td><td><pre>Inlining is explored up to this number of nodes in the graph for each
 call site.
 </pre></td></tr>
@@ -551,7 +553,15 @@ expression.
 </pre></td></tr>
 <tr><td>MinimumPeelProbability</td><td>Float</td><td>0.35</td><td></td></tr>
 <tr><td>MitigateSpeculativeExecutionAttacks</td><td>String</td><td>None</td><td><pre>Select a strategy to mitigate speculative execution attacks (e.g.,
-SPECTRE)
+SPECTRE).
+The accepted values are:
+                  None - No mitigations are used in JIT compiled code.
+            AllTargets - All branches are protected against speculative attacks.
+                         This has a significant performance impact.
+          GuardTargets - Only branches that preserve Java memory safety are protected.
+                         This has less performance impact than AllTargets.
+  NonDeoptGuardTargets - GuardTargets except that branches which deoptimize are not
+                         protected since they can not be executed repeatedly.
 </pre></td></tr>
 <tr><td>NDCV</td><td>Integer</td><td>0</td><td><pre>Run level for NoDeadCodeVerifyHandler (0 = off, 1 = info, 2 = verbose,
 3 = fatal)
@@ -582,8 +592,6 @@ before the VM exits on the basis of a stuck compilation.
 <tr><td>PrintBackendCFG</td><td>Boolean</td><td>true</td><td><pre>Enable dumping LIR, register allocation and code generation info to the
 C1Visualizer.
 </pre></td></tr>
-<tr><td>PrintBinaryGraphPort</td><td>Integer</td><td>4445</td><td><pre>Port part of the address to which graphs are dumped in binary format.
-</pre></td></tr>
 <tr><td>PrintCFG</td><td>Boolean</td><td>false</td><td><pre>Enable dumping to the C1Visualizer. Enabling this option implies
 PrintBackendCFG.
 </pre></td></tr>
@@ -599,13 +607,22 @@ compilation.
 </pre></td></tr>
 <tr><td>PrintConfig</td><td>Boolean</td><td>false</td><td><pre>Prints VM configuration available via JVMCI.
 </pre></td></tr>
-<tr><td>PrintGraphFile</td><td>Boolean</td><td>false</td><td><pre>Print graphs to files instead of sending them over the network.
+<tr><td>PrintGraphFile</td><td>Boolean</td><td>true</td><td><pre>Setting to true sets PrintGraph=file, setting to false sets
+PrintGraph=network
 </pre></td></tr>
 <tr><td>PrintGraphHost</td><td>String</td><td>"127.0.0.1"</td><td><pre>Host part of the address to which graphs are dumped.
 </pre></td></tr>
+<tr><td>PrintGraphPort</td><td>Integer</td><td>4445</td><td><pre>Port part of the address to which graphs are dumped in binary format.
+</pre></td></tr>
 <tr><td>PrintGraphWithSchedule</td><td>Boolean</td><td>false</td><td><pre>Schedule graphs as they are dumped.
 </pre></td></tr>
-<tr><td>PrintGraph</td><td>Boolean</td><td>true</td><td><pre>Enable dumping to the IdealGraphVisualizer.
+<tr><td>PrintGraph</td><td>String</td><td>File</td><td><pre>Where IdealGraphVisualizer graph dumps triggered by Dump or DumpOnError
+should be written.
+The accepted values are:
+      File - Dump IGV graphs to the local file system (see DumpPath).
+   Network - Dump IGV graphs to the network destination specified by PrintGraphHost and PrintGraphPort.
+             If a network connection cannot be opened, dumping falls back to file dumping. 
+   Disable - Do not dump IGV graphs.
 </pre></td></tr>
 <tr><td>PrintIRWithLIR</td><td>Boolean</td><td>false</td><td><pre>Print HIR along side LIR as the latter is generated
 </pre></td></tr>
@@ -819,18 +836,6 @@ use Graal system compiler configuration).
 </pre></td></tr>
 <tr><td>TruffleExcludeAssertions</td><td>Boolean</td><td>true</td><td><pre>Exclude assertion code from Truffle compilations
 </pre></td></tr>
-<tr><td>TruffleExperimentalSplittingAllowForcedSplits</td><td>Boolean</td><td>true</td><td><pre>Should forced splits be allowed (when using experimental splitting)
-</pre></td></tr>
-<tr><td>TruffleExperimentalSplittingDumpDecisions</td><td>Boolean</td><td>false</td><td><pre>Dumps to IGV information on polymorphic events
-</pre></td></tr>
-<tr><td>TruffleExperimentalSplittingMaxPropagationDepth</td><td>Integer</td><td>5</td><td><pre>Propagate info about a polymorphic specialize through maximum this many
-call targets
-</pre></td></tr>
-<tr><td>TruffleExperimentalSplittingTraceEvents</td><td>Boolean</td><td>false</td><td><pre>Trace details of experimental splitting events and decisions.
-</pre></td></tr>
-<tr><td>TruffleExperimentalSplitting</td><td>Boolean</td><td>false</td><td><pre>Use the splitting strategy that relies on language implementations
-reporting polymorphic specializations. Disables forced splits.
-</pre></td></tr>
 <tr><td>TruffleFirstTierCompilationThreshold</td><td>Integer</td><td>100</td><td><pre>Compile call target in the first tier when call count exceeds this
 threshold.
 </pre></td></tr>
@@ -872,6 +877,8 @@ compilation time
 </pre></td></tr>
 <tr><td>TruffleIterativePartialEscape</td><td>Boolean</td><td>false</td><td><pre>Run the partial escape analysis iteratively in Truffle compilation.
 </pre></td></tr>
+<tr><td>TruffleLegacySplitting</td><td>Boolean</td><td>false</td><td><pre>Use legacy splitting heuristic. This option will be removed.
+</pre></td></tr>
 <tr><td>TruffleMaximumRecursiveInlining</td><td>Integer</td><td>4</td><td><pre>Maximum level of recursive inlining
 </pre></td></tr>
 <tr><td>TruffleMinInvokeThreshold</td><td>Integer</td><td>3</td><td><pre>Minimum number of calls before a call target is compiled
@@ -891,6 +898,10 @@ applications
 <tr><td>TruffleReplaceReprofileCount</td><td>Integer</td><td>3</td><td><pre>Delay compilation after a node replacement
 </pre></td></tr>
 <tr><td>TruffleReturnTypeSpeculation</td><td>Boolean</td><td>true</td><td></td></tr>
+<tr><td>TruffleSplittingAllowForcedSplits</td><td>Boolean</td><td>true</td><td><pre>Should forced splits be allowed.
+</pre></td></tr>
+<tr><td>TruffleSplittingDumpDecisions</td><td>Boolean</td><td>false</td><td><pre>Dumps to IGV information on polymorphic events
+</pre></td></tr>
 <tr><td>TruffleSplittingGrowthLimit</td><td>Double</td><td>1.5</td><td><pre>Disable call target splitting if the number of nodes created by
 splitting exceeds this factor times node count
 </pre></td></tr>
@@ -898,6 +909,11 @@ splitting exceeds this factor times node count
 </pre></td></tr>
 <tr><td>TruffleSplittingMaxNumberOfSplitNodes</td><td>Integer</td><td>500000</td><td><pre>Disable call target splitting if number of nodes created by splitting
 exceeds this limit
+</pre></td></tr>
+<tr><td>TruffleSplittingMaxPropagationDepth</td><td>Integer</td><td>5</td><td><pre>Propagate info about a polymorphic specialize through maximum this many
+call targets
+</pre></td></tr>
+<tr><td>TruffleSplittingTraceEvents</td><td>Boolean</td><td>false</td><td><pre>Trace details of splitting events and decisions.
 </pre></td></tr>
 <tr><td>TruffleSplitting</td><td>Boolean</td><td>true</td><td><pre>Enable call target splitting
 </pre></td></tr>
@@ -929,7 +945,7 @@ compiled without profiling info
 sites.
 </pre></td></tr>
 <tr><td>UseIndexMasking</td><td>Boolean</td><td>false</td><td><pre>Use index masking after bounds check to mitigate speculative execution
-attacks
+attacks.
 </pre></td></tr>
 <tr><td>UseLoopLimitChecks</td><td>Boolean</td><td>true</td><td></td></tr>
 <tr><td>UseProfilingInformation</td><td>Boolean</td><td>true</td><td><pre>          
@@ -964,7 +980,7 @@ option for the pattern syntax.
 		</tbody>
 	</table>
 	<div class="footer">
-		Built on Tue Mar 05 12:09:18 GMT 2019 from Graal sources by <a
+		Built on Tue Mar 05 20:51:59 GMT 2019 from Graal sources by <a
 			href="https://twitter.com/chriswhocodes">@chriswhocodes</a>
 	</div>
 </body>
