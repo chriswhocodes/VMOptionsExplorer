@@ -608,7 +608,7 @@
 <tr><td>FLSVerifyDictionary</td><td>JDK6</td><td></td><td>bool</td><td></td><td></td><td>runtime</td><td>false</td><td>develop</td><td>Do lots of (expensive) FLS dictionary verification</td><td>src/share/vm/runtime/globals.hpp</td></tr>
 <tr><td>FLSVerifyIndexTable</td><td>JDK6</td><td></td><td>bool</td><td></td><td></td><td>runtime</td><td>false</td><td>diagnostic</td><td>Do lots of (expensive) FLS index table verification</td><td>src/share/vm/runtime/globals.hpp</td></tr>
 <tr><td>FLSVerifyLists</td><td>JDK6</td><td></td><td>bool</td><td></td><td></td><td>runtime</td><td>false</td><td>diagnostic</td><td>Do lots of (expensive) FreeListSpace verification</td><td>src/share/vm/runtime/globals.hpp</td></tr>
-<tr><td>FailOverToOldVerifier</td><td>JDK6</td><td></td><td>bool</td><td></td><td></td><td>runtime</td><td>true</td><td>product</td><td>Fail over to old verifier when split verifier fails</td><td>src/share/vm/runtime/globals.hpp</td></tr>
+<tr><td>FailOverToOldVerifier</td><td>JDK6</td><td><span style="white-space:nowrap">Deprecated in JDK13</span><br><span style="white-space:nowrap">Obsoleted in JDK14</span></td><td>bool</td><td></td><td></td><td>runtime</td><td>true</td><td>product</td><td>Fail over to old verifier when split verifier fails</td><td>src/share/vm/runtime/globals.hpp</td></tr>
 <tr><td>FastAllocateSizeLimit</td><td>JDK6</td><td></td><td>intx</td><td></td><td></td><td>runtime</td><td>128*K</td><td>develop</td><td>/* Note: This value is zero mod 1<<13 for a cheap sparc set. */Inline allocations larger than this in doublewords must go slow</td><td>src/share/vm/runtime/globals.hpp</td></tr>
 <tr><td>FastSuperclassLimit</td><td>JDK6</td><td></td><td>intx</td><td></td><td></td><td>runtime</td><td>8</td><td>develop</td><td>Depth of hardwired instanceof accelerator array</td><td>src/share/vm/runtime/globals.hpp</td></tr>
 <tr><td>FastTLABRefill</td><td>JDK6</td><td><span style="white-space:nowrap">Deprecated in JDK10</span><br><span style="white-space:nowrap">Obsoleted in JDK11</span><br><span style="white-space:nowrap">Expired in JDK12</span></td><td>bool</td><td></td><td></td><td>runtime</td><td>true</td><td>product</td><td>Use fast TLAB refill code</td><td>src/share/vm/runtime/globals.hpp</td></tr>
@@ -2243,7 +2243,7 @@
 		</tbody>
 	</table>
 	<div class="footer">
-		Built on Tue Feb 19 08:55:28 GMT 2019 from HotSpot sources by <a
+		Built on Tue Mar 05 12:09:18 GMT 2019 from HotSpot sources by <a
 			href="https://twitter.com/chriswhocodes">@chriswhocodes</a>
 	</div>
 </body>

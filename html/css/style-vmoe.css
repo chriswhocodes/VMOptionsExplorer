@@ -14,6 +14,7 @@ th, td {
 
 .dataTables_filter input {
     height: 32px;
+    width: 480px;
     font-size: 24px;
     border: 2px solid black;
 }
@@ -25,23 +26,42 @@ th, td {
 }
 
 .deltaH2 {
-    margin-bottom: 4px;
+    margin: 0px 0px 4px 0px;
+    font-size: 32px;
 }
 
-.delta, .delta td, .delta th {
-    border: 1px solid black;
-    border-collapse: collapse;
-    font-family: monospace;
+.deltaH3 {
+    font-size: 20px;
+    margin:8px 0px;
+}
+
+.wrap {
     vertical-align: top;
-    padding: 8px;
+    padding: 0px 8px 0px 0px;
+    float: left;
+    clear: none;
+}
+
+.dtwrapper {
+    padding: 0px;
+    margin: 0px;
+}
+
+.dtclear {
+    float: none;
+    clear: both;
 }
 
 .removed {
     background-color: #ffcccc;
 }
 
-.removed div, .added div {
-    padding-bottom: 8px;
+.deltatable, .deltatable td, .deltatable th {
+    border: 1px solid black;
+    border-collapse: collapse;
+    font-family: monospace;
+    font-size: 12px;
+    padding: 8px;
 }
 
 .added {

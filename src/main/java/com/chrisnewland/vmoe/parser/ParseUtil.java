@@ -18,7 +18,6 @@ public class ParseUtil
 
 			if (endIndex != -1)
 			{
-
 				result = input.substring(startIndex + start.length(), endIndex);
 			}
 		}

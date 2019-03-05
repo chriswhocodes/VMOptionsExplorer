@@ -570,7 +570,7 @@
 <tr><td>FLSVerifyDictionary</td><td>JDK6</td><td></td><td>bool</td><td></td><td></td><td>runtime</td><td>false</td><td>develop</td><td>Do lots of (expensive) FLS dictionary verification</td><td>share/runtime/globals.hpp</td></tr>
 <tr><td>FLSVerifyIndexTable</td><td>JDK6</td><td></td><td>bool</td><td></td><td></td><td>gc</td><td>false</td><td>diagnostic</td><td>Do lots of (expensive) FLS index table verification</td><td>share/gc/cms/cms_globals.hpp</td></tr>
 <tr><td>FLSVerifyLists</td><td>JDK6</td><td></td><td>bool</td><td></td><td></td><td>gc</td><td>false</td><td>diagnostic</td><td>Do lots of (expensive) FreeListSpace verification</td><td>share/gc/cms/cms_globals.hpp</td></tr>
-<tr><td>FailOverToOldVerifier</td><td>JDK6</td><td></td><td>bool</td><td></td><td></td><td>runtime</td><td>true</td><td>product</td><td>Fail over to old verifier when split verifier fails</td><td>share/runtime/globals.hpp</td></tr>
+<tr><td>FailOverToOldVerifier</td><td>JDK6</td><td><span style="white-space:nowrap">Deprecated in JDK13</span><br><span style="white-space:nowrap">Obsoleted in JDK14</span></td><td>bool</td><td></td><td></td><td>runtime</td><td>true</td><td>product</td><td>Fail over to old verifier when split verifier fails</td><td>share/runtime/globals.hpp</td></tr>
 <tr><td>FastAllocateSizeLimit</td><td>JDK6</td><td></td><td>intx</td><td></td><td></td><td>runtime</td><td>128*K</td><td>develop</td><td>/* Note: This value is zero mod 1<<13 for a cheap sparc set. */Inline allocations larger than this in doublewords must go slow</td><td>share/runtime/globals.hpp</td></tr>
 <tr><td>FastSuperclassLimit</td><td>JDK6</td><td></td><td>intx</td><td></td><td></td><td>runtime</td><td>8</td><td>develop</td><td>Depth of hardwired instanceof accelerator array</td><td>share/runtime/globals.hpp</td></tr>
 <tr><td>FieldsAllocationStyle</td><td>JDK6</td><td></td><td>intx</td><td></td><td></td><td>runtime</td><td>1<br>range(0, 2)</td><td>product</td><td>0 - type based with oops first, <br>1 - with oops last, <br>2 - oops in super and sub classes are together</td><td>share/runtime/globals.hpp</td></tr>
@@ -2090,7 +2090,7 @@
 		</tbody>
 	</table>
 	<div class="footer">
-		Built on Tue Feb 19 08:55:29 GMT 2019 from HotSpot sources by <a
+		Built on Tue Mar 05 12:09:18 GMT 2019 from HotSpot sources by <a
 			href="https://twitter.com/chriswhocodes">@chriswhocodes</a>
 	</div>
 </body>

@@ -88,44 +88,17 @@ public class VMOptionsExplorer
 
 	private void addChangesBetweenVMs(VMData earlier, VMData later, StringBuilder builder) throws IOException
 	{
-		String glossaryLink = "<a class=\"glossaryLink\" href=\"#glossary\">What do 'Deprecated', 'Obsoleted', and 'Expired' mean?</a>";
-
 		System.out.println("Calculating changes between " + earlier.getJdkName() + " and " + later.getJdkName());
 
 		Map<String, SwitchInfo> switchMapEarlier = getParser(earlier.getVmType()).process(earlier.getVmPath());
 
 		Map<String, SwitchInfo> switchMapLater = getParser(later.getVmType()).process(later.getVmPath());
 
-		Set<String> namesEarlier = new HashSet<>();
+		Set<SwitchInfo> inEarlier = new HashSet<>(switchMapEarlier.values());
 
-		Set<String> namesLater = new HashSet<>();
+		Set<SwitchInfo> inLater = new HashSet<>(switchMapLater.values());
 
-		Set<String> check = new HashSet<>();
-		// check.add("VerboseVerification");
-
-		for (Map.Entry<String, SwitchInfo> entry : switchMapEarlier.entrySet())
-		{
-			String switchName = entry.getValue().getName();
-
-			if (check.contains(switchName))
-			{
-				System.out.println(earlier.getJdkName() + " has " + switchName);
-			}
-
-			namesEarlier.add(switchName);
-		}
-
-		for (Map.Entry<String, SwitchInfo> entry : switchMapLater.entrySet())
-		{
-			String switchName = entry.getValue().getName();
-
-			if (check.contains(switchName))
-			{
-				System.out.println(later.getJdkName() + " has " + switchName);
-			}
-
-			namesLater.add(switchName);
-		}
+		builder.append("<hr>");
 
 		builder
 				.append("<h2 class=\"deltaH2\" id=\"").append(later.getJdkName()).append("\">")
@@ -135,23 +108,23 @@ public class VMOptionsExplorer
 				.append(later.getJdkName())
 				.append("</h2>");
 
-		builder.append("<h3 class=\"glossaryLink\">").append(glossaryLink).append("</h3>");
+		builder.append("<hr>");
 
 		DeltaTable deltaTable = new DeltaTable(earlier, later);
 
-		for (String inEarlier : namesEarlier)
+		for (SwitchInfo switchInfo : inEarlier)
 		{
-			if (!namesLater.contains(inEarlier))
+			if (!inLater.contains(switchInfo))
 			{
-				deltaTable.recordRemoval(inEarlier);
+				deltaTable.recordRemoval(switchInfo);
 			}
 		}
 
-		for (String inLater : namesLater)
+		for (SwitchInfo switchInfo : inLater)
 		{
-			if (!namesEarlier.contains(inLater))
+			if (!inEarlier.contains(switchInfo))
 			{
-				deltaTable.recordAddition(inLater);
+				deltaTable.recordAddition(switchInfo);
 			}
 		}
 

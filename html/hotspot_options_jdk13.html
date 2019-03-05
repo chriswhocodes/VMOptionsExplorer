@@ -503,8 +503,9 @@
 <tr><td>DontYieldALot</td><td>JDK6</td><td></td><td>bool</td><td>solaris</td><td>x86</td><td></td><td>true</td><td>define_pd_global</td><td>// Determined in the design center</td><td>os_cpu/solaris_x86/globals_solaris_x86.hpp</td></tr>
 <tr><td>DontYieldALot</td><td>JDK6</td><td></td><td>bool</td><td>windows</td><td>x86</td><td></td><td>false</td><td>define_pd_global</td><td></td><td>os_cpu/windows_x86/globals_windows_x86.hpp</td></tr>
 <tr><td>DumpLoadedClassList</td><td>JDK8</td><td></td><td>ccstr</td><td></td><td></td><td>runtime</td><td>NULL</td><td>product</td><td>Dump the names all loaded classes, that could be stored into the CDS archive, in the specified file</td><td>share/runtime/globals.hpp</td></tr>
-<tr><td>DumpPrivateMappingsInCore</td><td>JDK12</td><td></td><td>bool</td><td>linux</td><td></td><td></td><td>true</td><td>diagnostic</td><td>If true, sets bit 2 of /proc/PID/coredump_filter, thus resulting in file-backed private mappings of the process to be dumped into the corefile, if UseSharedSpaces is true.</td><td>os/linux/globals_linux.hpp</td></tr>
+<tr><td>DumpPrivateMappingsInCore</td><td>JDK12</td><td></td><td>bool</td><td>linux</td><td></td><td></td><td>true</td><td>diagnostic</td><td>If true, sets bit 2 of /proc/PID/coredump_filter, thus resulting in file-backed private mappings of the process to be dumped into the corefile.</td><td>os/linux/globals_linux.hpp</td></tr>
 <tr><td>DumpReplayDataOnError</td><td>JDK8</td><td></td><td>bool</td><td></td><td></td><td>runtime</td><td>true</td><td>product</td><td>Record replay data for crashing compiler threads</td><td>share/runtime/globals.hpp</td></tr>
+<tr><td>DumpSharedMappingsInCore</td><td>JDK13</td><td></td><td>bool</td><td>linux</td><td></td><td></td><td>true</td><td>diagnostic</td><td>If true, sets bit 3 of /proc/PID/coredump_filter, thus resulting in file-backed shared mappings of the process to be dumped into the corefile.</td><td>os/linux/globals_linux.hpp</td></tr>
 <tr><td>DumpSharedSpaces</td><td>JDK6</td><td></td><td>bool</td><td></td><td></td><td>runtime</td><td>false</td><td>product</td><td>Special mode: JVM reads a class list, loads classes, builds shared spaces, and dumps the shared spaces to a file to be used in future JVM runs</td><td>share/runtime/globals.hpp</td></tr>
 <tr><td>DynamicallyResizeSystemDictionaries</td><td>JDK10</td><td></td><td>bool</td><td></td><td></td><td>runtime</td><td>true</td><td>diagnostic</td><td>Dynamically resize system dictionaries as needed</td><td>share/runtime/globals.hpp</td></tr>
 <tr><td>EagerInitialization</td><td>JDK6</td><td></td><td>bool</td><td></td><td></td><td>runtime</td><td>false</td><td>develop</td><td>Eagerly initialize classes if possible</td><td>share/runtime/globals.hpp</td></tr>
@@ -563,7 +564,7 @@
 <tr><td>FLSVerifyDictionary</td><td>JDK6</td><td></td><td>bool</td><td></td><td></td><td>runtime</td><td>false</td><td>develop</td><td>Do lots of (expensive) FLS dictionary verification</td><td>share/runtime/globals.hpp</td></tr>
 <tr><td>FLSVerifyIndexTable</td><td>JDK6</td><td></td><td>bool</td><td></td><td></td><td>gc</td><td>false</td><td>diagnostic</td><td>Do lots of (expensive) FLS index table verification</td><td>share/gc/cms/cms_globals.hpp</td></tr>
 <tr><td>FLSVerifyLists</td><td>JDK6</td><td></td><td>bool</td><td></td><td></td><td>gc</td><td>false</td><td>diagnostic</td><td>Do lots of (expensive) FreeListSpace verification</td><td>share/gc/cms/cms_globals.hpp</td></tr>
-<tr><td>FailOverToOldVerifier</td><td>JDK6</td><td></td><td>bool</td><td></td><td></td><td>runtime</td><td>true</td><td>product</td><td>Fail over to old verifier when split verifier fails</td><td>share/runtime/globals.hpp</td></tr>
+<tr><td>FailOverToOldVerifier</td><td>JDK6</td><td><span style="white-space:nowrap">Deprecated in JDK13</span><br><span style="white-space:nowrap">Obsoleted in JDK14</span></td><td>bool</td><td></td><td></td><td>runtime</td><td>true</td><td>product</td><td>Fail over to old verifier when split verifier fails</td><td>share/runtime/globals.hpp</td></tr>
 <tr><td>FastAllocateSizeLimit</td><td>JDK6</td><td></td><td>intx</td><td></td><td></td><td>runtime</td><td>128*K</td><td>develop</td><td>/* Note: This value is zero mod 1<<13 for a cheap sparc set. */Inline allocations larger than this in doublewords must go slow</td><td>share/runtime/globals.hpp</td></tr>
 <tr><td>FieldsAllocationStyle</td><td>JDK6</td><td></td><td>intx</td><td></td><td></td><td>runtime</td><td>1<br>range(0, 2)</td><td>product</td><td>0 - type based with oops first, <br>1 - with oops last, <br>2 - oops in super and sub classes are together</td><td>share/runtime/globals.hpp</td></tr>
 <tr><td>FilterSpuriousWakeups</td><td>JDK6</td><td></td><td>bool</td><td></td><td></td><td>runtime</td><td>true</td><td>product</td><td>When true prevents OS-level spurious, or premature, wakeups from Object.wait (Ignored for Windows)</td><td>share/runtime/globals.hpp</td></tr>
@@ -1858,7 +1859,6 @@
 <tr><td>UseExtendedLoadAndReserveInstructionsPPC64</td><td>JDK7</td><td></td><td>bool</td><td></td><td>ppc</td><td></td><td>false</td><td>product</td><td>Use extended versions of load-and-reserve instructions.</td><td>cpu/ppc/globals_ppc.hpp</td></tr>
 <tr><td>UseFMA</td><td>JDK9</td><td></td><td>bool</td><td></td><td></td><td>runtime</td><td>false</td><td>product</td><td>Control whether FMA instructions are used when available</td><td>share/runtime/globals.hpp</td></tr>
 <tr><td>UseFPUForSpilling</td><td>JDK6</td><td></td><td>bool</td><td></td><td></td><td>c2</td><td>false</td><td>product</td><td>Spill integer registers to FPU instead of stack when possible</td><td>share/opto/c2_globals.hpp</td></tr>
-<tr><td>UseFakeTimers</td><td>JDK6</td><td></td><td>bool</td><td></td><td></td><td>runtime</td><td>false</td><td>develop</td><td>Tell whether the VM should use system time or a fake timer</td><td>share/runtime/globals.hpp</td></tr>
 <tr><td>UseFastAccessorMethods</td><td>JDK6</td><td></td><td>bool</td><td></td><td>zero</td><td></td><td>true</td><td>product</td><td>Use fast method entry code for accessor methods</td><td>cpu/zero/globals_zero.hpp</td></tr>
 <tr><td>UseFastEmptyMethods</td><td>JDK6</td><td></td><td>bool</td><td></td><td>zero</td><td></td><td>true</td><td>product</td><td>Use fast method entry code for empty methods</td><td>cpu/zero/globals_zero.hpp</td></tr>
 <tr><td>UseFastJNIAccessors</td><td>JDK6</td><td></td><td>bool</td><td></td><td></td><td>runtime</td><td>true</td><td>product</td><td>Use optimized versions of Get<Primitive>Field</td><td>share/runtime/globals.hpp</td></tr>
@@ -2067,7 +2067,7 @@
 <tr><td>VerifyLastFrame</td><td>JDK6</td><td></td><td>bool</td><td></td><td></td><td>runtime</td><td>false</td><td>notproduct</td><td>Verify oops on last frame on entry to VM</td><td>share/runtime/globals.hpp</td></tr>
 <tr><td>VerifyLoopOptimizations</td><td>JDK6</td><td></td><td>bool</td><td></td><td></td><td>c2</td><td>false</td><td>notproduct</td><td>verify major loop optimizations</td><td>share/opto/c2_globals.hpp</td></tr>
 <tr><td>VerifyMergedCPBytecodes</td><td>JDK6</td><td></td><td>bool</td><td></td><td></td><td>runtime</td><td>true</td><td>product</td><td>Verify bytecodes after RedefineClasses constant pool merging</td><td>share/runtime/globals.hpp</td></tr>
-<tr><td>VerifyMetaspace</td><td>JDK11</td><td></td><td>bool</td><td></td><td></td><td>runtime</td><td>false</td><td>develop</td><td>Verify metaspace on chunk movements.</td><td>share/runtime/globals.hpp</td></tr>
+<tr><td>VerifyMetaspaceInterval</td><td>JDK13</td><td></td><td>int</td><td></td><td></td><td>runtime</td><td>DEBUG_ONLY(500) NOT_DEBUG(0)</td><td>develop</td><td>Run periodic metaspace verifications (0 - none, <br>1 - always, >1 every nth interval)</td><td>share/runtime/globals.hpp</td></tr>
 <tr><td>VerifyMethodHandles</td><td>JDK6</td><td></td><td>bool</td><td></td><td></td><td>runtime</td><td>trueInDebug</td><td>diagnostic</td><td>perform extra checks when constructing method handles</td><td>share/runtime/globals.hpp</td></tr>
 <tr><td>VerifyObjectStartArray</td><td>JDK6</td><td></td><td>bool</td><td></td><td></td><td>gc</td><td>true</td><td>diagnostic</td><td>Verify GC object start array if verify before/after</td><td>share/gc/shared/gc_globals.hpp</td></tr>
 <tr><td>VerifyOops</td><td>JDK6</td><td></td><td>bool</td><td></td><td></td><td>runtime</td><td>false</td><td>develop</td><td>Do plausibility checks for oops</td><td>share/runtime/globals.hpp</td></tr>
@@ -2126,7 +2126,7 @@
 		</tbody>
 	</table>
 	<div class="footer">
-		Built on Tue Feb 19 08:55:29 GMT 2019 from HotSpot sources by <a
+		Built on Tue Mar 05 12:09:18 GMT 2019 from HotSpot sources by <a
 			href="https://twitter.com/chriswhocodes">@chriswhocodes</a>
 	</div>
 </body>

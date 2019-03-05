@@ -18,39 +18,31 @@ public class DeprecatedInfo
 		return optionName;
 	}
 
-	public void setOptionName(String optionName)
-	{
-		this.optionName = optionName;
-	}
-
 	public String getDeprecatedInJDK()
 	{
-		return deprecatedInJDK;
-	}
-
-	public void setDeprecatedInJDK(String deprecatedInJDK)
-	{
-		this.deprecatedInJDK = deprecatedInJDK;
+		return decorate(deprecatedInJDK);
 	}
 
 	public String getObsoletedInJDK()
 	{
-		return obsoletedInJDK;
-	}
-
-	public void setObsoletedInJDK(String obsoletedInJDK)
-	{
-		this.obsoletedInJDK = obsoletedInJDK;
+		return decorate(obsoletedInJDK);
 	}
 
 	public String getExpiredInJDK()
 	{
-		return expiredInJDK;
+		return decorate(expiredInJDK);
 	}
 
-	public void setExpiredInJDK(String expiredInJDK)
+	private String decorate(String jdk)
 	{
-		this.expiredInJDK = expiredInJDK;
+		if (jdk == null || jdk.trim().length() == 0)
+		{
+			return "";
+		}
+		else
+		{
+			return "JDK" + jdk;
+		}
 	}
 
 	private DeprecatedInfo()

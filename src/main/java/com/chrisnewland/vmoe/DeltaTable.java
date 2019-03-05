@@ -13,8 +13,8 @@ import com.chrisnewland.vmoe.parser.deprecated.DeprecatedParser;
 
 public class DeltaTable
 {
-	private List<String> added = new ArrayList<>();
-	private List<String> removed = new ArrayList<>();
+	private List<SwitchInfo> added = new ArrayList<>();
+	private List<SwitchInfo> removed = new ArrayList<>();
 
 	private VMData earlierVM;
 	private VMData laterVM;
@@ -25,14 +25,14 @@ public class DeltaTable
 		this.laterVM = laterVM;
 	}
 
-	public void recordAddition(String switchName)
+	public void recordAddition(SwitchInfo switchInfo)
 	{
-		added.add(switchName);
+		added.add(switchInfo);
 	}
 
-	public void recordRemoval(String switchName)
+	public void recordRemoval(SwitchInfo switchInfo)
 	{
-		removed.add(switchName);
+		removed.add(switchInfo);
 	}
 
 	public int getAdditionCount()
@@ -50,59 +50,102 @@ public class DeltaTable
 		StringBuilder builder = new StringBuilder();
 
 		Collections.sort(added);
-		Collections.sort(removed);
 
-		builder.append("<table class=\"delta\">");
+		builder.append("<div class=\"dtwrapper\">");
 
-		builder.append("<tr>");
-		builder.append("<th>Removed in ").append(laterVM.getJdkName()).append("</th>");
-		builder.append("<th>Added in ").append(laterVM.getJdkName()).append("</th>");
-		builder.append("</tr>\n");
+		builder.append("<div class=\"wrap\">");
+		builder.append("<h3 class=\"deltaH3\">Removed in ").append(laterVM.getJdkName()).append("</h3>");
+		appendTableRemoved(builder);
+		builder.append("</div>");
 
-		builder.append("<tr>");
+		builder.append("<div class=\"wrap\">");
+		builder.append("<h3 class=\"deltaH3\">Added in ").append(laterVM.getJdkName()).append("</h3>");
+		appendTableAdded(builder);
+		builder.append("</div>");
 
-		builder.append("<td class=\"removed\">");
-		for (String removedSwitch : removed)
-		{
-			builder
-					.append("<div><a href=\"")
-					.append(earlierVM.getHTMLFilename())
-					.append("?s=")
-					.append(removedSwitch)
-					.append("\">")
-					.append(removedSwitch)
-					.append("</a>");
+		builder.append("</div>");
 
-			DeprecatedInfo deprecatedInfo = DeprecatedParser.getDeprecatedInfo(removedSwitch);
-
-			if (deprecatedInfo != null)
-			{
-				builder.append(" ").append(deprecatedInfo.toHTMLStringHorizontal());
-			}
-
-			builder.append("</div>\n");
-		}
-		builder.append("</td>");
-
-		builder.append("<td class=\"added\">");
-		for (String addedSwitch : added)
-		{
-			builder
-					.append("<div><a href=\"")
-					.append(laterVM.getHTMLFilename())
-					.append("?s=")
-					.append(addedSwitch)
-					.append("\">")
-					.append(addedSwitch)
-					.append("</a>")
-					.append("</div>\n");
-		}
-		builder.append("</td>");
-
-		builder.append("</tr>");
-
-		builder.append("</table>");
+		builder.append("<div class=\"dtclear\"></div>");
 
 		return builder.toString();
+	}
+
+	private void appendTableRemoved(StringBuilder builder)
+	{
+		Collections.sort(removed);
+
+		builder.append("<table class=\"deltatable removed\">");
+
+		String glossaryLink = "<a class=\"glossaryLink\" href=\"#glossary\">";
+
+		builder.append("<tr>");
+		builder.append("<th>Name</th>");
+		builder.append("<th>Availability</th>");
+		builder.append("<th>").append(glossaryLink).append("Deprecated").append("</a>").append("</th>");
+		builder.append("<th>").append(glossaryLink).append("Obsoleted").append("</a>").append("</th>");
+		builder.append("<th>").append(glossaryLink).append("Expired").append("</a>").append("</th>");
+		builder.append("</tr>");
+
+		for (SwitchInfo removedSwitch : removed)
+		{
+			builder.append("<tr>");
+			builder.append("<td>");
+
+			String name = removedSwitch.getName();
+
+			builder.append("<a href=\"").append(earlierVM.getHTMLFilename()).append("?s=").append(name).append("\">").append(name)
+					.append("</a>");
+
+			builder.append("</td>");
+
+			builder.append("<td>");
+			builder.append(removedSwitch.getAvailability());
+			builder.append("</td>");
+
+			DeprecatedInfo deprecatedInfo = DeprecatedParser.getDeprecatedInfo(name);
+
+			builder.append("<td>");
+			builder.append(deprecatedInfo == null ? "" : deprecatedInfo.getDeprecatedInJDK());
+			builder.append("</td>");
+
+			builder.append("<td>");
+			builder.append(deprecatedInfo == null ? "" : deprecatedInfo.getObsoletedInJDK());
+			builder.append("</td>");
+
+			builder.append("<td>");
+			builder.append(deprecatedInfo == null ? "" : deprecatedInfo.getExpiredInJDK());
+			builder.append("</td>");
+
+			builder.append("</tr>\n");
+		}
+
+		builder.append("</table>");
+	}
+
+	private void appendTableAdded(StringBuilder builder)
+	{
+		builder.append("<table class=\"deltatable added\">");
+		builder.append("<tr><th>Name</th><th>Availability</th></tr>");
+
+		for (SwitchInfo addedSwitch : added)
+		{
+			builder.append("<tr>");
+			builder.append("<td>");
+
+			String name = addedSwitch.getName();
+
+			builder.append("<a href=\"").append(laterVM.getHTMLFilename()).append("?s=").append(name).append("\">").append(name)
+					.append("</a>");
+
+			builder.append("</td>");
+
+			builder.append("<td>");
+			builder.append(addedSwitch.getAvailability());
+			builder.append("</td>");
+
+			builder.append("</tr>\n");
+
+		}
+		builder.append("</table>");
 	}
 }

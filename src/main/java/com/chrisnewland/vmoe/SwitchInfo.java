@@ -4,7 +4,9 @@
  */
 package com.chrisnewland.vmoe;
 
-public class SwitchInfo
+import java.util.Objects;
+
+public class SwitchInfo implements Comparable<SwitchInfo>
 {
 	private String name;
 	private String type; // intx, bool, uintx, ccstr, ccstrlist, double,
@@ -294,5 +296,28 @@ public class SwitchInfo
 		builder.append("<td>").append(value == null ? "" : value).append("</td>");
 
 		return builder.toString();
+	}
+
+	@Override
+	public boolean equals(Object o)
+	{
+		if (this == o)
+			return true;
+		if (o == null || getClass() != o.getClass())
+			return false;
+		SwitchInfo that = (SwitchInfo) o;
+		return Objects.equals(name, that.name);
+	}
+
+	@Override
+	public int hashCode()
+	{
+		return name.hashCode();
+	}
+
+	@Override
+	public int compareTo(SwitchInfo o)
+	{
+		return name.compareTo(o.name);
 	}
 }
