@@ -21,7 +21,8 @@ th, td {
 
 .footer {
     margin-top: 12px;
-    text-align: center;
+    text-align: center;    float: left;
+    clear: none;
     font-weight: bold;
 }
 
@@ -106,6 +107,18 @@ a, a:visited {
     border-collapse: collapse;
     background-color: #ffee99;
     margin-bottom: 12px;
+}
+
+.menucontainer {
+    padding: 0px;
+    margin: 0px;
+}
+
+.menuwrap {
+    vertical-align: top;
+    padding: 0px 8px 0px 0px;
+    float: left;
+    clear: none;
 }
 
 .menu th, .menu td {
