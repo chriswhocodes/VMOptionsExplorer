@@ -2,10 +2,10 @@
 <html lang='en-GB'>
 <head>
 <title>VM Options Explorer - Graal EE 1.0</title>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<meta name="author" content="Chris Newland" />
-<meta name="copyright" content="Chris Newland 2018-2019" />
-<meta name="viewport" content="width=device-width" />
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="author" content="Chris Newland">
+<meta name="copyright" content="Chris Newland 2018-2019">
+<meta name="viewport" content="width=device-width">
 <link rel="stylesheet" type="text/css"
 	href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css">
 <link rel="stylesheet" type="text/css" href="css/style-vmoe.css">
@@ -80,46 +80,73 @@
   </script>
 
 	<h1>VM Options Explorer - Graal EE 1.0</h1>
-<table class="menu">
-    <tr>
-        <th colspan="8">HotSpot
-            <div class="diffs"><a
-                    href="hotspot_option_differences.html">See when options were added or removed from HotSpot JDKs</a></div>
-        </th>
-        <th colspan="2">Graal</th>
-        <th>OpenJ9</th>
-        <th>Zing</th>
-    </tr>
-    <tr>
-        <td><a href="hotspot_options_jdk6.html">JDK6 Options</a></td>
-        <td><a href="hotspot_options_jdk7.html">JDK7 Options</a></td>
-        <td><a href="hotspot_options_jdk8.html">JDK8 Options</a></td>
-        <td><a href="hotspot_options_jdk9.html">JDK9 Options</a></td>
-        <td><a href="hotspot_options_jdk10.html">JDK10 Options</a></td>
-        <td><a href="hotspot_options_jdk11.html">JDK11 Options</a></td>
-        <td><a href="hotspot_options_jdk12.html">JDK12 Options</a></td>
-        <td><a href="hotspot_options_jdk13.html">JDK13 Options</a></td>
 
-        <td rowspan="2"><a href="graal_options_graal_ce_1.0.html">Graal
-            CE 1.0rc13</a></td>
-        <td rowspan="2"><a href="graal_options_graal_ee_1.0.html">Graal
-            EE 1.0rc13</a></td>
-
-        <td rowspan="2"><a href="openj9_options.html">OpenJ9</a></td>
-
-        <td rowspan="2"><a href="zing_options.html">Zing 18.07</a></td>
-    </tr>
-    <tr>
-        <td><a href="hotspot_intrinsics_jdk6.html">JDK6 Intrinsics</a></td>
-        <td><a href="hotspot_intrinsics_jdk7.html">JDK7 Intrinsics</a></td>
-        <td><a href="hotspot_intrinsics_jdk8.html">JDK8 Intrinsics</a></td>
-        <td><a href="hotspot_intrinsics_jdk9.html">JDK9 Intrinsics</a></td>
-        <td><a href="hotspot_intrinsics_jdk10.html">JDK10 Intrinsics</a></td>
-        <td><a href="hotspot_intrinsics_jdk11.html">JDK11 Intrinsics</a></td>
-        <td><a href="hotspot_intrinsics_jdk12.html">JDK12 Intrinsics</a></td>
-        <td><a href="hotspot_intrinsics_jdk13.html">JDK13 Intrinsics</a></td>
-    </tr>
-</table>
+<div class="menucontainer">
+    <div class="menuwrap">
+        <table class="menu">
+            <tr>
+                <th colspan="8">HotSpot
+                    <div class="diffs"><a href="hotspot_option_differences.html">See when options were added or removed from HotSpot
+                        JDKs</a></div>
+                </th>
+            </tr>
+            <tr>
+                <td><a href="hotspot_options_jdk6.html">JDK6 Options</a></td>
+                <td><a href="hotspot_options_jdk7.html">JDK7 Options</a></td>
+                <td><a href="hotspot_options_jdk8.html">JDK8 Options</a></td>
+                <td><a href="hotspot_options_jdk9.html">JDK9 Options</a></td>
+                <td><a href="hotspot_options_jdk10.html">JDK10 Options</a></td>
+                <td><a href="hotspot_options_jdk11.html">JDK11 Options</a></td>
+                <td><a href="hotspot_options_jdk12.html">JDK12 Options</a></td>
+                <td><a href="hotspot_options_jdk13.html">JDK13 Options</a></td>
+            </tr>
+            <tr>
+                <td><a href="hotspot_intrinsics_jdk6.html">JDK6 Intrinsics</a></td>
+                <td><a href="hotspot_intrinsics_jdk7.html">JDK7 Intrinsics</a></td>
+                <td><a href="hotspot_intrinsics_jdk8.html">JDK8 Intrinsics</a></td>
+                <td><a href="hotspot_intrinsics_jdk9.html">JDK9 Intrinsics</a></td>
+                <td><a href="hotspot_intrinsics_jdk10.html">JDK10 Intrinsics</a></td>
+                <td><a href="hotspot_intrinsics_jdk11.html">JDK11 Intrinsics</a></td>
+                <td><a href="hotspot_intrinsics_jdk12.html">JDK12 Intrinsics</a></td>
+                <td><a href="hotspot_intrinsics_jdk13.html">JDK13 Intrinsics</a></td>
+            </tr>
+        </table>
+    </div>
+    <div class="menuwrap">
+        <table class="menu">
+            <tr>
+                <th colspan="2">Graal</th>
+            </tr>
+            <tr>
+                <td><a href="graal_options_graal_ce_1.0.html">Graal
+                    CE 1.0rc13</a></td>
+                <td><a href="graal_options_graal_ee_1.0.html">Graal
+                    EE 1.0rc13</a></td>
+            </tr>
+        </table>
+    </div>
+    <div class="menuwrap">
+        <table class="menu">
+            <tr>
+                <th>OpenJ9</th>
+            </tr>
+            <tr>
+                <td><a href="openj9_options.html">OpenJ9</a></td>
+            </tr>
+        </table>
+    </div>
+    <div class="menuwrap">
+        <table class="menu">
+            <tr>
+                <th>Zing</th>
+            </tr>
+            <tr>
+                <td><a href="zing_options.html">Zing 18.07</a></td>
+            </tr>
+        </table>
+    </div>
+</div>
+<div class="dtclear"></div>
 <div class="book">
     Hey Reader! If these notes float your boat you'll find more great JVM info in this book I co-wrote!
     <a href="https://www.amazon.com/Optimizing-Java-Techniques-Application-Performance/dp/1492025798/">Optimizing Java: Practical
@@ -170,7 +197,7 @@ The fields in the CSV format are: category, group, name, value
   (err|out),start pattern,end pattern
   
 Start counting when the start pattern matches on the given stream and stop when the end pattern occurs.
-You can use "~" to match 1 or more digits.
+You can use &quot;~&quot; to match 1 or more digits.
 Examples:
           
   err, starting =====, PASSED in
@@ -181,8 +208,8 @@ The first pattern matches DaCapo output and the second matches SPECjvm2008 outpu
 As a more detailed example, here are the options to use for getting statistics
 about allocations within the DaCapo pmd benchmark:
           
-  -XX:JVMCICounterSize=<value> -XX:-JVMCICountersExcludeCompiler \
-  -Dgraal.BenchmarkDynamicCounters="err, starting ====, PASSED in " \
+  -XX:JVMCICounterSize=&lt;value&gt; -XX:-JVMCICountersExcludeCompiler \
+  -Dgraal.BenchmarkDynamicCounters=&quot;err, starting ====, PASSED in &quot; \
   -Dgraal.ProfileAllocations=true
   
 The JVMCICounterSize value depends on the granularity of the profiling -
@@ -255,7 +282,7 @@ option.
 <tr><td>CompilerNodePenaltyCoefficient</td><td>Double</td><td>0.01</td><td><pre>Controls the likelihood of exploring subtrees that already have a lot
 of code during inlining.
 </pre></td></tr>
-<tr><td>Compiler</td><td>String</td><td>"graal"</td><td><pre>Selects the system compiler. This must match the getCompilerName() value returned by a jdk.vm.ci.runtime.JVMCICompilerFactory provider. An empty string or the value "null" selects a compiler that will raise an exception upon receiving a compilation request. This property can also be defined by the contents of <java.home>/lib/jvmci/compiler-name.
+<tr><td>Compiler</td><td>String</td><td>"graal"</td><td><pre>Selects the system compiler. This must match the getCompilerName() value returned by a jdk.vm.ci.runtime.JVMCICompilerFactory provider. An empty string or the value &quot;null&quot; selects a compiler that will raise an exception upon receiving a compilation request. This property can also be defined by the contents of &lt;java.home&gt;/lib/jvmci/compiler-name.
 </pre></td></tr>
 <tr><td>ConditionalElimination</td><td>Boolean</td><td>true</td><td></td></tr>
 <tr><td>Count</td><td>String</td><td>null</td><td><pre>Pattern for specifying scopes in which counters are enabled. See the
@@ -300,12 +327,12 @@ the phase class
           
 A filter is a list of comma-separated terms of the form:
  
-  <pattern>[:<level>]
+  &lt;pattern&gt;[:&lt;level&gt;]
  
-If <pattern> contains a "*" or "?" character, it is interpreted as a glob pattern.
-Otherwise, it is interpreted as a substring. If <pattern> is empty, it
-matches every scope. If :<level> is omitted, it defaults to 1. The term
-~<pattern> is a shorthand for <pattern>:0 to disable a debug facility for a pattern.
+If &lt;pattern&gt; contains a &quot;*&quot; or &quot;?&quot; character, it is interpreted as a glob pattern.
+Otherwise, it is interpreted as a substring. If &lt;pattern&gt; is empty, it
+matches every scope. If :&lt;level&gt; is omitted, it defaults to 1. The term
+~&lt;pattern&gt; is a shorthand for &lt;pattern&gt;:0 to disable a debug facility for a pattern.
           
 The default log level is 0 (disabled). Terms with an empty pattern set
 the default log level to the specified value. The last
@@ -329,34 +356,34 @@ Examples of debug filters:
 --------- 
   CodeGen,CodeInstall
           
-  Matches scopes containing "CodeGen" or "CodeInstall", both with level 1.
+  Matches scopes containing &quot;CodeGen&quot; or &quot;CodeInstall&quot;, both with level 1.
 --------- 
   CodeGen:2,CodeInstall:1
           
-  Matches scopes containing "CodeGen" with level 2, or "CodeInstall" with level 1.
+  Matches scopes containing &quot;CodeGen&quot; with level 2, or &quot;CodeInstall&quot; with level 1.
 ---------
   Outer:2,Inner:0}
           
-  Matches scopes containing "Outer" with log level 2, or "Inner" with log level 0. If the scope
+  Matches scopes containing &quot;Outer&quot; with log level 2, or &quot;Inner&quot; with log level 0. If the scope
   name contains both patterns then the log level will be 0. This is useful for silencing subscopes.
 ---------
   :1,Dead:2
           
-  Matches scopes containing "Dead" with level 2, and all other scopes with level 1.
+  Matches scopes containing &quot;Dead&quot; with level 2, and all other scopes with level 1.
 --------- 
   Dead:0,:1
           
-  Matches all scopes with level 1, except those containing "Dead".   Note that the location of
+  Matches all scopes with level 1, except those containing &quot;Dead&quot;.   Note that the location of
   the :1 doesn't matter since it's specifying the default log level so it's the same as
   specifying :1,Dead:0.
 --------- 
   Code*
           
-  Matches scopes starting with "Code" with level 1.
+  Matches scopes starting with &quot;Code&quot; with level 1.
 --------- 
   Code,~Dead
           
-  Matches scopes containing "Code" but not "Dead", with level 1.
+  Matches scopes containing &quot;Code&quot; but not &quot;Dead&quot;, with level 1.
 </pre></td></tr>
 <tr><td>DumpingErrorsAreFatal</td><td>Boolean</td><td>false</td><td><pre>Treat any exceptions during dumping as fatal.
 </pre></td></tr>
@@ -406,7 +433,7 @@ size.
 <tr><td>FullUnrollMaxNodes</td><td>Integer</td><td>400</td><td></td></tr>
 <tr><td>FullUnroll</td><td>Boolean</td><td>true</td><td></td></tr>
 <tr><td>GCDebugStartCycle</td><td>Integer</td><td>-1</td><td><pre>Start tracing compiled GC barriers after N garbage collections
-(disabled if N <= 0).
+(disabled if N &lt;= 0).
 </pre></td></tr>
 <tr><td>GenLoopSafepoints</td><td>Boolean</td><td>true</td><td></td></tr>
 <tr><td>GenSafepoints</td><td>Boolean</td><td>true</td><td></td></tr>
@@ -577,10 +604,10 @@ otherwise check all methods
 <tr><td>MethodFilter</td><td>String</td><td>null</td><td><pre>Pattern for filtering debug scope output based on method context.
 The syntax for a pattern is:
           
-  SourcePatterns = SourcePattern ["," SourcePatterns] .
-  SourcePattern = [ Class "." ] method [ "(" [ Parameter { ";" Parameter } ] ")" ] .
-  Parameter = Class | "int" | "long" | "float" | "double" | "short" | "char" | "boolean" .
-  Class = { package "." } class .
+  SourcePatterns = SourcePattern [&quot;,&quot; SourcePatterns] .
+  SourcePattern = [ Class &quot;.&quot; ] method [ &quot;(&quot; [ Parameter { &quot;;&quot; Parameter } ] &quot;)&quot; ] .
+  Parameter = Class | &quot;int&quot; | &quot;long&quot; | &quot;float&quot; | &quot;double&quot; | &quot;short&quot; | &quot;char&quot; | &quot;boolean&quot; .
+  Class = { package &quot;.&quot; } class .
  
 Glob pattern matching (*, ?) is allowed in all parts of the source pattern.
           
@@ -588,19 +615,19 @@ Examples of method filters:
 --------- 
   visit(Argument;BlockScope)  
   
-  Matches all methods named "visit", with the first parameter of
-  type "Argument", and the second parameter of type "BlockScope".
+  Matches all methods named &quot;visit&quot;, with the first parameter of
+  type &quot;Argument&quot;, and the second parameter of type &quot;BlockScope&quot;.
   The packages of the parameter types are irrelevant.
 ---------
   arraycopy(Object;;;;)
  
-  Matches all methods named "arraycopy", with the first parameter
-  of type "Object", and four more parameters of any type. The
+  Matches all methods named &quot;arraycopy&quot;, with the first parameter
+  of type &quot;Object&quot;, and four more parameters of any type. The
   packages of the parameter types are irrelevant.
 ---------    
   org.graalvm.compiler.core.graph.PostOrderNodeIterator.*
  
-  Matches all methods in the class "org.graalvm.compiler.core.graph.PostOrderNodeIterator".
+  Matches all methods in the class &quot;org.graalvm.compiler.core.graph.PostOrderNodeIterator&quot;.
 ---------    
   *
  
@@ -608,12 +635,12 @@ Examples of method filters:
 ---------
   org.graalvm.compiler.core.graph.*.visit
  
-  Matches all methods named "visit" in classes in the package
-  "org.graalvm.compiler.core.graph".
+  Matches all methods named &quot;visit&quot; in classes in the package
+  &quot;org.graalvm.compiler.core.graph&quot;.
 ---------
   arraycopy,toString
  
-  Matches all methods named "arraycopy" or "toString", meaning that ',' acts as an or operator.
+  Matches all methods named &quot;arraycopy&quot; or &quot;toString&quot;, meaning that ',' acts as an or operator.
 </pre></td></tr>
 <tr><td>MethodInlineBailoutLimit</td><td>Integer</td><td>5000</td><td><pre>Per-compilation method inlining exploration limit before giving up (use
 0 to disable)
@@ -880,11 +907,11 @@ option can be used to refine tracing to selected methods.
 <tr><td>TraceInlining</td><td>Boolean</td><td>false</td><td><pre>Enable tracing of inlining decisions.
 Output format:
   compilation of 'Signature of the compilation root method':
-    at 'Signature of the root method' ['Bytecode index']: <'Phase'> 'Child method signature': 'Decision made about this callsite'
+    at 'Signature of the root method' ['Bytecode index']: &lt;'Phase'&gt; 'Child method signature': 'Decision made about this callsite'
       at 'Signature of the child method' ['Bytecode index']: 
-         |--<'Phase 1'> 'Grandchild method signature': 'First decision made about this callsite'
-         \--<'Phase 2'> 'Grandchild method signature': 'Second decision made about this callsite'
-      at 'Signature of the child method' ['Bytecode index']: <'Phase'> 'Another grandchild method signature': 'The only decision made about this callsite.'
+         |--&lt;'Phase 1'&gt; 'Grandchild method signature': 'First decision made about this callsite'
+         \--&lt;'Phase 2'&gt; 'Grandchild method signature': 'Second decision made about this callsite'
+      at 'Signature of the child method' ['Bytecode index']: &lt;'Phase'&gt; 'Another grandchild method signature': 'The only decision made about this callsite.'
 </pre></td></tr>
 <tr><td>TraceLIRGeneratorLevel</td><td>Integer</td><td>0</td><td><pre>The trace level for the LIR generator
 </pre></td></tr>
@@ -1161,7 +1188,7 @@ option for the pattern syntax.
 		</tbody>
 	</table>
 	<div class="footer">
-		Built on Thu Mar 07 06:58:40 GMT 2019 from Graal sources by <a
+		Built on Fri Mar 08 08:41:00 GMT 2019 from Graal sources by <a
 			href="https://twitter.com/chriswhocodes">@chriswhocodes</a>
 	</div>
 </body>

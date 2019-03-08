@@ -10,7 +10,7 @@ public class SwitchInfo implements Comparable<SwitchInfo>
 {
 	private String name;
 	private String type; // intx, bool, uintx, ccstr, ccstrlist, double,
-							// uint64_t
+	// uint64_t
 	private String os; // aix, bsd, linux, solaris, windows
 	private String cpu; // x86, zero, ppc, sparc
 	private String component; // c1, c2, runtime, gc
@@ -127,7 +127,7 @@ public class SwitchInfo implements Comparable<SwitchInfo>
 	{
 		this.description = description;
 	}
-	
+
 	public String getDeprecation()
 	{
 		return deprecation;
@@ -167,7 +167,7 @@ public class SwitchInfo implements Comparable<SwitchInfo>
 	}
 
 	public static String getHeaderRow(VMType vmType)
-	{		
+	{
 		StringBuilder builder = new StringBuilder();
 
 		builder.append("<tr>");
@@ -276,7 +276,7 @@ public class SwitchInfo implements Comparable<SwitchInfo>
 				descriptionComment += comment;
 			}
 
-			builder.append(getRow(descriptionComment));
+			builder.append(getRow(escapeHTMLEntities(descriptionComment)));
 		}
 
 		if (vmType == VMType.HOTSPOT)
@@ -287,6 +287,12 @@ public class SwitchInfo implements Comparable<SwitchInfo>
 		builder.append("</tr>");
 
 		return builder.toString();
+	}
+
+	private String escapeHTMLEntities(String raw)
+	{
+		return raw.toString().replace("<br>", "SAFE_BR").replace("<pre>", "SAFE_PRE_OPEN").replace("</pre>", "SAFE_PRE_CLOSE").replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;").replace("\"", "&quot;")
+				.replace("SAFE_BR", "<br>").replace("SAFE_PRE_OPEN", "<pre>").replace("SAFE_PRE_CLOSE", "</pre>");
 	}
 
 	private String getRow(String value)
