@@ -119,9 +119,9 @@
             </tr>
             <tr>
                 <td><a href="graal_options_graal_ce_1.0.html">Graal
-                    CE 1.0rc13</a></td>
+                    CE 1.0rc14</a></td>
                 <td><a href="graal_options_graal_ee_1.0.html">Graal
-                    EE 1.0rc13</a></td>
+                    EE 1.0rc14</a></td>
             </tr>
         </table>
     </div>
@@ -170,7 +170,6 @@
 <tr><td>AdaptiveSizeDecrementScaleFactor</td><td>JDK6</td><td></td><td>uintx</td><td></td><td></td><td>gc</td><td>4<br>range(1, max_uintx)</td><td>product</td><td>Adaptive size scale down factor for shrinking</td><td>share/gc/shared/gc_globals.hpp</td></tr>
 <tr><td>AdaptiveSizeMajorGCDecayTimeScale</td><td>JDK6</td><td></td><td>uintx</td><td></td><td></td><td>gc</td><td>10<br>range(0, max_uintx)</td><td>product</td><td>Time scale over which major costs decay</td><td>share/gc/shared/gc_globals.hpp</td></tr>
 <tr><td>AdaptiveSizePolicyCollectionCostMargin</td><td>JDK6</td><td></td><td>uintx</td><td></td><td></td><td>gc</td><td>50<br>range(0, 100)</td><td>product</td><td>If collection costs are within margin, reduce both by full delta</td><td>share/gc/shared/gc_globals.hpp</td></tr>
-<tr><td>AdaptiveSizePolicyGCTimeLimitThreshold</td><td>JDK6</td><td></td><td>uintx</td><td></td><td></td><td>gc</td><td>5<br>range(1, max_uintx)</td><td>develop</td><td>Number of consecutive collections before gc time limit fires</td><td>share/gc/shared/gc_globals.hpp</td></tr>
 <tr><td>AdaptiveSizePolicyInitializingSteps</td><td>JDK6</td><td></td><td>uintx</td><td></td><td></td><td>gc</td><td>20<br>range(0, max_uintx)</td><td>product</td><td>Number of steps where heuristics is used before data is used</td><td>share/gc/shared/gc_globals.hpp</td></tr>
 <tr><td>AdaptiveSizePolicyOutputInterval</td><td>JDK6</td><td></td><td>uintx</td><td></td><td></td><td>gc</td><td>0<br>range(0, max_uintx)</td><td>product</td><td>Collection interval for printing information; zero means never</td><td>share/gc/shared/gc_globals.hpp</td></tr>
 <tr><td>AdaptiveSizePolicyReadyThreshold</td><td>JDK6</td><td></td><td>uintx</td><td></td><td></td><td>gc</td><td>5</td><td>develop</td><td>Number of collections before the adaptive sizing is started</td><td>share/gc/shared/gc_globals.hpp</td></tr>
@@ -680,6 +679,7 @@
 <tr><td>GCLockerEdenExpansionPercent</td><td>JDK6</td><td></td><td>uintx</td><td></td><td></td><td>gc</td><td>5<br>range(0, 100)</td><td>product</td><td>How much the GC can expand the eden by while the GC locker is active (as a percentage)</td><td>share/gc/shared/gc_globals.hpp</td></tr>
 <tr><td>GCLockerInvokesConcurrent</td><td>JDK6</td><td></td><td>bool</td><td></td><td></td><td>gc</td><td>false</td><td>product</td><td>The exit of a JNI critical section necessitating a scavenge, also kicks off a background concurrent collection</td><td>share/gc/shared/gc_globals.hpp</td></tr>
 <tr><td>GCLockerRetryAllocationCount</td><td>JDK8</td><td></td><td>uintx</td><td></td><td></td><td>gc</td><td>2<br>range(0, max_uintx)</td><td>diagnostic</td><td>Number of times to retry allocations when blocked by the GC locker</td><td>share/gc/shared/gc_globals.hpp</td></tr>
+<tr><td>GCOverheadLimitThreshold</td><td>JDK13</td><td></td><td>uintx</td><td></td><td></td><td>gc</td><td>5<br>range(1, max_uintx)</td><td>develop</td><td>Number of consecutive collections before gc time limit fires</td><td>share/gc/shared/gc_globals.hpp</td></tr>
 <tr><td>GCParallelVerificationEnabled</td><td>JDK6</td><td></td><td>bool</td><td></td><td></td><td>gc</td><td>true</td><td>diagnostic</td><td>Enable parallel memory system verification</td><td>share/gc/shared/gc_globals.hpp</td></tr>
 <tr><td>GCPauseIntervalMillis</td><td>JDK6</td><td></td><td>uintx</td><td></td><td></td><td>gc</td><td>0</td><td>product</td><td>Time slice for MMU specification</td><td>share/gc/shared/gc_globals.hpp</td></tr>
 <tr><td>GCTaskTimeStampEntries</td><td>JDK6</td><td></td><td>uint</td><td></td><td></td><td>gc</td><td>200<br>range(1, max_jint)</td><td>product</td><td>Number of time stamp entries per gc worker thread</td><td>share/gc/shared/gc_globals.hpp</td></tr>
@@ -1412,7 +1412,7 @@
 <tr><td>RoundFPResults</td><td>JDK6</td><td></td><td>bool</td><td></td><td>s390</td><td></td><td>false</td><td>define_pd_global</td><td></td><td>cpu/s390/c1_globals_s390.hpp</td></tr>
 <tr><td>RoundFPResults</td><td>JDK6</td><td></td><td>bool</td><td></td><td>sparc</td><td></td><td>false</td><td>define_pd_global</td><td></td><td>cpu/sparc/c1_globals_sparc.hpp</td></tr>
 <tr><td>RoundFPResults</td><td>JDK6</td><td></td><td>bool</td><td></td><td>x86</td><td></td><td>true</td><td>define_pd_global</td><td></td><td>cpu/x86/c1_globals_x86.hpp</td></tr>
-<tr><td>SafepointALot</td><td>JDK6</td><td></td><td>bool</td><td></td><td></td><td>runtime</td><td>false</td><td>develop</td><td>Generate a lot of safepoints. This works with GuaranteedSafepointInterval</td><td>share/runtime/globals.hpp</td></tr>
+<tr><td>SafepointALot</td><td>JDK6</td><td></td><td>bool</td><td></td><td></td><td>runtime</td><td>false</td><td>diagnostic</td><td>Generate a lot of safepoints. This works with GuaranteedSafepointInterval</td><td>share/runtime/globals.hpp</td></tr>
 <tr><td>SafepointTimeoutDelay</td><td>JDK6</td><td></td><td>intx</td><td></td><td></td><td>runtime</td><td>10000</td><td>product</td><td>Delay in milliseconds for option SafepointTimeout</td><td>share/runtime/globals.hpp</td></tr>
 <tr><td>SafepointTimeout</td><td>JDK6</td><td></td><td>bool</td><td></td><td></td><td>runtime</td><td>false</td><td>product</td><td>Time out and warn or fail after SafepointTimeoutDelay milliseconds if failed to reach safepoint</td><td>share/runtime/globals.hpp</td></tr>
 <tr><td>ScavengeALotInterval</td><td>JDK6</td><td></td><td>intx</td><td></td><td></td><td>gc</td><td>1</td><td>notproduct</td><td>Interval between which scavenge will occur with +ScavengeALot</td><td>share/gc/shared/gc_globals.hpp</td></tr>
@@ -2134,10 +2134,10 @@
 <tr><td>ZStallOnOutOfMemory</td><td>JDK11</td><td></td><td>bool</td><td></td><td></td><td>gc</td><td>true</td><td>product</td><td>Allow Java threads to stall and wait for GC to complete instead of immediately throwing an OutOfMemoryError</td><td>share/gc/z/z_globals.hpp</td></tr>
 <tr><td>ZStatisticsForceTrace</td><td>JDK11</td><td></td><td>bool</td><td></td><td></td><td>gc</td><td>false</td><td>diagnostic</td><td>Force tracing of ZStats</td><td>share/gc/z/z_globals.hpp</td></tr>
 <tr><td>ZStatisticsInterval</td><td>JDK11</td><td></td><td>uint</td><td></td><td></td><td>gc</td><td>10<br>range(1, (uint)-1)</td><td>product</td><td>Time between statistics print outs (in seconds)</td><td>share/gc/z/z_globals.hpp</td></tr>
-<tr><td>ZUnmapBadViews</td><td>JDK11</td><td></td><td>bool</td><td></td><td></td><td>gc</td><td>false</td><td>diagnostic</td><td>Unmap bad (inactive) heap views</td><td>share/gc/z/z_globals.hpp</td></tr>
 <tr><td>ZVerifyForwarding</td><td>JDK11</td><td></td><td>bool</td><td></td><td></td><td>gc</td><td>false</td><td>diagnostic</td><td>Verify forwarding tables</td><td>share/gc/z/z_globals.hpp</td></tr>
 <tr><td>ZVerifyLoadBarriers</td><td>JDK11</td><td></td><td>bool</td><td></td><td></td><td>gc</td><td>false</td><td>develop</td><td>Verify that reference loads are followed by barriers</td><td>share/gc/z/z_globals.hpp</td></tr>
 <tr><td>ZVerifyMarking</td><td>JDK11</td><td></td><td>bool</td><td></td><td></td><td>gc</td><td>false</td><td>diagnostic</td><td>Verify marking stacks</td><td>share/gc/z/z_globals.hpp</td></tr>
+<tr><td>ZVerifyViews</td><td>JDK13</td><td></td><td>bool</td><td></td><td></td><td>gc</td><td>false</td><td>diagnostic</td><td>Verify heap view accesses</td><td>share/gc/z/z_globals.hpp</td></tr>
 <tr><td>ZapEmptyStackFields</td><td>JDK9</td><td></td><td>bool</td><td></td><td>s390</td><td></td><td>false</td><td>develop</td><td>Write 0x0101... to empty stack fields. Use this to ease stack debugging.</td><td>cpu/s390/globals_s390.hpp</td></tr>
 <tr><td>ZapFillerObjects</td><td>JDK6</td><td></td><td>bool</td><td></td><td></td><td>runtime</td><td>trueInDebug</td><td>develop</td><td>Zap filler objects with 0xDEAFBABE</td><td>share/runtime/globals.hpp</td></tr>
 <tr><td>ZapMemory</td><td>JDK7</td><td></td><td>bool</td><td></td><td>ppc</td><td></td><td>false</td><td>product</td><td>Write 0x0101... to empty memory. Use this to ease debugging.</td><td>cpu/ppc/globals_ppc.hpp</td></tr>
@@ -2153,7 +2153,7 @@
 		</tbody>
 	</table>
 	<div class="footer">
-		Built on Fri Mar 08 08:41:00 GMT 2019 from HotSpot sources by <a
+		Built on Tue Mar 19 21:18:57 GMT 2019 from HotSpot sources by <a
 			href="https://twitter.com/chriswhocodes">@chriswhocodes</a>
 	</div>
 </body>

@@ -119,9 +119,9 @@
             </tr>
             <tr>
                 <td><a href="graal_options_graal_ce_1.0.html">Graal
-                    CE 1.0rc13</a></td>
+                    CE 1.0rc14</a></td>
                 <td><a href="graal_options_graal_ee_1.0.html">Graal
-                    EE 1.0rc13</a></td>
+                    EE 1.0rc14</a></td>
             </tr>
         </table>
     </div>
@@ -179,6 +179,8 @@ format is used. If not specified, metrics are dumped to the console.
 <tr><td>AlwaysInlineIntrinsics</td><td>Boolean</td><td>false</td><td><pre>Unconditionally inline intrinsics
 </pre></td></tr>
 <tr><td>AlwaysInlineVTableStubs</td><td>Boolean</td><td>false</td><td></td></tr>
+<tr><td>ArrayEqualsStubs</td><td>Boolean</td><td>true</td><td><pre>Use Array equals stubs instead of embedding all the emitted code.
+</pre></td></tr>
 <tr><td>BaseCodeSizeCostCoefficient</td><td>Double</td><td>1.0E-4</td><td><pre>The base coefficient used to compute code size cost.
 </pre></td></tr>
 <tr><td>BaseTargetSpending</td><td>Integer</td><td>120</td><td><pre>The base target spending used to estimate the inlining threshold; the
@@ -247,13 +249,7 @@ for graphs.
 </pre></td></tr>
 <tr><td>ClearMetricsAfterBootstrap</td><td>Boolean</td><td>false</td><td><pre>Clear the debug metrics after bootstrap.
 </pre></td></tr>
-<tr><td>CompilationBailoutAction</td><td>String</td><td>Silent</td><td><pre>Specifies the action to take when compilation fails with a bailout
-exception.
-The accepted values are:
-    Silent - Print nothing to the console.
-     Print - Print a stack trace to the console.
-  Diagnose - Retry the compilation with extra diagnostics.
-    ExitVM - Same as Diagnose except that the VM process exits after retrying.
+<tr><td>CompilationBailoutAsFailure</td><td>Boolean</td><td>false</td><td><pre>Treat compilation bailouts like compilation failures.
 </pre></td></tr>
 <tr><td>CompilationCountLimit</td><td>Integer</td><td>0</td><td><pre>The number of compilations allowed for any method before the VM exits
 (a value of 0 means there is no limit).
@@ -262,9 +258,12 @@ The accepted values are:
 limit). The compilation alarm will be implicitly disabled if assertions
 are enabled.
 </pre></td></tr>
-<tr><td>CompilationFailureAction</td><td>String</td><td>Diagnose</td><td><pre>Specifies the action to take when compilation fails with a bailout
-exception. The accepted values are the same as for
-CompilationBailoutAction.
+<tr><td>CompilationFailureAction</td><td>String</td><td>Silent</td><td><pre>Specifies the action to take when compilation fails.
+The accepted values are:
+    Silent - Print nothing to the console.
+     Print - Print a stack trace to the console.
+  Diagnose - Retry the compilation with extra diagnostics.
+    ExitVM - Same as Diagnose except that the VM process exits after retrying.
 </pre></td></tr>
 <tr><td>CompilationWatchDogStackTraceInterval</td><td>Double</td><td>60.0</td><td><pre>Interval in seconds between a watch dog reporting stack traces for long
 running compilations.
@@ -558,10 +557,9 @@ option for the pattern syntax.
 <tr><td>MatchExpressions</td><td>Boolean</td><td>true</td><td><pre>Allow backend to match complex expressions.
 </pre></td></tr>
 <tr><td>MaxCFGRecomputations</td><td>Integer</td><td>12</td><td></td></tr>
-<tr><td>MaxCompilationProblemsPerAction</td><td>Integer</td><td>2</td><td><pre>The maximum number of compilation failures or bailouts to handle with
-the action specified by CompilationFailureAction or
-CompilationBailoutAction before changing to a less verbose action. This
-does not apply to the ExitVM action.
+<tr><td>MaxCompilationProblemsPerAction</td><td>Integer</td><td>2</td><td><pre>The maximum number of compilation failures to handle with the action
+specified by CompilationFailureAction before changing to a less verbose
+action. This does not apply to the ExitVM action.
 </pre></td></tr>
 <tr><td>MaxGraphSizeNodeCost</td><td>Integer</td><td>100000</td><td><pre>Maximum node cost graph size for duplication. If a graph is bigger
 duplication will stop.
@@ -717,7 +715,6 @@ before the VM exits on the basis of a stuck compilation.
 <tr><td>OptWriteBarrierElimination</td><td>Boolean</td><td>true</td><td><pre>Eliminate redundant write barriers.
 </pre></td></tr>
 <tr><td>OptimisticAliasingAnalysis</td><td>Boolean</td><td>true</td><td></td></tr>
-<tr><td>OptimizeDiv</td><td>Boolean</td><td>true</td><td></td></tr>
 <tr><td>OptimizeLoopAccesses</td><td>Boolean</td><td>true</td><td><pre>Enable access node optimizations for loops
 </pre></td></tr>
 <tr><td>PEAInliningHints</td><td>Boolean</td><td>false</td><td></td></tr>
@@ -1020,14 +1017,8 @@ as different branches.
 <tr><td>TruffleInstrumentBoundaries</td><td>Boolean</td><td>false</td><td><pre>Instrument Truffle boundaries and output profiling information to the
 standard output.
 </pre></td></tr>
-<tr><td>TruffleInstrumentBranchesCount</td><td>Integer</td><td>10000</td><td><pre>Maximum number of instrumentation counters available.
-</pre></td></tr>
-<tr><td>TruffleInstrumentBranchesFilter</td><td>String</td><td>null</td><td><pre>Method filter for methods in which to add branch instrumentation.
-</pre></td></tr>
 <tr><td>TruffleInstrumentBranchesPerInlineSite</td><td>Boolean</td><td>false</td><td><pre>Instrument branches by considering different inlining sites as
 different branches.
-</pre></td></tr>
-<tr><td>TruffleInstrumentBranchesPretty</td><td>Boolean</td><td>true</td><td><pre>Prettify stack traces for branch-instrumented callsites.
 </pre></td></tr>
 <tr><td>TruffleInstrumentBranches</td><td>Boolean</td><td>false</td><td><pre>Instrument branches and output profiling information to the standard
 output.
@@ -1188,7 +1179,7 @@ option for the pattern syntax.
 		</tbody>
 	</table>
 	<div class="footer">
-		Built on Fri Mar 08 08:41:00 GMT 2019 from Graal sources by <a
+		Built on Tue Mar 19 21:18:57 GMT 2019 from Graal sources by <a
 			href="https://twitter.com/chriswhocodes">@chriswhocodes</a>
 	</div>
 </body>

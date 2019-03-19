@@ -32,6 +32,8 @@ graal.AggregatedMetricsFile = null                                        [Strin
 graal.AlwaysInlineIntrinsics = false                                     [Boolean]
           Unconditionally inline intrinsics
 graal.AlwaysInlineVTableStubs = false                                    [Boolean]
+graal.ArrayEqualsStubs = true                                            [Boolean]
+          Use Array equals stubs instead of embedding all the emitted code.
 graal.BaseCodeSizeCostCoefficient = 1.0E-4                                [Double]
           The base coefficient used to compute code size cost.
 graal.BaseTargetSpending = 120                                           [Integer]
@@ -100,14 +102,8 @@ graal.CanonicalGraphStringsRemoveIdentities = true                       [Boolea
           for graphs.
 graal.ClearMetricsAfterBootstrap = false                                 [Boolean]
           Clear the debug metrics after bootstrap.
-graal.CompilationBailoutAction = Silent                                   [String]
-          Specifies the action to take when compilation fails with a bailout
-          exception.
-          The accepted values are:
-              Silent - Print nothing to the console.
-               Print - Print a stack trace to the console.
-            Diagnose - Retry the compilation with extra diagnostics.
-              ExitVM - Same as Diagnose except that the VM process exits after retrying.
+graal.CompilationBailoutAsFailure = false                                [Boolean]
+          Treat compilation bailouts like compilation failures.
 graal.CompilationCountLimit = 0                                          [Integer]
           The number of compilations allowed for any method before the VM exits
           (a value of 0 means there is no limit).
@@ -115,10 +111,13 @@ graal.CompilationExpirationPeriod = 300                                  [Intege
           Time limit in seconds before a compilation expires (0 to disable the
           limit). The compilation alarm will be implicitly disabled if assertions
           are enabled.
-graal.CompilationFailureAction = Diagnose                                 [String]
-          Specifies the action to take when compilation fails with a bailout
-          exception. The accepted values are the same as for
-          CompilationBailoutAction.
+graal.CompilationFailureAction = Silent                                   [String]
+          Specifies the action to take when compilation fails.
+          The accepted values are:
+              Silent - Print nothing to the console.
+               Print - Print a stack trace to the console.
+            Diagnose - Retry the compilation with extra diagnostics.
+              ExitVM - Same as Diagnose except that the VM process exits after retrying.
 graal.CompilationWatchDogStackTraceInterval = 60.0                        [Double]
           Interval in seconds between a watch dog reporting stack traces for long
           running compilations.
@@ -408,10 +407,9 @@ graal.MatchExpressions = true                                            [Boolea
           Allow backend to match complex expressions.
 graal.MaxCFGRecomputations = 12                                          [Integer]
 graal.MaxCompilationProblemsPerAction = 2                                [Integer]
-          The maximum number of compilation failures or bailouts to handle with
-          the action specified by CompilationFailureAction or
-          CompilationBailoutAction before changing to a less verbose action. This
-          does not apply to the ExitVM action.
+          The maximum number of compilation failures to handle with the action
+          specified by CompilationFailureAction before changing to a less verbose
+          action. This does not apply to the ExitVM action.
 graal.MaxGraphSizeNodeCost = 100000                                      [Integer]
           Maximum node cost graph size for duplication. If a graph is bigger
           duplication will stop.
@@ -566,7 +564,6 @@ graal.OptStringConcatDump = false                                        [Boolea
 graal.OptWriteBarrierElimination = true                                  [Boolean]
           Eliminate redundant write barriers.
 graal.OptimisticAliasingAnalysis = true                                  [Boolean]
-graal.OptimizeDiv = true                                                 [Boolean]
 graal.OptimizeLoopAccesses = true                                        [Boolean]
           Enable access node optimizations for loops
 graal.PEAInliningHints = false                                           [Boolean]
@@ -866,15 +863,9 @@ graal.TruffleInstrumentBoundariesPerInlineSite = false                   [Boolea
 graal.TruffleInstrumentBranches = false                                  [Boolean]
           Instrument branches and output profiling information to the standard
           output.
-graal.TruffleInstrumentBranchesCount = 10000                             [Integer]
-          Maximum number of instrumentation counters available.
-graal.TruffleInstrumentBranchesFilter = null                              [String]
-          Method filter for methods in which to add branch instrumentation.
 graal.TruffleInstrumentBranchesPerInlineSite = false                     [Boolean]
           Instrument branches by considering different inlining sites as
           different branches.
-graal.TruffleInstrumentBranchesPretty = true                             [Boolean]
-          Prettify stack traces for branch-instrumented callsites.
 graal.TruffleInstrumentFilter = "*.*.*"                                   [String]
           Method filter for host methods in which to add instrumentation.
 graal.TruffleInstrumentationTableSize = 10000                            [Integer]
