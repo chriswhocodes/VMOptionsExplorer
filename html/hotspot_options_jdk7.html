@@ -183,7 +183,7 @@
 <tr><td>AllocatePrefetchLines</td><td>JDK6</td><td></td><td>intx</td><td></td><td></td><td>runtime</td><td>3</td><td>product</td><td>Number of lines to prefetch ahead of array allocation pointer</td><td>src/share/vm/runtime/globals.hpp</td></tr>
 <tr><td>AllocatePrefetchStepSize</td><td>JDK6</td><td></td><td>intx</td><td></td><td></td><td>runtime</td><td>16</td><td>product</td><td>Step size in bytes of sequential prefetch instructions</td><td>src/share/vm/runtime/globals.hpp</td></tr>
 <tr><td>AllocatePrefetchStyle</td><td>JDK6</td><td></td><td>intx</td><td></td><td></td><td>runtime</td><td>1</td><td>product</td><td>0 = no prefetch, <br>1 = prefetch instructions for each allocation, <br>2 = use TLAB watermark to gate allocation prefetch, <br>3 = use BIS instruction on Sparc for allocation prefetch</td><td>src/share/vm/runtime/globals.hpp</td></tr>
-<tr><td>AllowJNIEnvProxy</td><td>JDK6</td><td></td><td>bool</td><td></td><td></td><td>runtime</td><td>false</td><td>product</td><td>Allow JNIEnv proxies for jdbx</td><td>src/share/vm/runtime/globals.hpp</td></tr>
+<tr><td>AllowJNIEnvProxy</td><td>JDK6</td><td><span style="white-space:nowrap">Deprecated in JDK13</span><br><span style="white-space:nowrap">Obsoleted in JDK14</span><br><span style="white-space:nowrap">Expired in JDK15</span></td><td>bool</td><td></td><td></td><td>runtime</td><td>false</td><td>product</td><td>Allow JNIEnv proxies for jdbx</td><td>src/share/vm/runtime/globals.hpp</td></tr>
 <tr><td>AllowNonVirtualCalls</td><td>JDK6</td><td><span style="white-space:nowrap">Deprecated in JDK11</span><br><span style="white-space:nowrap">Obsoleted in JDK12</span><br><span style="white-space:nowrap">Expired in JDK13</span></td><td>bool</td><td></td><td></td><td>runtime</td><td>false</td><td>product</td><td>Obey the ACC_SUPER flag and allow invokenonvirtual calls</td><td>src/share/vm/runtime/globals.hpp</td></tr>
 <tr><td>AllowParallelDefineClass</td><td>JDK6</td><td></td><td>bool</td><td></td><td></td><td>runtime</td><td>false</td><td>product</td><td>Allow parallel defineClass requests for class loaders registering as parallel capable</td><td>src/share/vm/runtime/globals.hpp</td></tr>
 <tr><td>AllowUserSignalHandlers</td><td>JDK6</td><td></td><td>bool</td><td></td><td></td><td>runtime</td><td>false</td><td>product</td><td>Do not complain if the application installs signal handlers (Solaris &amp; Linux only)</td><td>src/share/vm/runtime/globals.hpp</td></tr>
@@ -1895,7 +1895,7 @@
 		</tbody>
 	</table>
 	<div class="footer">
-		Built on Tue Mar 19 21:18:57 GMT 2019 from HotSpot sources by <a
+		Built on Wed Apr 03 08:32:52 BST 2019 from HotSpot sources by <a
 			href="https://twitter.com/chriswhocodes">@chriswhocodes</a>
 	</div>
 </body>

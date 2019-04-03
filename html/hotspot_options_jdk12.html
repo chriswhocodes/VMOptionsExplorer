@@ -191,7 +191,7 @@
 <tr><td>AllocatePrefetchStyle</td><td>JDK6</td><td></td><td>intx</td><td></td><td></td><td>runtime</td><td>1<br>range(0, 3)</td><td>product</td><td>0 = no prefetch, <br>1 = generate prefetch instructions for each allocation, <br>2 = use TLAB watermark to gate allocation prefetch, <br>3 = generate one prefetch instruction per cache line</td><td>share/runtime/globals.hpp</td></tr>
 <tr><td>AllowArchivingWithJavaAgent</td><td>JDK12</td><td></td><td>bool</td><td></td><td></td><td>runtime</td><td>false</td><td>diagnostic</td><td>Allow Java agent to be run with CDS dumping</td><td>share/runtime/globals.hpp</td></tr>
 <tr><td>AllowExtshm</td><td>JDK9</td><td></td><td>bool</td><td>aix</td><td></td><td></td><td>false</td><td>product</td><td>Allow VM to run with EXTSHM=ON.</td><td>os/aix/globals_aix.hpp</td></tr>
-<tr><td>AllowJNIEnvProxy</td><td>JDK6</td><td></td><td>bool</td><td></td><td></td><td>runtime</td><td>false</td><td>product</td><td>Allow JNIEnv proxies for jdbx</td><td>share/runtime/globals.hpp</td></tr>
+<tr><td>AllowJNIEnvProxy</td><td>JDK6</td><td><span style="white-space:nowrap">Deprecated in JDK13</span><br><span style="white-space:nowrap">Obsoleted in JDK14</span><br><span style="white-space:nowrap">Expired in JDK15</span></td><td>bool</td><td></td><td></td><td>runtime</td><td>false</td><td>product</td><td>Allow JNIEnv proxies for jdbx</td><td>share/runtime/globals.hpp</td></tr>
 <tr><td>AllowParallelDefineClass</td><td>JDK6</td><td></td><td>bool</td><td></td><td></td><td>runtime</td><td>false</td><td>product</td><td>Allow parallel defineClass requests for class loaders registering as parallel capable</td><td>share/runtime/globals.hpp</td></tr>
 <tr><td>AllowUserSignalHandlers</td><td>JDK6</td><td></td><td>bool</td><td></td><td></td><td>runtime</td><td>false</td><td>product</td><td>Do not complain if the application installs signal handlers (Solaris &amp; Linux only)</td><td>share/runtime/globals.hpp</td></tr>
 <tr><td>AllowVectorizeOnDemand</td><td>JDK9</td><td></td><td>bool</td><td></td><td></td><td>c2</td><td>true</td><td>product</td><td>Globally supress vectorization set in VectorizeMethod</td><td>share/opto/c2_globals.hpp</td></tr>
@@ -2172,7 +2172,7 @@
 		</tbody>
 	</table>
 	<div class="footer">
-		Built on Tue Mar 19 21:18:57 GMT 2019 from HotSpot sources by <a
+		Built on Wed Apr 03 08:32:53 BST 2019 from HotSpot sources by <a
 			href="https://twitter.com/chriswhocodes">@chriswhocodes</a>
 	</div>
 </body>
