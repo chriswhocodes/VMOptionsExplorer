@@ -12,9 +12,15 @@ jvmci.TraceMethodDataFilter = null                                        [Strin
 jvmci.UseProfilingInformation = true                                     [Boolean]
           
 [Graal properties]
+graal.AOTInline = true                                                   [Boolean]
+          Perform method inlining in the AOT compiled native image
 graal.AOTInliningDepthToSizeRate = 2.5                                    [Double]
 graal.AOTInliningSizeMaximum = 300                                       [Integer]
 graal.AOTInliningSizeMinimum = 50                                        [Integer]
+graal.AOTTrivialInline = true                                            [Boolean]
+          Perform trivial method inlining in the AOT compiled native image
+graal.APIFunctionPrefix = "graal_"                                        [String]
+          Prefix that is added to the names of API functions.
 graal.ASMInstructionProfiling = null                                      [String]
           Enables instruction profiling on assembler level. Valid values are a
           comma separated list of supported instructions. Compare with subclasses
@@ -25,15 +31,71 @@ graal.AbortOnBenchmarkCounterOverflow = false                            [Boolea
           option overflow. This feature is only supported on AMD64.
           WARNING: No descriptive error message will be printed! In case of an overflow,
           manual inspection of the emitted code is required.
+graal.AddAllCharsets = false                                             [Boolean]
+          Make all hosted charsets available at run time
+graal.AddAllFileSystemProviders = true                                   [Boolean]
+          Make all supported providers returned by
+          FileSystemProvider.installedProviders() available at run time.
+graal.AddAllFileTypeDetectors = true                                     [Boolean]
+          Make all supported FileTypeDetector available at run time.
 graal.AggregatedMetricsFile = null                                        [String]
           File to which aggregated metrics are dumped at shutdown. A CSV format
           is used if the file ends with .csv otherwise a more human readable
           format is used. If not specified, metrics are dumped to the console.
+graal.AlignedHeapChunkSize = 1048576                                        [Long]
+          The size of an aligned chunk.
+graal.AllocateInstancePrefetchLines = 1                                  [Integer]
+          Number of cache lines to load after the object address using prefetch
+          instructions generated in JIT compiled code.
+graal.AllocatePrefetchDistance = 256                                     [Integer]
+          Sets the size (in bytes) of the prefetch distance for object
+          allocation. Memory about to be written with the value of new objects is
+          prefetched up to this distance starting from the address of the last
+          allocated object. Each Java thread has its own allocation point.
+graal.AllocatePrefetchInstr = 0                                          [Integer]
+          Sets the prefetch instruction to prefetch ahead of the allocation
+          pointer. Possible values are from 0 to 3. The actual instructions
+          behind the values depend on the platform.
+graal.AllocatePrefetchLines = 3                                          [Integer]
+          Number of cache lines to load after the array allocation using prefetch
+          instructions generated in JIT compiled code.
+graal.AllocatePrefetchStepSize = 16                                      [Integer]
+          Sets the step size (in bytes) for sequential prefetch instructions.
+graal.AllocatePrefetchStyle = 1                                          [Integer]
+          Generated code style for prefetch instructions: for 0 or less no
+          prefetch instructions are generated and for 1 or more prefetch
+          instructions are introduced after each allocation.
+graal.AllocationBeforePhysicalMemorySize = 1048576                          [Long]
+          Bytes that can be allocated before asking what the physical memory size
+          is
+graal.AllocationProfiling = false                                        [Boolean]
+          Enable runtime profiling of allocation
+graal.AllocationProfilingThreshold = 1048576                             [Integer]
+          The minimum size in bytes required for printing an allocation profiling
+          entry
+graal.AllocationSiteSensitiveHeap = false                                [Boolean]
+          A context sensitive heap means that each heap allocated object is
+          modeled by using at least the allocation site.
+graal.AllowFoldMethods = false                                           [Boolean]
+          Allow MethodTypeFlow to see @Fold methods
+graal.AllowIncompleteClasspath = false                                   [Boolean]
+          Allow image building with an incomplete class path: report type
+          resolution errors at run time when they are accessed the first time,
+          instead of during image building
+graal.AllowVMInspection = false                                          [Boolean]
+          Enables features that allow the VM to be inspected during runtime.
 graal.AlwaysInlineIntrinsics = false                                     [Boolean]
           Unconditionally inline intrinsics
 graal.AlwaysInlineVTableStubs = false                                    [Boolean]
-graal.ArrayEqualsStubs = true                                            [Boolean]
-          Use Array equals stubs instead of embedding all the emitted code.
+graal.AnalysisContextSensitivity = "insens"                               [String]
+          Controls the static analysis context sensitivity. Available values:
+          insens (context insensitive analysis), allocsens (context insensitive
+          analysis, context insensitive heap, allocation site sensitive heap),
+          _1obj (1 object sensitive analysis with a context insensitive heap),
+          _2obj1h (2 object sensitive with a 1 context sensitive heap)
+graal.AnalysisSizeCutoff = 8                                             [Integer]
+          The maximum size of type and method profiles returned by the static
+          analysis. -1 indicates no limitation.
 graal.BenchmarkCountersDumpDynamic = true                                [Boolean]
           Dump dynamic counters
 graal.BenchmarkCountersDumpStatic = false                                [Boolean]
@@ -78,6 +140,21 @@ graal.BootstrapTimeout = 15.0                                             [Doubl
 graal.BootstrapWatchDogCriticalRateRatio = 0.25                           [Double]
           Ratio of the maximum compilation rate below which the bootstrap
           compilation rate must not fall (0 or less disables monitoring).
+graal.CAPCacheDir = ""                                                    [String]
+          Directory where information generated by the CAnnotation Processor are
+          cached.
+graal.CLibraryPath = [Ljava.lang.String;@7f811fdf98f8                   [String[]]
+          Search path for C libraries passed to the linker (list of
+          comma-separated directories)
+graal.CPUFeatures = null                                                [String[]]
+          Comma separated list of CPU features that will be used for image
+          generation on the AMD64 platform. Features SSE and SSE2 are enabled by
+          default. Other available features are: CX8, CMOV, FXSR, HT, MMX,
+          AMD_3DNOW_PREFETCH, SSE3, SSSE3, SSE4A, SSE4_1, SSE4_2, POPCNT, LZCNT,
+          TSC, TSCINV, AVX, AVX2, AES, ERMS, CLMUL, BMI1, BMI2, RTM, ADX,
+          AVX512F, AVX512DQ, AVX512PF, AVX512ER, AVX512CD, AVX512BW
+graal.CStandard = "C89"                                                   [String]
+          C standard to use in header files. Possible values are: [C89, C99, C11]
 graal.CanOmitFrame = true                                                [Boolean]
 graal.CanonicalGraphStringsCheckConstants = false                        [Boolean]
           Exclude virtual nodes when dumping canonical text for graphs.
@@ -86,8 +163,21 @@ graal.CanonicalGraphStringsExcludeVirtuals = true                        [Boolea
 graal.CanonicalGraphStringsRemoveIdentities = true                       [Boolean]
           Attempts to remove object identity hashes when dumping canonical text
           for graphs.
+graal.CheckRecurringCallbackOnNativeToJavaTransition = false             [Boolean]
+          Test whether a thread's recurring callback is pending on each
+          transition from native code to Java.
+graal.Class = ""                                                          [String]
+          Class containing the default entry point method. Optional if --shared
+          is used.
 graal.ClearMetricsAfterBootstrap = false                                 [Boolean]
           Clear the debug metrics after bootstrap.
+graal.CodeCacheCounters = false                                          [Boolean]
+          Count accesses to the image and runtime code info table
+graal.CodeInfoEncoderCounters = false                                    [Boolean]
+          Statistics about code and deoptimization information
+graal.CodeInfoIndexGranularity = 256                                     [Integer]
+          The granularity of the index for looking up code metadata. Should be a
+          power of 2. Larger values make the index smaller, but access slower.
 graal.CompilationBailoutAsFailure = false                                [Boolean]
           Treat compilation bailouts like compilation failures.
 graal.CompilationCountLimit = 0                                          [Integer]
@@ -112,16 +202,26 @@ graal.CompilationWatchDogStartDelay = 0.0                                 [Doubl
           monitoring).
 graal.CompileGraalWithC1Only = true                                      [Boolean]
           In tiered mode compile Graal and JVMCI using optimized first tier code.
+graal.CompilerBackend = "lir"                                             [String]
+          Backend used by the compiler
 graal.CompilerConfiguration = null                                        [String]
           Names the Graal compiler configuration to use. If omitted, the compiler
           configuration with the highest auto-selection priority is used. To see
           the set of available configurations, supply the value 'help' to this
           option.
 graal.ConditionalElimination = true                                      [Boolean]
+graal.ConfigurationFileDirectories = null                               [String[]]
+          Directories directly containing configuration files for dynamic
+          features at runtime.
+graal.ConfigurationResourceRoots = null                                 [String[]]
+          Resource path above configuration resources for dynamic features at
+          runtime.
 graal.Count = null                                                        [String]
           Pattern for specifying scopes in which counters are enabled. See the
           Dump option for the pattern syntax. An empty value enables all counters
           unconditionally.
+graal.CountWriteBarriers = false                                         [Boolean]
+          Instrument write barriers with counters
 graal.Counters = null                                                     [String]
           Comma separated names of counters that are enabled irrespective of the
           value for Count option. An empty value enables all counters
@@ -134,14 +234,23 @@ graal.CrashAt = null                                                      [Strin
           raise a permanent bailout exception.
 graal.DebugStubsAndSnippets = false                                      [Boolean]
           Enable debug output for stub code generation and snippet preparation.
+graal.DelayClassInitialization = null                                   [String[]]
+          A comma-separated list of classes (and implicitly all of their
+          subclasses) that are initialized at runtime and not during image
+          building
 graal.DeoptALot = false                                                  [Boolean]
 graal.DeoptAfterOSR = true                                               [Boolean]
           Deoptimize OSR compiled code when the OSR entry loop is finished if
           there is no mature profile available for the rest of the method.
+graal.DeoptimizeAll = false                                              [Boolean]
+          Compiles all methods as deoptimization targets for testing
 graal.DeoptsToDisableOptimisticOptimization = 40                         [Integer]
 graal.DetailedAsserts = false                                            [Boolean]
           Enable expensive assertions if normal assertions (i.e. -ea or -esa) are
           enabled.
+graal.DivertParameterReturningMethod = true                              [Boolean]
+          Analysis: Detect methods that return one of their parameters and
+          hardwire the parameter straight to the return.
 graal.Dump = null                                                         [String]
           Filter pattern for specifying scopes in which dumping is enabled.
           
@@ -204,6 +313,8 @@ graal.Dump = null                                                         [Strin
             Code,~Dead
           
             Matches scopes containing "Code" but not "Dead", with level 1.
+graal.DumpLLVMStackMap = null                                             [String]
+          Dump contents of the generated stackmap to the specified file
 graal.DumpOnError = false                                                [Boolean]
           Send Graal compiler IR to dump handlers on error.
 graal.DumpOnPhaseChange = null                                            [String]
@@ -216,17 +327,73 @@ graal.DumpingErrorsAreFatal = false                                      [Boolea
           Treat any exceptions during dumping as fatal.
 graal.DynamicCountersPrintGroupSeparator = true                          [Boolean]
           Use grouping separators for number printing
-graal.EagerSnippets = false                                              [Boolean]
+graal.DynamicProxyConfigurationFiles = null                             [String[]]
+          One or several (comma-separated) paths to JSON files that specify lists
+          of interfaces that define Java proxy classes.
+          The structure is an array of arrays of fully qualified interface names.
+          
+          Example:
+          
+              [
+                  ["java.lang.AutoCloseable", "java.util.Comparator"],
+                  ["java.util.Comparator"],
+                  ["java.util.List"]
+              ]
+graal.DynamicProxyConfigurationResources = null                         [String[]]
+          Resources describing program elements to be made available for
+          reflection (see ProxyConfigurationFiles).
+graal.DynamicProxyTracing = false                                        [Boolean]
+          Enable trace logging for dynamic proxy.
+graal.EagerClassInitialization = null                                   [String[]]
+          A comma-separated list of classes (and implicitly all of their
+          superclasses) that are initialized during image building
+graal.EagerSnippets := true                                              [Boolean]
           Eagerly construct extra snippet info.
+graal.EagerlyInitializeClasses = true                                    [Boolean]
+          Initialize side-effectful application class initializers at image build
+          time.
+graal.EmitStringEncodingSubstitutions = true                             [Boolean]
+          Emit substitutions for UTF16 and latin1 compression
+graal.EnableAllSecurityServices = false                                  [Boolean]
+          Add all security service classes to the generated image.
+graal.EnableSecurityServicesFeature = true                               [Boolean]
+          Enable the feature that provides support for security services.
+graal.EnableURLProtocols = null                                         [String[]]
+          List of comma separated URL protocols to enable.
+graal.EnforceMaxRuntimeCompileMethods = false                            [Boolean]
+          Enforce checking of maximum number of methods allowed for runtime
+          compilation. Useful for checking in the gate that the number of methods
+          does not go up without a good reason.
+graal.EntryPointNamePrefix = ""                                           [String]
+          Prefix that is added to the names of entry point methods.
 graal.EscapeAnalysisIterations = 2                                       [Integer]
 graal.EscapeAnalysisLoopCutoff = 20                                      [Integer]
 graal.EscapeAnalyzeOnly = null                                            [String]
 graal.ExactFullUnrollMaxNodes = 800                                      [Integer]
 graal.ExactPartialUnrollMaxNodes = 200                                   [Integer]
+graal.ExitAfterAnalysis = false                                          [Boolean]
+          Exit after analysis
+graal.ExitAfterCAPCache = false                                          [Boolean]
+          Exit image generation after C Annotation Processor Cache creation.
 graal.ExitVMOnException = false                                          [Boolean]
           Alias for CompilationFailureAction=ExitVM.
+graal.ExtendedAsserts = false                                            [Boolean]
+          Enable extended asserts which slow down analysis.
 graal.FailedLoopExplosionIsFatal = false                                 [Boolean]
           Do not bail out but throw an exception on failed loop explosion.
+graal.FallbackExecutorClasspath = null                                    [String]
+          Internal option used to specify Classpath for FallbackExecutor.
+graal.FallbackExecutorMainClass = null                                    [String]
+          Internal option used to specify MainClass for FallbackExecutor.
+graal.FallbackExecutorSystemProperty = null                             [String[]]
+          Internal option used to specify system properties for FallbackExecutor.
+graal.FallbackThreshold = 5                                              [Integer]
+          Define when fallback-image generation should be used.
+graal.Features = null                                                   [String[]]
+          A comma-separated list of fully qualified Feature implementation
+          classes
+graal.ForceDumpGraphsBeforeCompilation = false                           [Boolean]
+          Force-dump graphs before compilation
 graal.FullUnroll = true                                                  [Boolean]
 graal.FullUnrollConstantCompareBoost = 15                                [Integer]
 graal.FullUnrollMaxIterations = 600                                      [Integer]
@@ -234,6 +401,10 @@ graal.FullUnrollMaxNodes = 400                                           [Intege
 graal.GCDebugStartCycle = -1                                             [Integer]
           Start tracing compiled GC barriers after N garbage collections
           (disabled if N <= 0).
+graal.GCHistory = 1                                                      [Integer]
+          How much history to maintain about garbage collections.
+graal.GatherSafepointStatistics = false                                  [Boolean]
+          Gather statistics about each safepoint.
 graal.GenLoopSafepoints = true                                           [Boolean]
 graal.GenSafepoints = true                                               [Boolean]
 graal.GeneratePIC = false                                                [Boolean]
@@ -249,13 +420,42 @@ graal.GraalCompileOnly = null                                             [Strin
 graal.GraphCompressionThreshold = 70                                     [Integer]
           Graal graph compression is performed when percent of live nodes falls
           below this value
+graal.GreyToBlackObjRefDemographics = false                              [Boolean]
+          Develop demographics of the object references visited.
+graal.GreyToBlackObjectVisitorDiagnosticHistory = 0                      [Integer]
+          Keep history of GreyToBlackObjectVisits. 0 implies no history is kept.
 graal.GuardPriorities = true                                             [Boolean]
+graal.HeapVerificationFailureIsFatal = true                              [Boolean]
+          Verify the heap before and after each collection.
 graal.HideSubstitutionStates = false                                     [Boolean]
           When creating info points hide the methods of the substitutions.
 graal.HotSpotPrintInlining = false                                       [Boolean]
           Print inlining optimizations
+graal.HybridStaticContext = false                                        [Boolean]
+          Enable hybrid context for static methods, i.e. uses invocation site as
+          context for static methods.
+graal.ImageObjectTreeExpandRoots = ""                                     [String]
+          Override the default suppression of specified roots. See: REPORTS.md.
+graal.ImageObjectTreeExpandTypes = ""                                     [String]
+          Override the default suppression of specified types. See: REPORTS.md.
+graal.ImageObjectTreeSuppressRoots = ""                                   [String]
+          Suppress the expansion of specified roots. See: REPORTS.md.
+graal.ImageObjectTreeSuppressTypes = ""                                   [String]
+          Suppress the expansion of specified types. See: REPORTS.md.
 graal.ImmutableCode = false                                              [Boolean]
           Try to avoid emitting code where patching is required
+graal.IncludeAllTimeZones = false                                        [Boolean]
+          When true, all time zones will be pre-initialized in the image.
+graal.IncludeLLVMDebugInfo = 0                                           [Integer]
+          Include debugging info in the generated image (for LLVM backend).
+graal.IncludeNodeSourcePositions = false                                 [Boolean]
+          Track NodeSourcePositions during runtime-compilation
+graal.IncludeResourceBundles = null                                     [String[]]
+          Comma separated list of bundles to be included into the image.
+graal.IncludeResources = [Ljava.lang.String;@7f811fded060               [String[]]
+          Regexp to match names of resources to be included in the image.
+graal.InitialCollectionPolicy = "com.oracle.svm.core.genscavenge.CollectionPolicy$ByTime" [String]
+          What is the initial collection policy?
 graal.Inline = true                                                      [Boolean]
           Enable inlining
 graal.InlineDuringParsing = true                                         [Boolean]
@@ -281,10 +481,28 @@ graal.InlineVTableStubs = true                                           [Boolea
 graal.InliningDepthError = 1000                                          [Integer]
           Maximum inlining depth during partial evaluation before reporting an
           infinite recursion
+graal.InspectServerContentPath = "inspect"                                [String]
+          Path to the contents of the Inspect web server.
+graal.InstallSegfaultHandler = null                                      [Boolean]
+          Install segfault handler that prints register contents and full Java
+          stacktrace. Default: enabled for an executable, disabled for a shared
+          library.
 graal.InterceptBailout = false                                           [Boolean]
           Intercept also bailout exceptions
 graal.Intrinsify = true                                                  [Boolean]
           Use compiler intrinsifications.
+graal.JNI = true                                                         [Boolean]
+          Enable Java Native Interface (JNI) support.
+graal.JNIConfigurationFiles = null                                      [String[]]
+          Files describing program elements to be made accessible via JNI (for
+          syntax, see ReflectionConfigurationFiles)
+graal.JNIConfigurationResources = null                                  [String[]]
+          Resources describing program elements to be made accessible via JNI
+          (see JNIConfigurationFiles).
+graal.JNIVerboseLookupErrors = false                                     [Boolean]
+          Report information about known JNI elements when lookup fails
+graal.Kind = "EXECUTABLE"                                                 [String]
+          Generate a SHARED_LIBRARY, EXECUTABLE or STATIC_EXECUTABLE image
 graal.LIRDynMoveProfileMethod = false                                    [Boolean]
           Enable dynamic move profiling per method.
 graal.LIROptConstantLoadOptimization = true                              [Boolean]
@@ -314,7 +532,17 @@ graal.LSRAOptSplitOnly = false                                           [Boolea
           LSRA optimization: Only split but do not reassign
 graal.LSRAOptimization = false                                           [Boolean]
           Enable LSRA optimization
+graal.LargeArrayThreshold = 0                                               [Long]
+          How many bytes is enough to allocate an unaligned chunk for an array? 0
+          implies (AlignedHeapChunkSize / 8).
 graal.LimitInlinedInvokes = 5.0                                           [Double]
+graal.LimitObjectArrayLength = false                                     [Boolean]
+          Enable a limit for the number of objects recorded for each type of a
+          type state before disabling heap sensitivity for that type. The
+          analysis must be heap sensitive.
+graal.LinkerRPath = null                                                [String[]]
+          Path passed to the linker as the -rpath (list of comma-separated
+          directories)
 graal.ListMetrics = false                                                [Boolean]
           Lists on the console at VM shutdown the metric names available to the
           Timers, Counters and MemUseTrackers options. Note that this only lists
@@ -338,17 +566,58 @@ graal.LoopUnswitch = true                                                [Boolea
 graal.LoopUnswitchFrequencyBoost = 10.0                                   [Double]
 graal.LoopUnswitchMaxIncrease = 500                                      [Integer]
 graal.LoopUnswitchTrivial = 10                                           [Integer]
+graal.MachODebugInfoTesting = false                                      [Boolean]
+          Test Mach-O debuginfo generation
 graal.MatchExpressions = true                                            [Boolean]
           Allow backend to match complex expressions.
+graal.MaxCallingContextDepth = 0                                         [Integer]
+          The maximum length of the methods context chains.
+graal.MaxCallingContextWidth = 0                                         [Integer]
+          The maximum number of contexts to record for a method. It only affects
+          the analysis when the max and min calling context depth are different.
 graal.MaxCompilationProblemsPerAction = 2                                [Integer]
           The maximum number of compilation failures to handle with the action
           specified by CompilationFailureAction before changing to a less verbose
           action. This does not apply to the ExitVM action.
+graal.MaxConstantObjectsPerType = 100                                    [Integer]
+          The maximum number of constant objects recorded for each type before
+          merging the constants into one unique constant object per type. The
+          analysis must be heap sensitive. It has a minimum value of 1.
+graal.MaxHeapContextDepth = 0                                            [Integer]
+          The maximum length of the context used to model a heap object in
+          addition to the allocation site; used only when ContextSensitiveHeap is
+          enabled.
+graal.MaxHeapContextWidth = 0                                            [Integer]
+          The maximum number of contexts to record for a heap object. It only
+          affects the analysis when the max and min calling context depth are
+          different.
+graal.MaxInvokesInTrivialMethod = 1                                      [Integer]
+          Maximum number of invokes in a method so that it is considered trivial
+          (for testing only).
+graal.MaxNodesInTrivialLeafMethod = 40                                   [Integer]
+          Maximum number of nodes in a method so that it is considered trivial,
+          if it does not have any invokes.
+graal.MaxNodesInTrivialMethod = 20                                       [Integer]
+          Maximum number of nodes in a method so that it is considered trivial.
+graal.MaxObjectSetSize = 100                                             [Integer]
+          The maximum number of objects recorded for each type of a type state
+          before disabling heap sensitivity for that type. The analysis must be
+          heap sensitive. It has a minimum value of 1.
+graal.MaxReachableTypes = -1                                             [Integer]
+          Maximum number of types allowed in the image. Used for tests where
+          small number of types in necessary.
+graal.MaxRuntimeCompileMethods = 0                                       [Integer]
+          Maximum number of methods allowed for runtime compilation.
 graal.MaxTemplatesPerSnippet = 50                                        [Integer]
+graal.MaxUnrolledObjectZeroingStores = 8                                 [Integer]
+          Define the maximum number of stores for which the loop that zeroes out
+          objects is unrolled.
 graal.MaximumDesiredSize = 20000                                         [Integer]
           Maximum desired size of the compiler graph in nodes.
 graal.MaximumEscapeAnalysisArrayLength = 128                             [Integer]
           The maximum length of an array that will be escape analyzed.
+graal.MaximumHeapSizePercent = 80                                        [Integer]
+          The maximum heap size as percent of physical memory
 graal.MaximumInliningSize = 300                                          [Integer]
           Inlining is explored up to this number of nodes in the graph for each
           call site.
@@ -356,6 +625,9 @@ graal.MaximumLoopExplosionCount = 10000                                  [Intege
           Max number of loop explosions per method.
 graal.MaximumRecursiveInlining = 5                                       [Integer]
           Maximum level of recursive inlining.
+graal.MaximumYoungGenerationSizePercent = 10                             [Integer]
+          The maximum size of the young generation as a percent of the maximum
+          heap size
 graal.MegamorphicInliningMinMethodProbability = 0.33                      [Double]
           Minimum probability for methods to be inlined for megamorphic type
           profiles.
@@ -363,6 +635,8 @@ graal.MemUseTrackers = null                                               [Strin
           Comma separated names of memory usage trackers that are enabled
           irrespective of the value for TrackMemUse option. An empty value
           enables all memory usage trackers unconditionally.
+graal.Method = "main"                                                     [String]
+          Name of the main entry point method. Optional if --shared is used.
 graal.MethodFilter = null                                                 [String]
           Pattern for filtering debug scope output based on method context.
           The syntax for a pattern is:
@@ -425,6 +699,12 @@ graal.MetricsFile = null                                                  [Strin
 graal.MetricsThreadFilter = null                                          [String]
           Only report metrics for threads whose name matches the regular
           expression.
+graal.MinCallingContextDepth = 0                                         [Integer]
+          The minimum length of the methods context chains.
+graal.MinHeapContextDepth = 0                                            [Integer]
+          The minimum length of the context used to model a heap object in
+          addition to the allocation site; used only when ContextSensitiveHeap is
+          enabled.
 graal.MinimumPeelProbability = 0.35                                        [Float]
 graal.MitigateSpeculativeExecutionAttacks = None                          [String]
           Select a strategy to mitigate speculative execution attacks (e.g.,
@@ -437,14 +717,38 @@ graal.MitigateSpeculativeExecutionAttacks = None                          [Strin
                                    This has less performance impact than AllTargets.
             NonDeoptGuardTargets - GuardTargets except that branches which deoptimize are not
                                    protected since they can not be executed repeatedly.
+graal.MultiThreaded = true                                               [Boolean]
+          Enable support for threads and and thread-local variables (disable for
+          single-threaded implementation)
+graal.MustNotSynchronizeWarningsAreFatal = true                          [Boolean]
+          Warnings for @MustNotSynchronize annotations are fatal.
 graal.NDCV = 0                                                           [Integer]
           Run level for NoDeadCodeVerifyHandler (0 = off, 1 = info, 2 = verbose,
           3 = fatal)
+graal.Name = ""                                                           [String]
+          Name of the output file to be generated
+graal.NativeArchitecture = false                                         [Boolean]
+          Overrides CPUFeatures and uses the native architecture, i.e., the
+          architecture of a machine that builds an image. NativeArchitecture
+          takes precedence over CPUFeatures
+graal.NativeLinkerOption = null                                         [String[]]
+          Pass the provided raw option to the linker command that produces the
+          final binary. The possible options are platform specific and passed
+          through without any validation.
+graal.NewCAPCache = false                                                [Boolean]
+          Create a C Annotation Processor Cache. Will erase any previous cache at
+          that same location.
 graal.NodeCounters = false                                               [Boolean]
           Counts the number of instances of each node class.
 graal.NonFatalIdenticalCompilationSnapshots = 20                         [Integer]
           Number of contiguous identical compiler thread stack traces allowed
           before the VM exits on the basis of a stuck compilation.
+graal.NumberOfAnalysisThreads = -1                                       [Integer]
+          The number of threads to use for analysis during native image
+          generation. The number must be smaller than the NumberOfThreads.
+graal.NumberOfThreads = 32                                               [Integer]
+          The maximum number of threads to use concurrently during native image
+          generation.
 graal.OmitHotExceptionStacktrace = false                                 [Boolean]
 graal.OptAssumptions = true                                              [Boolean]
 graal.OptClearNonLiveLocals = true                                       [Boolean]
@@ -460,9 +764,28 @@ graal.OptImplicitNullChecks = true                                       [Boolea
 graal.OptLoopTransform = true                                            [Boolean]
 graal.OptReadElimination = true                                          [Boolean]
 graal.OptScheduleOutOfLoops = true                                       [Boolean]
+graal.Optimize = 1                                                       [Integer]
+          Control native-image code optimizations: 0 - no optimizations, 1 -
+          basic optimizations.
 graal.PEAInliningHints = false                                           [Boolean]
+graal.PageSize = 0                                                       [Integer]
+          Define PageSize of a machine that runs the image. The default = 0 (==
+          same as host machine page size)
+graal.ParseRuntimeOptions = true                                         [Boolean]
+          Parse and consume standard options and system properties from the
+          command line arguments when the VM is created.
 graal.PartialEscapeAnalysis = true                                       [Boolean]
 graal.PartialUnroll = true                                               [Boolean]
+graal.Path = "/b/b/e/main/vm/svmbuild"                                    [String]
+          Directory of the image file to be generated
+graal.PercentTimeInIncrementalCollection = 50                            [Integer]
+          Percentage of time that should be spent in young generation
+          collections.
+graal.PrintAOTCompilation = false                                        [Boolean]
+          Print logging information during compilation
+graal.PrintAnalysisCallTree = false                                      [Boolean]
+          Print analysis call tree, a breadth-first tree reduction of the call
+          graph.
 graal.PrintBackendCFG = true                                             [Boolean]
           Enable dumping LIR, register allocation and code generation info to the
           C1Visualizer.
@@ -476,9 +799,27 @@ graal.PrintCanonicalGraphStringFlavor = 0                                [Intege
           (better for spotting small structure differences)
 graal.PrintCanonicalGraphStrings = false                                 [Boolean]
           Enable dumping canonical text from for graphs.
+graal.PrintClassInitialization = false                                   [Boolean]
+          Prints class initialization info for all classes detected by analysis.
 graal.PrintCompilation = false                                           [Boolean]
           Print an informational line to the console for each completed
           compilation.
+graal.PrintDetailedAllocationProfiling = true                            [Boolean]
+          Print detailed information for each allocation site
+graal.PrintFeatures = false                                              [Boolean]
+          Print features-specific information
+graal.PrintFlags = null                                                   [String]
+          Show available options based on comma-separated option-types (allowed
+          categories: User, Expert, Debug).
+graal.PrintGC = false                                                    [Boolean]
+          Print summary GC information after each collection
+graal.PrintGCSummary = false                                             [Boolean]
+          Print summary GC information after main completion
+graal.PrintGCTimeStamps = false                                          [Boolean]
+          Print a time stamp at each collection, if +PrintGC or +VerboseGC.
+graal.PrintGCTimes = false                                               [Boolean]
+          Print the time for each of the phases of each collection, if
+          +VerboseGC.
 graal.PrintGraph = File                                                   [String]
           Where IdealGraphVisualizer graph dumps triggered by Dump or DumpOnError
           should be written.
@@ -496,16 +837,52 @@ graal.PrintGraphPort = 4445                                              [Intege
           Port part of the address to which graphs are dumped in binary format.
 graal.PrintGraphWithSchedule = false                                     [Boolean]
           Schedule graphs as they are dumped.
+graal.PrintHeapHistogram = false                                         [Boolean]
+          Print class statistics of native image heap
+graal.PrintHeapShape = false                                             [Boolean]
+          Print the shape of the heap before and after each collection, if
+          +VerboseGC.
 graal.PrintIRWithLIR = false                                             [Boolean]
           Print HIR along side LIR as the latter is generated
+graal.PrintImageElementSizes = false                                     [Boolean]
+          Print the sizes of the elements of the built image
+graal.PrintImageHeapPartitionSizes = false                               [Boolean]
+          Print the sizes of the native image heap as the image is built
+graal.PrintImageObjectTree = false                                       [Boolean]
+          Print boot image object hierarchy.
+graal.PrintJNIMethods = false                                            [Boolean]
+          Print JNI methods added to generated image
 graal.PrintLIRWithAssembly = false                                       [Boolean]
           Include the LIR as comments with the final assembly.
+graal.PrintMethodHistogram = false                                       [Boolean]
+          Print statistics of methods in native image heap
+graal.PrintMustNotSynchronizePath = true                                 [Boolean]
+          Print path for @MustNotSynchronize warnings.
+graal.PrintMustNotSynchronizeWarnings = true                             [Boolean]
+          Print warnings for @MustNotSynchronize annotations.
 graal.PrintProfilingInformation = false                                  [Boolean]
           Print profiling information when parsing a method's bytecode
+graal.PrintRestrictHeapAccessPath = true                                 [Boolean]
+          Print path for @RestrictHeapAccess warnings.
+graal.PrintRestrictHeapAccessWarnings = true                             [Boolean]
+          Print warnings for @RestrictHeapAccess annotations.
+graal.PrintRuntimeCompileMethods = false                                 [Boolean]
+          Print call tree of methods available for runtime compilation
+graal.PrintStaticTruffleBoundaries = false                               [Boolean]
+          Print truffle boundaries found during the analysis
+graal.PrintSynchronizedAnalysis = false                                  [Boolean]
+          Print types used for Java synchronization.
 graal.PrintTruffleExpansionHistogram = false                             [Boolean]
           Prints a histogram of all expanded Java methods.
 graal.PrintTruffleTrees = true                                           [Boolean]
           Enable dumping Truffle ASTs to the IdealGraphVisualizer.
+graal.PrintUninterruptibleCalleeDOTGraph = false                         [Boolean]
+          Print (to stderr) a DOT graph of the @Uninterruptible annotations.
+graal.PrintUninterruptibleWarnings = true                                [Boolean]
+          Print warnings for @Uninterruptible annotations.
+graal.PrintUniverse = false                                              [Boolean]
+          Print information about classes, methods, and fields that are present
+          in the native image
 graal.ProbabilisticProfiling = true                                      [Boolean]
           Control probabilistic profiling on AMD64
 graal.ProfileAllocations = false                                         [Boolean]
@@ -520,9 +897,15 @@ graal.ProfileAllocationsContext = AllocatingMethod                        [Strin
                      AllocatedType - one counter per allocated type
             AllocatedTypesInMethod - one counter per allocated type, per method
            
+graal.ProfileAnalysisOperations = false                                  [Boolean]
+          Track the progress of the static analysis.
 graal.ProfileBackedges = true                                            [Boolean]
           Emit profiling of backedges
 graal.ProfileCompiledMethods = false                                     [Boolean]
+graal.ProfileConstantObjects = false                                     [Boolean]
+          Track the creation of constant objects.
+graal.ProfileDeoptimization = false                                      [Boolean]
+          Print logging information during object file writing
 graal.ProfileInvokes = true                                              [Boolean]
           Emit profiling of invokes
 graal.ProfileMonitors = false                                            [Boolean]
@@ -534,11 +917,107 @@ graal.ReadEliminationMaxLoopVisits = 5                                   [Intege
 graal.ReassociateInvariants = true                                       [Boolean]
 graal.ReduceDCE = true                                                   [Boolean]
           Disable optional dead code eliminations
+graal.ReflectionConfigurationFiles = null                               [String[]]
+          One or several (comma-separated) paths to JSON files that specify which
+          program elements should be made available via reflection.
+          The JSON object schema is:
+          
+              {
+                String name; // fully qualified class name
+                boolean allDeclaredConstructors; // include all declared constructors, see Class.getDeclaredConstructors()
+                boolean allPublicConstructors;   // include all public constructors, see Class.getConstructors()
+                boolean allDeclaredMethods; // include all declared methods, see Class.getDeclaredMethods()
+                boolean allPublicMethods;   // include all public methods, see Class.getMethods()
+                boolean allDeclaredFields;  // include all declared fields, see Class.getDeclaredFields()
+                boolean allPublicFields;    // include all public fields, see Class.getFields()
+                {
+                  String name; // method name
+                  String[] parameterTypes; // parameter types (optional, use if ambiguous)
+                }[] methods;
+                {
+                  String name; // field name
+                }[] fields;
+              }[];
+          
+          Example:
+          
+          	[
+          	  {
+          	    "name" : "java.lang.Class",
+          	    "allDeclaredConstructors" : "true",
+          	    "allPublicConstructors" : "true",
+          	    "allDeclaredMethods" : "true",
+          	    "allPublicMethods" : "true"
+          	  },
+          	  {
+          	    "name" : "java.lang.String",
+          	    "fields" : [
+          	      { "name" : "value" },
+          	      { "name" : "hash" }
+          	    ],
+          	    "methods" : [
+          	      { "name" : "<init>", "parameterTypes" : [] },
+          	      { "name" : "<init>", "parameterTypes" : ["char[]"] },
+          	      { "name" : "charAt" },
+          	      { "name" : "format", "parameterTypes" : ["java.lang.String", "java.lang.Object[]"] },
+          	    ]
+          	  },
+                {
+                  "name" : "java.lang.String$CaseInsensitiveComparator",
+                  "methods" : [
+                    { "name" : "compare" }
+                  ]
+                }
+          	]
+graal.ReflectionConfigurationResources = null                           [String[]]
+          Resources describing program elements to be made available for
+          reflection (see ReflectionConfigurationFiles).
+graal.ReflectionPluginTracing = false                                    [Boolean]
+          Enable trace logging for reflection plugins.
 graal.RegisterPressure = null                                             [String]
           Comma separated list of registers that register allocation is limited
           to.
 graal.RemoveNeverExecutedCode = true                                     [Boolean]
 graal.ReplaceInputsWithConstantsBasedOnStamps = true                     [Boolean]
+graal.ReportAnalysisForbiddenType = [Ljava.lang.String;@7f811fdf98e8    [String[]]
+          Report error if <typename>[:<UsageKind>{,<UsageKind>}] is discovered
+          during analysis (valid values for UsageKind: InHeap, Allocated,
+          InTypeCheck).
+graal.ReportAnalysisStatistics = false                                   [Boolean]
+          Report analysis statistics.
+graal.ReportExceptionStackTraces = false                                 [Boolean]
+          Show exception stack traces for exceptions during image building.)
+graal.ReportUnsafeOffsetWarnings = false                                 [Boolean]
+          Print unsafe operation offset warnings.)
+graal.ReportUnsupportedElementsAtRuntime = false                         [Boolean]
+          Report usage of unsupported methods and fields at run time when they
+          are accessed the first time, instead of as an error during image
+          building
+graal.ReportUnsupportedFeaturesDuringAnalysis = true                     [Boolean]
+          Unsupported features are fatal.
+graal.RerunClassInitialization = null                                   [String[]]
+          A comma-separated list of classes (and implicitly all of their
+          subclasses) that are initialized both at runtime and during image
+          building
+graal.ResourceConfigurationFiles = [Ljava.lang.String;@7f811fded050     [String[]]
+          Files describing Java resources to be included in the image.
+graal.ResourceConfigurationResources = [Ljava.lang.String;@7f811fded040 [String[]]
+          Resources describing Java resources to be included in the image.
+graal.ReturnAfterAnalysis = false                                        [Boolean]
+          Return after analysis
+graal.RuntimeAssertions = false                                          [Boolean]
+          Enable or disable Java assert statements at run time
+graal.RuntimeAssertionsFilter = null                                    [String[]]
+          Only use Java assert statements for classes that are matching the
+          comma-separated list of package prefixes.
+graal.SafepointPromptnessFailureIsFatal = true                           [Boolean]
+          Are safepoint promptness failures fatal?
+graal.SafepointPromptnessFailureNanos = 0                                   [Long]
+          Exit the VM if I can not come to a safepoint in this many nanoseconds.
+          0 implies forever.
+graal.SafepointPromptnessWarningNanos = 0                                   [Long]
+          Print a warning if I can not come to a safepoint in this many
+          nanoseconds. 0 implies forever.
 graal.ShowConfiguration = none                                            [String]
           Writes to the VM log information about the Graal compiler configuration
           selected.
@@ -561,20 +1040,53 @@ graal.SmallCompiledLowLevelGraphSize = 300                               [Intege
           threshold, it is not inlined.
 graal.SnippetCounters = false                                            [Boolean]
           Enable counters for various paths in snippets.
+graal.SpawnIsolates = true                                               [Boolean]
+          Support multiple isolates. 
+graal.StackRedZoneSize = 8192                                            [Integer]
+          Size (in bytes) of the red zone reserved at the end of the stack. This
+          stack space can only be used by critical VM code and C code, e.g., to
+          report fatal errors.
+graal.StackTrace = true                                                  [Boolean]
+          Provide method names for stack traces.
+graal.StackYellowZoneSize = 32768                                        [Integer]
+          Size (in bytes) of the yellow zone reserved at the end of the stack.
+          This stack space is reserved for VM use and cannot be used by the
+          application.
 graal.StressExplicitExceptionCode = false                                [Boolean]
           Stress the code emitting explicit exception throwing code.
 graal.StressInvokeWithExceptionNode = false                              [Boolean]
           Stress the code emitting invokes with explicit exception edges.
 graal.StressTestEarlyReads = false                                       [Boolean]
           Stress the code by emitting reads at earliest instead of latest point.
+graal.SubstitutionFiles = null                                          [String[]]
+          Comma-separated list of file names with declarative substitutions
+graal.SubstitutionResources = null                                      [String[]]
+          Comma-separated list of resource file names with declarative
+          substitutions
 graal.SupportJsrBytecodes = true                                         [Boolean]
 graal.SupportOSRWithLocks = true                                         [Boolean]
           Support OSR compilations with locks. If DeoptAfterOSR is true we can
           per definition not have unbalanced enter/exits mappings. If
           DeoptAfterOSR is false insert artificial monitor enters after the
           OSRStart to have balanced enter/exits in the graph.
+graal.SuppressStderr = false                                             [Boolean]
+          Suppress console error output for unittests
+graal.SuppressStdout = false                                             [Boolean]
+          Suppress console normal output for unittests
 graal.TailDuplicationProbability = 0.5                                    [Double]
 graal.TailDuplicationTrivialSize = 1                                     [Integer]
+graal.TearDownFailureNanos = 0                                              [Long]
+          The number of nanoseconds before tearing down an isolate gives a
+          failure message. 0 implies no message.
+graal.TearDownWarningNanos = 0                                              [Long]
+          The number of nanoseconds before and between which tearing down an
+          isolate gives a warning message. 0 implies no warning.
+graal.TempDirectory = ""                                                  [String]
+          Directory for temporary files generated during native image generation.
+          If this option is specified, the temporary files are not deleted so
+          that you can inspect them after native image generation
+graal.ThrowUnsafeOffsetErrors = true                                     [Boolean]
+          Throw unsafe operation offset errors.)
 graal.TierABackedgeNotifyFreqLog = 16                                    [Integer]
           Backedge notification frequency
 graal.TierABackedgeProfileProbabilityLog = 12                            [Integer]
@@ -606,9 +1118,20 @@ graal.TraceBytecodeParserLevel = 0                                       [Intege
           multiple compiler threads will be interleaved so use of this option
           make most sense for single threaded compilation. The MethodFilter
           option can be used to refine tracing to selected methods.
+graal.TraceCodeCache = false                                             [Boolean]
+          Print logging information for runtime code cache modifications
+graal.TraceDeoptimization = false                                        [Boolean]
+          Print logging information for every deoptimization
+graal.TraceDeoptimizationDetails = false                                 [Boolean]
+          Print verbose logging information for every deoptimization
 graal.TraceEscapeAnalysis = false                                        [Boolean]
 graal.TraceExceptionHandlerStub = false                                  [Boolean]
           Trace execution of stub used to handle an exception thrown by a callee.
+graal.TraceHeapChunks = false                                            [Boolean]
+          Trace heap chunks during collections, if +VerboseGC and
+          +PrintHeapShape.
+graal.TraceHeapVerification = false                                      [Boolean]
+          Trace heap verification.
 graal.TraceInlineDuringParsing = false                                   [Boolean]
           Traces inlining performed during bytecode parsing.
 graal.TraceInlining = false                                              [Boolean]
@@ -624,13 +1147,24 @@ graal.TraceInliningForStubsAndSnippets = false                           [Boolea
           Enable inlining decision tracing in stubs and snippets.
 graal.TraceLIRGeneratorLevel = 0                                         [Integer]
           The trace level for the LIR generator
+graal.TraceLoggingFeature = false                                        [Boolean]
+          When enabled, logging feature details are printed.
 graal.TraceMonitorsMethodFilter = null                                    [String]
           Trace monitor operations in methods whose fully qualified name contains
           this substring.
 graal.TraceMonitorsTypeFilter = null                                      [String]
           Trace monitor operations on objects whose type contains this substring.
+graal.TraceObjectPromotion = false                                       [Boolean]
+          Trace each object promotion.
 graal.TraceParserPlugins = false                                         [Boolean]
           Traces use of plugins during bytecode parsing.
+graal.TraceSecurityServices = false                                      [Boolean]
+          Enable trace logging for the security services feature.
+graal.TraceServiceLoaderFeature = false                                  [Boolean]
+          When enabled, each service loader resource and class will be printed
+          out to standard output
+graal.TraceStackVerification = false                                     [Boolean]
+          Trace stack verification.
 graal.TraceTruffleAssumptions = false                                    [Boolean]
           Print stack trace on assumption invalidation
 graal.TraceTruffleCompilation = false                                    [Boolean]
@@ -659,6 +1193,12 @@ graal.TraceTruffleTransferToInterpreter = false                          [Boolea
 graal.TraceUnwindStub = false                                            [Boolean]
           Trace execution of the stub that routes an exception to a handler in
           the calling frame.
+graal.TraceVMOperations = false                                          [Boolean]
+          Trace VMOperation execution.
+graal.TrackAccessChain = false                                           [Boolean]
+          Track the callers for methods and accessing methods for fields.
+graal.TrackInputFlows = false                                            [Boolean]
+          Track the input for type flows.
 graal.TrackMemUse = null                                                  [String]
           Pattern for specifying scopes in which memory use tracking is enabled.
           See the Dump option for the pattern syntax. An empty value enables all
@@ -673,6 +1213,12 @@ graal.TrivialInliningSize = 10                                           [Intege
 graal.TruffleArgumentTypeSpeculation = true                              [Boolean]
 graal.TruffleBackgroundCompilation = true                                [Boolean]
           Enable asynchronous truffle compilation in background thread
+graal.TruffleCheckFrameImplementation = true                             [Boolean]
+          Enforce that the Truffle runtime provides the only implementation of
+          Frame
+graal.TruffleCheckNeverPartOfCompilation = false                         [Boolean]
+          Print a warning message and stack trace when
+          CompilerAsserts.neverPartOfCompilation is reachable
 graal.TruffleCompilation = true                                          [Boolean]
           Enable or disable truffle compilation.
 graal.TruffleCompilationExceptionsAreFatal = false                       [Boolean]
@@ -714,6 +1260,8 @@ graal.TruffleFunctionInlining = true                                     [Boolea
           Enable automatic inlining of call targets
 graal.TruffleInlineAcrossTruffleBoundary = false                         [Boolean]
           Enable inlining across Truffle boundary
+graal.TruffleInlineDuringParsing = true                                  [Boolean]
+          Inline trivial methods in Truffle graphs during native image generation
 graal.TruffleInliningMaxCallerSize = 2250                                [Integer]
           Stop inlining if caller's cumulative tree size would exceed this limit
 graal.TruffleInstrumentBoundaries = false                                [Boolean]
@@ -797,12 +1345,29 @@ graal.TypeCheckMinProfileHitProbability = 0.5                             [Doubl
           If the probability that a type check will hit one the profiled types
           (up to TypeCheckMaxHints) is below this value, the type check will be
           compiled without profiling info
+graal.UninterruptibleWarningsAreFatal = true                             [Boolean]
+          Warnings for @Uninterruptible annotations are fatal.
+graal.UnresolvedIsError = true                                           [Boolean]
+          Report unresolved elements as errors.
 graal.UnrollMaxIterations = 16                                           [Integer]
+graal.UnsafeAutomaticSubstitutionsLogLevel = 1                           [Integer]
+          Unsafe automatic substitutions logging level: Disabled=0, Basic=1,
+          Info=2, Debug=3.)
+graal.UnsafeOffsetWarningsAreFatal = false                               [Boolean]
+          Print unsafe operation offset warnings.)
+graal.UseCAPCache = false                                                [Boolean]
+          Indicate the C Annotation Processor to use previously cached native
+          information when generating C Type information.
+graal.UseCardRememberedSetHeap = true                                    [Boolean]
+          Use a card remembered set heap for GC
 graal.UseCompilationStatistics = false                                   [Boolean]
           Enables CompilationStatistics.
 graal.UseEncodedSnippets = false                                         [Boolean]
           This is a testing option to exercise the SymbolicSnippetEncoder
 graal.UseExceptionProbability = true                                     [Boolean]
+graal.UseGraalStubs = true                                               [Boolean]
+          Use Graal-generated stubs for complicated LIR operations instead of
+          embedding all the emitted code.
 graal.UseGuardedIntrinsics = true                                        [Boolean]
           Use intrinsics guarded by a virtual dispatch test at indirect call
           sites.
@@ -810,18 +1375,34 @@ graal.UseIndexMasking = false                                            [Boolea
           Use index masking after bounds check to mitigate speculative execution
           attacks.
 graal.UseLoopLimitChecks = true                                          [Boolean]
+graal.UseOnlyWritableBootImageHeap = false                               [Boolean]
+          Use only a writable native image heap.
+graal.UseServiceLoaderFeature = true                                     [Boolean]
+          Automatically register services for run-time lookup using ServiceLoader
 graal.UseSnippetGraphCache = true                                        [Boolean]
           Use a cache for snippet graphs.
 graal.UseSnippetTemplateCache = true                                     [Boolean]
           Use a LRU cache for snippet templates.
+graal.UseStackBasePointer = false                                        [Boolean]
+          Saves stack base pointer on the stack on method entry.
 graal.UseTrappingNullChecks = true                                       [Boolean]
           Use traps for null checks instead of explicit null-checks
 graal.UseTypeCheckHints = true                                           [Boolean]
+graal.UserRequestedGCPolicy = "com.oracle.svm.core.genscavenge.HeapPolicy$AlwaysCollectCompletely" [String]
+          Policy used when users request garbage collection.
+graal.UserRequestedGCThreshold = 16777216                                   [Long]
+          Defines the upper bound for the number of remaining bytes in the young
+          generation that cause a collection when `System.gc` is called.
+graal.VerboseGC = false                                                  [Boolean]
+          Print more information about the heap before and after each collection
 graal.Verify = null                                                       [String]
           Pattern for specifying scopes in which logging is enabled. See the Dump
           option for the pattern syntax.
 graal.VerifyBalancedMonitors = false                                     [Boolean]
           Emit extra code to dynamically check monitor operations are balanced.
+graal.VerifyDeoptimizationEntryPoints = false                            [Boolean]
+          Verify that all possible deoptimization entry points have been properly
+          compiled and registered in the metadata
 graal.VerifyGraalGraphEdges = false                                      [Boolean]
           Perform expensive verification of graph inputs, usages, successors and
           predecessors
@@ -830,9 +1411,27 @@ graal.VerifyGraalGraphs = true                                           [Boolea
 graal.VerifyGraalPhasesSize = false                                      [Boolean]
           Verify before - after relation of the relative, computed, code size of
           a graph
+graal.VerifyHeap = false                                                 [Boolean]
+          Verify the heap before and after each collection.
+graal.VerifyHeapAfterCollection = false                                  [Boolean]
+          Verify the heap after each collection.
 graal.VerifyHeapAtReturn = false                                         [Boolean]
           Perform platform dependent validation of the Java heap at returns
+graal.VerifyHeapBeforeCollection = false                                 [Boolean]
+          Verify the heap before each collection.
 graal.VerifyKillCFGUnusedNodes = false                                   [Boolean]
           Verify that there are no new unused nodes when performing killCFG
+graal.VerifyNamingConventions = false                                    [Boolean]
+          Verify naming conventions during image construction.
 graal.VerifyPhases = false                                               [Boolean]
+graal.VerifyStackAfterCollection = false                                 [Boolean]
+          Verify the stack after each collection.
+graal.VerifyStackBeforeCollection = false                                [Boolean]
+          Verify the stack before each collection.
+graal.ZapChunks = false                                                  [Boolean]
+          Zap memory chunks
+graal.ZapConsumedHeapChunks = false                                      [Boolean]
+          Zap consumed memory chunks
+graal.ZapProducedHeapChunks = false                                      [Boolean]
+          Zap produced memory chunks
 graal.ZapStackOnMethodEntry = false                                      [Boolean]
