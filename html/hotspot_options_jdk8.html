@@ -119,9 +119,9 @@
             </tr>
             <tr>
                 <td><a href="graal_options_graal_ce_1.0.html">Graal
-                    CE 1.0rc15</a></td>
+                    CE 1.0rc16</a></td>
                 <td><a href="graal_options_graal_ee_1.0.html">Graal
-                    EE 1.0rc15</a></td>
+                    EE 1.0rc16</a></td>
             </tr>
         </table>
     </div>
@@ -945,11 +945,11 @@
 <tr><td>NativeMonitorFlags</td><td>JDK6</td><td><span style="white-space:nowrap">Obsoleted in JDK11</span><br><span style="white-space:nowrap">Expired in JDK12</span></td><td>intx</td><td></td><td></td><td>runtime</td><td>0</td><td>experimental</td><td>(Unstable)</td><td>src/share/vm/runtime/globals.hpp</td></tr>
 <tr><td>NativeMonitorSpinLimit</td><td>JDK6</td><td><span style="white-space:nowrap">Obsoleted in JDK11</span><br><span style="white-space:nowrap">Expired in JDK12</span></td><td>intx</td><td></td><td></td><td>runtime</td><td>20</td><td>experimental</td><td>(Unstable)</td><td>src/share/vm/runtime/globals.hpp</td></tr>
 <tr><td>NativeMonitorTimeout</td><td>JDK6</td><td><span style="white-space:nowrap">Obsoleted in JDK11</span><br><span style="white-space:nowrap">Expired in JDK12</span></td><td>intx</td><td></td><td></td><td>runtime</td><td>-1</td><td>experimental</td><td>(Unstable)</td><td>src/share/vm/runtime/globals.hpp</td></tr>
-<tr><td>NeedsDeoptSuspend</td><td>JDK6</td><td></td><td>bool</td><td></td><td></td><td>runtime</td><td></td><td>product_pd</td><td>True for register window machines (sparc/ia64)</td><td>src/share/vm/runtime/globals.hpp</td></tr>
-<tr><td>NeedsDeoptSuspend</td><td>JDK6</td><td></td><td>bool</td><td></td><td>ppc</td><td></td><td>false</td><td>define_pd_global</td><td>// Only register window machines need this.</td><td>src/cpu/ppc/vm/globals_ppc.hpp</td></tr>
-<tr><td>NeedsDeoptSuspend</td><td>JDK6</td><td></td><td>bool</td><td></td><td>sparc</td><td></td><td>true</td><td>define_pd_global</td><td>// register window machines need this</td><td>src/cpu/sparc/vm/globals_sparc.hpp</td></tr>
-<tr><td>NeedsDeoptSuspend</td><td>JDK6</td><td></td><td>bool</td><td></td><td>x86</td><td></td><td>false</td><td>define_pd_global</td><td>// only register window machines need this</td><td>src/cpu/x86/vm/globals_x86.hpp</td></tr>
-<tr><td>NeedsDeoptSuspend</td><td>JDK6</td><td></td><td>bool</td><td></td><td>zero</td><td></td><td>false</td><td>define_pd_global</td><td></td><td>src/cpu/zero/vm/globals_zero.hpp</td></tr>
+<tr><td>NeedsDeoptSuspend</td><td>JDK6</td><td><span style="white-space:nowrap">Obsoleted in JDK13</span><br><span style="white-space:nowrap">Expired in JDK14</span></td><td>bool</td><td></td><td></td><td>runtime</td><td></td><td>product_pd</td><td>True for register window machines (sparc/ia64)</td><td>src/share/vm/runtime/globals.hpp</td></tr>
+<tr><td>NeedsDeoptSuspend</td><td>JDK6</td><td><span style="white-space:nowrap">Obsoleted in JDK13</span><br><span style="white-space:nowrap">Expired in JDK14</span></td><td>bool</td><td></td><td>ppc</td><td></td><td>false</td><td>define_pd_global</td><td>// Only register window machines need this.</td><td>src/cpu/ppc/vm/globals_ppc.hpp</td></tr>
+<tr><td>NeedsDeoptSuspend</td><td>JDK6</td><td><span style="white-space:nowrap">Obsoleted in JDK13</span><br><span style="white-space:nowrap">Expired in JDK14</span></td><td>bool</td><td></td><td>sparc</td><td></td><td>true</td><td>define_pd_global</td><td>// register window machines need this</td><td>src/cpu/sparc/vm/globals_sparc.hpp</td></tr>
+<tr><td>NeedsDeoptSuspend</td><td>JDK6</td><td><span style="white-space:nowrap">Obsoleted in JDK13</span><br><span style="white-space:nowrap">Expired in JDK14</span></td><td>bool</td><td></td><td>x86</td><td></td><td>false</td><td>define_pd_global</td><td>// only register window machines need this</td><td>src/cpu/x86/vm/globals_x86.hpp</td></tr>
+<tr><td>NeedsDeoptSuspend</td><td>JDK6</td><td><span style="white-space:nowrap">Obsoleted in JDK13</span><br><span style="white-space:nowrap">Expired in JDK14</span></td><td>bool</td><td></td><td>zero</td><td></td><td>false</td><td>define_pd_global</td><td></td><td>src/cpu/zero/vm/globals_zero.hpp</td></tr>
 <tr><td>NestedInliningSizeRatio</td><td>JDK6</td><td></td><td>intx</td><td></td><td></td><td>c1</td><td>90</td><td>develop</td><td>Percentage of prev. allowed inline size in recursive inlining</td><td>src/share/vm/c1/c1_globals.hpp</td></tr>
 <tr><td>NeverActAsServerClassMachine</td><td>JDK6</td><td></td><td>bool</td><td></td><td></td><td>runtime</td><td></td><td>product_pd</td><td>Never act like a server-class machine</td><td>src/share/vm/runtime/globals.hpp</td></tr>
 <tr><td>NeverActAsServerClassMachine</td><td>JDK6</td><td></td><td>bool</td><td></td><td>ppc</td><td>c2</td><td>false</td><td>define_pd_global</td><td></td><td>src/cpu/ppc/vm/c2_globals_ppc.hpp</td></tr>
@@ -1978,7 +1978,7 @@
 		</tbody>
 	</table>
 	<div class="footer">
-		Built on Sat Apr 06 15:20:53 BST 2019 from HotSpot sources by <a
+		Built on Thu May 02 08:56:57 BST 2019 from HotSpot sources by <a
 			href="https://twitter.com/chriswhocodes">@chriswhocodes</a>
 	</div>
 </body>

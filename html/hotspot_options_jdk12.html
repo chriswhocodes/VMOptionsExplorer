@@ -119,9 +119,9 @@
             </tr>
             <tr>
                 <td><a href="graal_options_graal_ce_1.0.html">Graal
-                    CE 1.0rc15</a></td>
+                    CE 1.0rc16</a></td>
                 <td><a href="graal_options_graal_ee_1.0.html">Graal
-                    EE 1.0rc15</a></td>
+                    EE 1.0rc16</a></td>
             </tr>
         </table>
     </div>
@@ -1002,14 +1002,14 @@
 <tr><td>NUMAStats</td><td>JDK6</td><td></td><td>bool</td><td></td><td></td><td>runtime</td><td>false</td><td>product</td><td>Print NUMA stats in detailed heap information</td><td>share/runtime/globals.hpp</td></tr>
 <tr><td>NativeMemoryTracking</td><td>JDK7</td><td></td><td>ccstr</td><td></td><td></td><td>runtime</td><td>off</td><td>product</td><td>Native memory tracking options</td><td>share/runtime/globals.hpp</td></tr>
 <tr><td>NearCpool</td><td>JDK9</td><td></td><td>bool</td><td></td><td>aarch64</td><td></td><td>true</td><td>product</td><td>constant pool is close to instructions</td><td>cpu/aarch64/globals_aarch64.hpp</td></tr>
-<tr><td>NeedsDeoptSuspend</td><td>JDK6</td><td></td><td>bool</td><td></td><td>aarch64</td><td></td><td>false</td><td>define_pd_global</td><td>// only register window machines need this</td><td>cpu/aarch64/globals_aarch64.hpp</td></tr>
-<tr><td>NeedsDeoptSuspend</td><td>JDK6</td><td></td><td>bool</td><td></td><td>arm</td><td></td><td>false</td><td>define_pd_global</td><td>// only register window machines need this</td><td>cpu/arm/globals_arm.hpp</td></tr>
-<tr><td>NeedsDeoptSuspend</td><td>JDK6</td><td></td><td>bool</td><td></td><td></td><td>runtime</td><td></td><td>product_pd</td><td>True for register window machines (sparc/ia64)</td><td>share/runtime/globals.hpp</td></tr>
-<tr><td>NeedsDeoptSuspend</td><td>JDK6</td><td></td><td>bool</td><td></td><td>ppc</td><td></td><td>false</td><td>define_pd_global</td><td>// Only register window machines need this.</td><td>cpu/ppc/globals_ppc.hpp</td></tr>
-<tr><td>NeedsDeoptSuspend</td><td>JDK6</td><td></td><td>bool</td><td></td><td>s390</td><td></td><td>false</td><td>define_pd_global</td><td>// Only register window machines need this.</td><td>cpu/s390/globals_s390.hpp</td></tr>
-<tr><td>NeedsDeoptSuspend</td><td>JDK6</td><td></td><td>bool</td><td></td><td>sparc</td><td></td><td>true</td><td>define_pd_global</td><td>// register window machines need this</td><td>cpu/sparc/globals_sparc.hpp</td></tr>
-<tr><td>NeedsDeoptSuspend</td><td>JDK6</td><td></td><td>bool</td><td></td><td>x86</td><td></td><td>false</td><td>define_pd_global</td><td>// only register window machines need this</td><td>cpu/x86/globals_x86.hpp</td></tr>
-<tr><td>NeedsDeoptSuspend</td><td>JDK6</td><td></td><td>bool</td><td></td><td>zero</td><td></td><td>false</td><td>define_pd_global</td><td></td><td>cpu/zero/globals_zero.hpp</td></tr>
+<tr><td>NeedsDeoptSuspend</td><td>JDK6</td><td><span style="white-space:nowrap">Obsoleted in JDK13</span><br><span style="white-space:nowrap">Expired in JDK14</span></td><td>bool</td><td></td><td>aarch64</td><td></td><td>false</td><td>define_pd_global</td><td>// only register window machines need this</td><td>cpu/aarch64/globals_aarch64.hpp</td></tr>
+<tr><td>NeedsDeoptSuspend</td><td>JDK6</td><td><span style="white-space:nowrap">Obsoleted in JDK13</span><br><span style="white-space:nowrap">Expired in JDK14</span></td><td>bool</td><td></td><td>arm</td><td></td><td>false</td><td>define_pd_global</td><td>// only register window machines need this</td><td>cpu/arm/globals_arm.hpp</td></tr>
+<tr><td>NeedsDeoptSuspend</td><td>JDK6</td><td><span style="white-space:nowrap">Obsoleted in JDK13</span><br><span style="white-space:nowrap">Expired in JDK14</span></td><td>bool</td><td></td><td></td><td>runtime</td><td></td><td>product_pd</td><td>True for register window machines (sparc/ia64)</td><td>share/runtime/globals.hpp</td></tr>
+<tr><td>NeedsDeoptSuspend</td><td>JDK6</td><td><span style="white-space:nowrap">Obsoleted in JDK13</span><br><span style="white-space:nowrap">Expired in JDK14</span></td><td>bool</td><td></td><td>ppc</td><td></td><td>false</td><td>define_pd_global</td><td>// Only register window machines need this.</td><td>cpu/ppc/globals_ppc.hpp</td></tr>
+<tr><td>NeedsDeoptSuspend</td><td>JDK6</td><td><span style="white-space:nowrap">Obsoleted in JDK13</span><br><span style="white-space:nowrap">Expired in JDK14</span></td><td>bool</td><td></td><td>s390</td><td></td><td>false</td><td>define_pd_global</td><td>// Only register window machines need this.</td><td>cpu/s390/globals_s390.hpp</td></tr>
+<tr><td>NeedsDeoptSuspend</td><td>JDK6</td><td><span style="white-space:nowrap">Obsoleted in JDK13</span><br><span style="white-space:nowrap">Expired in JDK14</span></td><td>bool</td><td></td><td>sparc</td><td></td><td>true</td><td>define_pd_global</td><td>// register window machines need this</td><td>cpu/sparc/globals_sparc.hpp</td></tr>
+<tr><td>NeedsDeoptSuspend</td><td>JDK6</td><td><span style="white-space:nowrap">Obsoleted in JDK13</span><br><span style="white-space:nowrap">Expired in JDK14</span></td><td>bool</td><td></td><td>x86</td><td></td><td>false</td><td>define_pd_global</td><td>// only register window machines need this</td><td>cpu/x86/globals_x86.hpp</td></tr>
+<tr><td>NeedsDeoptSuspend</td><td>JDK6</td><td><span style="white-space:nowrap">Obsoleted in JDK13</span><br><span style="white-space:nowrap">Expired in JDK14</span></td><td>bool</td><td></td><td>zero</td><td></td><td>false</td><td>define_pd_global</td><td></td><td>cpu/zero/globals_zero.hpp</td></tr>
 <tr><td>NestedInliningSizeRatio</td><td>JDK6</td><td></td><td>intx</td><td></td><td></td><td>c1</td><td>90<br>range(0, 100)</td><td>develop</td><td>Percentage of prev. allowed inline size in recursive inlining</td><td>share/c1/c1_globals.hpp</td></tr>
 <tr><td>NeverActAsServerClassMachine</td><td>JDK6</td><td></td><td>bool</td><td></td><td>aarch64</td><td></td><td>true</td><td>define_pd_global</td><td></td><td>cpu/aarch64/c1_globals_aarch64.hpp</td></tr>
 <tr><td>NeverActAsServerClassMachine</td><td>JDK6</td><td></td><td>bool</td><td></td><td>arm</td><td></td><td>false</td><td>define_pd_global</td><td></td><td>cpu/arm/c2_globals_arm.hpp</td></tr>
@@ -2172,7 +2172,7 @@
 		</tbody>
 	</table>
 	<div class="footer">
-		Built on Sat Apr 06 15:20:53 BST 2019 from HotSpot sources by <a
+		Built on Thu May 02 08:56:58 BST 2019 from HotSpot sources by <a
 			href="https://twitter.com/chriswhocodes">@chriswhocodes</a>
 	</div>
 </body>

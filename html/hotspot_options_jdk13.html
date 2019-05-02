@@ -119,9 +119,9 @@
             </tr>
             <tr>
                 <td><a href="graal_options_graal_ce_1.0.html">Graal
-                    CE 1.0rc15</a></td>
+                    CE 1.0rc16</a></td>
                 <td><a href="graal_options_graal_ee_1.0.html">Graal
-                    EE 1.0rc15</a></td>
+                    EE 1.0rc16</a></td>
             </tr>
         </table>
     </div>
@@ -192,6 +192,7 @@
 <tr><td>AllowExtshm</td><td>JDK9</td><td></td><td>bool</td><td>aix</td><td></td><td></td><td>false</td><td>product</td><td>Allow VM to run with EXTSHM=ON.</td><td>os/aix/globals_aix.hpp</td></tr>
 <tr><td>AllowJNIEnvProxy</td><td>JDK6</td><td><span style="white-space:nowrap">Deprecated in JDK13</span><br><span style="white-space:nowrap">Obsoleted in JDK14</span><br><span style="white-space:nowrap">Expired in JDK15</span></td><td>bool</td><td></td><td></td><td>runtime</td><td>false</td><td>product</td><td>(Deprecated) Allow JNIEnv proxies for jdbx</td><td>share/runtime/globals.hpp</td></tr>
 <tr><td>AllowParallelDefineClass</td><td>JDK6</td><td></td><td>bool</td><td></td><td></td><td>runtime</td><td>false</td><td>product</td><td>Allow parallel defineClass requests for class loaders registering as parallel capable</td><td>share/runtime/globals.hpp</td></tr>
+<tr><td>AllowRedefinitionToAddDeleteMethods</td><td>JDK13</td><td><span style="white-space:nowrap">Deprecated in JDK13</span></td><td>bool</td><td></td><td></td><td>runtime</td><td>false</td><td>product</td><td>(Deprecated) Allow redefinition to add and delete private static or final methods for compatibility with old releases</td><td>share/runtime/globals.hpp</td></tr>
 <tr><td>AllowUserSignalHandlers</td><td>JDK6</td><td></td><td>bool</td><td></td><td></td><td>runtime</td><td>false</td><td>product</td><td>Do not complain if the application installs signal handlers (Solaris &amp; Linux only)</td><td>share/runtime/globals.hpp</td></tr>
 <tr><td>AllowVectorizeOnDemand</td><td>JDK9</td><td></td><td>bool</td><td></td><td></td><td>c2</td><td>true</td><td>product</td><td>Globally supress vectorization set in VectorizeMethod</td><td>share/opto/c2_globals.hpp</td></tr>
 <tr><td>AlwaysActAsServerClassMachine</td><td>JDK6</td><td></td><td>bool</td><td></td><td></td><td>gc</td><td>false</td><td>product</td><td>Always act like a server-class machine</td><td>share/gc/shared/gc_globals.hpp</td></tr>
@@ -243,8 +244,8 @@
 <tr><td>BranchOnRegister</td><td>JDK6</td><td></td><td>bool</td><td></td><td></td><td>c2</td><td>false</td><td>product</td><td>Use Sparc V9 branch-on-register opcodes</td><td>share/opto/c2_globals.hpp</td></tr>
 <tr><td>BreakAtNode</td><td>JDK6</td><td></td><td>intx</td><td></td><td></td><td>c2</td><td>0</td><td>notproduct</td><td>Break at construction of this Node (either _idx or _debug_idx)</td><td>share/opto/c2_globals.hpp</td></tr>
 <tr><td>BreakAtWarning</td><td>JDK6</td><td></td><td>bool</td><td></td><td></td><td>runtime</td><td>false</td><td>develop</td><td>Execute breakpoint upon encountering VM warning</td><td>share/runtime/globals.hpp</td></tr>
-<tr><td>BytecodeVerificationLocal</td><td>JDK6</td><td></td><td>bool</td><td></td><td></td><td>runtime</td><td>false</td><td>product</td><td>Enable the Java bytecode verifier for local classes</td><td>share/runtime/globals.hpp</td></tr>
-<tr><td>BytecodeVerificationRemote</td><td>JDK6</td><td></td><td>bool</td><td></td><td></td><td>runtime</td><td>true</td><td>product</td><td>Enable the Java bytecode verifier for remote classes</td><td>share/runtime/globals.hpp</td></tr>
+<tr><td>BytecodeVerificationLocal</td><td>JDK6</td><td></td><td>bool</td><td></td><td></td><td>runtime</td><td>false</td><td>diagnostic</td><td>Enable the Java bytecode verifier for local classes</td><td>share/runtime/globals.hpp</td></tr>
+<tr><td>BytecodeVerificationRemote</td><td>JDK6</td><td></td><td>bool</td><td></td><td></td><td>runtime</td><td>true</td><td>diagnostic</td><td>Enable the Java bytecode verifier for remote classes</td><td>share/runtime/globals.hpp</td></tr>
 <tr><td>C1Breakpoint</td><td>JDK6</td><td></td><td>bool</td><td></td><td></td><td>c1</td><td>false</td><td>develop</td><td>Sets a breakpoint at entry of each compiled method</td><td>share/c1/c1_globals.hpp</td></tr>
 <tr><td>C1OptimizeVirtualCallProfiling</td><td>JDK6</td><td></td><td>bool</td><td></td><td></td><td>c1</td><td>true</td><td>product</td><td>Use CHA and exact type results at call sites when updating MDOs</td><td>share/c1/c1_globals.hpp</td></tr>
 <tr><td>C1ProfileBranches</td><td>JDK6</td><td></td><td>bool</td><td></td><td></td><td>c1</td><td>true</td><td>product</td><td>Profile branches when generating code for updating MDOs</td><td>share/c1/c1_globals.hpp</td></tr>
@@ -832,10 +833,12 @@
 <tr><td>InterpreterProfilePercentage</td><td>JDK6</td><td></td><td>intx</td><td></td><td></td><td>runtime</td><td>33<br>range(0, 100)</td><td>product</td><td>NON_TIERED number of method invocations/branches (expressed as % of CompileThreshold) before profiling in the interpreter</td><td>share/runtime/globals.hpp</td></tr>
 <tr><td>JVMCICounterSize</td><td>JDK9</td><td></td><td>intx</td><td></td><td></td><td>jvmci</td><td>0<br>range(0, max_jint)</td><td>experimental</td><td>Reserved size for benchmark counters</td><td>share/jvmci/jvmci_globals.hpp</td></tr>
 <tr><td>JVMCICountersExcludeCompiler</td><td>JDK9</td><td></td><td>bool</td><td></td><td></td><td>jvmci</td><td>true</td><td>experimental</td><td>Exclude JVMCI compiler threads from benchmark counters</td><td>share/jvmci/jvmci_globals.hpp</td></tr>
-<tr><td>JVMCIHostThreads</td><td>JDK9</td><td></td><td>intx</td><td></td><td></td><td>jvmci</td><td>1<br>range(1, max_jint)</td><td>experimental</td><td>Force number of compiler threads for JVMCI host compiler</td><td>share/jvmci/jvmci_globals.hpp</td></tr>
+<tr><td>JVMCIHostThreads</td><td>JDK9</td><td></td><td>intx</td><td></td><td></td><td>jvmci</td><td>1<br>range(1, max_jint)</td><td>experimental</td><td>Force number of C1 compiler threads. Ignored if UseJVMCICompiler is false.</td><td>share/jvmci/jvmci_globals.hpp</td></tr>
+<tr><td>JVMCILibDumpJNIConfig</td><td>JDK13</td><td></td><td>ccstr</td><td></td><td></td><td>jvmci</td><td>NULL</td><td>experimental</td><td>Dumps to the given file a description of the classes, fields and methods the JVMCI shared library must provide</td><td>share/jvmci/jvmci_globals.hpp</td></tr>
+<tr><td>JVMCILibPath</td><td>JDK13</td><td></td><td>ccstr</td><td></td><td></td><td>jvmci</td><td>NULL</td><td>experimental</td><td>LD path for loading the JVMCI shared library</td><td>share/jvmci/jvmci_globals.hpp</td></tr>
 <tr><td>JVMCINMethodSizeLimit</td><td>JDK9</td><td></td><td>intx</td><td></td><td></td><td>jvmci</td><td>(80*K)*wordSize</td><td>experimental</td><td>Maximum size of a compiled method.</td><td>share/jvmci/jvmci_globals.hpp</td></tr>
 <tr><td>JVMCIPrintProperties</td><td>JDK9</td><td></td><td>bool</td><td></td><td></td><td>jvmci</td><td>false</td><td>experimental</td><td>Prints properties used by the JVMCI compiler and exits</td><td>share/jvmci/jvmci_globals.hpp</td></tr>
-<tr><td>JVMCIThreads</td><td>JDK9</td><td></td><td>intx</td><td></td><td></td><td>jvmci</td><td>1<br>range(1, max_jint)</td><td>experimental</td><td>Force number of JVMCI compiler threads to use</td><td>share/jvmci/jvmci_globals.hpp</td></tr>
+<tr><td>JVMCIThreads</td><td>JDK9</td><td></td><td>intx</td><td></td><td></td><td>jvmci</td><td>1<br>range(1, max_jint)</td><td>experimental</td><td>Force number of JVMCI compiler threads to use. Ignored if UseJVMCICompiler is false.</td><td>share/jvmci/jvmci_globals.hpp</td></tr>
 <tr><td>JVMCITraceLevel</td><td>JDK9</td><td></td><td>intx</td><td></td><td></td><td>jvmci</td><td>0</td><td>experimental</td><td>Trace level for JVMCI: <br>1 means emit a message for each CompilerToVM call,levels greater than 1 provide progressively greater detail</td><td>share/jvmci/jvmci_globals.hpp</td></tr>
 <tr><td>JVMCIUseFastLocking</td><td>JDK9</td><td></td><td>bool</td><td></td><td></td><td>jvmci</td><td>true</td><td>develop</td><td>Use fast inlined locking code</td><td>share/jvmci/jvmci_globals.hpp</td></tr>
 <tr><td>JVMInvokeMethodSlack</td><td>JDK6</td><td></td><td>size_t</td><td>aix</td><td>ppc</td><td></td><td>8192</td><td>define_pd_global</td><td></td><td>os_cpu/aix_ppc/globals_aix_ppc.hpp</td></tr>
@@ -1001,14 +1004,6 @@
 <tr><td>NUMAStats</td><td>JDK6</td><td></td><td>bool</td><td></td><td></td><td>runtime</td><td>false</td><td>product</td><td>Print NUMA stats in detailed heap information</td><td>share/runtime/globals.hpp</td></tr>
 <tr><td>NativeMemoryTracking</td><td>JDK7</td><td></td><td>ccstr</td><td></td><td></td><td>runtime</td><td>off</td><td>product</td><td>Native memory tracking options</td><td>share/runtime/globals.hpp</td></tr>
 <tr><td>NearCpool</td><td>JDK9</td><td></td><td>bool</td><td></td><td>aarch64</td><td></td><td>true</td><td>product</td><td>constant pool is close to instructions</td><td>cpu/aarch64/globals_aarch64.hpp</td></tr>
-<tr><td>NeedsDeoptSuspend</td><td>JDK6</td><td></td><td>bool</td><td></td><td>aarch64</td><td></td><td>false</td><td>define_pd_global</td><td>// only register window machines need this</td><td>cpu/aarch64/globals_aarch64.hpp</td></tr>
-<tr><td>NeedsDeoptSuspend</td><td>JDK6</td><td></td><td>bool</td><td></td><td>arm</td><td></td><td>false</td><td>define_pd_global</td><td>// only register window machines need this</td><td>cpu/arm/globals_arm.hpp</td></tr>
-<tr><td>NeedsDeoptSuspend</td><td>JDK6</td><td></td><td>bool</td><td></td><td></td><td>runtime</td><td></td><td>product_pd</td><td>True for register window machines (sparc/ia64)</td><td>share/runtime/globals.hpp</td></tr>
-<tr><td>NeedsDeoptSuspend</td><td>JDK6</td><td></td><td>bool</td><td></td><td>ppc</td><td></td><td>false</td><td>define_pd_global</td><td>// Only register window machines need this.</td><td>cpu/ppc/globals_ppc.hpp</td></tr>
-<tr><td>NeedsDeoptSuspend</td><td>JDK6</td><td></td><td>bool</td><td></td><td>s390</td><td></td><td>false</td><td>define_pd_global</td><td>// Only register window machines need this.</td><td>cpu/s390/globals_s390.hpp</td></tr>
-<tr><td>NeedsDeoptSuspend</td><td>JDK6</td><td></td><td>bool</td><td></td><td>sparc</td><td></td><td>true</td><td>define_pd_global</td><td>// register window machines need this</td><td>cpu/sparc/globals_sparc.hpp</td></tr>
-<tr><td>NeedsDeoptSuspend</td><td>JDK6</td><td></td><td>bool</td><td></td><td>x86</td><td></td><td>false</td><td>define_pd_global</td><td>// only register window machines need this</td><td>cpu/x86/globals_x86.hpp</td></tr>
-<tr><td>NeedsDeoptSuspend</td><td>JDK6</td><td></td><td>bool</td><td></td><td>zero</td><td></td><td>false</td><td>define_pd_global</td><td></td><td>cpu/zero/globals_zero.hpp</td></tr>
 <tr><td>NestedInliningSizeRatio</td><td>JDK6</td><td></td><td>intx</td><td></td><td></td><td>c1</td><td>90<br>range(0, 100)</td><td>develop</td><td>Percentage of prev. allowed inline size in recursive inlining</td><td>share/c1/c1_globals.hpp</td></tr>
 <tr><td>NeverActAsServerClassMachine</td><td>JDK6</td><td></td><td>bool</td><td></td><td>aarch64</td><td></td><td>true</td><td>define_pd_global</td><td></td><td>cpu/aarch64/c1_globals_aarch64.hpp</td></tr>
 <tr><td>NeverActAsServerClassMachine</td><td>JDK6</td><td></td><td>bool</td><td></td><td>arm</td><td></td><td>false</td><td>define_pd_global</td><td></td><td>cpu/arm/c2_globals_arm.hpp</td></tr>
@@ -1755,7 +1750,6 @@
 <tr><td>TraceTraps</td><td>JDK7</td><td></td><td>bool</td><td></td><td>ppc</td><td></td><td>false</td><td>product</td><td>Trace all traps the signal handlerhandles.</td><td>cpu/ppc/globals_ppc.hpp</td></tr>
 <tr><td>TraceTraps</td><td>JDK7</td><td></td><td>bool</td><td></td><td>s390</td><td></td><td>false</td><td>product</td><td>Trace all traps the signal handlerhandles.</td><td>cpu/s390/globals_s390.hpp</td></tr>
 <tr><td>TraceTypeProfile</td><td>JDK6</td><td></td><td>bool</td><td></td><td></td><td>c2</td><td>false</td><td>diagnostic</td><td>Trace type profile</td><td>share/opto/c2_globals.hpp</td></tr>
-<tr><td>TraceUncollectedSpeculations</td><td>JDK9</td><td></td><td>bool</td><td></td><td></td><td>jvmci</td><td>false</td><td>develop</td><td>Print message when a failed speculation was not collected</td><td>share/jvmci/jvmci_globals.hpp</td></tr>
 <tr><td>TrackedInitializationLimit</td><td>JDK6</td><td></td><td>intx</td><td></td><td></td><td>c2</td><td>50<br>range(0, 65535)</td><td>product</td><td>When initializing fields, track up to this many words</td><td>share/opto/c2_globals.hpp</td></tr>
 <tr><td>TrapBasedICMissChecks</td><td>JDK7</td><td></td><td>bool</td><td></td><td>ppc</td><td></td><td>true</td><td>product</td><td>Raise and handle SIGTRAP if inline cache miss detected.</td><td>cpu/ppc/globals_ppc.hpp</td></tr>
 <tr><td>TrapBasedNotEntrantChecks</td><td>JDK7</td><td></td><td>bool</td><td></td><td>ppc</td><td></td><td>true</td><td>product</td><td>Raise and handle SIGTRAP if calling not entrant or zombie method.</td><td>cpu/ppc/globals_ppc.hpp</td></tr>
@@ -1906,6 +1900,7 @@
 <tr><td>UseInlineDepthForSpeculativeTypes</td><td>JDK8</td><td></td><td>bool</td><td></td><td></td><td>c2</td><td>true</td><td>diagnostic</td><td>Carry inline depth of profile point with speculative type and give priority to profiling from lower inline depth</td><td>share/opto/c2_globals.hpp</td></tr>
 <tr><td>UseInterpreter</td><td>JDK6</td><td></td><td>bool</td><td></td><td></td><td>runtime</td><td>true</td><td>product</td><td>Use interpreter for non-compiled methods</td><td>share/runtime/globals.hpp</td></tr>
 <tr><td>UseJVMCICompiler</td><td>JDK9</td><td></td><td>bool</td><td></td><td></td><td>jvmci</td><td>false</td><td>experimental</td><td>Use JVMCI as the default compiler</td><td>share/jvmci/jvmci_globals.hpp</td></tr>
+<tr><td>UseJVMCINativeLibrary</td><td>JDK13</td><td></td><td>bool</td><td></td><td></td><td>jvmci</td><td>false</td><td>experimental</td><td>Execute JVMCI Java code from a shared library instead of loading it from class files and executing it on the HotSpot heap</td><td>share/jvmci/jvmci_globals.hpp</td></tr>
 <tr><td>UseJumpTables</td><td>JDK6</td><td></td><td>bool</td><td></td><td></td><td>c2</td><td>true</td><td>product</td><td>Use JumpTables instead of a binary search tree for switches</td><td>share/opto/c2_globals.hpp</td></tr>
 <tr><td>UseLSE</td><td>JDK9</td><td></td><td>bool</td><td></td><td>aarch64</td><td></td><td>false</td><td>product</td><td>Use LSE instructions</td><td>cpu/aarch64/globals_aarch64.hpp</td></tr>
 <tr><td>UseLWPSynchronization</td><td>JDK6</td><td></td><td>bool</td><td></td><td></td><td>runtime</td><td>true</td><td>product</td><td>Use LWP-based instead of libthread-based synchronization (SPARC only)</td><td>share/runtime/globals.hpp</td></tr>
@@ -2150,7 +2145,7 @@
 		</tbody>
 	</table>
 	<div class="footer">
-		Built on Sat Apr 06 15:20:53 BST 2019 from HotSpot sources by <a
+		Built on Thu May 02 08:56:58 BST 2019 from HotSpot sources by <a
 			href="https://twitter.com/chriswhocodes">@chriswhocodes</a>
 	</div>
 </body>
