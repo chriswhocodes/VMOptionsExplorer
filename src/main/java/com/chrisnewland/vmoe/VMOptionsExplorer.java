@@ -344,8 +344,8 @@ public class VMOptionsExplorer
 		vms.addVM(new VMData("JDK13", new File(baseDir + "jdk13/src/hotspot"), VMType.HOTSPOT));
 
 		// Generate these files with -XX:+JVMCIPrintProperties
-		vms.addVM(new VMData("Graal CE 1.0", new File(baseDir + "VMOptionsExplorer/graal_ce.out"), VMType.GRAAL));
-		vms.addVM(new VMData("Graal EE 1.0", new File(baseDir + "VMOptionsExplorer/graal_ee.out"), VMType.GRAAL));
+		vms.addVM(new VMData("Graal CE 19", new File(baseDir + "VMOptionsExplorer/graal_ce.out"), VMType.GRAAL));
+		vms.addVM(new VMData("Graal EE 19", new File(baseDir + "VMOptionsExplorer/graal_ee.out"), VMType.GRAAL));
 
 		vms.addVM(new VMData("OpenJ9", new File(baseDir + "openj9"), VMType.OPENJ9));
 

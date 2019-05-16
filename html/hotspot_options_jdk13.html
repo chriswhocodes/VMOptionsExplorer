@@ -118,10 +118,10 @@
                 <th colspan="2">Graal</th>
             </tr>
             <tr>
-                <td><a href="graal_options_graal_ce_1.0.html">Graal
-                    CE 1.0rc16</a></td>
-                <td><a href="graal_options_graal_ee_1.0.html">Graal
-                    EE 1.0rc16</a></td>
+                <td><a href="graal_options_graal_ce_19.html">Graal
+                    CE 19.0.0</a></td>
+                <td><a href="graal_options_graal_ee_19.html">Graal
+                    EE 19.0.0</a></td>
             </tr>
         </table>
     </div>
@@ -240,7 +240,7 @@
 <tr><td>BlockOffsetArrayUseUnallocatedBlock</td><td>JDK6</td><td></td><td>bool</td><td></td><td></td><td>gc</td><td>false</td><td>diagnostic</td><td>Maintain _unallocated_block in BlockOffsetArray (currently applicable only to CMS collector)</td><td>share/gc/shared/gc_globals.hpp</td></tr>
 <tr><td>BlockZeroingLowLimit</td><td>JDK6</td><td></td><td>intx</td><td></td><td>aarch64</td><td></td><td>256<br>range(1, max_jint)</td><td>product</td><td>Minimum size in bytes when block zeroing will be used</td><td>cpu/aarch64/globals_aarch64.hpp</td></tr>
 <tr><td>BlockZeroingLowLimit</td><td>JDK6</td><td></td><td>intx</td><td></td><td>sparc</td><td></td><td>2048<br>range(1, max_jint)</td><td>product</td><td>Minimum size in bytes when block zeroing will be used</td><td>cpu/sparc/globals_sparc.hpp</td></tr>
-<tr><td>BootstrapJVMCI</td><td>JDK9</td><td></td><td>bool</td><td></td><td></td><td>jvmci</td><td>false</td><td>experimental</td><td>Bootstrap JVMCI before running Java main method</td><td>share/jvmci/jvmci_globals.hpp</td></tr>
+<tr><td>BootstrapJVMCI</td><td>JDK9</td><td></td><td>bool</td><td></td><td></td><td>jvmci</td><td>false</td><td>experimental</td><td>Bootstrap JVMCI before running Java main method. This initializes the compile queue with a small set of methods and processes the queue until it is empty. Combining this with -XX:-TieredCompilation makes JVMCI compile more of itself.</td><td>share/jvmci/jvmci_globals.hpp</td></tr>
 <tr><td>BranchOnRegister</td><td>JDK6</td><td></td><td>bool</td><td></td><td></td><td>c2</td><td>false</td><td>product</td><td>Use Sparc V9 branch-on-register opcodes</td><td>share/opto/c2_globals.hpp</td></tr>
 <tr><td>BreakAtNode</td><td>JDK6</td><td></td><td>intx</td><td></td><td></td><td>c2</td><td>0</td><td>notproduct</td><td>Break at construction of this Node (either _idx or _debug_idx)</td><td>share/opto/c2_globals.hpp</td></tr>
 <tr><td>BreakAtWarning</td><td>JDK6</td><td></td><td>bool</td><td></td><td></td><td>runtime</td><td>false</td><td>develop</td><td>Execute breakpoint upon encountering VM warning</td><td>share/runtime/globals.hpp</td></tr>
@@ -2095,7 +2095,7 @@
 <tr><td>VerifyOpto</td><td>JDK6</td><td></td><td>bool</td><td></td><td></td><td>c2</td><td>false</td><td>notproduct</td><td>Apply more time consuming verification during compilation</td><td>share/opto/c2_globals.hpp</td></tr>
 <tr><td>VerifyRegisterAllocator</td><td>JDK6</td><td></td><td>bool</td><td></td><td></td><td>c2</td><td>false<br>range(0, max_jint)</td><td>notproduct</td><td>Verify Register Allocator</td><td>share/opto/c2_globals.hpp</td></tr>
 <tr><td>VerifyRememberedSets</td><td>JDK6</td><td></td><td>bool</td><td></td><td></td><td>gc</td><td>false</td><td>diagnostic</td><td>Verify GC remembered sets</td><td>share/gc/shared/gc_globals.hpp</td></tr>
-<tr><td>VerifySharedSpaces</td><td>JDK8</td><td></td><td>bool</td><td></td><td></td><td>runtime</td><td>false</td><td>product</td><td>Verify shared spaces (false for default archive, true for archive specified by -XX:SharedArchiveFile)</td><td>share/runtime/globals.hpp</td></tr>
+<tr><td>VerifySharedSpaces</td><td>JDK8</td><td></td><td>bool</td><td></td><td></td><td>runtime</td><td>false</td><td>product</td><td>Verify integrity of shared spaces</td><td>share/runtime/globals.hpp</td></tr>
 <tr><td>VerifyStackAtCalls</td><td>JDK6</td><td></td><td>bool</td><td></td><td></td><td>runtime</td><td>false</td><td>develop</td><td>Verify that the stack pointer is unchanged after calls</td><td>share/runtime/globals.hpp</td></tr>
 <tr><td>VerifyStack</td><td>JDK6</td><td></td><td>bool</td><td></td><td></td><td>runtime</td><td>false</td><td>develop</td><td>Verify stack of each thread when it is entering a runtime call</td><td>share/runtime/globals.hpp</td></tr>
 <tr><td>VerifyStringTableAtExit</td><td>JDK8</td><td></td><td>bool</td><td></td><td></td><td>runtime</td><td>false</td><td>diagnostic</td><td>verify StringTable contents at exit</td><td>share/runtime/globals.hpp</td></tr>
@@ -2126,6 +2126,8 @@
 <tr><td>ZProactive</td><td>JDK11</td><td></td><td>bool</td><td></td><td></td><td>gc</td><td>true</td><td>diagnostic</td><td>Enable proactive GC cycles</td><td>share/gc/z/z_globals.hpp</td></tr>
 <tr><td>ZStatisticsForceTrace</td><td>JDK11</td><td></td><td>bool</td><td></td><td></td><td>gc</td><td>false</td><td>diagnostic</td><td>Force tracing of ZStats</td><td>share/gc/z/z_globals.hpp</td></tr>
 <tr><td>ZStatisticsInterval</td><td>JDK11</td><td></td><td>uint</td><td></td><td></td><td>gc</td><td>10<br>range(1, (uint)-1)</td><td>diagnostic</td><td>Time between statistics print outs (in seconds)</td><td>share/gc/z/z_globals.hpp</td></tr>
+<tr><td>ZUncommitDelay</td><td>JDK13</td><td></td><td>uintx</td><td></td><td></td><td>gc</td><td>5 * 60</td><td>experimental</td><td>Uncommit memory if it has been unused for the specified amount of time (in seconds)</td><td>share/gc/z/z_globals.hpp</td></tr>
+<tr><td>ZUncommit</td><td>JDK13</td><td></td><td>bool</td><td></td><td></td><td>gc</td><td>true</td><td>experimental</td><td>Uncommit unused memory</td><td>share/gc/z/z_globals.hpp</td></tr>
 <tr><td>ZVerifyForwarding</td><td>JDK11</td><td></td><td>bool</td><td></td><td></td><td>gc</td><td>false</td><td>diagnostic</td><td>Verify forwarding tables</td><td>share/gc/z/z_globals.hpp</td></tr>
 <tr><td>ZVerifyLoadBarriers</td><td>JDK11</td><td></td><td>bool</td><td></td><td></td><td>gc</td><td>false</td><td>develop</td><td>Verify that reference loads are followed by barriers</td><td>share/gc/z/z_globals.hpp</td></tr>
 <tr><td>ZVerifyMarking</td><td>JDK11</td><td></td><td>bool</td><td></td><td></td><td>gc</td><td>false</td><td>diagnostic</td><td>Verify marking stacks</td><td>share/gc/z/z_globals.hpp</td></tr>
@@ -2145,7 +2147,7 @@
 		</tbody>
 	</table>
 	<div class="footer">
-		Built on Thu May 02 08:56:58 BST 2019 from HotSpot sources by <a
+		Built on Thu May 16 10:09:40 BST 2019 from HotSpot sources by <a
 			href="https://twitter.com/chriswhocodes">@chriswhocodes</a>
 	</div>
 </body>
