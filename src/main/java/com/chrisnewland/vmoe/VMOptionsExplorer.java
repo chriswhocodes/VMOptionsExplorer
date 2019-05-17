@@ -8,6 +8,7 @@ import java.io.File;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
+import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -20,6 +21,9 @@ import com.chrisnewland.vmoe.parser.HotSpotSwitchParser;
 import com.chrisnewland.vmoe.parser.ISwitchParser;
 import com.chrisnewland.vmoe.parser.OpenJ9SwitchParser;
 import com.chrisnewland.vmoe.parser.ZingSwitchParser;
+import com.chrisnewland.vmoe.parser.delta.GraalDeltaTable;
+import com.chrisnewland.vmoe.parser.delta.HotSpotDeltaTable;
+import com.chrisnewland.vmoe.parser.delta.IDeltaTable;
 import com.chrisnewland.vmoe.parser.deprecated.DeprecatedParser;
 import com.chrisnewland.vmoe.parser.intrinsic.IntrinsicParser;
 
@@ -55,7 +59,7 @@ public class VMOptionsExplorer
 		}
 	}
 
-	public void processVMDeltas(VMType vmType) throws IOException
+	public void processVMDeltas(VMType vmType, String title, Path templatePath, Path outputFile) throws IOException
 	{
 		StringBuilder builder = new StringBuilder();
 
@@ -74,21 +78,34 @@ public class VMOptionsExplorer
 			}
 		}
 
-		String template = new String(Files.readAllBytes(Paths.get("templates/template_delta.html")), StandardCharsets.UTF_8);
+		String template = new String(Files.readAllBytes(templatePath), StandardCharsets.UTF_8);
 
 		String headerHTML = new String(Files.readAllBytes(Paths.get("templates/header.html")), StandardCharsets.UTF_8);
 
 		template = template.replace("$HEADER_HTML", headerHTML);
 		template = template.replace("$DELTA_BODY", builder.toString());
 		template = template.replace("$DATE", new Date().toString());
-		template = template.replace("$H1_TITLE", "Differences between HotSpot VM Versions");
+		template = template.replace("$H1_TITLE", title);
 
-		Files.write(Paths.get("html/hotspot_option_differences.html"), template.getBytes(StandardCharsets.UTF_8));
+		Files.write(outputFile, template.getBytes(StandardCharsets.UTF_8));
+	}
+
+	private IDeltaTable createDeltaTable(VMData earlier, VMData later)
+	{
+		switch (earlier.getVmType())
+		{
+		case HOTSPOT:
+			return new HotSpotDeltaTable(earlier, later);
+		case GRAAL:
+			return new GraalDeltaTable(earlier, later);
+		default:
+			throw new UnsupportedOperationException();
+		}
 	}
 
 	private void addChangesBetweenVMs(VMData earlier, VMData later, StringBuilder builder) throws IOException
 	{
-		System.out.println("Calculating changes between " + earlier.getJdkName() + " and " + later.getJdkName());
+		System.out.println("Calculating differences between " + earlier.getJdkName() + " and " + later.getJdkName());
 
 		Map<String, SwitchInfo> switchMapEarlier = getParser(earlier.getVmType()).process(earlier.getVmPath());
 
@@ -98,19 +115,7 @@ public class VMOptionsExplorer
 
 		Set<SwitchInfo> inLater = new HashSet<>(switchMapLater.values());
 
-		builder.append("<hr>");
-
-		builder
-				.append("<h2 class=\"deltaH2\" id=\"").append(later.getJdkName()).append("\">")
-				.append("Differences between ")
-				.append(earlier.getJdkName())
-				.append(" and ")
-				.append(later.getJdkName())
-				.append("</h2>");
-
-		builder.append("<hr>");
-
-		DeltaTable deltaTable = new DeltaTable(earlier, later);
+		IDeltaTable deltaTable = createDeltaTable(earlier, later);
 
 		for (SwitchInfo switchInfo : inEarlier)
 		{
@@ -147,8 +152,7 @@ public class VMOptionsExplorer
 
 		Collections.sort(result, new Comparator<VMData>()
 		{
-			@Override
-			public int compare(VMData vmd1, VMData vmd2)
+			@Override public int compare(VMData vmd1, VMData vmd2)
 			{
 				int version1 = getVersionFromJDKName(vmd1.getJdkName());
 				int version2 = getVersionFromJDKName(vmd2.getJdkName());
@@ -303,9 +307,8 @@ public class VMOptionsExplorer
 			template = template.replace("$SORTCOLUMNS", "[ ]");
 			break;
 		case HOTSPOT:
-			template = template
-								.replace("$TOPHEADER",
-										"<th></th><th>Since</th><th>Deprecated</th><th>Type</th><th>OS</th><th>CPU</th><th>Component</th><th></th><th>Availability</th><th></th><th></th>");
+			template = template.replace("$TOPHEADER",
+					"<th></th><th>Since</th><th>Deprecated</th><th>Type</th><th>OS</th><th>CPU</th><th>Component</th><th></th><th>Availability</th><th></th><th></th>");
 			template = template.replace("$ALLCOLUMNS", "[ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 ]");
 			template = template.replace("$SORTCOLUMNS", "[ 1, 3, 4, 5, 6, 8 ]");
 			break;
@@ -355,7 +358,11 @@ public class VMOptionsExplorer
 
 		vms.process();
 
-		vms.processVMDeltas(VMType.HOTSPOT);
+		vms.processVMDeltas(VMType.HOTSPOT, "Differences between HotSpot VM Versions",
+				Paths.get("templates/template_hotspot_delta.html"), Paths.get("html/hotspot_option_differences.html"));
+
+		vms.processVMDeltas(VMType.GRAAL, "Additonal options in GraalVM Enterprise Edition",
+				Paths.get("templates/template_graal_delta.html"), Paths.get("html/graal_ee_only_options.html"));
 
 		IntrinsicParser intrinsicParser = new IntrinsicParser();
 

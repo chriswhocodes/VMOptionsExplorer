@@ -2,54 +2,38 @@
  * Copyright (c) 2018-2019 Chris Newland.
  * Licensed under https://github.com/chriswhocodes/VMSOptionsExplorer/blob/master/LICENSE
  */
-package com.chrisnewland.vmoe;
+package com.chrisnewland.vmoe.parser.delta;
 
-import java.util.ArrayList;
 import java.util.Collections;
-import java.util.List;
 
+import com.chrisnewland.vmoe.SwitchInfo;
+import com.chrisnewland.vmoe.VMData;
 import com.chrisnewland.vmoe.parser.deprecated.DeprecatedInfo;
 import com.chrisnewland.vmoe.parser.deprecated.DeprecatedParser;
 
-public class DeltaTable
+public class HotSpotDeltaTable extends AbstractDeltaTable
 {
-	private List<SwitchInfo> added = new ArrayList<>();
-	private List<SwitchInfo> removed = new ArrayList<>();
-
-	private VMData earlierVM;
-	private VMData laterVM;
-
-	public DeltaTable(VMData earlierVM, VMData laterVM)
+	public HotSpotDeltaTable(VMData earlierVM, VMData laterVM)
 	{
-		this.earlierVM = earlierVM;
-		this.laterVM = laterVM;
-	}
-
-	public void recordAddition(SwitchInfo switchInfo)
-	{
-		added.add(switchInfo);
-	}
-
-	public void recordRemoval(SwitchInfo switchInfo)
-	{
-		removed.add(switchInfo);
-	}
-
-	public int getAdditionCount()
-	{
-		return added.size();
-	}
-
-	public int getRemovalCount()
-	{
-		return removed.size();
+		super(earlierVM, laterVM);
 	}
 
 	public String toString()
 	{
 		StringBuilder builder = new StringBuilder();
 
-		Collections.sort(added);
+		builder.append("<hr>");
+
+		builder.append("<h2 class=\"deltaH2\" id=\"")
+			   .append(laterVM.getJdkName())
+			   .append("\">")
+			   .append("Differences between ")
+			   .append(earlierVM.getJdkName())
+			   .append(" and ")
+			   .append(laterVM.getJdkName())
+			   .append("</h2>");
+
+		builder.append("<hr>");
 
 		builder.append("<div class=\"dtwrapper\">");
 
@@ -72,8 +56,6 @@ public class DeltaTable
 
 	private void appendTableRemoved(StringBuilder builder)
 	{
-		Collections.sort(removed);
-
 		builder.append("<table class=\"deltatable removed\">");
 
 		String glossaryLink = "<a class=\"glossaryLink\" href=\"#glossary\">";
@@ -86,6 +68,8 @@ public class DeltaTable
 		builder.append("<th>").append(glossaryLink).append("Expired").append("</a>").append("</th>");
 		builder.append("</tr>");
 
+		Collections.sort(removed);
+
 		for (SwitchInfo removedSwitch : removed)
 		{
 			builder.append("<tr>");
@@ -93,8 +77,13 @@ public class DeltaTable
 
 			String name = removedSwitch.getName();
 
-			builder.append("<a href=\"").append(earlierVM.getHTMLFilename()).append("?s=").append(name).append("\">").append(name)
-					.append("</a>");
+			builder.append("<a href=\"")
+				   .append(earlierVM.getHTMLFilename())
+				   .append("?s=")
+				   .append(name)
+				   .append("\">")
+				   .append(name)
+				   .append("</a>");
 
 			builder.append("</td>");
 
@@ -127,6 +116,8 @@ public class DeltaTable
 		builder.append("<table class=\"deltatable added\">");
 		builder.append("<tr><th>Name</th><th>Availability</th></tr>");
 
+		Collections.sort(added);
+
 		for (SwitchInfo addedSwitch : added)
 		{
 			builder.append("<tr>");
@@ -134,8 +125,13 @@ public class DeltaTable
 
 			String name = addedSwitch.getName();
 
-			builder.append("<a href=\"").append(laterVM.getHTMLFilename()).append("?s=").append(name).append("\">").append(name)
-					.append("</a>");
+			builder.append("<a href=\"")
+				   .append(laterVM.getHTMLFilename())
+				   .append("?s=")
+				   .append(name)
+				   .append("\">")
+				   .append(name)
+				   .append("</a>");
 
 			builder.append("</td>");
 
