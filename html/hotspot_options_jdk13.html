@@ -123,6 +123,10 @@
                 <td><a href="graal_options_graal_ee_19.html">Graal
                     EE 19.0.0</a></td>
             </tr>
+            <tr>
+                <td></td>
+                <td><a href="graal_ee_only_options.html"><b>EE-only options</b></a></td>
+            </tr>
         </table>
     </div>
     <div class="menuwrap">
@@ -204,6 +208,7 @@
 <tr><td>AlwaysRestoreFPU</td><td>JDK6</td><td></td><td>bool</td><td></td><td></td><td>runtime</td><td>false</td><td>product</td><td>Restore the FPU control word after every JNI call (expensive)</td><td>share/runtime/globals.hpp</td></tr>
 <tr><td>AlwaysSafeConstructors</td><td>JDK9</td><td></td><td>bool</td><td></td><td></td><td>runtime</td><td>false</td><td>experimental</td><td>Force safe construction, as if all fields are final.</td><td>share/runtime/globals.hpp</td></tr>
 <tr><td>AlwaysTenure</td><td>JDK6</td><td></td><td>bool</td><td></td><td></td><td>gc</td><td>false</td><td>product</td><td>Always tenure objects in eden (ParallelGC only)</td><td>share/gc/shared/gc_globals.hpp</td></tr>
+<tr><td>ArchiveClassesAtExit</td><td>JDK13</td><td></td><td>ccstr</td><td></td><td></td><td>runtime</td><td>NULL</td><td>product</td><td>The path and name of the dynamic archive file</td><td>share/runtime/globals.hpp</td></tr>
 <tr><td>ArrayAllocatorMallocLimit</td><td>JDK7</td><td></td><td>size_t</td><td></td><td></td><td>runtime</td><td>SOLARIS_ONLY(64*K) NOT_SOLARIS((size_t)-1)</td><td>experimental</td><td>Allocation less than this value will be allocated using malloc. Larger allocations will use mmap.</td><td>share/runtime/globals.hpp</td></tr>
 <tr><td>ArrayCopyLoadStoreMaxElem</td><td>JDK9</td><td></td><td>intx</td><td></td><td></td><td>c2</td><td>8<br>range(0, max_intx)</td><td>product</td><td>Maximum number of arraycopy elements inlined as a sequence ofloads/stores</td><td>share/opto/c2_globals.hpp</td></tr>
 <tr><td>ArraycopyDstPrefetchDistance</td><td>JDK6</td><td></td><td>uintx</td><td></td><td>sparc</td><td></td><td>0</td><td>product</td><td>Distance to prefetch destination array in arraycopy</td><td>cpu/sparc/globals_sparc.hpp</td></tr>
@@ -534,6 +539,7 @@
 <tr><td>DumpReplayDataOnError</td><td>JDK8</td><td></td><td>bool</td><td></td><td></td><td>runtime</td><td>true</td><td>product</td><td>Record replay data for crashing compiler threads</td><td>share/runtime/globals.hpp</td></tr>
 <tr><td>DumpSharedMappingsInCore</td><td>JDK13</td><td></td><td>bool</td><td>linux</td><td></td><td></td><td>true</td><td>diagnostic</td><td>If true, sets bit 3 of /proc/PID/coredump_filter, thus resulting in file-backed shared mappings of the process to be dumped into the corefile.</td><td>os/linux/globals_linux.hpp</td></tr>
 <tr><td>DumpSharedSpaces</td><td>JDK6</td><td></td><td>bool</td><td></td><td></td><td>runtime</td><td>false</td><td>product</td><td>Special mode: JVM reads a class list, loads classes, builds shared spaces, and dumps the shared spaces to a file to be used in future JVM runs</td><td>share/runtime/globals.hpp</td></tr>
+<tr><td>DynamicDumpSharedSpaces</td><td>JDK13</td><td></td><td>bool</td><td></td><td></td><td>runtime</td><td>false</td><td>product</td><td>Dynamic archive</td><td>share/runtime/globals.hpp</td></tr>
 <tr><td>DynamicallyResizeSystemDictionaries</td><td>JDK10</td><td></td><td>bool</td><td></td><td></td><td>runtime</td><td>true</td><td>diagnostic</td><td>Dynamically resize system dictionaries as needed</td><td>share/runtime/globals.hpp</td></tr>
 <tr><td>EagerInitialization</td><td>JDK6</td><td></td><td>bool</td><td></td><td></td><td>runtime</td><td>false</td><td>develop</td><td>Eagerly initialize classes if possible</td><td>share/runtime/globals.hpp</td></tr>
 <tr><td>EagerJVMCI</td><td>JDK11</td><td></td><td>bool</td><td></td><td></td><td>jvmci</td><td>false</td><td>experimental</td><td>Force eager JVMCI initialization</td><td>share/jvmci/jvmci_globals.hpp</td></tr>
@@ -2147,7 +2153,7 @@
 		</tbody>
 	</table>
 	<div class="footer">
-		Built on Thu May 16 10:09:40 BST 2019 from HotSpot sources by <a
+		Built on Fri May 17 23:07:42 BST 2019 from HotSpot sources by <a
 			href="https://twitter.com/chriswhocodes">@chriswhocodes</a>
 	</div>
 </body>
