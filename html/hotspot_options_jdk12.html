@@ -603,7 +603,7 @@
 <tr><td>FillDelaySlots</td><td>JDK6</td><td></td><td>bool</td><td></td><td></td><td>runtime</td><td>true</td><td>develop</td><td>Fill delay slots (on SPARC only)</td><td>share/runtime/globals.hpp</td></tr>
 <tr><td>FilterSpuriousWakeups</td><td>JDK6</td><td></td><td>bool</td><td></td><td></td><td>runtime</td><td>true</td><td>product</td><td>When true prevents OS-level spurious, or premature, wakeups from Object.wait (Ignored for Windows)</td><td>share/runtime/globals.hpp</td></tr>
 <tr><td>FlightRecorderOptions</td><td>JDK11</td><td></td><td>ccstr</td><td></td><td></td><td>runtime</td><td>NULL</td><td>product</td><td>Flight Recorder options</td><td>share/runtime/globals.hpp</td></tr>
-<tr><td>FlightRecorder</td><td>JDK11</td><td></td><td>bool</td><td></td><td></td><td>runtime</td><td>false</td><td>product</td><td>Enable Flight Recorder</td><td>share/runtime/globals.hpp</td></tr>
+<tr><td>FlightRecorder</td><td>JDK11</td><td><span style="white-space:nowrap">Deprecated in JDK13</span></td><td>bool</td><td></td><td></td><td>runtime</td><td>false</td><td>product</td><td>Enable Flight Recorder</td><td>share/runtime/globals.hpp</td></tr>
 <tr><td>FoldStableValues</td><td>JDK8</td><td></td><td>bool</td><td></td><td></td><td>runtime</td><td>true</td><td>diagnostic</td><td>Optimize loads from stable fields (marked w/ @Stable)</td><td>share/runtime/globals.hpp</td></tr>
 <tr><td>ForceDynamicNumberOfGCThreads</td><td>JDK6</td><td></td><td>bool</td><td></td><td></td><td>gc</td><td>false</td><td>diagnostic</td><td>Force dynamic selection of the number of parallel threads parallel gc will use to aid debugging</td><td>share/gc/shared/gc_globals.hpp</td></tr>
 <tr><td>ForceFloatExceptions</td><td>JDK6</td><td></td><td>bool</td><td></td><td></td><td>runtime</td><td>trueInDebug</td><td>develop</td><td>Force exceptions on FP stack under/overflow</td><td>share/runtime/globals.hpp</td></tr>
@@ -2176,7 +2176,7 @@
 		</tbody>
 	</table>
 	<div class="footer">
-		Built on Fri May 17 23:07:42 BST 2019 from HotSpot sources by <a
+		Built on Mon Jun 10 17:03:20 BST 2019 from HotSpot sources by <a
 			href="https://twitter.com/chriswhocodes">@chriswhocodes</a>
 	</div>
 </body>
