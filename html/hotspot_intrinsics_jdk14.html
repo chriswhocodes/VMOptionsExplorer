@@ -1,7 +1,7 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html lang='en-GB'>
 <head>
-<title>HotSpot Intrinsics for JDK12</title>
+<title>HotSpot Intrinsics for JDK14</title>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="author" content="Chris Newland">
 <meta name="copyright" content="Chris Newland 2018-2019">
@@ -34,7 +34,7 @@
                           "orderable" : true,
                         } ],
                         "oLanguage" : {
-                          "sSearch" : "Search HotSpot VM JDK12 Intrinsics: "
+                          "sSearch" : "Search HotSpot VM JDK14 Intrinsics: "
                         },
                         initComplete : function() {
                               this.api().search(getParam());
@@ -79,7 +79,7 @@
             });
   </script>
 
-	<h1>VM Options Explorer - HotSpot Intrinsics for JDK12</h1>
+	<h1>VM Options Explorer - HotSpot Intrinsics for JDK14</h1>
 
 <div class="menucontainer">
     <div class="menuwrap">
@@ -171,6 +171,9 @@
 <tr><td>_notify</td><td>JDK9</td><td>java.lang.Object</td><td>notify</td><td>()V</td><td>F_R</td></tr>
 <tr><td>_notifyAll</td><td>JDK9</td><td>java.lang.Object</td><td>notifyAll</td><td>()V</td><td>F_R</td></tr>
 <tr><td>_dabs</td><td>JDK6</td><td>java.lang.Math</td><td>abs</td><td>(D)D</td><td>F_S</td></tr>
+<tr><td>_fabs</td><td>JDK13</td><td>java.lang.Math</td><td>abs</td><td>(F)F</td><td>F_S</td></tr>
+<tr><td>_iabs</td><td>JDK13</td><td>java.lang.Math</td><td>abs</td><td>(I)I</td><td>F_S</td></tr>
+<tr><td>_labs</td><td>JDK13</td><td>java.lang.Math</td><td>abs</td><td>(J)J</td><td>F_S</td></tr>
 <tr><td>_dsin</td><td>JDK6</td><td>java.lang.Math</td><td>sin</td><td>(D)D</td><td>F_S</td></tr>
 <tr><td>_dcos</td><td>JDK6</td><td>java.lang.Math</td><td>cos</td><td>(D)D</td><td>F_S</td></tr>
 <tr><td>_dtan</td><td>JDK6</td><td>java.lang.Math</td><td>tan</td><td>(D)D</td><td>F_S</td></tr>
@@ -197,6 +200,10 @@
 <tr><td>_subtractExactL</td><td>JDK8</td><td>java.lang.Math</td><td>subtractExact</td><td>(JJ)J</td><td>F_S</td></tr>
 <tr><td>_fmaD</td><td>JDK9</td><td>java.lang.Math</td><td>fma</td><td>(DDD)D</td><td>F_S</td></tr>
 <tr><td>_fmaF</td><td>JDK9</td><td>java.lang.Math</td><td>fma</td><td>(FFF)F</td><td>F_S</td></tr>
+<tr><td>_maxF</td><td>JDK13</td><td>java.lang.Math</td><td>max</td><td>(FF)F</td><td>F_S</td></tr>
+<tr><td>_minF</td><td>JDK13</td><td>java.lang.Math</td><td>min</td><td>(FF)F</td><td>F_S</td></tr>
+<tr><td>_maxD</td><td>JDK13</td><td>java.lang.Math</td><td>max</td><td>(DD)D</td><td>F_S</td></tr>
+<tr><td>_minD</td><td>JDK13</td><td>java.lang.Math</td><td>min</td><td>(DD)D</td><td>F_S</td></tr>
 <tr><td>_floatToRawIntBits</td><td>JDK6</td><td>java.lang.Float</td><td>floatToRawIntBits</td><td>(F)I</td><td>F_S</td></tr>
 <tr><td>_floatToIntBits</td><td>JDK6</td><td>java.lang.Float</td><td>floatToIntBits</td><td>(F)I</td><td>F_S</td></tr>
 <tr><td>_intBitsToFloat</td><td>JDK6</td><td>java.lang.Float</td><td>intBitsToFloat</td><td>(I)F</td><td>F_S</td></tr>

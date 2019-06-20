@@ -334,6 +334,7 @@ public class VMOptionsExplorer
 		DeprecatedParser.parseFile(Paths.get(baseDir + "jdk11"));
 		DeprecatedParser.parseFile(Paths.get(baseDir + "jdk12"));
 		DeprecatedParser.parseFile(Paths.get(baseDir + "jdk13"));
+		DeprecatedParser.parseFile(Paths.get(baseDir + "jdk14"));
 
 		VMOptionsExplorer vms = new VMOptionsExplorer();
 
@@ -345,6 +346,7 @@ public class VMOptionsExplorer
 		vms.addVM(new VMData("JDK11", new File(baseDir + "jdk11/src/hotspot"), VMType.HOTSPOT));
 		vms.addVM(new VMData("JDK12", new File(baseDir + "jdk12/src/hotspot"), VMType.HOTSPOT));
 		vms.addVM(new VMData("JDK13", new File(baseDir + "jdk13/src/hotspot"), VMType.HOTSPOT));
+		vms.addVM(new VMData("JDK14", new File(baseDir + "jdk14/src/hotspot"), VMType.HOTSPOT));
 
 		// Generate these files with -XX:+JVMCIPrintProperties
 		vms.addVM(new VMData("Graal CE 19", new File(baseDir + "VMOptionsExplorer/graal_ce.out"), VMType.GRAAL));
@@ -389,5 +391,8 @@ public class VMOptionsExplorer
 
 		intrinsicParser.parseFile(Paths.get(baseDir + "jdk13/src/hotspot/share/classfile/vmSymbols.hpp"));
 		intrinsicParser.createHTMLForVM("JDK13");
+
+		intrinsicParser.parseFile(Paths.get(baseDir + "jdk14/src/hotspot/share/classfile/vmSymbols.hpp"));
+		intrinsicParser.createHTMLForVM("JDK14");
 	}
 }
