@@ -71,13 +71,13 @@ public class HotSpotSwitchParser extends AbstractSwitchParser
 					defaultValueField = 2;
 					expectedLineEnding = ");";
 				}
-				else if ("product_pd".equals(availability))
+				else if ("product_pd".equals(availability) || "develop_pd".equals(availability) || "diagnostic_pd".equals(availability))
 				{
 					inLine = true;
 					expectedLineEnding = "\")";
 					descriptionField = 2;
 				}
-				else if ("product".equals(availability) || "develop".equals(availability) || "lp64_product".equals(availability)
+				else if ("product".equals(availability) || "product_rw".equals(availability) || "develop".equals(availability) || "lp64_product".equals(availability)
 						|| "notproduct".equals(availability) || "diagnostic".equals(availability)
 						|| "experimental".equals(availability) || "manageable".equals(availability))
 				{
@@ -95,6 +95,10 @@ public class HotSpotSwitchParser extends AbstractSwitchParser
 				}
 				else
 				{
+					if (!availability.contains("//") && !availability.contains("*") && !availability.contains("#") && !availability.equals("constraint"))
+					{
+					//	System.out.println("Unhandled availability mode:" + availability);
+					}
 					continue;
 				}
 			}
