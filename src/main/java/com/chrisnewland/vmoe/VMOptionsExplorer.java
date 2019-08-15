@@ -16,11 +16,7 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
 
-import com.chrisnewland.vmoe.parser.GraalSwitchParser;
-import com.chrisnewland.vmoe.parser.HotSpotSwitchParser;
-import com.chrisnewland.vmoe.parser.ISwitchParser;
-import com.chrisnewland.vmoe.parser.OpenJ9SwitchParser;
-import com.chrisnewland.vmoe.parser.ZingSwitchParser;
+import com.chrisnewland.vmoe.parser.*;
 import com.chrisnewland.vmoe.parser.delta.GraalDeltaTable;
 import com.chrisnewland.vmoe.parser.delta.HotSpotDeltaTable;
 import com.chrisnewland.vmoe.parser.delta.IDeltaTable;
@@ -96,7 +92,8 @@ public class VMOptionsExplorer
 		{
 		case HOTSPOT:
 			return new HotSpotDeltaTable(earlier, later);
-		case GRAAL:
+		case GRAAL_VM:
+		case GRAAL_NATIVE:
 			return new GraalDeltaTable(earlier, later);
 		default:
 			throw new UnsupportedOperationException();
@@ -152,7 +149,8 @@ public class VMOptionsExplorer
 
 		Collections.sort(result, new Comparator<VMData>()
 		{
-			@Override public int compare(VMData vmd1, VMData vmd2)
+			@Override
+			public int compare(VMData vmd1, VMData vmd2)
 			{
 				int version1 = getVersionFromJDKName(vmd1.getJdkName());
 				int version2 = getVersionFromJDKName(vmd2.getJdkName());
@@ -196,8 +194,10 @@ public class VMOptionsExplorer
 	{
 		switch (vmType)
 		{
-		case GRAAL:
-			return new GraalSwitchParser();
+		case GRAAL_VM:
+			return new GraalVMSwitchParser();
+		case GRAAL_NATIVE:
+			return new GraalNativeImageSwitchParser();
 		case OPENJ9:
 			return new OpenJ9SwitchParser();
 		case HOTSPOT:
@@ -213,8 +213,10 @@ public class VMOptionsExplorer
 	{
 		switch (vmType)
 		{
-		case GRAAL:
-			return "Graal";
+		case GRAAL_VM:
+			return "GraalVM";
+		case GRAAL_NATIVE:
+			return "Graal Native";
 		case OPENJ9:
 			return "OpenJ9";
 		case HOTSPOT:
@@ -296,10 +298,16 @@ public class VMOptionsExplorer
 
 		switch (vmData.getVmType())
 		{
-		case GRAAL:
+		case GRAAL_VM:
 			template = template.replace("$TOPHEADER", "<th></th><th>Type</th><th></th><th></th>");
 			template = template.replace("$ALLCOLUMNS", "[ 0,1,2,3 ]");
 			template = template.replace("$SORTCOLUMNS", "[ 1 ]");
+			break;
+
+		case GRAAL_NATIVE:
+			template = template.replace("$TOPHEADER", "<th></th><th>Type</th><th></th><th>Availability</th><th></th>");
+			template = template.replace("$ALLCOLUMNS", "[ 0,1,2,3,4 ]");
+			template = template.replace("$SORTCOLUMNS", "[ 1,3 ]");
 			break;
 		case OPENJ9:
 			template = template.replace("$TOPHEADER", "<th></th><th></th>");
@@ -349,8 +357,11 @@ public class VMOptionsExplorer
 		vms.addVM(new VMData("JDK14", new File(baseDir + "jdk14/src/hotspot"), VMType.HOTSPOT));
 
 		// Generate these files with -XX:+JVMCIPrintProperties
-		vms.addVM(new VMData("Graal CE 19", new File(baseDir + "VMOptionsExplorer/graal_ce.out"), VMType.GRAAL));
-		vms.addVM(new VMData("Graal EE 19", new File(baseDir + "VMOptionsExplorer/graal_ee.out"), VMType.GRAAL));
+		vms.addVM(new VMData("GraalVM CE 19", new File(baseDir + "VMOptionsExplorer/graal_ce.vm"), VMType.GRAAL_VM));
+		vms.addVM(new VMData("GraalVM EE 19", new File(baseDir + "VMOptionsExplorer/graal_ee.vm"), VMType.GRAAL_VM));
+
+		vms.addVM(new VMData("GraalVM native-image CE 19", new File(baseDir + "VMOptionsExplorer/graal_ce.native"), VMType.GRAAL_NATIVE));
+		vms.addVM(new VMData("GraalVM native-image EE 19", new File(baseDir + "VMOptionsExplorer/graal_ee.native"), VMType.GRAAL_NATIVE));
 
 		vms.addVM(new VMData("OpenJ9", new File(baseDir + "openj9"), VMType.OPENJ9));
 
@@ -363,8 +374,11 @@ public class VMOptionsExplorer
 		vms.processVMDeltas(VMType.HOTSPOT, "Differences between HotSpot VM Versions",
 				Paths.get("templates/template_hotspot_delta.html"), Paths.get("html/hotspot_option_differences.html"));
 
-		vms.processVMDeltas(VMType.GRAAL, "Additonal options in GraalVM Enterprise Edition",
-				Paths.get("templates/template_graal_delta.html"), Paths.get("html/graal_ee_only_options.html"));
+		vms.processVMDeltas(VMType.GRAAL_VM, "Additonal options in GraalVM Enterprise Edition",
+				Paths.get("templates/template_graal_delta.html"), Paths.get("html/graalvm_ee_only_options.html"));
+
+		vms.processVMDeltas(VMType.GRAAL_NATIVE, "Additonal options in Graal Native Enterprise Edition",
+				Paths.get("templates/template_graal_delta.html"), Paths.get("html/graalvm_native_image_ee_only_options.html"));
 
 		IntrinsicParser intrinsicParser = new IntrinsicParser();
 

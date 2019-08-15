@@ -43,8 +43,11 @@ public class VMData
 		case HOTSPOT:
 			builder.append("hotspot_options_").append(jdkName.toLowerCase().replace(" ", "_"));
 			break;
-		case GRAAL:
-			builder.append("graal_options_").append(jdkName.toLowerCase().replace(" ", "_"));
+		case GRAAL_VM:
+			builder.append(jdkName.toLowerCase().replace(" ", "_")).append("_options");
+			break;
+		case GRAAL_NATIVE:
+			builder.append(jdkName.toLowerCase().replace(" ", "_").replace("-", "_")).append("_options");
 			break;
 		case OPENJ9:
 			builder.append("openj9_options");

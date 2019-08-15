@@ -34,7 +34,7 @@
                           "orderable" : true,
                         } ],
                         "oLanguage" : {
-                          "sSearch" : "Search JDK8 HotSpot VM Options: "
+                          "sSearch" : "Search JDK8 HotSpot Options: "
                         },
                         initComplete : function() {
                               this.api().search(getParam());
@@ -85,49 +85,63 @@
     <div class="menuwrap">
         <table class="menu">
             <tr>
-                <th colspan="9">HotSpot
-                    <div class="diffs"><a href="hotspot_option_differences.html">See when options were added or removed from HotSpot
-                        JDKs</a></div>
+                <th colspan="10">HotSpot
+                    <div class="diffs"><a href="hotspot_option_differences.html">Options added/removed</a></div>
                 </th>
             </tr>
             <tr>
-                <td><a href="hotspot_options_jdk6.html">JDK6 Options</a></td>
-                <td><a href="hotspot_options_jdk7.html">JDK7 Options</a></td>
-                <td><a href="hotspot_options_jdk8.html">JDK8 Options</a></td>
-                <td><a href="hotspot_options_jdk9.html">JDK9 Options</a></td>
-                <td><a href="hotspot_options_jdk10.html">JDK10 Options</a></td>
-                <td><a href="hotspot_options_jdk11.html">JDK11 Options</a></td>
-                <td><a href="hotspot_options_jdk12.html">JDK12 Options</a></td>
-                <td><a href="hotspot_options_jdk13.html">JDK13 Options</a></td>
-                <td><a href="hotspot_options_jdk14.html">JDK14 Options</a></td>
+                <td class="row-heading">VM Options</td>
+                <td><a href="hotspot_options_jdk6.html">JDK6</a></td>
+                <td><a href="hotspot_options_jdk7.html">JDK7</a></td>
+                <td><a href="hotspot_options_jdk8.html">JDK8</a></td>
+                <td><a href="hotspot_options_jdk9.html">JDK9</a></td>
+                <td><a href="hotspot_options_jdk10.html">JDK10</a></td>
+                <td><a href="hotspot_options_jdk11.html">JDK11</a></td>
+                <td><a href="hotspot_options_jdk12.html">JDK12</a></td>
+                <td><a href="hotspot_options_jdk13.html">JDK13</a></td>
+                <td><a href="hotspot_options_jdk14.html">JDK14</a></td>
             </tr>
             <tr>
-                <td><a href="hotspot_intrinsics_jdk6.html">JDK6 Intrinsics</a></td>
-                <td><a href="hotspot_intrinsics_jdk7.html">JDK7 Intrinsics</a></td>
-                <td><a href="hotspot_intrinsics_jdk8.html">JDK8 Intrinsics</a></td>
-                <td><a href="hotspot_intrinsics_jdk9.html">JDK9 Intrinsics</a></td>
-                <td><a href="hotspot_intrinsics_jdk10.html">JDK10 Intrinsics</a></td>
-                <td><a href="hotspot_intrinsics_jdk11.html">JDK11 Intrinsics</a></td>
-                <td><a href="hotspot_intrinsics_jdk12.html">JDK12 Intrinsics</a></td>
-                <td><a href="hotspot_intrinsics_jdk13.html">JDK13 Intrinsics</a></td>
-                <td><a href="hotspot_intrinsics_jdk14.html">JDK14 Intrinsics</a></td>
+                <td class="row-heading">Intrinsics</td>
+                <td><a href="hotspot_intrinsics_jdk6.html">JDK6</a></td>
+                <td><a href="hotspot_intrinsics_jdk7.html">JDK7</a></td>
+                <td><a href="hotspot_intrinsics_jdk8.html">JDK8</a></td>
+                <td><a href="hotspot_intrinsics_jdk9.html">JDK9</a></td>
+                <td><a href="hotspot_intrinsics_jdk10.html">JDK10</a></td>
+                <td><a href="hotspot_intrinsics_jdk11.html">JDK11</a></td>
+                <td><a href="hotspot_intrinsics_jdk12.html">JDK12</a></td>
+                <td><a href="hotspot_intrinsics_jdk13.html">JDK13</a></td>
+                <td><a href="hotspot_intrinsics_jdk14.html">JDK14</a></td>
             </tr>
         </table>
     </div>
     <div class="menuwrap">
         <table class="menu">
             <tr>
-                <th colspan="2">Graal</th>
+                <th colspan="2">GraalVM</th>
             </tr>
             <tr>
-                <td><a href="graal_options_graal_ce_19.html">Graal
-                    CE 19.0.0</a></td>
-                <td><a href="graal_options_graal_ee_19.html">Graal
-                    EE 19.0.0</a></td>
+                <td><a href="graalvm_ce_19_options.html">GraalVM CE 19.1.1</a></td>
+                <td><a href="graalvm_ee_19_options.html">GraalVM EE 19.1.1</a></td>
             </tr>
             <tr>
                 <td></td>
-                <td><a href="graal_ee_only_options.html"><b>EE-only options</b></a></td>
+                <td><a href="graalvm_ee_only_options.html"><b>Enterprise-only options</b></a></td>
+            </tr>
+        </table>
+    </div>
+    <div class="menuwrap">
+        <table class="menu">
+            <tr>
+                <th colspan="2">GraalVM native-image</th>
+            </tr>
+            <tr>
+                <td><a href="graalvm_native_image_ce_19_options.html">native-image CE 19.1.1</a></td>
+                <td><a href="graalvm_native_image_ee_19_options.html">native-image EE 19.1.1</a></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td><a href="graalvm_native_image_ee_only_options.html"><b>Enterprise-only options</b></a></td>
             </tr>
         </table>
     </div>
@@ -431,7 +445,7 @@
 <tr><td>CollectGen0First</td><td>JDK6</td><td></td><td>bool</td><td></td><td></td><td>runtime</td><td>false</td><td>product</td><td>Collect youngest generation before each full GC</td><td>src/share/vm/runtime/globals.hpp</td></tr>
 <tr><td>CollectIndexSetStatistics</td><td>JDK6</td><td></td><td>bool</td><td></td><td></td><td>runtime</td><td>false</td><td>notproduct</td><td>Collect information about IndexSets</td><td>src/share/vm/runtime/globals.hpp</td></tr>
 <tr><td>CommentedAssembly</td><td>JDK6</td><td></td><td>bool</td><td></td><td></td><td>c1</td><td>trueInDebug</td><td>develop</td><td>Show extra info in PrintNMethods output</td><td>src/share/vm/c1/c1_globals.hpp</td></tr>
-<tr><td>CompactFields</td><td>JDK6</td><td></td><td>bool</td><td></td><td></td><td>runtime</td><td>true</td><td>product</td><td>Allocate nonstatic fields in gaps between previous fields</td><td>src/share/vm/runtime/globals.hpp</td></tr>
+<tr><td>CompactFields</td><td>JDK6</td><td><span style="white-space:nowrap">Deprecated in JDK14</span><br><span style="white-space:nowrap">Obsoleted in JDK15</span><br><span style="white-space:nowrap">Expired in JDK16</span></td><td>bool</td><td></td><td></td><td>runtime</td><td>true</td><td>product</td><td>Allocate nonstatic fields in gaps between previous fields</td><td>src/share/vm/runtime/globals.hpp</td></tr>
 <tr><td>CompilationPolicyChoice</td><td>JDK6</td><td><span style="white-space:nowrap">Deprecated in JDK13</span><br><span style="white-space:nowrap">Obsoleted in JDK14</span></td><td>intx</td><td></td><td></td><td>runtime</td><td>0</td><td>product</td><td>which compilation policy (0/1)</td><td>src/share/vm/runtime/globals.hpp</td></tr>
 <tr><td>CompileCommandFile</td><td>JDK6</td><td></td><td>ccstr</td><td></td><td></td><td>runtime</td><td>NULL</td><td>product</td><td>Read compiler commands from this file [.hotspot_compiler]</td><td>src/share/vm/runtime/globals.hpp</td></tr>
 <tr><td>CompileCommand</td><td>JDK6</td><td></td><td>ccstrlist</td><td></td><td></td><td>runtime</td><td>Prepend to .hotspot_compiler; e.g. log,java/lang/String.<init></td><td>product</td><td></td><td>src/share/vm/runtime/globals.hpp</td></tr>
@@ -589,7 +603,7 @@
 <tr><td>FastSuperclassLimit</td><td>JDK6</td><td></td><td>intx</td><td></td><td></td><td>runtime</td><td>8</td><td>develop</td><td>Depth of hardwired instanceof accelerator array</td><td>src/share/vm/runtime/globals.hpp</td></tr>
 <tr><td>FastTLABRefill</td><td>JDK6</td><td><span style="white-space:nowrap">Deprecated in JDK10</span><br><span style="white-space:nowrap">Obsoleted in JDK11</span><br><span style="white-space:nowrap">Expired in JDK12</span></td><td>bool</td><td></td><td></td><td>runtime</td><td>true</td><td>product</td><td>Use fast TLAB refill code</td><td>src/share/vm/runtime/globals.hpp</td></tr>
 <tr><td>FenceInstruction</td><td>JDK6</td><td></td><td>intx</td><td></td><td>x86</td><td></td><td>0</td><td>product</td><td>(Unsafe,Unstable) Experimental</td><td>src/cpu/x86/vm/globals_x86.hpp</td></tr>
-<tr><td>FieldsAllocationStyle</td><td>JDK6</td><td></td><td>intx</td><td></td><td></td><td>runtime</td><td>1</td><td>product</td><td>0 - type based with oops first, 1 - with oops last, <br>2 - oops in super and sub classes are together</td><td>src/share/vm/runtime/globals.hpp</td></tr>
+<tr><td>FieldsAllocationStyle</td><td>JDK6</td><td><span style="white-space:nowrap">Deprecated in JDK14</span><br><span style="white-space:nowrap">Obsoleted in JDK15</span><br><span style="white-space:nowrap">Expired in JDK16</span></td><td>intx</td><td></td><td></td><td>runtime</td><td>1</td><td>product</td><td>0 - type based with oops first, 1 - with oops last, <br>2 - oops in super and sub classes are together</td><td>src/share/vm/runtime/globals.hpp</td></tr>
 <tr><td>FillDelaySlots</td><td>JDK6</td><td></td><td>bool</td><td></td><td></td><td>runtime</td><td>true</td><td>develop</td><td>Fill delay slots (on SPARC only)</td><td>src/share/vm/runtime/globals.hpp</td></tr>
 <tr><td>FilterSpuriousWakeups</td><td>JDK6</td><td></td><td>bool</td><td></td><td></td><td>runtime</td><td>true</td><td>product</td><td>Prevent spurious or premature wakeups from object.wait (Solaris only)</td><td>src/share/vm/runtime/globals.hpp</td></tr>
 <tr><td>FoldStableValues</td><td>JDK8</td><td></td><td>bool</td><td></td><td></td><td>runtime</td><td>true</td><td>diagnostic</td><td>Optimize loads from stable fields (marked w/ @Stable)</td><td>src/share/vm/runtime/globals.hpp</td></tr>
@@ -2006,7 +2020,7 @@
 		</tbody>
 	</table>
 	<div class="footer">
-		Built on Thu Jul 18 12:57:58 BST 2019 from HotSpot sources by <a
+		Built on Thu Aug 15 16:59:58 BST 2019 from HotSpot sources by <a
 			href="https://twitter.com/chriswhocodes">@chriswhocodes</a>
 	</div>
 </body>

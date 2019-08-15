@@ -6,5 +6,5 @@ package com.chrisnewland.vmoe;
 
 public enum VMType
 {
-	HOTSPOT, GRAAL, OPENJ9, ZING;
+	HOTSPOT, GRAAL_VM, GRAAL_NATIVE, OPENJ9, ZING;
 }

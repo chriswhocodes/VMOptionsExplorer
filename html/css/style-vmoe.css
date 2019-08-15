@@ -130,11 +130,15 @@ a, a:visited {
 
 .menu td {
     font-size: 14px;
-    text-align: center;
     vertical-align: top;
-    min-width: 120px;
     padding: 4px;
 }
+
+.row-heading {
+    text-align: right;
+    font-weight: bold;
+}
+
 
 .diffs {
     float: right;

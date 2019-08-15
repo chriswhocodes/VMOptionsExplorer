@@ -13,7 +13,7 @@ import java.util.TreeMap;
 
 import com.chrisnewland.vmoe.SwitchInfo;
 
-public class GraalSwitchParser extends AbstractSwitchParser
+public class GraalVMSwitchParser extends AbstractSwitchParser
 {
 	@Override
 	public Map<String, SwitchInfo> process(File vmPath) throws IOException

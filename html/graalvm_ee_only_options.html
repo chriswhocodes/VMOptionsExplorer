@@ -1,0 +1,212 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html lang='en-GB'>
+<head>
+    <title>Additonal options in GraalVM Enterprise Edition</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="author" content="Chris Newland">
+    <meta name="copyright" content="Chris Newland 2018-2019">
+    <meta name="viewport" content="width=device-width">
+    <link rel="stylesheet" type="text/css" href="css/style-vmoe.css">
+</head>
+<body>
+<h1>VM Options Explorer - Additonal options in GraalVM Enterprise Edition</h1>
+
+<div class="menucontainer">
+    <div class="menuwrap">
+        <table class="menu">
+            <tr>
+                <th colspan="10">HotSpot
+                    <div class="diffs"><a href="hotspot_option_differences.html">Options added/removed</a></div>
+                </th>
+            </tr>
+            <tr>
+                <td class="row-heading">VM Options</td>
+                <td><a href="hotspot_options_jdk6.html">JDK6</a></td>
+                <td><a href="hotspot_options_jdk7.html">JDK7</a></td>
+                <td><a href="hotspot_options_jdk8.html">JDK8</a></td>
+                <td><a href="hotspot_options_jdk9.html">JDK9</a></td>
+                <td><a href="hotspot_options_jdk10.html">JDK10</a></td>
+                <td><a href="hotspot_options_jdk11.html">JDK11</a></td>
+                <td><a href="hotspot_options_jdk12.html">JDK12</a></td>
+                <td><a href="hotspot_options_jdk13.html">JDK13</a></td>
+                <td><a href="hotspot_options_jdk14.html">JDK14</a></td>
+            </tr>
+            <tr>
+                <td class="row-heading">Intrinsics</td>
+                <td><a href="hotspot_intrinsics_jdk6.html">JDK6</a></td>
+                <td><a href="hotspot_intrinsics_jdk7.html">JDK7</a></td>
+                <td><a href="hotspot_intrinsics_jdk8.html">JDK8</a></td>
+                <td><a href="hotspot_intrinsics_jdk9.html">JDK9</a></td>
+                <td><a href="hotspot_intrinsics_jdk10.html">JDK10</a></td>
+                <td><a href="hotspot_intrinsics_jdk11.html">JDK11</a></td>
+                <td><a href="hotspot_intrinsics_jdk12.html">JDK12</a></td>
+                <td><a href="hotspot_intrinsics_jdk13.html">JDK13</a></td>
+                <td><a href="hotspot_intrinsics_jdk14.html">JDK14</a></td>
+            </tr>
+        </table>
+    </div>
+    <div class="menuwrap">
+        <table class="menu">
+            <tr>
+                <th colspan="2">GraalVM</th>
+            </tr>
+            <tr>
+                <td><a href="graalvm_ce_19_options.html">GraalVM CE 19.1.1</a></td>
+                <td><a href="graalvm_ee_19_options.html">GraalVM EE 19.1.1</a></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td><a href="graalvm_ee_only_options.html"><b>Enterprise-only options</b></a></td>
+            </tr>
+        </table>
+    </div>
+    <div class="menuwrap">
+        <table class="menu">
+            <tr>
+                <th colspan="2">GraalVM native-image</th>
+            </tr>
+            <tr>
+                <td><a href="graalvm_native_image_ce_19_options.html">native-image CE 19.1.1</a></td>
+                <td><a href="graalvm_native_image_ee_19_options.html">native-image EE 19.1.1</a></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td><a href="graalvm_native_image_ee_only_options.html"><b>Enterprise-only options</b></a></td>
+            </tr>
+        </table>
+    </div>
+    <div class="menuwrap">
+        <table class="menu">
+            <tr>
+                <th>OpenJ9</th>
+            </tr>
+            <tr>
+                <td><a href="openj9_options.html">OpenJ9</a></td>
+            </tr>
+            <tr>
+                <td><a href="https://www.eclipse.org/openj9/docs/cmdline_migration/"><b>Migrating from HotSpot</b></a></td>
+            </tr>
+        </table>
+    </div>
+    <div class="menuwrap">
+        <table class="menu">
+            <tr>
+                <th>Zing</th>
+            </tr>
+            <tr>
+                <td><a href="zing_options.html">Zing 18.07</a></td>
+            </tr>
+        </table>
+    </div>
+</div>
+<div class="dtclear"></div>
+<div class="book">
+    Hey Reader! If these notes float your boat you'll find more great JVM info in this book I co-wrote!
+    <a href="https://www.amazon.com/Optimizing-Java-Techniques-Application-Performance/dp/1492025798/">Optimizing Java: Practical
+        techniques for improving JVM application performance</a>
+</div>
+
+<hr><h2 class="deltaH2">Options present only in GraalVM EE 19</h2><hr><div class="dtwrapper"><div class="wrap"><h3 class="deltaH3">Present only in GraalVM EE 19</h3><table class="deltatable added"><tr><th>Name</th></tr><tr><td><a href="graalvm_ee_19_options.html?s=BaseCodeSizeCostCoefficient">BaseCodeSizeCostCoefficient</a></td></tr>
+<tr><td><a href="graalvm_ee_19_options.html?s=BaseTargetSpending">BaseTargetSpending</a></td></tr>
+<tr><td><a href="graalvm_ee_19_options.html?s=BlockZeroingLowLimit">BlockZeroingLowLimit</a></td></tr>
+<tr><td><a href="graalvm_ee_19_options.html?s=BreakChainedPhis">BreakChainedPhis</a></td></tr>
+<tr><td><a href="graalvm_ee_19_options.html?s=CallGraphCompilerNodeLimit">CallGraphCompilerNodeLimit</a></td></tr>
+<tr><td><a href="graalvm_ee_19_options.html?s=CallGraphSizeLimit">CallGraphSizeLimit</a></td></tr>
+<tr><td><a href="graalvm_ee_19_options.html?s=CallGraphSizePenaltyCoefficient">CallGraphSizePenaltyCoefficient</a></td></tr>
+<tr><td><a href="graalvm_ee_19_options.html?s=CompilerNodePenaltyCoefficient">CompilerNodePenaltyCoefficient</a></td></tr>
+<tr><td><a href="graalvm_ee_19_options.html?s=CutoffCodeSizePenaltyCoefficient">CutoffCodeSizePenaltyCoefficient</a></td></tr>
+<tr><td><a href="graalvm_ee_19_options.html?s=DebugLoopInversion">DebugLoopInversion</a></td></tr>
+<tr><td><a href="graalvm_ee_19_options.html?s=DominatorUsageTreeMaxDepth">DominatorUsageTreeMaxDepth</a></td></tr>
+<tr><td><a href="graalvm_ee_19_options.html?s=DuplicateALot">DuplicateALot</a></td></tr>
+<tr><td><a href="graalvm_ee_19_options.html?s=DuplicationBudgetFactor">DuplicationBudgetFactor</a></td></tr>
+<tr><td><a href="graalvm_ee_19_options.html?s=DuplicationBudgetFactorLate">DuplicationBudgetFactorLate</a></td></tr>
+<tr><td><a href="graalvm_ee_19_options.html?s=DuplicationCostReductionFactor">DuplicationCostReductionFactor</a></td></tr>
+<tr><td><a href="graalvm_ee_19_options.html?s=DuplicationMinBranchFrequency">DuplicationMinBranchFrequency</a></td></tr>
+<tr><td><a href="graalvm_ee_19_options.html?s=ExcludeFunctionFromDuplication">ExcludeFunctionFromDuplication</a></td></tr>
+<tr><td><a href="graalvm_ee_19_options.html?s=ExpandAllProximityBonus">ExpandAllProximityBonus</a></td></tr>
+<tr><td><a href="graalvm_ee_19_options.html?s=ExpandAllProximityBonusInertia">ExpandAllProximityBonusInertia</a></td></tr>
+<tr><td><a href="graalvm_ee_19_options.html?s=ExpansionInertiaBaseValue">ExpansionInertiaBaseValue</a></td></tr>
+<tr><td><a href="graalvm_ee_19_options.html?s=ExpansionInertiaInvokeBonus">ExpansionInertiaInvokeBonus</a></td></tr>
+<tr><td><a href="graalvm_ee_19_options.html?s=ExpansionInertiaMax">ExpansionInertiaMax</a></td></tr>
+<tr><td><a href="graalvm_ee_19_options.html?s=FullUnrollAsPEACleanup">FullUnrollAsPEACleanup</a></td></tr>
+<tr><td><a href="graalvm_ee_19_options.html?s=IgnoreBadDuplications">IgnoreBadDuplications</a></td></tr>
+<tr><td><a href="graalvm_ee_19_options.html?s=InlineAllBonus">InlineAllBonus</a></td></tr>
+<tr><td><a href="graalvm_ee_19_options.html?s=InlinedCompilerNodeLimit">InlinedCompilerNodeLimit</a></td></tr>
+<tr><td><a href="graalvm_ee_19_options.html?s=InliningCoefficient">InliningCoefficient</a></td></tr>
+<tr><td><a href="graalvm_ee_19_options.html?s=LargeChildrenCountPenaltyCoefficient">LargeChildrenCountPenaltyCoefficient</a></td></tr>
+<tr><td><a href="graalvm_ee_19_options.html?s=LoopInversion">LoopInversion</a></td></tr>
+<tr><td><a href="graalvm_ee_19_options.html?s=MaxCFGRecomputations">MaxCFGRecomputations</a></td></tr>
+<tr><td><a href="graalvm_ee_19_options.html?s=MaxGraphSizeNodeCost">MaxGraphSizeNodeCost</a></td></tr>
+<tr><td><a href="graalvm_ee_19_options.html?s=MaxPriorityInliningPeelingIterations">MaxPriorityInliningPeelingIterations</a></td></tr>
+<tr><td><a href="graalvm_ee_19_options.html?s=MaxSimulationIterations">MaxSimulationIterations</a></td></tr>
+<tr><td><a href="graalvm_ee_19_options.html?s=MaxSplitsPerNode">MaxSplitsPerNode</a></td></tr>
+<tr><td><a href="graalvm_ee_19_options.html?s=MaxVectorAlignmentUnroll">MaxVectorAlignmentUnroll</a></td></tr>
+<tr><td><a href="graalvm_ee_19_options.html?s=MaxVectorUnroll">MaxVectorUnroll</a></td></tr>
+<tr><td><a href="graalvm_ee_19_options.html?s=MethodDupCounters">MethodDupCounters</a></td></tr>
+<tr><td><a href="graalvm_ee_19_options.html?s=MethodDupOnly">MethodDupOnly</a></td></tr>
+<tr><td><a href="graalvm_ee_19_options.html?s=MethodDupPropagateAnchors">MethodDupPropagateAnchors</a></td></tr>
+<tr><td><a href="graalvm_ee_19_options.html?s=MinimalRegions">MinimalRegions</a></td></tr>
+<tr><td><a href="graalvm_ee_19_options.html?s=OptBulkAllocation">OptBulkAllocation</a></td></tr>
+<tr><td><a href="graalvm_ee_19_options.html?s=OptCompressedFrameStateValues">OptCompressedFrameStateValues</a></td></tr>
+<tr><td><a href="graalvm_ee_19_options.html?s=OptConditionalMoves">OptConditionalMoves</a></td></tr>
+<tr><td><a href="graalvm_ee_19_options.html?s=OptDeDuplication">OptDeDuplication</a></td></tr>
+<tr><td><a href="graalvm_ee_19_options.html?s=OptDuplication">OptDuplication</a></td></tr>
+<tr><td><a href="graalvm_ee_19_options.html?s=OptExactArithmetic">OptExactArithmetic</a></td></tr>
+<tr><td><a href="graalvm_ee_19_options.html?s=OptGuardRangeGrouping">OptGuardRangeGrouping</a></td></tr>
+<tr><td><a href="graalvm_ee_19_options.html?s=OptLateDuplication">OptLateDuplication</a></td></tr>
+<tr><td><a href="graalvm_ee_19_options.html?s=OptLockElimination">OptLockElimination</a></td></tr>
+<tr><td><a href="graalvm_ee_19_options.html?s=OptMethodDuplication">OptMethodDuplication</a></td></tr>
+<tr><td><a href="graalvm_ee_19_options.html?s=OptPullThroughPhi">OptPullThroughPhi</a></td></tr>
+<tr><td><a href="graalvm_ee_19_options.html?s=OptSpeculativeGuardMovement">OptSpeculativeGuardMovement</a></td></tr>
+<tr><td><a href="graalvm_ee_19_options.html?s=OptStringConcat">OptStringConcat</a></td></tr>
+<tr><td><a href="graalvm_ee_19_options.html?s=OptStringConcatDump">OptStringConcatDump</a></td></tr>
+<tr><td><a href="graalvm_ee_19_options.html?s=OptWriteBarrierElimination">OptWriteBarrierElimination</a></td></tr>
+<tr><td><a href="graalvm_ee_19_options.html?s=OptimisticAliasingAnalysis">OptimisticAliasingAnalysis</a></td></tr>
+<tr><td><a href="graalvm_ee_19_options.html?s=OptimizeLoopAccesses">OptimizeLoopAccesses</a></td></tr>
+<tr><td><a href="graalvm_ee_19_options.html?s=PartialRedundancyElimination">PartialRedundancyElimination</a></td></tr>
+<tr><td><a href="graalvm_ee_19_options.html?s=PathDuplicationPhiCutoff">PathDuplicationPhiCutoff</a></td></tr>
+<tr><td><a href="graalvm_ee_19_options.html?s=PeelALot">PeelALot</a></td></tr>
+<tr><td><a href="graalvm_ee_19_options.html?s=PeelBackFoldFactor">PeelBackFoldFactor</a></td></tr>
+<tr><td><a href="graalvm_ee_19_options.html?s=PeelForwardFoldFactor">PeelForwardFoldFactor</a></td></tr>
+<tr><td><a href="graalvm_ee_19_options.html?s=PeelPotentialFoldFactor">PeelPotentialFoldFactor</a></td></tr>
+<tr><td><a href="graalvm_ee_19_options.html?s=PriorityInliningPolicy">PriorityInliningPolicy</a></td></tr>
+<tr><td><a href="graalvm_ee_19_options.html?s=ProfileLockElimination">ProfileLockElimination</a></td></tr>
+<tr><td><a href="graalvm_ee_19_options.html?s=ProfileTypeSwitches">ProfileTypeSwitches</a></td></tr>
+<tr><td><a href="graalvm_ee_19_options.html?s=ProfilesCollectExperimental">ProfilesCollectExperimental</a></td></tr>
+<tr><td><a href="graalvm_ee_19_options.html?s=PruneLargeDominatorUsageTrees">PruneLargeDominatorUsageTrees</a></td></tr>
+<tr><td><a href="graalvm_ee_19_options.html?s=PullThroughPhiBudget">PullThroughPhiBudget</a></td></tr>
+<tr><td><a href="graalvm_ee_19_options.html?s=RelativeBenefitInliningCoefficient">RelativeBenefitInliningCoefficient</a></td></tr>
+<tr><td><a href="graalvm_ee_19_options.html?s=ScheduledDuplicationSimulation">ScheduledDuplicationSimulation</a></td></tr>
+<tr><td><a href="graalvm_ee_19_options.html?s=SimulationStopAtControlFlow">SimulationStopAtControlFlow</a></td></tr>
+<tr><td><a href="graalvm_ee_19_options.html?s=SmallRootIrPenaltyCoefficient">SmallRootIrPenaltyCoefficient</a></td></tr>
+<tr><td><a href="graalvm_ee_19_options.html?s=SpeculativeStoreCheck">SpeculativeStoreCheck</a></td></tr>
+<tr><td><a href="graalvm_ee_19_options.html?s=TailDupOnly">TailDupOnly</a></td></tr>
+<tr><td><a href="graalvm_ee_19_options.html?s=TrackGraphSizesInDuplication">TrackGraphSizesInDuplication</a></td></tr>
+<tr><td><a href="graalvm_ee_19_options.html?s=TrackInliningStatistics">TrackInliningStatistics</a></td></tr>
+<tr><td><a href="graalvm_ee_19_options.html?s=TryExplodeOverPhis">TryExplodeOverPhis</a></td></tr>
+<tr><td><a href="graalvm_ee_19_options.html?s=TryPhiPhiPulls">TryPhiPhiPulls</a></td></tr>
+<tr><td><a href="graalvm_ee_19_options.html?s=TypicalCallGraphSize">TypicalCallGraphSize</a></td></tr>
+<tr><td><a href="graalvm_ee_19_options.html?s=TypicalGraphSize">TypicalGraphSize</a></td></tr>
+<tr><td><a href="graalvm_ee_19_options.html?s=TypicalGraphSizeInvokeBonus">TypicalGraphSizeInvokeBonus</a></td></tr>
+<tr><td><a href="graalvm_ee_19_options.html?s=TypicalGraphSizeMax">TypicalGraphSizeMax</a></td></tr>
+<tr><td><a href="graalvm_ee_19_options.html?s=UseGraphCache">UseGraphCache</a></td></tr>
+<tr><td><a href="graalvm_ee_19_options.html?s=UsePriorityInlining">UsePriorityInlining</a></td></tr>
+<tr><td><a href="graalvm_ee_19_options.html?s=VectorIntrinsics">VectorIntrinsics</a></td></tr>
+<tr><td><a href="graalvm_ee_19_options.html?s=VectorUnroll">VectorUnroll</a></td></tr>
+<tr><td><a href="graalvm_ee_19_options.html?s=Vectorization">Vectorization</a></td></tr>
+<tr><td><a href="graalvm_ee_19_options.html?s=VectorizeAllocation">VectorizeAllocation</a></td></tr>
+<tr><td><a href="graalvm_ee_19_options.html?s=VectorizeConditional">VectorizeConditional</a></td></tr>
+<tr><td><a href="graalvm_ee_19_options.html?s=VectorizeFoldShaped">VectorizeFoldShaped</a></td></tr>
+<tr><td><a href="graalvm_ee_19_options.html?s=VectorizeLoops">VectorizeLoops</a></td></tr>
+<tr><td><a href="graalvm_ee_19_options.html?s=VectorizeMapShaped">VectorizeMapShaped</a></td></tr>
+<tr><td><a href="graalvm_ee_19_options.html?s=VectorizeNegativeStride">VectorizeNegativeStride</a></td></tr>
+<tr><td><a href="graalvm_ee_19_options.html?s=VectorizeSIMD">VectorizeSIMD</a></td></tr>
+<tr><td><a href="graalvm_ee_19_options.html?s=VectorizeSequence">VectorizeSequence</a></td></tr>
+<tr><td><a href="graalvm_ee_19_options.html?s=VerifyDuplicationOperations">VerifyDuplicationOperations</a></td></tr>
+<tr><td><a href="graalvm_ee_19_options.html?s=VerifyWriteBarrierElimination">VerifyWriteBarrierElimination</a></td></tr>
+</table></div></div><div class="dtclear"></div>
+<div class="footer">
+    Built on Thu Aug 15 17:00:00 BST 2019 by <a href="https://twitter.com/chriswhocodes">@chriswhocodes</a>
+</div>
+</body>
+</html>

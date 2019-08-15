@@ -196,7 +196,7 @@ public class SwitchInfo implements Comparable<SwitchInfo>
 			builder.append("<th>").append("Default").append("</th>");
 		}
 
-		if (vmType == VMType.HOTSPOT)
+		if (vmType == VMType.HOTSPOT || vmType == VMType.GRAAL_NATIVE)
 		{
 			builder.append("<th>").append("Availability").append("</th>");
 		}
@@ -254,7 +254,7 @@ public class SwitchInfo implements Comparable<SwitchInfo>
 			}
 		}
 
-		if (vmType == VMType.HOTSPOT)
+		if (vmType == VMType.HOTSPOT || vmType == VMType.GRAAL_NATIVE)
 		{
 			builder.append(getRow(availability));
 		}
