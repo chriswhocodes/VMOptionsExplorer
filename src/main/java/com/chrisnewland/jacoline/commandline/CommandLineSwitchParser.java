@@ -31,6 +31,12 @@ public class CommandLineSwitchParser
 
 	private static Map<String, List<String>> jdkOperatingSystemMap = new HashMap<>();
 
+	private static List<String> jdkList;
+
+	private static List<String> osList;
+
+	private static List<String> archList;
+
 	private static DistanceCalculator distanceCalculator;
 
 	private static final int FLAG_UNLOCK_DIAGNOSTIC = 1;
@@ -79,6 +85,20 @@ public class CommandLineSwitchParser
 		}
 
 		distanceCalculator = new DistanceCalculator(switchDictionary);
+
+		jdkList = new ArrayList<>(jdkSwitchMaps.keySet());
+
+		Collections.sort(jdkList, new Comparator<String>()
+		{
+			@Override public int compare(String o1, String o2)
+			{
+				return compareToJDKVersion(o1, o2);
+			}
+		});
+
+		osList = getUniqueList(jdkOperatingSystemMap.values());
+
+		archList = getUniqueList(jdkArchitectureMap.values());
 	}
 
 	private static void buildComboMaps(String jdkName, List<SwitchInfo> switchInfoList)
@@ -125,22 +145,12 @@ public class CommandLineSwitchParser
 		return Character.toUpperCase(input.charAt(0)) + input.substring(1);
 	}
 
-	public synchronized static List<String> getJDKList()
+	public static List<String> getJDKList()
 	{
-		List<String> jdkList = new ArrayList<>(jdkSwitchMaps.keySet());
-
-		Collections.sort(jdkList, new Comparator<String>()
-		{
-			@Override public int compare(String o1, String o2)
-			{
-				return compareToJDKVersion(o1, o2);
-			}
-		});
-
 		return jdkList;
 	}
 
-	public synchronized static List<String> getUniqueList(Collection<List<String>> lists)
+	private synchronized static List<String> getUniqueList(Collection<List<String>> lists)
 	{
 		Set<String> uniqueValues = new HashSet<>();
 
@@ -158,12 +168,12 @@ public class CommandLineSwitchParser
 
 	public synchronized static List<String> getOperatingSystemList()
 	{
-		return getUniqueList(jdkOperatingSystemMap.values());
+		return osList;
 	}
 
 	public synchronized static List<String> getArchitectureList()
 	{
-		return getUniqueList(jdkArchitectureMap.values());
+		return archList;
 	}
 
 	public synchronized static List<String> getOperatingSystemList(String jdkName)

@@ -4,6 +4,7 @@
  */
 package com.chrisnewland.jacoline.web.filter;
 
+import com.chrisnewland.jacoline.commandline.CommandLineSwitchParser;
 import com.chrisnewland.jacoline.web.service.ServiceUtil;
 
 import org.glassfish.jersey.message.internal.MediaTypes;
@@ -75,27 +76,69 @@ import static javax.ws.rs.core.MediaType.APPLICATION_FORM_URLENCODED_TYPE;
 
 			List<String> valueList = entry.getValue();
 
-			for (int i = 0; i < valueList.size(); i++)
+			if (valueList.size() != 1)
 			{
-				String keyValue = valueList.get(i);
+				abortBadParams(request);
+			}
+			else
+			{
+				String value = valueList.get(0);
 
-				if (isBadWord(badWords, key, keyValue))
-				{
-					Response redirectToErrorPage = Response.status(Response.Status.BAD_REQUEST)
-														   .entity(ServiceUtil.loadError())
-														   .build();
-
-					request.abortWith(redirectToErrorPage);
-
-					return;
-				}
-
+				checkValue(key, value, badWords, request);
 			}
 		}
 
 		resettableIS.reset();
 
 		request.setEntityStream(resettableIS);
+	}
+
+	private void checkValue(String key, String value, Set<String> badWords, ContainerRequestContext requestContext)
+	{
+		switch (key)
+		{
+		case "jdk":
+			if (!CommandLineSwitchParser.getJDKList().contains(value))
+			{
+				abortBadParams(requestContext);
+			}
+			break;
+		case "os":
+			if (!CommandLineSwitchParser.getOperatingSystemList().contains(value))
+			{
+				abortBadParams(requestContext);
+			}
+			break;
+		case "arch":
+			if (!CommandLineSwitchParser.getArchitectureList().contains(value))
+			{
+				abortBadParams(requestContext);
+			}
+			break;
+		default:
+			if (isBadWord(badWords, key, value))
+			{
+				abortBadParams(requestContext);
+			}
+		}
+	}
+
+	private void abortBadParams(ContainerRequestContext request)
+	{
+		String errorPage;
+
+		try
+		{
+			errorPage = ServiceUtil.loadError();
+		}
+		catch (IOException ioe)
+		{
+			errorPage = "";
+		}
+
+		Response redirectToErrorPage = Response.status(Response.Status.BAD_REQUEST).entity(errorPage).build();
+
+		request.abortWith(redirectToErrorPage);
 	}
 
 	private boolean isBadWord(Set<String> badWords, String paramName, String parameterValue)

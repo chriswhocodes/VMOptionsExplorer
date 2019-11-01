@@ -20,6 +20,10 @@ import java.util.List;
 {
 	private static final String DEFAULT_JDK = "JDK8";
 
+	private static boolean statsCacheIsValid = false;
+
+	private static String generatedStatsHTML = null;
+
 	static
 	{
 		java.nio.file.Path serialisationPath = Paths.get("/home/chris/openjdk/serialised");
@@ -63,6 +67,10 @@ import java.util.List;
 			if (!storeDTO)
 			{
 				storedMessage = "Not updating statistics database when command line contains the example class 'com.chrisnewland.someproject.SomeApplication'";
+			}
+			else
+			{
+				statsCacheIsValid = false;
 			}
 
 			form = form.replace("%STORED%", storedMessage);
@@ -109,35 +117,48 @@ import java.util.List;
 
 	@GET @Path("stats") @Produces(MediaType.TEXT_HTML) public String stats()
 	{
-		try
+		long now = System.currentTimeMillis();
+
+		if (generatedStatsHTML == null || !statsCacheIsValid)
 		{
-			String template = ServiceUtil.loadStats();
+			try
+			{
+				String template = ServiceUtil.loadStats();
 
-			StringBuilder builder = new StringBuilder();
+				StringBuilder builder = new StringBuilder();
 
-			builder.append(ReportBuilder.getLastRequests(5));
-			builder.append(ReportBuilder.getReportJVMCounts());
-			builder.append(ReportBuilder.getReportOperatingSystemCounts());
-			builder.append(ReportBuilder.getReportArchitectureCounts());
-			builder.append(ReportBuilder.getReportSwitchNameCounts());
-			builder.append(ReportBuilder.getReportSwitchNameCountsWithStatus(SwitchStatus.OK, "No errors"));
-			builder.append(ReportBuilder.getReportSwitchNameCountsWithStatus(SwitchStatus.WARNING, "With warnings"));
-			builder.append(ReportBuilder.getReportSwitchNameCountsWithStatus(SwitchStatus.ERROR, "With errors"));
+				builder.append(ReportBuilder.getLastRequests(5));
+				builder.append(ReportBuilder.getReportJVMCounts());
+				builder.append(ReportBuilder.getReportOperatingSystemCounts());
+				builder.append(ReportBuilder.getReportArchitectureCounts());
+				builder.append(ReportBuilder.getReportSwitchNameCounts());
+				builder.append(ReportBuilder.getReportSwitchNameCountsWithStatus(SwitchStatus.OK, "No errors"));
+				builder.append(ReportBuilder.getReportSwitchNameCountsWithStatus(SwitchStatus.WARNING, "With warnings"));
+				builder.append(ReportBuilder.getReportSwitchNameCountsWithStatus(SwitchStatus.ERROR, "With errors"));
 
-			builder.append("<div class=\"divclear\"></div>");
-			builder.append(ReportBuilder.getTopErrors());
+				builder.append("<div class=\"divclear\"></div>");
+				builder.append(ReportBuilder.getTopErrors());
 
-			builder.append("<div class=\"divclear\"></div>");
-			builder.append(ReportBuilder.getTopWarnings());
+				builder.append("<div class=\"divclear\"></div>");
+				builder.append(ReportBuilder.getTopWarnings());
 
-			template = template.replace("%REPORTS%", builder.toString());
+				template = template.replace("%REPORTS%", builder.toString());
 
-			return template;
+				generatedStatsHTML = template;
+				statsCacheIsValid = true;
+
+				return template;
+			}
+			catch (Exception e)
+			{
+				e.printStackTrace();
+				return "An error occurred! Tell @chriswhocodes!";
+			}
 		}
-		catch (Exception e)
+		else
 		{
-			e.printStackTrace();
-			return "An error occurred! Tell @chriswhocodes!";
+			System.out.println("Returning cached stats page");
+			return generatedStatsHTML;
 		}
 	}
 }

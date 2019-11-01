@@ -9,8 +9,29 @@ body {
 }
 
 h1 {
-    margin: 0px 27px;
+    margin: 0px 0px 0px 27px;
     font-family: "monospace";
+}
+
+.logo_wrap {
+    display: inline-block;
+}
+
+.logo {
+    margin: 0px;
+    float: left;
+    clear: none;
+}
+
+.sponsor {
+    float: right;
+    clear: none;
+    margin-top: 8px;
+    vertical-align: top;
+}
+
+.sponsor a {
+    color: blue;
 }
 
 h2 {
@@ -30,8 +51,7 @@ hr {
     margin: 8px 0px;
     padding: 8px;
     background-color: lightsteelblue;
-    border-top: 2px solid black;
-    border-bottom: 2px solid black;
+    border: 2px solid black;
     font-weight: bold;
 }
 
@@ -154,7 +174,7 @@ input[type=submit] {
 .clearbutton, .examplebutton {
     padding: 6px 8px;
     margin: auto 8px 8px 0px;
-    font-size: 12px;
+    font-size: 14px;
     font-weight: bolder;
     border: 1px solid black;
     color: black;
