@@ -51,8 +51,8 @@
                 <th colspan="2">GraalVM</th>
             </tr>
             <tr>
-                <td><a href="graalvm_ce_19_options.html">GraalVM CE 19.1.1</a></td>
-                <td><a href="graalvm_ee_19_options.html">GraalVM EE 19.1.1</a></td>
+                <td><a href="graalvm_ce_19_options.html">GraalVM CE 19.2.1</a></td>
+                <td><a href="graalvm_ee_19_options.html">GraalVM EE 19.2.1</a></td>
             </tr>
             <tr>
                 <td></td>
@@ -66,8 +66,8 @@
                 <th colspan="2">GraalVM native-image</th>
             </tr>
             <tr>
-                <td><a href="graalvm_native_image_ce_19_options.html">native-image CE 19.1.1</a></td>
-                <td><a href="graalvm_native_image_ee_19_options.html">native-image EE 19.1.1</a></td>
+                <td><a href="graalvm_native_image_ce_19_options.html">native-image CE 19.2.1</a></td>
+                <td><a href="graalvm_native_image_ee_19_options.html">native-image EE 19.2.1</a></td>
             </tr>
             <tr>
                 <td></td>
@@ -91,10 +91,11 @@
     <div class="menuwrap">
         <table class="menu">
             <tr>
-                <th>Zing</th>
+                <th colspan="2">Azul Zing</th>
             </tr>
             <tr>
-                <td><a href="zing_options.html">Zing 18.07</a></td>
+                <td><a href="zing_jdk8_options.html">Zing JDK8</a></td>
+                <td><a href="zing_jdk11_options.html">Zing JDK11</a></td>
             </tr>
         </table>
     </div>
@@ -1058,16 +1059,39 @@
 <tr><td><a href="hotspot_options_jdk13.html?s=ZVerifyRoots">ZVerifyRoots</a></td><td>diagnostic</td></tr>
 <tr><td><a href="hotspot_options_jdk13.html?s=ZVerifyViews">ZVerifyViews</a></td><td>diagnostic</td></tr>
 </table></div></div><div class="dtclear"></div><hr><h2 class="deltaH2" id="JDK14">Differences between JDK13 and JDK14</h2><hr><div class="dtwrapper"><div class="wrap"><h3 class="deltaH3">Removed in JDK14</h3><table class="deltatable removed"><tr><th>Name</th><th>Availability</th><th><a class="glossaryLink" href="#glossary">Deprecated</a></th><th><a class="glossaryLink" href="#glossary">Obsoleted</a></th><th><a class="glossaryLink" href="#glossary">Expired</a></th></tr><tr><td><a href="hotspot_options_jdk13.html?s=AllowJNIEnvProxy">AllowJNIEnvProxy</a></td><td>product</td><td>JDK13</td><td>JDK14</td><td>JDK15</td></tr>
+<tr><td><a href="hotspot_options_jdk13.html?s=BindGCTaskThreadsToCPUs">BindGCTaskThreadsToCPUs</a></td><td>product</td><td></td><td>JDK14</td><td>JDK16</td></tr>
+<tr><td><a href="hotspot_options_jdk13.html?s=CompilationPolicyChoice">CompilationPolicyChoice</a></td><td>product</td><td>JDK13</td><td>JDK14</td><td>JDK15</td></tr>
 <tr><td><a href="hotspot_options_jdk13.html?s=DisableBCCheck">DisableBCCheck</a></td><td>product</td><td></td><td></td><td></td></tr>
 <tr><td><a href="hotspot_options_jdk13.html?s=FailOverToOldVerifier">FailOverToOldVerifier</a></td><td>product</td><td></td><td>JDK14</td><td>JDK15</td></tr>
+<tr><td><a href="hotspot_options_jdk13.html?s=G1PretouchAuxiliaryMemory">G1PretouchAuxiliaryMemory</a></td><td>experimental</td><td></td><td></td><td></td></tr>
+<tr><td><a href="hotspot_options_jdk13.html?s=IgnoreLockingAssertions">IgnoreLockingAssertions</a></td><td>notproduct</td><td></td><td></td><td></td></tr>
+<tr><td><a href="hotspot_options_jdk13.html?s=MaxInterpretedSearchLength">MaxInterpretedSearchLength</a></td><td>develop</td><td></td><td></td><td></td></tr>
+<tr><td><a href="hotspot_options_jdk13.html?s=MaxRecompilationSearchLength">MaxRecompilationSearchLength</a></td><td>develop</td><td></td><td></td><td></td></tr>
 <tr><td><a href="hotspot_options_jdk13.html?s=NotifySimulator">NotifySimulator</a></td><td>product</td><td></td><td></td><td></td></tr>
 <tr><td><a href="hotspot_options_jdk13.html?s=PrintMallocStatistics">PrintMallocStatistics</a></td><td>develop</td><td></td><td></td><td></td></tr>
+<tr><td><a href="hotspot_options_jdk13.html?s=ShareVtableStubs">ShareVtableStubs</a></td><td>define_pd_global</td><td></td><td></td><td></td></tr>
+<tr><td><a href="hotspot_options_jdk13.html?s=ShenandoahOptimizeInstanceFinals">ShenandoahOptimizeInstanceFinals</a></td><td>experimental</td><td></td><td></td><td></td></tr>
+<tr><td><a href="hotspot_options_jdk13.html?s=ShenandoahOptimizeStableFinals">ShenandoahOptimizeStableFinals</a></td><td>experimental</td><td></td><td></td><td></td></tr>
 <tr><td><a href="hotspot_options_jdk13.html?s=ShenandoahStoreCheck">ShenandoahStoreCheck</a></td><td>diagnostic</td><td></td><td></td><td></td></tr>
+<tr><td><a href="hotspot_options_jdk13.html?s=ShenandoahVerifyObjectEquals">ShenandoahVerifyObjectEquals</a></td><td>develop</td><td></td><td></td><td></td></tr>
 <tr><td><a href="hotspot_options_jdk13.html?s=StrictSafepointChecks">StrictSafepointChecks</a></td><td>notproduct</td><td></td><td></td><td></td></tr>
+<tr><td><a href="hotspot_options_jdk13.html?s=TraceGCTaskManager">TraceGCTaskManager</a></td><td>develop</td><td></td><td></td><td></td></tr>
+<tr><td><a href="hotspot_options_jdk13.html?s=TraceGCTaskQueue">TraceGCTaskQueue</a></td><td>develop</td><td></td><td></td><td></td></tr>
+<tr><td><a href="hotspot_options_jdk13.html?s=TraceNMethodInstalls">TraceNMethodInstalls</a></td><td>diagnostic</td><td>JDK13</td><td>JDK14</td><td>JDK15</td></tr>
+<tr><td><a href="hotspot_options_jdk13.html?s=UseGCTaskAffinity">UseGCTaskAffinity</a></td><td>product</td><td></td><td>JDK14</td><td>JDK16</td></tr>
 <tr><td><a href="hotspot_options_jdk13.html?s=UseSimulatorCache">UseSimulatorCache</a></td><td>product</td><td></td><td></td><td></td></tr>
 <tr><td><a href="hotspot_options_jdk13.html?s=VerifyOpto">VerifyOpto</a></td><td>notproduct</td><td></td><td></td><td></td></tr>
-</table></div><div class="wrap"><h3 class="deltaH3">Added in JDK14</h3><table class="deltatable added"><tr><th>Name</th><th>Availability</th></tr><tr><td><a href="hotspot_options_jdk14.html?s=AdjustStackSizeForTLS">AdjustStackSizeForTLS</a></td><td>product</td></tr>
+<tr><td><a href="hotspot_options_jdk13.html?s=ZStatisticsForceTrace">ZStatisticsForceTrace</a></td><td>diagnostic</td><td></td><td></td><td></td></tr>
+<tr><td><a href="hotspot_options_jdk13.html?s=ZVerifyLoadBarriers">ZVerifyLoadBarriers</a></td><td>develop</td><td></td><td></td><td></td></tr>
+</table></div><div class="wrap"><h3 class="deltaH3">Added in JDK14</h3><table class="deltatable added"><tr><th>Name</th><th>Availability</th></tr><tr><td><a href="hotspot_options_jdk14.html?s=AVX3Threshold">AVX3Threshold</a></td><td>diagnostic</td></tr>
+<tr><td><a href="hotspot_options_jdk14.html?s=AdjustStackSizeForTLS">AdjustStackSizeForTLS</a></td><td>product</td></tr>
+<tr><td><a href="hotspot_options_jdk14.html?s=ClassForNameDeferLinking">ClassForNameDeferLinking</a></td><td>product</td></tr>
+<tr><td><a href="hotspot_options_jdk14.html?s=EnableJVMCIProduct">EnableJVMCIProduct</a></td><td>experimental</td></tr>
 <tr><td><a href="hotspot_options_jdk14.html?s=ShenandoahGCMode">ShenandoahGCMode</a></td><td>experimental</td></tr>
+<tr><td><a href="hotspot_options_jdk14.html?s=ShenandoahSelfFixing">ShenandoahSelfFixing</a></td><td>diagnostic</td></tr>
+<tr><td><a href="hotspot_options_jdk14.html?s=ShowCodeDetailsInExceptionMessages">ShowCodeDetailsInExceptionMessages</a></td><td>manageable</td></tr>
+<tr><td><a href="hotspot_options_jdk14.html?s=TraceMemoryWriteback">TraceMemoryWriteback</a></td><td>develop</td></tr>
+<tr><td><a href="hotspot_options_jdk14.html?s=UseNotificationThread">UseNotificationThread</a></td><td>product</td></tr>
 </table></div></div><div class="dtclear"></div>
 <div class="glossary" id="glossary">
     <h3>What do 'Deprecated', 'Obsoleted', and 'Expired' mean?</h3>
@@ -1119,7 +1143,7 @@ Error: A fatal exception has occurred. Program will exit.
     </pre>
 </div>
 <div class="footer">
-    Built on Thu Aug 15 17:00:00 BST 2019 by <a href="https://twitter.com/chriswhocodes">@chriswhocodes</a>
+    Built on Tue Oct 29 17:06:00 GMT 2019 by <a href="https://twitter.com/chriswhocodes">@chriswhocodes</a>
 </div>
 </body>
 </html>

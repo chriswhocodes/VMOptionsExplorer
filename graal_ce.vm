@@ -331,6 +331,8 @@ graal.LogFile = null                                                      [Strin
           replaced by System.currentTimeMillis().
 graal.LogVerbose = false                                                 [Boolean]
           Enable more verbose log output when available
+graal.LoopHeaderAlignment = 16                                           [Integer]
+          Alignment in bytes for loop header blocks.
 graal.LoopMaxUnswitch = 3                                                [Integer]
 graal.LoopPeeling = true                                                 [Boolean]
 graal.LoopUnswitch = true                                                [Boolean]
@@ -786,7 +788,6 @@ graal.TruffleTimeThreshold = 50000                                       [Intege
 graal.TruffleTraceSplittingSummary = false                               [Boolean]
           Used for debugging the splitting implementation. Prints splitting
           summary directly to stdout on shutdown
-graal.TruffleUseFrameWithoutBoxing = true                                [Boolean]
 graal.TrustFinalDefaultFields = true                                     [Boolean]
           Determines whether to treat final fields with default values as
           constant.

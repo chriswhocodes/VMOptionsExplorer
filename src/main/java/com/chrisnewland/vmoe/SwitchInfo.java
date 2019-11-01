@@ -1,6 +1,6 @@
 /*
  * Copyright (c) 2018-2019 Chris Newland.
- * Licensed under https://github.com/chriswhocodes/VMSOptionsExplorer/blob/master/LICENSE
+ * Licensed under https://github.com/chriswhocodes/VMOptionsExplorer/blob/master/LICENSE
  */
 package com.chrisnewland.vmoe;
 
@@ -8,6 +8,7 @@ import java.util.Objects;
 
 public class SwitchInfo implements Comparable<SwitchInfo>
 {
+	private String prefix;
 	private String name;
 	private String type; // intx, bool, uintx, ccstr, ccstrlist, double,
 	// uint64_t
@@ -22,6 +23,79 @@ public class SwitchInfo implements Comparable<SwitchInfo>
 	private String since;
 	private String range;
 	private String deprecation;
+
+	private static final String SEP = "=-=-=";
+
+	private static final String LF = "\n";
+	private static final String ESCAPED_LF = "\\n";
+
+	private static final String EMPTY_STRING = "";
+
+	public String serialise()
+	{
+		StringBuilder builder = new StringBuilder();
+
+		addToBuilder(builder, prefix);
+		addToBuilder(builder, name);
+		addToBuilder(builder, type);
+		addToBuilder(builder, os);
+		addToBuilder(builder, cpu);
+		addToBuilder(builder, component);
+		addToBuilder(builder, defaultValue);
+		addToBuilder(builder, availability);
+		addToBuilder(builder, description);
+		addToBuilder(builder, comment);
+		addToBuilder(builder, definedIn);
+		addToBuilder(builder, since);
+		addToBuilder(builder, range);
+		addToBuilder(builder, deprecation);
+
+		return builder.toString();
+	}
+
+	private void addToBuilder(StringBuilder builder, String value)
+	{
+		if (value == null)
+		{
+			value = EMPTY_STRING;
+		}
+
+		value = value.replace(LF, ESCAPED_LF);
+		builder.append(value).append(SEP);
+	}
+
+	private static String read(String input)
+	{
+		return input.replace(ESCAPED_LF, LF);
+	}
+
+	public static SwitchInfo deserialise(String line)
+	{
+		String[] parts = line.split(SEP, -1);
+
+		int pos = 0;
+
+		String prefix = read(parts[pos++]);
+
+		String name = read(parts[pos++]);
+
+		SwitchInfo switchInfo = new SwitchInfo(prefix, name);
+
+		switchInfo.setType(read(parts[pos++]));
+		switchInfo.setOs(read(parts[pos++]));
+		switchInfo.setCpu(read(parts[pos++]));
+		switchInfo.setComponent(read(parts[pos++]));
+		switchInfo.setDefaultValue(read(parts[pos++]));
+		switchInfo.setAvailability(read(parts[pos++]));
+		switchInfo.setDescription(read(parts[pos++]));
+		switchInfo.setComment(read(parts[pos++]));
+		switchInfo.setDefinedIn(read(parts[pos++]));
+		switchInfo.setSince(read(parts[pos++]));
+		switchInfo.setRange(read(parts[pos++]));
+		switchInfo.setDeprecation(read(parts[pos++]));
+
+		return switchInfo;
+	}
 
 	public String getRange()
 	{
@@ -43,8 +117,10 @@ public class SwitchInfo implements Comparable<SwitchInfo>
 		this.since = since;
 	}
 
-	public SwitchInfo(String name)
+	public SwitchInfo(String prefix, String name)
 	{
+		this.prefix = prefix;
+
 		this.name = name;
 	}
 
@@ -138,6 +214,11 @@ public class SwitchInfo implements Comparable<SwitchInfo>
 		this.deprecation = deprecation;
 	}
 
+	public String getPrefix()
+	{
+		return prefix;
+	}
+
 	public String getComment()
 	{
 		return comment;
@@ -158,12 +239,13 @@ public class SwitchInfo implements Comparable<SwitchInfo>
 		this.definedIn = definedIn;
 	}
 
-	@Override
-	public String toString()
+	@Override public String toString()
 	{
-		return "SwitchInfo [name=" + name + ", type=" + type + ", os=" + os + ", cpu=" + cpu + ", component=" + component
-				+ ", defaultValue=" + defaultValue + ", availability=" + availability + ", description=" + description
-				+ ", comment=" + comment + ", definedIn=" + definedIn + ", since=" + since + ", range=" + range + "]";
+		return "SwitchInfo{" + "prefix='" + prefix + '\'' + ", name='" + name + '\'' + ", type='" + type + '\'' + ", os='" + os
+				+ '\'' + ", cpu='" + cpu + '\'' + ", component='" + component + '\'' + ", defaultValue='" + defaultValue + '\''
+				+ ", availability='" + availability + '\'' + ", description='" + description + '\'' + ", comment='" + comment + '\''
+				+ ", definedIn='" + definedIn + '\'' + ", since='" + since + '\'' + ", range='" + range + '\'' + ", deprecation='"
+				+ deprecation + '\'' + '}';
 	}
 
 	public static String getHeaderRow(VMType vmType)
@@ -289,10 +371,19 @@ public class SwitchInfo implements Comparable<SwitchInfo>
 		return builder.toString();
 	}
 
-	private String escapeHTMLEntities(String raw)
+	public static String escapeHTMLEntities(String raw)
 	{
-		return raw.toString().replace("<br>", "SAFE_BR").replace("<pre>", "SAFE_PRE_OPEN").replace("</pre>", "SAFE_PRE_CLOSE").replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;").replace("\"", "&quot;")
-				.replace("SAFE_BR", "<br>").replace("SAFE_PRE_OPEN", "<pre>").replace("SAFE_PRE_CLOSE", "</pre>");
+		return raw.toString()
+				  .replace("<br>", "SAFE_BR")
+				  .replace("<pre>", "SAFE_PRE_OPEN")
+				  .replace("</pre>", "SAFE_PRE_CLOSE")
+				  .replace("&", "&amp;")
+				  .replace("<", "&lt;")
+				  .replace(">", "&gt;")
+				  .replace("\"", "&quot;")
+				  .replace("SAFE_BR", "<br>")
+				  .replace("SAFE_PRE_OPEN", "<pre>")
+				  .replace("SAFE_PRE_CLOSE", "</pre>");
 	}
 
 	private String getRow(String value)
@@ -304,8 +395,7 @@ public class SwitchInfo implements Comparable<SwitchInfo>
 		return builder.toString();
 	}
 
-	@Override
-	public boolean equals(Object o)
+	@Override public boolean equals(Object o)
 	{
 		if (this == o)
 			return true;
@@ -315,14 +405,12 @@ public class SwitchInfo implements Comparable<SwitchInfo>
 		return Objects.equals(name, that.name);
 	}
 
-	@Override
-	public int hashCode()
+	@Override public int hashCode()
 	{
 		return name.hashCode();
 	}
 
-	@Override
-	public int compareTo(SwitchInfo o)
+	@Override public int compareTo(SwitchInfo o)
 	{
 		return name.compareTo(o.name);
 	}

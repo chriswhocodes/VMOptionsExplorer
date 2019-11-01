@@ -121,8 +121,8 @@
                 <th colspan="2">GraalVM</th>
             </tr>
             <tr>
-                <td><a href="graalvm_ce_19_options.html">GraalVM CE 19.1.1</a></td>
-                <td><a href="graalvm_ee_19_options.html">GraalVM EE 19.1.1</a></td>
+                <td><a href="graalvm_ce_19_options.html">GraalVM CE 19.2.1</a></td>
+                <td><a href="graalvm_ee_19_options.html">GraalVM EE 19.2.1</a></td>
             </tr>
             <tr>
                 <td></td>
@@ -136,8 +136,8 @@
                 <th colspan="2">GraalVM native-image</th>
             </tr>
             <tr>
-                <td><a href="graalvm_native_image_ce_19_options.html">native-image CE 19.1.1</a></td>
-                <td><a href="graalvm_native_image_ee_19_options.html">native-image EE 19.1.1</a></td>
+                <td><a href="graalvm_native_image_ce_19_options.html">native-image CE 19.2.1</a></td>
+                <td><a href="graalvm_native_image_ee_19_options.html">native-image EE 19.2.1</a></td>
             </tr>
             <tr>
                 <td></td>
@@ -161,10 +161,11 @@
     <div class="menuwrap">
         <table class="menu">
             <tr>
-                <th>Zing</th>
+                <th colspan="2">Azul Zing</th>
             </tr>
             <tr>
-                <td><a href="zing_options.html">Zing 18.07</a></td>
+                <td><a href="zing_jdk8_options.html">Zing JDK8</a></td>
+                <td><a href="zing_jdk11_options.html">Zing JDK11</a></td>
             </tr>
         </table>
     </div>
@@ -260,7 +261,7 @@
 <tr><td>BiasedLockingStartupDelay</td><td>JDK6</td><td></td><td>intx</td><td></td><td></td><td>runtime</td><td>4000<br>range(0, (intx)(max_jint-(max_jint%PeriodicTask::interval_gran)))</td><td>product</td><td>Number of milliseconds to wait before enabling biased locking</td><td>src/share/vm/runtime/globals.hpp</td></tr>
 <tr><td>BinarySwitchThreshold</td><td>JDK6</td><td></td><td>intx</td><td></td><td></td><td>runtime</td><td>5</td><td>develop</td><td>Minimal number of lookupswitch entries for rewriting to binary switch</td><td>src/share/vm/runtime/globals.hpp</td></tr>
 <tr><td>BindCMSThreadToCPU</td><td>JDK6</td><td></td><td>bool</td><td></td><td></td><td>runtime</td><td>false</td><td>diagnostic</td><td>Bind CMS Thread to CPU if possible</td><td>src/share/vm/runtime/globals.hpp</td></tr>
-<tr><td>BindGCTaskThreadsToCPUs</td><td>JDK6</td><td></td><td>bool</td><td></td><td></td><td>runtime</td><td>false</td><td>product</td><td>Bind GCTaskThreads to CPUs if possible</td><td>src/share/vm/runtime/globals.hpp</td></tr>
+<tr><td>BindGCTaskThreadsToCPUs</td><td>JDK6</td><td><span style="white-space:nowrap">Obsoleted in JDK14</span><br><span style="white-space:nowrap">Expired in JDK16</span></td><td>bool</td><td></td><td></td><td>runtime</td><td>false</td><td>product</td><td>Bind GCTaskThreads to CPUs if possible</td><td>src/share/vm/runtime/globals.hpp</td></tr>
 <tr><td>BlockCopyLowLimit</td><td>JDK6</td><td></td><td>intx</td><td></td><td>sparc</td><td></td><td>2048<br>range(1, max_jint)</td><td>product</td><td>Minimum size in bytes when block copy will be used</td><td>src/cpu/sparc/vm/globals_sparc.hpp</td></tr>
 <tr><td>BlockLayoutByFrequency</td><td>JDK6</td><td></td><td>bool</td><td></td><td></td><td>c2</td><td>true</td><td>product</td><td>Use edge frequencies to drive block ordering</td><td>src/share/vm/opto/c2_globals.hpp</td></tr>
 <tr><td>BlockLayoutMinDiamondPercentage</td><td>JDK6</td><td></td><td>intx</td><td></td><td></td><td>c2</td><td>20<br>range(0, 100)</td><td>product</td><td>Miniumum %% of a successor (predecessor) for which block layout a will allow a fork (join) in a single chain</td><td>src/share/vm/opto/c2_globals.hpp</td></tr>
@@ -487,7 +488,7 @@
 <tr><td>CompactStrings</td><td>JDK9</td><td></td><td>bool</td><td></td><td>sparc</td><td></td><td>true</td><td>define_pd_global</td><td></td><td>src/cpu/sparc/vm/globals_sparc.hpp</td></tr>
 <tr><td>CompactStrings</td><td>JDK9</td><td></td><td>bool</td><td></td><td>x86</td><td></td><td>true</td><td>define_pd_global</td><td></td><td>src/cpu/x86/vm/globals_x86.hpp</td></tr>
 <tr><td>CompactStrings</td><td>JDK9</td><td></td><td>bool</td><td></td><td>zero</td><td></td><td>false</td><td>define_pd_global</td><td></td><td>src/cpu/zero/vm/globals_zero.hpp</td></tr>
-<tr><td>CompilationPolicyChoice</td><td>JDK6</td><td><span style="white-space:nowrap">Deprecated in JDK13</span><br><span style="white-space:nowrap">Obsoleted in JDK14</span></td><td>intx</td><td></td><td></td><td>runtime</td><td>0<br>range(0, 3)</td><td>product</td><td>which compilation policy (0-3)</td><td>src/share/vm/runtime/globals.hpp</td></tr>
+<tr><td>CompilationPolicyChoice</td><td>JDK6</td><td><span style="white-space:nowrap">Deprecated in JDK13</span><br><span style="white-space:nowrap">Obsoleted in JDK14</span><br><span style="white-space:nowrap">Expired in JDK15</span></td><td>intx</td><td></td><td></td><td>runtime</td><td>0<br>range(0, 3)</td><td>product</td><td>which compilation policy (0-3)</td><td>src/share/vm/runtime/globals.hpp</td></tr>
 <tr><td>CompileCommandFile</td><td>JDK6</td><td></td><td>ccstr</td><td></td><td></td><td>runtime</td><td>NULL</td><td>product</td><td>Read compiler commands from this file [.hotspot_compiler]</td><td>src/share/vm/runtime/globals.hpp</td></tr>
 <tr><td>CompileCommand</td><td>JDK6</td><td></td><td>ccstrlist</td><td></td><td></td><td>runtime</td><td>Prepend to .hotspot_compiler; e.g. log,java/lang/String.<init></td><td>product</td><td></td><td>src/share/vm/runtime/globals.hpp</td></tr>
 <tr><td>CompileOnly</td><td>JDK6</td><td></td><td>ccstrlist</td><td></td><td></td><td>runtime</td><td>List of methods (pkg/class.name) to restrict compilation to</td><td>product</td><td></td><td>src/share/vm/runtime/globals.hpp</td></tr>
@@ -733,7 +734,7 @@
 <tr><td>G1RSBarrierRegionFilter</td><td>JDK6</td><td></td><td>bool</td><td></td><td></td><td>gc</td><td>true</td><td>develop</td><td>If true, generate region filtering code in RS barrier</td><td>src/share/vm/gc/g1/g1_globals.hpp</td></tr>
 <tr><td>G1RSetRegionEntriesBase</td><td>JDK6</td><td></td><td>intx</td><td></td><td></td><td>gc</td><td>256<br>range(1, max_jint/wordSize)</td><td>develop</td><td>Max number of regions in a fine-grain table per MB.</td><td>src/share/vm/gc/g1/g1_globals.hpp</td></tr>
 <tr><td>G1RSetRegionEntries</td><td>JDK6</td><td></td><td>intx</td><td></td><td></td><td>gc</td><td>0<br>range(0, max_jint/wordSize)</td><td>product</td><td>Max number of regions for which we keep bitmaps.Will be set ergonomically by default</td><td>src/share/vm/gc/g1/g1_globals.hpp</td></tr>
-<tr><td>G1RSetScanBlockSize</td><td>JDK6</td><td></td><td>size_t</td><td></td><td></td><td>gc</td><td>64<br>range(1, max_uintx)</td><td>product</td><td>Size of a work unit of cards claimed by a worker threadduring RSet scanning.</td><td>src/share/vm/gc/g1/g1_globals.hpp</td></tr>
+<tr><td>G1RSetScanBlockSize</td><td>JDK6</td><td><span style="white-space:nowrap">Deprecated in JDK14</span><br><span style="white-space:nowrap">Obsoleted in JDK15</span><br><span style="white-space:nowrap">Expired in JDK16</span></td><td>size_t</td><td></td><td></td><td>gc</td><td>64<br>range(1, max_uintx)</td><td>product</td><td>Size of a work unit of cards claimed by a worker threadduring RSet scanning.</td><td>src/share/vm/gc/g1/g1_globals.hpp</td></tr>
 <tr><td>G1RSetSparseRegionEntriesBase</td><td>JDK6</td><td></td><td>intx</td><td></td><td></td><td>gc</td><td>4<br>range(1, max_jint/wordSize)</td><td>develop</td><td>Max number of entries per region in a sparse table per MB.</td><td>src/share/vm/gc/g1/g1_globals.hpp</td></tr>
 <tr><td>G1RSetSparseRegionEntries</td><td>JDK6</td><td></td><td>intx</td><td></td><td></td><td>gc</td><td>0<br>range(0, max_jint/wordSize)</td><td>product</td><td>Max number of entries per region in a sparse table.Will be set ergonomically by default.</td><td>src/share/vm/gc/g1/g1_globals.hpp</td></tr>
 <tr><td>G1RSetUpdatingPauseTimePercent</td><td>JDK6</td><td></td><td>intx</td><td></td><td></td><td>gc</td><td>10<br>range(0, 100)</td><td>product</td><td>A target percentage of time that is allowed to be spend on process RS update buffers during the collection pause.</td><td>src/share/vm/gc/g1/g1_globals.hpp</td></tr>
@@ -1099,7 +1100,7 @@
 <tr><td>MinSleepInterval</td><td>JDK6</td><td><span style="white-space:nowrap">Deprecated in JDK9</span><br><span style="white-space:nowrap">Obsoleted in JDK10</span><br><span style="white-space:nowrap">Expired in JDK11</span></td><td>intx</td><td></td><td></td><td>runtime</td><td>1</td><td>develop</td><td>Minimum sleep() interval (milliseconds) when ConvertSleepToYield is off (used for Solaris)</td><td>src/share/vm/runtime/globals.hpp</td></tr>
 <tr><td>MinSurvivorRatio</td><td>JDK6</td><td></td><td>uintx</td><td></td><td></td><td>runtime</td><td>3<br>range(3, max_uintx)</td><td>product</td><td>Minimum ratio of young generation/survivor space size</td><td>src/share/vm/runtime/globals.hpp</td></tr>
 <tr><td>MinTLABSize</td><td>JDK6</td><td></td><td>size_t</td><td></td><td></td><td>runtime</td><td>2*K<br>range(1, max_uintx/2)</td><td>product</td><td>Minimum allowed TLAB size (in bytes)</td><td>src/share/vm/runtime/globals.hpp</td></tr>
-<tr><td>MonitorBound</td><td>JDK6</td><td></td><td>intx</td><td></td><td></td><td>runtime</td><td>0<br>range(0, max_jint)</td><td>product</td><td>Bound Monitor population</td><td>src/share/vm/runtime/globals.hpp</td></tr>
+<tr><td>MonitorBound</td><td>JDK6</td><td><span style="white-space:nowrap">Deprecated in JDK14</span><br><span style="white-space:nowrap">Obsoleted in JDK15</span><br><span style="white-space:nowrap">Expired in JDK16</span></td><td>intx</td><td></td><td></td><td>runtime</td><td>0<br>range(0, max_jint)</td><td>product</td><td>Bound Monitor population</td><td>src/share/vm/runtime/globals.hpp</td></tr>
 <tr><td>MonitorInUseLists</td><td>JDK6</td><td><span style="white-space:nowrap">Deprecated in JDK10</span><br><span style="white-space:nowrap">Obsoleted in JDK12</span><br><span style="white-space:nowrap">Expired in JDK13</span></td><td>bool</td><td></td><td></td><td>runtime</td><td>true</td><td>product</td><td>Track Monitors for Deflation</td><td>src/share/vm/runtime/globals.hpp</td></tr>
 <tr><td>MonomorphicArrayCheck</td><td>JDK6</td><td></td><td>bool</td><td></td><td></td><td>c2</td><td>true</td><td>develop</td><td>Uncommon-trap array store checks that require full type check</td><td>src/share/vm/opto/c2_globals.hpp</td></tr>
 <tr><td>MultiArrayExpandLimit</td><td>JDK6</td><td></td><td>intx</td><td></td><td></td><td>c2</td><td>6<br>range(0, max_jint)</td><td>product</td><td>Maximum number of individual allocations in an inline-expanded multianewarray instruction</td><td>src/share/vm/opto/c2_globals.hpp</td></tr>
@@ -1871,7 +1872,7 @@
 <tr><td>TraceLoopUnswitching</td><td>JDK6</td><td></td><td>bool</td><td></td><td></td><td>c2</td><td>false</td><td>notproduct</td><td>Trace loop unswitching</td><td>src/share/vm/opto/c2_globals.hpp</td></tr>
 <tr><td>TraceMethodHandles</td><td>JDK6</td><td></td><td>bool</td><td></td><td></td><td>runtime</td><td>false</td><td>develop</td><td>trace internal method handle operations</td><td>src/share/vm/runtime/globals.hpp</td></tr>
 <tr><td>TraceMethodReplacement</td><td>JDK6</td><td></td><td>bool</td><td></td><td></td><td>runtime</td><td>false</td><td>develop</td><td>Print when methods are replaced do to recompilation</td><td>src/share/vm/runtime/globals.hpp</td></tr>
-<tr><td>TraceNMethodInstalls</td><td>JDK6</td><td></td><td>bool</td><td></td><td></td><td>runtime</td><td>false</td><td>diagnostic</td><td>Trace nmethod installation</td><td>src/share/vm/runtime/globals.hpp</td></tr>
+<tr><td>TraceNMethodInstalls</td><td>JDK6</td><td><span style="white-space:nowrap">Deprecated in JDK13</span><br><span style="white-space:nowrap">Obsoleted in JDK14</span><br><span style="white-space:nowrap">Expired in JDK15</span></td><td>bool</td><td></td><td></td><td>runtime</td><td>false</td><td>diagnostic</td><td>Trace nmethod installation</td><td>src/share/vm/runtime/globals.hpp</td></tr>
 <tr><td>TraceNewOopMapGenerationDetailed</td><td>JDK6</td><td></td><td>bool</td><td></td><td></td><td>runtime</td><td>false</td><td>develop</td><td>Trace OopMapGeneration: print detailed cell states</td><td>src/share/vm/runtime/globals.hpp</td></tr>
 <tr><td>TraceNewOopMapGeneration</td><td>JDK6</td><td></td><td>bool</td><td></td><td></td><td>runtime</td><td>false</td><td>develop</td><td>Trace OopMapGeneration</td><td>src/share/vm/runtime/globals.hpp</td></tr>
 <tr><td>TraceNewVectors</td><td>JDK7</td><td></td><td>bool</td><td></td><td></td><td>c2</td><td>false</td><td>notproduct</td><td>Trace creation of Vector nodes</td><td>src/share/vm/opto/c2_globals.hpp</td></tr>
@@ -2048,7 +2049,7 @@
 <tr><td>UseFastStosb</td><td>JDK7</td><td></td><td>bool</td><td></td><td>x86</td><td></td><td>false</td><td>product</td><td>Use fast-string operation for zeroing: rep stosb</td><td>src/cpu/x86/vm/globals_x86.hpp</td></tr>
 <tr><td>UseG1GC</td><td>JDK6</td><td></td><td>bool</td><td></td><td></td><td>runtime</td><td>false</td><td>product</td><td>Use the Garbage-First garbage collector</td><td>src/share/vm/runtime/globals.hpp</td></tr>
 <tr><td>UseGCOverheadLimit</td><td>JDK6</td><td></td><td>bool</td><td></td><td></td><td>runtime</td><td>true</td><td>product</td><td>Use policy to limit of proportion of time spent in GC before an OutOfMemory error is thrown</td><td>src/share/vm/runtime/globals.hpp</td></tr>
-<tr><td>UseGCTaskAffinity</td><td>JDK6</td><td></td><td>bool</td><td></td><td></td><td>runtime</td><td>false</td><td>product</td><td>Use worker affinity when asking for GCTasks</td><td>src/share/vm/runtime/globals.hpp</td></tr>
+<tr><td>UseGCTaskAffinity</td><td>JDK6</td><td><span style="white-space:nowrap">Obsoleted in JDK14</span><br><span style="white-space:nowrap">Expired in JDK16</span></td><td>bool</td><td></td><td></td><td>runtime</td><td>false</td><td>product</td><td>Use worker affinity when asking for GCTasks</td><td>src/share/vm/runtime/globals.hpp</td></tr>
 <tr><td>UseGHASHIntrinsics</td><td>JDK9</td><td></td><td>bool</td><td></td><td></td><td>runtime</td><td>false</td><td>diagnostic</td><td>Use intrinsics for GHASH versions of crypto</td><td>src/share/vm/runtime/globals.hpp</td></tr>
 <tr><td>UseGlobalValueNumbering</td><td>JDK6</td><td></td><td>bool</td><td></td><td></td><td>c1</td><td>true</td><td>develop</td><td>Use Global Value Numbering (separate phase)</td><td>src/share/vm/c1/c1_globals.hpp</td></tr>
 <tr><td>UseHeavyMonitors</td><td>JDK6</td><td></td><td>bool</td><td></td><td></td><td>runtime</td><td>false</td><td>product</td><td>use heavyweight instead of lightweight Java monitors</td><td>src/share/vm/runtime/globals.hpp</td></tr>
@@ -2305,12 +2306,35 @@
 <tr><td>ZeroTLAB</td><td>JDK6</td><td></td><td>bool</td><td></td><td></td><td>runtime</td><td>false</td><td>product</td><td>Zero out the newly created TLAB</td><td>src/share/vm/runtime/globals.hpp</td></tr>
 <tr><td>ZombieALotInterval</td><td>JDK6</td><td></td><td>intx</td><td></td><td></td><td>runtime</td><td>5</td><td>notproduct</td><td>Number of exits until ZombieALot kicks in</td><td>src/share/vm/runtime/globals.hpp</td></tr>
 <tr><td>ZombieALot</td><td>JDK6</td><td></td><td>bool</td><td></td><td></td><td>runtime</td><td>false</td><td>notproduct</td><td>Create zombies (non-entrant) at exit from the runtime system</td><td>src/share/vm/runtime/globals.hpp</td></tr>
+<tr><td>batch</td><td>JDK6</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td>disable background compilation</td><td>Xusage.txt</td></tr>
+<tr><td>bootclasspath/a</td><td>JDK6</td><td></td><td><directories and zip/jar files separated by ;></td><td></td><td></td><td></td><td></td><td></td><td>
+append to end of bootstrap class path</td><td>Xusage.txt</td></tr>
+<tr><td>bootclasspath/p</td><td>JDK6</td><td></td><td><directories and zip/jar files separated by ;></td><td></td><td></td><td></td><td></td><td></td><td>
+prepend in front of bootstrap class path</td><td>Xusage.txt</td></tr>
+<tr><td>bootclasspath</td><td>JDK6</td><td></td><td><directories and zip/jar files separated by ;></td><td></td><td></td><td></td><td></td><td></td><td>
+set search path for bootstrap classes and resources</td><td>Xusage.txt</td></tr>
+<tr><td>check:jni</td><td>JDK6</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td>perform additional checks for JNI functions</td><td>Xusage.txt</td></tr>
+<tr><td>future</td><td>JDK6</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td>enable strictest checks, anticipating future default</td><td>Xusage.txt</td></tr>
 <tr><td>hashCode</td><td>JDK6</td><td></td><td>intx</td><td></td><td></td><td>runtime</td><td>5</td><td>experimental</td><td>(Unstable) select hashCode generation algorithm</td><td>src/share/vm/runtime/globals.hpp</td></tr>
+<tr><td>int</td><td>JDK6</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td>interpreted mode execution only</td><td>Xusage.txt</td></tr>
+<tr><td>log</td><td>JDK9</td><td></td><td><opts></td><td></td><td></td><td></td><td></td><td></td><td>control JVM logging, use -Xlog:help for details</td><td>Xusage.txt</td></tr>
+<tr><td>mixed</td><td>JDK6</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td>mixed mode execution (default)</td><td>Xusage.txt</td></tr>
+<tr><td>ms</td><td>JDK6</td><td></td><td><size></td><td></td><td></td><td></td><td></td><td></td><td>set initial Java heap size</td><td>Xusage.txt</td></tr>
+<tr><td>mx</td><td>JDK6</td><td></td><td><size></td><td></td><td></td><td></td><td></td><td></td><td>set maximum Java heap size</td><td>Xusage.txt</td></tr>
+<tr><td>noclassgc</td><td>JDK6</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td>disable class garbage collection</td><td>Xusage.txt</td></tr>
+<tr><td>prof</td><td>JDK6</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td>output cpu profiling data (deprecated)</td><td>Xusage.txt</td></tr>
+<tr><td>rs</td><td>JDK6</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td>reduce use of OS signals by Java/VM (see documentation)</td><td>Xusage.txt</td></tr>
+<tr><td>share:auto</td><td>JDK6</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td>use shared class data if possible (default)</td><td>Xusage.txt</td></tr>
+<tr><td>share:off</td><td>JDK6</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td>do not attempt to use shared class data</td><td>Xusage.txt</td></tr>
+<tr><td>share:on</td><td>JDK6</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td><pre>require using shared class data, otherwise fail.
+
+The -X options are non-standard and subject to change without notice.</pre></td><td>Xusage.txt</td></tr>
+<tr><td>ss</td><td>JDK6</td><td></td><td><size></td><td></td><td></td><td></td><td></td><td></td><td>set java thread stack size</td><td>Xusage.txt</td></tr>
 
 		</tbody>
 	</table>
 	<div class="footer">
-		Built on Thu Aug 15 16:59:58 BST 2019 from HotSpot sources by <a
+		Built on Tue Oct 29 17:05:58 GMT 2019 from HotSpot sources by <a
 			href="https://twitter.com/chriswhocodes">@chriswhocodes</a>
 	</div>
 </body>

@@ -1,6 +1,6 @@
 /*
  * Copyright (c) 2018-2019 Chris Newland.
- * Licensed under https://github.com/chriswhocodes/VMSOptionsExplorer/blob/master/LICENSE
+ * Licensed under https://github.com/chriswhocodes/VMOptionsExplorer/blob/master/LICENSE
  */
 package com.chrisnewland.vmoe.parser;
 
@@ -12,10 +12,13 @@ import java.util.List;
 import java.util.Map;
 
 import com.chrisnewland.vmoe.SwitchInfo;
+import com.chrisnewland.vmoe.SwitchInfoMap;
 
 public abstract class AbstractSwitchParser implements ISwitchParser
 {
-	protected Map<String, SwitchInfo> switchMap;
+
+
+	protected SwitchInfoMap switchMap; //TODO list?
 
 	protected List<String> explodeLine(String line)
 	{

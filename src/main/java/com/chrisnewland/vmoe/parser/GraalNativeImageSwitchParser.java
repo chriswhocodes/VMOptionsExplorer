@@ -1,10 +1,11 @@
 /*
  * Copyright (c) 2018-2019 Chris Newland.
- * Licensed under https://github.com/chriswhocodes/VMSOptionsExplorer/blob/master/LICENSE
+ * Licensed under https://github.com/chriswhocodes/VMOptionsExplorer/blob/master/LICENSE
  */
 package com.chrisnewland.vmoe.parser;
 
 import com.chrisnewland.vmoe.SwitchInfo;
+import com.chrisnewland.vmoe.SwitchInfoMap;
 
 import java.io.File;
 import java.io.IOException;
@@ -24,9 +25,9 @@ public class GraalNativeImageSwitchParser extends AbstractSwitchParser
 	private static final String DEFAULT_IN_DESCRIPTION= "Default:";
 
 	@Override
-	public Map<String, SwitchInfo> process(File vmPath) throws IOException
+	public SwitchInfoMap process(File vmPath) throws IOException
 	{
-		switchMap = new TreeMap<>();
+		switchMap = new SwitchInfoMap();
 
 		List<String> lines = Files.readAllLines(vmPath.toPath());
 
@@ -132,7 +133,7 @@ public class GraalNativeImageSwitchParser extends AbstractSwitchParser
 					defaultValue = null;
 				}
 
-				info = new SwitchInfo(name);
+				info = new SwitchInfo(PREFIX_XX, name);
 				info.setDefaultValue(defaultValue);
 
 				if (type == null)

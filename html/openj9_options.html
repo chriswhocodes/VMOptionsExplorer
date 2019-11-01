@@ -121,8 +121,8 @@
                 <th colspan="2">GraalVM</th>
             </tr>
             <tr>
-                <td><a href="graalvm_ce_19_options.html">GraalVM CE 19.1.1</a></td>
-                <td><a href="graalvm_ee_19_options.html">GraalVM EE 19.1.1</a></td>
+                <td><a href="graalvm_ce_19_options.html">GraalVM CE 19.2.1</a></td>
+                <td><a href="graalvm_ee_19_options.html">GraalVM EE 19.2.1</a></td>
             </tr>
             <tr>
                 <td></td>
@@ -136,8 +136,8 @@
                 <th colspan="2">GraalVM native-image</th>
             </tr>
             <tr>
-                <td><a href="graalvm_native_image_ce_19_options.html">native-image CE 19.1.1</a></td>
-                <td><a href="graalvm_native_image_ee_19_options.html">native-image EE 19.1.1</a></td>
+                <td><a href="graalvm_native_image_ce_19_options.html">native-image CE 19.2.1</a></td>
+                <td><a href="graalvm_native_image_ee_19_options.html">native-image EE 19.2.1</a></td>
             </tr>
             <tr>
                 <td></td>
@@ -161,10 +161,11 @@
     <div class="menuwrap">
         <table class="menu">
             <tr>
-                <th>Zing</th>
+                <th colspan="2">Azul Zing</th>
             </tr>
             <tr>
-                <td><a href="zing_options.html">Zing 18.07</a></td>
+                <td><a href="zing_jdk8_options.html">Zing JDK8</a></td>
+                <td><a href="zing_jdk11_options.html">Zing JDK11</a></td>
             </tr>
         </table>
     </div>
@@ -199,6 +200,7 @@
 <tr><td>-XX:+AlwaysCopyJNICritical</td><td></td></tr>
 <tr><td>-XX:+AlwaysSplitBytecodes</td><td></td></tr>
 <tr><td>-XX:+AlwaysUseJNICritical</td><td></td></tr>
+<tr><td>-XX:+ClassRelationshipVerifier</td><td></td></tr>
 <tr><td>-XX:+CompactStrings</td><td></td></tr>
 <tr><td>-XX:+ContendedFields</td><td></td></tr>
 <tr><td>-XX:+DebugInterpreter</td><td></td></tr>
@@ -209,6 +211,7 @@
 <tr><td>-XX:+EnableHCR</td><td></td></tr>
 <tr><td>-XX:+EnableValhalla</td><td></td></tr>
 <tr><td>-XX:+FastClassHashTable</td><td></td></tr>
+<tr><td>-XX:+GCDeepStructurePriorityScan</td><td></td></tr>
 <tr><td>-XX:+HandleSIGXFSZ</td><td></td></tr>
 <tr><td>-XX:+HeapDumpOnOutOfMemoryError</td><td></td></tr>
 <tr><td>-XX:+IdleTuningCompactOnIdle</td><td></td></tr>
@@ -230,6 +233,8 @@
 <tr><td>-XX:+ReduceCPUMonitorOverhead</td><td></td></tr>
 <tr><td>-XX:+RestrictContended</td><td></td></tr>
 <tr><td>-XX:+RestrictIFA</td><td></td></tr>
+<tr><td>-XX:+ShareAnonymousClasses</td><td><pre>enable storing and finding anonymous classes in the shared class cache</pre></td></tr>
+<tr><td>-XX:+ShareUnsafeClasses</td><td><pre>enable storing and finding non-anonymous unsafe classes in the shared class cache</pre></td></tr>
 <tr><td>-XX:+StackTraceInThrowable</td><td></td></tr>
 <tr><td>-XX:+StoreIntermediateClassfile</td><td><pre>store raw class data to be used during re-transformation</pre></td></tr>
 <tr><td>-XX:+TransparentHugePage</td><td></td></tr>
@@ -242,6 +247,7 @@
 <tr><td>-XX:-AlwaysCopyJNICritical</td><td></td></tr>
 <tr><td>-XX:-AlwaysSplitBytecodes</td><td></td></tr>
 <tr><td>-XX:-AlwaysUseJNICritical</td><td></td></tr>
+<tr><td>-XX:-ClassRelationshipVerifier</td><td></td></tr>
 <tr><td>-XX:-CompactStrings</td><td></td></tr>
 <tr><td>-XX:-ContendedFields</td><td></td></tr>
 <tr><td>-XX:-DebugInterpreter</td><td></td></tr>
@@ -252,6 +258,7 @@
 <tr><td>-XX:-EnableHCR</td><td></td></tr>
 <tr><td>-XX:-EnableValhalla</td><td></td></tr>
 <tr><td>-XX:-FastClassHashTable</td><td></td></tr>
+<tr><td>-XX:-GCDeepStructurePriorityScan</td><td></td></tr>
 <tr><td>-XX:-HandleSIGXFSZ</td><td></td></tr>
 <tr><td>-XX:-HeapDumpOnOutOfMemoryError</td><td></td></tr>
 <tr><td>-XX:-IdleTuningCompactOnIdle</td><td></td></tr>
@@ -273,6 +280,8 @@
 <tr><td>-XX:-ReduceCPUMonitorOverhead</td><td></td></tr>
 <tr><td>-XX:-RestrictContended</td><td></td></tr>
 <tr><td>-XX:-RestrictIFA</td><td></td></tr>
+<tr><td>-XX:-ShareAnonymousClasses</td><td><pre>disable storing and finding anonymous classes in the shared class cache</pre></td></tr>
+<tr><td>-XX:-ShareUnsafeClasses</td><td><pre>disable storing and finding non-anonymous unsafe classes in the shared class cache</pre></td></tr>
 <tr><td>-XX:-StackTraceInThrowable</td><td></td></tr>
 <tr><td>-XX:-TransparentHugePage</td><td></td></tr>
 <tr><td>-XX:-UseContainerSupport</td><td></td></tr>
@@ -466,7 +475,7 @@
 		</tbody>
 	</table>
 	<div class="footer">
-		Built on Thu Aug 15 16:59:59 BST 2019 from OpenJ9 sources by <a
+		Built on Tue Oct 29 17:05:59 GMT 2019 from OpenJ9 sources by <a
 			href="https://twitter.com/chriswhocodes">@chriswhocodes</a>
 	</div>
 </body>

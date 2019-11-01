@@ -400,6 +400,8 @@ graal.LogFile = null                                                      [Strin
           replaced by System.currentTimeMillis().
 graal.LogVerbose = false                                                 [Boolean]
           Enable more verbose log output when available
+graal.LoopHeaderAlignment = 16                                           [Integer]
+          Alignment in bytes for loop header blocks.
 graal.LoopInversion = false                                              [Boolean]
           Convert loops into their zero trip form.
 graal.LoopMaxUnswitch = 3                                                [Integer]
@@ -574,6 +576,8 @@ graal.OptimisticAliasingAnalysis = true                                  [Boolea
 graal.OptimizeLoopAccesses = true                                        [Boolean]
           Enable access node optimizations for loops
 graal.PEAInliningHints = false                                           [Boolean]
+graal.PGOInstrument = null                                                [String]
+          Dump information for Profile Guided Optimizations (true or file name)
 graal.PartialEscapeAnalysis = true                                       [Boolean]
 graal.PartialRedundancyElimination = true                                [Boolean]
           Enable partial redundancy elimination
@@ -655,8 +659,6 @@ graal.ProfileSimpleMethods = true                                        [Boolea
 graal.ProfileTypeSwitches = false                                        [Boolean]
           Turn on typeswitch profiling. This tracks the stability of typeswitches
           after compilation.
-graal.ProfilesCollectExperimental = false                                [Boolean]
-          Collect AOT Profiling Information
 graal.PruneLargeDominatorUsageTrees = true                               [Boolean]
 graal.PullThroughPhiBudget = 4096.0                                       [Double]
 graal.RawConditionalElimination = true                                   [Boolean]
@@ -936,7 +938,6 @@ graal.TruffleTimeThreshold = 50000                                       [Intege
 graal.TruffleTraceSplittingSummary = false                               [Boolean]
           Used for debugging the splitting implementation. Prints splitting
           summary directly to stdout on shutdown
-graal.TruffleUseFrameWithoutBoxing = true                                [Boolean]
 graal.TrustFinalDefaultFields = true                                     [Boolean]
           Determines whether to treat final fields with default values as
           constant.

@@ -1,6 +1,6 @@
 /*
  * Copyright (c) 2018-2019 Chris Newland.
- * Licensed under https://github.com/chriswhocodes/VMSOptionsExplorer/blob/master/LICENSE
+ * Licensed under https://github.com/chriswhocodes/VMOptionsExplorer/blob/master/LICENSE
  */
 package com.chrisnewland.vmoe.parser;
 
@@ -13,15 +13,16 @@ import java.util.Map;
 import java.util.TreeMap;
 
 import com.chrisnewland.vmoe.SwitchInfo;
+import com.chrisnewland.vmoe.SwitchInfoMap;
 import com.chrisnewland.vmoe.parser.deprecated.DeprecatedInfo;
 import com.chrisnewland.vmoe.parser.deprecated.DeprecatedParser;
 
 public class HotSpotSwitchParser extends AbstractSwitchParser
 {
 	@Override
-	public Map<String, SwitchInfo> process(File vmPath) throws IOException
+	public SwitchInfoMap process(File vmPath) throws IOException
 	{
-		switchMap = new TreeMap<>();
+		switchMap = new SwitchInfoMap();
 
 		for (File hotspotFile : findSwitchFilesHotSpot(vmPath))
 		{
@@ -148,7 +149,7 @@ public class HotSpotSwitchParser extends AbstractSwitchParser
 
 					if (info == null)
 					{
-						info = new SwitchInfo(name);
+						info = new SwitchInfo(PREFIX_XX, name);
 						info.setType(type);
 						info.setAvailability(availability);
 						info.setComment(comment);

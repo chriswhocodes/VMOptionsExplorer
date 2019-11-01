@@ -121,8 +121,8 @@
                 <th colspan="2">GraalVM</th>
             </tr>
             <tr>
-                <td><a href="graalvm_ce_19_options.html">GraalVM CE 19.1.1</a></td>
-                <td><a href="graalvm_ee_19_options.html">GraalVM EE 19.1.1</a></td>
+                <td><a href="graalvm_ce_19_options.html">GraalVM CE 19.2.1</a></td>
+                <td><a href="graalvm_ee_19_options.html">GraalVM EE 19.2.1</a></td>
             </tr>
             <tr>
                 <td></td>
@@ -136,8 +136,8 @@
                 <th colspan="2">GraalVM native-image</th>
             </tr>
             <tr>
-                <td><a href="graalvm_native_image_ce_19_options.html">native-image CE 19.1.1</a></td>
-                <td><a href="graalvm_native_image_ee_19_options.html">native-image EE 19.1.1</a></td>
+                <td><a href="graalvm_native_image_ce_19_options.html">native-image CE 19.2.1</a></td>
+                <td><a href="graalvm_native_image_ee_19_options.html">native-image EE 19.2.1</a></td>
             </tr>
             <tr>
                 <td></td>
@@ -161,10 +161,11 @@
     <div class="menuwrap">
         <table class="menu">
             <tr>
-                <th>Zing</th>
+                <th colspan="2">Azul Zing</th>
             </tr>
             <tr>
-                <td><a href="zing_options.html">Zing 18.07</a></td>
+                <td><a href="zing_jdk8_options.html">Zing JDK8</a></td>
+                <td><a href="zing_jdk11_options.html">Zing JDK11</a></td>
             </tr>
         </table>
     </div>
@@ -341,6 +342,8 @@ redirected to a lower tier compiler. The filter format is the same as for the Me
 <tr><td>GreyToBlackObjectVisitorDiagnosticHistory</td><td>int</td><td>0</td><td>Hosted</td><td><pre>
 Keep history of GreyToBlackObjectVisits.  0 implies no history is kept.</pre></td></tr>
 <tr><td>GuardPriorities</td><td>bool</td><td>true</td><td>Runtime</td><td><pre></pre></td></tr>
+<tr><td>HeapChunkHeaderPadding</td><td>int</td><td>0</td><td>Hosted</td><td><pre>Number of bytes at the beginning of each heap chunk that are not used for payload data, i.e., can be freely used as 
+metadata by the heap chunk provider.</pre></td></tr>
 <tr><td>HeapVerificationFailureIsFatal</td><td>bool</td><td>true</td><td>Runtime</td><td><pre>Verify the heap before and after each collection.</pre></td></tr>
 <tr><td>HideSubstitutionStates</td><td>bool</td><td>false</td><td>Runtime</td><td><pre>When creating info points hide the methods of the substitutions.</pre></td></tr>
 <tr><td>HotSpotPrintInlining</td><td>bool</td><td>false</td><td>Runtime</td><td><pre>Print inlining optimizations.</pre></td></tr>
@@ -410,6 +413,7 @@ handler.</pre></td></tr>
 process id and %t will be replaced by System.currentTimeMillis().</pre></td></tr>
 <tr><td>LogVerbose</td><td>bool</td><td>false</td><td>Runtime</td><td><pre>Enable more verbose log output when available.</pre></td></tr>
 <tr><td>Log</td><td>String</td><td>None</td><td>Runtime</td><td><pre>Pattern for specifying scopes in which logging is enabled. See the Dump option for the pattern syntax.</pre></td></tr>
+<tr><td>LoopHeaderAlignment</td><td>int</td><td>16</td><td>Runtime</td><td><pre>Alignment in bytes for loop header blocks. </pre></td></tr>
 <tr><td>LoopMaxUnswitch</td><td>int</td><td>3</td><td>Runtime</td><td></td></tr>
 <tr><td>LoopPeeling</td><td>bool</td><td>true</td><td>Runtime</td><td><pre></pre></td></tr>
 <tr><td>LoopUnswitchFrequencyBoost</td><td>double</td><td>10.0</td><td>Runtime</td><td></td></tr>
@@ -475,7 +479,7 @@ specific and passed through without any validation.</pre></td></tr>
 compilation.</pre></td></tr>
 <tr><td>NumberOfAnalysisThreads</td><td>int</td><td>-1</td><td>Hosted</td><td><pre>The number of threads to use for analysis during native image generation. The number must be smaller than the 
 NumberOfThreads.</pre></td></tr>
-<tr><td>NumberOfThreads</td><td>int</td><td>12</td><td>Hosted</td><td><pre>The maximum number of threads to use concurrently during native image generation. </pre></td></tr>
+<tr><td>NumberOfThreads</td><td>int</td><td>8</td><td>Hosted</td><td><pre>The maximum number of threads to use concurrently during native image generation. </pre></td></tr>
 <tr><td>OmitHotExceptionStacktrace</td><td>bool</td><td>false</td><td>Runtime</td><td><pre></pre></td></tr>
 <tr><td>OptAssumptions</td><td>bool</td><td>true</td><td>Runtime</td><td><pre></pre></td></tr>
 <tr><td>OptConvertDeoptsToGuards</td><td>bool</td><td>true</td><td>Runtime</td><td><pre></pre></td></tr>
@@ -490,7 +494,7 @@ NumberOfThreads.</pre></td></tr>
 <tr><td>OptLoopTransform</td><td>bool</td><td>true</td><td>Runtime</td><td><pre></pre></td></tr>
 <tr><td>OptReadElimination</td><td>bool</td><td>true</td><td>Runtime</td><td><pre></pre></td></tr>
 <tr><td>OptScheduleOutOfLoops</td><td>bool</td><td>true</td><td>Runtime</td><td><pre></pre></td></tr>
-<tr><td>Optimize</td><td>int</td><td>1</td><td>Hosted</td><td><pre>Control native-image code optimizations: 0 - no optimizations, 1 - basic optimizations. </pre></td></tr>
+<tr><td>Optimize</td><td>int</td><td>2</td><td>Hosted</td><td><pre>Control native-image code optimizations: 0 - no optimizations, 1 - basic optimizations, 2 - aggressive optimizations. </pre></td></tr>
 <tr><td>PEAInliningHints</td><td>bool</td><td>false</td><td>Runtime</td><td><pre></pre></td></tr>
 <tr><td>PageSize</td><td>int</td><td>0</td><td>Hosted</td><td><pre>Define PageSize of a machine that runs the image. The default = 0 (== same as host machine page size). </pre></td></tr>
 <tr><td>ParseRuntimeOptions</td><td>bool</td><td>true</td><td>Hosted</td><td><pre>Parse and consume standard options and system properties from the command line arguments when the VM is created.</pre></td></tr>
@@ -499,6 +503,7 @@ NumberOfThreads.</pre></td></tr>
 <tr><td>Path</td><td></td><td></td><td>Hosted</td><td><pre>
 Directory of the image file to be generated.</pre></td></tr>
 <tr><td>PercentTimeInIncrementalCollection</td><td>int</td><td>50</td><td>Runtime</td><td><pre>Percentage of time that should be spent in young generation collections. </pre></td></tr>
+<tr><td>PreserveFramePointer</td><td>bool</td><td>false</td><td>Hosted</td><td><pre>Saves stack base pointer on the stack on method entry.</pre></td></tr>
 <tr><td>PrintAOTCompilation</td><td>bool</td><td>false</td><td>Hosted</td><td><pre>Print logging information during compilation.</pre></td></tr>
 <tr><td>PrintAnalysisCallTree</td><td>bool</td><td>false</td><td>Runtime</td><td><pre>Print analysis call tree, a breadth-first tree reduction of the call graph.</pre></td></tr>
 <tr><td>PrintBackendCFG</td><td>bool</td><td>true</td><td>Runtime</td><td><pre>Enable dumping LIR, register allocation and code generation info to the C1Visualizer.</pre></td></tr>
@@ -637,6 +642,7 @@ timers unconditionally.</pre></td></tr>
 state trace just prior to each instruction trace.Instruction tracing output from multiple compiler threads will be
 interleaved so use of this option make most sense for single threaded compilation. The MethodFilter option can be used
 to refine tracing to selected methods.</pre></td></tr>
+<tr><td>TraceClassInitialization</td><td>bool</td><td>false</td><td>Hosted</td><td><pre>Instrument code to trace and report class initialization.</pre></td></tr>
 <tr><td>TraceCodeCache</td><td>bool</td><td>false</td><td>Runtime</td><td><pre>Print logging information for runtime code cache modifications.</pre></td></tr>
 <tr><td>TraceDeoptimizationDetails</td><td>bool</td><td>false</td><td>Runtime</td><td><pre>Print verbose logging information for every deoptimization.</pre></td></tr>
 <tr><td>TraceDeoptimization</td><td>bool</td><td>false</td><td>Runtime</td><td><pre>Print logging information for every deoptimization.</pre></td></tr>
@@ -730,7 +736,6 @@ Disable call target splitting if number of nodes created by splitting exceeds th
 <tr><td>TruffleSplitting</td><td>bool</td><td>true</td><td>Runtime</td><td><pre>Enable call target splitting.</pre></td></tr>
 <tr><td>TruffleTimeThreshold</td><td>int</td><td>50000</td><td>Runtime</td><td><pre>Defines the maximum timespan in milliseconds that is required for a call target to be queued for compilation. </pre></td></tr>
 <tr><td>TruffleTraceSplittingSummary</td><td>bool</td><td>false</td><td>Runtime</td><td><pre>Used for debugging the splitting implementation. Prints splitting summary directly to stdout on shutdown.</pre></td></tr>
-<tr><td>TruffleUseFrameWithoutBoxing</td><td>bool</td><td>true</td><td>Runtime</td><td><pre></pre></td></tr>
 <tr><td>TrustFinalDefaultFields</td><td>bool</td><td>true</td><td>Runtime</td><td><pre>Determines whether to treat final fields with default values as constant.</pre></td></tr>
 <tr><td>TypeCheckMaxHints</td><td>int</td><td>2</td><td>Runtime</td><td><pre>The maximum number of profiled types that will be used when compiling a profiled type check. Note that 
 TypeCheckMinProfileHitProbability also influences whether profiling info is used in compiled type checks.</pre></td></tr>
@@ -754,7 +759,6 @@ context of libgraal.</pre></td></tr>
 <tr><td>UseServiceLoaderFeature</td><td>bool</td><td>true</td><td>Hosted</td><td><pre>Automatically register services for run-time lookup using ServiceLoader.</pre></td></tr>
 <tr><td>UseSnippetGraphCache</td><td>bool</td><td>true</td><td>Runtime</td><td><pre>Use a cache for snippet graphs.</pre></td></tr>
 <tr><td>UseSnippetTemplateCache</td><td>bool</td><td>true</td><td>Runtime</td><td><pre>Use a LRU cache for snippet templates.</pre></td></tr>
-<tr><td>UseStackBasePointer</td><td>bool</td><td>false</td><td>Hosted</td><td><pre>Saves stack base pointer on the stack on method entry.</pre></td></tr>
 <tr><td>UseTrappingNullChecks</td><td>bool</td><td>true</td><td>Runtime</td><td><pre>Use traps for null checks instead of explicit null-checks.</pre></td></tr>
 <tr><td>UseTypeCheckHints</td><td>bool</td><td>true</td><td>Runtime</td><td><pre></pre></td></tr>
 <tr><td>UserRequestedGCPolicy</td><td>String</td><td>"com.oracle.svm.core.genscavenge.HeapPolicy$AlwaysCollectCompletely"</td><td>Hosted</td><td><pre>
@@ -785,7 +789,7 @@ Policy used when users request garbage collection.</pre></td></tr>
 		</tbody>
 	</table>
 	<div class="footer">
-		Built on Thu Aug 15 16:59:59 BST 2019 from Graal Native sources by <a
+		Built on Tue Oct 29 17:05:59 GMT 2019 from Graal Native sources by <a
 			href="https://twitter.com/chriswhocodes">@chriswhocodes</a>
 	</div>
 </body>

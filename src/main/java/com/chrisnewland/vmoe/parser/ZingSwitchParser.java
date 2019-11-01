@@ -1,6 +1,6 @@
 /*
  * Copyright (c) 2018-2019 Chris Newland.
- * Licensed under https://github.com/chriswhocodes/VMSOptionsExplorer/blob/master/LICENSE
+ * Licensed under https://github.com/chriswhocodes/VMOptionsExplorer/blob/master/LICENSE
  */
 package com.chrisnewland.vmoe.parser;
 
@@ -12,6 +12,7 @@ import java.util.Map;
 import java.util.TreeMap;
 
 import com.chrisnewland.vmoe.SwitchInfo;
+import com.chrisnewland.vmoe.SwitchInfoMap;
 
 public class ZingSwitchParser extends AbstractSwitchParser
 {
@@ -22,9 +23,9 @@ public class ZingSwitchParser extends AbstractSwitchParser
 	}
 
 	@Override
-	public Map<String, SwitchInfo> process(File vmPath) throws IOException
+	public SwitchInfoMap process(File vmPath) throws IOException
 	{
-		switchMap = new TreeMap<>();
+		switchMap = new SwitchInfoMap();
 
 		List<String> lines = Files.readAllLines(vmPath.toPath());
 
@@ -91,7 +92,7 @@ public class ZingSwitchParser extends AbstractSwitchParser
 					}
 				}
 
-				SwitchInfo info = new SwitchInfo(name);
+				SwitchInfo info = new SwitchInfo(PREFIX_XX, name);
 
 				info.setType(type);
 				info.setDefaultValue(defaultValue);

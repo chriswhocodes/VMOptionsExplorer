@@ -1,6 +1,6 @@
 /*
  * Copyright (c) 2018-2019 Chris Newland.
- * Licensed under https://github.com/chriswhocodes/VMSOptionsExplorer/blob/master/LICENSE
+ * Licensed under https://github.com/chriswhocodes/VMOptionsExplorer/blob/master/LICENSE
  */
 package com.chrisnewland.vmoe.parser;
 
@@ -12,15 +12,16 @@ import java.util.Map;
 import java.util.TreeMap;
 
 import com.chrisnewland.vmoe.SwitchInfo;
+import com.chrisnewland.vmoe.SwitchInfoMap;
 
 public class OpenJ9SwitchParser extends AbstractSwitchParser
 {
 	private static final String SWITCH_START = "-X";
 
 	@Override
-	public Map<String, SwitchInfo> process(File vmPath) throws IOException
+	public SwitchInfoMap process(File vmPath) throws IOException
 	{
-		switchMap = new TreeMap<>();
+		switchMap = new SwitchInfoMap();
 		
 		parseJVMInitHeader(new File(vmPath, "runtime/oti/jvminit.h"));
 		
@@ -43,7 +44,7 @@ public class OpenJ9SwitchParser extends AbstractSwitchParser
 				
 				String name = cleanName(ParseUtil.getBetween(trimmed, "\"", "\""));
 
-				SwitchInfo info = new SwitchInfo(name.trim());
+				SwitchInfo info = new SwitchInfo(PREFIX_XX, name.trim());
 
 				switchMap.put(info.getKey(), info);
 			}
@@ -88,7 +89,7 @@ public class OpenJ9SwitchParser extends AbstractSwitchParser
 
 				String name = cleanName(switchBuilder.toString().trim());
 
-				SwitchInfo info = new SwitchInfo(name);
+				SwitchInfo info = new SwitchInfo(PREFIX_XX, name);
 				info.setDescription("<pre>" + descriptionBuilder.toString().trim() + "</pre>");
 
 				switchMap.put(info.getKey(), info);

@@ -121,8 +121,8 @@
                 <th colspan="2">GraalVM</th>
             </tr>
             <tr>
-                <td><a href="graalvm_ce_19_options.html">GraalVM CE 19.1.1</a></td>
-                <td><a href="graalvm_ee_19_options.html">GraalVM EE 19.1.1</a></td>
+                <td><a href="graalvm_ce_19_options.html">GraalVM CE 19.2.1</a></td>
+                <td><a href="graalvm_ee_19_options.html">GraalVM EE 19.2.1</a></td>
             </tr>
             <tr>
                 <td></td>
@@ -136,8 +136,8 @@
                 <th colspan="2">GraalVM native-image</th>
             </tr>
             <tr>
-                <td><a href="graalvm_native_image_ce_19_options.html">native-image CE 19.1.1</a></td>
-                <td><a href="graalvm_native_image_ee_19_options.html">native-image EE 19.1.1</a></td>
+                <td><a href="graalvm_native_image_ce_19_options.html">native-image CE 19.2.1</a></td>
+                <td><a href="graalvm_native_image_ee_19_options.html">native-image EE 19.2.1</a></td>
             </tr>
             <tr>
                 <td></td>
@@ -161,10 +161,11 @@
     <div class="menuwrap">
         <table class="menu">
             <tr>
-                <th>Zing</th>
+                <th colspan="2">Azul Zing</th>
             </tr>
             <tr>
-                <td><a href="zing_options.html">Zing 18.07</a></td>
+                <td><a href="zing_jdk8_options.html">Zing JDK8</a></td>
+                <td><a href="zing_jdk11_options.html">Zing JDK11</a></td>
             </tr>
         </table>
     </div>
@@ -192,6 +193,9 @@
 <tr><td>_iabs</td><td>JDK13</td><td>java.lang.Math</td><td>abs</td><td>(I)I</td><td>F_S</td></tr>
 <tr><td>_labs</td><td>JDK13</td><td>java.lang.Math</td><td>abs</td><td>(J)J</td><td>F_S</td></tr>
 <tr><td>_dsin</td><td>JDK6</td><td>java.lang.Math</td><td>sin</td><td>(D)D</td><td>F_S</td></tr>
+<tr><td>_floor</td><td>JDK14</td><td>java.lang.Math</td><td>floor</td><td>(D)D</td><td>F_S</td></tr>
+<tr><td>_ceil</td><td>JDK14</td><td>java.lang.Math</td><td>ceil</td><td>(D)D</td><td>F_S</td></tr>
+<tr><td>_rint</td><td>JDK14</td><td>java.lang.Math</td><td>rint</td><td>(D)D</td><td>F_S</td></tr>
 <tr><td>_dcos</td><td>JDK6</td><td>java.lang.Math</td><td>cos</td><td>(D)D</td><td>F_S</td></tr>
 <tr><td>_dtan</td><td>JDK6</td><td>java.lang.Math</td><td>tan</td><td>(D)D</td><td>F_S</td></tr>
 <tr><td>_datan2</td><td>JDK6</td><td>java.lang.Math</td><td>atan2</td><td>(DD)D</td><td>F_S</td></tr>
@@ -301,6 +305,8 @@
 <tr><td>_aescrypt_decryptBlock</td><td>JDK7</td><td>com.sun.crypto.provider.AESCrypt</td><td>implDecryptBlock</td><td>([BI[BI)V</td><td>F_R</td></tr>
 <tr><td>_cipherBlockChaining_encryptAESCrypt</td><td>JDK7</td><td>com.sun.crypto.provider.CipherBlockChaining</td><td>implEncrypt</td><td>([BII[BI)I</td><td>F_R</td></tr>
 <tr><td>_cipherBlockChaining_decryptAESCrypt</td><td>JDK7</td><td>com.sun.crypto.provider.CipherBlockChaining</td><td>implDecrypt</td><td>([BII[BI)I</td><td>F_R</td></tr>
+<tr><td>_electronicCodeBook_encryptAESCrypt</td><td>JDK14</td><td>com.sun.crypto.provider.ElectronicCodeBook</td><td>implECBEncrypt</td><td>([BII[BI)I</td><td>F_R</td></tr>
+<tr><td>_electronicCodeBook_decryptAESCrypt</td><td>JDK14</td><td>com.sun.crypto.provider.ElectronicCodeBook</td><td>implECBDecrypt</td><td>([BII[BI)I</td><td>F_R</td></tr>
 <tr><td>_counterMode_AESCrypt</td><td>JDK9</td><td>com.sun.crypto.provider.CounterMode</td><td>implCrypt</td><td>([BII[BI)I</td><td>F_R</td></tr>
 <tr><td>_sha_implCompress</td><td>JDK8</td><td>sun.security.provider.SHA</td><td>implCompress0</td><td>([BI)V</td><td>F_R</td></tr>
 <tr><td>_sha2_implCompress</td><td>JDK8</td><td>sun.security.provider.SHA2</td><td>implCompress0</td><td>([BI)V</td><td>F_R</td></tr>
@@ -315,6 +321,9 @@
 <tr><td>_updateDirectByteBufferCRC32C</td><td>JDK9</td><td>java.util.zip.CRC32C</td><td>updateDirectByteBuffer</td><td>(IJII)I</td><td>F_S</td></tr>
 <tr><td>_updateBytesAdler32</td><td>JDK9</td><td>java.util.zip.Adler32</td><td>updateBytes</td><td>(I[BII)I</td><td>F_SN</td></tr>
 <tr><td>_updateByteBufferAdler32</td><td>JDK9</td><td>java.util.zip.Adler32</td><td>updateByteBuffer</td><td>(IJII)I</td><td>F_SN</td></tr>
+<tr><td>_writeback0</td><td>JDK14</td><td>jdk.internal.misc.Unsafe</td><td>writeback0</td><td>(J)V</td><td>F_RN</td></tr>
+<tr><td>_writebackPreSync0</td><td>JDK14</td><td>jdk.internal.misc.Unsafe</td><td>writebackPreSync0</td><td>()V</td><td>F_RN</td></tr>
+<tr><td>_writebackPostSync0</td><td>JDK14</td><td>jdk.internal.misc.Unsafe</td><td>writebackPostSync0</td><td>()V</td><td>F_RN</td></tr>
 <tr><td>_allocateInstance</td><td>JDK6</td><td>jdk.internal.misc.Unsafe</td><td>allocateInstance</td><td>(Ljava/lang/Class;)Ljava/lang/Object;</td><td>F_RN</td></tr>
 <tr><td>_allocateUninitializedArray</td><td>JDK9</td><td>jdk.internal.misc.Unsafe</td><td>allocateUninitializedArray0</td><td>(Ljava/lang/Class;I)Ljava/lang/Object;</td><td>F_R</td></tr>
 <tr><td>_copyMemory</td><td>JDK6</td><td>jdk.internal.misc.Unsafe</td><td>copyMemory0</td><td>(Ljava/lang/Object;JLjava/lang/Object;JJ)V</td><td>F_RN</td></tr>
@@ -500,7 +509,7 @@
 		</tbody>
 	</table>
 	<div class="footer">
-		Built on Thu Aug 15 17:00:00 BST 2019 from HotSpot sources by <a
+		Built on Tue Oct 29 17:06:00 GMT 2019 from HotSpot sources by <a
 			href="https://twitter.com/chriswhocodes">@chriswhocodes</a>
 	</div>
 </body>
