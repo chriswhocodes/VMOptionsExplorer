@@ -50,11 +50,11 @@ public class WebServer
 
 		ServletContextHandler context = new ServletContextHandler(server, "/");
 
-		Path resources = Paths.get("src", "main", "resources", "static");
+		Path staticResourcePath = Paths.get(resourcesPath.toString(), "static");
 
 		ServletHolder holderHome = new ServletHolder("static-home", DefaultServlet.class);
 
-		holderHome.setInitParameter("resourceBase", resources.toString());
+		holderHome.setInitParameter("resourceBase", staticResourcePath.toString());
 		holderHome.setInitParameter("dirAllowed", "true");
 		holderHome.setInitParameter("pathInfoOnly", "true");
 
