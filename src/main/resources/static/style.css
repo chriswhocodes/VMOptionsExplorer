@@ -24,14 +24,16 @@ h1 {
 }
 
 .sponsor {
-    float: right;
+    float: left;
     clear: none;
     margin-top: 8px;
+    margin-left: 32px;
     vertical-align: top;
 }
 
 .sponsor a {
     color: blue;
+    font-weight: bold;
 }
 
 h2 {
