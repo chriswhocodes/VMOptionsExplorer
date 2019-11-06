@@ -38,6 +38,11 @@ public class ServiceUtil
 		return template.replace("%BODY%", page).replace("%TITLE%", title).replace("%H1%", h1);
 	}
 
+	public static String loadCompareTemplate() throws IOException
+	{
+		return new String(Files.readAllBytes(Paths.get(resourcesPath.toString(), "compare.html")), StandardCharsets.UTF_8);
+	}
+
 	public static String loadForm() throws IOException
 	{
 		return loadTemplate("form.html", "Inspect your Java command line", "Java Command Line Inspector");

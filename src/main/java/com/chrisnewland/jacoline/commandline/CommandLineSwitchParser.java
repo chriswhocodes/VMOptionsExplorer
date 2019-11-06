@@ -5,6 +5,7 @@
 package com.chrisnewland.jacoline.commandline;
 
 import com.chrisnewland.jacoline.dto.RequestDTO;
+import com.chrisnewland.jacoline.web.service.ServiceUtil;
 import com.chrisnewland.vmoe.Serialiser;
 import com.chrisnewland.vmoe.SwitchInfo;
 import com.chrisnewland.vmoe.parser.ISwitchParser;
@@ -679,8 +680,6 @@ public class CommandLineSwitchParser
 			}
 		}
 
-		String html = getTableTemplate();
-
 		description = description.replace("<pre>", empty).replace("</pre>", empty);
 
 		List<SwitchInfo> filtered = filterByOperatingSystemAndArchitecture(switchInfoList, os, arch);
@@ -716,6 +715,17 @@ public class CommandLineSwitchParser
 			{
 				defaultValue = buildDefaultsTable(filtered);
 			}
+		}
+
+		String html;
+
+		try
+		{
+			html = ServiceUtil.loadCompareTemplate();
+		}
+		catch (IOException ioe)
+		{
+			throw new RuntimeException("Could not load template", ioe);
 		}
 
 		html = html.replace("%IDENTITY%", cssId);
@@ -781,24 +791,6 @@ public class CommandLineSwitchParser
 			}
 		}
 		catch (Exception e)
-		{
-			e.printStackTrace();
-		}
-
-		return result;
-	}
-
-	private static String getTableTemplate()
-	{
-		String result = null;
-
-		try
-		{
-			result = new String(
-					Files.readAllBytes(Paths.get("/home/chris/IdeaProjects/VMOptionsExplorer/src/main/resources/compare.html")),
-					StandardCharsets.UTF_8);
-		}
-		catch (IOException e)
 		{
 			e.printStackTrace();
 		}
