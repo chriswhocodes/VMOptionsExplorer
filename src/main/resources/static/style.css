@@ -10,7 +10,7 @@ body {
 
 h1 {
     margin: 0px 0px 0px 27px;
-    font-family: "monospace";
+    font-family: monospace;
 }
 
 .logo_wrap {
@@ -26,7 +26,7 @@ h1 {
 .sponsor {
     float: left;
     clear: none;
-    margin-top: 8px;
+    margin-top: 16px;
     margin-left: 32px;
     vertical-align: top;
 }
@@ -191,9 +191,7 @@ input[type=submit] {
 }
 
 td input[type=checkbox] {
-    margin: 0 auto;
-    width: 100%;
-    float: left;
+    margin-left: 64px;
     transform: scale(2.0);
 }
 
@@ -207,6 +205,7 @@ textarea {
     background-color: black;
     color: white;
     font-size: 16px;
+    font-family: monospace;
 }
 
 .defaults {
@@ -237,7 +236,7 @@ textarea {
 
 .summary_switch {
     float: left;
-    margin: 4px 8px 4px 0px;
+    margin: 4px 8px 8px 0px;
     border-radius: 6px;
     padding: 4px 6px;
     white-space: nowrap;
