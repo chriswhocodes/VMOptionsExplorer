@@ -9,8 +9,8 @@ body {
 }
 
 h1 {
-    margin: 0px 0px 0px 27px;
-    font-family: monospace;
+    margin: 0px 0px 0px 28px;
+    font-family: "Courier New", monospace;
 }
 
 .logo_wrap {
@@ -33,7 +33,7 @@ h1 {
 
 .sponsor a {
     color: blue;
-    font-weight: bold;
+	font-size:18px;
 }
 
 h2 {
