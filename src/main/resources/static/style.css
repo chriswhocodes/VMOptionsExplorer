@@ -29,6 +29,16 @@ h1 {
     margin-top: 16px;
     margin-left: 32px;
     vertical-align: top;
+
+    border-radius: 8px;
+    padding: 8px;
+    white-space: nowrap;
+
+    -moz-box-shadow: 0px 3px 3px 0px #ccc;
+    -webkit-box-shadow: 0px 3px 3px 0px #ccc;
+    box-shadow: 0px 3px 3px 0px #ccc;
+
+    background-color: #aaffaa;
 }
 
 .sponsor a {
