@@ -79,7 +79,16 @@
             });
   </script>
 
-	<h1>VM Options Explorer - JDK9 HotSpot</h1>
+	
+<div class="title_wrap">
+    <div class="title">
+        <h1>VM Options Explorer - JDK9 HotSpot</h1>
+    </div>
+    <div class="sponsor">
+        <a href="https://github.com/sponsors/chriswhocodes">Sponsor me on GitHub!</a>
+    </div>
+    <div class="divclear"></div>
+</div>
 
 <div class="menucontainer">
     <div class="menuwrap">
@@ -560,9 +569,9 @@
 <tr><td>CrashOnOutOfMemoryError</td><td>JDK8</td><td></td><td>bool</td><td></td><td></td><td>runtime</td><td>false</td><td>product</td><td>JVM aborts, producing an error log and core/mini dump, on the first occurrence of an out-of-memory error</td><td>src/share/vm/runtime/globals.hpp</td></tr>
 <tr><td>CreateCoredumpOnCrash</td><td>JDK9</td><td></td><td>bool</td><td></td><td></td><td>runtime</td><td>true</td><td>product</td><td>Create core/mini dump on VM fatal error</td><td>src/share/vm/runtime/globals.hpp</td></tr>
 <tr><td>CriticalJNINatives</td><td>JDK6</td><td></td><td>bool</td><td></td><td></td><td>runtime</td><td>true</td><td>product</td><td>Check for critical JNI entry points</td><td>src/share/vm/runtime/globals.hpp</td></tr>
-<tr><td>DSCR_DPFD_PPC64</td><td>JDK9</td><td></td><td>uint64_t</td><td></td><td>ppc</td><td></td><td>8</td><td>product</td><td>Power8 or later: DPFD (default prefetch depth) value of the Data Stream Control Register. 0: hardware default, 1: none, 2-7: min-max, 8: don't touch</td><td>src/cpu/ppc/vm/globals_ppc.hpp</td></tr>
-<tr><td>DSCR_PPC64</td><td>JDK9</td><td></td><td>uint64_t</td><td></td><td>ppc</td><td></td><td>(uintx)-1</td><td>product</td><td>Power8 or later: Specify encoded value for Data Stream Control Register</td><td>src/cpu/ppc/vm/globals_ppc.hpp</td></tr>
-<tr><td>DSCR_URG_PPC64</td><td>JDK9</td><td></td><td>uint64_t</td><td></td><td>ppc</td><td></td><td>8</td><td>product</td><td>Power8 or later: URG (depth attainment urgency) value of the Data Stream Control Register. 0: hardware default, 1: none, 2-7: min-max, 8: don't touch</td><td>src/cpu/ppc/vm/globals_ppc.hpp</td></tr>
+<tr><td>DSCR_DPFD_PPC64</td><td>JDK8</td><td></td><td>uint64_t</td><td></td><td>ppc</td><td></td><td>8</td><td>product</td><td>Power8 or later: DPFD (default prefetch depth) value of the Data Stream Control Register. 0: hardware default, 1: none, 2-7: min-max, 8: don't touch</td><td>src/cpu/ppc/vm/globals_ppc.hpp</td></tr>
+<tr><td>DSCR_PPC64</td><td>JDK8</td><td></td><td>uint64_t</td><td></td><td>ppc</td><td></td><td>(uintx)-1</td><td>product</td><td>Power8 or later: Specify encoded value for Data Stream Control Register</td><td>src/cpu/ppc/vm/globals_ppc.hpp</td></tr>
+<tr><td>DSCR_URG_PPC64</td><td>JDK8</td><td></td><td>uint64_t</td><td></td><td>ppc</td><td></td><td>8</td><td>product</td><td>Power8 or later: URG (depth attainment urgency) value of the Data Stream Control Register. 0: hardware default, 1: none, 2-7: min-max, 8: don't touch</td><td>src/cpu/ppc/vm/globals_ppc.hpp</td></tr>
 <tr><td>DTraceAllocProbes</td><td>JDK6</td><td></td><td>bool</td><td></td><td></td><td>runtime</td><td>false</td><td>product</td><td>Enable dtrace probes for object allocation</td><td>src/share/vm/runtime/globals.hpp</td></tr>
 <tr><td>DTraceMethodProbes</td><td>JDK6</td><td></td><td>bool</td><td></td><td></td><td>runtime</td><td>false</td><td>product</td><td>Enable dtrace probes for method-entry and method-exit</td><td>src/share/vm/runtime/globals.hpp</td></tr>
 <tr><td>DTraceMonitorProbes</td><td>JDK6</td><td></td><td>bool</td><td></td><td></td><td>runtime</td><td>false</td><td>product</td><td>Enable dtrace probes for monitor events</td><td>src/share/vm/runtime/globals.hpp</td></tr>
@@ -2334,7 +2343,7 @@ The -X options are non-standard and subject to change without notice.</pre></td>
 		</tbody>
 	</table>
 	<div class="footer">
-		Built on Tue Oct 29 17:05:58 GMT 2019 from HotSpot sources by <a
+		Built on Tue Nov 12 08:57:19 GMT 2019 from HotSpot sources by <a
 			href="https://twitter.com/chriswhocodes">@chriswhocodes</a>
 	</div>
 </body>

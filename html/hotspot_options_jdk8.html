@@ -79,7 +79,16 @@
             });
   </script>
 
-	<h1>VM Options Explorer - JDK8 HotSpot</h1>
+	
+<div class="title_wrap">
+    <div class="title">
+        <h1>VM Options Explorer - JDK8 HotSpot</h1>
+    </div>
+    <div class="sponsor">
+        <a href="https://github.com/sponsors/chriswhocodes">Sponsor me on GitHub!</a>
+    </div>
+    <div class="divclear"></div>
+</div>
 
 <div class="menucontainer">
     <div class="menuwrap">
@@ -185,6 +194,8 @@
 		</thead>
 		<tbody><tr><td>AbortVMOnExceptionMessage</td><td>JDK6</td><td></td><td>ccstr</td><td></td><td></td><td>runtime</td><td>NULL</td><td>notproduct</td><td>Call fatal if the exception pointed by AbortVMOnException has this message</td><td>src/share/vm/runtime/globals.hpp</td></tr>
 <tr><td>AbortVMOnException</td><td>JDK6</td><td></td><td>ccstr</td><td></td><td></td><td>runtime</td><td>NULL</td><td>notproduct</td><td>Call fatal if this exception is thrown. Example: java -XX:AbortVMOnException=java.lang.NullPointerException Foo</td><td>src/share/vm/runtime/globals.hpp</td></tr>
+<tr><td>AbortVMOnSafepointTimeout</td><td>JDK8</td><td></td><td>bool</td><td></td><td></td><td>runtime</td><td>false</td><td>diagnostic</td><td>Abort upon failure to reach safepoint (see SafepointTimeout)</td><td>src/share/vm/runtime/globals.hpp</td></tr>
+<tr><td>ActiveProcessorCount</td><td>JDK8</td><td></td><td>intx</td><td></td><td></td><td>runtime</td><td>-1</td><td>product</td><td>Specify the CPU count the VM should use and report as active</td><td>src/share/vm/runtime/globals.hpp</td></tr>
 <tr><td>AdaptiveSizeDecrementScaleFactor</td><td>JDK6</td><td></td><td>uintx</td><td></td><td></td><td>runtime</td><td>4</td><td>product</td><td>Adaptive size scale down factor for shrinking</td><td>src/share/vm/runtime/globals.hpp</td></tr>
 <tr><td>AdaptiveSizeMajorGCDecayTimeScale</td><td>JDK6</td><td></td><td>uintx</td><td></td><td></td><td>runtime</td><td>10</td><td>product</td><td>Time scale over which major costs decay</td><td>src/share/vm/runtime/globals.hpp</td></tr>
 <tr><td>AdaptiveSizePausePolicy</td><td>JDK6</td><td></td><td>uintx</td><td></td><td></td><td>runtime</td><td>0</td><td>product</td><td>Policy for changing generation size for pause goals</td><td>src/share/vm/runtime/globals.hpp</td></tr>
@@ -197,6 +208,7 @@
 <tr><td>AdaptiveSizeThroughPutPolicy</td><td>JDK6</td><td></td><td>uintx</td><td></td><td></td><td>runtime</td><td>0</td><td>product</td><td>Policy for changing generation size for throughput goals</td><td>src/share/vm/runtime/globals.hpp</td></tr>
 <tr><td>AdaptiveTimeWeight</td><td>JDK6</td><td></td><td>uintx</td><td></td><td></td><td>runtime</td><td>25</td><td>product</td><td>Weight given to time in adaptive policy, between 0 and 100</td><td>src/share/vm/runtime/globals.hpp</td></tr>
 <tr><td>AdjustConcurrency</td><td>JDK6</td><td></td><td>bool</td><td></td><td></td><td>runtime</td><td>false</td><td>product</td><td>Call thr_setconcurrency at thread creation time to avoid LWP starvation on MP systems (for Solaris Only)</td><td>src/share/vm/runtime/globals.hpp</td></tr>
+<tr><td>AggressiveHeap</td><td>JDK8</td><td></td><td>bool</td><td></td><td></td><td>runtime</td><td>false</td><td>product</td><td>Optimize heap options for long-running memory intensive apps</td><td>src/share/vm/runtime/globals.hpp</td></tr>
 <tr><td>AggressiveOpts</td><td>JDK6</td><td><span style="white-space:nowrap">Deprecated in JDK11</span><br><span style="white-space:nowrap">Obsoleted in JDK12</span><br><span style="white-space:nowrap">Expired in JDK13</span></td><td>bool</td><td></td><td></td><td>runtime</td><td>false</td><td>product</td><td>Enable aggressive optimizations - see arguments.cpp</td><td>src/share/vm/runtime/globals.hpp</td></tr>
 <tr><td>AggressiveUnboxing</td><td>JDK8</td><td></td><td>bool</td><td></td><td></td><td>c2</td><td>false</td><td>experimental</td><td>Control optimizations for aggressive boxing elimination</td><td>src/share/vm/opto/c2_globals.hpp</td></tr>
 <tr><td>AliasLevel</td><td>JDK6</td><td></td><td>intx</td><td></td><td></td><td>c2</td><td>3</td><td>product</td><td>0 for no aliasing, 1 for oop/field/static/array split, <br>2 for class split, 3 for unique instances</td><td>src/share/vm/opto/c2_globals.hpp</td></tr>
@@ -511,6 +523,9 @@
 <tr><td>CrashOnOutOfMemoryError</td><td>JDK8</td><td></td><td>bool</td><td></td><td></td><td>runtime</td><td>false</td><td>product</td><td>JVM aborts, producing an error log and core/mini dump, on the first occurrence of an out-of-memory error</td><td>src/share/vm/runtime/globals.hpp</td></tr>
 <tr><td>CreateMinidumpOnCrash</td><td>JDK6</td><td><span style="white-space:nowrap">Deprecated in JDK9</span></td><td>bool</td><td></td><td></td><td>runtime</td><td>false</td><td>product</td><td>Create minidump on VM fatal error</td><td>src/share/vm/runtime/globals.hpp</td></tr>
 <tr><td>CriticalJNINatives</td><td>JDK6</td><td></td><td>bool</td><td></td><td></td><td>runtime</td><td>true</td><td>product</td><td>Check for critical JNI entry points</td><td>src/share/vm/runtime/globals.hpp</td></tr>
+<tr><td>DSCR_DPFD_PPC64</td><td>JDK8</td><td></td><td>uint64_t</td><td></td><td>ppc</td><td></td><td>8</td><td>product</td><td>Power8 or later: DPFD (default prefetch depth) value of the Data Stream Control Register. 0: hardware default, 1: none, 2-7: min-max, 8: don't touch</td><td>src/cpu/ppc/vm/globals_ppc.hpp</td></tr>
+<tr><td>DSCR_PPC64</td><td>JDK8</td><td></td><td>uint64_t</td><td></td><td>ppc</td><td></td><td>(uintx)-1</td><td>product</td><td>Power8 or later: Specify encoded value for Data Stream Control Register</td><td>src/cpu/ppc/vm/globals_ppc.hpp</td></tr>
+<tr><td>DSCR_URG_PPC64</td><td>JDK8</td><td></td><td>uint64_t</td><td></td><td>ppc</td><td></td><td>8</td><td>product</td><td>Power8 or later: URG (depth attainment urgency) value of the Data Stream Control Register. 0: hardware default, 1: none, 2-7: min-max, 8: don't touch</td><td>src/cpu/ppc/vm/globals_ppc.hpp</td></tr>
 <tr><td>DTraceAllocProbes</td><td>JDK6</td><td></td><td>bool</td><td></td><td></td><td>runtime</td><td>false</td><td>product</td><td>Enable dtrace probes for object allocation</td><td>src/share/vm/runtime/globals.hpp</td></tr>
 <tr><td>DTraceMethodProbes</td><td>JDK6</td><td></td><td>bool</td><td></td><td></td><td>runtime</td><td>false</td><td>product</td><td>Enable dtrace probes for method-entry and method-exit</td><td>src/share/vm/runtime/globals.hpp</td></tr>
 <tr><td>DTraceMonitorProbes</td><td>JDK6</td><td></td><td>bool</td><td></td><td></td><td>runtime</td><td>false</td><td>product</td><td>Enable dtrace probes for monitor events</td><td>src/share/vm/runtime/globals.hpp</td></tr>
@@ -531,7 +546,6 @@
 <tr><td>DeoptimizeOnlyAt</td><td>JDK6</td><td></td><td>ccstrlist</td><td></td><td></td><td>runtime</td><td>A comma separated list of bcis to deoptimize at</td><td>notproduct</td><td></td><td>src/share/vm/runtime/globals.hpp</td></tr>
 <tr><td>DeoptimizeRandom</td><td>JDK6</td><td></td><td>bool</td><td></td><td></td><td>runtime</td><td>false</td><td>product</td><td>Deoptimize random frames on random exit from the runtime system</td><td>src/share/vm/runtime/globals.hpp</td></tr>
 <tr><td>DesiredMethodLimit</td><td>JDK6</td><td></td><td>intx</td><td></td><td></td><td>runtime</td><td>8000</td><td>develop</td><td>The desired maximum method size (in bytecodes) after inlining</td><td>src/share/vm/runtime/globals.hpp</td></tr>
-<tr><td>DieOnSafepointTimeout</td><td>JDK6</td><td></td><td>bool</td><td></td><td></td><td>runtime</td><td>false</td><td>develop</td><td>Die upon failure to reach safepoint (see SafepointTimeout)</td><td>src/share/vm/runtime/globals.hpp</td></tr>
 <tr><td>DisableAttachMechanism</td><td>JDK6</td><td></td><td>bool</td><td></td><td></td><td>runtime</td><td>false</td><td>product</td><td>Disable mechanism that allows tools to attach to this VM</td><td>src/share/vm/runtime/globals.hpp</td></tr>
 <tr><td>DisableExplicitGC</td><td>JDK6</td><td></td><td>bool</td><td></td><td></td><td>runtime</td><td>false</td><td>product</td><td>Ignore calls to System.gc()</td><td>src/share/vm/runtime/globals.hpp</td></tr>
 <tr><td>DisableIntrinsic</td><td>JDK6</td><td></td><td>ccstrlist</td><td></td><td></td><td>c2</td><td>do not expand intrinsics whose (internal) names appear here</td><td>diagnostic</td><td></td><td>src/share/vm/opto/c2_globals.hpp</td></tr>
@@ -573,7 +587,7 @@
 <tr><td>EnableContended</td><td>JDK8</td><td></td><td>bool</td><td></td><td></td><td>runtime</td><td>true</td><td>product</td><td>Enable @Contended annotation support</td><td>src/share/vm/runtime/globals.hpp</td></tr>
 <tr><td>EnableInvokeDynamic</td><td>JDK6</td><td></td><td>bool</td><td></td><td></td><td>runtime</td><td>true</td><td>diagnostic</td><td>support JSR 292 (method handles, invokedynamic, anonymous classes</td><td>src/share/vm/runtime/globals.hpp</td></tr>
 <tr><td>EnableTracing</td><td>JDK7</td><td><span style="white-space:nowrap">Obsoleted in JDK11</span><br><span style="white-space:nowrap">Expired in JDK12</span></td><td>bool</td><td></td><td></td><td>runtime</td><td>false</td><td>product</td><td>Enable event-based tracing</td><td>src/share/vm/runtime/globals.hpp</td></tr>
-<tr><td>ErgoHeapSizeLimit</td><td>JDK6</td><td></td><td>uintx</td><td></td><td></td><td>runtime</td><td>0</td><td>product</td><td>Maximum ergonomically set heap size (in bytes); zero means use MaxRAM / MaxRAMFraction</td><td>src/share/vm/runtime/globals.hpp</td></tr>
+<tr><td>ErgoHeapSizeLimit</td><td>JDK6</td><td></td><td>uintx</td><td></td><td></td><td>runtime</td><td>0</td><td>product</td><td>Maximum ergonomically set heap size (in bytes); zero means use MaxRAM * MaxRAMPercentage / 100</td><td>src/share/vm/runtime/globals.hpp</td></tr>
 <tr><td>ErrorFile</td><td>JDK6</td><td></td><td>ccstr</td><td></td><td></td><td>runtime</td><td>NULL</td><td>product</td><td>If an error occurs, save the error data to this file [default: ./hs_err_pid%p.log] (%p replaced with pid)</td><td>src/share/vm/runtime/globals.hpp</td></tr>
 <tr><td>ErrorHandlerTest</td><td>JDK6</td><td></td><td>uintx</td><td></td><td></td><td>runtime</td><td>0</td><td>notproduct</td><td>If &gt; 0, provokes an error after VM initialization; the value determines which error to provoke. See test_error_handler() in debug.cpp.</td><td>src/share/vm/runtime/globals.hpp</td></tr>
 <tr><td>ErrorReportServer</td><td>JDK6</td><td><span style="white-space:nowrap">Obsoleted in JDK12</span><br><span style="white-space:nowrap">Expired in JDK13</span></td><td>ccstr</td><td></td><td></td><td>runtime</td><td>NULL</td><td>product</td><td>Override built-in error report server address</td><td>src/share/vm/runtime/globals.hpp</td></tr>
@@ -782,6 +796,7 @@
 <tr><td>InitialCodeCacheSize</td><td>JDK6</td><td></td><td>intx</td><td></td><td>zero</td><td>shark</td><td>160*K</td><td>define_pd_global</td><td></td><td>src/cpu/zero/vm/shark_globals_zero.hpp</td></tr>
 <tr><td>InitialHeapSize</td><td>JDK6</td><td></td><td>uintx</td><td></td><td></td><td>runtime</td><td>0</td><td>product</td><td>Initial heap size (in bytes); zero means use ergonomics</td><td>src/share/vm/runtime/globals.hpp</td></tr>
 <tr><td>InitialRAMFraction</td><td>JDK6</td><td><span style="white-space:nowrap">Deprecated in JDK10</span></td><td>uintx</td><td></td><td></td><td>runtime</td><td>64</td><td>product</td><td>Fraction (1/n) of real memory used for initial heap size</td><td>src/share/vm/runtime/globals.hpp</td></tr>
+<tr><td>InitialRAMPercentage</td><td>JDK8</td><td></td><td>double</td><td></td><td></td><td>runtime</td><td>1.5625</td><td>product</td><td>Percentage of real memory used for initial heap size</td><td>src/share/vm/runtime/globals.hpp</td></tr>
 <tr><td>InitialSurvivorRatio</td><td>JDK6</td><td></td><td>uintx</td><td></td><td></td><td>runtime</td><td>8</td><td>product</td><td>Initial ratio of young generation/survivor space size</td><td>src/share/vm/runtime/globals.hpp</td></tr>
 <tr><td>InitialTenuringThreshold</td><td>JDK6</td><td></td><td>uintx</td><td></td><td></td><td>runtime</td><td>7</td><td>product</td><td>Initial value for tenuring threshold</td><td>src/share/vm/runtime/globals.hpp</td></tr>
 <tr><td>InitiatingHeapOccupancyPercent</td><td>JDK6</td><td></td><td>uintx</td><td></td><td></td><td>runtime</td><td>45</td><td>product</td><td>Percentage of the (entire) heap occupancy to start a concurrent GC cycle. It is used by GCs that trigger a concurrent GC cycle based on the occupancy of the entire heap, not just one of the generations (e.g., G1). A value of 0 denotes 'do constant GC cycles'.</td><td>src/share/vm/runtime/globals.hpp</td></tr>
@@ -920,6 +935,7 @@
 <tr><td>MaxNodeLimit</td><td>JDK6</td><td></td><td>intx</td><td></td><td></td><td>c2</td><td>80000</td><td>product</td><td>Maximum number of nodes</td><td>src/share/vm/opto/c2_globals.hpp</td></tr>
 <tr><td>MaxNodeLimit</td><td>JDK6</td><td></td><td>intx</td><td></td><td></td><td>shark</td><td>65000</td><td>product</td><td>Maximum number of nodes</td><td>src/share/vm/shark/shark_globals.hpp</td></tr>
 <tr><td>MaxRAMFraction</td><td>JDK6</td><td><span style="white-space:nowrap">Deprecated in JDK10</span></td><td>uintx</td><td></td><td></td><td>runtime</td><td>4</td><td>product</td><td>Maximum fraction (1/n) of real memory used for maximum heap size</td><td>src/share/vm/runtime/globals.hpp</td></tr>
+<tr><td>MaxRAMPercentage</td><td>JDK8</td><td></td><td>double</td><td></td><td></td><td>runtime</td><td>25.0</td><td>product</td><td>Maximum percentage of real memory used for maximum heap size</td><td>src/share/vm/runtime/globals.hpp</td></tr>
 <tr><td>MaxRAM</td><td>JDK6</td><td></td><td>uint64_t</td><td></td><td></td><td>runtime</td><td></td><td>product_pd</td><td>Real memory size (in bytes) used to set maximum heap size</td><td>src/share/vm/runtime/globals.hpp</td></tr>
 <tr><td>MaxRAM</td><td>JDK6</td><td></td><td>uint64_t</td><td></td><td>ppc</td><td>c2</td><td>4ULL*G</td><td>define_pd_global</td><td></td><td>src/cpu/ppc/vm/c2_globals_ppc.hpp</td></tr>
 <tr><td>MaxRAM</td><td>JDK6</td><td></td><td>uint64_t</td><td></td><td>sparc</td><td>c1</td><td>1ULL*G</td><td>define_pd_global</td><td></td><td>src/cpu/sparc/vm/c1_globals_sparc.hpp</td></tr>
@@ -958,6 +974,7 @@
 <tr><td>MinMetaspaceFreeRatio</td><td>JDK8</td><td></td><td>uintx</td><td></td><td></td><td>runtime</td><td>40</td><td>product</td><td>The minimum percentage of Metaspace free after GC to avoid expansion</td><td>src/share/vm/runtime/globals.hpp</td></tr>
 <tr><td>MinOopMapAllocation</td><td>JDK6</td><td></td><td>intx</td><td></td><td></td><td>runtime</td><td>8</td><td>develop</td><td>Minimum number of OopMap entries in an OopMapSet</td><td>src/share/vm/runtime/globals.hpp</td></tr>
 <tr><td>MinRAMFraction</td><td>JDK6</td><td><span style="white-space:nowrap">Deprecated in JDK10</span></td><td>uintx</td><td></td><td></td><td>runtime</td><td>2</td><td>product</td><td>Minimum fraction (1/n) of real memory used for maxmimum heap size on systems with small physical memory size</td><td>src/share/vm/runtime/globals.hpp</td></tr>
+<tr><td>MinRAMPercentage</td><td>JDK8</td><td></td><td>double</td><td></td><td></td><td>runtime</td><td>50.0</td><td>product</td><td>Minimum percentage of real memory used for maximum heapsize on systems with small physical memory size</td><td>src/share/vm/runtime/globals.hpp</td></tr>
 <tr><td>MinSleepInterval</td><td>JDK6</td><td><span style="white-space:nowrap">Deprecated in JDK9</span><br><span style="white-space:nowrap">Obsoleted in JDK10</span><br><span style="white-space:nowrap">Expired in JDK11</span></td><td>intx</td><td></td><td></td><td>runtime</td><td>1</td><td>develop</td><td>Minimum sleep() interval (milliseconds) when ConvertSleepToYield is off (used for Solaris)</td><td>src/share/vm/runtime/globals.hpp</td></tr>
 <tr><td>MinSurvivorRatio</td><td>JDK6</td><td></td><td>uintx</td><td></td><td></td><td>runtime</td><td>3</td><td>product</td><td>Minimum ratio of young generation/survivor space size</td><td>src/share/vm/runtime/globals.hpp</td></tr>
 <tr><td>MinTLABSize</td><td>JDK6</td><td></td><td>uintx</td><td></td><td></td><td>runtime</td><td>2*K</td><td>product</td><td>Minimum allowed TLAB size (in bytes)</td><td>src/share/vm/runtime/globals.hpp</td></tr>
@@ -1119,6 +1136,7 @@
 <tr><td>PreInflateSpin</td><td>JDK6</td><td></td><td>intx</td><td></td><td>zero</td><td></td><td>10</td><td>define_pd_global</td><td></td><td>src/cpu/zero/vm/globals_zero.hpp</td></tr>
 <tr><td>PreallocatedOutOfMemoryErrorCount</td><td>JDK6</td><td></td><td>uintx</td><td></td><td></td><td>runtime</td><td>4</td><td>develop</td><td>Number of OutOfMemoryErrors preallocated with backtrace</td><td>src/share/vm/runtime/globals.hpp</td></tr>
 <tr><td>PredictedLoadedClassCount</td><td>JDK6</td><td></td><td>intx</td><td></td><td></td><td>runtime</td><td>0</td><td>experimental</td><td>Experimental: Tune loaded class cache starting size</td><td>src/share/vm/runtime/globals.hpp</td></tr>
+<tr><td>PreferContainerQuotaForCPUCount</td><td>JDK8</td><td></td><td>bool</td><td>linux</td><td></td><td></td><td>true</td><td>product</td><td>Calculate the container CPU availability based on the value of quotas (if set), when true. Otherwise, use the CPU shares value, provided it is less than quota.</td><td>src/os/linux/vm/globals_linux.hpp</td></tr>
 <tr><td>PreferInterpreterNativeStubs</td><td>JDK6</td><td></td><td>bool</td><td></td><td></td><td>runtime</td><td></td><td>product_pd</td><td>Use always interpreter stubs for native methods invoked via interpreter</td><td>src/share/vm/runtime/globals.hpp</td></tr>
 <tr><td>PreferInterpreterNativeStubs</td><td>JDK6</td><td></td><td>bool</td><td></td><td>ppc</td><td>c2</td><td>false</td><td>define_pd_global</td><td></td><td>src/cpu/ppc/vm/c2_globals_ppc.hpp</td></tr>
 <tr><td>PreferInterpreterNativeStubs</td><td>JDK6</td><td></td><td>bool</td><td></td><td>sparc</td><td>c1</td><td>false</td><td>define_pd_global</td><td></td><td>src/cpu/sparc/vm/c1_globals_sparc.hpp</td></tr>
@@ -1136,7 +1154,7 @@
 <tr><td>PreserveFramePointer</td><td>JDK8</td><td></td><td>bool</td><td></td><td>x86</td><td></td><td>false</td><td>define_pd_global</td><td></td><td>src/cpu/x86/vm/globals_x86.hpp</td></tr>
 <tr><td>PreserveFramePointer</td><td>JDK8</td><td></td><td>bool</td><td></td><td>zero</td><td></td><td>false</td><td>define_pd_global</td><td></td><td>src/cpu/zero/vm/globals_zero.hpp</td></tr>
 <tr><td>PretenureSizeThreshold</td><td>JDK6</td><td></td><td>uintx</td><td></td><td></td><td>runtime</td><td>0</td><td>product</td><td>Maximum size in bytes of objects allocated in DefNew generation; zero means no maximum</td><td>src/share/vm/runtime/globals.hpp</td></tr>
-<tr><td>PrintActiveCpus</td><td>JDK8</td><td></td><td>bool</td><td>linux</td><td></td><td></td><td>false</td><td>diagnostic</td><td>Print the number of CPUs detected in os::active_processor_count</td><td>src/os/linux/vm/globals_linux.hpp</td></tr>
+<tr><td>PrintActiveCpus</td><td>JDK8</td><td></td><td>bool</td><td></td><td></td><td>runtime</td><td>false</td><td>diagnostic</td><td>Print the number of CPUs detected in os::active_processor_count</td><td>src/share/vm/runtime/globals.hpp</td></tr>
 <tr><td>PrintAdapterHandlers</td><td>JDK6</td><td></td><td>bool</td><td></td><td></td><td>runtime</td><td>false</td><td>diagnostic</td><td>Print code generated for i2c/c2i adapters</td><td>src/share/vm/runtime/globals.hpp</td></tr>
 <tr><td>PrintAdaptiveSizePolicy</td><td>JDK6</td><td></td><td>bool</td><td></td><td></td><td>runtime</td><td>false</td><td>product</td><td>Print information about AdaptiveSizePolicy</td><td>src/share/vm/runtime/globals.hpp</td></tr>
 <tr><td>PrintAssemblyOptions</td><td>JDK6</td><td></td><td>ccstr</td><td></td><td></td><td>runtime</td><td>NULL</td><td>diagnostic</td><td>Print options string passed to disassembler.so</td><td>src/share/vm/runtime/globals.hpp</td></tr>
@@ -1170,6 +1188,7 @@
 <tr><td>PrintCompilation</td><td>JDK6</td><td></td><td>bool</td><td></td><td></td><td>runtime</td><td>false</td><td>product</td><td>Print compilations</td><td>src/share/vm/runtime/globals.hpp</td></tr>
 <tr><td>PrintCompressedOopsMode</td><td>JDK6</td><td></td><td>bool</td><td></td><td></td><td>runtime</td><td>false</td><td>diagnostic</td><td>Print compressed oops base address and encoding mode</td><td>src/share/vm/runtime/globals.hpp</td></tr>
 <tr><td>PrintConcurrentLocks</td><td>JDK6</td><td></td><td>bool</td><td></td><td></td><td>runtime</td><td>false</td><td>manageable</td><td>Print java.util.concurrent locks in thread dump</td><td>src/share/vm/runtime/globals.hpp</td></tr>
+<tr><td>PrintContainerInfo</td><td>JDK8</td><td></td><td>bool</td><td></td><td></td><td>runtime</td><td>false</td><td>diagnostic</td><td>Print container related information</td><td>src/share/vm/runtime/globals.hpp</td></tr>
 <tr><td>PrintDTraceDOF</td><td>JDK6</td><td></td><td>bool</td><td></td><td></td><td>runtime</td><td>false</td><td>diagnostic</td><td>Print the DTrace DOF passed to the system for JSDT probes</td><td>src/share/vm/runtime/globals.hpp</td></tr>
 <tr><td>PrintDebugInfo</td><td>JDK6</td><td></td><td>bool</td><td></td><td></td><td>runtime</td><td>false</td><td>develop</td><td>Print debug information for all nmethods when generated</td><td>src/share/vm/runtime/globals.hpp</td></tr>
 <tr><td>PrintDependencies</td><td>JDK6</td><td></td><td>bool</td><td></td><td></td><td>runtime</td><td>false</td><td>develop</td><td>Print dependency information for all nmethods when generated</td><td>src/share/vm/runtime/globals.hpp</td></tr>
@@ -1737,7 +1756,7 @@
 <tr><td>UseC1Optimizations</td><td>JDK6</td><td></td><td>bool</td><td></td><td></td><td>c1</td><td>true</td><td>develop</td><td>Turn on C1 optimizations</td><td>src/share/vm/c1/c1_globals.hpp</td></tr>
 <tr><td>UseCASForSwap</td><td>JDK6</td><td></td><td>bool</td><td></td><td>sparc</td><td></td><td>false</td><td>develop</td><td>Do not use swap instructions, but only CAS (in a loop) on SPARC</td><td>src/cpu/sparc/vm/globals_sparc.hpp</td></tr>
 <tr><td>UseCBCond</td><td>JDK6</td><td></td><td>bool</td><td></td><td>sparc</td><td></td><td>false</td><td>product</td><td>Use compare and branch instruction on SPARC</td><td>src/cpu/sparc/vm/globals_sparc.hpp</td></tr>
-<tr><td>UseCGroupMemoryLimitForHeap</td><td>JDK7</td><td><span style="white-space:nowrap">Deprecated in JDK10</span><br><span style="white-space:nowrap">Expired in JDK11</span></td><td>bool</td><td></td><td></td><td>runtime</td><td>false</td><td>experimental</td><td>Use CGroup memory limit as physical memory limit for heap sizing</td><td>src/share/vm/runtime/globals.hpp</td></tr>
+<tr><td>UseCGroupMemoryLimitForHeap</td><td>JDK7</td><td><span style="white-space:nowrap">Deprecated in JDK10</span><br><span style="white-space:nowrap">Expired in JDK11</span></td><td>bool</td><td></td><td></td><td>runtime</td><td>false</td><td>experimental</td><td>Use CGroup memory limit as physical memory limit for heap sizingDeprecated, replaced by container support</td><td>src/share/vm/runtime/globals.hpp</td></tr>
 <tr><td>UseCHA</td><td>JDK6</td><td></td><td>bool</td><td></td><td></td><td>runtime</td><td>true</td><td>develop</td><td>Enable CHA</td><td>src/share/vm/runtime/globals.hpp</td></tr>
 <tr><td>UseCISCSpill</td><td>JDK6</td><td></td><td>bool</td><td></td><td></td><td>c2</td><td></td><td>develop_pd</td><td>Use ADLC supplied cisc instructions during allocation</td><td>src/share/vm/opto/c2_globals.hpp</td></tr>
 <tr><td>UseCISCSpill</td><td>JDK6</td><td></td><td>bool</td><td></td><td>ppc</td><td>c2</td><td>false</td><td>define_pd_global</td><td></td><td>src/cpu/ppc/vm/c2_globals_ppc.hpp</td></tr>
@@ -1757,6 +1776,7 @@
 <tr><td>UseCompressedOops</td><td>JDK6</td><td></td><td>bool</td><td></td><td></td><td>runtime</td><td>false</td><td>lp64_product</td><td>Use 32-bit object references in 64-bit VM. lp64_product means flag is always constant in 32 bit VM</td><td>src/share/vm/runtime/globals.hpp</td></tr>
 <tr><td>UseConcMarkSweepGC</td><td>JDK6</td><td><span style="white-space:nowrap">Deprecated in JDK9</span></td><td>bool</td><td></td><td></td><td>runtime</td><td>false</td><td>product</td><td>Use Concurrent Mark-Sweep GC in the old generation</td><td>src/share/vm/runtime/globals.hpp</td></tr>
 <tr><td>UseCondCardMark</td><td>JDK6</td><td></td><td>bool</td><td></td><td></td><td>c2</td><td>false</td><td>product</td><td>Check for already marked card before updating card table</td><td>src/share/vm/opto/c2_globals.hpp</td></tr>
+<tr><td>UseContainerSupport</td><td>JDK8</td><td></td><td>bool</td><td>linux</td><td></td><td></td><td>true</td><td>product</td><td>Enable detection and runtime container configuration support</td><td>src/os/linux/vm/globals_linux.hpp</td></tr>
 <tr><td>UseCountLeadingZerosInstruction</td><td>JDK6</td><td></td><td>bool</td><td></td><td>x86</td><td></td><td>false</td><td>product</td><td>Use count leading zeros instruction</td><td>src/cpu/x86/vm/globals_x86.hpp</td></tr>
 <tr><td>UseCountLeadingZerosInstructionsPPC64</td><td>JDK7</td><td></td><td>bool</td><td></td><td>ppc</td><td></td><td>true</td><td>product</td><td>Use count leading zeros instructions.</td><td>src/cpu/ppc/vm/globals_ppc.hpp</td></tr>
 <tr><td>UseCountTrailingZerosInstruction</td><td>JDK8</td><td></td><td>bool</td><td></td><td>x86</td><td></td><td>false</td><td>product</td><td>Use count trailing zeros instruction</td><td>src/cpu/x86/vm/globals_x86.hpp</td></tr>
@@ -2045,7 +2065,7 @@ The -X options are non-standard and subject to change without notice.</pre></td>
 		</tbody>
 	</table>
 	<div class="footer">
-		Built on Tue Oct 29 17:05:58 GMT 2019 from HotSpot sources by <a
+		Built on Tue Nov 12 08:57:15 GMT 2019 from HotSpot sources by <a
 			href="https://twitter.com/chriswhocodes">@chriswhocodes</a>
 	</div>
 </body>

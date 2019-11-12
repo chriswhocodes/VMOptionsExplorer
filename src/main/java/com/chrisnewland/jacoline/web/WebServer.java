@@ -6,7 +6,8 @@ package com.chrisnewland.jacoline.web;
 
 import com.chrisnewland.jacoline.dto.DatabaseManager;
 import com.chrisnewland.jacoline.web.filter.RequestFilter;
-import com.chrisnewland.jacoline.web.service.ServiceUtil;
+import com.chrisnewland.jacoline.web.service.*;
+
 import org.eclipse.jetty.server.Server;
 import org.eclipse.jetty.servlet.DefaultServlet;
 import org.eclipse.jetty.servlet.ServletContextHandler;
@@ -20,11 +21,12 @@ import java.nio.file.Paths;
 
 public class WebServer
 {
-	public static void main(String[] args)
+	public static void main(String[] args) throws Exception
 	{
-		if (args.length != 3)
+		if (args.length != 4)
 		{
-			System.err.println("WebServer <resources dir> <database properties file> <bad words file>");
+			System.err.println("WebServer <resources dir> <database properties file> <serialised dir> <bad words file>");
+			System.exit(-1);
 		}
 
 		Path resourcesPath = Paths.get(args[0]);
@@ -37,7 +39,11 @@ public class WebServer
 
 		ResourceConfig config = new ResourceConfig();
 
-		Path badWordsPath = Paths.get(args[2]);
+		Path serialisedPath = Paths.get(args[2]);
+
+		CommandLineService.initialise(serialisedPath);
+
+		Path badWordsPath = Paths.get(args[3]);
 
 		RequestFilter.initialise(badWordsPath);
 

@@ -9,7 +9,16 @@
     <link rel="stylesheet" type="text/css" href="css/style-vmoe.css">
 </head>
 <body>
-<h1>VM Options Explorer - Differences between HotSpot VM Versions</h1>
+
+<div class="title_wrap">
+    <div class="title">
+        <h1>VM Options Explorer - Differences between HotSpot VM Versions</h1>
+    </div>
+    <div class="sponsor">
+        <a href="https://github.com/sponsors/chriswhocodes">Sponsor me on GitHub!</a>
+    </div>
+    <div class="divclear"></div>
+</div>
 
 <div class="menucontainer">
     <div class="menuwrap">
@@ -248,6 +257,7 @@
 <tr><td><a href="hotspot_options_jdk7.html?s=CMSRevisitStackSize">CMSRevisitStackSize</a></td><td>product</td><td></td><td></td><td></td></tr>
 <tr><td><a href="hotspot_options_jdk7.html?s=CMSTriggerPermRatio">CMSTriggerPermRatio</a></td><td>product</td><td></td><td></td><td></td></tr>
 <tr><td><a href="hotspot_options_jdk7.html?s=CodeCacheFlushingMinimumFreeSpace">CodeCacheFlushingMinimumFreeSpace</a></td><td>product</td><td></td><td></td><td></td></tr>
+<tr><td><a href="hotspot_options_jdk7.html?s=DieOnSafepointTimeout">DieOnSafepointTimeout</a></td><td>develop</td><td></td><td></td><td></td></tr>
 <tr><td><a href="hotspot_options_jdk7.html?s=G1DeferredRSUpdate">G1DeferredRSUpdate</a></td><td>develop</td><td></td><td></td><td></td></tr>
 <tr><td><a href="hotspot_options_jdk7.html?s=G1ExtraRegionSurvRate">G1ExtraRegionSurvRate</a></td><td>develop</td><td></td><td></td><td></td></tr>
 <tr><td><a href="hotspot_options_jdk7.html?s=G1InitYoungSurvRatio">G1InitYoungSurvRatio</a></td><td>develop</td><td></td><td></td><td></td></tr>
@@ -285,7 +295,10 @@
 <tr><td><a href="hotspot_options_jdk7.html?s=V8AtomicOperationUnderLockSpinCount">V8AtomicOperationUnderLockSpinCount</a></td><td>develop</td><td></td><td></td><td></td></tr>
 <tr><td><a href="hotspot_options_jdk7.html?s=ValidateMarkSweep">ValidateMarkSweep</a></td><td>notproduct</td><td></td><td></td><td></td></tr>
 <tr><td><a href="hotspot_options_jdk7.html?s=VerifyOopMaps">VerifyOopMaps</a></td><td>notproduct</td><td></td><td></td><td></td></tr>
-</table></div><div class="wrap"><h3 class="deltaH3">Added in JDK8</h3><table class="deltatable added"><tr><th>Name</th><th>Availability</th></tr><tr><td><a href="hotspot_options_jdk8.html?s=AggressiveUnboxing">AggressiveUnboxing</a></td><td>experimental</td></tr>
+</table></div><div class="wrap"><h3 class="deltaH3">Added in JDK8</h3><table class="deltatable added"><tr><th>Name</th><th>Availability</th></tr><tr><td><a href="hotspot_options_jdk8.html?s=AbortVMOnSafepointTimeout">AbortVMOnSafepointTimeout</a></td><td>diagnostic</td></tr>
+<tr><td><a href="hotspot_options_jdk8.html?s=ActiveProcessorCount">ActiveProcessorCount</a></td><td>product</td></tr>
+<tr><td><a href="hotspot_options_jdk8.html?s=AggressiveHeap">AggressiveHeap</a></td><td>product</td></tr>
+<tr><td><a href="hotspot_options_jdk8.html?s=AggressiveUnboxing">AggressiveUnboxing</a></td><td>experimental</td></tr>
 <tr><td><a href="hotspot_options_jdk8.html?s=AssertRangeCheckElimination">AssertRangeCheckElimination</a></td><td>develop</td></tr>
 <tr><td><a href="hotspot_options_jdk8.html?s=AssumeMP">AssumeMP</a></td><td>product</td></tr>
 <tr><td><a href="hotspot_options_jdk8.html?s=C1PatchInvokeDynamic">C1PatchInvokeDynamic</a></td><td>diagnostic</td></tr>
@@ -297,6 +310,9 @@
 <tr><td><a href="hotspot_options_jdk8.html?s=CompressedClassSpaceSize">CompressedClassSpaceSize</a></td><td>product</td></tr>
 <tr><td><a href="hotspot_options_jdk8.html?s=ContendedPaddingWidth">ContendedPaddingWidth</a></td><td>product</td></tr>
 <tr><td><a href="hotspot_options_jdk8.html?s=CrashOnOutOfMemoryError">CrashOnOutOfMemoryError</a></td><td>product</td></tr>
+<tr><td><a href="hotspot_options_jdk8.html?s=DSCR_DPFD_PPC64">DSCR_DPFD_PPC64</a></td><td>product</td></tr>
+<tr><td><a href="hotspot_options_jdk8.html?s=DSCR_PPC64">DSCR_PPC64</a></td><td>product</td></tr>
+<tr><td><a href="hotspot_options_jdk8.html?s=DSCR_URG_PPC64">DSCR_URG_PPC64</a></td><td>product</td></tr>
 <tr><td><a href="hotspot_options_jdk8.html?s=DisablePrimordialThreadGuardPages">DisablePrimordialThreadGuardPages</a></td><td>experimental</td></tr>
 <tr><td><a href="hotspot_options_jdk8.html?s=DumpLoadedClassList">DumpLoadedClassList</a></td><td>product</td></tr>
 <tr><td><a href="hotspot_options_jdk8.html?s=DumpReplayDataOnError">DumpReplayDataOnError</a></td><td>product</td></tr>
@@ -314,22 +330,27 @@
 <tr><td><a href="hotspot_options_jdk8.html?s=IgnoreUnverifiableClassesDuringDump">IgnoreUnverifiableClassesDuringDump</a></td><td>diagnostic</td></tr>
 <tr><td><a href="hotspot_options_jdk8.html?s=IncreaseFirstTierCompileThresholdAt">IncreaseFirstTierCompileThresholdAt</a></td><td>product</td></tr>
 <tr><td><a href="hotspot_options_jdk8.html?s=InitialBootClassLoaderMetaspaceSize">InitialBootClassLoaderMetaspaceSize</a></td><td>product</td></tr>
+<tr><td><a href="hotspot_options_jdk8.html?s=InitialRAMPercentage">InitialRAMPercentage</a></td><td>product</td></tr>
 <tr><td><a href="hotspot_options_jdk8.html?s=InlineDataFile">InlineDataFile</a></td><td>product</td></tr>
 <tr><td><a href="hotspot_options_jdk8.html?s=MallocMaxTestWords">MallocMaxTestWords</a></td><td>diagnostic</td></tr>
 <tr><td><a href="hotspot_options_jdk8.html?s=MaxJNILocalCapacity">MaxJNILocalCapacity</a></td><td>product</td></tr>
 <tr><td><a href="hotspot_options_jdk8.html?s=MaxMetaspaceExpansion">MaxMetaspaceExpansion</a></td><td>product</td></tr>
 <tr><td><a href="hotspot_options_jdk8.html?s=MaxMetaspaceFreeRatio">MaxMetaspaceFreeRatio</a></td><td>product</td></tr>
 <tr><td><a href="hotspot_options_jdk8.html?s=MaxMetaspaceSize">MaxMetaspaceSize</a></td><td>product</td></tr>
+<tr><td><a href="hotspot_options_jdk8.html?s=MaxRAMPercentage">MaxRAMPercentage</a></td><td>product</td></tr>
 <tr><td><a href="hotspot_options_jdk8.html?s=MetadataAllocationFailALot">MetadataAllocationFailALot</a></td><td>develop</td></tr>
 <tr><td><a href="hotspot_options_jdk8.html?s=MetadataAllocationFailALotInterval">MetadataAllocationFailALotInterval</a></td><td>develop</td></tr>
 <tr><td><a href="hotspot_options_jdk8.html?s=MetaspaceSize">MetaspaceSize</a></td><td>product_pd</td></tr>
 <tr><td><a href="hotspot_options_jdk8.html?s=MinMetaspaceExpansion">MinMetaspaceExpansion</a></td><td>product</td></tr>
 <tr><td><a href="hotspot_options_jdk8.html?s=MinMetaspaceFreeRatio">MinMetaspaceFreeRatio</a></td><td>product</td></tr>
+<tr><td><a href="hotspot_options_jdk8.html?s=MinRAMPercentage">MinRAMPercentage</a></td><td>product</td></tr>
 <tr><td><a href="hotspot_options_jdk8.html?s=NmethodSweepActivity">NmethodSweepActivity</a></td><td>product</td></tr>
 <tr><td><a href="hotspot_options_jdk8.html?s=PerMethodSpecTrapLimit">PerMethodSpecTrapLimit</a></td><td>experimental</td></tr>
+<tr><td><a href="hotspot_options_jdk8.html?s=PreferContainerQuotaForCPUCount">PreferContainerQuotaForCPUCount</a></td><td>product</td></tr>
 <tr><td><a href="hotspot_options_jdk8.html?s=PreserveFramePointer">PreserveFramePointer</a></td><td>product_pd</td></tr>
 <tr><td><a href="hotspot_options_jdk8.html?s=PrintActiveCpus">PrintActiveCpus</a></td><td>diagnostic</td></tr>
 <tr><td><a href="hotspot_options_jdk8.html?s=PrintCodeCacheOnCompilation">PrintCodeCacheOnCompilation</a></td><td>product</td></tr>
+<tr><td><a href="hotspot_options_jdk8.html?s=PrintContainerInfo">PrintContainerInfo</a></td><td>diagnostic</td></tr>
 <tr><td><a href="hotspot_options_jdk8.html?s=PrintFieldLayout">PrintFieldLayout</a></td><td>notproduct</td></tr>
 <tr><td><a href="hotspot_options_jdk8.html?s=PrintGCID">PrintGCID</a></td><td>manageable</td></tr>
 <tr><td><a href="hotspot_options_jdk8.html?s=PrintMethodFlushingStatistics">PrintMethodFlushingStatistics</a></td><td>diagnostic</td></tr>
@@ -384,6 +405,7 @@
 <tr><td><a href="hotspot_options_jdk8.html?s=UseCLMUL">UseCLMUL</a></td><td>product</td></tr>
 <tr><td><a href="hotspot_options_jdk8.html?s=UseCRC32Intrinsics">UseCRC32Intrinsics</a></td><td>product</td></tr>
 <tr><td><a href="hotspot_options_jdk8.html?s=UseCompressedClassPointers">UseCompressedClassPointers</a></td><td>lp64_product</td></tr>
+<tr><td><a href="hotspot_options_jdk8.html?s=UseContainerSupport">UseContainerSupport</a></td><td>product</td></tr>
 <tr><td><a href="hotspot_options_jdk8.html?s=UseCountTrailingZerosInstruction">UseCountTrailingZerosInstruction</a></td><td>product</td></tr>
 <tr><td><a href="hotspot_options_jdk8.html?s=UseImplicitStableValues">UseImplicitStableValues</a></td><td>diagnostic</td></tr>
 <tr><td><a href="hotspot_options_jdk8.html?s=UseInlineDepthForSpeculativeTypes">UseInlineDepthForSpeculativeTypes</a></td><td>diagnostic</td></tr>
@@ -409,8 +431,11 @@
 <tr><td><a href="hotspot_options_jdk8.html?s=VerifySharedSpaces">VerifySharedSpaces</a></td><td>product</td></tr>
 <tr><td><a href="hotspot_options_jdk8.html?s=VerifyStringTableAtExit">VerifyStringTableAtExit</a></td><td>diagnostic</td></tr>
 <tr><td><a href="hotspot_options_jdk8.html?s=VerifySubSet">VerifySubSet</a></td><td>diagnostic</td></tr>
-</table></div></div><div class="dtclear"></div><hr><h2 class="deltaH2" id="JDK9">Differences between JDK8 and JDK9</h2><hr><div class="dtwrapper"><div class="wrap"><h3 class="deltaH3">Removed in JDK9</h3><table class="deltatable removed"><tr><th>Name</th><th>Availability</th><th><a class="glossaryLink" href="#glossary">Deprecated</a></th><th><a class="glossaryLink" href="#glossary">Obsoleted</a></th><th><a class="glossaryLink" href="#glossary">Expired</a></th></tr><tr><td><a href="hotspot_options_jdk8.html?s=AdaptiveSizePausePolicy">AdaptiveSizePausePolicy</a></td><td>product</td><td></td><td></td><td></td></tr>
+</table></div></div><div class="dtclear"></div><hr><h2 class="deltaH2" id="JDK9">Differences between JDK8 and JDK9</h2><hr><div class="dtwrapper"><div class="wrap"><h3 class="deltaH3">Removed in JDK9</h3><table class="deltatable removed"><tr><th>Name</th><th>Availability</th><th><a class="glossaryLink" href="#glossary">Deprecated</a></th><th><a class="glossaryLink" href="#glossary">Obsoleted</a></th><th><a class="glossaryLink" href="#glossary">Expired</a></th></tr><tr><td><a href="hotspot_options_jdk8.html?s=AbortVMOnSafepointTimeout">AbortVMOnSafepointTimeout</a></td><td>diagnostic</td><td></td><td></td><td></td></tr>
+<tr><td><a href="hotspot_options_jdk8.html?s=ActiveProcessorCount">ActiveProcessorCount</a></td><td>product</td><td></td><td></td><td></td></tr>
+<tr><td><a href="hotspot_options_jdk8.html?s=AdaptiveSizePausePolicy">AdaptiveSizePausePolicy</a></td><td>product</td><td></td><td></td><td></td></tr>
 <tr><td><a href="hotspot_options_jdk8.html?s=AdjustConcurrency">AdjustConcurrency</a></td><td>product</td><td></td><td></td><td></td></tr>
+<tr><td><a href="hotspot_options_jdk8.html?s=AggressiveHeap">AggressiveHeap</a></td><td>product</td><td></td><td></td><td></td></tr>
 <tr><td><a href="hotspot_options_jdk8.html?s=AssertRepeat">AssertRepeat</a></td><td>notproduct</td><td></td><td></td><td></td></tr>
 <tr><td><a href="hotspot_options_jdk8.html?s=C1PatchInvokeDynamic">C1PatchInvokeDynamic</a></td><td>diagnostic</td><td></td><td></td><td></td></tr>
 <tr><td><a href="hotspot_options_jdk8.html?s=CMSCompactWhenClearAllSoftRefs">CMSCompactWhenClearAllSoftRefs</a></td><td>product</td><td></td><td></td><td></td></tr>
@@ -471,11 +496,14 @@
 <tr><td><a href="hotspot_options_jdk8.html?s=GenerateCompilerNullChecks">GenerateCompilerNullChecks</a></td><td>develop</td><td></td><td></td><td></td></tr>
 <tr><td><a href="hotspot_options_jdk8.html?s=HandleAllocationLimit">HandleAllocationLimit</a></td><td>notproduct</td><td></td><td></td><td></td></tr>
 <tr><td><a href="hotspot_options_jdk8.html?s=HeapDumpSegmentSize">HeapDumpSegmentSize</a></td><td>develop</td><td></td><td></td><td></td></tr>
+<tr><td><a href="hotspot_options_jdk8.html?s=InitialRAMPercentage">InitialRAMPercentage</a></td><td>product</td><td></td><td></td><td></td></tr>
 <tr><td><a href="hotspot_options_jdk8.html?s=JNIDetachReleasesMonitors">JNIDetachReleasesMonitors</a></td><td>product</td><td></td><td></td><td></td></tr>
 <tr><td><a href="hotspot_options_jdk8.html?s=LazyBootClassLoader">LazyBootClassLoader</a></td><td>product</td><td></td><td></td><td></td></tr>
 <tr><td><a href="hotspot_options_jdk8.html?s=LoopLimitCheck">LoopLimitCheck</a></td><td>diagnostic</td><td></td><td></td><td></td></tr>
 <tr><td><a href="hotspot_options_jdk8.html?s=MallocVerifyInterval">MallocVerifyInterval</a></td><td>diagnostic</td><td></td><td></td><td></td></tr>
 <tr><td><a href="hotspot_options_jdk8.html?s=MallocVerifyStart">MallocVerifyStart</a></td><td>diagnostic</td><td></td><td></td><td></td></tr>
+<tr><td><a href="hotspot_options_jdk8.html?s=MaxRAMPercentage">MaxRAMPercentage</a></td><td>product</td><td></td><td></td><td></td></tr>
+<tr><td><a href="hotspot_options_jdk8.html?s=MinRAMPercentage">MinRAMPercentage</a></td><td>product</td><td></td><td></td><td></td></tr>
 <tr><td><a href="hotspot_options_jdk8.html?s=NmethodSweepCheckInterval">NmethodSweepCheckInterval</a></td><td>product</td><td></td><td></td><td></td></tr>
 <tr><td><a href="hotspot_options_jdk8.html?s=NmethodSweepFraction">NmethodSweepFraction</a></td><td>product</td><td></td><td></td><td></td></tr>
 <tr><td><a href="hotspot_options_jdk8.html?s=NoYieldsInMicrolock">NoYieldsInMicrolock</a></td><td>develop</td><td></td><td></td><td></td></tr>
@@ -487,6 +515,7 @@
 <tr><td><a href="hotspot_options_jdk8.html?s=ParallelOldGCSplitALot">ParallelOldGCSplitALot</a></td><td>develop</td><td></td><td></td><td></td></tr>
 <tr><td><a href="hotspot_options_jdk8.html?s=ParallelOldGCSplitInterval">ParallelOldGCSplitInterval</a></td><td>develop</td><td></td><td></td><td></td></tr>
 <tr><td><a href="hotspot_options_jdk8.html?s=PreInflateSpin">PreInflateSpin</a></td><td>product_pd</td><td></td><td></td><td></td></tr>
+<tr><td><a href="hotspot_options_jdk8.html?s=PreferContainerQuotaForCPUCount">PreferContainerQuotaForCPUCount</a></td><td>product</td><td></td><td></td><td></td></tr>
 <tr><td><a href="hotspot_options_jdk8.html?s=PrintActiveCpus">PrintActiveCpus</a></td><td>diagnostic</td><td></td><td></td><td></td></tr>
 <tr><td><a href="hotspot_options_jdk8.html?s=PrintAdaptiveSizePolicy">PrintAdaptiveSizePolicy</a></td><td>product</td><td></td><td></td><td></td></tr>
 <tr><td><a href="hotspot_options_jdk8.html?s=PrintCMSInitiationStatistics">PrintCMSInitiationStatistics</a></td><td>product</td><td></td><td></td><td></td></tr>
@@ -495,6 +524,7 @@
 <tr><td><a href="hotspot_options_jdk8.html?s=PrintClassHistogramBeforeFullGC">PrintClassHistogramBeforeFullGC</a></td><td>manageable</td><td></td><td></td><td></td></tr>
 <tr><td><a href="hotspot_options_jdk8.html?s=PrintClassStatistics">PrintClassStatistics</a></td><td>notproduct</td><td></td><td></td><td></td></tr>
 <tr><td><a href="hotspot_options_jdk8.html?s=PrintCompressedOopsMode">PrintCompressedOopsMode</a></td><td>diagnostic</td><td></td><td></td><td></td></tr>
+<tr><td><a href="hotspot_options_jdk8.html?s=PrintContainerInfo">PrintContainerInfo</a></td><td>diagnostic</td><td></td><td></td><td></td></tr>
 <tr><td><a href="hotspot_options_jdk8.html?s=PrintDTraceDOF">PrintDTraceDOF</a></td><td>diagnostic</td><td></td><td></td><td></td></tr>
 <tr><td><a href="hotspot_options_jdk8.html?s=PrintFLSCensus">PrintFLSCensus</a></td><td>product</td><td></td><td></td><td></td></tr>
 <tr><td><a href="hotspot_options_jdk8.html?s=PrintFLSStatistics">PrintFLSStatistics</a></td><td>product</td><td></td><td></td><td></td></tr>
@@ -590,6 +620,7 @@
 <tr><td><a href="hotspot_options_jdk8.html?s=UseCMSCollectionPassing">UseCMSCollectionPassing</a></td><td>product</td><td></td><td></td><td></td></tr>
 <tr><td><a href="hotspot_options_jdk8.html?s=UseCMSCompactAtFullCollection">UseCMSCompactAtFullCollection</a></td><td>product</td><td></td><td></td><td></td></tr>
 <tr><td><a href="hotspot_options_jdk8.html?s=UseCompilerSafepoints">UseCompilerSafepoints</a></td><td>product</td><td></td><td></td><td></td></tr>
+<tr><td><a href="hotspot_options_jdk8.html?s=UseContainerSupport">UseContainerSupport</a></td><td>product</td><td></td><td></td><td></td></tr>
 <tr><td><a href="hotspot_options_jdk8.html?s=UseGCLogFileRotation">UseGCLogFileRotation</a></td><td>product</td><td></td><td></td><td></td></tr>
 <tr><td><a href="hotspot_options_jdk8.html?s=UseMemSetInBOT">UseMemSetInBOT</a></td><td>experimental</td><td></td><td></td><td></td></tr>
 <tr><td><a href="hotspot_options_jdk8.html?s=UseNewReflection">UseNewReflection</a></td><td>develop</td><td></td><td></td><td></td></tr>
@@ -623,9 +654,7 @@
 <tr><td><a href="hotspot_options_jdk9.html?s=CompilerDirectivesLimit">CompilerDirectivesLimit</a></td><td>diagnostic</td></tr>
 <tr><td><a href="hotspot_options_jdk9.html?s=CompilerDirectivesPrint">CompilerDirectivesPrint</a></td><td>diagnostic</td></tr>
 <tr><td><a href="hotspot_options_jdk9.html?s=CreateCoredumpOnCrash">CreateCoredumpOnCrash</a></td><td>product</td></tr>
-<tr><td><a href="hotspot_options_jdk9.html?s=DSCR_DPFD_PPC64">DSCR_DPFD_PPC64</a></td><td>product</td></tr>
-<tr><td><a href="hotspot_options_jdk9.html?s=DSCR_PPC64">DSCR_PPC64</a></td><td>product</td></tr>
-<tr><td><a href="hotspot_options_jdk9.html?s=DSCR_URG_PPC64">DSCR_URG_PPC64</a></td><td>product</td></tr>
+<tr><td><a href="hotspot_options_jdk9.html?s=DieOnSafepointTimeout">DieOnSafepointTimeout</a></td><td>develop</td></tr>
 <tr><td><a href="hotspot_options_jdk9.html?s=DisableBCCheck">DisableBCCheck</a></td><td>product</td></tr>
 <tr><td><a href="hotspot_options_jdk9.html?s=DoReserveCopyInSuperWord">DoReserveCopyInSuperWord</a></td><td>product</td></tr>
 <tr><td><a href="hotspot_options_jdk9.html?s=EnableDynamicAgentLoading">EnableDynamicAgentLoading</a></td><td>product</td></tr>
@@ -1068,6 +1097,7 @@
 <tr><td><a href="hotspot_options_jdk13.html?s=MaxInterpretedSearchLength">MaxInterpretedSearchLength</a></td><td>develop</td><td></td><td></td><td></td></tr>
 <tr><td><a href="hotspot_options_jdk13.html?s=MaxRecompilationSearchLength">MaxRecompilationSearchLength</a></td><td>develop</td><td></td><td></td><td></td></tr>
 <tr><td><a href="hotspot_options_jdk13.html?s=NotifySimulator">NotifySimulator</a></td><td>product</td><td></td><td></td><td></td></tr>
+<tr><td><a href="hotspot_options_jdk13.html?s=PrintJNIResolving">PrintJNIResolving</a></td><td>product</td><td></td><td></td><td></td></tr>
 <tr><td><a href="hotspot_options_jdk13.html?s=PrintMallocStatistics">PrintMallocStatistics</a></td><td>develop</td><td></td><td></td><td></td></tr>
 <tr><td><a href="hotspot_options_jdk13.html?s=ShareVtableStubs">ShareVtableStubs</a></td><td>define_pd_global</td><td></td><td></td><td></td></tr>
 <tr><td><a href="hotspot_options_jdk13.html?s=ShenandoahOptimizeInstanceFinals">ShenandoahOptimizeInstanceFinals</a></td><td>experimental</td><td></td><td></td><td></td></tr>
@@ -1085,11 +1115,20 @@
 <tr><td><a href="hotspot_options_jdk13.html?s=ZVerifyLoadBarriers">ZVerifyLoadBarriers</a></td><td>develop</td><td></td><td></td><td></td></tr>
 </table></div><div class="wrap"><h3 class="deltaH3">Added in JDK14</h3><table class="deltatable added"><tr><th>Name</th><th>Availability</th></tr><tr><td><a href="hotspot_options_jdk14.html?s=AVX3Threshold">AVX3Threshold</a></td><td>diagnostic</td></tr>
 <tr><td><a href="hotspot_options_jdk14.html?s=AdjustStackSizeForTLS">AdjustStackSizeForTLS</a></td><td>product</td></tr>
-<tr><td><a href="hotspot_options_jdk14.html?s=ClassForNameDeferLinking">ClassForNameDeferLinking</a></td><td>product</td></tr>
+<tr><td><a href="hotspot_options_jdk14.html?s=CompilationMode">CompilationMode</a></td><td>product</td></tr>
 <tr><td><a href="hotspot_options_jdk14.html?s=EnableJVMCIProduct">EnableJVMCIProduct</a></td><td>experimental</td></tr>
 <tr><td><a href="hotspot_options_jdk14.html?s=ShenandoahGCMode">ShenandoahGCMode</a></td><td>experimental</td></tr>
 <tr><td><a href="hotspot_options_jdk14.html?s=ShenandoahSelfFixing">ShenandoahSelfFixing</a></td><td>diagnostic</td></tr>
 <tr><td><a href="hotspot_options_jdk14.html?s=ShowCodeDetailsInExceptionMessages">ShowCodeDetailsInExceptionMessages</a></td><td>manageable</td></tr>
+<tr><td><a href="hotspot_options_jdk14.html?s=Tier0AOTBackEdgeThreshold">Tier0AOTBackEdgeThreshold</a></td><td>diagnostic</td></tr>
+<tr><td><a href="hotspot_options_jdk14.html?s=Tier0AOTCompileThreshold">Tier0AOTCompileThreshold</a></td><td>diagnostic</td></tr>
+<tr><td><a href="hotspot_options_jdk14.html?s=Tier0AOTInvocationThreshold">Tier0AOTInvocationThreshold</a></td><td>diagnostic</td></tr>
+<tr><td><a href="hotspot_options_jdk14.html?s=Tier0AOTMinInvocationThreshold">Tier0AOTMinInvocationThreshold</a></td><td>diagnostic</td></tr>
+<tr><td><a href="hotspot_options_jdk14.html?s=Tier0Delay">Tier0Delay</a></td><td>diagnostic</td></tr>
+<tr><td><a href="hotspot_options_jdk14.html?s=Tier40BackEdgeThreshold">Tier40BackEdgeThreshold</a></td><td>diagnostic</td></tr>
+<tr><td><a href="hotspot_options_jdk14.html?s=Tier40CompileThreshold">Tier40CompileThreshold</a></td><td>diagnostic</td></tr>
+<tr><td><a href="hotspot_options_jdk14.html?s=Tier40InvocationThreshold">Tier40InvocationThreshold</a></td><td>diagnostic</td></tr>
+<tr><td><a href="hotspot_options_jdk14.html?s=Tier40MinInvocationThreshold">Tier40MinInvocationThreshold</a></td><td>diagnostic</td></tr>
 <tr><td><a href="hotspot_options_jdk14.html?s=TraceMemoryWriteback">TraceMemoryWriteback</a></td><td>develop</td></tr>
 <tr><td><a href="hotspot_options_jdk14.html?s=UseNotificationThread">UseNotificationThread</a></td><td>product</td></tr>
 </table></div></div><div class="dtclear"></div>
@@ -1143,7 +1182,7 @@ Error: A fatal exception has occurred. Program will exit.
     </pre>
 </div>
 <div class="footer">
-    Built on Tue Oct 29 17:06:00 GMT 2019 by <a href="https://twitter.com/chriswhocodes">@chriswhocodes</a>
+    Built on Tue Nov 12 08:57:36 GMT 2019 by <a href="https://twitter.com/chriswhocodes">@chriswhocodes</a>
 </div>
 </body>
 </html>

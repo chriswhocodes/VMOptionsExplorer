@@ -24,18 +24,9 @@ import java.util.List;
 
 	private static String generatedStatsHTML = null;
 
-	static
+	public static void initialise(java.nio.file.Path serialisedPath) throws IOException
 	{
-		java.nio.file.Path serialisationPath = Paths.get("/home/chris/openjdk/serialised");
-
-		try
-		{
-			CommandLineSwitchParser.initialise(serialisationPath);
-		}
-		catch (IOException e)
-		{
-			e.printStackTrace();
-		}
+		CommandLineSwitchParser.initialise(serialisedPath);
 	}
 
 	@GET @Path("inspect") @Produces(MediaType.TEXT_HTML) public String handleForm()

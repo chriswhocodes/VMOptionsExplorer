@@ -79,7 +79,16 @@
             });
   </script>
 
-	<h1>VM Options Explorer - HotSpot Intrinsics for JDK8</h1>
+	
+<div class="title_wrap">
+    <div class="title">
+        <h1>VM Options Explorer - HotSpot Intrinsics for JDK8</h1>
+    </div>
+    <div class="sponsor">
+        <a href="https://github.com/sponsors/chriswhocodes">Sponsor me on GitHub!</a>
+    </div>
+    <div class="divclear"></div>
+</div>
 
 <div class="menucontainer">
     <div class="menuwrap">
@@ -258,14 +267,14 @@
 <tr><td>_montgomeryMultiply</td><td>JDK8</td><td>java.math.BigInteger</td><td>implMontgomeryMultiply</td><td>([I[I[IIJ[I)[I</td><td>F_S</td></tr>
 <tr><td>_montgomerySquare</td><td>JDK8</td><td>java.math.BigInteger</td><td>implMontgomerySquare</td><td>([I[IIJ[I)[I</td><td>F_S</td></tr>
 <tr><td>_Reference_get</td><td>JDK6</td><td>java.lang.ref.Reference</td><td>get</td><td>()Ljava/lang/Object;</td><td>F_R</td></tr>
-<tr><td>_aescrypt_encryptBlock</td><td>JDK7</td><td>com.sun.crypto.provider.AESCrypt</td><td>encryptBlock</td><td>([BI[BI)V</td><td>F_R</td></tr>
-<tr><td>_aescrypt_decryptBlock</td><td>JDK7</td><td>com.sun.crypto.provider.AESCrypt</td><td>decryptBlock</td><td>([BI[BI)V</td><td>F_R</td></tr>
-<tr><td>_cipherBlockChaining_encryptAESCrypt</td><td>JDK7</td><td>com.sun.crypto.provider.CipherBlockChaining</td><td>encrypt</td><td>([BII[BI)I</td><td>F_R</td></tr>
-<tr><td>_cipherBlockChaining_decryptAESCrypt</td><td>JDK7</td><td>com.sun.crypto.provider.CipherBlockChaining</td><td>decrypt</td><td>([BII[BI)I</td><td>F_R</td></tr>
-<tr><td>_sha_implCompress</td><td>JDK8</td><td>sun.security.provider.SHA</td><td>implCompress</td><td>([BI)V</td><td>F_R</td></tr>
-<tr><td>_sha2_implCompress</td><td>JDK8</td><td>sun.security.provider.SHA2</td><td>implCompress</td><td>([BI)V</td><td>F_R</td></tr>
-<tr><td>_sha5_implCompress</td><td>JDK8</td><td>sun.security.provider.SHA5</td><td>implCompress</td><td>([BI)V</td><td>F_R</td></tr>
-<tr><td>_digestBase_implCompressMB</td><td>JDK8</td><td>sun.security.provider.DigestBase</td><td>implCompressMultiBlock</td><td>([BII)I</td><td>F_R</td></tr>
+<tr><td>_aescrypt_encryptBlock</td><td>JDK7</td><td>com.sun.crypto.provider.AESCrypt</td><td>implEncryptBlock</td><td>([BI[BI)V</td><td>F_R</td></tr>
+<tr><td>_aescrypt_decryptBlock</td><td>JDK7</td><td>com.sun.crypto.provider.AESCrypt</td><td>implDecryptBlock</td><td>([BI[BI)V</td><td>F_R</td></tr>
+<tr><td>_cipherBlockChaining_encryptAESCrypt</td><td>JDK7</td><td>com.sun.crypto.provider.CipherBlockChaining</td><td>implEncrypt</td><td>([BII[BI)I</td><td>F_R</td></tr>
+<tr><td>_cipherBlockChaining_decryptAESCrypt</td><td>JDK7</td><td>com.sun.crypto.provider.CipherBlockChaining</td><td>implDecrypt</td><td>([BII[BI)I</td><td>F_R</td></tr>
+<tr><td>_sha_implCompress</td><td>JDK8</td><td>sun.security.provider.SHA</td><td>implCompress0</td><td>([BI)V</td><td>F_R</td></tr>
+<tr><td>_sha2_implCompress</td><td>JDK8</td><td>sun.security.provider.SHA2</td><td>implCompress0</td><td>([BI)V</td><td>F_R</td></tr>
+<tr><td>_sha5_implCompress</td><td>JDK8</td><td>sun.security.provider.SHA5</td><td>implCompress0</td><td>([BI)V</td><td>F_R</td></tr>
+<tr><td>_digestBase_implCompressMB</td><td>JDK8</td><td>sun.security.provider.DigestBase</td><td>implCompressMultiBlock0</td><td>([BII)I</td><td>F_R</td></tr>
 <tr><td>_updateCRC32</td><td>JDK8</td><td>java.util.zip.CRC32</td><td>update</td><td>(II)I</td><td>F_SN</td></tr>
 <tr><td>_updateBytesCRC32</td><td>JDK8</td><td>java.util.zip.CRC32</td><td>updateBytes</td><td>(I[BII)I</td><td>F_SN</td></tr>
 <tr><td>_updateByteBufferCRC32</td><td>JDK8</td><td>java.util.zip.CRC32</td><td>updateByteBuffer</td><td>(IJII)I</td><td>F_SN</td></tr>
@@ -390,7 +399,7 @@
 		</tbody>
 	</table>
 	<div class="footer">
-		Built on Tue Oct 29 17:06:00 GMT 2019 from HotSpot sources by <a
+		Built on Tue Nov 12 08:57:36 GMT 2019 from HotSpot sources by <a
 			href="https://twitter.com/chriswhocodes">@chriswhocodes</a>
 	</div>
 </body>
