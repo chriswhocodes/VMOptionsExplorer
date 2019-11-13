@@ -21,6 +21,8 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.sql.SQLException;
 import java.util.*;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import static com.chrisnewland.jacoline.web.service.ServiceUtil.OPTION_ANY;
 
@@ -581,7 +583,9 @@ public class CommandLineSwitchParser
 
 		if (!inError)
 		{
-			String correctPrefix = switchInfoList.get(0).getPrefix();
+			SwitchInfo firstDefinedSwitchInfo = switchInfoList.get(0);
+
+			String correctPrefix = firstDefinedSwitchInfo.getPrefix();
 
 			if (correctPrefix != null && !correctPrefix.equals(keyValue.getPrefix()))
 			{
@@ -591,7 +595,6 @@ public class CommandLineSwitchParser
 			}
 			else
 			{
-
 				String availability = getAvailability(switchInfoList);
 
 				if (availability != null)
@@ -667,11 +670,29 @@ public class CommandLineSwitchParser
 
 		//System.out.println("list size: " + switchInfoList.size());
 
+		String myValue = keyValue.getValue();
+
 		for (SwitchInfo switchInfo : switchInfoList)
 		{
+			// take the first type definition found
 			if (type.isEmpty())
 			{
 				type = switchInfo.getType();
+
+				System.out.println("type:" + type + " value:" + myValue);
+
+				switch (type)
+				{
+				case "<size>":
+					boolean validSize = isValidSize(myValue);
+					if (!validSize)
+					{
+						inError = true;
+						switchStatus = SwitchStatus.ERROR;
+						analysis = "Bad value for type '<size>'. Must be a number with an optional suffix of 'k', 'm', 'g', or 't'.";
+						break;
+					}
+				}
 			}
 
 			if (description.isEmpty() && switchInfo.getDescription() != null && !switchInfo.getDescription().isEmpty())
@@ -685,8 +706,6 @@ public class CommandLineSwitchParser
 		List<SwitchInfo> filtered = filterByOperatingSystemAndArchitecture(switchInfoList, os, arch);
 
 		//System.out.println("filtered size: " + filtered.size() + " for " + keyValue.getKey());
-
-		String myValue = keyValue.getValue();
 
 		if (!filtered.isEmpty())
 		{
@@ -742,9 +761,46 @@ public class CommandLineSwitchParser
 		html = html.replace("%DESCRIPTION%", description);
 		html = html.replace("%DEFAULT%", defaultValue);
 		html = html.replace("%VALUE%", Encode.forHtml(myValue));
-		html = html.replace("%ANALYSIS%", analysis);
+		html = html.replace("%ANALYSIS%", Encode.forHtml(analysis));
 
 		AnalysedSwitchResult result = new AnalysedSwitchResult(keyValue, html, switchStatus, analysis);
+
+		return result;
+	}
+
+	private static boolean isValidSize(String value)
+	{
+		boolean result = false;
+
+		Pattern patternSize = Pattern.compile("^([0-9]+)(.*)");
+
+		Matcher matcher = patternSize.matcher(value);
+
+		if (matcher.find())
+		{
+			if (matcher.groupCount() == 2)
+			{
+				String sizeSuffix = matcher.group(2).trim();
+
+				if (sizeSuffix.isEmpty())
+				{
+					result = true;
+				}
+				else if (sizeSuffix.length() == 1)
+				{
+					char suffixChar = sizeSuffix.toLowerCase().charAt(0);
+
+					switch (suffixChar)
+					{
+					case 'k':
+					case 'm':
+					case 'g':
+					case 't':
+						result = true;
+					}
+				}
+			}
+		}
 
 		return result;
 	}
