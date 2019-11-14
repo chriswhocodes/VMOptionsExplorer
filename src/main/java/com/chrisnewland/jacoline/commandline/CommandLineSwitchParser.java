@@ -721,6 +721,9 @@ public class CommandLineSwitchParser
 				{
 					defaultValue += " in " + range;
 
+
+System.out.println("Checking parameter " +  myValue + " in range " + range + " for parameter "+ switchInfo.getName());
+
 					boolean inRange = inRange(myValue, range);
 
 					if (!inRange)

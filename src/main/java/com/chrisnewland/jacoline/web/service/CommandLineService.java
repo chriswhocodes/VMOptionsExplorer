@@ -118,7 +118,7 @@ import java.util.List;
 
 				StringBuilder builder = new StringBuilder();
 
-				builder.append(ReportBuilder.getLastRequests(5));
+				builder.append(ReportBuilder.getLastRequests(10));
 				builder.append(ReportBuilder.getReportJVMCounts());
 				builder.append(ReportBuilder.getReportOperatingSystemCounts());
 				builder.append(ReportBuilder.getReportArchitectureCounts());

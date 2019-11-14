@@ -173,7 +173,7 @@ public class ReportBuilder
 				String[] parts = concat.split("@");
 
 				row.setColumn(0, parts[0]);
-				row.setColumn(1, parts[1]);
+				row.setColumn(1, clean(parts[1]));
 				row.setColumn(2, count);
 
 				result.add(row);
