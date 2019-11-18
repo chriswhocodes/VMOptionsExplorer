@@ -5,6 +5,8 @@
 package com.chrisnewland.jacoline.commandline;
 
 import com.chrisnewland.jacoline.dto.RequestDTO;
+import com.chrisnewland.jacoline.rule.Engine;
+import com.chrisnewland.jacoline.rule.SwitchRuleResult;
 import com.chrisnewland.jacoline.web.service.ServiceUtil;
 import com.chrisnewland.vmoe.Serialiser;
 import com.chrisnewland.vmoe.SwitchInfo;
@@ -538,6 +540,8 @@ public class CommandLineSwitchParser
 
 		boolean inError = false;
 
+		//TODO refactor - make each check a separate analysis class
+		//================================================================
 		if (switchInfoList.isEmpty())
 		{
 			inError = true;
@@ -581,6 +585,7 @@ public class CommandLineSwitchParser
 			}
 		}
 
+		//================================================================
 		if (!inError)
 		{
 			SwitchInfo firstDefinedSwitchInfo = switchInfoList.get(0);
@@ -630,6 +635,7 @@ public class CommandLineSwitchParser
 			}
 		}
 
+		//================================================================
 		if (!inError)
 		{
 			String deprecation = getDeprecation(switchInfoList, currentJDK);
@@ -643,6 +649,7 @@ public class CommandLineSwitchParser
 			}
 		}
 
+		//================================================================
 		if (!inError)
 		{
 			if (index < switches.size() - 1)
@@ -661,6 +668,7 @@ public class CommandLineSwitchParser
 				}
 			}
 		}
+		//================================================================
 
 		String empty = "";
 
@@ -683,6 +691,7 @@ public class CommandLineSwitchParser
 
 				switch (type)
 				{
+
 				case "<size>":
 					boolean validSize = isValidSize(myValue);
 					if (!validSize)
@@ -700,6 +709,25 @@ public class CommandLineSwitchParser
 				description = switchInfo.getDescription();
 			}
 		}
+		//================================================================
+
+		if (!inError)
+		{
+			List<SwitchRuleResult> ruleResults = Engine.applyRules(keyValue, switches);
+
+			if (!ruleResults.isEmpty())
+			{
+				analysis = "";
+
+				switchStatus = SwitchStatus.ERROR;
+
+				for (SwitchRuleResult ruleResult : ruleResults)
+				{
+					analysis += ruleResult.getMessage();
+				}
+			}
+		}
+		//================================================================
 
 		description = description.replace("<pre>", empty).replace("</pre>", empty);
 
@@ -721,8 +749,8 @@ public class CommandLineSwitchParser
 				{
 					defaultValue += " in " + range;
 
-
-System.out.println("Checking parameter " +  myValue + " in range " + range + " for parameter "+ switchInfo.getName());
+					System.out.println(
+							"Checking parameter " + myValue + " in range " + range + " for parameter " + switchInfo.getName());
 
 					boolean inRange = inRange(myValue, range);
 

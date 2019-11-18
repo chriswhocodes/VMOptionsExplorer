@@ -89,4 +89,10 @@ public class KeyValue
 	{
 		return Encode.forHtml(toStringForDTO());
 	}
+
+	@Override public String toString()
+	{
+		return toStringForHTML();
+	}
+
 }
