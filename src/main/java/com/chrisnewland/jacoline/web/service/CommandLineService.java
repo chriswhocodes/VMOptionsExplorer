@@ -119,6 +119,8 @@ import java.util.List;
 				StringBuilder builder = new StringBuilder();
 
 				builder.append(ReportBuilder.getLastRequests(10));
+				builder.append("<div class=\"divclear\"></div>");
+
 				builder.append(ReportBuilder.getReportJVMCounts());
 				builder.append(ReportBuilder.getReportOperatingSystemCounts());
 				builder.append(ReportBuilder.getReportArchitectureCounts());
