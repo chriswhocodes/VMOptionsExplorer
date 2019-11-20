@@ -6,5 +6,5 @@ import java.util.List;
 
 public interface ISwitchRule
 {
-	SwitchRuleResult apply(List<KeyValue> keyValueList);
+	SwitchRuleResult apply(KeyValue keyValue, List<KeyValue> keyValueList);
 }

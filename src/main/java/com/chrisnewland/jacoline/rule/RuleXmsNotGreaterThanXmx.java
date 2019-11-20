@@ -7,41 +7,40 @@ import java.util.List;
 
 public class RuleXmsNotGreaterThanXmx extends AbstractSwitchRule
 {
-	@Override public SwitchRuleResult apply(List<KeyValue> keyValueList)
+	@Override public SwitchRuleResult apply(KeyValue keyValue, List<KeyValue> keyValueList)
 	{
-		KeyValue keyValueXms = getLastOccurrence(ISwitchParser.PREFIX_X + "ms", keyValueList);
+		String keyXms = ISwitchParser.PREFIX_X + "ms";
 
-		KeyValue keyValueXmx = getLastOccurrence(ISwitchParser.PREFIX_X + "mx", keyValueList);
+		String keyXmx = ISwitchParser.PREFIX_X + "mx";
 
-		System.out.println("KVms:" + keyValueXms);
+		SwitchRuleResult result = SwitchRuleResult.ok();
 
-		System.out.println("KVmx:" + keyValueXmx);
-
-		SwitchRuleResult result = null;
-
-		if (keyValueXms != null && keyValueXmx != null)
+		if (keyXms.equals(keyValue.getKeyWithPrefix()) || keyXmx.equals(keyValue.getKeyWithPrefix()))
 		{
-			long ms = parseSize(keyValueXms.getValue());
-			long mx = parseSize(keyValueXmx.getValue());
+			KeyValue keyValueXms = getLastOccurrence(ISwitchParser.PREFIX_X + "ms", keyValueList);
 
-			System.out.println("ms:" + ms);
+			KeyValue keyValueXmx = getLastOccurrence(ISwitchParser.PREFIX_X + "mx", keyValueList);
 
-			System.out.println("mx:" + mx);
+			System.out.println("KVms:" + keyValueXms);
 
-			if (ms > mx)
+			System.out.println("KVmx:" + keyValueXmx);
+
+			if (keyValueXms != null && keyValueXmx != null)
 			{
-				result = new SwitchRuleResult(false, "Xmx must be >= Xms");
-			}
-			else
-			{
-				result = SwitchRuleResult.ok();
+				long ms = parseSize(keyValueXms.getValue());
+				long mx = parseSize(keyValueXmx.getValue());
+
+				System.out.println("ms:" + ms);
+
+				System.out.println("mx:" + mx);
+
+				if (ms > mx)
+				{
+					result = new SwitchRuleResult(false, "Xmx must be >= Xms");
+				}
 			}
 		}
-		else
-		{
-			result = SwitchRuleResult.ok();
-		}
-
+		
 		return result;
 	}
 }

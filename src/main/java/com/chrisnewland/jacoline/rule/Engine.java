@@ -24,7 +24,7 @@ public class Engine
 		{
 			System.out.println("Applying " + rule);
 
-			SwitchRuleResult ruleResult = rule.apply(keyValueList);
+			SwitchRuleResult ruleResult = rule.apply(keyValue, keyValueList);
 
 			if (!ruleResult.isCompliant())
 			{
