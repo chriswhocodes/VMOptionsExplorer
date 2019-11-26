@@ -296,8 +296,6 @@ public class CommandLineSwitchParser
 
 		for (String part : parts)
 		{
-			System.out.println(part);
-
 			if (isSwitch(part))
 			{
 				KeyValue keyValue = parseSwitch(part);

@@ -46,8 +46,8 @@ import java.util.List;
 		try
 		{
 			String form = ServiceUtil.buildForm(jvm, os, arch, debugJVM);
-
-			command = command.replace("\n", " ").replace("&#8209;", "-");
+			
+			command = command.replace("\n", " ").replace((char) 8209, '-');
 
 			boolean storeDTO = !command.contains("com.chrisnewland.someproject.SomeApplication");
 
@@ -66,7 +66,7 @@ import java.util.List;
 
 			form = form.replace("%STORED%", storedMessage);
 
-			return form.replace("%COMMAND%", Encode.forHtml(command)).replace("%RESULT%", result);
+			return form.replace("%COMMAND%", Encode.forHtml(command).replace("-", "&#8209;")).replace("%RESULT%", result);
 		}
 		catch (Exception e)
 		{
