@@ -345,7 +345,7 @@ public class CommandLineSwitchParser
 
 		KeyValue keyValue = null;
 
-		if (ISwitchParser.PREFIX_X.equals(prefix) && part.startsWith("log"))
+		if (ISwitchParser.PREFIX_X.equals(prefix) && part.startsWith("log") && !part.startsWith("loggc"))
 		{
 			String key = "log";
 
