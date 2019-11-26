@@ -339,13 +339,26 @@ public class CommandLineSwitchParser
 
 		part = part.substring(prefix.length());
 
-		//System.out.println("part after prefix:" + part);
+		System.out.println("part after prefix:" + part);
 
 		int equalsPos = part.indexOf('=');
 
 		KeyValue keyValue = null;
 
-		if (equalsPos != -1)
+		if (ISwitchParser.PREFIX_X.equals(prefix) && part.startsWith("log"))
+		{
+			String key = "log";
+
+			String value = "";
+
+			if (part.length() > key.length())
+			{
+				value = part.substring(key.length());
+			}
+
+			keyValue = new KeyValue(prefix, key, value);
+		}
+		else if (equalsPos != -1)
 		{
 			String key = part.substring(0, equalsPos);
 
