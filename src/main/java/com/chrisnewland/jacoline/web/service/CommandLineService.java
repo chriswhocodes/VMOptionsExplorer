@@ -46,7 +46,7 @@ import java.util.List;
 		try
 		{
 			String form = ServiceUtil.buildForm(jvm, os, arch, debugJVM);
-			
+
 			command = command.replace("\n", " ").replace((char) 8209, '-');
 
 			boolean storeDTO = !command.contains("com.chrisnewland.someproject.SomeApplication");

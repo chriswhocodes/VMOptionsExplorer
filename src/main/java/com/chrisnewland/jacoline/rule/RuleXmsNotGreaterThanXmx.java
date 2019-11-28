@@ -1,6 +1,7 @@
 package com.chrisnewland.jacoline.rule;
 
 import com.chrisnewland.jacoline.commandline.KeyValue;
+import com.chrisnewland.jacoline.commandline.SwitchStatus;
 import com.chrisnewland.vmoe.parser.ISwitchParser;
 
 import java.util.List;
@@ -21,26 +22,20 @@ public class RuleXmsNotGreaterThanXmx extends AbstractSwitchRule
 
 			KeyValue keyValueXmx = getLastOccurrence(ISwitchParser.PREFIX_X + "mx", keyValueList);
 
-			System.out.println("KVms:" + keyValueXms);
-
-			System.out.println("KVmx:" + keyValueXmx);
-
 			if (keyValueXms != null && keyValueXmx != null)
 			{
 				long ms = parseSize(keyValueXms.getValue());
 				long mx = parseSize(keyValueXmx.getValue());
 
-				System.out.println("ms:" + ms);
-
-				System.out.println("mx:" + mx);
+				System.out.println("ms:" + ms + " mx:" + mx);
 
 				if (ms > mx)
 				{
-					result = new SwitchRuleResult(false, "Xmx must be >= Xms");
+					result = new SwitchRuleResult(SwitchStatus.ERROR, "Xmx must be >= Xms");
 				}
 			}
 		}
-		
+
 		return result;
 	}
 }

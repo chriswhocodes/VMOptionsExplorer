@@ -22,8 +22,6 @@ public abstract class AbstractSwitchRule implements ISwitchRule
 
 		for (KeyValue keyValue : keyValueList)
 		{
-			System.out.println("Comparing " + keyName + " with " + keyValue.getKeyWithPrefix());
-
 			if (keyName.equals(keyValue.getKeyWithPrefix()))
 			{
 				result = keyValue;

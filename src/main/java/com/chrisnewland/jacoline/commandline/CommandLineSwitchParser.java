@@ -5,8 +5,7 @@
 package com.chrisnewland.jacoline.commandline;
 
 import com.chrisnewland.jacoline.dto.RequestDTO;
-import com.chrisnewland.jacoline.rule.Engine;
-import com.chrisnewland.jacoline.rule.SwitchRuleResult;
+import com.chrisnewland.jacoline.rule.*;
 import com.chrisnewland.jacoline.web.service.ServiceUtil;
 import com.chrisnewland.vmoe.Serialiser;
 import com.chrisnewland.vmoe.SwitchInfo;
@@ -17,14 +16,9 @@ import org.owasp.encoder.Encode;
 import java.io.File;
 import java.io.IOException;
 import java.math.BigDecimal;
-import java.nio.charset.StandardCharsets;
-import java.nio.file.Files;
 import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.sql.SQLException;
 import java.util.*;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 import static com.chrisnewland.jacoline.web.service.ServiceUtil.OPTION_ANY;
 
@@ -549,9 +543,13 @@ public class CommandLineSwitchParser
 
 		String analysis = "OK";
 
+		RulesEngine rulesEngine = new RulesEngine();
+
+		rulesEngine.addRule(new RuleXmsNotGreaterThanXmx());
+
 		boolean inError = false;
 
-		//TODO refactor - make each check a separate analysis class
+		//TODO refactor - make each check a separate ISwitchRule
 		//================================================================
 		if (switchInfoList.isEmpty())
 		{
@@ -663,21 +661,7 @@ public class CommandLineSwitchParser
 		//================================================================
 		if (!inError)
 		{
-			if (index < switches.size() - 1)
-			{
-				for (int laterIndex = index + 1; laterIndex < switches.size(); laterIndex++)
-				{
-					KeyValue laterKeyValue = switches.get(laterIndex);
-
-					if (keyValue.getKeyWithPrefix().equals(laterKeyValue.getKeyWithPrefix()))
-					{
-						switchStatus = SwitchStatus.WARNING;
-						inError = true;
-
-						analysis = "Duplicate switch. This is overridden by " + laterKeyValue.toStringForHTML();
-					}
-				}
-			}
+			rulesEngine.addRule(new RuleDetectDuplicatesAfterSwitch(index));
 		}
 		//================================================================
 
@@ -687,8 +671,6 @@ public class CommandLineSwitchParser
 		String defaultValue = empty;
 		String description = empty;
 
-		//System.out.println("list size: " + switchInfoList.size());
-
 		String myValue = keyValue.getValue();
 
 		for (SwitchInfo switchInfo : switchInfoList)
@@ -697,22 +679,6 @@ public class CommandLineSwitchParser
 			if (type.isEmpty())
 			{
 				type = switchInfo.getType();
-
-				System.out.println("type:" + type + " value:" + myValue);
-
-				switch (type)
-				{
-
-				case "<size>":
-					boolean validSize = isValidSize(myValue);
-					if (!validSize)
-					{
-						inError = true;
-						switchStatus = SwitchStatus.ERROR;
-						analysis = "Bad value for type '<size>'. Must be a number with an optional suffix of 'k', 'm', 'g', or 't'.";
-						break;
-					}
-				}
 			}
 
 			if (description.isEmpty() && switchInfo.getDescription() != null && !switchInfo.getDescription().isEmpty())
@@ -722,19 +688,33 @@ public class CommandLineSwitchParser
 		}
 		//================================================================
 
+		System.out.println("type:" + type + " value:" + myValue);
+
+		if ("<size>".equals(type))
+		{
+			rulesEngine.addRule(new RuleIsValidSize());
+		}
+
 		if (!inError)
 		{
-			List<SwitchRuleResult> ruleResults = Engine.applyRules(keyValue, switches);
+			List<SwitchRuleResult> ruleResults = rulesEngine.applyRules(keyValue, switches);
 
 			if (!ruleResults.isEmpty())
 			{
 				analysis = "";
 
-				switchStatus = SwitchStatus.ERROR;
+				switchStatus = SwitchStatus.OK;
 
 				for (SwitchRuleResult ruleResult : ruleResults)
 				{
 					analysis += ruleResult.getMessage();
+
+					SwitchStatus resultStatus = ruleResult.getSwitchStatus();
+
+					if (resultStatus.compareTo(switchStatus) > 0 )
+					{
+						switchStatus = resultStatus;
+					}
 				}
 			}
 		}
@@ -806,43 +786,6 @@ public class CommandLineSwitchParser
 		html = html.replace("%ANALYSIS%", Encode.forHtml(analysis));
 
 		AnalysedSwitchResult result = new AnalysedSwitchResult(keyValue, html, switchStatus, analysis);
-
-		return result;
-	}
-
-	private static boolean isValidSize(String value)
-	{
-		boolean result = false;
-
-		Pattern patternSize = Pattern.compile("^([0-9]+)(.*)");
-
-		Matcher matcher = patternSize.matcher(value);
-
-		if (matcher.find())
-		{
-			if (matcher.groupCount() == 2)
-			{
-				String sizeSuffix = matcher.group(2).trim();
-
-				if (sizeSuffix.isEmpty())
-				{
-					result = true;
-				}
-				else if (sizeSuffix.length() == 1)
-				{
-					char suffixChar = sizeSuffix.toLowerCase().charAt(0);
-
-					switch (suffixChar)
-					{
-					case 'k':
-					case 'm':
-					case 'g':
-					case 't':
-						result = true;
-					}
-				}
-			}
-		}
 
 		return result;
 	}

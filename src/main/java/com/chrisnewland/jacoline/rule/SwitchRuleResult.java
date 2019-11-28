@@ -1,31 +1,33 @@
 package com.chrisnewland.jacoline.rule;
 
+import com.chrisnewland.jacoline.commandline.SwitchStatus;
+
 public class SwitchRuleResult
 {
 	public static final String MESSAGE_OK = "OK";
 
-	private boolean compliant;
+	public SwitchStatus getSwitchStatus()
+	{
+		return switchStatus;
+	}
+
+	private SwitchStatus switchStatus;
 
 	private String message;
-
-	public boolean isCompliant()
-	{
-		return compliant;
-	}
 
 	public String getMessage()
 	{
 		return message;
 	}
 
-	public SwitchRuleResult(boolean compliant, String message)
+	public SwitchRuleResult(SwitchStatus switchStatus, String message)
 	{
-		this.compliant = compliant;
+		this.switchStatus = switchStatus;
 		this.message = message;
 	}
 
 	public static SwitchRuleResult ok()
 	{
-		return new SwitchRuleResult(true, MESSAGE_OK);
+		return new SwitchRuleResult(SwitchStatus.OK, MESSAGE_OK);
 	}
 }
