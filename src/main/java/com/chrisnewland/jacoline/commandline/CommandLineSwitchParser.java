@@ -686,6 +686,9 @@ public class CommandLineSwitchParser
 				description = switchInfo.getDescription();
 			}
 		}
+
+		description = description.replace("<pre>", empty).replace("</pre>", empty);
+
 		//================================================================
 
 		System.out.println("type:" + type + " value:" + myValue);
@@ -695,32 +698,7 @@ public class CommandLineSwitchParser
 			rulesEngine.addRule(new RuleIsValidSize());
 		}
 
-		if (!inError)
-		{
-			List<SwitchRuleResult> ruleResults = rulesEngine.applyRules(keyValue, switches);
-
-			if (!ruleResults.isEmpty())
-			{
-				analysis = "";
-
-				switchStatus = SwitchStatus.OK;
-
-				for (SwitchRuleResult ruleResult : ruleResults)
-				{
-					analysis += ruleResult.getMessage();
-
-					SwitchStatus resultStatus = ruleResult.getSwitchStatus();
-
-					if (resultStatus.compareTo(switchStatus) > 0 )
-					{
-						switchStatus = resultStatus;
-					}
-				}
-			}
-		}
 		//================================================================
-
-		description = description.replace("<pre>", empty).replace("</pre>", empty);
 
 		List<SwitchInfo> filtered = filterByOperatingSystemAndArchitecture(switchInfoList, os, arch);
 
@@ -740,16 +718,7 @@ public class CommandLineSwitchParser
 				{
 					defaultValue += " in " + range;
 
-					System.out.println(
-							"Checking parameter " + myValue + " in range " + range + " for parameter " + switchInfo.getName());
-
-					boolean inRange = inRange(myValue, range);
-
-					if (!inRange)
-					{
-						switchStatus = SwitchStatus.ERROR;
-						analysis = "Value " + myValue + " outside allowed " + range;
-					}
+					rulesEngine.addRule(new RuleParameterInRange(range));
 				}
 			}
 			else
@@ -758,6 +727,36 @@ public class CommandLineSwitchParser
 			}
 		}
 
+		if (!inError)
+		{
+			List<SwitchRuleResult> ruleResults = rulesEngine.applyRules(keyValue, switches);
+
+			if (!ruleResults.isEmpty())
+			{
+				analysis = empty;
+
+				switchStatus = SwitchStatus.OK;
+
+				for (SwitchRuleResult ruleResult : ruleResults)
+				{
+					analysis += ruleResult.getMessage();
+
+					SwitchStatus resultStatus = ruleResult.getSwitchStatus();
+
+					if (resultStatus.compareTo(switchStatus) > 0)
+					{
+						switchStatus = resultStatus;
+					}
+				}
+			}
+		}
+
+		return buildResult(keyValue, cssId, switchStatus, switchName, type, description, defaultValue, myValue, analysis);
+	}
+
+	private static AnalysedSwitchResult buildResult(KeyValue keyValue, String cssId, SwitchStatus switchStatus, String switchName,
+			String type, String description, String defaultValue, String myValue, String analysis)
+	{
 		String html;
 
 		try
@@ -804,36 +803,6 @@ public class CommandLineSwitchParser
 		catch (NumberFormatException nfe)
 		{
 			nfe.printStackTrace();
-		}
-
-		return result;
-	}
-
-	private static boolean inRange(String value, String range)
-	{
-		String trimmedRange = range.replace("(", "").replace(")", "").replace("range", "").replace(" ", "");
-
-		String[] rangeParts = trimmedRange.split(",");
-
-		boolean result = true;
-
-		try
-		{
-			BigDecimal min = new BigDecimal(rangeParts[0]);
-			BigDecimal max = new BigDecimal(rangeParts[1]);
-
-			BigDecimal val = new BigDecimal(value);
-
-			System.out.println("Range checking " + val + " in " + min + " .. " + max);
-
-			if (val.compareTo(min) < 0 || val.compareTo(max) > 0)
-			{
-				result = false;
-			}
-		}
-		catch (Exception e)
-		{
-			e.printStackTrace();
 		}
 
 		return result;
