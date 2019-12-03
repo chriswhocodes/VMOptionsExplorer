@@ -1,7 +1,7 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html lang='en-GB'>
 <head>
-<title>VM Options Explorer - GraalVM native-image CE 19</title>
+<title>VM Options Explorer - GraalVM native-image CE JDK8</title>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="author" content="Chris Newland">
 <meta name="copyright" content="Chris Newland 2018-2019">
@@ -34,7 +34,7 @@
                           "orderable" : true,
                         } ],
                         "oLanguage" : {
-                          "sSearch" : "Search GraalVM native-image CE 19 Options: "
+                          "sSearch" : "Search GraalVM native-image CE JDK8 Options: "
                         },
                         initComplete : function() {
                               this.api().search(getParam());
@@ -79,10 +79,9 @@
             });
   </script>
 
-	
-<div class="title_wrap">
+	<div class="title_wrap">
     <div class="title">
-        <h1>VM Options Explorer - GraalVM native-image CE 19</h1>
+        <h1>VM Options Explorer - GraalVM native-image CE JDK8</h1>
     </div>
     <div class="sponsor">
         <a href="https://github.com/sponsors/chriswhocodes">Sponsor me on GitHub!</a>
@@ -127,30 +126,46 @@
     <div class="menuwrap">
         <table class="menu">
             <tr>
-                <th colspan="2">GraalVM</th>
+                <th colspan="4">GraalVM 19.3.0</th>
             </tr>
             <tr>
-                <td><a href="graalvm_ce_19_options.html">GraalVM CE 19.2.1</a></td>
-                <td><a href="graalvm_ee_19_options.html">GraalVM EE 19.2.1</a></td>
+                <th colspan="2">JDK8</th>
+                <th colspan="2">JDK11</th>
+            </tr>
+            <tr>
+                <td><a href="graalvm_ce_jdk8_options.html">Community</a></td>
+                <td><a href="graalvm_ee_jdk8_options.html">Enterprise</a></td>
+                <td><a href="graalvm_ce_jdk11_options.html">Community</a></td>
+                <td><a href="graalvm_ee_jdk11_options.html">Enterprise</a></td>
             </tr>
             <tr>
                 <td></td>
-                <td><a href="graalvm_ee_only_options.html"><b>Enterprise-only options</b></a></td>
+                <td><a href="graalvm_ee_only_jdk8_options.html"><b>EE-only options</b></a></td>
+                <td></td>
+                <td><a href="graalvm_ee_only_jdk11_options.html"><b>EE-only options</b></a></td>
             </tr>
         </table>
     </div>
     <div class="menuwrap">
         <table class="menu">
             <tr>
-                <th colspan="2">GraalVM native-image</th>
+                <th colspan="4">GraalVM native-image 19.3.0</th>
             </tr>
             <tr>
-                <td><a href="graalvm_native_image_ce_19_options.html">native-image CE 19.2.1</a></td>
-                <td><a href="graalvm_native_image_ee_19_options.html">native-image EE 19.2.1</a></td>
+                <th colspan="2">JDK8</th>
+                <th colspan="2">JDK11</th>
+            </tr>
+            <tr>
+                <td><a href="graalvm_native_image_ce_jdk8_options.html">Community</a></td>
+                <td><a href="graalvm_native_image_ee_jdk8_options.html">Enterprise</a></td>
+                <td><a href="graalvm_native_image_ce_jdk11_options.html">Community</a></td>
+                <td><a href="graalvm_native_image_ee_jdk11_options.html">Enterprise</a></td>
             </tr>
             <tr>
                 <td></td>
-                <td><a href="graalvm_native_image_ee_only_options.html"><b>Enterprise-only options</b></a></td>
+                <td><a href="graalvm_native_image_ee_only_jdk8_options.html"><b>EE-only options</b></a></td>
+                <td></td>
+                <td><a href="graalvm_native_image_ee_only_jdk11_options.html"><b>EE-only options</b></a></td>
             </tr>
         </table>
     </div>
@@ -203,7 +218,6 @@ Compare with subclasses of Assembler.InstructionCounter.</pre></td></tr>
 <tr><td>AbortOnBenchmarkCounterOverflow</td><td>bool</td><td>false</td><td>Runtime</td><td><pre>Abort VM with SIGILL if benchmark counters controlled by the (Generic|Timed|Benchmark)DynamicCounters.</pre></td></tr>
 <tr><td>AddAllCharsets</td><td>bool</td><td>false</td><td>Hosted</td><td><pre>Make all hosted charsets available at run time.</pre></td></tr>
 <tr><td>AddAllFileSystemProviders</td><td>bool</td><td>true</td><td>Hosted</td><td><pre>Make all supported providers returned by FileSystemProvider.installedProviders() available at run time.</pre></td></tr>
-<tr><td>AddAllFileTypeDetectors</td><td>bool</td><td>true</td><td>Hosted</td><td><pre>Make all supported FileTypeDetector available at run time.</pre></td></tr>
 <tr><td>AggregatedMetricsFile</td><td>String</td><td>None</td><td>Runtime</td><td><pre>File to which aggregated metrics are dumped at shutdown. A CSV format is used if the file ends with .csv otherwise a 
 more human readable format is used. If not specified, metrics are dumped to the console.</pre></td></tr>
 <tr><td>AlignedHeapChunkSize</td><td>int</td><td>1048576</td><td>Hosted</td><td><pre>The size of an aligned chunk. </pre></td></tr>
@@ -242,6 +256,8 @@ readable format is used. The fields in the CSV format are: category, group, name
 <tr><td>BootstrapWatchDogCriticalRateRatio</td><td>double</td><td>0.25</td><td>Runtime</td><td><pre>Ratio of the maximum compilation rate below which the bootstrap compilation rate must not fall (0 or less disables 
 monitoring).</pre></td></tr>
 <tr><td>CAPCacheDir</td><td></td><td>""</td><td>Hosted</td><td><pre>Directory where information generated by the CAnnotation Processor are cached. </pre></td></tr>
+<tr><td>CCompilerOption</td><td>String</td><td>None</td><td>Hosted</td><td><pre>Provide custom C compiler option used for query code compilation.</pre></td></tr>
+<tr><td>CCompilerPath</td><td>String</td><td>None</td><td>Hosted</td><td><pre>Provide custom path to C compiler used for query code compilation and linking.</pre></td></tr>
 <tr><td>CLibraryPath</td><td></td><td></td><td>Hosted</td><td><pre>
 Search path for C libraries passed to the linker (list of comma-separated directories).</pre></td></tr>
 <tr><td>CPUFeatures</td><td>String</td><td>None</td><td>Hosted</td><td><pre>Comma separated list of CPU features that will be used for image generation on the AMD64 platform. Features SSE and SSE2 
@@ -285,6 +301,7 @@ all counters unconditionally.</pre></td></tr>
 <tr><td>CrashAt</td><td>String</td><td>None</td><td>Runtime</td><td><pre>Pattern for method(s) that will trigger an exception when compiled. This option exists to test handling compilation 
 crashes gracefully. See the MethodFilter option for the pattern syntax. A ':Bailout' suffix will raise a bailout
 exception and a ':PermanentBailout' suffix will raise a permanent bailout exception.</pre></td></tr>
+<tr><td>CustomLLC</td><td></td><td>""</td><td>Hosted</td><td><pre>Path to a custom llc binary for LLVM compilation. </pre></td></tr>
 <tr><td>DebugStubsAndSnippets</td><td>bool</td><td>false</td><td>Runtime</td><td><pre>Enable debug output for stub code generation and snippet preparation.</pre></td></tr>
 <tr><td>DeleteLocalSymbols</td><td>bool</td><td>true</td><td>Hosted</td><td><pre>Use linker option to remove all local symbols from image.</pre></td></tr>
 <tr><td>DeoptALot</td><td>bool</td><td>false</td><td>Runtime</td><td><pre></pre></td></tr>
@@ -321,6 +338,7 @@ number of methods does not go up without a good reason.</pre></td></tr>
 <tr><td>ExactPartialUnrollMaxNodes</td><td>int</td><td>200</td><td>Runtime</td><td></td></tr>
 <tr><td>ExitAfterAnalysis</td><td>bool</td><td>false</td><td>Hosted</td><td><pre>Exit after analysis.</pre></td></tr>
 <tr><td>ExitAfterCAPCache</td><td>bool</td><td>false</td><td>Hosted</td><td><pre>Exit image generation after C Annotation Processor Cache creation.</pre></td></tr>
+<tr><td>ExitAfterRelocatableImageWrite</td><td>bool</td><td>false</td><td>Hosted</td><td><pre>Exit after writing relocatable file.</pre></td></tr>
 <tr><td>ExitVMOnException</td><td>bool</td><td>false</td><td>Runtime</td><td><pre>Alias for CompilationFailureAction=ExitVM.</pre></td></tr>
 <tr><td>ExtendedAsserts</td><td>bool</td><td>false</td><td>Runtime</td><td><pre>Enable extended asserts which slow down analysis.</pre></td></tr>
 <tr><td>FailedLoopExplosionIsFatal</td><td>bool</td><td>false</td><td>Runtime</td><td><pre>Do not bail out but throw an exception on failed loop explosion.</pre></td></tr>
@@ -331,6 +349,7 @@ number of methods does not go up without a good reason.</pre></td></tr>
 <tr><td>FallbackExecutorSystemProperty</td><td>String</td><td>None</td><td>Hosted</td><td><pre>Internal option used to specify system properties for FallbackExecutor.</pre></td></tr>
 <tr><td>FallbackThreshold</td><td>int</td><td>5</td><td>Hosted</td><td><pre>Define when fallback-image generation should be used. </pre></td></tr>
 <tr><td>Features</td><td>String</td><td>None</td><td>Hosted</td><td><pre>A comma-separated list of fully qualified Feature implementation classes.</pre></td></tr>
+<tr><td>FoldSecurityManagerGetter</td><td>bool</td><td>true</td><td>Hosted</td><td><pre>Fold SecurityManager getter.</pre></td></tr>
 <tr><td>ForceDumpGraphsBeforeCompilation</td><td>bool</td><td>false</td><td>Runtime</td><td><pre>Force-dump graphs before compilation.</pre></td></tr>
 <tr><td>FullUnrollConstantCompareBoost</td><td>int</td><td>15</td><td>Runtime</td><td></td></tr>
 <tr><td>FullUnrollMaxIterations</td><td>int</td><td>600</td><td>Runtime</td><td></td></tr>
@@ -409,6 +428,7 @@ separately.</pre></td></tr>
 <tr><td>LSRAOptSplitOnly</td><td>bool</td><td>false</td><td>Runtime</td><td><pre>LSRA optimization: Only split but do not reassign.</pre></td></tr>
 <tr><td>LSRAOptimization</td><td>bool</td><td>false</td><td>Runtime</td><td><pre>Enable LSRA optimization.</pre></td></tr>
 <tr><td>LargeArrayThreshold</td><td>int</td><td>0</td><td>Hosted</td><td><pre>How many bytes is enough to allocate an unaligned chunk for an array? 0 implies (AlignedHeapChunkSize / 8). </pre></td></tr>
+<tr><td>LateMembars</td><td>bool</td><td>true</td><td>Runtime</td><td><pre>Do not include membars for volatile accesses until the end of optimizations.</pre></td></tr>
 <tr><td>LimitInlinedInvokes</td><td>double</td><td>5.0</td><td>Runtime</td><td></td></tr>
 <tr><td>LimitObjectArrayLength</td><td>bool</td><td>false</td><td>Runtime</td><td><pre>Enable a limit for the number of objects recorded for each type of a type state before disabling heap sensitivity for 
 that type. The analysis must be heap sensitive.</pre></td></tr>
@@ -419,7 +439,8 @@ compiler code that is not executed.</pre></td></tr>
 <tr><td>LoadExceptionObjectInVM</td><td>bool</td><td>false</td><td>Runtime</td><td><pre>Use a VM runtime call to load and clear the exception object from the thread at the start of a compiled exception 
 handler.</pre></td></tr>
 <tr><td>LogFile</td><td>String</td><td>None</td><td>Runtime</td><td><pre>File to which logging is sent. A %p in the name will be replaced with a string identifying the process, usually the 
-process id and %t will be replaced by System.currentTimeMillis().</pre></td></tr>
+process id and %t will be replaced by System.currentTimeMillis().  Using %o as filename sends logging to System.out
+whereas %e sends logging to System.err.</pre></td></tr>
 <tr><td>LogVerbose</td><td>bool</td><td>false</td><td>Runtime</td><td><pre>Enable more verbose log output when available.</pre></td></tr>
 <tr><td>Log</td><td>String</td><td>None</td><td>Runtime</td><td><pre>Pattern for specifying scopes in which logging is enabled. See the Dump option for the pattern syntax.</pre></td></tr>
 <tr><td>LoopHeaderAlignment</td><td>int</td><td>16</td><td>Runtime</td><td><pre>Alignment in bytes for loop header blocks. </pre></td></tr>
@@ -588,13 +609,11 @@ InHeap, Allocated, InTypeCheck).</pre></td></tr>
 <tr><td>ReportUnsafeOffsetWarnings</td><td>bool</td><td>false</td><td>Hosted</td><td><pre>Print unsafe operation offset warnings.).</pre></td></tr>
 <tr><td>ReportUnsupportedElementsAtRuntime</td><td>bool</td><td>false</td><td>Hosted</td><td><pre>Report usage of unsupported methods and fields at run time when they are accessed the first time, instead of as an error 
 during image building.</pre></td></tr>
-<tr><td>ReportUnsupportedFeaturesDuringAnalysis</td><td>bool</td><td>true</td><td>Runtime</td><td><pre>Unsupported features are fatal.</pre></td></tr>
 <tr><td>ResourceConfigurationFiles</td><td>String</td><td>None</td><td>Hosted</td><td><pre>Files describing Java resources to be included in the image.</pre></td></tr>
 <tr><td>ResourceConfigurationResources</td><td>String</td><td>None</td><td>Hosted</td><td><pre>Resources describing Java resources to be included in the image.</pre></td></tr>
 <tr><td>ReturnAfterAnalysis</td><td>bool</td><td>false</td><td>Hosted</td><td><pre>Return after analysis.</pre></td></tr>
 <tr><td>RuntimeAssertionsFilter</td><td>String</td><td>None</td><td>Hosted</td><td><pre>Only use Java assert statements for classes that are matching the comma-separated list of package prefixes.</pre></td></tr>
 <tr><td>RuntimeAssertions</td><td>bool</td><td>false</td><td>Hosted</td><td><pre>Enable or disable Java assert statements at run time.</pre></td></tr>
-<tr><td>SafepointPromptnessFailureIsFatal</td><td>bool</td><td>true</td><td>Runtime</td><td><pre>Are safepoint promptness failures fatal?.</pre></td></tr>
 <tr><td>SafepointPromptnessFailureNanos</td><td>int</td><td>0</td><td>Runtime</td><td><pre>Exit the VM if I can not come to a safepoint in this many nanoseconds. 0 implies forever. </pre></td></tr>
 <tr><td>SafepointPromptnessWarningNanos</td><td>int</td><td>0</td><td>Runtime</td><td><pre>Print a warning if I can not come to a safepoint in this many nanoseconds. 0 implies forever. </pre></td></tr>
 <tr><td>ScanObjectsParallel</td><td>bool</td><td>true</td><td>Runtime</td><td><pre>Object scanning in parallel.</pre></td></tr>
@@ -607,7 +626,7 @@ useful when profiling to get more precise position information.</pre></td></tr>
 <tr><td>SimpleMethodCalls</td><td>int</td><td>1</td><td>Runtime</td><td><pre>Maximum number of calls in a simple method. </pre></td></tr>
 <tr><td>SimpleMethodGraphSize</td><td>int</td><td>256</td><td>Runtime</td><td><pre>Maximum number of nodes in a graph for a simple method. </pre></td></tr>
 <tr><td>SimpleMethodIndirectCalls</td><td>int</td><td>0</td><td>Runtime</td><td><pre>Maximum number of indirect calls in a simple moethod. </pre></td></tr>
-<tr><td>SmallCompiledLowLevelGraphSize</td><td>int</td><td>300</td><td>Runtime</td><td><pre>If the previous low-level graph size of the method exceeds the threshold, it is not inlined. </pre></td></tr>
+<tr><td>SmallCompiledLowLevelGraphSize</td><td>int</td><td>330</td><td>Runtime</td><td><pre>If the previous low-level graph size of the method exceeds the threshold, it is not inlined. </pre></td></tr>
 <tr><td>SnippetCounters</td><td>bool</td><td>false</td><td>Runtime</td><td><pre>Enable counters for various paths in snippets.</pre></td></tr>
 <tr><td>SpawnIsolates</td><td>bool</td><td>true</td><td>Hosted</td><td><pre>Support multiple isolates. .</pre></td></tr>
 <tr><td>StackRedZoneSize</td><td>int</td><td>8192</td><td>Hosted</td><td><pre>Size (in bytes) of the red zone reserved at the end of the stack. This stack space can only be used by critical VM code 
@@ -677,14 +696,14 @@ to refine tracing to selected methods.</pre></td></tr>
 <tr><td>TraceTruffleCompilationDetails</td><td>bool</td><td>false</td><td>Runtime</td><td><pre>Print information for compilation queuing.</pre></td></tr>
 <tr><td>TraceTruffleCompilationPolymorphism</td><td>bool</td><td>false</td><td>Runtime</td><td><pre>Print all polymorphic and generic nodes after each compilation.</pre></td></tr>
 <tr><td>TraceTruffleCompilation</td><td>bool</td><td>false</td><td>Runtime</td><td><pre>Print information for compilation results.</pre></td></tr>
-<tr><td>TraceTruffleExpansionSource</td><td>bool</td><td>false</td><td>Runtime</td><td><pre>Print source sections for printed expansion trees.</pre></td></tr>
+<tr><td>TraceTruffleInliningDetails</td><td>bool</td><td>false</td><td>Runtime</td><td><pre>Print detailed information for inlining (i.e. the entire explored call tree).</pre></td></tr>
 <tr><td>TraceTruffleInlining</td><td>bool</td><td>false</td><td>Runtime</td><td><pre>Print information for inlining for each compilation.</pre></td></tr>
 <tr><td>TraceTrufflePerformanceWarnings</td><td>bool</td><td>false</td><td>Runtime</td><td><pre>Print potential performance problems.</pre></td></tr>
 <tr><td>TraceTruffleSplitting</td><td>bool</td><td>false</td><td>Runtime</td><td><pre>Print information for each splitted call site.</pre></td></tr>
 <tr><td>TraceTruffleStackTraceLimit</td><td>int</td><td>20</td><td>Runtime</td><td><pre>Number of stack trace elements printed by TraceTruffleTransferToInterpreter and TraceTruffleAssumptions. </pre></td></tr>
 <tr><td>TraceTruffleTransferToInterpreter</td><td>bool</td><td>false</td><td>Runtime</td><td><pre>Print stack trace on transfer to interpreter.</pre></td></tr>
 <tr><td>TraceUnwindStub</td><td>bool</td><td>false</td><td>Runtime</td><td><pre>Trace execution of the stub that routes an exception to a handler in the calling frame.</pre></td></tr>
-<tr><td>TraceVMOperations</td><td>bool</td><td>false</td><td>Runtime</td><td><pre>Trace VMOperation execution.</pre></td></tr>
+<tr><td>TraceVMOperations</td><td>bool</td><td>false</td><td>Hosted</td><td><pre>Trace VMOperation execution.</pre></td></tr>
 <tr><td>TrackAccessChain</td><td>bool</td><td>false</td><td>Runtime</td><td><pre>Track the callers for methods and accessing methods for fields.</pre></td></tr>
 <tr><td>TrackInputFlows</td><td>bool</td><td>false</td><td>Runtime</td><td><pre>Track the input for type flows.</pre></td></tr>
 <tr><td>TrackMemUse</td><td>String</td><td>None</td><td>Runtime</td><td><pre>Pattern for specifying scopes in which memory use tracking is enabled. See the Dump option for the pattern syntax. An 
@@ -714,7 +733,10 @@ empty value enables all memory use trackers unconditionally.</pre></td></tr>
 <tr><td>TruffleFunctionInlining</td><td>bool</td><td>true</td><td>Runtime</td><td><pre>Enable automatic inlining of call targets.</pre></td></tr>
 <tr><td>TruffleInlineAcrossTruffleBoundary</td><td>bool</td><td>false</td><td>Runtime</td><td><pre>Enable inlining across Truffle boundary.</pre></td></tr>
 <tr><td>TruffleInlineDuringParsing</td><td>bool</td><td>true</td><td>Hosted</td><td><pre>Inline trivial methods in Truffle graphs during native image generation.</pre></td></tr>
+<tr><td>TruffleInliningExpansionBudget</td><td>int</td><td>50000</td><td>Runtime</td><td><pre>The base expansion budget for language-agnostic inlining. </pre></td></tr>
+<tr><td>TruffleInliningInliningBudget</td><td>int</td><td>50000</td><td>Runtime</td><td><pre>The base inlining budget for language-agnostic inlining. </pre></td></tr>
 <tr><td>TruffleInliningMaxCallerSize</td><td>int</td><td>2250</td><td>Runtime</td><td><pre>Stop inlining if caller's cumulative tree size would exceed this limit. </pre></td></tr>
+<tr><td>TruffleInliningPolicy</td><td></td><td>""</td><td>Runtime</td><td><pre>Explicitly pick a inlining policy by name. Highest priority chosen by default. </pre></td></tr>
 <tr><td>TruffleInstrumentBoundariesPerInlineSite</td><td>bool</td><td>false</td><td>Runtime</td><td><pre>Instrument Truffle boundaries by considering different inlining sites as different branches.</pre></td></tr>
 <tr><td>TruffleInstrumentBoundaries</td><td>bool</td><td>false</td><td>Runtime</td><td><pre>Instrument Truffle boundaries and output profiling information to the standard output.</pre></td></tr>
 <tr><td>TruffleInstrumentBranchesPerInlineSite</td><td>bool</td><td>false</td><td>Runtime</td><td><pre>Instrument branches by considering different inlining sites as different branches.</pre></td></tr>
@@ -724,7 +746,10 @@ empty value enables all memory use trackers unconditionally.</pre></td></tr>
 <tr><td>TruffleIntrinsifyFrameAccess</td><td>bool</td><td>true</td><td>Runtime</td><td><pre>Intrinsify get/set/is methods of FrameWithoutBoxing to improve Truffle compilation time.</pre></td></tr>
 <tr><td>TruffleInvalidationReprofileCount</td><td>int</td><td>3</td><td>Runtime</td><td><pre>Delay compilation after an invalidation to allow for reprofiling. </pre></td></tr>
 <tr><td>TruffleIterativePartialEscape</td><td>bool</td><td>false</td><td>Runtime</td><td><pre>Run the partial escape analysis iteratively in Truffle compilation.</pre></td></tr>
+<tr><td>TruffleLanguageAgnosticInlining</td><td>bool</td><td>false</td><td>Runtime</td><td><pre>Use language-agnostic inlining (overrides the TruffleFunctionInlining setting, option is experimental).</pre></td></tr>
 <tr><td>TruffleLegacySplitting</td><td>bool</td><td>false</td><td>Runtime</td><td><pre>Use legacy splitting heuristic. This option will be removed.</pre></td></tr>
+<tr><td>TruffleMaximumGraalNodeCount</td><td>int</td><td>400000</td><td>Runtime</td><td><pre>Stop partial evaluation when the graph exceeded this many nodes. </pre></td></tr>
+<tr><td>TruffleMaximumInlineNodeCount</td><td>int</td><td>150000</td><td>Runtime</td><td><pre>Ignore further truffle inlining decisions when the graph exceeded this many nodes. </pre></td></tr>
 <tr><td>TruffleMaximumRecursiveInlining</td><td>int</td><td>2</td><td>Runtime</td><td><pre>Maximum level of recursive inlining. </pre></td></tr>
 <tr><td>TruffleMinInvokeThreshold</td><td>int</td><td>3</td><td>Runtime</td><td><pre>Minimum number of calls before a call target is compiled. </pre></td></tr>
 <tr><td>TruffleMultiTier</td><td>bool</td><td>false</td><td>Runtime</td><td><pre>Whether to use multiple Truffle compilation tiers by default.</pre></td></tr>
@@ -743,7 +768,6 @@ Disable call target splitting if number of nodes created by splitting exceeds th
 <tr><td>TruffleSplittingMaxPropagationDepth</td><td>int</td><td>5</td><td>Runtime</td><td><pre>Propagate info about a polymorphic specialize through maximum this many call targets. </pre></td></tr>
 <tr><td>TruffleSplittingTraceEvents</td><td>bool</td><td>false</td><td>Runtime</td><td><pre>Trace details of splitting events and decisions.</pre></td></tr>
 <tr><td>TruffleSplitting</td><td>bool</td><td>true</td><td>Runtime</td><td><pre>Enable call target splitting.</pre></td></tr>
-<tr><td>TruffleTimeThreshold</td><td>int</td><td>50000</td><td>Runtime</td><td><pre>Defines the maximum timespan in milliseconds that is required for a call target to be queued for compilation. </pre></td></tr>
 <tr><td>TruffleTraceSplittingSummary</td><td>bool</td><td>false</td><td>Runtime</td><td><pre>Used for debugging the splitting implementation. Prints splitting summary directly to stdout on shutdown.</pre></td></tr>
 <tr><td>TrustFinalDefaultFields</td><td>bool</td><td>true</td><td>Runtime</td><td><pre>Determines whether to treat final fields with default values as constant.</pre></td></tr>
 <tr><td>TypeCheckMaxHints</td><td>int</td><td>2</td><td>Runtime</td><td><pre>The maximum number of profiled types that will be used when compiling a profiled type check. Note that 
@@ -758,6 +782,7 @@ type check will be compiled without profiling info.</pre></td></tr>
 <tr><td>UseCAPCache</td><td>bool</td><td>false</td><td>Hosted</td><td><pre>Indicate the C Annotation Processor to use previously cached native information when generating C Type information.</pre></td></tr>
 <tr><td>UseCardRememberedSetHeap</td><td>bool</td><td>true</td><td>Hosted</td><td><pre>Use a card remembered set heap for GC.</pre></td></tr>
 <tr><td>UseCompilationStatistics</td><td>bool</td><td>false</td><td>Runtime</td><td><pre>Enables CompilationStatistics.</pre></td></tr>
+<tr><td>UseDedicatedVMOperationThread</td><td>bool</td><td>false</td><td>Hosted</td><td><pre>Determines if VM operations should be executed in a dedicated thread.</pre></td></tr>
 <tr><td>UseEncodedGraphs</td><td>bool</td><td>false</td><td>Runtime</td><td><pre>Encode and decode snippets and substitutions before parsing to test libgraal code path. This option is ignored in the 
 context of libgraal.</pre></td></tr>
 <tr><td>UseExceptionProbability</td><td>bool</td><td>true</td><td>Runtime</td><td><pre></pre></td></tr>
@@ -798,7 +823,7 @@ Policy used when users request garbage collection.</pre></td></tr>
 		</tbody>
 	</table>
 	<div class="footer">
-		Built on Tue Nov 12 08:57:26 GMT 2019 from Graal Native sources by <a
+		Built on Tue Dec 03 21:34:34 GMT 2019 from Graal Native sources by <a
 			href="https://twitter.com/chriswhocodes">@chriswhocodes</a>
 	</div>
 </body>

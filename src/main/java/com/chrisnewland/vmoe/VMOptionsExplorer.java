@@ -104,6 +104,7 @@ public class VMOptionsExplorer
 		String headerHTML = new String(Files.readAllBytes(vmoeDir.resolve("templates/header.html")), StandardCharsets.UTF_8);
 
 		template = template.replace("$HEADER_HTML", headerHTML);
+		template = template.replace("$GRAAL_VERSION", graalVersion);
 		template = template.replace("$DELTA_BODY", builder.toString());
 		template = template.replace("$DATE", new Date().toString());
 		template = template.replace("$H1_TITLE", title);
@@ -252,6 +253,13 @@ public class VMOptionsExplorer
 		}
 	}
 
+	private String graalVersion;
+
+	public void setGraalVersion(String version)
+	{
+		this.graalVersion = version;
+	}
+
 	private void parseJDK(VMData vmData) throws IOException
 	{
 		this.vmPath = vmData.getVmPath();
@@ -329,6 +337,7 @@ public class VMOptionsExplorer
 		}
 
 		template = template.replace("$H1_TITLE", title);
+		template = template.replace("$GRAAL_VERSION", graalVersion);
 		template = template.replace("$THEAD", SwitchInfo.getHeaderRow(vmType));
 		template = template.replace("$VMNAME", vmName);
 		template = template.replace("$JDK", jdkName);
@@ -408,6 +417,8 @@ public class VMOptionsExplorer
 
 		VMOptionsExplorer explorer = new VMOptionsExplorer(vmoeDir);
 
+		explorer.setGraalVersion("19.3.0");
+
 		if (processHotSpot)
 		{
 			String pre10Usage = "src/share/vm/Xusage.txt";
@@ -418,22 +429,34 @@ public class VMOptionsExplorer
 			explorer.addVM(new VMData("JDK7", baseDir.resolve("jdk7u/hotspot").toFile(), VMType.HOTSPOT).addUsageFile(pre10Usage));
 			explorer.addVM(new VMData("JDK8", baseDir.resolve("jdk8u/hotspot").toFile(), VMType.HOTSPOT).addUsageFile(pre10Usage));
 			explorer.addVM(new VMData("JDK9", baseDir.resolve("jdk9/hotspot").toFile(), VMType.HOTSPOT).addUsageFile(pre10Usage));
-			explorer.addVM(new VMData("JDK10", baseDir.resolve("jdk10/src/hotspot").toFile(), VMType.HOTSPOT).addUsageFile(post10Usage));
-			explorer.addVM(new VMData("JDK11", baseDir.resolve("jdk11/src/hotspot").toFile(), VMType.HOTSPOT).addUsageFile(post10Usage));
-			explorer.addVM(new VMData("JDK12", baseDir.resolve("jdk12/src/hotspot").toFile(), VMType.HOTSPOT).addUsageFile(post10Usage));
-			explorer.addVM(new VMData("JDK13", baseDir.resolve("jdk13/src/hotspot").toFile(), VMType.HOTSPOT).addUsageFile(post13Usage));
-			explorer.addVM(new VMData("JDK14", baseDir.resolve("jdk14/src/hotspot").toFile(), VMType.HOTSPOT).addUsageFile(post13Usage));
+			explorer.addVM(
+					new VMData("JDK10", baseDir.resolve("jdk10/src/hotspot").toFile(), VMType.HOTSPOT).addUsageFile(post10Usage));
+			explorer.addVM(
+					new VMData("JDK11", baseDir.resolve("jdk11/src/hotspot").toFile(), VMType.HOTSPOT).addUsageFile(post10Usage));
+			explorer.addVM(
+					new VMData("JDK12", baseDir.resolve("jdk12/src/hotspot").toFile(), VMType.HOTSPOT).addUsageFile(post10Usage));
+			explorer.addVM(
+					new VMData("JDK13", baseDir.resolve("jdk13/src/hotspot").toFile(), VMType.HOTSPOT).addUsageFile(post13Usage));
+			explorer.addVM(
+					new VMData("JDK14", baseDir.resolve("jdk14/src/hotspot").toFile(), VMType.HOTSPOT).addUsageFile(post13Usage));
 		}
 
 		if (processGraalVM)
 		{
-			// TODO add usage files
-			// Generate these files with -XX:+JVMCIPrintProperties
-			explorer.addVM(new VMData("GraalVM CE 19", vmoeDir.resolve("graal_ce.vm").toFile(), VMType.GRAAL_VM));
-			explorer.addVM(new VMData("GraalVM EE 19", vmoeDir.resolve("graal_ee.vm").toFile(), VMType.GRAAL_VM));
+			String[] jdkVersions = new String[] { "8", "11" };
 
-			explorer.addVM(new VMData("GraalVM native-image CE 19", vmoeDir.resolve("graal_ce.native").toFile(), VMType.GRAAL_NATIVE));
-			explorer.addVM(new VMData("GraalVM native-image EE 19", vmoeDir.resolve("graal_ee.native").toFile(), VMType.GRAAL_NATIVE));
+			for (String version : jdkVersions)
+			{
+				explorer.addVM(new VMData("GraalVM CE JDK" + version, vmoeDir.resolve("graal_ce_java" + version + ".vm").toFile(),
+						VMType.GRAAL_VM));
+				explorer.addVM(new VMData("GraalVM EE JDK" + version, vmoeDir.resolve("graal_ee_java" + version + ".vm").toFile(),
+						VMType.GRAAL_VM));
+
+				explorer.addVM(new VMData("GraalVM native-image CE JDK" + version,
+						vmoeDir.resolve("graal_ce_java" + version + ".native").toFile(), VMType.GRAAL_NATIVE));
+				explorer.addVM(new VMData("GraalVM native-image EE JDK" + version,
+						vmoeDir.resolve("graal_ee_java" + version + ".native").toFile(), VMType.GRAAL_NATIVE));
+			}
 		}
 
 		if (processOpenJ9)
@@ -457,16 +480,24 @@ public class VMOptionsExplorer
 		if (processHotSpot)
 		{
 			explorer.processVMDeltas(VMType.HOTSPOT, "Differences between HotSpot VM Versions",
-					vmoeDir.resolve("templates/template_hotspot_delta.html"), vmoeDir.resolve("html/hotspot_option_differences.html"));
+					vmoeDir.resolve("templates/template_hotspot_delta.html"),
+					vmoeDir.resolve("html/hotspot_option_differences.html"));
 		}
 
 		if (processGraalVM)
 		{
-			explorer.processVMDeltas(VMType.GRAAL_VM, "Additonal options in GraalVM Enterprise Edition",
-					vmoeDir.resolve("templates/template_graal_delta.html"), vmoeDir.resolve("html/graalvm_ee_only_options.html"));
+			String[] jdkVersions = new String[] { "8", "11" };
 
-			explorer.processVMDeltas(VMType.GRAAL_NATIVE, "Additonal options in Graal Native Enterprise Edition",
-					vmoeDir.resolve("templates/template_graal_delta.html"), vmoeDir.resolve("html/graalvm_native_image_ee_only_options.html"));
+			for (String version : jdkVersions)
+			{
+				explorer.processVMDeltas(VMType.GRAAL_VM, "Additonal options in GraalVM Enterprise Edition",
+						vmoeDir.resolve("templates/template_graal_delta.html"),
+						vmoeDir.resolve("html/graalvm_ee_only_jdk" + version + "_options.html"));
+
+				explorer.processVMDeltas(VMType.GRAAL_NATIVE, "Additonal options in Graal Native Enterprise Edition",
+						vmoeDir.resolve("templates/template_graal_delta.html"),
+						vmoeDir.resolve("html/graalvm_native_image_ee_only_jdk" + version + "_options.html"));
+			}
 		}
 
 		if (processHotSpotIntrinsics)

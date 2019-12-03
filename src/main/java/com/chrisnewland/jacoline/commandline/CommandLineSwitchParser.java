@@ -15,7 +15,6 @@ import org.owasp.encoder.Encode;
 
 import java.io.File;
 import java.io.IOException;
-import java.math.BigDecimal;
 import java.nio.file.Path;
 import java.sql.SQLException;
 import java.util.*;
@@ -610,6 +609,8 @@ public class CommandLineSwitchParser
 			else
 			{
 				String availability = getAvailability(switchInfoList);
+
+				//TODO availability rule
 
 				if (availability != null)
 				{

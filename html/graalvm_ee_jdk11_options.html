@@ -1,0 +1,1851 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html lang='en-GB'>
+<head>
+<title>VM Options Explorer - GraalVM EE JDK11</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="author" content="Chris Newland">
+<meta name="copyright" content="Chris Newland 2018-2019">
+<meta name="viewport" content="width=device-width">
+<link rel="stylesheet" type="text/css"
+	href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css">
+<link rel="stylesheet" type="text/css" href="css/style-vmoe.css">
+<script type="text/javascript"
+	src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<script type="text/javascript"
+	src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+</head>
+<body>
+	<script type="text/javascript">
+    function getParam() {
+      return window.location.href.slice(window.location.href.indexOf('?') + 1)
+          .split('=')[1];
+    };
+
+    $(document)
+        .ready(
+            function() {
+              $('#myTable')
+                  .DataTable(
+                      {
+                        "pageLength" : 50,
+                        "lengthChange" : false,
+                        "columnDefs" : [ {
+                          "targets" : [ 0,1,2,3 ],
+                          "orderable" : true,
+                        } ],
+                        "oLanguage" : {
+                          "sSearch" : "Search GraalVM EE JDK11 Options: "
+                        },
+                        initComplete : function() {
+                              this.api().search(getParam());
+
+                              this.api().draw();
+                              
+                              this
+                                  .api()
+                                  .columns([ 1 ])
+                                  .every(
+                                      function() {
+                                        var column = this;
+                                        var select = $(
+                                            '<select><option value="">Show All</option></select>')
+                                            .appendTo(
+                                                $(column.header()).empty()).on(
+                                                'change',
+                                                function() {
+                                                  var val = $.fn.dataTable.util
+                                                      .escapeRegex($(this)
+                                                          .val());
+
+                                                  column.search(
+                                                      val ? '^' + val + '$'
+                                                          : '', true, false)
+                                                      .draw();
+                                                });
+
+                                        column
+                                            .data()
+                                            .unique()
+                                            .sort()
+                                            .each(
+                                                function(d, j) {
+                                                  select
+                                                      .append('<option value="'+d+'">'
+                                                          + d + '</option>')
+                                                });
+                                      });
+                        }
+                      });
+            });
+  </script>
+
+	<div class="title_wrap">
+    <div class="title">
+        <h1>VM Options Explorer - GraalVM EE JDK11</h1>
+    </div>
+    <div class="sponsor">
+        <a href="https://github.com/sponsors/chriswhocodes">Sponsor me on GitHub!</a>
+    </div>
+    <div class="divclear"></div>
+</div>
+
+<div class="menucontainer">
+    <div class="menuwrap">
+        <table class="menu">
+            <tr>
+                <th colspan="10">HotSpot
+                    <div class="diffs"><a href="hotspot_option_differences.html">Options added/removed</a></div>
+                </th>
+            </tr>
+            <tr>
+                <td class="row-heading">VM Options</td>
+                <td><a href="hotspot_options_jdk6.html">JDK6</a></td>
+                <td><a href="hotspot_options_jdk7.html">JDK7</a></td>
+                <td><a href="hotspot_options_jdk8.html">JDK8</a></td>
+                <td><a href="hotspot_options_jdk9.html">JDK9</a></td>
+                <td><a href="hotspot_options_jdk10.html">JDK10</a></td>
+                <td><a href="hotspot_options_jdk11.html">JDK11</a></td>
+                <td><a href="hotspot_options_jdk12.html">JDK12</a></td>
+                <td><a href="hotspot_options_jdk13.html">JDK13</a></td>
+                <td><a href="hotspot_options_jdk14.html">JDK14</a></td>
+            </tr>
+            <tr>
+                <td class="row-heading">Intrinsics</td>
+                <td><a href="hotspot_intrinsics_jdk6.html">JDK6</a></td>
+                <td><a href="hotspot_intrinsics_jdk7.html">JDK7</a></td>
+                <td><a href="hotspot_intrinsics_jdk8.html">JDK8</a></td>
+                <td><a href="hotspot_intrinsics_jdk9.html">JDK9</a></td>
+                <td><a href="hotspot_intrinsics_jdk10.html">JDK10</a></td>
+                <td><a href="hotspot_intrinsics_jdk11.html">JDK11</a></td>
+                <td><a href="hotspot_intrinsics_jdk12.html">JDK12</a></td>
+                <td><a href="hotspot_intrinsics_jdk13.html">JDK13</a></td>
+                <td><a href="hotspot_intrinsics_jdk14.html">JDK14</a></td>
+            </tr>
+        </table>
+    </div>
+    <div class="menuwrap">
+        <table class="menu">
+            <tr>
+                <th colspan="4">GraalVM 19.3.0</th>
+            </tr>
+            <tr>
+                <th colspan="2">JDK8</th>
+                <th colspan="2">JDK11</th>
+            </tr>
+            <tr>
+                <td><a href="graalvm_ce_jdk8_options.html">Community</a></td>
+                <td><a href="graalvm_ee_jdk8_options.html">Enterprise</a></td>
+                <td><a href="graalvm_ce_jdk11_options.html">Community</a></td>
+                <td><a href="graalvm_ee_jdk11_options.html">Enterprise</a></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td><a href="graalvm_ee_only_jdk8_options.html"><b>EE-only options</b></a></td>
+                <td></td>
+                <td><a href="graalvm_ee_only_jdk11_options.html"><b>EE-only options</b></a></td>
+            </tr>
+        </table>
+    </div>
+    <div class="menuwrap">
+        <table class="menu">
+            <tr>
+                <th colspan="4">GraalVM native-image 19.3.0</th>
+            </tr>
+            <tr>
+                <th colspan="2">JDK8</th>
+                <th colspan="2">JDK11</th>
+            </tr>
+            <tr>
+                <td><a href="graalvm_native_image_ce_jdk8_options.html">Community</a></td>
+                <td><a href="graalvm_native_image_ee_jdk8_options.html">Enterprise</a></td>
+                <td><a href="graalvm_native_image_ce_jdk11_options.html">Community</a></td>
+                <td><a href="graalvm_native_image_ee_jdk11_options.html">Enterprise</a></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td><a href="graalvm_native_image_ee_only_jdk8_options.html"><b>EE-only options</b></a></td>
+                <td></td>
+                <td><a href="graalvm_native_image_ee_only_jdk11_options.html"><b>EE-only options</b></a></td>
+            </tr>
+        </table>
+    </div>
+    <div class="menuwrap">
+        <table class="menu">
+            <tr>
+                <th>OpenJ9</th>
+            </tr>
+            <tr>
+                <td><a href="openj9_options.html">OpenJ9</a></td>
+            </tr>
+            <tr>
+                <td><a href="https://www.eclipse.org/openj9/docs/cmdline_migration/"><b>Migrating from HotSpot</b></a></td>
+            </tr>
+        </table>
+    </div>
+    <div class="menuwrap">
+        <table class="menu">
+            <tr>
+                <th colspan="2">Azul Zing</th>
+            </tr>
+            <tr>
+                <td><a href="zing_jdk8_options.html">Zing JDK8</a></td>
+                <td><a href="zing_jdk11_options.html">Zing JDK11</a></td>
+            </tr>
+        </table>
+    </div>
+</div>
+<div class="dtclear"></div>
+<div class="book">
+    Hey Reader! If these notes float your boat you'll find more great JVM info in this book I co-wrote!
+    <a href="https://www.amazon.com/Optimizing-Java-Techniques-Application-Performance/dp/1492025798/">Optimizing Java: Practical
+        techniques for improving JVM application performance</a>
+</div>
+
+	<table id="myTable" class="display cell-border">
+		<thead>
+			<tr><th>Name</th><th>Type</th><th>Default</th><th>Description</th></tr>
+			<tr><th></th><th>Type</th><th></th><th></th>
+			</tr>
+		</thead>
+		<tbody><tr><td>AOTInline</td><td>Boolean</td><td>true</td><td><pre>Perform method inlining in the AOT compiled native image
+</pre></td></tr>
+<tr><td>AOTInliningDepthToSizeRate</td><td>Double</td><td>2.5</td><td></td></tr>
+<tr><td>AOTInliningSizeMaximum</td><td>Integer</td><td>300</td><td></td></tr>
+<tr><td>AOTInliningSizeMinimum</td><td>Integer</td><td>50</td><td></td></tr>
+<tr><td>AOTPriorityInline</td><td>Boolean</td><td>true</td><td><pre>Enable use of priority inlining during AOT compilation.
+</pre></td></tr>
+<tr><td>AOTTrivialInline</td><td>Boolean</td><td>true</td><td><pre>Perform trivial method inlining in the AOT compiled native image
+</pre></td></tr>
+<tr><td>APIFunctionPrefix</td><td>String</td><td>"graal_"</td><td><pre>Prefix that is added to the names of API functions.
+</pre></td></tr>
+<tr><td>ASMInstructionProfiling</td><td>String</td><td>null</td><td><pre>Enables instruction profiling on assembler level. Valid values are a
+comma separated list of supported instructions. Compare with subclasses
+of Assembler.InstructionCounter.
+</pre></td></tr>
+<tr><td>AbortOnBenchmarkCounterOverflow</td><td>Boolean</td><td>false</td><td><pre>Abort VM with SIGILL if benchmark counters controlled by the
+(Generic|Timed|Benchmark)DynamicCounters
+option overflow. This feature is only supported on AMD64.
+WARNING: No descriptive error message will be printed! In case of an overflow,
+manual inspection of the emitted code is required.
+</pre></td></tr>
+<tr><td>AddAllCharsets</td><td>Boolean</td><td>false</td><td><pre>Make all hosted charsets available at run time
+</pre></td></tr>
+<tr><td>AddAllFileSystemProviders</td><td>Boolean</td><td>true</td><td><pre>Make all supported providers returned by
+FileSystemProvider.installedProviders() available at run time.
+</pre></td></tr>
+<tr><td>AggregatedMetricsFile</td><td>String</td><td>null</td><td><pre>File to which aggregated metrics are dumped at shutdown. A CSV format
+is used if the file ends with .csv otherwise a more human readable
+format is used. If not specified, metrics are dumped to the console.
+</pre></td></tr>
+<tr><td>AlignedHeapChunkSize</td><td>Long</td><td>1048576</td><td><pre>The size of an aligned chunk.
+</pre></td></tr>
+<tr><td>AllocateInstancePrefetchLines</td><td>Integer</td><td>1</td><td><pre>Number of cache lines to load after the object address using prefetch
+instructions generated in JIT compiled code.
+</pre></td></tr>
+<tr><td>AllocatePrefetchDistance</td><td>Integer</td><td>256</td><td><pre>Sets the size (in bytes) of the prefetch distance for object
+allocation. Memory about to be written with the value of new objects is
+prefetched up to this distance starting from the address of the last
+allocated object. Each Java thread has its own allocation point.
+</pre></td></tr>
+<tr><td>AllocatePrefetchInstr</td><td>Integer</td><td>0</td><td><pre>Sets the prefetch instruction to prefetch ahead of the allocation
+pointer. Possible values are from 0 to 3. The actual instructions
+behind the values depend on the platform.
+</pre></td></tr>
+<tr><td>AllocatePrefetchLines</td><td>Integer</td><td>3</td><td><pre>Number of cache lines to load after the array allocation using prefetch
+instructions generated in JIT compiled code.
+</pre></td></tr>
+<tr><td>AllocatePrefetchStepSize</td><td>Integer</td><td>16</td><td><pre>Sets the step size (in bytes) for sequential prefetch instructions.
+</pre></td></tr>
+<tr><td>AllocatePrefetchStyle</td><td>Integer</td><td>1</td><td><pre>Generated code style for prefetch instructions: for 0 or less no
+prefetch instructions are generated and for 1 or more prefetch
+instructions are introduced after each allocation.
+</pre></td></tr>
+<tr><td>AllocationBeforePhysicalMemorySize</td><td>Long</td><td>1048576</td><td><pre>Bytes that can be allocated before asking what the physical memory size
+is
+</pre></td></tr>
+<tr><td>AllocationProfilingThreshold</td><td>Integer</td><td>1048576</td><td><pre>The minimum size in bytes required for printing an allocation profiling
+entry
+</pre></td></tr>
+<tr><td>AllocationProfiling</td><td>Boolean</td><td>false</td><td><pre>Enable runtime profiling of allocation
+</pre></td></tr>
+<tr><td>AllocationSiteSensitiveHeap</td><td>Boolean</td><td>false</td><td><pre>A context sensitive heap means that each heap allocated object is
+modeled by using at least the allocation site.
+</pre></td></tr>
+<tr><td>AllowVMInspection</td><td>Boolean</td><td>false</td><td><pre>Enables features that allow the VM to be inspected during runtime.
+</pre></td></tr>
+<tr><td>AlwaysInlineIntrinsics</td><td>Boolean</td><td>false</td><td><pre>Unconditionally inline intrinsics
+</pre></td></tr>
+<tr><td>AlwaysInlineVTableStubs</td><td>Boolean</td><td>false</td><td></td></tr>
+<tr><td>AnalysisContextSensitivity</td><td>String</td><td>"insens"</td><td><pre>Controls the static analysis context sensitivity. Available values:
+insens (context insensitive analysis), allocsens (context insensitive
+analysis, context insensitive heap, allocation site sensitive heap),
+_1obj (1 object sensitive analysis with a context insensitive heap),
+_2obj1h (2 object sensitive with a 1 context sensitive heap)
+</pre></td></tr>
+<tr><td>AnalysisSizeCutoff</td><td>Integer</td><td>8</td><td><pre>The maximum size of type and method profiles returned by the static
+analysis. -1 indicates no limitation.
+</pre></td></tr>
+<tr><td>AuditHandles</td><td>Boolean</td><td>false</td><td><pre>Record stack trace along with scoped foreign object reference wrappers to debug issue with a wrapper being used after its scope has closed.
+</pre></td></tr>
+<tr><td>BaseCodeSizeCostCoefficient</td><td>Double</td><td>1.0E-4</td><td><pre>The base coefficient used to compute code size cost.
+</pre></td></tr>
+<tr><td>BaseTargetSpending</td><td>Integer</td><td>120</td><td><pre>The base target spending used to estimate the inlining threshold; the
+higher, the likelier it is to inline.
+</pre></td></tr>
+<tr><td>BenchmarkCountersDumpDynamic</td><td>Boolean</td><td>true</td><td><pre>Dump dynamic counters
+</pre></td></tr>
+<tr><td>BenchmarkCountersDumpStatic</td><td>Boolean</td><td>false</td><td><pre>Dump static counters
+</pre></td></tr>
+<tr><td>BenchmarkCountersFile</td><td>String</td><td>null</td><td><pre>File to which benchmark counters are dumped. A CSV format is used if
+the file ends with .csv otherwise a more human readable format is used.
+The fields in the CSV format are: category, group, name, value
+</pre></td></tr>
+<tr><td>BenchmarkDynamicCounters</td><td>String</td><td>null</td><td><pre>Turn on the benchmark counters. The format of this option is:
+          
+  (err|out),start pattern,end pattern
+  
+Start counting when the start pattern matches on the given stream and stop when the end pattern occurs.
+You can use &quot;~&quot; to match 1 or more digits.
+Examples:
+          
+  err, starting =====, PASSED in
+  out,Iteration ~ (~s) begins:,Iteration ~ (~s) ends:
+  
+The first pattern matches DaCapo output and the second matches SPECjvm2008 output.
+          
+As a more detailed example, here are the options to use for getting statistics
+about allocations within the DaCapo pmd benchmark:
+          
+  -XX:JVMCICounterSize=&lt;value&gt; -XX:-JVMCICountersExcludeCompiler \
+  -Dgraal.BenchmarkDynamicCounters=&quot;err, starting ====, PASSED in &quot; \
+  -Dgraal.ProfileAllocations=true
+  
+The JVMCICounterSize value depends on the granularity of the profiling -
+10000 should be sufficient. Omit JVMCICountersExcludeCompiler to exclude
+counting allocations on the compiler threads.
+The counters can be further configured by the ProfileAllocationsContext option.
+          
+We highly recommend the use of -Dgraal.AbortOnBenchmarkCounterOverflow=true to
+detect counter overflows eagerly.
+</pre></td></tr>
+<tr><td>BlockZeroingLowLimit</td><td>Integer</td><td>512</td><td><pre>Minimum amount of bytes when block zeroing used. (SPARC only)
+</pre></td></tr>
+<tr><td>BootstrapInitializeOnly</td><td>Boolean</td><td>false</td><td><pre>Do not compile anything on bootstrap but just initialize the compiler.
+</pre></td></tr>
+<tr><td>BootstrapTimeout</td><td>Double</td><td>15.0</td><td><pre>Maximum time in minutes to spend bootstrapping (0 to disable this
+limit).
+</pre></td></tr>
+<tr><td>BootstrapWatchDogCriticalRateRatio</td><td>Double</td><td>0.25</td><td><pre>Ratio of the maximum compilation rate below which the bootstrap
+compilation rate must not fall (0 or less disables monitoring).
+</pre></td></tr>
+<tr><td>BreakChainedPhis</td><td>Boolean</td><td>true</td><td><pre>Break chained phis
+</pre></td></tr>
+<tr><td>CAPCacheDir</td><td>String</td><td>""</td><td><pre>Directory where information generated by the CAnnotation Processor are
+cached.
+</pre></td></tr>
+<tr><td>CCompilerOption</td><td>String[]</td><td>[Ljava.lang.String;@7fe06cfecf20</td><td><pre>Provide custom C compiler option used for query code compilation.
+</pre></td></tr>
+<tr><td>CCompilerPath</td><td>String</td><td>null</td><td><pre>Provide custom path to C compiler used for query code compilation and
+linking.
+</pre></td></tr>
+<tr><td>CLibraryPath</td><td>String[]</td><td>[Ljava.lang.String;@7fe06cfecf30</td><td><pre>Search path for C libraries passed to the linker (list of
+comma-separated directories)
+</pre></td></tr>
+<tr><td>CallGraphCompilerNodeLimit</td><td>Integer</td><td>35000</td><td><pre>Controls the maximum number of compiler nodes that can appear in the
+call graph
+</pre></td></tr>
+<tr><td>CallGraphSizeLimit</td><td>Integer</td><td>1200</td><td><pre>Controls the maximum size of the call graph before ceasing inlining.
+</pre></td></tr>
+<tr><td>CallGraphSizePenaltyCoefficient</td><td>Double</td><td>0.001</td><td><pre>Reduces the likelihood of exploring call graph subtrees that are large.
+</pre></td></tr>
+<tr><td>CanOmitFrame</td><td>Boolean</td><td>true</td><td></td></tr>
+<tr><td>CanonicalGraphStringsCheckConstants</td><td>Boolean</td><td>false</td><td><pre>Exclude virtual nodes when dumping canonical text for graphs.
+</pre></td></tr>
+<tr><td>CanonicalGraphStringsExcludeVirtuals</td><td>Boolean</td><td>true</td><td><pre>Exclude virtual nodes when dumping canonical text for graphs.
+</pre></td></tr>
+<tr><td>CanonicalGraphStringsRemoveIdentities</td><td>Boolean</td><td>true</td><td><pre>Attempts to remove object identity hashes when dumping canonical text
+for graphs.
+</pre></td></tr>
+<tr><td>CheckRecurringCallbackOnNativeToJavaTransition</td><td>Boolean</td><td>false</td><td><pre>Test whether a thread's recurring callback is pending on each
+transition from native code to Java.
+</pre></td></tr>
+<tr><td>ClassInitialization</td><td>String[]</td><td>[Ljava.lang.String;@7fe06cfd0d00</td><td><pre>A comma-separated list of classes appended with their initialization
+strategy (':build_time', ':rerun', or ':run_time')
+</pre></td></tr>
+<tr><td>Class</td><td>String</td><td>""</td><td><pre>Class containing the default entry point method. Optional if --shared
+is used.
+</pre></td></tr>
+<tr><td>ClearMetricsAfterBootstrap</td><td>Boolean</td><td>false</td><td><pre>Clear the debug metrics after bootstrap.
+</pre></td></tr>
+<tr><td>CodeCacheCounters</td><td>Boolean</td><td>false</td><td><pre>Count accesses to the image and runtime code info table
+</pre></td></tr>
+<tr><td>CodeInfoEncoderCounters</td><td>Boolean</td><td>false</td><td><pre>Statistics about code and deoptimization information
+</pre></td></tr>
+<tr><td>CodeInfoIndexGranularity</td><td>Integer</td><td>256</td><td><pre>The granularity of the index for looking up code metadata. Should be a
+power of 2. Larger values make the index smaller, but access slower.
+</pre></td></tr>
+<tr><td>CompilationBailoutAsFailure</td><td>Boolean</td><td>false</td><td><pre>Treat compilation bailouts like compilation failures.
+</pre></td></tr>
+<tr><td>CompilationCountLimit</td><td>Integer</td><td>0</td><td><pre>The number of compilations allowed for any method before the VM exits
+(a value of 0 means there is no limit).
+</pre></td></tr>
+<tr><td>CompilationExpirationPeriod</td><td>Integer</td><td>300</td><td><pre>Time limit in seconds before a compilation expires (0 to disable the
+limit). The compilation alarm will be implicitly disabled if assertions
+are enabled.
+</pre></td></tr>
+<tr><td>CompilationFailureAction</td><td>String</td><td>Silent</td><td><pre>Specifies the action to take when compilation fails.
+The accepted values are:
+    Silent - Print nothing to the console.
+     Print - Print a stack trace to the console.
+  Diagnose - Retry the compilation with extra diagnostics.
+    ExitVM - Same as Diagnose except that the VM process exits after retrying.
+</pre></td></tr>
+<tr><td>CompilationWatchDogStackTraceInterval</td><td>Double</td><td>60.0</td><td><pre>Interval in seconds between a watch dog reporting stack traces for long
+running compilations.
+</pre></td></tr>
+<tr><td>CompilationWatchDogStartDelay</td><td>Double</td><td>0.0</td><td><pre>Delay in seconds before watch dog monitoring a compilation (0 disables
+monitoring).
+</pre></td></tr>
+<tr><td>CompileGraalWithC1Only</td><td>Boolean</td><td>true</td><td><pre>In tiered mode compile Graal and JVMCI using optimized first tier code.
+</pre></td></tr>
+<tr><td>CompileInIsolates</td><td>Boolean</td><td>false</td><td><pre>Activate runtime compilation in separate isolates (enable support
+during image build with option SupportCompileInIsolates).
+</pre></td></tr>
+<tr><td>CompilerBackend</td><td>String</td><td>"lir"</td><td><pre>Backend used by the compiler
+</pre></td></tr>
+<tr><td>CompilerConfiguration</td><td>String</td><td>null</td><td><pre>Names the compiler configuration to use. If omitted, the compiler
+configuration with the highest auto-selection priority is used. To see
+the set of available configurations, supply the value 'help' to this
+option.
+</pre></td></tr>
+<tr><td>CompilerNodePenaltyCoefficient</td><td>Double</td><td>0.001</td><td><pre>Controls the likelihood of exploring subtrees that already have a lot
+of code during inlining.
+</pre></td></tr>
+<tr><td>Compiler</td><td>String</td><td>null</td><td><pre>Selects the system compiler. This must match the getCompilerName() value returned by a jdk.vm.ci.runtime.JVMCICompilerFactory provider. An empty string or the value &quot;null&quot; selects a compiler that will raise an exception upon receiving a compilation request.
+</pre></td></tr>
+<tr><td>ConditionalEliminationMaxIterations</td><td>Integer</td><td>4</td><td></td></tr>
+<tr><td>ConditionalElimination</td><td>Boolean</td><td>true</td><td></td></tr>
+<tr><td>ConfigurationFileDirectories</td><td>String[]</td><td>null</td><td><pre>Directories directly containing configuration files for dynamic
+features at runtime.
+</pre></td></tr>
+<tr><td>ConfigurationResourceRoots</td><td>String[]</td><td>null</td><td><pre>Resource path above configuration resources for dynamic features at
+runtime.
+</pre></td></tr>
+<tr><td>CountWriteBarriers</td><td>Boolean</td><td>false</td><td><pre>Instrument write barriers with counters
+</pre></td></tr>
+<tr><td>Count</td><td>String</td><td>null</td><td><pre>Pattern for specifying scopes in which counters are enabled. See the
+Dump option for the pattern syntax. An empty value enables all counters
+unconditionally.
+</pre></td></tr>
+<tr><td>Counters</td><td>String</td><td>null</td><td><pre>Comma separated names of counters that are enabled irrespective of the
+value for Count option. An empty value enables all counters
+unconditionally.
+</pre></td></tr>
+<tr><td>CrashAt</td><td>String</td><td>null</td><td><pre>Pattern for method(s) that will trigger an exception when compiled.
+This option exists to test handling compilation crashes gracefully. See
+the MethodFilter option for the pattern syntax. A ':Bailout' suffix
+will raise a bailout exception and a ':PermanentBailout' suffix will
+raise a permanent bailout exception.
+</pre></td></tr>
+<tr><td>CustomLLC</td><td>String</td><td>""</td><td><pre>Path to a custom llc binary for LLVM compilation
+</pre></td></tr>
+<tr><td>CutoffCodeSizePenaltyCoefficient</td><td>Double</td><td>1.0E-5</td><td><pre>Controls the likelihood of further exploring subtrees with a lot of
+code during inlining.
+</pre></td></tr>
+<tr><td>DebugLoopInversion</td><td>Boolean</td><td>false</td><td><pre>Debug the loop inversion transformation.
+</pre></td></tr>
+<tr><td>DebugStubsAndSnippets</td><td>Boolean</td><td>false</td><td><pre>Enable debug output for stub code generation and snippet preparation.
+</pre></td></tr>
+<tr><td>Debug</td><td>Integer</td><td>0</td><td><pre>Control debug information output: 0 - no debuginfo, 1 - AOT code
+debuginfo, 2 - AOT and runtime code debuginfo.
+</pre></td></tr>
+<tr><td>DeleteLocalSymbols</td><td>Boolean</td><td>true</td><td><pre>Use linker option to remove all local symbols from image.
+</pre></td></tr>
+<tr><td>DeoptALot</td><td>Boolean</td><td>false</td><td></td></tr>
+<tr><td>DeoptAfterOSR</td><td>Boolean</td><td>true</td><td><pre>Deoptimize OSR compiled code when the OSR entry loop is finished if
+there is no mature profile available for the rest of the method.
+</pre></td></tr>
+<tr><td>DeoptimizeAll</td><td>Boolean</td><td>false</td><td><pre>Compiles all methods as deoptimization targets for testing
+</pre></td></tr>
+<tr><td>DeoptsToDisableOptimisticOptimization</td><td>Integer</td><td>40</td><td></td></tr>
+<tr><td>DetailedAsserts</td><td>Boolean</td><td>false</td><td><pre>Enable expensive assertions if normal assertions (i.e. -ea or -esa) are
+enabled.
+</pre></td></tr>
+<tr><td>DivertParameterReturningMethod</td><td>Boolean</td><td>true</td><td><pre>Analysis: Detect methods that return one of their parameters and
+hardwire the parameter straight to the return.
+</pre></td></tr>
+<tr><td>DominatorUsageTreeMaxDepth</td><td>Integer</td><td>16</td><td></td></tr>
+<tr><td>DumpLLVMStackMap</td><td>String</td><td>null</td><td><pre>Dump contents of the generated stackmap to the specified file
+</pre></td></tr>
+<tr><td>DumpOnError</td><td>Boolean</td><td>false</td><td><pre>Send compiler IR to dump handlers on error.
+</pre></td></tr>
+<tr><td>DumpOnPhaseChange</td><td>String</td><td>null</td><td><pre>Dump a before and after graph if the named phase changes the
+graph.%nThe argument is substring matched against the simple name of
+the phase class
+</pre></td></tr>
+<tr><td>DumpPath</td><td>String</td><td>"graal_dumps"</td><td><pre>The directory where various Graal dump files are written.
+</pre></td></tr>
+<tr><td>Dump</td><td>String</td><td>null</td><td><pre>Filter pattern for specifying scopes in which dumping is enabled.
+          
+A filter is a list of comma-separated terms of the form:
+ 
+  &lt;pattern&gt;[:&lt;level&gt;]
+ 
+If &lt;pattern&gt; contains a &quot;*&quot; or &quot;?&quot; character, it is interpreted as a glob pattern.
+Otherwise, it is interpreted as a substring. If &lt;pattern&gt; is empty, it
+matches every scope. If :&lt;level&gt; is omitted, it defaults to 1. The term
+~&lt;pattern&gt; is a shorthand for &lt;pattern&gt;:0 to disable a debug facility for a pattern.
+          
+The default log level is 0 (disabled). Terms with an empty pattern set
+the default log level to the specified value. The last
+matching term with a non-empty pattern selects the level specified. If
+no term matches, the log level is the default level. A filter with no
+terms matches every scope with a log level of 1.
+          
+Examples of debug filters:
+--------- 
+  (empty string)
+          
+  Matches any scope with level 1.
+--------- 
+  :1
+          
+  Matches any scope with level 1.
+--------- 
+  *
+          
+  Matches any scope with level 1.
+--------- 
+  CodeGen,CodeInstall
+          
+  Matches scopes containing &quot;CodeGen&quot; or &quot;CodeInstall&quot;, both with level 1.
+--------- 
+  CodeGen:2,CodeInstall:1
+          
+  Matches scopes containing &quot;CodeGen&quot; with level 2, or &quot;CodeInstall&quot; with level 1.
+---------
+  Outer:2,Inner:0}
+          
+  Matches scopes containing &quot;Outer&quot; with log level 2, or &quot;Inner&quot; with log level 0. If the scope
+  name contains both patterns then the log level will be 0. This is useful for silencing subscopes.
+---------
+  :1,Dead:2
+          
+  Matches scopes containing &quot;Dead&quot; with level 2, and all other scopes with level 1.
+--------- 
+  Dead:0,:1
+          
+  Matches all scopes with level 1, except those containing &quot;Dead&quot;.   Note that the location of
+  the :1 doesn't matter since it's specifying the default log level so it's the same as
+  specifying :1,Dead:0.
+--------- 
+  Code*
+          
+  Matches scopes starting with &quot;Code&quot; with level 1.
+--------- 
+  Code,~Dead
+          
+  Matches scopes containing &quot;Code&quot; but not &quot;Dead&quot;, with level 1.
+</pre></td></tr>
+<tr><td>DumpingErrorsAreFatal</td><td>Boolean</td><td>false</td><td><pre>Treat any exceptions during dumping as fatal.
+</pre></td></tr>
+<tr><td>DuplicateALot</td><td>Boolean</td><td>false</td><td><pre>Perform Duplications as long as there is any sane improvement.
+</pre></td></tr>
+<tr><td>DuplicationBudgetFactorLate</td><td>Double</td><td>0.5</td><td><pre>Percentage in node cost graph size for the late duplication budget.
+Computed relative to the methods code size.
+</pre></td></tr>
+<tr><td>DuplicationBudgetFactor</td><td>Double</td><td>0.15</td><td><pre>Percentage in node cost graph size for the duplication budget. Computed
+relative to the methods code size.
+</pre></td></tr>
+<tr><td>DuplicationCostReductionFactor</td><td>Integer</td><td>2</td><td></td></tr>
+<tr><td>DuplicationMinBranchFrequency</td><td>Double</td><td>0.66</td><td><pre>Ignore low frequency branches when during duplication.
+</pre></td></tr>
+<tr><td>DynamicCountersPrintGroupSeparator</td><td>Boolean</td><td>true</td><td><pre>Use grouping separators for number printing
+</pre></td></tr>
+<tr><td>DynamicProxyConfigurationFiles</td><td>String[]</td><td>null</td><td><pre>One or several (comma-separated) paths to JSON files that specify lists
+of interfaces that define Java proxy classes.
+The structure is an array of arrays of fully qualified interface names.
+          
+Example:
+          
+    [
+        [&quot;java.lang.AutoCloseable&quot;, &quot;java.util.Comparator&quot;],
+        [&quot;java.util.Comparator&quot;],
+        [&quot;java.util.List&quot;]
+    ]
+</pre></td></tr>
+<tr><td>DynamicProxyConfigurationResources</td><td>String[]</td><td>null</td><td><pre>Resources describing program elements to be made available for
+reflection (see ProxyConfigurationFiles).
+</pre></td></tr>
+<tr><td>EagerSnippets</td><td>Boolean</td><td>true</td><td><pre>Eagerly construct extra snippet info.
+</pre></td></tr>
+<tr><td>EmitStringEncodingSubstitutions</td><td>Boolean</td><td>true</td><td><pre>Emit substitutions for UTF16 and latin1 compression
+</pre></td></tr>
+<tr><td>EnableAllSecurityServices</td><td>Boolean</td><td>false</td><td><pre>Add all security service classes to the generated image.
+</pre></td></tr>
+<tr><td>EnableURLProtocols</td><td>String[]</td><td>null</td><td><pre>List of comma separated URL protocols to enable.
+</pre></td></tr>
+<tr><td>EnforceMaxRuntimeCompileMethods</td><td>Boolean</td><td>false</td><td><pre>Enforce checking of maximum number of methods allowed for runtime
+compilation. Useful for checking in the gate that the number of methods
+does not go up without a good reason.
+</pre></td></tr>
+<tr><td>EntryPointNamePrefix</td><td>String</td><td>""</td><td><pre>Prefix that is added to the names of entry point methods.
+</pre></td></tr>
+<tr><td>EscapeAnalysisIterations</td><td>Integer</td><td>2</td><td></td></tr>
+<tr><td>EscapeAnalysisLoopCutoff</td><td>Integer</td><td>20</td><td></td></tr>
+<tr><td>EscapeAnalyzeOnly</td><td>String</td><td>null</td><td></td></tr>
+<tr><td>ExactFullUnrollMaxNodes</td><td>Integer</td><td>800</td><td></td></tr>
+<tr><td>ExactPartialUnrollMaxNodes</td><td>Integer</td><td>200</td><td></td></tr>
+<tr><td>ExcludeFunctionFromDuplication</td><td>String</td><td>null</td><td><pre>Exclude compilations that MethodFilter.match this string from the
+duplication optimization.
+</pre></td></tr>
+<tr><td>ExitAfterCAPCache</td><td>Boolean</td><td>false</td><td><pre>Exit image generation after C Annotation Processor Cache creation.
+</pre></td></tr>
+<tr><td>ExitVMOnException</td><td>Boolean</td><td>false</td><td><pre>Alias for CompilationFailureAction=ExitVM.
+</pre></td></tr>
+<tr><td>ExpandAllProximityBonusInertia</td><td>Double</td><td>2.0</td><td><pre>The inertia at which the expand-all proximity bonus decreases with the
+number of yet unexpanded nodes.
+</pre></td></tr>
+<tr><td>ExpandAllProximityBonus</td><td>Double</td><td>6.0</td><td><pre>The decrease in call graph expansion pressure when there are few call
+nodes left to explore.
+</pre></td></tr>
+<tr><td>ExpansionInertiaBaseValue</td><td>Integer</td><td>550</td><td><pre>The slowness at which the expansion pressure grows with code size; the
+higher it is, the slower the pressure growth.
+</pre></td></tr>
+<tr><td>ExpansionInertiaInvokeBonus</td><td>Integer</td><td>14</td><td><pre>The extra slowness at which the expansion pressure grows with the code
+size, for each extra invoke node.
+</pre></td></tr>
+<tr><td>ExpansionInertiaMax</td><td>Integer</td><td>2000</td><td><pre>The max slowness at which the expansion pressure grows with the code
+size.
+</pre></td></tr>
+<tr><td>ExtendedAsserts</td><td>Boolean</td><td>false</td><td><pre>Enable extended asserts which slow down analysis.
+</pre></td></tr>
+<tr><td>FailedLoopExplosionIsFatal</td><td>Boolean</td><td>false</td><td><pre>Do not bail out but throw an exception on failed loop explosion.
+</pre></td></tr>
+<tr><td>FallbackExecutorClasspath</td><td>String</td><td>null</td><td><pre>Internal option used to specify Classpath for FallbackExecutor.
+</pre></td></tr>
+<tr><td>FallbackExecutorJavaArg</td><td>String[]</td><td>null</td><td><pre>Internal option used to specify java arguments for FallbackExecutor.
+</pre></td></tr>
+<tr><td>FallbackExecutorMainClass</td><td>String</td><td>null</td><td><pre>Internal option used to specify MainClass for FallbackExecutor.
+</pre></td></tr>
+<tr><td>FallbackExecutorRuntimeJavaArg</td><td>String[]</td><td>[Ljava.lang.String;@7fe06cfed528</td><td><pre>Internal option used to specify runtime java arguments for
+FallbackExecutor.
+</pre></td></tr>
+<tr><td>FallbackExecutorSystemProperty</td><td>String[]</td><td>null</td><td><pre>Internal option used to specify system properties for FallbackExecutor.
+</pre></td></tr>
+<tr><td>FallbackThreshold</td><td>Integer</td><td>5</td><td><pre>Define when fallback-image generation should be used.
+</pre></td></tr>
+<tr><td>FoldSecurityManagerGetter</td><td>Boolean</td><td>true</td><td><pre>Fold SecurityManager getter.
+</pre></td></tr>
+<tr><td>ForceDumpGraphsBeforeCompilation</td><td>Boolean</td><td>false</td><td><pre>Force-dump graphs before compilation
+</pre></td></tr>
+<tr><td>FullUnrollAsPEACleanup</td><td>Boolean</td><td>true</td><td><pre>Perform full unrolling as a Partial Escape Analysis Cleanup
+</pre></td></tr>
+<tr><td>FullUnrollConstantCompareBoost</td><td>Integer</td><td>15</td><td></td></tr>
+<tr><td>FullUnrollMaxIterations</td><td>Integer</td><td>600</td><td></td></tr>
+<tr><td>FullUnrollMaxNodes</td><td>Integer</td><td>400</td><td></td></tr>
+<tr><td>FullUnroll</td><td>Boolean</td><td>true</td><td></td></tr>
+<tr><td>GCDebugStartCycle</td><td>Integer</td><td>-1</td><td><pre>Start tracing compiled GC barriers after N garbage collections
+(disabled if N &lt;= 0).
+</pre></td></tr>
+<tr><td>GCHistory</td><td>Integer</td><td>1</td><td><pre>How much history to maintain about garbage collections.
+</pre></td></tr>
+<tr><td>GatherSafepointStatistics</td><td>Boolean</td><td>false</td><td><pre>Gather statistics about each safepoint.
+</pre></td></tr>
+<tr><td>GenLoopSafepoints</td><td>Boolean</td><td>true</td><td></td></tr>
+<tr><td>GenSafepoints</td><td>Boolean</td><td>true</td><td></td></tr>
+<tr><td>GeneratePIC</td><td>Boolean</td><td>false</td><td><pre>Generate position independent code
+</pre></td></tr>
+<tr><td>GenericDynamicCounters</td><td>Boolean</td><td>false</td><td><pre>Turn on the benchmark counters, and displays the results on VM shutdown
+</pre></td></tr>
+<tr><td>GraalArithmeticStubs</td><td>Boolean</td><td>true</td><td><pre>Use Graal arithmetic stubs instead of HotSpot stubs where possible
+</pre></td></tr>
+<tr><td>GraalCompileOnly</td><td>String</td><td>null</td><td><pre>A filter applied to a method the VM has selected for compilation by
+Graal. A method not matching the filter is redirected to a lower tier
+compiler. The filter format is the same as for the MethodFilter option.
+</pre></td></tr>
+<tr><td>GraphCompressionThreshold</td><td>Integer</td><td>70</td><td><pre>Graal graph compression is performed when percent of live nodes falls
+below this value
+</pre></td></tr>
+<tr><td>GreyToBlackObjRefDemographics</td><td>Boolean</td><td>false</td><td><pre>Develop demographics of the object references visited.
+</pre></td></tr>
+<tr><td>GreyToBlackObjectVisitorDiagnosticHistory</td><td>Integer</td><td>0</td><td><pre>Keep history of GreyToBlackObjectVisits. 0 implies no history is kept.
+</pre></td></tr>
+<tr><td>GuardPriorities</td><td>Boolean</td><td>true</td><td></td></tr>
+<tr><td>HeapChunkHeaderPadding</td><td>Integer</td><td>0</td><td><pre>Number of bytes at the beginning of each heap chunk that are not used
+for payload data, i.e., can be freely used as metadata by the heap
+chunk provider.
+</pre></td></tr>
+<tr><td>HeapVerificationFailureIsFatal</td><td>Boolean</td><td>true</td><td><pre>Verify the heap before and after each collection.
+</pre></td></tr>
+<tr><td>HideSubstitutionStates</td><td>Boolean</td><td>false</td><td><pre>When creating info points hide the methods of the substitutions.
+</pre></td></tr>
+<tr><td>HotSpotPrintInlining</td><td>Boolean</td><td>false</td><td><pre>Print inlining optimizations
+</pre></td></tr>
+<tr><td>HybridStaticContext</td><td>Boolean</td><td>false</td><td><pre>Enable hybrid context for static methods, i.e. uses invocation site as
+context for static methods.
+</pre></td></tr>
+<tr><td>IgnoreBadDuplications</td><td>Boolean</td><td>true</td><td><pre>Ignore duplications with a bad benefit cost relation.
+</pre></td></tr>
+<tr><td>ImageObjectTreeExpandRoots</td><td>String</td><td>""</td><td><pre>Override the default suppression of specified roots. See: REPORTS.md.
+</pre></td></tr>
+<tr><td>ImageObjectTreeExpandTypes</td><td>String</td><td>""</td><td><pre>Override the default suppression of specified types. See: REPORTS.md.
+</pre></td></tr>
+<tr><td>ImageObjectTreeSuppressRoots</td><td>String</td><td>""</td><td><pre>Suppress the expansion of specified roots. See: REPORTS.md.
+</pre></td></tr>
+<tr><td>ImageObjectTreeSuppressTypes</td><td>String</td><td>""</td><td><pre>Suppress the expansion of specified types. See: REPORTS.md.
+</pre></td></tr>
+<tr><td>ImmutableCode</td><td>Boolean</td><td>false</td><td><pre>Try to avoid emitting code where patching is required
+</pre></td></tr>
+<tr><td>IncludeAllTimeZones</td><td>Boolean</td><td>false</td><td><pre>When true, all time zones will be pre-initialized in the image.
+</pre></td></tr>
+<tr><td>IncludeLLVMDebugInfo</td><td>Integer</td><td>0</td><td><pre>Include debugging info in the generated image (for LLVM backend).
+</pre></td></tr>
+<tr><td>IncludeNodeSourcePositions</td><td>Boolean</td><td>false</td><td><pre>Track NodeSourcePositions during runtime-compilation
+</pre></td></tr>
+<tr><td>IncludeResourceBundles</td><td>String[]</td><td>null</td><td><pre>Comma separated list of bundles to be included into the image.
+</pre></td></tr>
+<tr><td>InitTimer</td><td>Boolean</td><td>false</td><td><pre>Specifies if initialization timing is enabled.
+</pre></td></tr>
+<tr><td>InitialCollectionPolicy</td><td>String</td><td>"com.oracle.svm.core.genscavenge.CollectionPolicy$ByTime"</td><td><pre>What is the initial collection policy?
+</pre></td></tr>
+<tr><td>InlineAllBonus</td><td>Double</td><td>1.0</td><td><pre>The bonus applied to call nodes that can be fully inlined.
+</pre></td></tr>
+<tr><td>InlineDuringParsingMaxDepth</td><td>Integer</td><td>10</td><td><pre>Maximum depth when inlining during bytecode parsing.
+</pre></td></tr>
+<tr><td>InlineDuringParsing</td><td>Boolean</td><td>true</td><td><pre>Inlines trivial methods during bytecode parsing.
+</pre></td></tr>
+<tr><td>InlineEverything</td><td>Boolean</td><td>false</td><td></td></tr>
+<tr><td>InlineIntrinsicsDuringParsing</td><td>Boolean</td><td>true</td><td><pre>Inlines intrinsic methods during bytecode parsing.
+</pre></td></tr>
+<tr><td>InlineMegamorphicCalls</td><td>Boolean</td><td>true</td><td><pre>Inline calls with megamorphic type profile (i.e., not all types could
+be recorded).
+</pre></td></tr>
+<tr><td>InlineMonomorphicCalls</td><td>Boolean</td><td>true</td><td><pre>Inline calls with monomorphic type profile.
+</pre></td></tr>
+<tr><td>InlinePartialIntrinsicExitDuringParsing</td><td>Boolean</td><td>true</td><td><pre>Inlines partial intrinsic exits during bytecode parsing when possible.
+A partial intrinsic exit is a call within an intrinsic to the method
+being intrinsified and denotes semantics of the original method that
+the intrinsic does not support.
+</pre></td></tr>
+<tr><td>InlinePolymorphicCalls</td><td>Boolean</td><td>true</td><td><pre>Inline calls with polymorphic type profile.
+</pre></td></tr>
+<tr><td>InlineVTableStubs</td><td>Boolean</td><td>true</td><td></td></tr>
+<tr><td>Inline</td><td>Boolean</td><td>true</td><td><pre>Enable inlining
+</pre></td></tr>
+<tr><td>InlinedCompilerNodeLimit</td><td>Integer</td><td>20000</td><td><pre>Controls the maximum number of compiler nodes that can be inlined into
+the compiled method.
+</pre></td></tr>
+<tr><td>InliningCoefficient</td><td>Double</td><td>0.02</td><td><pre>The coefficient used to compute the inlining threshold; the higher, the
+more to inline.
+</pre></td></tr>
+<tr><td>InliningDepthError</td><td>Integer</td><td>1000</td><td><pre>Maximum inlining depth during partial evaluation before reporting an
+infinite recursion
+</pre></td></tr>
+<tr><td>InspectGraphs</td><td>Boolean</td><td>false</td><td><pre>Inspect analysis graphs.
+</pre></td></tr>
+<tr><td>InspectServerContentPath</td><td>String</td><td>"inspect"</td><td><pre>Path to the contents of the Inspect web server.
+</pre></td></tr>
+<tr><td>InstallSegfaultHandler</td><td>Boolean</td><td>null</td><td><pre>Install segfault handler that prints register contents and full Java
+stacktrace. Default: enabled for an executable, disabled for a shared
+library.
+</pre></td></tr>
+<tr><td>InterceptBailout</td><td>Boolean</td><td>false</td><td><pre>Intercept also bailout exceptions
+</pre></td></tr>
+<tr><td>InterfacesForJNR</td><td>String[]</td><td>null</td><td><pre>Register JNR FFI interfaces as comma-separated list of fully qualified
+class names)
+</pre></td></tr>
+<tr><td>Intrinsify</td><td>Boolean</td><td>true</td><td><pre>Use compiler intrinsifications.
+</pre></td></tr>
+<tr><td>JNIConfigurationFiles</td><td>String[]</td><td>null</td><td><pre>Files describing program elements to be made accessible via JNI (for
+syntax, see ReflectionConfigurationFiles)
+</pre></td></tr>
+<tr><td>JNIConfigurationResources</td><td>String[]</td><td>null</td><td><pre>Resources describing program elements to be made accessible via JNI
+(see JNIConfigurationFiles).
+</pre></td></tr>
+<tr><td>JNIVerboseLookupErrors</td><td>Boolean</td><td>false</td><td><pre>Report information about known JNI elements when lookup fails
+</pre></td></tr>
+<tr><td>JNI</td><td>Boolean</td><td>true</td><td><pre>Enable Java Native Interface (JNI) support.
+</pre></td></tr>
+<tr><td>LIRDynMoveProfileMethod</td><td>Boolean</td><td>false</td><td><pre>Enable dynamic move profiling per method.
+</pre></td></tr>
+<tr><td>LIROptConstantLoadOptimization</td><td>Boolean</td><td>true</td><td><pre>Enable constant load optimization.
+</pre></td></tr>
+<tr><td>LIROptControlFlowOptimizer</td><td>Boolean</td><td>true</td><td></td></tr>
+<tr><td>LIROptEdgeMoveOptimizer</td><td>Boolean</td><td>true</td><td></td></tr>
+<tr><td>LIROptLSRAEliminateSpillMoves</td><td>Boolean</td><td>true</td><td><pre>Enable spill move elimination.
+</pre></td></tr>
+<tr><td>LIROptLSRAOptimizeSpillPosition</td><td>Boolean</td><td>true</td><td><pre>Enable spill position optimization
+</pre></td></tr>
+<tr><td>LIROptLSStackSlotAllocator</td><td>Boolean</td><td>true</td><td><pre>Use linear scan stack slot allocation.
+</pre></td></tr>
+<tr><td>LIROptNullCheckOptimizer</td><td>Boolean</td><td>true</td><td></td></tr>
+<tr><td>LIROptRedundantMoveElimination</td><td>Boolean</td><td>true</td><td></td></tr>
+<tr><td>LIROptStackMoveOptimizer</td><td>Boolean</td><td>true</td><td></td></tr>
+<tr><td>LIROptimization</td><td>Boolean</td><td>true</td><td><pre>Enable LIR level optimiztations.
+</pre></td></tr>
+<tr><td>LIRProfileMethods</td><td>Boolean</td><td>false</td><td><pre>Enables profiling of methods.
+</pre></td></tr>
+<tr><td>LIRProfileMoves</td><td>Boolean</td><td>false</td><td><pre>Enables profiling of move types on LIR level. Move types are for
+example stores (register to stack), constant loads (constant to
+register) or copies (register to register).
+</pre></td></tr>
+<tr><td>LLVMBatchesPerThread</td><td>Integer</td><td>1</td><td><pre>How many batches per thread should be used for LLVM compilation. 0
+means a single batch, -1 means all functions separately
+</pre></td></tr>
+<tr><td>LSRAOptSplitOnly</td><td>Boolean</td><td>false</td><td><pre>LSRA optimization: Only split but do not reassign
+</pre></td></tr>
+<tr><td>LSRAOptimization</td><td>Boolean</td><td>false</td><td><pre>Enable LSRA optimization
+</pre></td></tr>
+<tr><td>LargeArrayThreshold</td><td>Long</td><td>0</td><td><pre>How many bytes is enough to allocate an unaligned chunk for an array? 0
+implies (AlignedHeapChunkSize / 8).
+</pre></td></tr>
+<tr><td>LargeChildrenCountPenaltyCoefficient</td><td>Double</td><td>0.005</td><td><pre>Reduces the likelihood of exploring call graphs that have a lot of
+children below the root.
+</pre></td></tr>
+<tr><td>LateMembars</td><td>Boolean</td><td>true</td><td><pre>Do not include membars for volatile accesses until the end of
+optimizations.
+</pre></td></tr>
+<tr><td>LimitInlinedInvokes</td><td>Double</td><td>5.0</td><td></td></tr>
+<tr><td>LimitObjectArrayLength</td><td>Boolean</td><td>false</td><td><pre>Enable a limit for the number of objects recorded for each type of a
+type state before disabling heap sensitivity for that type. The
+analysis must be heap sensitive.
+</pre></td></tr>
+<tr><td>LinkerRPath</td><td>String[]</td><td>null</td><td><pre>Path passed to the linker as the -rpath (list of comma-separated
+directories)
+</pre></td></tr>
+<tr><td>ListMetrics</td><td>Boolean</td><td>false</td><td><pre>Lists on the console at VM shutdown the metric names available to the
+Timers, Counters and MemUseTrackers options. Note that this only lists
+the metrics that were initialized during the VM execution and so will
+not include metrics for compiler code that is not executed.
+</pre></td></tr>
+<tr><td>LoadExceptionObjectInVM</td><td>Boolean</td><td>false</td><td><pre>Use a VM runtime call to load and clear the exception object from the
+thread at the start of a compiled exception handler.
+</pre></td></tr>
+<tr><td>LogFile</td><td>String</td><td>null</td><td><pre>File to which logging is sent. A %p in the name will be replaced with a
+string identifying the process, usually the process id and %t will be
+replaced by System.currentTimeMillis(). Using %o as filename sends
+logging to System.out whereas %e sends logging to System.err.
+</pre></td></tr>
+<tr><td>LogVerbose</td><td>Boolean</td><td>false</td><td><pre>Enable more verbose log output when available
+</pre></td></tr>
+<tr><td>Log</td><td>String</td><td>null</td><td><pre>Pattern for specifying scopes in which logging is enabled. See the Dump
+option for the pattern syntax.
+</pre></td></tr>
+<tr><td>LoopHeaderAlignment</td><td>Integer</td><td>16</td><td><pre>Alignment in bytes for loop header blocks.
+</pre></td></tr>
+<tr><td>LoopInversion</td><td>Boolean</td><td>false</td><td><pre>Convert loops into their zero trip form.
+</pre></td></tr>
+<tr><td>LoopMaxUnswitch</td><td>Integer</td><td>3</td><td></td></tr>
+<tr><td>LoopPeeling</td><td>Boolean</td><td>true</td><td></td></tr>
+<tr><td>LoopUnswitchFrequencyBoost</td><td>Double</td><td>10.0</td><td></td></tr>
+<tr><td>LoopUnswitchMaxIncrease</td><td>Integer</td><td>500</td><td></td></tr>
+<tr><td>LoopUnswitchTrivial</td><td>Integer</td><td>10</td><td></td></tr>
+<tr><td>LoopUnswitch</td><td>Boolean</td><td>true</td><td></td></tr>
+<tr><td>MatchExpressions</td><td>Boolean</td><td>true</td><td><pre>Allow backend to match complex expressions.
+</pre></td></tr>
+<tr><td>MaxCFGRecomputations</td><td>Integer</td><td>12</td><td></td></tr>
+<tr><td>MaxCallingContextDepth</td><td>Integer</td><td>0</td><td><pre>The maximum length of the methods context chains.
+</pre></td></tr>
+<tr><td>MaxCallingContextWidth</td><td>Integer</td><td>0</td><td><pre>The maximum number of contexts to record for a method. It only affects
+the analysis when the max and min calling context depth are different.
+</pre></td></tr>
+<tr><td>MaxCompilationProblemsPerAction</td><td>Integer</td><td>2</td><td><pre>The maximum number of compilation failures to handle with the action
+specified by CompilationFailureAction before changing to a less verbose
+action. This does not apply to the ExitVM action.
+</pre></td></tr>
+<tr><td>MaxConstantObjectsPerType</td><td>Integer</td><td>100</td><td><pre>The maximum number of constant objects recorded for each type before
+merging the constants into one unique constant object per type. The
+analysis must be heap sensitive. It has a minimum value of 1.
+</pre></td></tr>
+<tr><td>MaxGraphSizeNodeCost</td><td>Integer</td><td>100000</td><td><pre>Maximum node cost graph size for duplication. If a graph is bigger
+duplication will stop.
+</pre></td></tr>
+<tr><td>MaxHeapContextDepth</td><td>Integer</td><td>0</td><td><pre>The maximum length of the context used to model a heap object in
+addition to the allocation site; used only when ContextSensitiveHeap is
+enabled.
+</pre></td></tr>
+<tr><td>MaxHeapContextWidth</td><td>Integer</td><td>0</td><td><pre>The maximum number of contexts to record for a heap object. It only
+affects the analysis when the max and min calling context depth are
+different.
+</pre></td></tr>
+<tr><td>MaxInvokesInTrivialMethod</td><td>Integer</td><td>1</td><td><pre>Maximum number of invokes in a method so that it is considered trivial
+(for testing only).
+</pre></td></tr>
+<tr><td>MaxNodesInTrivialLeafMethod</td><td>Integer</td><td>40</td><td><pre>Maximum number of nodes in a method so that it is considered trivial,
+if it does not have any invokes.
+</pre></td></tr>
+<tr><td>MaxNodesInTrivialMethod</td><td>Integer</td><td>20</td><td><pre>Maximum number of nodes in a method so that it is considered trivial.
+</pre></td></tr>
+<tr><td>MaxObjectSetSize</td><td>Integer</td><td>100</td><td><pre>The maximum number of objects recorded for each type of a type state
+before disabling heap sensitivity for that type. The analysis must be
+heap sensitive. It has a minimum value of 1.
+</pre></td></tr>
+<tr><td>MaxPriorityInliningPeelingIterations</td><td>Integer</td><td>10</td><td><pre>Max number of precise inlining peeling iterations.
+</pre></td></tr>
+<tr><td>MaxRuntimeCompileMethods</td><td>Integer[]</td><td>[Ljava.lang.Integer;@7fe06cfd1560</td><td><pre>Maximum number of methods allowed for runtime compilation.
+</pre></td></tr>
+<tr><td>MaxSimulationIterations</td><td>Integer</td><td>2</td><td><pre>Maximum simulation-duplication iterations of the duplication
+optimization per invocation.
+</pre></td></tr>
+<tr><td>MaxSplitsPerNode</td><td>Integer</td><td>32</td><td></td></tr>
+<tr><td>MaxTemplatesPerSnippet</td><td>Integer</td><td>50</td><td></td></tr>
+<tr><td>MaxUnrolledObjectZeroingStores</td><td>Integer</td><td>8</td><td><pre>Define the maximum number of stores for which the loop that zeroes out
+objects is unrolled.
+</pre></td></tr>
+<tr><td>MaxVectorAlignmentUnroll</td><td>Integer</td><td>4</td><td><pre>Maximum number of unrolled alignment instructions
+</pre></td></tr>
+<tr><td>MaxVectorUnroll</td><td>Integer</td><td>16</td><td><pre>Maximum length of linear-code vector operations
+</pre></td></tr>
+<tr><td>MaximumDesiredSize</td><td>Integer</td><td>20000</td><td><pre>Maximum desired size of the compiler graph in nodes.
+</pre></td></tr>
+<tr><td>MaximumEscapeAnalysisArrayLength</td><td>Integer</td><td>128</td><td><pre>The maximum length of an array that will be escape analyzed.
+</pre></td></tr>
+<tr><td>MaximumHeapSizePercent</td><td>Integer</td><td>80</td><td><pre>The maximum heap size as percent of physical memory
+</pre></td></tr>
+<tr><td>MaximumInliningSize</td><td>Integer</td><td>300</td><td><pre>Inlining is explored up to this number of nodes in the graph for each
+call site.
+</pre></td></tr>
+<tr><td>MaximumLoopExplosionCount</td><td>Integer</td><td>10000</td><td><pre>Max number of loop explosions per method.
+</pre></td></tr>
+<tr><td>MaximumRecursiveInlining</td><td>Integer</td><td>5</td><td><pre>Maximum level of recursive inlining.
+</pre></td></tr>
+<tr><td>MaximumYoungGenerationSizePercent</td><td>Integer</td><td>10</td><td><pre>The maximum size of the young generation as a percent of the maximum
+heap size
+</pre></td></tr>
+<tr><td>MegamorphicInliningMinMethodProbability</td><td>Double</td><td>0.33</td><td><pre>Minimum probability for methods to be inlined for megamorphic type
+profiles.
+</pre></td></tr>
+<tr><td>MemUseTrackers</td><td>String</td><td>null</td><td><pre>Comma separated names of memory usage trackers that are enabled
+irrespective of the value for TrackMemUse option. An empty value
+enables all memory usage trackers unconditionally.
+</pre></td></tr>
+<tr><td>MethodDupCounters</td><td>Boolean</td><td>false</td><td></td></tr>
+<tr><td>MethodDupOnly</td><td>String</td><td>""</td><td></td></tr>
+<tr><td>MethodDupPropagateAnchors</td><td>Boolean</td><td>false</td><td></td></tr>
+<tr><td>MethodFilterRootOnly</td><td>Boolean</td><td>false</td><td><pre>Only check MethodFilter against the root method in the context if true,
+otherwise check all methods
+</pre></td></tr>
+<tr><td>MethodFilter</td><td>String</td><td>null</td><td><pre>Pattern for filtering debug scope output based on method context.
+The syntax for a pattern is:
+          
+  SourcePatterns = SourcePattern [&quot;,&quot; SourcePatterns] .
+  SourcePattern = [ Class &quot;.&quot; ] method [ &quot;(&quot; [ Parameter { &quot;;&quot; Parameter } ] &quot;)&quot; ] .
+  Parameter = Class | &quot;int&quot; | &quot;long&quot; | &quot;float&quot; | &quot;double&quot; | &quot;short&quot; | &quot;char&quot; | &quot;boolean&quot; .
+  Class = { package &quot;.&quot; } class .
+ 
+Glob pattern matching (*, ?) is allowed in all parts of the source pattern.
+          
+Examples of method filters:
+--------- 
+  visit(Argument;BlockScope)  
+  
+  Matches all methods named &quot;visit&quot;, with the first parameter of
+  type &quot;Argument&quot;, and the second parameter of type &quot;BlockScope&quot;.
+  The packages of the parameter types are irrelevant.
+---------
+  arraycopy(Object;;;;)
+ 
+  Matches all methods named &quot;arraycopy&quot;, with the first parameter
+  of type &quot;Object&quot;, and four more parameters of any type. The
+  packages of the parameter types are irrelevant.
+---------    
+  org.graalvm.compiler.core.graph.PostOrderNodeIterator.*
+ 
+  Matches all methods in the class &quot;org.graalvm.compiler.core.graph.PostOrderNodeIterator&quot;.
+---------    
+  *
+ 
+  Matches all methods in all classes
+---------
+  org.graalvm.compiler.core.graph.*.visit
+ 
+  Matches all methods named &quot;visit&quot; in classes in the package
+  &quot;org.graalvm.compiler.core.graph&quot;.
+---------
+  arraycopy,toString
+ 
+  Matches all methods named &quot;arraycopy&quot; or &quot;toString&quot;, meaning that ',' acts as an or operator.
+</pre></td></tr>
+<tr><td>MethodInlineBailoutLimit</td><td>Integer</td><td>5000</td><td><pre>Per-compilation method inlining exploration limit before giving up (use
+0 to disable)
+</pre></td></tr>
+<tr><td>Method</td><td>String</td><td>"main"</td><td><pre>Name of the main entry point method. Optional if --shared is used.
+</pre></td></tr>
+<tr><td>MetricsFile</td><td>String</td><td>null</td><td><pre>File to which metrics are dumped per compilation.
+A CSV format is used if the file ends with .csv otherwise a more
+human readable format is used. The fields in the CSV format are:
+           compilable - method being compiled
+  compilable_identity - identity hash code of compilable
+       compilation_nr - where this compilation lies in the ordered
+                        sequence of all compilations identified by
+                        compilable_identity
+       compilation_id - runtime issued identifier for the compilation
+          metric_name - name of metric
+         metric_value - value of metric
+</pre></td></tr>
+<tr><td>MetricsThreadFilter</td><td>String</td><td>null</td><td><pre>Only report metrics for threads whose name matches the regular
+expression.
+</pre></td></tr>
+<tr><td>MinCallingContextDepth</td><td>Integer</td><td>0</td><td><pre>The minimum length of the methods context chains.
+</pre></td></tr>
+<tr><td>MinHeapContextDepth</td><td>Integer</td><td>0</td><td><pre>The minimum length of the context used to model a heap object in
+addition to the allocation site; used only when ContextSensitiveHeap is
+enabled.
+</pre></td></tr>
+<tr><td>MinimalBulkZeroingSize</td><td>Integer</td><td>2048</td><td><pre>If applicable, use bulk zeroing instructions when the zeroing size in
+bytes exceeds this threshold.
+</pre></td></tr>
+<tr><td>MinimalRegions</td><td>Boolean</td><td>true</td><td><pre>Try to reduce duplication code size to the minimal amount of code.
+</pre></td></tr>
+<tr><td>MinimumPeelProbability</td><td>Float</td><td>0.35</td><td></td></tr>
+<tr><td>MitigateSpeculativeExecutionAttacks</td><td>String</td><td>None</td><td><pre>Select a strategy to mitigate speculative execution attacks (e.g.,
+SPECTRE).
+The accepted values are:
+                  None - No mitigations are used in JIT compiled code.
+            AllTargets - All branches are protected against speculative attacks.
+                         This has a significant performance impact.
+          GuardTargets - Only branches that preserve Java memory safety are protected.
+                         This has less performance impact than AllTargets.
+  NonDeoptGuardTargets - GuardTargets except that branches which deoptimize are not
+                         protected since they can not be executed repeatedly.
+</pre></td></tr>
+<tr><td>MultiThreaded</td><td>Boolean</td><td>true</td><td><pre>Enable support for threads and and thread-local variables (disable for
+single-threaded implementation)
+</pre></td></tr>
+<tr><td>NDCV</td><td>Integer</td><td>0</td><td><pre>Run level for NoDeadCodeVerifyHandler (0 = off, 1 = info, 2 = verbose,
+3 = fatal)
+</pre></td></tr>
+<tr><td>Name</td><td>String</td><td>""</td><td><pre>Name of the output file to be generated
+</pre></td></tr>
+<tr><td>NewCAPCache</td><td>Boolean</td><td>false</td><td><pre>Create a C Annotation Processor Cache. Will erase any previous cache at
+that same location.
+</pre></td></tr>
+<tr><td>NodeCounters</td><td>Boolean</td><td>false</td><td><pre>Counts the number of instances of each node class.
+</pre></td></tr>
+<tr><td>NonFatalIdenticalCompilationSnapshots</td><td>Integer</td><td>20</td><td><pre>Number of contiguous identical compiler thread stack traces allowed
+before the VM exits on the basis of a stuck compilation.
+</pre></td></tr>
+<tr><td>OmitHotExceptionStacktrace</td><td>Boolean</td><td>false</td><td></td></tr>
+<tr><td>OptAssumptions</td><td>Boolean</td><td>true</td><td></td></tr>
+<tr><td>OptBulkAllocation</td><td>Boolean</td><td>true</td><td></td></tr>
+<tr><td>OptCompressedFrameStateValues</td><td>Boolean</td><td>true</td><td></td></tr>
+<tr><td>OptConditionalMoves</td><td>Boolean</td><td>true</td><td><pre>Optimize simple if branches with conditional moves
+</pre></td></tr>
+<tr><td>OptConvertDeoptsToGuards</td><td>Boolean</td><td>true</td><td></td></tr>
+<tr><td>OptDeDuplication</td><td>Boolean</td><td>true</td><td></td></tr>
+<tr><td>OptDeoptimizationGrouping</td><td>Boolean</td><td>true</td><td></td></tr>
+<tr><td>OptDevirtualizeInvokesOptimistically</td><td>Boolean</td><td>true</td><td></td></tr>
+<tr><td>OptDuplication</td><td>Boolean</td><td>true</td><td></td></tr>
+<tr><td>OptEarlyReadElimination</td><td>Boolean</td><td>true</td><td></td></tr>
+<tr><td>OptEliminateGuards</td><td>Boolean</td><td>true</td><td></td></tr>
+<tr><td>OptEliminatePartiallyRedundantGuards</td><td>Boolean</td><td>true</td><td></td></tr>
+<tr><td>OptExactArithmetic</td><td>Boolean</td><td>true</td><td></td></tr>
+<tr><td>OptFilterProfiledTypes</td><td>Boolean</td><td>true</td><td></td></tr>
+<tr><td>OptFloatingReads</td><td>Boolean</td><td>true</td><td></td></tr>
+<tr><td>OptGuardRangeGrouping</td><td>Boolean</td><td>true</td><td></td></tr>
+<tr><td>OptImplicitNullChecks</td><td>Boolean</td><td>true</td><td></td></tr>
+<tr><td>OptLateDuplication</td><td>Boolean</td><td>false</td><td></td></tr>
+<tr><td>OptLockElimination</td><td>Boolean</td><td>true</td><td></td></tr>
+<tr><td>OptLoopPhiStamps</td><td>Boolean</td><td>true</td><td><pre>Inject stamps on induction variables.
+</pre></td></tr>
+<tr><td>OptLoopTransform</td><td>Boolean</td><td>true</td><td></td></tr>
+<tr><td>OptMethodDuplication</td><td>Boolean</td><td>false</td><td></td></tr>
+<tr><td>OptPullThroughPhi</td><td>Boolean</td><td>true</td><td></td></tr>
+<tr><td>OptReadElimination</td><td>Boolean</td><td>true</td><td></td></tr>
+<tr><td>OptScheduleOutOfLoops</td><td>Boolean</td><td>true</td><td></td></tr>
+<tr><td>OptSpeculativeGuardMovement</td><td>Boolean</td><td>true</td><td></td></tr>
+<tr><td>OptStringConcatDump</td><td>Boolean</td><td>false</td><td><pre>Dump graphs to help debug operation
+</pre></td></tr>
+<tr><td>OptStringConcat</td><td>Boolean</td><td>true</td><td><pre>Optimize StringBuilder construction
+</pre></td></tr>
+<tr><td>OptWriteBarrierElimination</td><td>Boolean</td><td>true</td><td><pre>Eliminate redundant write barriers.
+</pre></td></tr>
+<tr><td>OptimisticAliasingAnalysis</td><td>Boolean</td><td>true</td><td></td></tr>
+<tr><td>OptimizeLoopAccesses</td><td>Boolean</td><td>true</td><td><pre>Enable access node optimizations for loops
+</pre></td></tr>
+<tr><td>Optimize</td><td>Integer</td><td>2</td><td><pre>Control native-image code optimizations: 0 - no optimizations, 1 -
+basic optimizations, 2 - aggressive optimizations.
+</pre></td></tr>
+<tr><td>PEAInliningHints</td><td>Boolean</td><td>false</td><td></td></tr>
+<tr><td>PGOInstrument</td><td>String</td><td>null</td><td><pre>Dump information for Profile Guided Optimizations (true or file name)
+</pre></td></tr>
+<tr><td>ParseRuntimeOptions</td><td>Boolean</td><td>true</td><td><pre>Parse and consume standard options and system properties from the
+command line arguments when the VM is created.
+</pre></td></tr>
+<tr><td>PartialEscapeAnalysis</td><td>Boolean</td><td>true</td><td></td></tr>
+<tr><td>PartialRedundancyElimination</td><td>Boolean</td><td>true</td><td><pre>Enable partial redundancy elimination
+</pre></td></tr>
+<tr><td>PartialUnroll</td><td>Boolean</td><td>true</td><td></td></tr>
+<tr><td>PathDuplicationPhiCutoff</td><td>Integer</td><td>20</td><td></td></tr>
+<tr><td>Path</td><td>String</td><td>"/b/b/e/main/vm-enterprise/svmbuild"</td><td><pre>Directory of the image file to be generated
+</pre></td></tr>
+<tr><td>PeelALot</td><td>Boolean</td><td>false</td><td></td></tr>
+<tr><td>PeelBackFoldFactor</td><td>Integer</td><td>100</td><td></td></tr>
+<tr><td>PeelForwardFoldFactor</td><td>Integer</td><td>20</td><td></td></tr>
+<tr><td>PeelPotentialFoldFactor</td><td>Integer</td><td>60</td><td></td></tr>
+<tr><td>PercentTimeInIncrementalCollection</td><td>Integer</td><td>50</td><td><pre>Percentage of time that should be spent in young generation
+collections.
+</pre></td></tr>
+<tr><td>PerfDataMemorySize</td><td>Integer</td><td>32768</td><td><pre>Size of performance data memory region. Will be rounded up to a
+multiple of the native os page size.
+</pre></td></tr>
+<tr><td>PerfDataSamplingInterval</td><td>Integer</td><td>200</td><td><pre>Jvmstat instrumentation sampling interval (in milliseconds)
+</pre></td></tr>
+<tr><td>PerfMaxStringConstLength</td><td>Integer</td><td>1024</td><td><pre>Maximum PerfStringConstant string length before truncation
+</pre></td></tr>
+<tr><td>PreserveFramePointer</td><td>Boolean</td><td>false</td><td><pre>Saves stack base pointer on the stack on method entry.
+</pre></td></tr>
+<tr><td>PrintAnalysisCallTree</td><td>Boolean</td><td>false</td><td><pre>Print analysis call tree, a breadth-first tree reduction of the call
+graph.
+</pre></td></tr>
+<tr><td>PrintBackendCFG</td><td>Boolean</td><td>true</td><td><pre>Enable dumping LIR, register allocation and code generation info to the
+C1Visualizer.
+</pre></td></tr>
+<tr><td>PrintCFG</td><td>Boolean</td><td>false</td><td><pre>Enable dumping to the C1Visualizer. Enabling this option implies
+PrintBackendCFG.
+</pre></td></tr>
+<tr><td>PrintCanonicalGraphStringFlavor</td><td>Integer</td><td>0</td><td><pre>Choose format used when dumping canonical text for graphs: 0 gives a
+scheduled graph (better for spotting changes involving the schedule)
+while 1 gives a CFG containing expressions rooted at fixed nodes
+(better for spotting small structure differences)
+</pre></td></tr>
+<tr><td>PrintCanonicalGraphStrings</td><td>Boolean</td><td>false</td><td><pre>Enable dumping canonical text from for graphs.
+</pre></td></tr>
+<tr><td>PrintClassInitialization</td><td>Boolean</td><td>false</td><td><pre>Prints class initialization info for all classes detected by analysis.
+</pre></td></tr>
+<tr><td>PrintCompilation</td><td>Boolean</td><td>false</td><td><pre>Print an informational line to the console for each completed
+compilation.
+</pre></td></tr>
+<tr><td>PrintConfig</td><td>Boolean</td><td>false</td><td><pre>Prints VM configuration available via JVMCI.
+</pre></td></tr>
+<tr><td>PrintDetailedAllocationProfiling</td><td>Boolean</td><td>true</td><td><pre>Print detailed information for each allocation site
+</pre></td></tr>
+<tr><td>PrintFlags</td><td>String</td><td>null</td><td><pre>Show available options based on comma-separated option-types (allowed
+categories: User, Expert, Debug).
+</pre></td></tr>
+<tr><td>PrintGCSummary</td><td>Boolean</td><td>false</td><td><pre>Print summary GC information after main completion
+</pre></td></tr>
+<tr><td>PrintGCTimeStamps</td><td>Boolean</td><td>false</td><td><pre>Print a time stamp at each collection, if +PrintGC or +VerboseGC.
+</pre></td></tr>
+<tr><td>PrintGCTimes</td><td>Boolean</td><td>false</td><td><pre>Print the time for each of the phases of each collection, if
++VerboseGC.
+</pre></td></tr>
+<tr><td>PrintGC</td><td>Boolean</td><td>false</td><td><pre>Print summary GC information after each collection
+</pre></td></tr>
+<tr><td>PrintGraphFile</td><td>Boolean</td><td>true</td><td><pre>Setting to true sets PrintGraph=file, setting to false sets
+PrintGraph=network
+</pre></td></tr>
+<tr><td>PrintGraphHost</td><td>String</td><td>"127.0.0.1"</td><td><pre>Host part of the address to which graphs are dumped.
+</pre></td></tr>
+<tr><td>PrintGraphPort</td><td>Integer</td><td>4445</td><td><pre>Port part of the address to which graphs are dumped in binary format.
+</pre></td></tr>
+<tr><td>PrintGraphWithSchedule</td><td>Boolean</td><td>false</td><td><pre>Schedule graphs as they are dumped.
+</pre></td></tr>
+<tr><td>PrintGraph</td><td>String</td><td>File</td><td><pre>Where IdealGraphVisualizer graph dumps triggered by Dump or DumpOnError
+should be written.
+The accepted values are:
+      File - Dump IGV graphs to the local file system (see DumpPath).
+   Network - Dump IGV graphs to the network destination specified by PrintGraphHost and PrintGraphPort.
+             If a network connection cannot be opened, dumping falls back to file dumping. 
+   Disable - Do not dump IGV graphs.
+</pre></td></tr>
+<tr><td>PrintHeapShape</td><td>Boolean</td><td>false</td><td><pre>Print the shape of the heap before and after each collection, if
++VerboseGC.
+</pre></td></tr>
+<tr><td>PrintIRWithLIR</td><td>Boolean</td><td>false</td><td><pre>Print HIR along side LIR as the latter is generated
+</pre></td></tr>
+<tr><td>PrintImageObjectTree</td><td>Boolean</td><td>false</td><td><pre>Print boot image object hierarchy.
+</pre></td></tr>
+<tr><td>PrintJNIMethods</td><td>Boolean</td><td>false</td><td><pre>Print JNI methods added to generated image
+</pre></td></tr>
+<tr><td>PrintLIRWithAssembly</td><td>Boolean</td><td>false</td><td><pre>Include the LIR as comments with the final assembly.
+</pre></td></tr>
+<tr><td>PrintProfilingInformation</td><td>Boolean</td><td>false</td><td><pre>Print profiling information when parsing a method's bytecode
+</pre></td></tr>
+<tr><td>PrintRuntimeCompileMethods</td><td>Boolean</td><td>false</td><td><pre>Print call tree of methods available for runtime compilation
+</pre></td></tr>
+<tr><td>PrintStaticTruffleBoundaries</td><td>Boolean</td><td>false</td><td><pre>Print truffle boundaries found during the analysis
+</pre></td></tr>
+<tr><td>PrintSynchronizedAnalysis</td><td>Boolean</td><td>false</td><td><pre>Print types used for Java synchronization.
+</pre></td></tr>
+<tr><td>PrintTruffleExpansionHistogram</td><td>Boolean</td><td>false</td><td><pre>Prints a histogram of all expanded Java methods.
+</pre></td></tr>
+<tr><td>PrintTruffleTrees</td><td>Boolean</td><td>true</td><td><pre>Enable dumping Truffle ASTs to the IdealGraphVisualizer.
+</pre></td></tr>
+<tr><td>PriorityInliningPolicy</td><td>String</td><td>""</td><td><pre>The policy to use, must be empty for automatic resolution.
+</pre></td></tr>
+<tr><td>ProbabilisticProfiling</td><td>Boolean</td><td>true</td><td><pre>Control probabilistic profiling on AMD64
+</pre></td></tr>
+<tr><td>ProfileAllocationsContext</td><td>String</td><td>AllocatingMethod</td><td><pre>Control the naming and granularity of the counters when using
+ProfileAllocations.
+The accepted values are:
+        AllocatingMethod - a counter per method
+         InstanceOrArray - one counter for all instance allocations and
+                           one counter for all array allocations 
+           AllocatedType - one counter per allocated type
+  AllocatedTypesInMethod - one counter per allocated type, per method
+ 
+</pre></td></tr>
+<tr><td>ProfileAllocations</td><td>Boolean</td><td>false</td><td><pre>Enable profiling of allocation sites.
+</pre></td></tr>
+<tr><td>ProfileAnalysisOperations</td><td>Boolean</td><td>false</td><td><pre>Track the progress of the static analysis.
+</pre></td></tr>
+<tr><td>ProfileBackedges</td><td>Boolean</td><td>true</td><td><pre>Emit profiling of backedges
+</pre></td></tr>
+<tr><td>ProfileCompiledMethods</td><td>Boolean</td><td>false</td><td></td></tr>
+<tr><td>ProfileConstantObjects</td><td>Boolean</td><td>false</td><td><pre>Track the creation of constant objects.
+</pre></td></tr>
+<tr><td>ProfileDeoptimization</td><td>Boolean</td><td>false</td><td><pre>Print logging information during object file writing
+</pre></td></tr>
+<tr><td>ProfileInvokes</td><td>Boolean</td><td>true</td><td><pre>Emit profiling of invokes
+</pre></td></tr>
+<tr><td>ProfileLockElimination</td><td>Boolean</td><td>false</td><td></td></tr>
+<tr><td>ProfileMonitors</td><td>Boolean</td><td>false</td><td><pre>Enable profiling of monitor operations.
+</pre></td></tr>
+<tr><td>ProfileSimpleMethods</td><td>Boolean</td><td>true</td><td><pre>Profile simple methods
+</pre></td></tr>
+<tr><td>ProfileTypeSwitches</td><td>Boolean</td><td>false</td><td><pre>Turn on typeswitch profiling. This tracks the stability of typeswitches
+after compilation.
+</pre></td></tr>
+<tr><td>ProfilesDumpFile</td><td>String</td><td>"default.iprof"</td><td><pre>Value should point to a profile dump file.
+</pre></td></tr>
+<tr><td>PruneLargeDominatorUsageTrees</td><td>Boolean</td><td>true</td><td></td></tr>
+<tr><td>PullThroughPhiBudget</td><td>Double</td><td>4096.0</td><td></td></tr>
+<tr><td>RawConditionalElimination</td><td>Boolean</td><td>true</td><td></td></tr>
+<tr><td>ReadEliminationMaxLoopVisits</td><td>Integer</td><td>5</td><td></td></tr>
+<tr><td>ReassociateInvariants</td><td>Boolean</td><td>true</td><td></td></tr>
+<tr><td>ReduceDCE</td><td>Boolean</td><td>true</td><td><pre>Disable optional dead code eliminations
+</pre></td></tr>
+<tr><td>ReflectionConfigurationFiles</td><td>String[]</td><td>null</td><td><pre>One or several (comma-separated) paths to JSON files that specify which
+program elements should be made available via reflection.
+The JSON object schema is:
+          
+    {
+      String name; // fully qualified class name
+      boolean allDeclaredConstructors; // include all declared constructors, see Class.getDeclaredConstructors()
+      boolean allPublicConstructors;   // include all public constructors, see Class.getConstructors()
+      boolean allDeclaredMethods; // include all declared methods, see Class.getDeclaredMethods()
+      boolean allPublicMethods;   // include all public methods, see Class.getMethods()
+      boolean allDeclaredFields;  // include all declared fields, see Class.getDeclaredFields()
+      boolean allPublicFields;    // include all public fields, see Class.getFields()
+      {
+        String name; // method name
+        String[] parameterTypes; // parameter types (optional, use if ambiguous)
+      }[] methods;
+      {
+        String name; // field name
+      }[] fields;
+    }[];
+          
+Example:
+          
+	[
+	  {
+	    &quot;name&quot; : &quot;java.lang.Class&quot;,
+	    &quot;allDeclaredConstructors&quot; : &quot;true&quot;,
+	    &quot;allPublicConstructors&quot; : &quot;true&quot;,
+	    &quot;allDeclaredMethods&quot; : &quot;true&quot;,
+	    &quot;allPublicMethods&quot; : &quot;true&quot;
+	  },
+	  {
+	    &quot;name&quot; : &quot;java.lang.String&quot;,
+	    &quot;fields&quot; : [
+	      { &quot;name&quot; : &quot;value&quot; },
+	      { &quot;name&quot; : &quot;hash&quot; }
+	    ],
+	    &quot;methods&quot; : [
+	      { &quot;name&quot; : &quot;&lt;init&gt;&quot;, &quot;parameterTypes&quot; : [] },
+	      { &quot;name&quot; : &quot;&lt;init&gt;&quot;, &quot;parameterTypes&quot; : [&quot;char[]&quot;] },
+	      { &quot;name&quot; : &quot;charAt&quot; },
+	      { &quot;name&quot; : &quot;format&quot;, &quot;parameterTypes&quot; : [&quot;java.lang.String&quot;, &quot;java.lang.Object[]&quot;] },
+	    ]
+	  },
+      {
+        &quot;name&quot; : &quot;java.lang.String$CaseInsensitiveComparator&quot;,
+        &quot;methods&quot; : [
+          { &quot;name&quot; : &quot;compare&quot; }
+        ]
+      }
+	]
+</pre></td></tr>
+<tr><td>ReflectionConfigurationResources</td><td>String[]</td><td>null</td><td><pre>Resources describing program elements to be made available for
+reflection (see ReflectionConfigurationFiles).
+</pre></td></tr>
+<tr><td>RegisterPressure</td><td>String</td><td>null</td><td><pre>Comma separated list of registers that register allocation is limited
+to.
+</pre></td></tr>
+<tr><td>RelativeBenefitInliningCoefficient</td><td>Double</td><td>0.005</td><td><pre>The coefficient used to compute the inlining threshold; the higher, the
+hard to inline.
+</pre></td></tr>
+<tr><td>RemoveNeverExecutedCode</td><td>Boolean</td><td>true</td><td></td></tr>
+<tr><td>RemoveUnusedSymbols</td><td>Boolean</td><td>false</td><td><pre>Use linker option to prevent unreferenced symbols in image.
+</pre></td></tr>
+<tr><td>ReplaceInputsWithConstantsBasedOnStamps</td><td>Boolean</td><td>true</td><td></td></tr>
+<tr><td>ReportAnalysisForbiddenType</td><td>String[]</td><td>[Ljava.lang.String;@7fe06cfecf40</td><td><pre>Report error if &lt;typename&gt;[:&lt;UsageKind&gt;{,&lt;UsageKind&gt;}] is discovered
+during analysis (valid values for UsageKind: InHeap, Allocated,
+InTypeCheck).
+</pre></td></tr>
+<tr><td>ReportAnalysisStatistics</td><td>Boolean</td><td>false</td><td><pre>Report analysis statistics.
+</pre></td></tr>
+<tr><td>ResourceConfigurationFiles</td><td>String[]</td><td>[Ljava.lang.String;@7fe06cfdc358</td><td><pre>Files describing Java resources to be included in the image.
+</pre></td></tr>
+<tr><td>ResourceConfigurationResources</td><td>String[]</td><td>[Ljava.lang.String;@7fe06cfdc368</td><td><pre>Resources describing Java resources to be included in the image.
+</pre></td></tr>
+<tr><td>RuntimeAssertionsFilter</td><td>String[]</td><td>null</td><td><pre>Only use Java assert statements for classes that are matching the
+comma-separated list of package prefixes.
+</pre></td></tr>
+<tr><td>RuntimeAssertions</td><td>Boolean</td><td>false</td><td><pre>Enable or disable Java assert statements at run time
+</pre></td></tr>
+<tr><td>RuntimeDebugInfo</td><td>Boolean</td><td>false</td><td><pre>Provide debuginfo for runtime-compiled code.
+</pre></td></tr>
+<tr><td>RuntimeSourceDestDir</td><td>String</td><td>null</td><td><pre>Directory where Java source-files will be placed for the debugger
+</pre></td></tr>
+<tr><td>SafepointPromptnessFailureNanos</td><td>Long</td><td>0</td><td><pre>Exit the VM if I can not come to a safepoint in this many nanoseconds.
+0 implies forever.
+</pre></td></tr>
+<tr><td>SafepointPromptnessWarningNanos</td><td>Long</td><td>0</td><td><pre>Print a warning if I can not come to a safepoint in this many
+nanoseconds. 0 implies forever.
+</pre></td></tr>
+<tr><td>ScanObjectsParallel</td><td>Boolean</td><td>true</td><td><pre>Object scanning in parallel
+</pre></td></tr>
+<tr><td>ScheduledDuplicationSimulation</td><td>Boolean</td><td>false</td><td><pre>Simulation can either only process fixed nodes or schedule the graph
+and also process floating nodes.
+</pre></td></tr>
+<tr><td>SharedLibrary</td><td>Boolean</td><td>false</td><td><pre>Build shared library
+</pre></td></tr>
+<tr><td>ShowConfiguration</td><td>String</td><td>none</td><td><pre>Writes to the VM log information about the compiler configuration
+selected.
+</pre></td></tr>
+<tr><td>ShowDumpFiles</td><td>Boolean</td><td>false</td><td><pre>Print the name of each dump file path as it's created.
+</pre></td></tr>
+<tr><td>ShowSubstitutionSourceInfo</td><td>Boolean</td><td>false</td><td><pre>Controls whether the source position information of snippets and method
+substitutions are exposed to HotSpot. Can be useful when profiling to
+get more precise position information.
+</pre></td></tr>
+<tr><td>SimpleFastInflatedLocking</td><td>Boolean</td><td>true</td><td><pre>Handle simple cases for inflated monitors in the fast-path.
+</pre></td></tr>
+<tr><td>SimpleMethodCalls</td><td>Integer</td><td>1</td><td><pre>Maximum number of calls in a simple method
+</pre></td></tr>
+<tr><td>SimpleMethodGraphSize</td><td>Integer</td><td>256</td><td><pre>Maximum number of nodes in a graph for a simple method
+</pre></td></tr>
+<tr><td>SimpleMethodIndirectCalls</td><td>Integer</td><td>0</td><td><pre>Maximum number of indirect calls in a simple moethod
+</pre></td></tr>
+<tr><td>SimulationStopAtControlFlow</td><td>Boolean</td><td>true</td><td><pre>Determines if simulation traversal should stop at control flow
+boundaries that cannot be duplicated.
+</pre></td></tr>
+<tr><td>SmallCompiledLowLevelGraphSize</td><td>Integer</td><td>330</td><td><pre>If the previous low-level graph size of the method exceeds the
+threshold, it is not inlined.
+</pre></td></tr>
+<tr><td>SmallRootIrPenaltyCoefficient</td><td>Double</td><td>0.02</td><td><pre>Reduces the likelihood of exploring call graphs with IR size much
+larger than the root.
+</pre></td></tr>
+<tr><td>SnippetCounters</td><td>Boolean</td><td>false</td><td><pre>Enable counters for various paths in snippets.
+</pre></td></tr>
+<tr><td>SourceLevelDebugFilter</td><td>String[]</td><td>null</td><td><pre>Constrain debug info generation to the comma-separated list of package
+prefixes given to this option.
+</pre></td></tr>
+<tr><td>SourceLevelDebug</td><td>Boolean</td><td>false</td><td><pre>Preserve the local variable information for every Java source line to
+allow line-by-line stepping in the debugger. Allow the lookup of
+Java-level method information, e.g., in stack traces.
+</pre></td></tr>
+<tr><td>SourceSearchPath</td><td>String[]</td><td>null</td><td><pre>List of used-defined paths (separeted by the system's path-separator
+character) in addition to automatic SourceSearchPath detection.
+</pre></td></tr>
+<tr><td>SpawnIsolates</td><td>Boolean</td><td>true</td><td><pre>Support multiple isolates. 
+</pre></td></tr>
+<tr><td>SpeculativeStoreCheck</td><td>Boolean</td><td>true</td><td><pre>Speculates that arrays have exact type to optimize store checks
+</pre></td></tr>
+<tr><td>StackRedZoneSize</td><td>Integer</td><td>8192</td><td><pre>Size (in bytes) of the red zone reserved at the end of the stack. This
+stack space can only be used by critical VM code and C code, e.g., to
+report fatal errors.
+</pre></td></tr>
+<tr><td>StackTrace</td><td>Boolean</td><td>true</td><td><pre>Provide method names for stack traces.
+</pre></td></tr>
+<tr><td>StackYellowZoneSize</td><td>Integer</td><td>32768</td><td><pre>Size (in bytes) of the yellow zone reserved at the end of the stack.
+This stack space is reserved for VM use and cannot be used by the
+application.
+</pre></td></tr>
+<tr><td>StaticExecutable</td><td>Boolean</td><td>false</td><td><pre>Build statically linked executable (requires static libc and zlib)
+</pre></td></tr>
+<tr><td>StressExplicitExceptionCode</td><td>Boolean</td><td>false</td><td><pre>Stress the code emitting explicit exception throwing code.
+</pre></td></tr>
+<tr><td>StressInvokeWithExceptionNode</td><td>Boolean</td><td>false</td><td><pre>Stress the code emitting invokes with explicit exception edges.
+</pre></td></tr>
+<tr><td>StressTestEarlyReads</td><td>Boolean</td><td>false</td><td><pre>Stress the code by emitting reads at earliest instead of latest point.
+</pre></td></tr>
+<tr><td>StripDebugInfo</td><td>Boolean</td><td>true</td><td><pre>Strip debug info from the image.
+</pre></td></tr>
+<tr><td>SubstitutionFiles</td><td>String[]</td><td>null</td><td><pre>Comma-separated list of file names with declarative substitutions
+</pre></td></tr>
+<tr><td>SupportCompileInIsolates</td><td>Boolean</td><td>false</td><td><pre>Support runtime compilation in separate isolates (enable at runtime
+with option CompileInIsolates).
+</pre></td></tr>
+<tr><td>SupportJsrBytecodes</td><td>Boolean</td><td>true</td><td></td></tr>
+<tr><td>SupportOSRWithLocks</td><td>Boolean</td><td>true</td><td><pre>Support OSR compilations with locks. If DeoptAfterOSR is true we can
+per definition not have unbalanced enter/exits mappings. If
+DeoptAfterOSR is false insert artificial monitor enters after the
+OSRStart to have balanced enter/exits in the graph.
+</pre></td></tr>
+<tr><td>TailDupOnly</td><td>String</td><td>""</td><td></td></tr>
+<tr><td>TailDuplicationProbability</td><td>Double</td><td>0.5</td><td></td></tr>
+<tr><td>TailDuplicationTrivialSize</td><td>Integer</td><td>1</td><td></td></tr>
+<tr><td>TearDownFailureNanos</td><td>Long</td><td>0</td><td><pre>The number of nanoseconds before tearing down an isolate gives a
+failure message. 0 implies no message.
+</pre></td></tr>
+<tr><td>TearDownWarningNanos</td><td>Long</td><td>0</td><td><pre>The number of nanoseconds before and between which tearing down an
+isolate gives a warning message. 0 implies no warning.
+</pre></td></tr>
+<tr><td>TierABackedgeNotifyFreqLog</td><td>Integer</td><td>16</td><td><pre>Backedge notification frequency
+</pre></td></tr>
+<tr><td>TierABackedgeProfileProbabilityLog</td><td>Integer</td><td>12</td><td><pre>Backedge profile probability
+</pre></td></tr>
+<tr><td>TierAInvokeInlineeNotifyFreqLog</td><td>Integer</td><td>-1</td><td><pre>Inlinee invocation notification frequency (-1 means count, but do not
+notify)
+</pre></td></tr>
+<tr><td>TierAInvokeNotifyFreqLog</td><td>Integer</td><td>13</td><td><pre>Invocation notification frequency
+</pre></td></tr>
+<tr><td>TierAInvokeProfileProbabilityLog</td><td>Integer</td><td>8</td><td><pre>Invocation profile probability
+</pre></td></tr>
+<tr><td>TieredAOT</td><td>Boolean</td><td>false</td><td><pre>Do profiling and callbacks to tiered runtime
+</pre></td></tr>
+<tr><td>Time</td><td>String</td><td>null</td><td><pre>Pattern for specifying scopes in which timing is enabled. See the Dump
+option for the pattern syntax. An empty value enables all timers
+unconditionally.
+</pre></td></tr>
+<tr><td>TimedDynamicCounters</td><td>Integer</td><td>-1</td><td><pre>Turn on the benchmark counters, and displays the results every n
+milliseconds
+</pre></td></tr>
+<tr><td>Timers</td><td>String</td><td>null</td><td><pre>Comma separated names of timers that are enabled irrespective of the
+value for Time option. An empty value enables all timers
+unconditionally.
+</pre></td></tr>
+<tr><td>TraceBytecodeParserLevel</td><td>Integer</td><td>0</td><td><pre>The trace level for the bytecode parser. A value of 1 enables
+instruction tracing and any greater value emits a frame state trace
+just prior to each instruction trace.Instruction tracing output from
+multiple compiler threads will be interleaved so use of this option
+make most sense for single threaded compilation. The MethodFilter
+option can be used to refine tracing to selected methods.
+</pre></td></tr>
+<tr><td>TraceClassInitialization</td><td>Boolean</td><td>false</td><td><pre>Instrument code to trace and report class initialization.
+</pre></td></tr>
+<tr><td>TraceCodeCache</td><td>Boolean</td><td>false</td><td><pre>Print logging information for runtime code cache modifications
+</pre></td></tr>
+<tr><td>TraceDeoptimizationDetails</td><td>Boolean</td><td>false</td><td><pre>Print verbose logging information for every deoptimization
+</pre></td></tr>
+<tr><td>TraceDeoptimization</td><td>Boolean</td><td>false</td><td><pre>Print logging information for every deoptimization
+</pre></td></tr>
+<tr><td>TraceEscapeAnalysis</td><td>Boolean</td><td>false</td><td></td></tr>
+<tr><td>TraceExceptionHandlerStub</td><td>Boolean</td><td>false</td><td><pre>Trace execution of stub used to handle an exception thrown by a callee.
+</pre></td></tr>
+<tr><td>TraceHeapChunks</td><td>Boolean</td><td>false</td><td><pre>Trace heap chunks during collections, if +VerboseGC and
++PrintHeapShape.
+</pre></td></tr>
+<tr><td>TraceHeapVerification</td><td>Boolean</td><td>false</td><td><pre>Trace heap verification.
+</pre></td></tr>
+<tr><td>TraceInlineDuringParsing</td><td>Boolean</td><td>false</td><td><pre>Traces inlining performed during bytecode parsing.
+</pre></td></tr>
+<tr><td>TraceInliningForStubsAndSnippets</td><td>Boolean</td><td>false</td><td><pre>Enable inlining decision tracing in stubs and snippets.
+</pre></td></tr>
+<tr><td>TraceInlining</td><td>Boolean</td><td>false</td><td><pre>Enable tracing of inlining decisions.
+Output format:
+  compilation of 'Signature of the compilation root method':
+    at 'Signature of the root method' ['Bytecode index']: &lt;'Phase'&gt; 'Child method signature': 'Decision made about this callsite'
+      at 'Signature of the child method' ['Bytecode index']: 
+         |--&lt;'Phase 1'&gt; 'Grandchild method signature': 'First decision made about this callsite'
+         \--&lt;'Phase 2'&gt; 'Grandchild method signature': 'Second decision made about this callsite'
+      at 'Signature of the child method' ['Bytecode index']: &lt;'Phase'&gt; 'Another grandchild method signature': 'The only decision made about this callsite.'
+</pre></td></tr>
+<tr><td>TraceLIRGeneratorLevel</td><td>Integer</td><td>0</td><td><pre>The trace level for the LIR generator
+</pre></td></tr>
+<tr><td>TraceMethodDataFilter</td><td>String</td><td>null</td><td><pre>Enables tracing of profiling info when read by JVMCI.
+Empty value: trace all methods
+Non-empty value: trace methods whose fully qualified name contains the value.
+</pre></td></tr>
+<tr><td>TraceMonitorsMethodFilter</td><td>String</td><td>null</td><td><pre>Trace monitor operations in methods whose fully qualified name contains
+this substring.
+</pre></td></tr>
+<tr><td>TraceMonitorsTypeFilter</td><td>String</td><td>null</td><td><pre>Trace monitor operations on objects whose type contains this substring.
+</pre></td></tr>
+<tr><td>TraceObjectPromotion</td><td>Boolean</td><td>false</td><td><pre>Trace each object promotion.
+</pre></td></tr>
+<tr><td>TraceParserPlugins</td><td>Boolean</td><td>false</td><td><pre>Traces use of plugins during bytecode parsing.
+</pre></td></tr>
+<tr><td>TraceStackVerification</td><td>Boolean</td><td>false</td><td><pre>Trace stack verification.
+</pre></td></tr>
+<tr><td>TraceTruffleAssumptions</td><td>Boolean</td><td>false</td><td><pre>Print stack trace on assumption invalidation
+</pre></td></tr>
+<tr><td>TraceTruffleCompilationAST</td><td>Boolean</td><td>false</td><td><pre>Print the entire AST after each compilation
+</pre></td></tr>
+<tr><td>TraceTruffleCompilationCallTree</td><td>Boolean</td><td>false</td><td><pre>Print the inlined call tree for each compiled method
+</pre></td></tr>
+<tr><td>TraceTruffleCompilationDetails</td><td>Boolean</td><td>false</td><td><pre>Print information for compilation queuing
+</pre></td></tr>
+<tr><td>TraceTruffleCompilationPolymorphism</td><td>Boolean</td><td>false</td><td><pre>Print all polymorphic and generic nodes after each compilation
+</pre></td></tr>
+<tr><td>TraceTruffleCompilation</td><td>Boolean</td><td>false</td><td><pre>Print information for compilation results
+</pre></td></tr>
+<tr><td>TraceTruffleInliningDetails</td><td>Boolean</td><td>false</td><td><pre>Print detailed information for inlining (i.e. the entire explored call
+tree).
+</pre></td></tr>
+<tr><td>TraceTruffleInlining</td><td>Boolean</td><td>false</td><td><pre>Print information for inlining for each compilation.
+</pre></td></tr>
+<tr><td>TraceTrufflePerformanceWarnings</td><td>Boolean</td><td>false</td><td><pre>Print potential performance problems
+</pre></td></tr>
+<tr><td>TraceTruffleSplitting</td><td>Boolean</td><td>false</td><td><pre>Print information for each splitted call site.
+</pre></td></tr>
+<tr><td>TraceTruffleStackTraceLimit</td><td>Integer</td><td>20</td><td><pre>Number of stack trace elements printed by
+TraceTruffleTransferToInterpreter and TraceTruffleAssumptions
+</pre></td></tr>
+<tr><td>TraceTruffleTransferToInterpreter</td><td>Boolean</td><td>false</td><td><pre>Print stack trace on transfer to interpreter.
+</pre></td></tr>
+<tr><td>TraceUnwindStub</td><td>Boolean</td><td>false</td><td><pre>Trace execution of the stub that routes an exception to a handler in
+the calling frame.
+</pre></td></tr>
+<tr><td>TraceVMOperations</td><td>Boolean</td><td>false</td><td><pre>Trace VMOperation execution.
+</pre></td></tr>
+<tr><td>TrackAccessChain</td><td>Boolean</td><td>false</td><td><pre>Track the callers for methods and accessing methods for fields.
+</pre></td></tr>
+<tr><td>TrackGraphSizesInDuplication</td><td>Boolean</td><td>false</td><td><pre>Enable (if Count is enabled) graph size tracking during every
+duplication iteration.
+</pre></td></tr>
+<tr><td>TrackInliningStatistics</td><td>String</td><td>none</td><td><pre>Track inlining statistics (inlining duration, call tree size, compiler
+node counts, and the number of callsites). One of: none, interactive
+</pre></td></tr>
+<tr><td>TrackInputFlows</td><td>Boolean</td><td>false</td><td><pre>Track the input for type flows.
+</pre></td></tr>
+<tr><td>TrackMemUse</td><td>String</td><td>null</td><td><pre>Pattern for specifying scopes in which memory use tracking is enabled.
+See the Dump option for the pattern syntax. An empty value enables all
+memory use trackers unconditionally.
+</pre></td></tr>
+<tr><td>TrackNodeInsertion</td><td>Boolean</td><td>false</td><td><pre>Track source stack trace where a node was inserted into the graph.
+</pre></td></tr>
+<tr><td>TrackNodeSourcePosition</td><td>Boolean</td><td>false</td><td><pre>Track the NodeSourcePosition.
+</pre></td></tr>
+<tr><td>TrivialInliningSize</td><td>Integer</td><td>10</td><td><pre>Graphs with less than this number of nodes are trivial and therefore
+always inlined.
+</pre></td></tr>
+<tr><td>TruffleArgumentTypeSpeculation</td><td>Boolean</td><td>true</td><td></td></tr>
+<tr><td>TruffleBackgroundCompilation</td><td>Boolean</td><td>true</td><td><pre>Enable asynchronous truffle compilation in background thread
+</pre></td></tr>
+<tr><td>TruffleCheckFrameImplementation</td><td>Boolean</td><td>true</td><td><pre>Enforce that the Truffle runtime provides the only implementation of
+Frame
+</pre></td></tr>
+<tr><td>TruffleCheckNeverPartOfCompilation</td><td>Boolean</td><td>false</td><td><pre>Print a warning message and stack trace when
+CompilerAsserts.neverPartOfCompilation is reachable
+</pre></td></tr>
+<tr><td>TruffleCompilationExceptionsAreFatal</td><td>Boolean</td><td>false</td><td><pre>Treat compilation exceptions as fatal exceptions that will exit the
+application
+</pre></td></tr>
+<tr><td>TruffleCompilationExceptionsArePrinted</td><td>Boolean</td><td>true</td><td><pre>Prints the exception stack trace for compilation exceptions
+</pre></td></tr>
+<tr><td>TruffleCompilationExceptionsAreThrown</td><td>Boolean</td><td>false</td><td><pre>Treat compilation exceptions as thrown runtime exceptions
+</pre></td></tr>
+<tr><td>TruffleCompilationStatisticDetails</td><td>Boolean</td><td>false</td><td><pre>Print additional more verbose Truffle compilation statistics at the end
+of a run.
+</pre></td></tr>
+<tr><td>TruffleCompilationStatistics</td><td>Boolean</td><td>false</td><td><pre>Print Truffle compilation statistics at the end of a run.
+</pre></td></tr>
+<tr><td>TruffleCompilationThreshold</td><td>Integer</td><td>1000</td><td><pre>Compile call target when call count exceeds this threshold.
+</pre></td></tr>
+<tr><td>TruffleCompilation</td><td>Boolean</td><td>true</td><td><pre>Enable or disable truffle compilation.
+</pre></td></tr>
+<tr><td>TruffleCompileImmediately</td><td>Boolean</td><td>false</td><td><pre>Compile immediately to test truffle compiler
+</pre></td></tr>
+<tr><td>TruffleCompileOnly</td><td>String</td><td>null</td><td><pre>Restrict compilation to comma-separated list of includes (or excludes
+prefixed with tilde).
+EBNF format of argument value:  CompileOnly = Element, { ',', Element } ;
+</pre></td></tr>
+<tr><td>TruffleCompilerConfiguration</td><td>String</td><td>null</td><td><pre>Select a compiler configuration for Truffle compilation (default: use
+Graal system compiler configuration).
+</pre></td></tr>
+<tr><td>TruffleCompilerThreads</td><td>Integer</td><td>0</td><td><pre>Manually set the number of compiler threads
+</pre></td></tr>
+<tr><td>TruffleEnableInfopoints</td><td>Boolean</td><td>false</td><td><pre>Enable support for simple infopoints in truffle partial evaluations.
+</pre></td></tr>
+<tr><td>TruffleExcludeAssertions</td><td>Boolean</td><td>true</td><td><pre>Exclude assertion code from Truffle compilations
+</pre></td></tr>
+<tr><td>TruffleFirstTierCompilationThreshold</td><td>Integer</td><td>100</td><td><pre>Compile call target in the first tier when call count exceeds this
+threshold.
+</pre></td></tr>
+<tr><td>TruffleFirstTierMinInvokeThreshold</td><td>Integer</td><td>1</td><td><pre>Minimum number of calls before a call target is compiled in the first
+tier.
+</pre></td></tr>
+<tr><td>TruffleFunctionInlining</td><td>Boolean</td><td>true</td><td><pre>Enable automatic inlining of call targets
+</pre></td></tr>
+<tr><td>TruffleInlineAcrossTruffleBoundary</td><td>Boolean</td><td>false</td><td><pre>Enable inlining across Truffle boundary
+</pre></td></tr>
+<tr><td>TruffleInlineDuringParsing</td><td>Boolean</td><td>true</td><td><pre>Inline trivial methods in Truffle graphs during native image generation
+</pre></td></tr>
+<tr><td>TruffleInliningCutoffCountPenalty</td><td>Double</td><td>0.1</td><td><pre>Controls how impactful many cutoff nodes is on exploration decision in
+language-agnostic inlining.
+</pre></td></tr>
+<tr><td>TruffleInliningExpandAllProximityBonus</td><td>Integer</td><td>10</td><td><pre>Controls at what point few cutoff nodes are impactful on exploration
+decisions in language-agnostic inlining.
+</pre></td></tr>
+<tr><td>TruffleInliningExpandAllProximityFactor</td><td>Double</td><td>0.5</td><td><pre>Controls how impactful few cutoff nodes are on exploration decisions in
+language-agnostic inlining.
+</pre></td></tr>
+<tr><td>TruffleInliningExpansionBudget</td><td>Integer</td><td>50000</td><td><pre>The base expansion budget for language-agnostic inlining.
+</pre></td></tr>
+<tr><td>TruffleInliningExpansionCounterPressure</td><td>Integer</td><td>2000</td><td><pre>Controls how steep the exploration limit curve grows in
+language-agnostic inlining.
+</pre></td></tr>
+<tr><td>TruffleInliningInliningBudget</td><td>Integer</td><td>50000</td><td><pre>The base inlining budget for language-agnostic inlining
+</pre></td></tr>
+<tr><td>TruffleInliningInliningCounterPressure</td><td>Integer</td><td>2000</td><td><pre>Controls how steep the inlining limit curve grows in language-agnostic
+inlining
+</pre></td></tr>
+<tr><td>TruffleInliningMaxCallerSize</td><td>Integer</td><td>2250</td><td><pre>Stop inlining if caller's cumulative tree size would exceed this limit
+</pre></td></tr>
+<tr><td>TruffleInliningNodeCountPenalty</td><td>Double</td><td>0.1</td><td><pre>Controls how impactful the size of the subtree is on exploration
+decision in language-agnostic inlining.
+</pre></td></tr>
+<tr><td>TruffleInliningPolicy</td><td>String</td><td>""</td><td><pre>Explicitly pick a inlining policy by name. Highest priority chosen by
+default.
+</pre></td></tr>
+<tr><td>TruffleInstrumentBoundariesPerInlineSite</td><td>Boolean</td><td>false</td><td><pre>Instrument Truffle boundaries by considering different inlining sites
+as different branches.
+</pre></td></tr>
+<tr><td>TruffleInstrumentBoundaries</td><td>Boolean</td><td>false</td><td><pre>Instrument Truffle boundaries and output profiling information to the
+standard output.
+</pre></td></tr>
+<tr><td>TruffleInstrumentBranchesPerInlineSite</td><td>Boolean</td><td>false</td><td><pre>Instrument branches by considering different inlining sites as
+different branches.
+</pre></td></tr>
+<tr><td>TruffleInstrumentBranches</td><td>Boolean</td><td>false</td><td><pre>Instrument branches and output profiling information to the standard
+output.
+</pre></td></tr>
+<tr><td>TruffleInstrumentFilter</td><td>String</td><td>"*.*.*"</td><td><pre>Method filter for host methods in which to add instrumentation.
+</pre></td></tr>
+<tr><td>TruffleInstrumentationTableSize</td><td>Integer</td><td>10000</td><td><pre>Maximum number of instrumentation counters available.
+</pre></td></tr>
+<tr><td>TruffleIntrinsifyFrameAccess</td><td>Boolean</td><td>true</td><td><pre>Intrinsify get/set/is methods of FrameWithoutBoxing to improve Truffle
+compilation time
+</pre></td></tr>
+<tr><td>TruffleInvalidationReprofileCount</td><td>Integer</td><td>3</td><td><pre>Delay compilation after an invalidation to allow for reprofiling
+</pre></td></tr>
+<tr><td>TruffleIterativePartialEscape</td><td>Boolean</td><td>false</td><td><pre>Run the partial escape analysis iteratively in Truffle compilation.
+</pre></td></tr>
+<tr><td>TruffleLanguageAgnosticInlining</td><td>Boolean</td><td>false</td><td><pre>Use language-agnostic inlining (overrides the TruffleFunctionInlining
+setting, option is experimental).
+</pre></td></tr>
+<tr><td>TruffleLegacySplitting</td><td>Boolean</td><td>false</td><td><pre>Use legacy splitting heuristic. This option will be removed.
+</pre></td></tr>
+<tr><td>TruffleMaximumGraalNodeCount</td><td>Integer</td><td>400000</td><td><pre>Stop partial evaluation when the graph exceeded this many nodes.
+</pre></td></tr>
+<tr><td>TruffleMaximumInlineNodeCount</td><td>Integer</td><td>150000</td><td><pre>Ignore further truffle inlining decisions when the graph exceeded this
+many nodes.
+</pre></td></tr>
+<tr><td>TruffleMaximumRecursiveInlining</td><td>Integer</td><td>2</td><td><pre>Maximum level of recursive inlining
+</pre></td></tr>
+<tr><td>TruffleMinInvokeThreshold</td><td>Integer</td><td>3</td><td><pre>Minimum number of calls before a call target is compiled
+</pre></td></tr>
+<tr><td>TruffleMultiTier</td><td>Boolean</td><td>false</td><td><pre>Whether to use multiple Truffle compilation tiers by default.
+</pre></td></tr>
+<tr><td>TruffleOSRCompilationThreshold</td><td>Integer</td><td>100000</td><td><pre>Number of loop iterations until on-stack-replacement compilation is
+triggered.
+</pre></td></tr>
+<tr><td>TruffleOSR</td><td>Boolean</td><td>true</td><td><pre>Enable on stack replacement for Truffle loops.
+</pre></td></tr>
+<tr><td>TrufflePerformanceWarningsAreFatal</td><td>Boolean</td><td>false</td><td><pre>Treat performance warnings as fatal occurrences that will exit the
+applications
+</pre></td></tr>
+<tr><td>TruffleProfilingEnabled</td><td>Boolean</td><td>true</td><td><pre>Enable/disable builtin profiles in com.oracle.truffle.api.profiles.
+</pre></td></tr>
+<tr><td>TruffleReplaceReprofileCount</td><td>Integer</td><td>3</td><td><pre>Delay compilation after a node replacement
+</pre></td></tr>
+<tr><td>TruffleReturnTypeSpeculation</td><td>Boolean</td><td>true</td><td></td></tr>
+<tr><td>TruffleSplittingAllowForcedSplits</td><td>Boolean</td><td>true</td><td><pre>Should forced splits be allowed.
+</pre></td></tr>
+<tr><td>TruffleSplittingDumpDecisions</td><td>Boolean</td><td>false</td><td><pre>Dumps to IGV information on polymorphic events
+</pre></td></tr>
+<tr><td>TruffleSplittingGrowthLimit</td><td>Double</td><td>1.5</td><td><pre>Disable call target splitting if the number of nodes created by
+splitting exceeds this factor times node count
+</pre></td></tr>
+<tr><td>TruffleSplittingMaxCalleeSize</td><td>Integer</td><td>100</td><td><pre>Disable call target splitting if tree size exceeds this limit
+</pre></td></tr>
+<tr><td>TruffleSplittingMaxNumberOfSplitNodes</td><td>Integer</td><td>500000</td><td><pre>Disable call target splitting if number of nodes created by splitting
+exceeds this limit
+</pre></td></tr>
+<tr><td>TruffleSplittingMaxPropagationDepth</td><td>Integer</td><td>5</td><td><pre>Propagate info about a polymorphic specialize through maximum this many
+call targets
+</pre></td></tr>
+<tr><td>TruffleSplittingTraceEvents</td><td>Boolean</td><td>false</td><td><pre>Trace details of splitting events and decisions.
+</pre></td></tr>
+<tr><td>TruffleSplitting</td><td>Boolean</td><td>true</td><td><pre>Enable call target splitting
+</pre></td></tr>
+<tr><td>TruffleTraceSplittingSummary</td><td>Boolean</td><td>false</td><td><pre>Used for debugging the splitting implementation. Prints splitting
+summary directly to stdout on shutdown
+</pre></td></tr>
+<tr><td>TrustFinalDefaultFields</td><td>Boolean</td><td>true</td><td><pre>Determines whether to treat final fields with default values as
+constant.
+</pre></td></tr>
+<tr><td>TryExplodeOverPhis</td><td>Boolean</td><td>true</td><td></td></tr>
+<tr><td>TryPhiPhiPulls</td><td>Boolean</td><td>true</td><td></td></tr>
+<tr><td>TypeCheckMaxHints</td><td>Integer</td><td>2</td><td><pre>The maximum number of profiled types that will be used when compiling a
+profiled type check. Note that TypeCheckMinProfileHitProbability also
+influences whether profiling info is used in compiled type checks.
+</pre></td></tr>
+<tr><td>TypeCheckMinProfileHitProbability</td><td>Double</td><td>0.5</td><td><pre>If the probability that a type check will hit one the profiled types
+(up to TypeCheckMaxHints) is below this value, the type check will be
+compiled without profiling info
+</pre></td></tr>
+<tr><td>TypeFlowPrinterInRadius</td><td>Integer</td><td>0</td><td><pre>How many levels of inputs to print. A value of 0 prints only the target
+flow.
+</pre></td></tr>
+<tr><td>TypeFlowPrinterOutRadius</td><td>Integer</td><td>0</td><td><pre>How many levels of outputs to print. A value of 0 prints only the
+target flow.
+</pre></td></tr>
+<tr><td>TypicalCallGraphSize</td><td>Integer</td><td>200</td><td><pre>Denotes the call graph size that is considered medium size.
+</pre></td></tr>
+<tr><td>TypicalGraphSizeInvokeBonus</td><td>Integer</td><td>70</td><td><pre>The increase in estimated typical graph size after inlining, per each
+extra invoke.
+</pre></td></tr>
+<tr><td>TypicalGraphSizeMax</td><td>Integer</td><td>10000</td><td><pre>The maximum in estimated inlined typical graph size.
+</pre></td></tr>
+<tr><td>TypicalGraphSize</td><td>Integer</td><td>3250</td><td><pre>The typical graph size at which inlining pressure must start growing.
+</pre></td></tr>
+<tr><td>UnresolvedIsError</td><td>Boolean</td><td>true</td><td><pre>Report unresolved elements as errors.
+</pre></td></tr>
+<tr><td>UnrollMaxIterations</td><td>Integer</td><td>16</td><td></td></tr>
+<tr><td>UseCAPCache</td><td>Boolean</td><td>false</td><td><pre>Indicate the C Annotation Processor to use previously cached native
+information when generating C Type information.
+</pre></td></tr>
+<tr><td>UseCardRememberedSetHeap</td><td>Boolean</td><td>true</td><td><pre>Use a card remembered set heap for GC
+</pre></td></tr>
+<tr><td>UseCompilationStatistics</td><td>Boolean</td><td>false</td><td><pre>Enables CompilationStatistics.
+</pre></td></tr>
+<tr><td>UseCompressedReferenceShift</td><td>Boolean</td><td>true</td><td><pre>Use bit-shifting to enlarge the address range with narrow references.
+</pre></td></tr>
+<tr><td>UseCompressedReferences</td><td>Boolean</td><td>true</td><td><pre>Use compressed references (32-bit instead of 64-bit references to Java
+objects).
+</pre></td></tr>
+<tr><td>UseDedicatedVMOperationThread</td><td>Boolean</td><td>false</td><td><pre>Determines if VM operations should be executed in a dedicated thread.
+</pre></td></tr>
+<tr><td>UseEncodedGraphs</td><td>Boolean</td><td>false</td><td><pre>Encode and decode snippets and substitutions before parsing to test
+libgraal code path. This option is ignored in the context of libgraal.
+</pre></td></tr>
+<tr><td>UseExceptionProbability</td><td>Boolean</td><td>true</td><td></td></tr>
+<tr><td>UseGraalStubs</td><td>Boolean</td><td>true</td><td><pre>Use Graal-generated stubs for complicated LIR operations instead of
+embedding all the emitted code.
+</pre></td></tr>
+<tr><td>UseGraphCache</td><td>Boolean</td><td>true</td><td><pre>Turn on graph caching.
+</pre></td></tr>
+<tr><td>UseIndexMasking</td><td>Boolean</td><td>false</td><td><pre>Use index masking after bounds check to mitigate speculative execution
+attacks.
+</pre></td></tr>
+<tr><td>UseLoopLimitChecks</td><td>Boolean</td><td>true</td><td></td></tr>
+<tr><td>UseObjectInlineFeature</td><td>Boolean</td><td>false</td><td><pre>Enable the object inline feature. Disabling this feature will ease
+debugging issues unrelated to it.
+</pre></td></tr>
+<tr><td>UseOnlyWritableBootImageHeap</td><td>Boolean</td><td>false</td><td><pre>Use only a writable native image heap.
+</pre></td></tr>
+<tr><td>UsePartialEscapeSelectiveInlining</td><td>Boolean</td><td>true</td><td><pre>Use PartialEscapeSelectiveInliningPhase to give PartialEscape phase
+more opportunities.
+</pre></td></tr>
+<tr><td>UsePerfData</td><td>Boolean</td><td>true</td><td><pre>Flag to disable jvmstat instrumentation for performance testing.
+</pre></td></tr>
+<tr><td>UsePriorityInlining</td><td>Boolean</td><td>true</td><td><pre>Use priority-based inlining.
+</pre></td></tr>
+<tr><td>UseProfilingInformation</td><td>Boolean</td><td>true</td><td><pre>          
+</pre></td></tr>
+<tr><td>UseSnippetGraphCache</td><td>Boolean</td><td>true</td><td><pre>Use a cache for snippet graphs.
+</pre></td></tr>
+<tr><td>UseSnippetTemplateCache</td><td>Boolean</td><td>true</td><td><pre>Use a LRU cache for snippet templates.
+</pre></td></tr>
+<tr><td>UseTrappingNullChecks</td><td>Boolean</td><td>true</td><td><pre>Use traps for null checks instead of explicit null-checks
+</pre></td></tr>
+<tr><td>UseTypeCheckHints</td><td>Boolean</td><td>true</td><td></td></tr>
+<tr><td>UseTypedArguments</td><td>Boolean</td><td>true</td><td><pre>Use typed unboxed arguments for Truffle compilations
+</pre></td></tr>
+<tr><td>UseTypedResult</td><td>Boolean</td><td>true</td><td><pre>Use typed unboxed return value for Truffle compilations
+</pre></td></tr>
+<tr><td>UserRequestedGCPolicy</td><td>String</td><td>"com.oracle.svm.core.genscavenge.HeapPolicy$AlwaysCollectCompletely"</td><td><pre>Policy used when users request garbage collection.
+</pre></td></tr>
+<tr><td>UserRequestedGCThreshold</td><td>Long</td><td>16777216</td><td><pre>Defines the upper bound for the number of remaining bytes in the young
+generation that cause a collection when `System.gc` is called.
+</pre></td></tr>
+<tr><td>VTuneAbsoluteFilenames</td><td>Boolean</td><td>true</td><td><pre>Use absolute path for source-filenames in VTune events.
+</pre></td></tr>
+<tr><td>VTunePath</td><td>String</td><td>""</td><td><pre>Path to VTune installation (usually /opt/intel/vtune_amplifier)
+</pre></td></tr>
+<tr><td>VectorIntrinsics</td><td>Boolean</td><td>true</td><td><pre>Enable vectorized array copy intrinsics
+</pre></td></tr>
+<tr><td>VectorUnroll</td><td>Integer</td><td>1</td><td><pre>Unroll vectorized loops
+</pre></td></tr>
+<tr><td>Vectorization</td><td>Boolean</td><td>true</td><td><pre>Enable vectorization.
+</pre></td></tr>
+<tr><td>VectorizeAllocation</td><td>Boolean</td><td>true</td><td><pre>Enable vectorized array initialization
+</pre></td></tr>
+<tr><td>VectorizeConditional</td><td>Boolean</td><td>false</td><td><pre>Enable vectorization of conditional code.
+</pre></td></tr>
+<tr><td>VectorizeFoldShaped</td><td>Boolean</td><td>true</td><td><pre>Enable vectorization of loops implementing a higher-order 'fold'
+function.
+</pre></td></tr>
+<tr><td>VectorizeLoops</td><td>Boolean</td><td>true</td><td><pre>Enable vectorization of loops
+</pre></td></tr>
+<tr><td>VectorizeMapShaped</td><td>Boolean</td><td>true</td><td><pre>Enable vectorization of loops implementing a higher-order 'map'
+function.
+</pre></td></tr>
+<tr><td>VectorizeNegativeStride</td><td>Boolean</td><td>true</td><td><pre>Enable vectorization of loops with negative strides.
+</pre></td></tr>
+<tr><td>VectorizeSIMD</td><td>Boolean</td><td>false</td><td><pre>Enable detection of SIMD patterns
+</pre></td></tr>
+<tr><td>VectorizeSequence</td><td>Boolean</td><td>true</td><td><pre>Enable vectorization of sequence values.
+</pre></td></tr>
+<tr><td>VerboseGC</td><td>Boolean</td><td>false</td><td><pre>Print more information about the heap before and after each collection
+</pre></td></tr>
+<tr><td>VerifyBalancedMonitors</td><td>Boolean</td><td>false</td><td><pre>Emit extra code to dynamically check monitor operations are balanced.
+</pre></td></tr>
+<tr><td>VerifyDuplicationOperations</td><td>Boolean</td><td>false</td><td></td></tr>
+<tr><td>VerifyGraalGraphEdges</td><td>Boolean</td><td>false</td><td><pre>Perform expensive verification of graph inputs, usages, successors and
+predecessors
+</pre></td></tr>
+<tr><td>VerifyGraalGraphs</td><td>Boolean</td><td>true</td><td><pre>Verify graphs often during compilation when assertions are turned on
+</pre></td></tr>
+<tr><td>VerifyGraalPhasesSize</td><td>Boolean</td><td>false</td><td><pre>Verify before - after relation of the relative, computed, code size of
+a graph
+</pre></td></tr>
+<tr><td>VerifyHeapAfterCollection</td><td>Boolean</td><td>false</td><td><pre>Verify the heap after each collection.
+</pre></td></tr>
+<tr><td>VerifyHeapAtReturn</td><td>Boolean</td><td>false</td><td><pre>Perform platform dependent validation of the Java heap at returns
+</pre></td></tr>
+<tr><td>VerifyHeapBeforeCollection</td><td>Boolean</td><td>false</td><td><pre>Verify the heap before each collection.
+</pre></td></tr>
+<tr><td>VerifyHeap</td><td>Boolean</td><td>false</td><td><pre>Verify the heap before and after each collection.
+</pre></td></tr>
+<tr><td>VerifyKillCFGUnusedNodes</td><td>Boolean</td><td>false</td><td><pre>Verify that there are no new unused nodes when performing killCFG
+</pre></td></tr>
+<tr><td>VerifyNamingConventions</td><td>Boolean</td><td>false</td><td><pre>Verify naming conventions during image construction.
+</pre></td></tr>
+<tr><td>VerifyPhases</td><td>Boolean</td><td>false</td><td></td></tr>
+<tr><td>VerifyStackAfterCollection</td><td>Boolean</td><td>false</td><td><pre>Verify the stack after each collection.
+</pre></td></tr>
+<tr><td>VerifyStackBeforeCollection</td><td>Boolean</td><td>false</td><td><pre>Verify the stack before each collection.
+</pre></td></tr>
+<tr><td>VerifyWriteBarrierElimination</td><td>Boolean</td><td>false</td><td><pre>Add code to verify that eliminated barriers weren't needed.
+</pre></td></tr>
+<tr><td>Verify</td><td>String</td><td>null</td><td><pre>Pattern for specifying scopes in which logging is enabled. See the Dump
+option for the pattern syntax.
+</pre></td></tr>
+<tr><td>Virtualize</td><td>String</td><td>""</td><td><pre>Build the native image for a virtualized environment. The argument is a
+path to a JSON file that specifies the virtualized environment
+properties.
+</pre></td></tr>
+<tr><td>ZapChunks</td><td>Boolean</td><td>false</td><td><pre>Zap memory chunks
+</pre></td></tr>
+<tr><td>ZapConsumedHeapChunks</td><td>Boolean</td><td>false</td><td><pre>Zap consumed memory chunks
+</pre></td></tr>
+<tr><td>ZapProducedHeapChunks</td><td>Boolean</td><td>false</td><td><pre>Zap produced memory chunks
+</pre></td></tr>
+<tr><td>ZapStackOnMethodEntry</td><td>Boolean</td><td>false</td><td></td></tr>
+
+		</tbody>
+	</table>
+	<div class="footer">
+		Built on Tue Dec 03 21:34:34 GMT 2019 from GraalVM sources by <a
+			href="https://twitter.com/chriswhocodes">@chriswhocodes</a>
+	</div>
+</body>
+</html>

@@ -9,7 +9,6 @@
     <link rel="stylesheet" type="text/css" href="css/style-vmoe.css">
 </head>
 <body>
-
 <div class="title_wrap">
     <div class="title">
         <h1>VM Options Explorer - Differences between HotSpot VM Versions</h1>
@@ -57,30 +56,46 @@
     <div class="menuwrap">
         <table class="menu">
             <tr>
-                <th colspan="2">GraalVM</th>
+                <th colspan="4">GraalVM 19.3.0</th>
             </tr>
             <tr>
-                <td><a href="graalvm_ce_19_options.html">GraalVM CE 19.2.1</a></td>
-                <td><a href="graalvm_ee_19_options.html">GraalVM EE 19.2.1</a></td>
+                <th colspan="2">JDK8</th>
+                <th colspan="2">JDK11</th>
+            </tr>
+            <tr>
+                <td><a href="graalvm_ce_jdk8_options.html">Community</a></td>
+                <td><a href="graalvm_ee_jdk8_options.html">Enterprise</a></td>
+                <td><a href="graalvm_ce_jdk11_options.html">Community</a></td>
+                <td><a href="graalvm_ee_jdk11_options.html">Enterprise</a></td>
             </tr>
             <tr>
                 <td></td>
-                <td><a href="graalvm_ee_only_options.html"><b>Enterprise-only options</b></a></td>
+                <td><a href="graalvm_ee_only_jdk8_options.html"><b>EE-only options</b></a></td>
+                <td></td>
+                <td><a href="graalvm_ee_only_jdk11_options.html"><b>EE-only options</b></a></td>
             </tr>
         </table>
     </div>
     <div class="menuwrap">
         <table class="menu">
             <tr>
-                <th colspan="2">GraalVM native-image</th>
+                <th colspan="4">GraalVM native-image 19.3.0</th>
             </tr>
             <tr>
-                <td><a href="graalvm_native_image_ce_19_options.html">native-image CE 19.2.1</a></td>
-                <td><a href="graalvm_native_image_ee_19_options.html">native-image EE 19.2.1</a></td>
+                <th colspan="2">JDK8</th>
+                <th colspan="2">JDK11</th>
+            </tr>
+            <tr>
+                <td><a href="graalvm_native_image_ce_jdk8_options.html">Community</a></td>
+                <td><a href="graalvm_native_image_ee_jdk8_options.html">Enterprise</a></td>
+                <td><a href="graalvm_native_image_ce_jdk11_options.html">Community</a></td>
+                <td><a href="graalvm_native_image_ee_jdk11_options.html">Enterprise</a></td>
             </tr>
             <tr>
                 <td></td>
-                <td><a href="graalvm_native_image_ee_only_options.html"><b>Enterprise-only options</b></a></td>
+                <td><a href="graalvm_native_image_ee_only_jdk8_options.html"><b>EE-only options</b></a></td>
+                <td></td>
+                <td><a href="graalvm_native_image_ee_only_jdk11_options.html"><b>EE-only options</b></a></td>
             </tr>
         </table>
     </div>
@@ -257,7 +272,6 @@
 <tr><td><a href="hotspot_options_jdk7.html?s=CMSRevisitStackSize">CMSRevisitStackSize</a></td><td>product</td><td></td><td></td><td></td></tr>
 <tr><td><a href="hotspot_options_jdk7.html?s=CMSTriggerPermRatio">CMSTriggerPermRatio</a></td><td>product</td><td></td><td></td><td></td></tr>
 <tr><td><a href="hotspot_options_jdk7.html?s=CodeCacheFlushingMinimumFreeSpace">CodeCacheFlushingMinimumFreeSpace</a></td><td>product</td><td></td><td></td><td></td></tr>
-<tr><td><a href="hotspot_options_jdk7.html?s=DieOnSafepointTimeout">DieOnSafepointTimeout</a></td><td>develop</td><td></td><td></td><td></td></tr>
 <tr><td><a href="hotspot_options_jdk7.html?s=G1DeferredRSUpdate">G1DeferredRSUpdate</a></td><td>develop</td><td></td><td></td><td></td></tr>
 <tr><td><a href="hotspot_options_jdk7.html?s=G1ExtraRegionSurvRate">G1ExtraRegionSurvRate</a></td><td>develop</td><td></td><td></td><td></td></tr>
 <tr><td><a href="hotspot_options_jdk7.html?s=G1InitYoungSurvRatio">G1InitYoungSurvRatio</a></td><td>develop</td><td></td><td></td><td></td></tr>
@@ -295,10 +309,7 @@
 <tr><td><a href="hotspot_options_jdk7.html?s=V8AtomicOperationUnderLockSpinCount">V8AtomicOperationUnderLockSpinCount</a></td><td>develop</td><td></td><td></td><td></td></tr>
 <tr><td><a href="hotspot_options_jdk7.html?s=ValidateMarkSweep">ValidateMarkSweep</a></td><td>notproduct</td><td></td><td></td><td></td></tr>
 <tr><td><a href="hotspot_options_jdk7.html?s=VerifyOopMaps">VerifyOopMaps</a></td><td>notproduct</td><td></td><td></td><td></td></tr>
-</table></div><div class="wrap"><h3 class="deltaH3">Added in JDK8</h3><table class="deltatable added"><tr><th>Name</th><th>Availability</th></tr><tr><td><a href="hotspot_options_jdk8.html?s=AbortVMOnSafepointTimeout">AbortVMOnSafepointTimeout</a></td><td>diagnostic</td></tr>
-<tr><td><a href="hotspot_options_jdk8.html?s=ActiveProcessorCount">ActiveProcessorCount</a></td><td>product</td></tr>
-<tr><td><a href="hotspot_options_jdk8.html?s=AggressiveHeap">AggressiveHeap</a></td><td>product</td></tr>
-<tr><td><a href="hotspot_options_jdk8.html?s=AggressiveUnboxing">AggressiveUnboxing</a></td><td>experimental</td></tr>
+</table></div><div class="wrap"><h3 class="deltaH3">Added in JDK8</h3><table class="deltatable added"><tr><th>Name</th><th>Availability</th></tr><tr><td><a href="hotspot_options_jdk8.html?s=AggressiveUnboxing">AggressiveUnboxing</a></td><td>experimental</td></tr>
 <tr><td><a href="hotspot_options_jdk8.html?s=AssertRangeCheckElimination">AssertRangeCheckElimination</a></td><td>develop</td></tr>
 <tr><td><a href="hotspot_options_jdk8.html?s=AssumeMP">AssumeMP</a></td><td>product</td></tr>
 <tr><td><a href="hotspot_options_jdk8.html?s=C1PatchInvokeDynamic">C1PatchInvokeDynamic</a></td><td>diagnostic</td></tr>
@@ -310,9 +321,6 @@
 <tr><td><a href="hotspot_options_jdk8.html?s=CompressedClassSpaceSize">CompressedClassSpaceSize</a></td><td>product</td></tr>
 <tr><td><a href="hotspot_options_jdk8.html?s=ContendedPaddingWidth">ContendedPaddingWidth</a></td><td>product</td></tr>
 <tr><td><a href="hotspot_options_jdk8.html?s=CrashOnOutOfMemoryError">CrashOnOutOfMemoryError</a></td><td>product</td></tr>
-<tr><td><a href="hotspot_options_jdk8.html?s=DSCR_DPFD_PPC64">DSCR_DPFD_PPC64</a></td><td>product</td></tr>
-<tr><td><a href="hotspot_options_jdk8.html?s=DSCR_PPC64">DSCR_PPC64</a></td><td>product</td></tr>
-<tr><td><a href="hotspot_options_jdk8.html?s=DSCR_URG_PPC64">DSCR_URG_PPC64</a></td><td>product</td></tr>
 <tr><td><a href="hotspot_options_jdk8.html?s=DisablePrimordialThreadGuardPages">DisablePrimordialThreadGuardPages</a></td><td>experimental</td></tr>
 <tr><td><a href="hotspot_options_jdk8.html?s=DumpLoadedClassList">DumpLoadedClassList</a></td><td>product</td></tr>
 <tr><td><a href="hotspot_options_jdk8.html?s=DumpReplayDataOnError">DumpReplayDataOnError</a></td><td>product</td></tr>
@@ -330,27 +338,22 @@
 <tr><td><a href="hotspot_options_jdk8.html?s=IgnoreUnverifiableClassesDuringDump">IgnoreUnverifiableClassesDuringDump</a></td><td>diagnostic</td></tr>
 <tr><td><a href="hotspot_options_jdk8.html?s=IncreaseFirstTierCompileThresholdAt">IncreaseFirstTierCompileThresholdAt</a></td><td>product</td></tr>
 <tr><td><a href="hotspot_options_jdk8.html?s=InitialBootClassLoaderMetaspaceSize">InitialBootClassLoaderMetaspaceSize</a></td><td>product</td></tr>
-<tr><td><a href="hotspot_options_jdk8.html?s=InitialRAMPercentage">InitialRAMPercentage</a></td><td>product</td></tr>
 <tr><td><a href="hotspot_options_jdk8.html?s=InlineDataFile">InlineDataFile</a></td><td>product</td></tr>
 <tr><td><a href="hotspot_options_jdk8.html?s=MallocMaxTestWords">MallocMaxTestWords</a></td><td>diagnostic</td></tr>
 <tr><td><a href="hotspot_options_jdk8.html?s=MaxJNILocalCapacity">MaxJNILocalCapacity</a></td><td>product</td></tr>
 <tr><td><a href="hotspot_options_jdk8.html?s=MaxMetaspaceExpansion">MaxMetaspaceExpansion</a></td><td>product</td></tr>
 <tr><td><a href="hotspot_options_jdk8.html?s=MaxMetaspaceFreeRatio">MaxMetaspaceFreeRatio</a></td><td>product</td></tr>
 <tr><td><a href="hotspot_options_jdk8.html?s=MaxMetaspaceSize">MaxMetaspaceSize</a></td><td>product</td></tr>
-<tr><td><a href="hotspot_options_jdk8.html?s=MaxRAMPercentage">MaxRAMPercentage</a></td><td>product</td></tr>
 <tr><td><a href="hotspot_options_jdk8.html?s=MetadataAllocationFailALot">MetadataAllocationFailALot</a></td><td>develop</td></tr>
 <tr><td><a href="hotspot_options_jdk8.html?s=MetadataAllocationFailALotInterval">MetadataAllocationFailALotInterval</a></td><td>develop</td></tr>
 <tr><td><a href="hotspot_options_jdk8.html?s=MetaspaceSize">MetaspaceSize</a></td><td>product_pd</td></tr>
 <tr><td><a href="hotspot_options_jdk8.html?s=MinMetaspaceExpansion">MinMetaspaceExpansion</a></td><td>product</td></tr>
 <tr><td><a href="hotspot_options_jdk8.html?s=MinMetaspaceFreeRatio">MinMetaspaceFreeRatio</a></td><td>product</td></tr>
-<tr><td><a href="hotspot_options_jdk8.html?s=MinRAMPercentage">MinRAMPercentage</a></td><td>product</td></tr>
 <tr><td><a href="hotspot_options_jdk8.html?s=NmethodSweepActivity">NmethodSweepActivity</a></td><td>product</td></tr>
 <tr><td><a href="hotspot_options_jdk8.html?s=PerMethodSpecTrapLimit">PerMethodSpecTrapLimit</a></td><td>experimental</td></tr>
-<tr><td><a href="hotspot_options_jdk8.html?s=PreferContainerQuotaForCPUCount">PreferContainerQuotaForCPUCount</a></td><td>product</td></tr>
 <tr><td><a href="hotspot_options_jdk8.html?s=PreserveFramePointer">PreserveFramePointer</a></td><td>product_pd</td></tr>
 <tr><td><a href="hotspot_options_jdk8.html?s=PrintActiveCpus">PrintActiveCpus</a></td><td>diagnostic</td></tr>
 <tr><td><a href="hotspot_options_jdk8.html?s=PrintCodeCacheOnCompilation">PrintCodeCacheOnCompilation</a></td><td>product</td></tr>
-<tr><td><a href="hotspot_options_jdk8.html?s=PrintContainerInfo">PrintContainerInfo</a></td><td>diagnostic</td></tr>
 <tr><td><a href="hotspot_options_jdk8.html?s=PrintFieldLayout">PrintFieldLayout</a></td><td>notproduct</td></tr>
 <tr><td><a href="hotspot_options_jdk8.html?s=PrintGCID">PrintGCID</a></td><td>manageable</td></tr>
 <tr><td><a href="hotspot_options_jdk8.html?s=PrintMethodFlushingStatistics">PrintMethodFlushingStatistics</a></td><td>diagnostic</td></tr>
@@ -405,7 +408,6 @@
 <tr><td><a href="hotspot_options_jdk8.html?s=UseCLMUL">UseCLMUL</a></td><td>product</td></tr>
 <tr><td><a href="hotspot_options_jdk8.html?s=UseCRC32Intrinsics">UseCRC32Intrinsics</a></td><td>product</td></tr>
 <tr><td><a href="hotspot_options_jdk8.html?s=UseCompressedClassPointers">UseCompressedClassPointers</a></td><td>lp64_product</td></tr>
-<tr><td><a href="hotspot_options_jdk8.html?s=UseContainerSupport">UseContainerSupport</a></td><td>product</td></tr>
 <tr><td><a href="hotspot_options_jdk8.html?s=UseCountTrailingZerosInstruction">UseCountTrailingZerosInstruction</a></td><td>product</td></tr>
 <tr><td><a href="hotspot_options_jdk8.html?s=UseImplicitStableValues">UseImplicitStableValues</a></td><td>diagnostic</td></tr>
 <tr><td><a href="hotspot_options_jdk8.html?s=UseInlineDepthForSpeculativeTypes">UseInlineDepthForSpeculativeTypes</a></td><td>diagnostic</td></tr>
@@ -431,11 +433,8 @@
 <tr><td><a href="hotspot_options_jdk8.html?s=VerifySharedSpaces">VerifySharedSpaces</a></td><td>product</td></tr>
 <tr><td><a href="hotspot_options_jdk8.html?s=VerifyStringTableAtExit">VerifyStringTableAtExit</a></td><td>diagnostic</td></tr>
 <tr><td><a href="hotspot_options_jdk8.html?s=VerifySubSet">VerifySubSet</a></td><td>diagnostic</td></tr>
-</table></div></div><div class="dtclear"></div><hr><h2 class="deltaH2" id="JDK9">Differences between JDK8 and JDK9</h2><hr><div class="dtwrapper"><div class="wrap"><h3 class="deltaH3">Removed in JDK9</h3><table class="deltatable removed"><tr><th>Name</th><th>Availability</th><th><a class="glossaryLink" href="#glossary">Deprecated</a></th><th><a class="glossaryLink" href="#glossary">Obsoleted</a></th><th><a class="glossaryLink" href="#glossary">Expired</a></th></tr><tr><td><a href="hotspot_options_jdk8.html?s=AbortVMOnSafepointTimeout">AbortVMOnSafepointTimeout</a></td><td>diagnostic</td><td></td><td></td><td></td></tr>
-<tr><td><a href="hotspot_options_jdk8.html?s=ActiveProcessorCount">ActiveProcessorCount</a></td><td>product</td><td></td><td></td><td></td></tr>
-<tr><td><a href="hotspot_options_jdk8.html?s=AdaptiveSizePausePolicy">AdaptiveSizePausePolicy</a></td><td>product</td><td></td><td></td><td></td></tr>
+</table></div></div><div class="dtclear"></div><hr><h2 class="deltaH2" id="JDK9">Differences between JDK8 and JDK9</h2><hr><div class="dtwrapper"><div class="wrap"><h3 class="deltaH3">Removed in JDK9</h3><table class="deltatable removed"><tr><th>Name</th><th>Availability</th><th><a class="glossaryLink" href="#glossary">Deprecated</a></th><th><a class="glossaryLink" href="#glossary">Obsoleted</a></th><th><a class="glossaryLink" href="#glossary">Expired</a></th></tr><tr><td><a href="hotspot_options_jdk8.html?s=AdaptiveSizePausePolicy">AdaptiveSizePausePolicy</a></td><td>product</td><td></td><td></td><td></td></tr>
 <tr><td><a href="hotspot_options_jdk8.html?s=AdjustConcurrency">AdjustConcurrency</a></td><td>product</td><td></td><td></td><td></td></tr>
-<tr><td><a href="hotspot_options_jdk8.html?s=AggressiveHeap">AggressiveHeap</a></td><td>product</td><td></td><td></td><td></td></tr>
 <tr><td><a href="hotspot_options_jdk8.html?s=AssertRepeat">AssertRepeat</a></td><td>notproduct</td><td></td><td></td><td></td></tr>
 <tr><td><a href="hotspot_options_jdk8.html?s=C1PatchInvokeDynamic">C1PatchInvokeDynamic</a></td><td>diagnostic</td><td></td><td></td><td></td></tr>
 <tr><td><a href="hotspot_options_jdk8.html?s=CMSCompactWhenClearAllSoftRefs">CMSCompactWhenClearAllSoftRefs</a></td><td>product</td><td></td><td></td><td></td></tr>
@@ -496,14 +495,11 @@
 <tr><td><a href="hotspot_options_jdk8.html?s=GenerateCompilerNullChecks">GenerateCompilerNullChecks</a></td><td>develop</td><td></td><td></td><td></td></tr>
 <tr><td><a href="hotspot_options_jdk8.html?s=HandleAllocationLimit">HandleAllocationLimit</a></td><td>notproduct</td><td></td><td></td><td></td></tr>
 <tr><td><a href="hotspot_options_jdk8.html?s=HeapDumpSegmentSize">HeapDumpSegmentSize</a></td><td>develop</td><td></td><td></td><td></td></tr>
-<tr><td><a href="hotspot_options_jdk8.html?s=InitialRAMPercentage">InitialRAMPercentage</a></td><td>product</td><td></td><td></td><td></td></tr>
 <tr><td><a href="hotspot_options_jdk8.html?s=JNIDetachReleasesMonitors">JNIDetachReleasesMonitors</a></td><td>product</td><td></td><td></td><td></td></tr>
 <tr><td><a href="hotspot_options_jdk8.html?s=LazyBootClassLoader">LazyBootClassLoader</a></td><td>product</td><td></td><td></td><td></td></tr>
 <tr><td><a href="hotspot_options_jdk8.html?s=LoopLimitCheck">LoopLimitCheck</a></td><td>diagnostic</td><td></td><td></td><td></td></tr>
 <tr><td><a href="hotspot_options_jdk8.html?s=MallocVerifyInterval">MallocVerifyInterval</a></td><td>diagnostic</td><td></td><td></td><td></td></tr>
 <tr><td><a href="hotspot_options_jdk8.html?s=MallocVerifyStart">MallocVerifyStart</a></td><td>diagnostic</td><td></td><td></td><td></td></tr>
-<tr><td><a href="hotspot_options_jdk8.html?s=MaxRAMPercentage">MaxRAMPercentage</a></td><td>product</td><td></td><td></td><td></td></tr>
-<tr><td><a href="hotspot_options_jdk8.html?s=MinRAMPercentage">MinRAMPercentage</a></td><td>product</td><td></td><td></td><td></td></tr>
 <tr><td><a href="hotspot_options_jdk8.html?s=NmethodSweepCheckInterval">NmethodSweepCheckInterval</a></td><td>product</td><td></td><td></td><td></td></tr>
 <tr><td><a href="hotspot_options_jdk8.html?s=NmethodSweepFraction">NmethodSweepFraction</a></td><td>product</td><td></td><td></td><td></td></tr>
 <tr><td><a href="hotspot_options_jdk8.html?s=NoYieldsInMicrolock">NoYieldsInMicrolock</a></td><td>develop</td><td></td><td></td><td></td></tr>
@@ -515,7 +511,6 @@
 <tr><td><a href="hotspot_options_jdk8.html?s=ParallelOldGCSplitALot">ParallelOldGCSplitALot</a></td><td>develop</td><td></td><td></td><td></td></tr>
 <tr><td><a href="hotspot_options_jdk8.html?s=ParallelOldGCSplitInterval">ParallelOldGCSplitInterval</a></td><td>develop</td><td></td><td></td><td></td></tr>
 <tr><td><a href="hotspot_options_jdk8.html?s=PreInflateSpin">PreInflateSpin</a></td><td>product_pd</td><td></td><td></td><td></td></tr>
-<tr><td><a href="hotspot_options_jdk8.html?s=PreferContainerQuotaForCPUCount">PreferContainerQuotaForCPUCount</a></td><td>product</td><td></td><td></td><td></td></tr>
 <tr><td><a href="hotspot_options_jdk8.html?s=PrintActiveCpus">PrintActiveCpus</a></td><td>diagnostic</td><td></td><td></td><td></td></tr>
 <tr><td><a href="hotspot_options_jdk8.html?s=PrintAdaptiveSizePolicy">PrintAdaptiveSizePolicy</a></td><td>product</td><td></td><td></td><td></td></tr>
 <tr><td><a href="hotspot_options_jdk8.html?s=PrintCMSInitiationStatistics">PrintCMSInitiationStatistics</a></td><td>product</td><td></td><td></td><td></td></tr>
@@ -524,7 +519,6 @@
 <tr><td><a href="hotspot_options_jdk8.html?s=PrintClassHistogramBeforeFullGC">PrintClassHistogramBeforeFullGC</a></td><td>manageable</td><td></td><td></td><td></td></tr>
 <tr><td><a href="hotspot_options_jdk8.html?s=PrintClassStatistics">PrintClassStatistics</a></td><td>notproduct</td><td></td><td></td><td></td></tr>
 <tr><td><a href="hotspot_options_jdk8.html?s=PrintCompressedOopsMode">PrintCompressedOopsMode</a></td><td>diagnostic</td><td></td><td></td><td></td></tr>
-<tr><td><a href="hotspot_options_jdk8.html?s=PrintContainerInfo">PrintContainerInfo</a></td><td>diagnostic</td><td></td><td></td><td></td></tr>
 <tr><td><a href="hotspot_options_jdk8.html?s=PrintDTraceDOF">PrintDTraceDOF</a></td><td>diagnostic</td><td></td><td></td><td></td></tr>
 <tr><td><a href="hotspot_options_jdk8.html?s=PrintFLSCensus">PrintFLSCensus</a></td><td>product</td><td></td><td></td><td></td></tr>
 <tr><td><a href="hotspot_options_jdk8.html?s=PrintFLSStatistics">PrintFLSStatistics</a></td><td>product</td><td></td><td></td><td></td></tr>
@@ -620,7 +614,6 @@
 <tr><td><a href="hotspot_options_jdk8.html?s=UseCMSCollectionPassing">UseCMSCollectionPassing</a></td><td>product</td><td></td><td></td><td></td></tr>
 <tr><td><a href="hotspot_options_jdk8.html?s=UseCMSCompactAtFullCollection">UseCMSCompactAtFullCollection</a></td><td>product</td><td></td><td></td><td></td></tr>
 <tr><td><a href="hotspot_options_jdk8.html?s=UseCompilerSafepoints">UseCompilerSafepoints</a></td><td>product</td><td></td><td></td><td></td></tr>
-<tr><td><a href="hotspot_options_jdk8.html?s=UseContainerSupport">UseContainerSupport</a></td><td>product</td><td></td><td></td><td></td></tr>
 <tr><td><a href="hotspot_options_jdk8.html?s=UseGCLogFileRotation">UseGCLogFileRotation</a></td><td>product</td><td></td><td></td><td></td></tr>
 <tr><td><a href="hotspot_options_jdk8.html?s=UseMemSetInBOT">UseMemSetInBOT</a></td><td>experimental</td><td></td><td></td><td></td></tr>
 <tr><td><a href="hotspot_options_jdk8.html?s=UseNewReflection">UseNewReflection</a></td><td>develop</td><td></td><td></td><td></td></tr>
@@ -654,7 +647,9 @@
 <tr><td><a href="hotspot_options_jdk9.html?s=CompilerDirectivesLimit">CompilerDirectivesLimit</a></td><td>diagnostic</td></tr>
 <tr><td><a href="hotspot_options_jdk9.html?s=CompilerDirectivesPrint">CompilerDirectivesPrint</a></td><td>diagnostic</td></tr>
 <tr><td><a href="hotspot_options_jdk9.html?s=CreateCoredumpOnCrash">CreateCoredumpOnCrash</a></td><td>product</td></tr>
-<tr><td><a href="hotspot_options_jdk9.html?s=DieOnSafepointTimeout">DieOnSafepointTimeout</a></td><td>develop</td></tr>
+<tr><td><a href="hotspot_options_jdk9.html?s=DSCR_DPFD_PPC64">DSCR_DPFD_PPC64</a></td><td>product</td></tr>
+<tr><td><a href="hotspot_options_jdk9.html?s=DSCR_PPC64">DSCR_PPC64</a></td><td>product</td></tr>
+<tr><td><a href="hotspot_options_jdk9.html?s=DSCR_URG_PPC64">DSCR_URG_PPC64</a></td><td>product</td></tr>
 <tr><td><a href="hotspot_options_jdk9.html?s=DisableBCCheck">DisableBCCheck</a></td><td>product</td></tr>
 <tr><td><a href="hotspot_options_jdk9.html?s=DoReserveCopyInSuperWord">DoReserveCopyInSuperWord</a></td><td>product</td></tr>
 <tr><td><a href="hotspot_options_jdk9.html?s=EnableDynamicAgentLoading">EnableDynamicAgentLoading</a></td><td>product</td></tr>
@@ -1088,17 +1083,109 @@
 <tr><td><a href="hotspot_options_jdk13.html?s=ZVerifyRoots">ZVerifyRoots</a></td><td>diagnostic</td></tr>
 <tr><td><a href="hotspot_options_jdk13.html?s=ZVerifyViews">ZVerifyViews</a></td><td>diagnostic</td></tr>
 </table></div></div><div class="dtclear"></div><hr><h2 class="deltaH2" id="JDK14">Differences between JDK13 and JDK14</h2><hr><div class="dtwrapper"><div class="wrap"><h3 class="deltaH3">Removed in JDK14</h3><table class="deltatable removed"><tr><th>Name</th><th>Availability</th><th><a class="glossaryLink" href="#glossary">Deprecated</a></th><th><a class="glossaryLink" href="#glossary">Obsoleted</a></th><th><a class="glossaryLink" href="#glossary">Expired</a></th></tr><tr><td><a href="hotspot_options_jdk13.html?s=AllowJNIEnvProxy">AllowJNIEnvProxy</a></td><td>product</td><td>JDK13</td><td>JDK14</td><td>JDK15</td></tr>
+<tr><td><a href="hotspot_options_jdk13.html?s=BindCMSThreadToCPU">BindCMSThreadToCPU</a></td><td>diagnostic</td><td></td><td></td><td></td></tr>
 <tr><td><a href="hotspot_options_jdk13.html?s=BindGCTaskThreadsToCPUs">BindGCTaskThreadsToCPUs</a></td><td>product</td><td></td><td>JDK14</td><td>JDK16</td></tr>
+<tr><td><a href="hotspot_options_jdk13.html?s=BlockOffsetArrayUseUnallocatedBlock">BlockOffsetArrayUseUnallocatedBlock</a></td><td>diagnostic</td><td></td><td></td><td></td></tr>
+<tr><td><a href="hotspot_options_jdk13.html?s=CMSAbortSemantics">CMSAbortSemantics</a></td><td>product</td><td></td><td>JDK14</td><td>JDK15</td></tr>
+<tr><td><a href="hotspot_options_jdk13.html?s=CMSAbortablePrecleanMinWorkPerIteration">CMSAbortablePrecleanMinWorkPerIteration</a></td><td>product</td><td></td><td>JDK14</td><td>JDK15</td></tr>
+<tr><td><a href="hotspot_options_jdk13.html?s=CMSAbortablePrecleanWaitMillis">CMSAbortablePrecleanWaitMillis</a></td><td>manageable</td><td></td><td></td><td></td></tr>
+<tr><td><a href="hotspot_options_jdk13.html?s=CMSBitMapYieldQuantum">CMSBitMapYieldQuantum</a></td><td>product</td><td></td><td>JDK14</td><td>JDK15</td></tr>
+<tr><td><a href="hotspot_options_jdk13.html?s=CMSBootstrapOccupancy">CMSBootstrapOccupancy</a></td><td>product</td><td></td><td>JDK14</td><td>JDK15</td></tr>
+<tr><td><a href="hotspot_options_jdk13.html?s=CMSCheckInterval">CMSCheckInterval</a></td><td>develop</td><td></td><td></td><td></td></tr>
+<tr><td><a href="hotspot_options_jdk13.html?s=CMSClassUnloadingEnabled">CMSClassUnloadingEnabled</a></td><td>product</td><td></td><td>JDK14</td><td>JDK15</td></tr>
+<tr><td><a href="hotspot_options_jdk13.html?s=CMSClassUnloadingMaxInterval">CMSClassUnloadingMaxInterval</a></td><td>product</td><td></td><td>JDK14</td><td>JDK15</td></tr>
+<tr><td><a href="hotspot_options_jdk13.html?s=CMSCleanOnEnter">CMSCleanOnEnter</a></td><td>product</td><td></td><td>JDK14</td><td>JDK15</td></tr>
+<tr><td><a href="hotspot_options_jdk13.html?s=CMSConcMarkMultiple">CMSConcMarkMultiple</a></td><td>product</td><td></td><td>JDK14</td><td>JDK15</td></tr>
+<tr><td><a href="hotspot_options_jdk13.html?s=CMSConcurrentMTEnabled">CMSConcurrentMTEnabled</a></td><td>product</td><td></td><td>JDK14</td><td>JDK15</td></tr>
+<tr><td><a href="hotspot_options_jdk13.html?s=CMSCoordinatorYieldSleepCount">CMSCoordinatorYieldSleepCount</a></td><td>product</td><td></td><td>JDK14</td><td>JDK15</td></tr>
+<tr><td><a href="hotspot_options_jdk13.html?s=CMSEdenChunksRecordAlways">CMSEdenChunksRecordAlways</a></td><td>product</td><td></td><td>JDK14</td><td>JDK15</td></tr>
+<tr><td><a href="hotspot_options_jdk13.html?s=CMSExpAvgFactor">CMSExpAvgFactor</a></td><td>product</td><td></td><td>JDK14</td><td>JDK15</td></tr>
+<tr><td><a href="hotspot_options_jdk13.html?s=CMSExtrapolateSweep">CMSExtrapolateSweep</a></td><td>product</td><td></td><td>JDK14</td><td>JDK15</td></tr>
+<tr><td><a href="hotspot_options_jdk13.html?s=CMSIncrementalSafetyFactor">CMSIncrementalSafetyFactor</a></td><td>product</td><td></td><td>JDK14</td><td>JDK15</td></tr>
+<tr><td><a href="hotspot_options_jdk13.html?s=CMSIndexedFreeListReplenish">CMSIndexedFreeListReplenish</a></td><td>product</td><td></td><td>JDK14</td><td>JDK15</td></tr>
+<tr><td><a href="hotspot_options_jdk13.html?s=CMSInitiatingOccupancyFraction">CMSInitiatingOccupancyFraction</a></td><td>product</td><td></td><td>JDK14</td><td>JDK15</td></tr>
+<tr><td><a href="hotspot_options_jdk13.html?s=CMSIsTooFullPercentage">CMSIsTooFullPercentage</a></td><td>product</td><td></td><td>JDK14</td><td>JDK15</td></tr>
+<tr><td><a href="hotspot_options_jdk13.html?s=CMSLargeCoalSurplusPercent">CMSLargeCoalSurplusPercent</a></td><td>product</td><td></td><td>JDK14</td><td>JDK15</td></tr>
+<tr><td><a href="hotspot_options_jdk13.html?s=CMSLargeSplitSurplusPercent">CMSLargeSplitSurplusPercent</a></td><td>product</td><td></td><td>JDK14</td><td>JDK15</td></tr>
+<tr><td><a href="hotspot_options_jdk13.html?s=CMSLoopWarn">CMSLoopWarn</a></td><td>product</td><td></td><td>JDK14</td><td>JDK15</td></tr>
+<tr><td><a href="hotspot_options_jdk13.html?s=CMSMarkStackOverflowALot">CMSMarkStackOverflowALot</a></td><td>notproduct</td><td></td><td></td><td></td></tr>
+<tr><td><a href="hotspot_options_jdk13.html?s=CMSMarkStackOverflowInterval">CMSMarkStackOverflowInterval</a></td><td>notproduct</td><td></td><td></td><td></td></tr>
+<tr><td><a href="hotspot_options_jdk13.html?s=CMSMaxAbortablePrecleanLoops">CMSMaxAbortablePrecleanLoops</a></td><td>product</td><td></td><td>JDK14</td><td>JDK15</td></tr>
+<tr><td><a href="hotspot_options_jdk13.html?s=CMSMaxAbortablePrecleanTime">CMSMaxAbortablePrecleanTime</a></td><td>product</td><td></td><td>JDK14</td><td>JDK15</td></tr>
+<tr><td><a href="hotspot_options_jdk13.html?s=CMSOldPLABMax">CMSOldPLABMax</a></td><td>product</td><td></td><td>JDK14</td><td>JDK15</td></tr>
+<tr><td><a href="hotspot_options_jdk13.html?s=CMSOldPLABMin">CMSOldPLABMin</a></td><td>product</td><td></td><td>JDK14</td><td>JDK15</td></tr>
+<tr><td><a href="hotspot_options_jdk13.html?s=CMSOldPLABNumRefills">CMSOldPLABNumRefills</a></td><td>product</td><td></td><td>JDK14</td><td>JDK15</td></tr>
+<tr><td><a href="hotspot_options_jdk13.html?s=CMSOldPLABReactivityFactor">CMSOldPLABReactivityFactor</a></td><td>product</td><td></td><td>JDK14</td><td>JDK15</td></tr>
+<tr><td><a href="hotspot_options_jdk13.html?s=CMSOldPLABResizeQuicker">CMSOldPLABResizeQuicker</a></td><td>product</td><td></td><td>JDK14</td><td>JDK15</td></tr>
+<tr><td><a href="hotspot_options_jdk13.html?s=CMSOldPLABToleranceFactor">CMSOldPLABToleranceFactor</a></td><td>product</td><td></td><td>JDK14</td><td>JDK15</td></tr>
+<tr><td><a href="hotspot_options_jdk13.html?s=CMSPLABRecordAlways">CMSPLABRecordAlways</a></td><td>product</td><td></td><td>JDK14</td><td>JDK15</td></tr>
+<tr><td><a href="hotspot_options_jdk13.html?s=CMSParallelInitialMarkEnabled">CMSParallelInitialMarkEnabled</a></td><td>product</td><td></td><td>JDK14</td><td>JDK15</td></tr>
+<tr><td><a href="hotspot_options_jdk13.html?s=CMSParallelRemarkEnabled">CMSParallelRemarkEnabled</a></td><td>product</td><td></td><td>JDK14</td><td>JDK15</td></tr>
+<tr><td><a href="hotspot_options_jdk13.html?s=CMSParallelSurvivorRemarkEnabled">CMSParallelSurvivorRemarkEnabled</a></td><td>product</td><td></td><td>JDK14</td><td>JDK15</td></tr>
+<tr><td><a href="hotspot_options_jdk13.html?s=CMSPrecleanDenominator">CMSPrecleanDenominator</a></td><td>product</td><td></td><td>JDK14</td><td>JDK15</td></tr>
+<tr><td><a href="hotspot_options_jdk13.html?s=CMSPrecleanIter">CMSPrecleanIter</a></td><td>product</td><td></td><td>JDK14</td><td>JDK15</td></tr>
+<tr><td><a href="hotspot_options_jdk13.html?s=CMSPrecleanNumerator">CMSPrecleanNumerator</a></td><td>product</td><td></td><td>JDK14</td><td>JDK15</td></tr>
+<tr><td><a href="hotspot_options_jdk13.html?s=CMSPrecleanRefLists1">CMSPrecleanRefLists1</a></td><td>product</td><td></td><td>JDK14</td><td>JDK15</td></tr>
+<tr><td><a href="hotspot_options_jdk13.html?s=CMSPrecleanRefLists2">CMSPrecleanRefLists2</a></td><td>product</td><td></td><td>JDK14</td><td>JDK15</td></tr>
+<tr><td><a href="hotspot_options_jdk13.html?s=CMSPrecleanSurvivors1">CMSPrecleanSurvivors1</a></td><td>product</td><td></td><td>JDK14</td><td>JDK15</td></tr>
+<tr><td><a href="hotspot_options_jdk13.html?s=CMSPrecleanSurvivors2">CMSPrecleanSurvivors2</a></td><td>product</td><td></td><td>JDK14</td><td>JDK15</td></tr>
+<tr><td><a href="hotspot_options_jdk13.html?s=CMSPrecleanThreshold">CMSPrecleanThreshold</a></td><td>product</td><td></td><td>JDK14</td><td>JDK15</td></tr>
+<tr><td><a href="hotspot_options_jdk13.html?s=CMSPrecleaningEnabled">CMSPrecleaningEnabled</a></td><td>product</td><td></td><td>JDK14</td><td>JDK15</td></tr>
+<tr><td><a href="hotspot_options_jdk13.html?s=CMSPrintChunksInDump">CMSPrintChunksInDump</a></td><td>product</td><td></td><td>JDK14</td><td>JDK15</td></tr>
+<tr><td><a href="hotspot_options_jdk13.html?s=CMSPrintObjectsInDump">CMSPrintObjectsInDump</a></td><td>product</td><td></td><td>JDK14</td><td>JDK15</td></tr>
+<tr><td><a href="hotspot_options_jdk13.html?s=CMSRemarkVerifyVariant">CMSRemarkVerifyVariant</a></td><td>product</td><td></td><td>JDK14</td><td>JDK15</td></tr>
+<tr><td><a href="hotspot_options_jdk13.html?s=CMSReplenishIntermediate">CMSReplenishIntermediate</a></td><td>product</td><td></td><td>JDK14</td><td>JDK15</td></tr>
+<tr><td><a href="hotspot_options_jdk13.html?s=CMSRescanMultiple">CMSRescanMultiple</a></td><td>product</td><td></td><td>JDK14</td><td>JDK15</td></tr>
+<tr><td><a href="hotspot_options_jdk13.html?s=CMSSamplingGrain">CMSSamplingGrain</a></td><td>product</td><td></td><td>JDK14</td><td>JDK15</td></tr>
+<tr><td><a href="hotspot_options_jdk13.html?s=CMSScavengeBeforeRemark">CMSScavengeBeforeRemark</a></td><td>product</td><td></td><td>JDK14</td><td>JDK15</td></tr>
+<tr><td><a href="hotspot_options_jdk13.html?s=CMSScheduleRemarkEdenPenetration">CMSScheduleRemarkEdenPenetration</a></td><td>product</td><td></td><td>JDK14</td><td>JDK15</td></tr>
+<tr><td><a href="hotspot_options_jdk13.html?s=CMSScheduleRemarkEdenSizeThreshold">CMSScheduleRemarkEdenSizeThreshold</a></td><td>product</td><td></td><td>JDK14</td><td>JDK15</td></tr>
+<tr><td><a href="hotspot_options_jdk13.html?s=CMSScheduleRemarkSamplingRatio">CMSScheduleRemarkSamplingRatio</a></td><td>product</td><td></td><td>JDK14</td><td>JDK15</td></tr>
+<tr><td><a href="hotspot_options_jdk13.html?s=CMSSmallCoalSurplusPercent">CMSSmallCoalSurplusPercent</a></td><td>product</td><td></td><td>JDK14</td><td>JDK15</td></tr>
+<tr><td><a href="hotspot_options_jdk13.html?s=CMSSmallSplitSurplusPercent">CMSSmallSplitSurplusPercent</a></td><td>product</td><td></td><td>JDK14</td><td>JDK15</td></tr>
+<tr><td><a href="hotspot_options_jdk13.html?s=CMSSplitIndexedFreeListBlocks">CMSSplitIndexedFreeListBlocks</a></td><td>product</td><td></td><td>JDK14</td><td>JDK15</td></tr>
+<tr><td><a href="hotspot_options_jdk13.html?s=CMSTestInFreeList">CMSTestInFreeList</a></td><td>develop</td><td></td><td></td><td></td></tr>
+<tr><td><a href="hotspot_options_jdk13.html?s=CMSTriggerInterval">CMSTriggerInterval</a></td><td>manageable</td><td></td><td></td><td></td></tr>
+<tr><td><a href="hotspot_options_jdk13.html?s=CMSTriggerRatio">CMSTriggerRatio</a></td><td>product</td><td></td><td>JDK14</td><td>JDK15</td></tr>
+<tr><td><a href="hotspot_options_jdk13.html?s=CMSVerifyReturnedBytes">CMSVerifyReturnedBytes</a></td><td>notproduct</td><td></td><td></td><td></td></tr>
+<tr><td><a href="hotspot_options_jdk13.html?s=CMSWaitDuration">CMSWaitDuration</a></td><td>manageable</td><td></td><td></td><td></td></tr>
+<tr><td><a href="hotspot_options_jdk13.html?s=CMSWorkQueueDrainThreshold">CMSWorkQueueDrainThreshold</a></td><td>product</td><td></td><td>JDK14</td><td>JDK15</td></tr>
+<tr><td><a href="hotspot_options_jdk13.html?s=CMSYield">CMSYield</a></td><td>product</td><td></td><td>JDK14</td><td>JDK15</td></tr>
+<tr><td><a href="hotspot_options_jdk13.html?s=CMSYieldSleepCount">CMSYieldSleepCount</a></td><td>product</td><td></td><td>JDK14</td><td>JDK15</td></tr>
+<tr><td><a href="hotspot_options_jdk13.html?s=CMSYoungGenPerWorker">CMSYoungGenPerWorker</a></td><td>define_pd_global</td><td></td><td>JDK14</td><td>JDK15</td></tr>
+<tr><td><a href="hotspot_options_jdk13.html?s=CMS_FLSPadding">CMS_FLSPadding</a></td><td>product</td><td></td><td>JDK14</td><td>JDK15</td></tr>
+<tr><td><a href="hotspot_options_jdk13.html?s=CMS_FLSWeight">CMS_FLSWeight</a></td><td>product</td><td></td><td>JDK14</td><td>JDK15</td></tr>
+<tr><td><a href="hotspot_options_jdk13.html?s=CMS_SweepPadding">CMS_SweepPadding</a></td><td>product</td><td></td><td>JDK14</td><td>JDK15</td></tr>
+<tr><td><a href="hotspot_options_jdk13.html?s=CMS_SweepTimerThresholdMillis">CMS_SweepTimerThresholdMillis</a></td><td>product</td><td></td><td>JDK14</td><td>JDK15</td></tr>
+<tr><td><a href="hotspot_options_jdk13.html?s=CMS_SweepWeight">CMS_SweepWeight</a></td><td>product</td><td></td><td>JDK14</td><td>JDK15</td></tr>
+<tr><td><a href="hotspot_options_jdk13.html?s=CPUForCMSThread">CPUForCMSThread</a></td><td>diagnostic</td><td></td><td></td><td></td></tr>
 <tr><td><a href="hotspot_options_jdk13.html?s=CompilationPolicyChoice">CompilationPolicyChoice</a></td><td>product</td><td>JDK13</td><td>JDK14</td><td>JDK15</td></tr>
 <tr><td><a href="hotspot_options_jdk13.html?s=DisableBCCheck">DisableBCCheck</a></td><td>product</td><td></td><td></td><td></td></tr>
+<tr><td><a href="hotspot_options_jdk13.html?s=FLSAlwaysCoalesceLarge">FLSAlwaysCoalesceLarge</a></td><td>product</td><td></td><td>JDK14</td><td>JDK15</td></tr>
+<tr><td><a href="hotspot_options_jdk13.html?s=FLSCoalescePolicy">FLSCoalescePolicy</a></td><td>product</td><td></td><td>JDK14</td><td>JDK15</td></tr>
+<tr><td><a href="hotspot_options_jdk13.html?s=FLSLargestBlockCoalesceProximity">FLSLargestBlockCoalesceProximity</a></td><td>product</td><td></td><td>JDK14</td><td>JDK15</td></tr>
+<tr><td><a href="hotspot_options_jdk13.html?s=FLSVerifyAllHeapReferences">FLSVerifyAllHeapReferences</a></td><td>diagnostic</td><td></td><td></td><td></td></tr>
+<tr><td><a href="hotspot_options_jdk13.html?s=FLSVerifyIndexTable">FLSVerifyIndexTable</a></td><td>diagnostic</td><td></td><td></td><td></td></tr>
+<tr><td><a href="hotspot_options_jdk13.html?s=FLSVerifyLists">FLSVerifyLists</a></td><td>diagnostic</td><td></td><td></td><td></td></tr>
 <tr><td><a href="hotspot_options_jdk13.html?s=FailOverToOldVerifier">FailOverToOldVerifier</a></td><td>product</td><td></td><td>JDK14</td><td>JDK15</td></tr>
 <tr><td><a href="hotspot_options_jdk13.html?s=G1PretouchAuxiliaryMemory">G1PretouchAuxiliaryMemory</a></td><td>experimental</td><td></td><td></td><td></td></tr>
+<tr><td><a href="hotspot_options_jdk13.html?s=GCLockerInvokesConcurrent">GCLockerInvokesConcurrent</a></td><td>product</td><td></td><td>JDK14</td><td>JDK15</td></tr>
+<tr><td><a href="hotspot_options_jdk13.html?s=GCTaskTimeStampEntries">GCTaskTimeStampEntries</a></td><td>product</td><td></td><td>JDK14</td><td>JDK16</td></tr>
 <tr><td><a href="hotspot_options_jdk13.html?s=IgnoreLockingAssertions">IgnoreLockingAssertions</a></td><td>notproduct</td><td></td><td></td><td></td></tr>
 <tr><td><a href="hotspot_options_jdk13.html?s=MaxInterpretedSearchLength">MaxInterpretedSearchLength</a></td><td>develop</td><td></td><td></td><td></td></tr>
 <tr><td><a href="hotspot_options_jdk13.html?s=MaxRecompilationSearchLength">MaxRecompilationSearchLength</a></td><td>develop</td><td></td><td></td><td></td></tr>
 <tr><td><a href="hotspot_options_jdk13.html?s=NotifySimulator">NotifySimulator</a></td><td>product</td><td></td><td></td><td></td></tr>
+<tr><td><a href="hotspot_options_jdk13.html?s=OldPLABWeight">OldPLABWeight</a></td><td>product</td><td></td><td>JDK14</td><td>JDK15</td></tr>
+<tr><td><a href="hotspot_options_jdk13.html?s=ParGCCardsPerStrideChunk">ParGCCardsPerStrideChunk</a></td><td>diagnostic</td><td></td><td></td><td></td></tr>
+<tr><td><a href="hotspot_options_jdk13.html?s=ParGCDesiredObjsFromOverflowList">ParGCDesiredObjsFromOverflowList</a></td><td>product</td><td></td><td>JDK14</td><td>JDK15</td></tr>
+<tr><td><a href="hotspot_options_jdk13.html?s=ParGCStridesPerThread">ParGCStridesPerThread</a></td><td>diagnostic</td><td></td><td></td><td></td></tr>
+<tr><td><a href="hotspot_options_jdk13.html?s=ParGCTrimOverflow">ParGCTrimOverflow</a></td><td>product</td><td></td><td>JDK14</td><td>JDK15</td></tr>
+<tr><td><a href="hotspot_options_jdk13.html?s=ParGCUseLocalOverflow">ParGCUseLocalOverflow</a></td><td>product</td><td></td><td>JDK14</td><td>JDK15</td></tr>
+<tr><td><a href="hotspot_options_jdk13.html?s=ParGCWorkQueueOverflowALot">ParGCWorkQueueOverflowALot</a></td><td>notproduct</td><td></td><td></td><td></td></tr>
+<tr><td><a href="hotspot_options_jdk13.html?s=ParGCWorkQueueOverflowInterval">ParGCWorkQueueOverflowInterval</a></td><td>notproduct</td><td></td><td></td><td></td></tr>
 <tr><td><a href="hotspot_options_jdk13.html?s=PrintJNIResolving">PrintJNIResolving</a></td><td>product</td><td></td><td></td><td></td></tr>
 <tr><td><a href="hotspot_options_jdk13.html?s=PrintMallocStatistics">PrintMallocStatistics</a></td><td>develop</td><td></td><td></td><td></td></tr>
+<tr><td><a href="hotspot_options_jdk13.html?s=ResizeOldPLAB">ResizeOldPLAB</a></td><td>product</td><td></td><td>JDK14</td><td>JDK15</td></tr>
 <tr><td><a href="hotspot_options_jdk13.html?s=ShareVtableStubs">ShareVtableStubs</a></td><td>define_pd_global</td><td></td><td></td><td></td></tr>
 <tr><td><a href="hotspot_options_jdk13.html?s=ShenandoahOptimizeInstanceFinals">ShenandoahOptimizeInstanceFinals</a></td><td>experimental</td><td></td><td></td><td></td></tr>
 <tr><td><a href="hotspot_options_jdk13.html?s=ShenandoahOptimizeStableFinals">ShenandoahOptimizeStableFinals</a></td><td>experimental</td><td></td><td></td><td></td></tr>
@@ -1108,13 +1195,19 @@
 <tr><td><a href="hotspot_options_jdk13.html?s=TraceGCTaskManager">TraceGCTaskManager</a></td><td>develop</td><td></td><td></td><td></td></tr>
 <tr><td><a href="hotspot_options_jdk13.html?s=TraceGCTaskQueue">TraceGCTaskQueue</a></td><td>develop</td><td></td><td></td><td></td></tr>
 <tr><td><a href="hotspot_options_jdk13.html?s=TraceNMethodInstalls">TraceNMethodInstalls</a></td><td>diagnostic</td><td>JDK13</td><td>JDK14</td><td>JDK15</td></tr>
+<tr><td><a href="hotspot_options_jdk13.html?s=UseCMSBestFit">UseCMSBestFit</a></td><td>product</td><td></td><td>JDK14</td><td>JDK15</td></tr>
+<tr><td><a href="hotspot_options_jdk13.html?s=UseCMSInitiatingOccupancyOnly">UseCMSInitiatingOccupancyOnly</a></td><td>product</td><td></td><td>JDK14</td><td>JDK15</td></tr>
+<tr><td><a href="hotspot_options_jdk13.html?s=UseConcMarkSweepGC">UseConcMarkSweepGC</a></td><td>product</td><td></td><td>JDK14</td><td>JDK15</td></tr>
+<tr><td><a href="hotspot_options_jdk13.html?s=UseCriticalCMSThreadPriority">UseCriticalCMSThreadPriority</a></td><td>experimental</td><td></td><td></td><td></td></tr>
 <tr><td><a href="hotspot_options_jdk13.html?s=UseGCTaskAffinity">UseGCTaskAffinity</a></td><td>product</td><td></td><td>JDK14</td><td>JDK16</td></tr>
 <tr><td><a href="hotspot_options_jdk13.html?s=UseSimulatorCache">UseSimulatorCache</a></td><td>product</td><td></td><td></td><td></td></tr>
+<tr><td><a href="hotspot_options_jdk13.html?s=VerifyBlockOffsetArray">VerifyBlockOffsetArray</a></td><td>develop</td><td></td><td></td><td></td></tr>
 <tr><td><a href="hotspot_options_jdk13.html?s=VerifyOpto">VerifyOpto</a></td><td>notproduct</td><td></td><td></td><td></td></tr>
 <tr><td><a href="hotspot_options_jdk13.html?s=ZStatisticsForceTrace">ZStatisticsForceTrace</a></td><td>diagnostic</td><td></td><td></td><td></td></tr>
 <tr><td><a href="hotspot_options_jdk13.html?s=ZVerifyLoadBarriers">ZVerifyLoadBarriers</a></td><td>develop</td><td></td><td></td><td></td></tr>
 </table></div><div class="wrap"><h3 class="deltaH3">Added in JDK14</h3><table class="deltatable added"><tr><th>Name</th><th>Availability</th></tr><tr><td><a href="hotspot_options_jdk14.html?s=AVX3Threshold">AVX3Threshold</a></td><td>diagnostic</td></tr>
 <tr><td><a href="hotspot_options_jdk14.html?s=AdjustStackSizeForTLS">AdjustStackSizeForTLS</a></td><td>product</td></tr>
+<tr><td><a href="hotspot_options_jdk14.html?s=ArchiveRelocationMode">ArchiveRelocationMode</a></td><td>diagnostic</td></tr>
 <tr><td><a href="hotspot_options_jdk14.html?s=CompilationMode">CompilationMode</a></td><td>product</td></tr>
 <tr><td><a href="hotspot_options_jdk14.html?s=EnableJVMCIProduct">EnableJVMCIProduct</a></td><td>experimental</td></tr>
 <tr><td><a href="hotspot_options_jdk14.html?s=ShenandoahGCMode">ShenandoahGCMode</a></td><td>experimental</td></tr>
@@ -1182,7 +1275,7 @@ Error: A fatal exception has occurred. Program will exit.
     </pre>
 </div>
 <div class="footer">
-    Built on Tue Nov 12 08:57:36 GMT 2019 by <a href="https://twitter.com/chriswhocodes">@chriswhocodes</a>
+    Built on Tue Dec 03 21:34:35 GMT 2019 by <a href="https://twitter.com/chriswhocodes">@chriswhocodes</a>
 </div>
 </body>
 </html>
