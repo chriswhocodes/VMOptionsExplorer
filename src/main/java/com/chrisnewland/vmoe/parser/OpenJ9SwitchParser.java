@@ -9,15 +9,15 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.util.List;
 import java.util.Map;
-import java.util.TreeMap;
+
+import static com.chrisnewland.vmoe.SwitchInfo.PREFIX_X;
+import static com.chrisnewland.vmoe.SwitchInfo.PREFIX_XX;
 
 import com.chrisnewland.vmoe.SwitchInfo;
 import com.chrisnewland.vmoe.SwitchInfoMap;
 
 public class OpenJ9SwitchParser extends AbstractSwitchParser
 {
-	private static final String SWITCH_START = "-X";
-
 	@Override
 	public SwitchInfoMap process(File vmPath) throws IOException
 	{
@@ -75,7 +75,7 @@ public class OpenJ9SwitchParser extends AbstractSwitchParser
 
 				for (String part : parts)
 				{
-					if (part.startsWith(SWITCH_START) && !inDescription)
+					if (part.startsWith(PREFIX_X) && !inDescription)
 					{
 						switchBuilder.append(part).append(" ");
 						seenFirstSwitch = true;

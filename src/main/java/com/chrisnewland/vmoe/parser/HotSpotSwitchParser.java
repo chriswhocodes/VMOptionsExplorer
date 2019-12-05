@@ -9,8 +9,8 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
-import java.util.TreeMap;
+
+import static com.chrisnewland.vmoe.SwitchInfo.PREFIX_XX;
 
 import com.chrisnewland.vmoe.SwitchInfo;
 import com.chrisnewland.vmoe.SwitchInfoMap;

@@ -13,9 +13,5 @@ import com.chrisnewland.vmoe.SwitchInfoMap;
 
 public interface ISwitchParser
 {
-    public static final String PREFIX_X = "-X";
-
-    public static final String PREFIX_XX = "-XX:";
-
     SwitchInfoMap process(File vmPath) throws IOException;
 }

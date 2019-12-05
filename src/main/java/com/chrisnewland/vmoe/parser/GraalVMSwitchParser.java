@@ -8,11 +8,11 @@ import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.util.List;
-import java.util.Map;
-import java.util.TreeMap;
 
 import com.chrisnewland.vmoe.SwitchInfo;
 import com.chrisnewland.vmoe.SwitchInfoMap;
+
+import static com.chrisnewland.vmoe.SwitchInfo.PREFIX_XX;
 
 public class GraalVMSwitchParser extends AbstractSwitchParser
 {

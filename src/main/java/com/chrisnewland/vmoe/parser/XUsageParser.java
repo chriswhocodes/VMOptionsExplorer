@@ -14,6 +14,8 @@ import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.chrisnewland.vmoe.SwitchInfo.PREFIX_X;
+
 public class XUsageParser extends AbstractSwitchParser
 {
 	@Override public SwitchInfoMap process(File xUsageFile) throws IOException

@@ -8,6 +8,9 @@ import java.util.Objects;
 
 public class SwitchInfo implements Comparable<SwitchInfo>
 {
+	public static final String PREFIX_X = "-X";
+	public static final String PREFIX_XX = "-XX:";
+
 	private String prefix;
 	private String name;
 	private String type; // intx, bool, uintx, ccstr, ccstrlist, double,
