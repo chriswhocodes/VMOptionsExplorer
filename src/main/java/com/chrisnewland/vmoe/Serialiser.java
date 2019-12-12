@@ -12,23 +12,7 @@ import java.util.*;
 
 public class Serialiser
 {
-	public List<SwitchInfo> deserialise(Path pathToSerialisedSwitchInfo) throws IOException
-	{
-		List<String> lines = Files.readAllLines(pathToSerialisedSwitchInfo, StandardCharsets.UTF_8);
-
-		List<SwitchInfo> result = new ArrayList<>(lines.size());
-
-		for (String line : lines)
-		{
-			SwitchInfo switchInfo = SwitchInfo.deserialise(line);
-
-			result.add(switchInfo);
-		}
-
-		return result;
-	}
-
-	public void serialise(Path pathToSerialisationFile, Collection<SwitchInfo> switchInfoSet) throws IOException
+	public static void serialise(Path pathToSerialisationFile, Collection<SwitchInfo> switchInfoSet) throws IOException
 	{
 		StringBuilder builder = new StringBuilder();
 

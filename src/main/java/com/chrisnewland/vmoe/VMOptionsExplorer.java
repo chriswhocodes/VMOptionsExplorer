@@ -285,11 +285,9 @@ public class VMOptionsExplorer
 
 		if (serialiseDir != null)
 		{
-			Serialiser serialiser = new Serialiser();
-
 			Path serialisationPath = Paths.get(serialiseDir.getAbsolutePath(), jdkName);
 
-			serialiser.serialise(serialisationPath, switchInfoMap.values());
+			Serialiser.serialise(serialisationPath, switchInfoMap.values());
 		}
 
 		String template = new String(Files.readAllBytes(vmoeDir.resolve("templates/template.html")), StandardCharsets.UTF_8);
@@ -305,8 +303,6 @@ public class VMOptionsExplorer
 			SwitchInfo info = entry.getValue();
 
 			String switchName = info.getName();
-
-			// System.out.println(info);
 
 			if (vmType == VMType.HOTSPOT)
 			{
