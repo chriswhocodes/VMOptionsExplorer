@@ -409,6 +409,7 @@ public class VMOptionsExplorer
 			DeprecatedParser.parseFile(baseDir.resolve("jdk12"));
 			DeprecatedParser.parseFile(baseDir.resolve("jdk13"));
 			DeprecatedParser.parseFile(baseDir.resolve("jdk14"));
+			DeprecatedParser.parseFile(baseDir.resolve("jdk15"));
 		}
 
 		VMOptionsExplorer explorer = new VMOptionsExplorer(vmoeDir);
@@ -435,6 +436,8 @@ public class VMOptionsExplorer
 					new VMData("JDK13", baseDir.resolve("jdk13/src/hotspot").toFile(), VMType.HOTSPOT).addUsageFile(post13Usage));
 			explorer.addVM(
 					new VMData("JDK14", baseDir.resolve("jdk14/src/hotspot").toFile(), VMType.HOTSPOT).addUsageFile(post13Usage));
+			explorer.addVM(
+					new VMData("JDK15", baseDir.resolve("jdk15/src/hotspot").toFile(), VMType.HOTSPOT).addUsageFile(post13Usage));
 		}
 
 		if (processGraalVM)
@@ -526,6 +529,9 @@ public class VMOptionsExplorer
 
 			intrinsicParser.parseFile(baseDir.resolve("jdk14/src/hotspot/share/classfile/vmSymbols.hpp"));
 			intrinsicParser.createHTMLForVM("JDK14");
+
+			intrinsicParser.parseFile(baseDir.resolve("jdk15/src/hotspot/share/classfile/vmSymbols.hpp"));
+			intrinsicParser.createHTMLForVM("JDK15");
 		}
 	}
 }
