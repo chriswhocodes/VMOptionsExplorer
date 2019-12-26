@@ -324,6 +324,8 @@
 <tr><td>_mulAdd</td><td>JDK8</td><td>java.math.BigInteger</td><td>implMulAdd</td><td>([I[IIII)I</td><td>F_S</td></tr>
 <tr><td>_montgomeryMultiply</td><td>JDK8</td><td>java.math.BigInteger</td><td>implMontgomeryMultiply</td><td>([I[I[IIJ[I)[I</td><td>F_S</td></tr>
 <tr><td>_montgomerySquare</td><td>JDK8</td><td>java.math.BigInteger</td><td>implMontgomerySquare</td><td>([I[IIJ[I)[I</td><td>F_S</td></tr>
+<tr><td>_bigIntegerRightShiftWorker</td><td>JDK15</td><td>java.math.BigInteger</td><td>shiftRightImplWorker</td><td>([I[IIII)V</td><td>F_S</td></tr>
+<tr><td>_bigIntegerLeftShiftWorker</td><td>JDK15</td><td>java.math.BigInteger</td><td>shiftLeftImplWorker</td><td>([I[IIII)V</td><td>F_S</td></tr>
 <tr><td>_vectorizedMismatch</td><td>JDK9</td><td>jdk.internal.util.ArraysSupport</td><td>vectorizedMismatch</td><td>(Ljava/lang/Object;JLjava/lang/Object;JII)I</td><td>F_S</td></tr>
 <tr><td>_Reference_get</td><td>JDK6</td><td>java.lang.ref.Reference</td><td>get</td><td>()Ljava/lang/Object;</td><td>F_R</td></tr>
 <tr><td>_aescrypt_encryptBlock</td><td>JDK7</td><td>com.sun.crypto.provider.AESCrypt</td><td>implEncryptBlock</td><td>([BI[BI)V</td><td>F_R</td></tr>
@@ -534,7 +536,7 @@
 		</tbody>
 	</table>
 	<div class="footer">
-		Built on Tue Dec 17 17:21:23 GMT 2019 from HotSpot sources by <a
+		Built on Thu Dec 26 20:32:12 GMT 2019 from HotSpot sources by <a
 			href="https://twitter.com/chriswhocodes">@chriswhocodes</a>
 	</div>
 </body>
