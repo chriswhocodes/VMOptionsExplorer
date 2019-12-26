@@ -412,9 +412,11 @@ public class VMOptionsExplorer
 			DeprecatedParser.parseFile(baseDir.resolve("jdk15"));
 		}
 
+		String graalVersion = "19.3.0";
+
 		VMOptionsExplorer explorer = new VMOptionsExplorer(vmoeDir);
 
-		explorer.setGraalVersion("19.3.0");
+		explorer.setGraalVersion(graalVersion);
 
 		if (processHotSpot)
 		{
@@ -501,7 +503,7 @@ public class VMOptionsExplorer
 
 		if (processHotSpotIntrinsics)
 		{
-			IntrinsicParser intrinsicParser = new IntrinsicParser();
+			IntrinsicParser intrinsicParser = new IntrinsicParser(graalVersion);
 
 			intrinsicParser.parseFile(baseDir.resolve("jdk6/hotspot/src/share/vm/classfile/vmSymbols.hpp"));
 			intrinsicParser.createHTMLForVM("JDK6");

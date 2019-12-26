@@ -37,6 +37,13 @@ public class IntrinsicParser
 
 	private List<Intrinsic> instrinsics;
 
+	private String graalVersion;
+
+	public IntrinsicParser(String graalVersion)
+	{
+		this.graalVersion = graalVersion;
+	}
+
 	private void mapTemplate(String key, String value)
 	{
 		//System.out.println("Template: '" + key + "'=>'" + value + "'");
@@ -397,7 +404,9 @@ public class IntrinsicParser
 		}
 
 		template = template.replace("$HEADER_HTML", headerHTML);
+
 		template = template.replace("$H1_TITLE", "$VMNAME Intrinsics for $JDK");
+                template = template.replace("$GRAAL_VERSION", graalVersion);
 		template = template.replace("$THEAD", Intrinsic.getHeaderRow());
 		template = template.replace("$VMNAME", "HotSpot");
 		template = template.replace("$JDK", jdkName);
