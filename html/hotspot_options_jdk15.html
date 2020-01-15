@@ -395,7 +395,6 @@
 <tr><td>CodeEntryAlignment</td><td>JDK6</td><td></td><td>intx</td><td></td><td>zero</td><td></td><td>32</td><td>define_pd_global</td><td></td><td>cpu/zero/globals_zero.hpp</td></tr>
 <tr><td>CollectIndexSetStatistics</td><td>JDK6</td><td></td><td>bool</td><td></td><td></td><td>runtime</td><td>false</td><td>notproduct</td><td>Collect information about IndexSets</td><td>share/runtime/globals.hpp</td></tr>
 <tr><td>CommentedAssembly</td><td>JDK6</td><td></td><td>bool</td><td></td><td></td><td>c1</td><td>trueInDebug</td><td>develop</td><td>Show extra info in PrintNMethods output</td><td>share/c1/c1_globals.hpp</td></tr>
-<tr><td>CompactFields</td><td>JDK6</td><td><span style="white-space:nowrap">Deprecated in JDK14</span><br><span style="white-space:nowrap">Obsoleted in JDK15</span><br><span style="white-space:nowrap">Expired in JDK16</span></td><td>bool</td><td></td><td></td><td>runtime</td><td>true</td><td>product</td><td>(Deprecated) Allocate nonstatic fields in gaps between previous fields</td><td>share/runtime/globals.hpp</td></tr>
 <tr><td>CompactStrings</td><td>JDK9</td><td></td><td>bool</td><td></td><td>aarch64</td><td></td><td>true</td><td>define_pd_global</td><td></td><td>cpu/aarch64/globals_aarch64.hpp</td></tr>
 <tr><td>CompactStrings</td><td>JDK9</td><td></td><td>bool</td><td></td><td>arm</td><td></td><td>false</td><td>define_pd_global</td><td></td><td>cpu/arm/globals_arm.hpp</td></tr>
 <tr><td>CompactStrings</td><td>JDK9</td><td></td><td>bool</td><td></td><td></td><td>runtime</td><td></td><td>product_pd</td><td>Enable Strings to use single byte chars in backing store</td><td>share/runtime/globals.hpp</td></tr>
@@ -569,7 +568,6 @@
 <tr><td>FLOATPRESSURE</td><td>JDK6</td><td></td><td>intx</td><td></td><td>x86</td><td></td><td>6</td><td>define_pd_global</td><td></td><td>cpu/x86/c2_globals_x86.hpp</td></tr>
 <tr><td>FLSVerifyDictionary</td><td>JDK6</td><td></td><td>bool</td><td></td><td></td><td>runtime</td><td>false</td><td>develop</td><td>Do lots of (expensive) FLS dictionary verification</td><td>share/runtime/globals.hpp</td></tr>
 <tr><td>FastAllocateSizeLimit</td><td>JDK6</td><td></td><td>intx</td><td></td><td></td><td>runtime</td><td>128*K</td><td>develop</td><td>/* Note: This value is zero mod 1&lt;&lt;13 for a cheap sparc set. */Inline allocations larger than this in doublewords must go slow</td><td>share/runtime/globals.hpp</td></tr>
-<tr><td>FieldsAllocationStyle</td><td>JDK6</td><td><span style="white-space:nowrap">Deprecated in JDK14</span><br><span style="white-space:nowrap">Obsoleted in JDK15</span><br><span style="white-space:nowrap">Expired in JDK16</span></td><td>intx</td><td></td><td></td><td>runtime</td><td>1<br>range(0, 2)</td><td>product</td><td>(Deprecated) 0 - type based with oops first, <br>1 - with oops last, <br>2 - oops in super and sub classes are together</td><td>share/runtime/globals.hpp</td></tr>
 <tr><td>FilterSpuriousWakeups</td><td>JDK6</td><td></td><td>bool</td><td></td><td></td><td>runtime</td><td>true</td><td>product</td><td>When true prevents OS-level spurious, or premature, wakeups from Object.wait (Ignored for Windows)</td><td>share/runtime/globals.hpp</td></tr>
 <tr><td>FlightRecorderOptions</td><td>JDK11</td><td></td><td>ccstr</td><td></td><td></td><td>runtime</td><td>NULL</td><td>product</td><td>Flight Recorder options</td><td>share/runtime/globals.hpp</td></tr>
 <tr><td>FlightRecorder</td><td>JDK11</td><td><span style="white-space:nowrap">Deprecated in JDK13</span></td><td>bool</td><td></td><td></td><td>runtime</td><td>false</td><td>product</td><td>(Deprecated) Enable Flight Recorder</td><td>share/runtime/globals.hpp</td></tr>
@@ -2163,7 +2161,7 @@ may be removed in a future release.</pre></td><td>launcher.properties</td></tr>
 		</tbody>
 	</table>
 	<div class="footer">
-		Built on Thu Dec 26 20:50:08 GMT 2019 from HotSpot sources by <a
+		Built on Wed Jan 15 22:06:37 GMT 2020 from HotSpot sources by <a
 			href="https://twitter.com/chriswhocodes">@chriswhocodes</a>
 	</div>
 </body>
