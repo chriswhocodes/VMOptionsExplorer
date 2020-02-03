@@ -128,7 +128,7 @@
     <div class="menuwrap">
         <table class="menu">
             <tr>
-                <th colspan="4">GraalVM 19.3.0</th>
+                <th colspan="4">GraalVM 19.3.1</th>
             </tr>
             <tr>
                 <th colspan="2">JDK8</th>
@@ -151,7 +151,7 @@
     <div class="menuwrap">
         <table class="menu">
             <tr>
-                <th colspan="4">GraalVM native-image 19.3.0</th>
+                <th colspan="4">GraalVM native-image 19.3.1</th>
             </tr>
             <tr>
                 <th colspan="2">JDK8</th>
@@ -1914,7 +1914,6 @@
 <tr><td>UseOSErrorReporting</td><td>JDK6</td><td></td><td>bool</td><td></td><td></td><td>runtime</td><td></td><td>product_pd</td><td>Let VM fatal error propagate to the OS (ie. WER on Windows)</td><td>share/runtime/globals.hpp</td></tr>
 <tr><td>UseOSErrorReporting</td><td>JDK6</td><td></td><td>bool</td><td>solaris</td><td></td><td></td><td>false</td><td>define_pd_global</td><td></td><td>os/solaris/globals_solaris.hpp</td></tr>
 <tr><td>UseOSErrorReporting</td><td>JDK6</td><td></td><td>bool</td><td>windows</td><td></td><td></td><td>false</td><td>define_pd_global</td><td>// for now.</td><td>os/windows/globals_windows.hpp</td></tr>
-<tr><td>UseOWSTTaskTerminator</td><td>JDK12</td><td></td><td>bool</td><td></td><td></td><td>gc</td><td>true</td><td>diagnostic</td><td>Use Optimized Work Stealing Threads task termination protocol</td><td>share/gc/shared/gc_globals.hpp</td></tr>
 <tr><td>UseOnStackReplacement</td><td>JDK6</td><td></td><td>bool</td><td></td><td>aarch64</td><td></td><td>true</td><td>define_pd_global</td><td></td><td>cpu/aarch64/c1_globals_aarch64.hpp</td></tr>
 <tr><td>UseOnStackReplacement</td><td>JDK6</td><td></td><td>bool</td><td></td><td>arm</td><td></td><td>true</td><td>define_pd_global</td><td></td><td>cpu/arm/c2_globals_arm.hpp</td></tr>
 <tr><td>UseOnStackReplacement</td><td>JDK6</td><td></td><td>bool</td><td></td><td></td><td>compiler</td><td>false</td><td>define_pd_global</td><td></td><td>share/compiler/compiler_globals.hpp</td></tr>
@@ -2086,7 +2085,6 @@
 <tr><td>ZCollectionInterval</td><td>JDK11</td><td></td><td>uint</td><td></td><td></td><td>gc</td><td>0</td><td>experimental</td><td>Force GC at a fixed time interval (in seconds)</td><td>share/gc/z/z_globals.hpp</td></tr>
 <tr><td>ZFragmentationLimit</td><td>JDK11</td><td></td><td>double</td><td></td><td></td><td>gc</td><td>25.0</td><td>experimental</td><td>Maximum allowed heap fragmentation</td><td>share/gc/z/z_globals.hpp</td></tr>
 <tr><td>ZMarkStackSpaceLimit</td><td>JDK12</td><td></td><td>size_t</td><td></td><td></td><td>gc</td><td>8*G<br>range(32*M, 1024*G)</td><td>experimental</td><td>Maximum number of bytes allocated for mark stacks</td><td>share/gc/z/z_globals.hpp</td></tr>
-<tr><td>ZPath</td><td>JDK11</td><td></td><td>ccstr</td><td></td><td></td><td>gc</td><td>NULL</td><td>experimental</td><td>Filesystem path for Java heap backing storage (must be a tmpfs or a hugetlbfs filesystem)</td><td>share/gc/z/z_globals.hpp</td></tr>
 <tr><td>ZProactive</td><td>JDK11</td><td></td><td>bool</td><td></td><td></td><td>gc</td><td>true</td><td>diagnostic</td><td>Enable proactive GC cycles</td><td>share/gc/z/z_globals.hpp</td></tr>
 <tr><td>ZStatisticsInterval</td><td>JDK11</td><td></td><td>uint</td><td></td><td></td><td>gc</td><td>10<br>range(1, (uint)-1)</td><td>diagnostic</td><td>Time between statistics print outs (in seconds)</td><td>share/gc/z/z_globals.hpp</td></tr>
 <tr><td>ZUncommitDelay</td><td>JDK13</td><td></td><td>uintx</td><td></td><td></td><td>gc</td><td>5 * 60</td><td>experimental</td><td>Uncommit memory if it has been unused for the specified amount of time (in seconds)</td><td>share/gc/z/z_globals.hpp</td></tr>
@@ -2159,7 +2157,7 @@ may be removed in a future release.</pre></td><td>launcher.properties</td></tr>
 		</tbody>
 	</table>
 	<div class="footer">
-		Built on Wed Jan 22 20:27:31 GMT 2020 from HotSpot sources by <a
+		Built on Mon Feb 03 22:09:05 GMT 2020 from HotSpot sources by <a
 			href="https://twitter.com/chriswhocodes">@chriswhocodes</a>
 	</div>
 </body>
