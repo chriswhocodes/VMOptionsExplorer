@@ -412,7 +412,7 @@ public class VMOptionsExplorer
 			DeprecatedParser.parseFile(baseDir.resolve("jdk15"));
 		}
 
-		String graalVersion = "19.3.1";
+		String graalVersion = "20.0.0";
 
 		VMOptionsExplorer explorer = new VMOptionsExplorer(vmoeDir);
 

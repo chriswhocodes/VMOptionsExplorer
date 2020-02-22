@@ -4,7 +4,7 @@
 # install EE native image with gu install --file native-image-installable-svm-svmee-linux-amd64-19.2.0.1.jar
 # downloaded from https://www.oracle.com/technetwork/graalvm/downloads/index.html
 
-export GRAAL_VERSION=19.3.1
+export GRAAL_VERSION=20.0.0
 
 # JAVA 8
 

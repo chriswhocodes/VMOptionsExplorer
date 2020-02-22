@@ -34,19 +34,20 @@
   -H:±AllowIncompleteClasspath                 Allow image building with an incomplete class path: report type resolution errors at run time when they are accessed the
                                                first time, instead of during image building. Default: - (disabled).
   -H:±AllowVMInspection                        Enables features that allow the VM to be inspected during runtime. Default: - (disabled).
+  -H:AllowedNumberOfInaccurateProfiles=30      Threshold for number of points with inaccurate profiles.
   -H:±AlwaysInlineIntrinsics                   Unconditionally inline intrinsics. Default: - (disabled).
   -H:±AlwaysInlineVTableStubs                  Default: - (disabled).
   -H:AnalysisContextSensitivity="insens"       Controls the static analysis context sensitivity. Available values: insens (context insensitive analysis), allocsens
                                                (context insensitive analysis, context insensitive heap, allocation site sensitive heap), _1obj (1 object sensitive
                                                analysis with a context insensitive heap), _2obj1h (2 object sensitive with a 1 context sensitive heap).
   -H:AnalysisSizeCutoff=8                      The maximum size of type and method profiles returned by the static analysis. -1 indicates no limitation.
-  -H:BaseCodeSizeCostCoefficient=1.0E-4        The base coefficient used to compute code size cost.
   -H:BaseTargetSpending=120                    The base target spending used to estimate the inlining threshold; the higher, the likelier it is to inline.
   -H:±BenchmarkCountersDumpDynamic             Dump dynamic counters. Default: + (enabled).
   -H:±BenchmarkCountersDumpStatic              Dump static counters. Default: - (disabled).
   -H:BenchmarkCountersFile=...                 File to which benchmark counters are dumped. A CSV format is used if the file ends with .csv otherwise a more human
                                                readable format is used. The fields in the CSV format are: category, group, name, value. Default: None
   -H:BenchmarkDynamicCounters=...              Turn on the benchmark counters. The format of this option is:. Default: None
+  -H:±BitcodeOptimizations                     Enable LLVM bitcode optimizations. Default: - (disabled).
   -H:BlockZeroingLowLimit=512                  Minimum amount of bytes when block zeroing used. (SPARC only).
   -H:±BootstrapInitializeOnly                  Do not compile anything on bootstrap but just initialize the compiler. Default: - (disabled).
   -H:BootstrapTimeout=15.0                     Maximum time in minutes to spend bootstrapping (0 to disable this limit).
@@ -58,10 +59,12 @@
   -H:CCompilerPath=...                         Provide custom path to C compiler used for query code compilation and linking. Default: None
   -H:CLibraryPath="/home/chris/openjdk/VMOptionsExplorer/clibraries/linux-amd64"
                                                Search path for C libraries passed to the linker (list of comma-separated directories).
-  -H:CPUFeatures=...                           Comma separated list of CPU features that will be used for image generation on the AMD64 platform. Features SSE and SSE2
-                                               are enabled by default. Other available features are: CX8, CMOV, FXSR, HT, MMX, AMD_3DNOW_PREFETCH, SSE3, SSSE3, SSE4A,
-                                               SSE4_1, SSE4_2, POPCNT, LZCNT, TSC, TSCINV, AVX, AVX2, AES, ERMS, CLMUL, BMI1, BMI2, RTM, ADX, AVX512F, AVX512DQ,
-                                               AVX512PF, AVX512ER, AVX512CD, AVX512BW. Default: None
+  -H:CPUFeatures=...                           Comma separated list of CPU features that will be used for image generation. The specific options available are platform
+                                               dependent. For AMD64, SSE and SSE2 are enabled by default. Available features are: CX8, CMOV, FXSR, HT, MMX,
+                                               AMD_3DNOW_PREFETCH, SSE3, SSSE3, SSE4A, SSE4_1, SSE4_2, POPCNT, LZCNT, TSC, TSCINV, AVX, AVX2, AES, ERMS, CLMUL, BMI1,
+                                               BMI2, RTM, ADX, AVX512F, AVX512DQ, AVX512PF, AVX512ER, AVX512CD, AVX512BW. On AArch64, no features are enabled by
+                                               default. Available features are: FP, ASIMD, EVTSTRM, AES, PMULL, SHA1, SHA2, CRC32, LSE, STXR_PREFETCH, A53MAC,
+                                               DMB_ATOMICS. Default: None
   -H:CStandard="C89"                           C standard to use in header files. Possible values are: [C89, C99, C11].
   -H:CallGraphCompilerNodeLimit=35000          Controls the maximum number of compiler nodes that can appear in the call graph.
   -H:CallGraphSizeLimit=1200                   Controls the maximum size of the call graph before ceasing inlining.
@@ -93,11 +96,12 @@
   -H:CompilerBackend="lir"                     Backend used by the compiler.
   -H:CompilerConfiguration=...                 Names the compiler configuration to use. If omitted, the compiler configuration with the highest auto-selection priority
                                                is used. To see the set of available configurations, supply the value 'help' to this option. Default: None
-  -H:CompilerNodePenaltyCoefficient=0.001      Controls the likelihood of exploring subtrees that already have a lot of code during inlining.
+  -H:CompilerNodePenaltyCoefficient=0.006      Controls the likelihood of exploring subtrees that already have a lot of code during inlining.
   -H:±ConditionalElimination                   Default: + (enabled).
   -H:ConditionalEliminationMaxIterations=4     
   -H:ConfigurationFileDirectories=...          Directories directly containing configuration files for dynamic features at runtime. Default: None
   -H:ConfigurationResourceRoots=...            Resource path above configuration resources for dynamic features at runtime. Default: None
+  -H:CostReductionFactor=4.0                   
   -H:Count=...                                 Pattern for specifying scopes in which counters are enabled. See the Dump option for the pattern syntax. An empty value
                                                enables all counters unconditionally. Default: None
   -H:±CountWriteBarriers                       Instrument write barriers with counters. Default: - (disabled).
@@ -106,6 +110,7 @@
   -H:CrashAt=...                               Pattern for method(s) that will trigger an exception when compiled. This option exists to test handling compilation
                                                crashes gracefully. See the MethodFilter option for the pattern syntax. A ':Bailout' suffix will raise a bailout
                                                exception and a ':PermanentBailout' suffix will raise a permanent bailout exception. Default: None
+  -H:CustomLD=""                               Path to a custom ld binary for LLVM linking.
   -H:CustomLLC=""                              Path to a custom llc binary for LLVM compilation.
   -H:CutoffCodeSizePenaltyCoefficient=1.0E-5   Controls the likelihood of further exploring subtrees with a lot of code during inlining.
   -H:Debug=0                                   Control debug information output: 0 - no debuginfo, 1 - AOT code debuginfo, 2 - AOT and runtime code debuginfo.
@@ -132,7 +137,7 @@
   -H:DuplicationBudgetFactor=0.15              Percentage in node cost graph size for the duplication budget. Computed relative to the methods code size.
   -H:DuplicationBudgetFactorLate=0.5           Percentage in node cost graph size for the late duplication budget. Computed relative to the methods code size.
   -H:DuplicationCostReductionFactor=2          
-  -H:DuplicationMinBranchFrequency=0.66        Ignore low frequency branches when during duplication.
+  -H:DuplicationMinBranchFrequency=0.66        Ignore low frequency branches during duplication.
   -H:±DynamicCountersPrintGroupSeparator       Use grouping separators for number printing. Default: + (enabled).
   -H:DynamicProxyConfigurationFiles=...        One or several (comma-separated) paths to JSON files that specify lists of interfaces that define Java proxy classes.
                                                Default: None
@@ -181,7 +186,6 @@
   -H:GCHistory=1                               How much history to maintain about garbage collections.
   -H:±GatherSafepointStatistics                Gather statistics about each safepoint. Default: - (disabled).
   -H:±GenLoopSafepoints                        Default: + (enabled).
-  -H:±GenSafepoints                            Default: + (enabled).
   -H:±GeneratePIC                              Generate position independent code. Default: - (disabled).
   -H:±GenericDynamicCounters                   Turn on the benchmark counters, and displays the results on VM shutdown. Default: - (disabled).
   -H:±GraalArithmeticStubs                     Use Graal arithmetic stubs instead of HotSpot stubs where possible. Default: - (disabled).
@@ -194,7 +198,6 @@
   -H:±GuardPriorities                          Default: + (enabled).
   -H:HeapChunkHeaderPadding=0                  Number of bytes at the beginning of each heap chunk that are not used for payload data, i.e., can be freely used as
                                                metadata by the heap chunk provider.
-  -H:±HideSubstitutionStates                   When creating info points hide the methods of the substitutions. Default: - (disabled).
   -H:±HotSpotPrintInlining                     Print inlining optimizations. Default: - (disabled).
   -H:±HybridStaticContext                      Enable hybrid context for static methods, i.e. uses invocation site as context for static methods. Default: -
                                                (disabled).
@@ -209,6 +212,8 @@
   -H:±IncludeNodeSourcePositions               Track NodeSourcePositions during runtime-compilation. Default: - (disabled).
   -H:IncludeResourceBundles=...                Comma separated list of bundles to be included into the image. Default: None
   -H:IncludeResources=...                      Regexp to match names of resources to be included in the image. Default: None
+  -H:IncludeTimeZones=...                      The time zones, in addition to the default zone of the host, that will be pre-initialized in the image. Default:
+                                               -H:IncludeTimeZones="GMT" -H:IncludeTimeZones="UTC" -H:IncludeTimeZones="Europe/London"
   -H:InitialCollectionPolicy="com.oracle.svm.core.genscavenge.CollectionPolicy$ByTime"
                                                What is the initial collection policy?.
   -H:±Inline                                   Enable inlining. Default: + (enabled).
@@ -230,12 +235,12 @@
   -H:±InspectGraphs                            Inspect analysis graphs. Default: - (disabled).
   -H:InspectServerContentPath="inspect"        Path to the contents of the Inspect web server.
   -H:±InterceptBailout                         Intercept also bailout exceptions. Default: - (disabled).
-  -H:InterfacesForJNR=...                      Register JNR FFI interfaces as comma-separated list of fully qualified class names). Default: None
   -H:±Intrinsify                               Use compiler intrinsifications. Default: + (enabled).
   -H:±JNI                                      Enable Java Native Interface (JNI) support. Default: + (enabled).
   -H:JNIConfigurationFiles=...                 Files describing program elements to be made accessible via JNI (for syntax, see ReflectionConfigurationFiles). Default:
                                                None
   -H:JNIConfigurationResources=...             Resources describing program elements to be made accessible via JNI (see JNIConfigurationFiles). Default: None
+  -H:±JNIExportSymbols                         Export Invocation API symbols. Default: + (enabled).
   -H:±JNIVerboseLookupErrors                   Report information about known JNI elements when lookup fails. Default: - (disabled).
   -H:±LIRDynMoveProfileMethod                  Enable dynamic move profiling per method. Default: - (disabled).
   -H:±LIROptConstantLoadOptimization           Enable constant load optimization. 
@@ -281,9 +286,11 @@
   -H:LoopUnswitchFrequencyBoost=10.0           
   -H:LoopUnswitchMaxIncrease=500               
   -H:LoopUnswitchTrivial=10                    
+  -H:LowLatencyGCDebugLevel="product"          Specifies the debug level of the linked low-latency GC [product, fastdebug, or debug].
+  -H:LowLatencyGCRegionSize=1048576            Region size for the low latency GC in bytes. Supported values are 1, 2, 4, 8, 16, or 32M.
+  -H:LowLatencyGCTLABSize=262144               Size of the thread local allocation buffer in bytes.
   -H:±MachODebugInfoTesting                    Test Mach-O debuginfo generation. Default: - (disabled).
   -H:±MatchExpressions                         Allow backend to match complex expressions. Default: + (enabled).
-  -H:MaxCFGRecomputations=12                   
   -H:MaxCallingContextDepth=0                  The maximum length of the methods context chains.
   -H:MaxCallingContextWidth=0                  The maximum number of contexts to record for a method. It only affects the analysis when the max and min calling context
                                                depth are different.
@@ -315,26 +322,24 @@
   -H:MaximumInliningSize=300                   Inlining is explored up to this number of nodes in the graph for each call site.
   -H:MaximumLoopExplosionCount=10000           Max number of loop explosions per method.
   -H:MaximumRecursiveInlining=5                Maximum level of recursive inlining.
+  -H:MaximumTransitiveEnabledPullFactor=2      
   -H:MegamorphicInliningMinMethodProbability=0.33
                                                Minimum probability for methods to be inlined for megamorphic type profiles.
   -H:MemUseTrackers=...                        Comma separated names of memory usage trackers that are enabled irrespective of the value for TrackMemUse option. An
                                                empty value enables all memory usage trackers unconditionally. Default: None
   -H:Method="main"                             Name of the main entry point method. Optional if --shared is used.
-  -H:±MethodDupCounters                        Default: - (disabled).
-  -H:MethodDupOnly=""                          
-  -H:±MethodDupPropagateAnchors                Default: - (disabled).
   -H:MethodFilter=...                          Pattern for filtering debug scope output based on method context. Default: None
   -H:±MethodFilterRootOnly                     Only check MethodFilter against the root method in the context if true, otherwise check all methods. Default: -
                                                (disabled).
   -H:MethodInlineBailoutLimit=5000             Per-compilation method inlining exploration limit before giving up (use 0 to disable).
   -H:MetricsFile=...                           File to which metrics are dumped per compilation. Default: None
-  -H:MetricsThreadFilter=...                   Only report metrics for threads whose name matches the regular expression. Default: None
+  -H:MinBlockFrequencyPull=0.66                
   -H:MinCallingContextDepth=0                  The minimum length of the methods context chains.
   -H:MinHeapContextDepth=0                     The minimum length of the context used to model a heap object in addition to the allocation site; used only when
                                                ContextSensitiveHeap is enabled.
   -H:MinimalBulkZeroingSize=2048               If applicable, use bulk zeroing instructions when the zeroing size in bytes exceeds this threshold.
   -H:±MinimalRegions                           Try to reduce duplication code size to the minimal amount of code. Default: + (enabled).
-  -H:MinimumPeelProbability=0.35               
+  -H:MinimumPeelFrequency=0.35                 
   -H:MitigateSpeculativeExecutionAttacks=None  Select a strategy to mitigate speculative execution attacks (e.g., SPECTRE).
   -H:±MultiThreaded                            Enable support for threads and and thread-local variables (disable for single-threaded implementation). Default: +
                                                (enabled).
@@ -345,6 +350,7 @@
                                                NativeArchitecture takes precedence over CPUFeatures. Default: - (disabled).
   -H:NativeLinkerOption=...                    Pass the provided raw option to the linker command that produces the final binary. The possible options are platform
                                                specific and passed through without any validation. Default: None
+  -H:NeverInline=...                           Pattern for disabling inlining of methods during image generation. Default: None
   -H:±NewCAPCache                              Create a C Annotation Processor Cache. Will erase any previous cache at that same location. Default: - (disabled).
   -H:±NodeCounters                             Counts the number of instances of each node class. Default: - (disabled).
   -H:NonFatalIdenticalCompilationSnapshots=20  Number of contiguous identical compiler thread stack traces allowed before the VM exits on the basis of a stuck
@@ -364,17 +370,13 @@
   -H:±OptDuplication                           Default: + (enabled).
   -H:±OptEarlyReadElimination                  Default: + (enabled).
   -H:±OptEliminateGuards                       Default: + (enabled).
-  -H:±OptEliminatePartiallyRedundantGuards     Default: + (enabled).
   -H:±OptExactArithmetic                       Default: + (enabled).
-  -H:±OptFilterProfiledTypes                   Default: + (enabled).
   -H:±OptFloatingReads                         Default: + (enabled).
   -H:±OptGuardRangeGrouping                    Default: + (enabled).
   -H:±OptImplicitNullChecks                    Default: + (enabled).
   -H:±OptLateDuplication                       Default: - (disabled).
   -H:±OptLockElimination                       Default: + (enabled).
   -H:±OptLoopPhiStamps                         Inject stamps on induction variables. Default: + (enabled).
-  -H:±OptLoopTransform                         Default: + (enabled).
-  -H:±OptMethodDuplication                     Default: - (disabled).
   -H:±OptPullThroughPhi                        Default: + (enabled).
   -H:±OptReadElimination                       Default: + (enabled).
   -H:±OptScheduleOutOfLoops                    Default: + (enabled).
@@ -385,7 +387,6 @@
   -H:±OptimisticAliasingAnalysis               Default: + (enabled).
   -H:Optimize=2                                Control native-image code optimizations: 0 - no optimizations, 1 - basic optimizations, 2 - aggressive optimizations.
   -H:±OptimizeLoopAccesses                     Enable access node optimizations for loops. Default: + (enabled).
-  -H:±PEAInliningHints                         Default: - (disabled).
   -H:PGOInstrument=...                         Dump information for Profile Guided Optimizations (true or file name). Default: None
   -H:PageSize=0                                Define PageSize of a machine that runs the image. The default = 0 (== same as host machine page size).
   -H:±ParseRuntimeOptions                      Parse and consume standard options and system properties from the command line arguments when the VM is created.
@@ -395,11 +396,8 @@
   -H:±PartialUnroll                            Default: + (enabled).
   -H:Path="/home/chris/openjdk/VMOptionsExplorer/svmbuild"
                                                Directory of the image file to be generated.
-  -H:PathDuplicationPhiCutoff=20               
   -H:±PeelALot                                 Default: - (disabled).
-  -H:PeelBackFoldFactor=100                    
-  -H:PeelForwardFoldFactor=20                  
-  -H:PeelPotentialFoldFactor=60                
+  -H:PeelFoldFactor=120                        
   -H:±PreserveFramePointer                     Saves stack base pointer on the stack on method entry. Default: - (disabled).
   -H:±PrintAOTCompilation                      Print logging information during compilation. Default: - (disabled).
   -H:±PrintAnalysisCallTree                    Print analysis call tree, a breadth-first tree reduction of the call graph. Default: - (disabled).
@@ -462,7 +460,7 @@
                                                code (reads from default.iprof if nothing is specified). Default: None
   -H:ProfilingPointRequiredHitCount=0          Lower bound for point hit count when compared to collected profiles. It is used for testing.
   -H:±PruneLargeDominatorUsageTrees            Default: + (enabled).
-  -H:PullThroughPhiBudget=4096.0               
+  -H:PullThroughPhiCodeSizeIncrease=0.1        
   -H:±RawConditionalElimination                Default: + (enabled).
   -H:ReadEliminationMaxLoopVisits=5            
   -H:±ReassociateInvariants                    Default: + (enabled).
@@ -473,7 +471,7 @@
                                                None
   -H:±ReflectionPluginTracing                  Enable trace logging for reflection plugins. Default: - (disabled).
   -H:RegisterPressure=...                      Comma separated list of registers that register allocation is limited to. Default: None
-  -H:RelativeBenefitInliningCoefficient=0.005  The coefficient used to compute the inlining threshold; the higher, the hard to inline.
+  -H:RelativeBenefitInliningCoefficient=0.001  The coefficient used to compute the inlining threshold; the higher, the hard to inline.
   -H:±RemoveNeverExecutedCode                  Default: + (enabled).
   -H:±RemoveUnusedSymbols                      Use linker option to prevent unreferenced symbols in image. Default: - (disabled).
   -H:±ReplaceInputsWithConstantsBasedOnStamps  Default: + (enabled).
@@ -503,8 +501,7 @@
   -H:SimpleMethodCalls=1                       Maximum number of calls in a simple method.
   -H:SimpleMethodGraphSize=256                 Maximum number of nodes in a graph for a simple method.
   -H:SimpleMethodIndirectCalls=0               Maximum number of indirect calls in a simple moethod.
-  -H:±SimulationStopAtControlFlow              Determines if simulation traversal should stop at control flow boundaries that cannot be duplicated. Default: +
-                                               (enabled).
+  -H:±SimulationPruneUnlikelyBranches          Ignore low frequency branches during simulation. Default: + (enabled).
   -H:SmallCompiledLowLevelGraphSize=330        If the previous low-level graph size of the method exceeds the threshold, it is not inlined.
   -H:SmallRootIrPenaltyCoefficient=0.02        Reduces the likelihood of exploring call graphs with IR size much larger than the root.
   -H:±SnippetCounters                          Enable counters for various paths in snippets. Default: - (disabled).
@@ -513,7 +510,7 @@
   -H:SourceLevelDebugFilter=...                Constrain debug info generation to the comma-separated list of package prefixes given to this option. Default: None
   -H:SourceSearchPath=...                      List of used-defined paths (separeted by the system's path-separator character) in addition to automatic
                                                SourceSearchPath detection. Default: None
-  -H:±SpawnIsolates                            Support multiple isolates. . Default: + (enabled).
+  -H:±SpawnIsolates                            Support multiple isolates. . 
   -H:±SpeculativeStoreCheck                    Speculates that arrays have exact type to optimize store checks. Default: + (enabled).
   -H:StackRedZoneSize=8192                     Size (in bytes) of the red zone reserved at the end of the stack. This stack space can only be used by critical VM code
                                                and C code, e.g., to report fatal errors.
@@ -533,11 +530,9 @@
   -H:±SupportOSRWithLocks                      Support OSR compilations with locks. If DeoptAfterOSR is true we can per definition not have unbalanced enter/exits
                                                mappings. If DeoptAfterOSR is false insert artificial monitor enters after the OSRStart to have balanced enter/exits in
                                                the graph. Default: + (enabled).
+  -H:±SupportRecurringCallback                 Support a per-thread timer that is called at a specific interval. Default: + (enabled).
   -H:±SuppressStderr                           Suppress console error output for unittests. Default: - (disabled).
   -H:±SuppressStdout                           Suppress console normal output for unittests. Default: - (disabled).
-  -H:TailDupOnly=""                            
-  -H:TailDuplicationProbability=0.5            
-  -H:TailDuplicationTrivialSize=1              
   -H:TempDirectory=""                          Directory for temporary files generated during native image generation. If this option is specified, the temporary files
                                                are not deleted so that you can inspect them after native image generation.
   -H:TestFile=""                               
@@ -600,7 +595,7 @@
   -H:±TruffleArgumentTypeSpeculation           Default: + (enabled).
   -H:±TruffleBackgroundCompilation             Enable asynchronous truffle compilation in background thread. Default: + (enabled).
   -H:±TruffleCheckFrameImplementation          Enforce that the Truffle runtime provides the only implementation of Frame. Default: + (enabled).
-  -H:±TruffleCheckNeverPartOfCompilation       Print a warning message and stack trace when CompilerAsserts.neverPartOfCompilation is reachable. Default: - (disabled).
+  -H:±TruffleCheckNeverPartOfCompilation       Check that CompilerAsserts.neverPartOfCompilation is not reachable for runtime compilation. Default: + (enabled).
   -H:±TruffleCompilation                       Enable or disable truffle compilation. Default: + (enabled).
   -H:±TruffleCompilationExceptionsAreFatal     Treat compilation exceptions as fatal exceptions that will exit the application. Default: - (disabled).
   -H:±TruffleCompilationExceptionsArePrinted   Prints the exception stack trace for compilation exceptions. Default: + (enabled).
@@ -644,11 +639,11 @@
   -H:±TruffleIterativePartialEscape            Run the partial escape analysis iteratively in Truffle compilation. Default: - (disabled).
   -H:±TruffleLanguageAgnosticInlining          Use language-agnostic inlining (overrides the TruffleFunctionInlining setting, option is experimental). Default: -
                                                (disabled).
-  -H:±TruffleLegacySplitting                   Use legacy splitting heuristic. This option will be removed. Default: - (disabled).
   -H:TruffleMaximumGraalNodeCount=400000       Stop partial evaluation when the graph exceeded this many nodes.
   -H:TruffleMaximumInlineNodeCount=150000      Ignore further truffle inlining decisions when the graph exceeded this many nodes.
   -H:TruffleMaximumRecursiveInlining=2         Maximum level of recursive inlining.
   -H:TruffleMinInvokeThreshold=3               Minimum number of calls before a call target is compiled.
+  -H:±TruffleMultiThreaded                     Enable support for Truffle background compilation. Default: + (enabled).
   -H:±TruffleMultiTier                         Whether to use multiple Truffle compilation tiers by default. Default: - (disabled).
   -H:±TruffleOSR                               Enable on stack replacement for Truffle loops. Default: + (enabled).
   -H:TruffleOSRCompilationThreshold=100000     Number of loop iterations until on-stack-replacement compilation is triggered.
@@ -685,8 +680,13 @@
   -H:UnrollMaxIterations=16                    
   -H:UnsafeAutomaticSubstitutionsLogLevel=1    Unsafe automatic substitutions logging level: Disabled=0, Basic=1, Info=2, Debug=3.).
   -H:±UnsafeOffsetWarningsAreFatal             Print unsafe operation offset warnings.). Default: - (disabled).
+  -H:±UseBranchesWithin32ByteBoundary          Force branch instructions to align with 32-bytes boundary, to mitigate the jcc erratum. See
+                                               https://www.intel.com/content/dam/support/us/en/documents/processors/mitigations-jump-conditional-code-erratum.pdf for
+                                               more details. Default: - (disabled).
   -H:±UseCAPCache                              Indicate the C Annotation Processor to use previously cached native information when generating C Type information.
                                                Default: - (disabled).
+  -H:±UseCalleeSavedRegisters                  Use callee saved registers to reduce spilling for low-frequency calls to stubs (if callee saved registers are supported
+                                               by the architecture). Default: + (enabled).
   -H:±UseCardRememberedSetHeap                 Use a card remembered set heap for GC. Default: + (enabled).
   -H:±UseCompilationStatistics                 Enables CompilationStatistics. Default: - (disabled).
   -H:±UseCompressedReferenceShift              Use bit-shifting to enlarge the address range with narrow references. Default: + (enabled).
@@ -701,6 +701,8 @@
   -H:±UseIndexMasking                          Use index masking after bounds check to mitigate speculative execution attacks. Default: - (disabled).
   -H:UseInlinedPythonHelper=...                Embed python helper in binary. Default: None
   -H:±UseLoopLimitChecks                       Default: + (enabled).
+  -H:±UseLowLatencyGC                          Determines if the low latency garbage collector should be used. Default: - (disabled).
+  -H:UseMuslC=...                              Builds a native image using libmusl as the libc implementation. Default: None
   -H:±UseObjectInlineFeature                   Enable the object inline feature. Disabling this feature will ease debugging issues unrelated to it. Default: -
                                                (disabled).
   -H:±UseOnlyWritableBootImageHeap             Use only a writable native image heap. Default: - (disabled).
@@ -720,13 +722,16 @@
   -H:VectorUnroll=1                            Unroll vectorized loops.
   -H:±Vectorization                            Enable vectorization. Default: + (enabled).
   -H:±VectorizeAllocation                      Enable vectorized array initialization. Default: + (enabled).
-  -H:±VectorizeConditional                     Enable vectorization of conditional code. Default: - (disabled).
+  -H:±VectorizeConditional                     Enable vectorization of conditional code. Default: + (enabled).
+  -H:±VectorizeDeopts                          Enable vectorization of loops with conditional deopts before writes. Default: + (enabled).
   -H:±VectorizeFoldShaped                      Enable vectorization of loops implementing a higher-order 'fold' function. Default: + (enabled).
   -H:±VectorizeLoops                           Enable vectorization of loops. Default: + (enabled).
   -H:±VectorizeMapShaped                       Enable vectorization of loops implementing a higher-order 'map' function. Default: + (enabled).
   -H:±VectorizeNegativeStride                  Enable vectorization of loops with negative strides. Default: + (enabled).
   -H:±VectorizeSIMD                            Enable detection of SIMD patterns. Default: - (disabled).
   -H:±VectorizeSequence                        Enable vectorization of sequence values. Default: + (enabled).
+  -H:VerificationDumpFile="pgoVerification.log"
+                                               Value should point to a file where we dump the output of the verification phase if mismatches were encountered.
   -H:Verify=...                                Pattern for specifying scopes in which logging is enabled. See the Dump option for the pattern syntax. Default: None
   -H:±VerifyBalancedMonitors                   Emit extra code to dynamically check monitor operations are balanced. Default: - (disabled).
   -H:±VerifyDeoptimizationEntryPoints          Verify that all possible deoptimization entry points have been properly compiled and registered in the metadata.
@@ -741,6 +746,7 @@
   -H:±VerifyHeapBeforeCollection               Verify the heap before each collection. Default: - (disabled).
   -H:±VerifyKillCFGUnusedNodes                 Verify that there are no new unused nodes when performing killCFG. Default: - (disabled).
   -H:±VerifyNamingConventions                  Verify naming conventions during image construction. Default: - (disabled).
+  -H:±VerifyPGOProfiles                        Turn on a verification phase to check all probabilities injected in nodes match profiles. Default: - (disabled).
   -H:±VerifyPhases                             Default: - (disabled).
   -H:±VerifyStackAfterCollection               Verify the stack after each collection. Default: - (disabled).
   -H:±VerifyStackBeforeCollection              Verify the stack before each collection. Default: - (disabled).
@@ -769,7 +775,6 @@
                                                (context insensitive analysis, context insensitive heap, allocation site sensitive heap), _1obj (1 object sensitive
                                                analysis with a context insensitive heap), _2obj1h (2 object sensitive with a 1 context sensitive heap).
   -R:AnalysisSizeCutoff=8                      The maximum size of type and method profiles returned by the static analysis. -1 indicates no limitation.
-  -R:BaseCodeSizeCostCoefficient=1.0E-4        The base coefficient used to compute code size cost.
   -R:BaseTargetSpending=120                    The base target spending used to estimate the inlining threshold; the higher, the likelier it is to inline.
   -R:±BenchmarkCountersDumpDynamic             Dump dynamic counters. Default: + (enabled).
   -R:±BenchmarkCountersDumpStatic              Dump static counters. Default: - (disabled).
@@ -801,11 +806,14 @@
   -R:±CompileGraalWithC1Only                   In tiered mode compile Graal and JVMCI using optimized first tier code. Default: + (enabled).
   -R:±CompileInIsolates                        Activate runtime compilation in separate isolates (enable support during image build with option
                                                SupportCompileInIsolates). Default: - (disabled).
+  -R:±CompileInPerThreadReusedIsolates         Create one reusable isolate per compilation thread as opposed to one isolate per compilation (enable through
+                                               CompileInIsolates). Default: + (enabled).
   -R:CompilerConfiguration=...                 Names the compiler configuration to use. If omitted, the compiler configuration with the highest auto-selection priority
                                                is used. To see the set of available configurations, supply the value 'help' to this option. Default: None
-  -R:CompilerNodePenaltyCoefficient=0.001      Controls the likelihood of exploring subtrees that already have a lot of code during inlining.
+  -R:CompilerNodePenaltyCoefficient=0.006      Controls the likelihood of exploring subtrees that already have a lot of code during inlining.
   -R:±ConditionalElimination                   Default: + (enabled).
   -R:ConditionalEliminationMaxIterations=4     
+  -R:CostReductionFactor=4.0                   
   -R:Count=...                                 Pattern for specifying scopes in which counters are enabled. See the Dump option for the pattern syntax. An empty value
                                                enables all counters unconditionally. Default: None
   -R:Counters=...                              Comma separated names of counters that are enabled irrespective of the value for Count option. An empty value enables
@@ -834,7 +842,7 @@
   -R:DuplicationBudgetFactor=0.15              Percentage in node cost graph size for the duplication budget. Computed relative to the methods code size.
   -R:DuplicationBudgetFactorLate=0.5           Percentage in node cost graph size for the late duplication budget. Computed relative to the methods code size.
   -R:DuplicationCostReductionFactor=2          
-  -R:DuplicationMinBranchFrequency=0.66        Ignore low frequency branches when during duplication.
+  -R:DuplicationMinBranchFrequency=0.66        Ignore low frequency branches during duplication.
   -R:±DynamicCountersPrintGroupSeparator       Use grouping separators for number printing. Default: + (enabled).
   -R:±EagerSnippets                            Eagerly construct extra snippet info. Default: - (disabled).
   -R:EscapeAnalysisIterations=2                
@@ -852,6 +860,7 @@
   -R:±ExtendedAsserts                          Enable extended asserts which slow down analysis. Default: - (disabled).
   -R:±FailedLoopExplosionIsFatal               Do not bail out but throw an exception on failed loop explosion. Default: - (disabled).
   -R:FallbackExecutorRuntimeJavaArg=...        Internal option used to specify runtime java arguments for FallbackExecutor. Default: None
+  -R:±FlightRecorder                           Enable Java Flight Recorder. Default: - (disabled).
   -R:±ForceDumpGraphsBeforeCompilation         Force-dump graphs before compilation. Default: - (disabled).
   -R:±FullUnroll                               Default: + (enabled).
   -R:±FullUnrollAsPEACleanup                   Perform full unrolling as a Partial Escape Analysis Cleanup. Default: + (enabled).
@@ -860,7 +869,6 @@
   -R:FullUnrollMaxNodes=400                    
   -R:GCDebugStartCycle=-1                      Start tracing compiled GC barriers after N garbage collections (disabled if N <= 0).
   -R:±GenLoopSafepoints                        Default: + (enabled).
-  -R:±GenSafepoints                            Default: + (enabled).
   -R:±GeneratePIC                              Generate position independent code. Default: - (disabled).
   -R:±GenericDynamicCounters                   Turn on the benchmark counters, and displays the results on VM shutdown. Default: - (disabled).
   -R:±GraalArithmeticStubs                     Use Graal arithmetic stubs instead of HotSpot stubs where possible. Default: - (disabled).
@@ -869,7 +877,6 @@
   -R:GraphCompressionThreshold=70              Graal graph compression is performed when percent of live nodes falls below this value.
   -R:±GuardPriorities                          Default: + (enabled).
   -R:±HeapVerificationFailureIsFatal           Verify the heap before and after each collection. Default: + (enabled).
-  -R:±HideSubstitutionStates                   When creating info points hide the methods of the substitutions. Default: - (disabled).
   -R:±HotSpotPrintInlining                     Print inlining optimizations. Default: - (disabled).
   -R:±HybridStaticContext                      Enable hybrid context for static methods, i.e. uses invocation site as context for static methods. Default: -
                                                (disabled).
@@ -942,7 +949,6 @@
   -R:LoopUnswitchMaxIncrease=500               
   -R:LoopUnswitchTrivial=10                    
   -R:±MatchExpressions                         Allow backend to match complex expressions. Default: + (enabled).
-  -R:MaxCFGRecomputations=12                   
   -R:MaxCallingContextDepth=0                  The maximum length of the methods context chains.
   -R:MaxCallingContextWidth=0                  The maximum number of contexts to record for a method. It only affects the analysis when the max and min calling context
                                                depth are different.
@@ -955,6 +961,8 @@
                                                ContextSensitiveHeap is enabled.
   -R:MaxHeapContextWidth=0                     The maximum number of contexts to record for a heap object.  It only affects the analysis when the max and min calling
                                                context depth are different.
+  -R:MaxHeapSize=0                             The maximum heap size at run-time, in bytes.
+  -R:MaxNewSize=0                              The maximum size of the young generation at run-time, in bytes.
   -R:MaxObjectSetSize=100                      The maximum number of objects recorded for each type of a type state before disabling heap sensitivity for that type.
                                                The analysis must be heap sensitive. It has a minimum value of 1.
   -R:MaxPriorityInliningPeelingIterations=10   Max number of precise inlining peeling iterations.
@@ -969,26 +977,25 @@
   -R:MaximumInliningSize=300                   Inlining is explored up to this number of nodes in the graph for each call site.
   -R:MaximumLoopExplosionCount=10000           Max number of loop explosions per method.
   -R:MaximumRecursiveInlining=5                Maximum level of recursive inlining.
+  -R:MaximumTransitiveEnabledPullFactor=2      
   -R:MaximumYoungGenerationSizePercent=10      The maximum size of the young generation as a percent of the maximum heap size.
   -R:MegamorphicInliningMinMethodProbability=0.33
                                                Minimum probability for methods to be inlined for megamorphic type profiles.
   -R:MemUseTrackers=...                        Comma separated names of memory usage trackers that are enabled irrespective of the value for TrackMemUse option. An
                                                empty value enables all memory usage trackers unconditionally. Default: None
-  -R:±MethodDupCounters                        Default: - (disabled).
-  -R:MethodDupOnly=""                          
-  -R:±MethodDupPropagateAnchors                Default: - (disabled).
   -R:MethodFilter=...                          Pattern for filtering debug scope output based on method context. Default: None
   -R:±MethodFilterRootOnly                     Only check MethodFilter against the root method in the context if true, otherwise check all methods. Default: -
                                                (disabled).
   -R:MethodInlineBailoutLimit=5000             Per-compilation method inlining exploration limit before giving up (use 0 to disable).
   -R:MetricsFile=...                           File to which metrics are dumped per compilation. Default: None
-  -R:MetricsThreadFilter=...                   Only report metrics for threads whose name matches the regular expression. Default: None
+  -R:MinBlockFrequencyPull=0.66                
   -R:MinCallingContextDepth=0                  The minimum length of the methods context chains.
   -R:MinHeapContextDepth=0                     The minimum length of the context used to model a heap object in addition to the allocation site; used only when
                                                ContextSensitiveHeap is enabled.
+  -R:MinHeapSize=0                             The minimum heap size at run-time, in bytes.
   -R:MinimalBulkZeroingSize=2048               If applicable, use bulk zeroing instructions when the zeroing size in bytes exceeds this threshold.
   -R:±MinimalRegions                           Try to reduce duplication code size to the minimal amount of code. Default: + (enabled).
-  -R:MinimumPeelProbability=0.35               
+  -R:MinimumPeelFrequency=0.35                 
   -R:MitigateSpeculativeExecutionAttacks=None  Select a strategy to mitigate speculative execution attacks (e.g., SPECTRE).
   -R:NDCV=0                                    Run level for NoDeadCodeVerifyHandler (0 = off, 1 = info, 2 = verbose, 3 = fatal).
   -R:±NodeCounters                             Counts the number of instances of each node class. Default: - (disabled).
@@ -1006,17 +1013,13 @@
   -R:±OptDuplication                           Default: + (enabled).
   -R:±OptEarlyReadElimination                  Default: + (enabled).
   -R:±OptEliminateGuards                       Default: + (enabled).
-  -R:±OptEliminatePartiallyRedundantGuards     Default: + (enabled).
   -R:±OptExactArithmetic                       Default: + (enabled).
-  -R:±OptFilterProfiledTypes                   Default: + (enabled).
   -R:±OptFloatingReads                         Default: + (enabled).
   -R:±OptGuardRangeGrouping                    Default: + (enabled).
   -R:±OptImplicitNullChecks                    Default: + (enabled).
   -R:±OptLateDuplication                       Default: - (disabled).
   -R:±OptLockElimination                       Default: + (enabled).
   -R:±OptLoopPhiStamps                         Inject stamps on induction variables. Default: + (enabled).
-  -R:±OptLoopTransform                         Default: + (enabled).
-  -R:±OptMethodDuplication                     Default: - (disabled).
   -R:±OptPullThroughPhi                        Default: + (enabled).
   -R:±OptReadElimination                       Default: + (enabled).
   -R:±OptScheduleOutOfLoops                    Default: + (enabled).
@@ -1026,16 +1029,12 @@
   -R:±OptWriteBarrierElimination               Eliminate redundant write barriers. Default: + (enabled).
   -R:±OptimisticAliasingAnalysis               Default: + (enabled).
   -R:±OptimizeLoopAccesses                     Enable access node optimizations for loops. Default: + (enabled).
-  -R:±PEAInliningHints                         Default: - (disabled).
   -R:PGOInstrument=...                         Dump information for Profile Guided Optimizations (true or file name). Default: None
   -R:±PartialEscapeAnalysis                    Default: + (enabled).
   -R:±PartialRedundancyElimination             Enable partial redundancy elimination. Default: + (enabled).
   -R:±PartialUnroll                            Default: + (enabled).
-  -R:PathDuplicationPhiCutoff=20               
   -R:±PeelALot                                 Default: - (disabled).
-  -R:PeelBackFoldFactor=100                    
-  -R:PeelForwardFoldFactor=20                  
-  -R:PeelPotentialFoldFactor=60                
+  -R:PeelFoldFactor=120                        
   -R:PercentTimeInIncrementalCollection=50     Percentage of time that should be spent in young generation collections.
   -R:PerfDataMemorySize=32768                  Size of performance data memory region. Will be rounded up to a multiple of the native os page size.
   -R:PerfDataSamplingInterval=200              Jvmstat instrumentation sampling interval (in milliseconds).
@@ -1076,6 +1075,8 @@
   -R:±ProfileBackedges                         Emit profiling of backedges. Default: + (enabled).
   -R:±ProfileCompiledMethods                   Default: - (disabled).
   -R:±ProfileConstantObjects                   Track the creation of constant objects. Default: - (disabled).
+  -R:ProfileDumpPeriod=-1                      Integer greater than zero representing the duration in seconds that will be used to trigger a profile capture. Any
+                                               integer less than one disables periodic dumps.
   -R:±ProfileInvokes                           Emit profiling of invokes. Default: + (enabled).
   -R:±ProfileLockElimination                   Default: - (disabled).
   -R:±ProfileMonitors                          Enable profiling of monitor operations. Default: - (disabled).
@@ -1083,13 +1084,13 @@
   -R:±ProfileTypeSwitches                      Turn on typeswitch profiling. This tracks the stability of typeswitches after compilation. Default: - (disabled).
   -R:ProfilesDumpFile="default.iprof"          Value should point to a profile dump file.
   -R:±PruneLargeDominatorUsageTrees            Default: + (enabled).
-  -R:PullThroughPhiBudget=4096.0               
+  -R:PullThroughPhiCodeSizeIncrease=0.1        
   -R:±RawConditionalElimination                Default: + (enabled).
   -R:ReadEliminationMaxLoopVisits=5            
   -R:±ReassociateInvariants                    Default: + (enabled).
   -R:±ReduceDCE                                Disable optional dead code eliminations. Default: + (enabled).
   -R:RegisterPressure=...                      Comma separated list of registers that register allocation is limited to. Default: None
-  -R:RelativeBenefitInliningCoefficient=0.005  The coefficient used to compute the inlining threshold; the higher, the hard to inline.
+  -R:RelativeBenefitInliningCoefficient=0.001  The coefficient used to compute the inlining threshold; the higher, the hard to inline.
   -R:±RemoveNeverExecutedCode                  Default: + (enabled).
   -R:±ReplaceInputsWithConstantsBasedOnStamps  Default: + (enabled).
   -R:±ReportAnalysisStatistics                 Report analysis statistics. Default: - (disabled).
@@ -1107,12 +1108,13 @@
   -R:SimpleMethodCalls=1                       Maximum number of calls in a simple method.
   -R:SimpleMethodGraphSize=256                 Maximum number of nodes in a graph for a simple method.
   -R:SimpleMethodIndirectCalls=0               Maximum number of indirect calls in a simple moethod.
-  -R:±SimulationStopAtControlFlow              Determines if simulation traversal should stop at control flow boundaries that cannot be duplicated. Default: +
-                                               (enabled).
+  -R:±SimulationPruneUnlikelyBranches          Ignore low frequency branches during simulation. Default: + (enabled).
   -R:SmallCompiledLowLevelGraphSize=330        If the previous low-level graph size of the method exceeds the threshold, it is not inlined.
   -R:SmallRootIrPenaltyCoefficient=0.02        Reduces the likelihood of exploring call graphs with IR size much larger than the root.
   -R:±SnippetCounters                          Enable counters for various paths in snippets. Default: - (disabled).
   -R:±SpeculativeStoreCheck                    Speculates that arrays have exact type to optimize store checks. Default: + (enabled).
+  -R:StackSize=0                               The size of each thread stack at run-time, in bytes.
+  -R:StartFlightRecording=""                   Start flight recording with options.
   -R:±StressExplicitExceptionCode              Stress the code emitting explicit exception throwing code. Default: - (disabled).
   -R:±StressInvokeWithExceptionNode            Stress the code emitting invokes with explicit exception edges. Default: - (disabled).
   -R:±StressTestEarlyReads                     Stress the code by emitting reads at earliest instead of latest point. Default: - (disabled).
@@ -1120,9 +1122,6 @@
   -R:±SupportOSRWithLocks                      Support OSR compilations with locks. If DeoptAfterOSR is true we can per definition not have unbalanced enter/exits
                                                mappings. If DeoptAfterOSR is false insert artificial monitor enters after the OSRStart to have balanced enter/exits in
                                                the graph. Default: + (enabled).
-  -R:TailDupOnly=""                            
-  -R:TailDuplicationProbability=0.5            
-  -R:TailDuplicationTrivialSize=1              
   -R:TearDownFailureNanos=0                    The number of nanoseconds before tearing down an isolate gives a failure message.  0 implies no message.
   -R:TearDownWarningNanos=0                    The number of nanoseconds before and between which tearing down an isolate gives a warning message.  0 implies no
                                                warning.
@@ -1221,7 +1220,6 @@
   -R:±TruffleIterativePartialEscape            Run the partial escape analysis iteratively in Truffle compilation. Default: - (disabled).
   -R:±TruffleLanguageAgnosticInlining          Use language-agnostic inlining (overrides the TruffleFunctionInlining setting, option is experimental). Default: -
                                                (disabled).
-  -R:±TruffleLegacySplitting                   Use legacy splitting heuristic. This option will be removed. Default: - (disabled).
   -R:TruffleMaximumGraalNodeCount=400000       Stop partial evaluation when the graph exceeded this many nodes.
   -R:TruffleMaximumInlineNodeCount=150000      Ignore further truffle inlining decisions when the graph exceeded this many nodes.
   -R:TruffleMaximumRecursiveInlining=2         Maximum level of recursive inlining.
@@ -1259,6 +1257,9 @@
   -R:TypicalGraphSizeMax=10000                 The maximum in estimated inlined typical graph size.
   -R:±UnresolvedIsError                        Report unresolved elements as errors. Default: + (enabled).
   -R:UnrollMaxIterations=16                    
+  -R:±UseBranchesWithin32ByteBoundary          Force branch instructions to align with 32-bytes boundary, to mitigate the jcc erratum. See
+                                               https://www.intel.com/content/dam/support/us/en/documents/processors/mitigations-jump-conditional-code-erratum.pdf for
+                                               more details. Default: - (disabled).
   -R:±UseCompilationStatistics                 Enables CompilationStatistics. Default: - (disabled).
   -R:±UseEncodedGraphs                         Encode and decode snippets and substitutions before parsing to test libgraal code path. This option is ignored in the
                                                context of libgraal. Default: - (disabled).
@@ -1281,7 +1282,8 @@
   -R:VectorUnroll=1                            Unroll vectorized loops.
   -R:±Vectorization                            Enable vectorization. Default: + (enabled).
   -R:±VectorizeAllocation                      Enable vectorized array initialization. Default: + (enabled).
-  -R:±VectorizeConditional                     Enable vectorization of conditional code. Default: - (disabled).
+  -R:±VectorizeConditional                     Enable vectorization of conditional code. Default: + (enabled).
+  -R:±VectorizeDeopts                          Enable vectorization of loops with conditional deopts before writes. Default: + (enabled).
   -R:±VectorizeFoldShaped                      Enable vectorization of loops implementing a higher-order 'fold' function. Default: + (enabled).
   -R:±VectorizeLoops                           Enable vectorization of loops. Default: + (enabled).
   -R:±VectorizeMapShaped                       Enable vectorization of loops implementing a higher-order 'map' function. Default: + (enabled).
@@ -1299,4 +1301,5 @@
   -R:±VerifyKillCFGUnusedNodes                 Verify that there are no new unused nodes when performing killCFG. Default: - (disabled).
   -R:±VerifyPhases                             Default: - (disabled).
   -R:±VerifyWriteBarrierElimination            Add code to verify that eliminated barriers weren't needed. Default: - (disabled).
+  -R:±WriteableCodeCache                       Allocate code cache with write access, allowing inlining of objects. Default: - (disabled).
   -R:±ZapStackOnMethodEntry                    Default: - (disabled).
