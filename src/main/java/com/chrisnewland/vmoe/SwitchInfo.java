@@ -286,7 +286,7 @@ public class SwitchInfo implements Comparable<SwitchInfo>
 			builder.append("<th>").append("Availability").append("</th>");
 		}
 
-		if (vmType != VMType.ZING || vmType != VMType.ZULU)
+		if (vmType != VMType.ZING && vmType != VMType.ZULU)
 		{
 			builder.append("<th>").append("Description").append("</th>");
 		}
@@ -344,7 +344,7 @@ public class SwitchInfo implements Comparable<SwitchInfo>
 			builder.append(getRow(availability));
 		}
 
-		if (vmType != VMType.ZING || vmType != VMType.ZULU)
+		if (vmType != VMType.ZING && vmType != VMType.ZULU)
 		{
 			String descriptionComment = "";
 
