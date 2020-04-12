@@ -1,4 +1,5 @@
 target
+html/*.html
 .idea/
 src/main/main.iml
 VMOptionsExplorer.iml
