@@ -55,6 +55,7 @@ public class VMData
 			builder.append("openj9_options");
 			break;
 		case ZING:
+		case ZULU:
 			builder.append(getSafeJDKName().toLowerCase()).append("_options");
 			break;
 		}

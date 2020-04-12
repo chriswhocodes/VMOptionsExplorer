@@ -228,6 +228,7 @@ public class VMOptionsExplorer
 		case HOTSPOT:
 			return new HotSpotSwitchParser();
 		case ZING:
+		case ZULU:
 			return new ZingSwitchParser();
 		default:
 			throw new RuntimeException("Unexpected VM Type: " + vmType);
@@ -248,6 +249,8 @@ public class VMOptionsExplorer
 			return "HotSpot";
 		case ZING:
 			return "Zing";
+		case ZULU:
+			return "Zulu";
 		default:
 			throw new RuntimeException("Unexpected VM Type: " + vmType);
 		}
@@ -368,6 +371,7 @@ public class VMOptionsExplorer
 			template = template.replace("$SORTCOLUMNS", "[ 1, 3, 4, 5, 6, 8 ]");
 			break;
 		case ZING:
+		case ZULU:
 			template = template.replace("$TOPHEADER", "<th></th><th>Type</th><th></th>");
 			template = template.replace("$ALLCOLUMNS", "[ 0,1,2 ]");
 			template = template.replace("$SORTCOLUMNS", "[ 1 ]");
@@ -399,6 +403,7 @@ public class VMOptionsExplorer
 		boolean processGraalVM = true;
 		boolean processOpenJ9 = true;
 		boolean processZing = true;
+		boolean processZulu = true;
 
 		// parse deprecation info in JDK release order
 
@@ -474,6 +479,12 @@ public class VMOptionsExplorer
 			explorer.addVM(new VMData("Zing JDK11", vmoeDir.resolve("zing11.out").toFile(), VMType.ZING));
 		}
 
+		if (processZulu) {
+			explorer.addVM(new VMData("Zulu JDK8", vmoeDir.resolve("zulu8.out").toFile(), VMType.ZULU));
+			explorer.addVM(new VMData("Zulu JDK11", vmoeDir.resolve("zulu11.out").toFile(), VMType.ZULU));
+			explorer.addVM(new VMData("Zulu JDK13", vmoeDir.resolve("zulu13.out").toFile(), VMType.ZULU));
+			explorer.addVM(new VMData("Zulu JDK14", vmoeDir.resolve("zulu14.out").toFile(), VMType.ZULU));
+		}
 		Path serialiseDir = baseDir.resolve("serialised");
 
 		explorer.process(serialiseDir);
