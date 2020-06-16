@@ -317,7 +317,7 @@ public class SwitchInfo implements Comparable<SwitchInfo>
 
 		if (vmType != VMType.OPENJ9)
 		{
-			builder.append(getRow(type));
+			builder.append(getRow(escapeHTMLEntities(type)));
 		}
 
 		if (vmType == VMType.HOTSPOT)
@@ -376,6 +376,11 @@ public class SwitchInfo implements Comparable<SwitchInfo>
 
 	public static String escapeHTMLEntities(String raw)
 	{
+		if (raw == null)
+		{
+			return "";
+		}
+		
 		return raw.toString()
 				  .replace("<br>", "SAFE_BR")
 				  .replace("<pre>", "SAFE_PRE_OPEN")
