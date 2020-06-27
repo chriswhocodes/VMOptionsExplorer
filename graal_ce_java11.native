@@ -335,7 +335,7 @@
                                                compilation.
   -H:NumberOfAnalysisThreads=-1                The number of threads to use for analysis during native image generation. The number must be smaller than the
                                                NumberOfThreads.
-  -H:NumberOfThreads=12                        The maximum number of threads to use concurrently during native image generation.
+  -H:NumberOfThreads=8                         The maximum number of threads to use concurrently during native image generation.
   -H:±OmitHotExceptionStacktrace               Default: - (disabled).
   -H:±OptAssumptions                           Default: + (enabled).
   -H:±OptConvertDeoptsToGuards                 Default: + (enabled).

@@ -281,7 +281,7 @@ public class SwitchInfo implements Comparable<SwitchInfo>
 			builder.append("<th>").append("Default").append("</th>");
 		}
 
-		if (vmType == VMType.HOTSPOT || vmType == VMType.GRAAL_NATIVE)
+		if (vmType == VMType.HOTSPOT || vmType == VMType.GRAAL_NATIVE_8 || vmType == VMType.GRAAL_NATIVE_11)
 		{
 			builder.append("<th>").append("Availability").append("</th>");
 		}
@@ -339,7 +339,7 @@ public class SwitchInfo implements Comparable<SwitchInfo>
 			}
 		}
 
-		if (vmType == VMType.HOTSPOT || vmType == VMType.GRAAL_NATIVE)
+		if (vmType == VMType.HOTSPOT || vmType == VMType.GRAAL_NATIVE_8 || vmType == VMType.GRAAL_NATIVE_11)
 		{
 			builder.append(getRow(availability));
 		}
@@ -380,7 +380,7 @@ public class SwitchInfo implements Comparable<SwitchInfo>
 		{
 			return "";
 		}
-		
+
 		return raw.toString()
 				  .replace("<br>", "SAFE_BR")
 				  .replace("<pre>", "SAFE_PRE_OPEN")

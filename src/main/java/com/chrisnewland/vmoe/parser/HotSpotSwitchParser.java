@@ -98,7 +98,7 @@ public class HotSpotSwitchParser extends AbstractSwitchParser
 				{
 					if (!availability.contains("//") && !availability.contains("*") && !availability.contains("#") && !availability.equals("constraint"))
 					{
-					//	System.out.println("Unhandled availability mode:" + availability);
+						//System.out.println("Unhandled availability mode:" + availability);
 					}
 					continue;
 				}
@@ -226,6 +226,7 @@ public class HotSpotSwitchParser extends AbstractSwitchParser
 
 				if (filename.contains("globals") && filename.endsWith(".hpp"))
 				{
+					//System.out.println("Found switch file " + file);
 					result.add(file);
 				}
 			}
