@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2018-2019 Chris Newland.
+ * Copyright (c) 2018-2020 Chris Newland.
  * Licensed under https://github.com/chriswhocodes/VMOptionsExplorer/blob/master/LICENSE
  */
 package com.chrisnewland.vmoe.parser.delta;
@@ -15,4 +15,6 @@ public interface IDeltaTable
 	int getAdditionCount();
 
 	int getRemovalCount();
+
+	String toJSON();
 }

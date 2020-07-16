@@ -25,4 +25,24 @@ public class Serialiser
 
 		Files.write(pathToSerialisationFile, builder.toString().getBytes(StandardCharsets.UTF_8));
 	}
+
+	public static void serialiseJSON(Path pathToSerialisationFile, Collection<SwitchInfo> switchInfoSet) throws IOException
+	{
+		StringBuilder builder = new StringBuilder();
+
+		builder.append("{ \"switches\" : [ ");
+
+		for (SwitchInfo switchInfo : switchInfoSet)
+		{
+			builder.append(switchInfo.serialiseJSON()).append(",\n");
+		}
+
+		builder.deleteCharAt(builder.length() - 2);
+
+		builder.append("] }");
+
+		System.out.println("Serialised to " + pathToSerialisationFile.toString());
+
+		Files.write(pathToSerialisationFile, builder.toString().getBytes(StandardCharsets.UTF_8));
+	}
 }

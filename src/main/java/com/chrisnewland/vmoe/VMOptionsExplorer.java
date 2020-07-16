@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2018-2019 Chris Newland.
+ * Copyright (c) 2018-2020 Chris Newland.
  * Licensed under https://github.com/chriswhocodes/VMOptionsExplorer/blob/master/LICENSE
  */
 package com.chrisnewland.vmoe;
@@ -161,6 +161,10 @@ public class VMOptionsExplorer
 		System.out.println("Removed " + deltaTable.getRemovalCount() + " Added " + deltaTable.getAdditionCount());
 
 		builder.append(deltaTable.toString());
+
+		Path serialisationPath = Paths.get(serialiseDir.getAbsolutePath(), later.getSafeJDKName() + "_diffs.json");
+
+		Files.write(serialisationPath, deltaTable.toJSON().getBytes());
 	}
 
 	private List<VMData> getVMsOfType(VMType vmType)
@@ -297,6 +301,8 @@ public class VMOptionsExplorer
 			Path serialisationPath = Paths.get(serialiseDir.getAbsolutePath(), jdkName);
 
 			Serialiser.serialise(serialisationPath, switchInfoMap.values());
+
+			Serialiser.serialiseJSON(Paths.get(serialisationPath.toString() + ".json"), switchInfoMap.values());
 		}
 
 		String template = new String(Files.readAllBytes(vmoeDir.resolve("templates/template.html")), StandardCharsets.UTF_8);

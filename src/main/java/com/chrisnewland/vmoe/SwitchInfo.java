@@ -1,8 +1,10 @@
 /*
- * Copyright (c) 2018-2019 Chris Newland.
+ * Copyright (c) 2018-2020 Chris Newland.
  * Licensed under https://github.com/chriswhocodes/VMOptionsExplorer/blob/master/LICENSE
  */
 package com.chrisnewland.vmoe;
+
+import org.json.JSONObject;
 
 import java.util.Objects;
 
@@ -54,6 +56,28 @@ public class SwitchInfo implements Comparable<SwitchInfo>
 		addToBuilder(builder, deprecation);
 
 		return builder.toString();
+	}
+
+	public String serialiseJSON()
+	{
+		JSONObject jsonObject = new JSONObject();
+
+		jsonObject.put("prefix", prefix);
+		jsonObject.put("name", name);
+		jsonObject.put("type", type);
+		jsonObject.put("os", os);
+		jsonObject.put("cpu", cpu);
+		jsonObject.put("component", component);
+		jsonObject.put("defaultValue", defaultValue);
+		jsonObject.put("availability", availability);
+		jsonObject.put("description", description);
+		jsonObject.put("comment", comment);
+		jsonObject.put("definedIn", definedIn);
+		jsonObject.put("since", since);
+		jsonObject.put("range", range);
+		jsonObject.put("deprecation", deprecation);
+
+		return jsonObject.toString();
 	}
 
 	private void addToBuilder(StringBuilder builder, String value)
