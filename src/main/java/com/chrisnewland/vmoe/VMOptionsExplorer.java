@@ -57,6 +57,8 @@ public class VMOptionsExplorer
 			prepareSerialisationDir(serialiseDir);
 		}
 
+		this.serialiseDir = serialiseDir.toFile();
+
 		for (VMData vmData : vmDataList)
 		{
 			parseJDK(vmData);
@@ -76,8 +78,6 @@ public class VMOptionsExplorer
 		{
 			throw new RuntimeException("Could not create serialisation dir: " + serialisePath);
 		}
-
-		this.serialiseDir = dir;
 	}
 
 	public void processVMDeltas(VMType vmType, String title, Path templatePath, Path outputFile) throws IOException
@@ -298,11 +298,9 @@ public class VMOptionsExplorer
 
 		if (serialiseDir != null)
 		{
-			Path serialisationPath = Paths.get(serialiseDir.getAbsolutePath(), jdkName);
+			Path serialisationPath = Paths.get(serialiseDir.getAbsolutePath(), vmData.getSafeJDKName() + ".json");
 
 			Serialiser.serialise(serialisationPath, switchInfoMap.values());
-
-			Serialiser.serialiseJSON(Paths.get(serialisationPath.toString() + ".json"), switchInfoMap.values());
 		}
 
 		String template = new String(Files.readAllBytes(vmoeDir.resolve("templates/template.html")), StandardCharsets.UTF_8);

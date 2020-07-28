@@ -29,36 +29,7 @@ public class SwitchInfo implements Comparable<SwitchInfo>
 	private String range;
 	private String deprecation;
 
-	private static final String SEP = "=-=-=";
-
-	private static final String LF = "\n";
-	private static final String ESCAPED_LF = "\\n";
-
-	private static final String EMPTY_STRING = "";
-
 	public String serialise()
-	{
-		StringBuilder builder = new StringBuilder();
-
-		addToBuilder(builder, prefix);
-		addToBuilder(builder, name);
-		addToBuilder(builder, type);
-		addToBuilder(builder, os);
-		addToBuilder(builder, cpu);
-		addToBuilder(builder, component);
-		addToBuilder(builder, defaultValue);
-		addToBuilder(builder, availability);
-		addToBuilder(builder, description);
-		addToBuilder(builder, comment);
-		addToBuilder(builder, definedIn);
-		addToBuilder(builder, since);
-		addToBuilder(builder, range);
-		addToBuilder(builder, deprecation);
-
-		return builder.toString();
-	}
-
-	public String serialiseJSON()
 	{
 		JSONObject jsonObject = new JSONObject();
 
@@ -80,46 +51,26 @@ public class SwitchInfo implements Comparable<SwitchInfo>
 		return jsonObject.toString();
 	}
 
-	private void addToBuilder(StringBuilder builder, String value)
+	public static SwitchInfo deserialise(JSONObject jsonObject)
 	{
-		if (value == null)
-		{
-			value = EMPTY_STRING;
-		}
+		String prefix = jsonObject.getString("prefix");
 
-		value = value.replace(LF, ESCAPED_LF);
-		builder.append(value).append(SEP);
-	}
-
-	private static String read(String input)
-	{
-		return input.replace(ESCAPED_LF, LF);
-	}
-
-	public static SwitchInfo deserialise(String line)
-	{
-		String[] parts = line.split(SEP, -1);
-
-		int pos = 0;
-
-		String prefix = read(parts[pos++]);
-
-		String name = read(parts[pos++]);
+		String name = jsonObject.getString("name");
 
 		SwitchInfo switchInfo = new SwitchInfo(prefix, name);
 
-		switchInfo.setType(read(parts[pos++]));
-		switchInfo.setOs(read(parts[pos++]));
-		switchInfo.setCpu(read(parts[pos++]));
-		switchInfo.setComponent(read(parts[pos++]));
-		switchInfo.setDefaultValue(read(parts[pos++]));
-		switchInfo.setAvailability(read(parts[pos++]));
-		switchInfo.setDescription(read(parts[pos++]));
-		switchInfo.setComment(read(parts[pos++]));
-		switchInfo.setDefinedIn(read(parts[pos++]));
-		switchInfo.setSince(read(parts[pos++]));
-		switchInfo.setRange(read(parts[pos++]));
-		switchInfo.setDeprecation(read(parts[pos++]));
+		switchInfo.setType(jsonObject.optString("type", null));
+		switchInfo.setOs(jsonObject.optString("os", null));
+		switchInfo.setCpu(jsonObject.optString("cpu", null));
+		switchInfo.setComponent(jsonObject.optString("component", null));
+		switchInfo.setDefaultValue(jsonObject.optString("defaultValue", null));
+		switchInfo.setAvailability(jsonObject.optString("availability", null));
+		switchInfo.setDescription(jsonObject.optString("description", null));
+		switchInfo.setComment(jsonObject.optString("comment", null));
+		switchInfo.setDefinedIn(jsonObject.optString("definedIn", null));
+		switchInfo.setSince(jsonObject.optString("since", null));
+		switchInfo.setRange(jsonObject.optString("range", null));
+		switchInfo.setDeprecation(jsonObject.optString("deprecation", null));
 
 		return switchInfo;
 	}

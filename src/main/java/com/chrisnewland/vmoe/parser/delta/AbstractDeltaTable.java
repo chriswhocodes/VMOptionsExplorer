@@ -54,8 +54,8 @@ public abstract class AbstractDeltaTable implements IDeltaTable
 	{
 		JSONObject jsonObject = new JSONObject();
 
-		jsonObject.put("earlierVM", earlierVM);
-		jsonObject.put("laterVM", laterVM);
+		jsonObject.put("earlierVM", earlierVM.getSafeJDKName());
+		jsonObject.put("laterVM", laterVM.getSafeJDKName());
 		jsonObject.put("added", added);
 		jsonObject.put("removed", removed);
 

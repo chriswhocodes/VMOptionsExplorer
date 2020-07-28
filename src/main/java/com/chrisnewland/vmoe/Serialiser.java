@@ -16,25 +16,11 @@ public class Serialiser
 	{
 		StringBuilder builder = new StringBuilder();
 
-		for (SwitchInfo switchInfo : switchInfoSet)
-		{
-			builder.append(switchInfo.serialise()).append("\n");
-		}
-
-		System.out.println("Serialised to " + pathToSerialisationFile.toString());
-
-		Files.write(pathToSerialisationFile, builder.toString().getBytes(StandardCharsets.UTF_8));
-	}
-
-	public static void serialiseJSON(Path pathToSerialisationFile, Collection<SwitchInfo> switchInfoSet) throws IOException
-	{
-		StringBuilder builder = new StringBuilder();
-
 		builder.append("{ \"switches\" : [ ");
 
 		for (SwitchInfo switchInfo : switchInfoSet)
 		{
-			builder.append(switchInfo.serialiseJSON()).append(",\n");
+			builder.append(switchInfo.serialise()).append(",\n");
 		}
 
 		builder.deleteCharAt(builder.length() - 2);
