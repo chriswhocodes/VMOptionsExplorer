@@ -430,7 +430,7 @@ public class VMOptionsExplorer
 			DeprecatedParser.parseFile(baseDir.resolve("jdk16"));
 		}
 
-		String graalVersion = "20.1.0";
+		String graalVersion = "20.2.0";
 
 		VMOptionsExplorer explorer = new VMOptionsExplorer(vmoeDir);
 
@@ -515,19 +515,19 @@ public class VMOptionsExplorer
 
 		if (processGraalVM)
 		{
-			explorer.processVMDeltas(VMType.GRAAL_VM_8, "Additonal options in GraalVM Enterprise Edition",
+			explorer.processVMDeltas(VMType.GRAAL_VM_8, "Additional options in GraalVM Enterprise Edition",
 					vmoeDir.resolve("templates/template_graal_delta.html"),
 					vmoeDir.resolve("html/graalvm_ee_only_jdk8_options.html"));
 
-			explorer.processVMDeltas(VMType.GRAAL_NATIVE_8, "Additonal options in Graal Native Enterprise Edition",
+			explorer.processVMDeltas(VMType.GRAAL_NATIVE_8, "Additional options in Graal Native Enterprise Edition",
 					vmoeDir.resolve("templates/template_graal_delta.html"),
 					vmoeDir.resolve("html/graalvm_native_image_ee_only_jdk8_options.html"));
 
-			explorer.processVMDeltas(VMType.GRAAL_VM_11, "Additonal options in GraalVM Enterprise Edition",
+			explorer.processVMDeltas(VMType.GRAAL_VM_11, "Additional options in GraalVM Enterprise Edition",
 					vmoeDir.resolve("templates/template_graal_delta.html"),
 					vmoeDir.resolve("html/graalvm_ee_only_jdk11_options.html"));
 
-			explorer.processVMDeltas(VMType.GRAAL_NATIVE_11, "Additonal options in Graal Native Enterprise Edition",
+			explorer.processVMDeltas(VMType.GRAAL_NATIVE_11, "Additional options in Graal Native Enterprise Edition",
 					vmoeDir.resolve("templates/template_graal_delta.html"),
 					vmoeDir.resolve("html/graalvm_native_image_ee_only_jdk11_options.html"));
 		}

@@ -31,7 +31,7 @@ graal.AggregatedMetricsFile = null                                        [Strin
           File to which aggregated metrics are dumped at shutdown. A CSV format
           is used if the file ends with .csv otherwise a more human readable
           format is used. If not specified, metrics are dumped to the console.
-graal.AliasArrayTypeFlows = false                                        [Boolean]
+graal.AliasArrayTypeFlows = true                                         [Boolean]
           Model all array type flows using a unique elements type flow
           abstraction.
 graal.AllocationProfilingThreshold = 1048576                             [Integer]
@@ -52,6 +52,8 @@ graal.AnalysisContextSensitivity = "insens"                               [Strin
 graal.AnalysisSizeCutoff = 8                                             [Integer]
           The maximum size of type and method profiles returned by the static
           analysis. -1 indicates no limitation.
+graal.AnalysisStatisticsFile = null                                       [String]
+          Analysis results statistics file.
 graal.BenchmarkCountersDumpDynamic = true                                [Boolean]
           Dump dynamic counters
 graal.BenchmarkCountersDumpStatic = false                                [Boolean]
@@ -159,6 +161,11 @@ graal.CrashAt = null                                                      [Strin
           the MethodFilter option for the pattern syntax. A ':Bailout' suffix
           will raise a bailout exception and a ':PermanentBailout' suffix will
           raise a permanent bailout exception.
+graal.CrashAtIsFatal = false                                             [Boolean]
+          Converts an exception triggered by the CrashAt option into a fatal
+          error if a non-null pointer was passed in the _fatal option to
+          JNI_CreateJavaVM. This option exists for the purpose of testing fatal
+          error handling in libgraal.
 graal.DebugStubsAndSnippets = false                                      [Boolean]
           Enable debug output for stub code generation and snippet preparation.
 graal.DeoptALot = false                                                  [Boolean]
@@ -262,6 +269,8 @@ graal.EscapeAnalysisLoopCutoff = 20                                      [Intege
 graal.EscapeAnalyzeOnly = null                                            [String]
 graal.ExactFullUnrollMaxNodes = 800                                      [Integer]
 graal.ExactPartialUnrollMaxNodes = 200                                   [Integer]
+graal.ExhaustiveHeapScan = false                                         [Boolean]
+          Scan all objects reachable from roots for analysis. By default false.
 graal.ExitVMOnException = false                                          [Boolean]
           Alias for CompilationFailureAction=ExitVM.
 graal.ExtendedAsserts = false                                            [Boolean]
@@ -275,6 +284,7 @@ graal.ForceDumpGraphsBeforeCompilation = false                           [Boolea
           Force-dump graphs before compilation
 graal.FullUnroll = true                                                  [Boolean]
 graal.FullUnrollConstantCompareBoost = 15                                [Integer]
+graal.FullUnrollMaxApplication = 60                                      [Integer]
 graal.FullUnrollMaxIterations = 600                                      [Integer]
 graal.FullUnrollMaxNodes = 400                                           [Integer]
 graal.GCDebugStartCycle = -1                                             [Integer]
@@ -296,7 +306,7 @@ graal.GraphCompressionThreshold = 70                                     [Intege
           below this value
 graal.GuardPriorities = true                                             [Boolean]
 graal.HeapVerificationFailureIsFatal = true                              [Boolean]
-          Verify the heap before and after each collection.
+          Failed verification of the heap (if enabled) causes termination.
 graal.HotSpotDeoptExplicitExceptions = false                             [Boolean]
           Testing only option that forces deopts for exception throws
 graal.HotSpotPostOnExceptions = false                                    [Boolean]
@@ -397,8 +407,11 @@ graal.Log = null                                                          [Strin
 graal.LogFile = null                                                      [String]
           File to which logging is sent. A %p in the name will be replaced with a
           string identifying the process, usually the process id and %t will be
-          replaced by System.currentTimeMillis(). Using %o as filename sends
-          logging to System.out whereas %e sends logging to System.err.
+          replaced by System.currentTimeMillis(). If the current runtime is in an
+          isolate, then %i will be replaced by '<isolate id>' otherwise %i is
+          removed. An %I is the same as %i except that the replacement is
+          '<isolate id>@<isolate address>'. Using %o as filename sends logging to
+          System.out whereas %e sends logging to System.err.
 graal.LogVerbose = false                                                 [Boolean]
           Enable more verbose log output when available
 graal.LoopHeaderAlignment = 16                                           [Integer]
@@ -460,7 +473,7 @@ graal.MaximumLoopExplosionCount = 10000                                  [Intege
 graal.MaximumRecursiveInlining = 5                                       [Integer]
           Maximum level of recursive inlining.
 graal.MaximumYoungGenerationSizePercent = 10                             [Integer]
-          The maximum size of the young generation as a percent of the maximum
+          The maximum size of the young generation as a percentage of the maximum
           heap size
 graal.MegamorphicInliningMinMethodProbability = 0.33                      [Double]
           Minimum probability for methods to be inlined for megamorphic type
@@ -562,17 +575,6 @@ graal.MinimalBulkZeroingSize = 2048                                      [Intege
           If applicable, use bulk zeroing instructions when the zeroing size in
           bytes exceeds this threshold.
 graal.MinimumPeelFrequency = 0.35                                          [Float]
-graal.MitigateSpeculativeExecutionAttacks = None                          [String]
-          Select a strategy to mitigate speculative execution attacks (e.g.,
-          SPECTRE).
-          The accepted values are:
-                            None - No mitigations are used in JIT compiled code.
-                      AllTargets - All branches are protected against speculative attacks.
-                                   This has a significant performance impact.
-                    GuardTargets - Only branches that preserve Java memory safety are protected.
-                                   This has less performance impact than AllTargets.
-            NonDeoptGuardTargets - GuardTargets except that branches which deoptimize are not
-                                   protected since they can not be executed repeatedly.
 graal.NDCV = 0                                                           [Integer]
           Run level for NoDeadCodeVerifyHandler (0 = off, 1 = info, 2 = verbose,
           3 = fatal)
@@ -581,6 +583,10 @@ graal.NodeCounters = false                                               [Boolea
 graal.NonFatalIdenticalCompilationSnapshots = 20                         [Integer]
           Number of contiguous identical compiler thread stack traces allowed
           before the VM exits on the basis of a stuck compilation.
+graal.ObjdumpExecutables = null                                           [String]
+          Comma separated list of candidate GNU objdump executables. If not
+          specified, disassembling via GNU objdump is disabled. Otherwise, the
+          first existing executable in the list is used.
 graal.OmitHotExceptionStacktrace = false                                 [Boolean]
 graal.OptAssumptions = true                                              [Boolean]
 graal.OptConvertDeoptsToGuards = true                                    [Boolean]
@@ -596,14 +602,14 @@ graal.PartialEscapeAnalysis = true                                       [Boolea
 graal.PartialUnroll = true                                               [Boolean]
 graal.PeelALot = false                                                   [Boolean]
 graal.PercentTimeInIncrementalCollection = 50                            [Integer]
-          Percentage of time that should be spent in young generation
-          collections.
+          Percentage of total collection time that should be spent on young
+          generation collections.
 graal.PrintAnalysisCallTree = false                                      [Boolean]
           Print analysis call tree, a breadth-first tree reduction of the call
           graph.
 graal.PrintAnalysisStatistics = false                                    [Boolean]
           Print analysis results statistics.
-graal.PrintBackendCFG = true                                             [Boolean]
+graal.PrintBackendCFG = false                                            [Boolean]
           Enable dumping LIR, register allocation and code generation info to the
           C1Visualizer.
 graal.PrintBlockMapping = false                                          [Boolean]
@@ -626,10 +632,13 @@ graal.PrintDetailedAllocationProfiling = true                            [Boolea
 graal.PrintFlags = null                                                   [String]
           Show available options based on comma-separated option-types (allowed
           categories: User, Expert, Debug).
+graal.PrintFlagsWithExtraHelp = null                                      [String]
+          Print extra help, if available, based on comma-separated option names.
+          Pass * to show all options that contain extra help.
 graal.PrintGC = false                                                    [Boolean]
           Print summary GC information after each collection
 graal.PrintGCSummary = false                                             [Boolean]
-          Print summary GC information after main completion
+          Print summary GC information after application main method returns.
 graal.PrintGCTimeStamps = false                                          [Boolean]
           Print a time stamp at each collection, if +PrintGC or +VerboseGC.
 graal.PrintGCTimes = false                                               [Boolean]
@@ -706,11 +715,11 @@ graal.ReduceDCE = true                                                   [Boolea
 graal.RegisterPressure = null                                             [String]
           Comma separated list of registers that register allocation is limited
           to.
-graal.RelaxTypeFlowStateConstraints = false                              [Boolean]
+graal.RelaxTypeFlowStateConstraints = true                               [Boolean]
           Allow a type flow state to contain types not compatible with its
           declared type.
 graal.RemoveNeverExecutedCode = true                                     [Boolean]
-graal.RemoveSaturatedTypeFlows = false                                   [Boolean]
+graal.RemoveSaturatedTypeFlows = true                                    [Boolean]
           Enable the type flow saturation analysis performance optimization.
 graal.ReplaceInputsWithConstantsBasedOnStamps = true                     [Boolean]
 graal.SafepointPromptnessFailureNanos = 0                                   [Long]
@@ -743,6 +752,24 @@ graal.SmallCompiledLowLevelGraphSize = 330                               [Intege
           threshold, it is not inlined.
 graal.SnippetCounters = false                                            [Boolean]
           Enable counters for various paths in snippets.
+graal.SpectrePHTBarriers = None                                           [String]
+          Select a strategy to mitigate speculative bounds check bypass (aka
+          Spectre-PHT or Spectre V1).
+          This is an experimental option - execution of untrusted code is not supported by GraalVM CE.
+          The accepted values are:
+                            None - No mitigations are used in JIT compiled code.
+                      AllTargets - Speculative execution on all conditional branch targets is
+                                   stopped using speculative execution barrier instructions.
+                    GuardTargets - Branch targets relevant to Java memory safety are instrumented
+                                   with barrier instructions. This option has less performance impact
+                                   than AllTargets. Note that memory accesses through UNSAFE are not
+                                   covered by this mitigation. This includes libraries built upon UNSAFE,
+                                   such as java.nio.ByteBuffer.
+            NonDeoptGuardTargets - Same as GuardTargets, except that branches which deoptimize are not
+                                   protected since they can not be executed repeatedly and are thus less
+                                   likely to be successfully exploited in an attack.
+graal.SpectrePHTIndexMasking = false                                     [Boolean]
+          Mask indices to scope access to allocation size after bounds check.
 graal.StackSize = 0                                                         [Long]
           The size of each thread stack at run-time, in bytes.
 graal.StressExplicitExceptionCode = false                                [Boolean]
@@ -751,6 +778,9 @@ graal.StressInvokeWithExceptionNode = false                              [Boolea
           Stress the code emitting invokes with explicit exception edges.
 graal.StressTestEarlyReads = false                                       [Boolean]
           Stress the code by emitting reads at earliest instead of latest point.
+graal.StringIndexOfLimit = 4096                                          [Integer]
+          String.indexOf invocations will be evaluated at compile time if the
+          receiver is a constant and its length is lower than this value.
 graal.SupportJsrBytecodes = true                                         [Boolean]
 graal.SupportOSRWithLocks = true                                         [Boolean]
           Support OSR compilations with locks. If DeoptAfterOSR is true we can
@@ -916,30 +946,12 @@ graal.TruffleFunctionInlining = true                                     [Boolea
           Enable automatic inlining of call targets
 graal.TruffleInlineAcrossTruffleBoundary = false                         [Boolean]
           Enable inlining across Truffle boundary
-graal.TruffleInliningCutoffCountPenalty = 0.9                             [Double]
-          Controls how impactful many cutoff nodes is on exploration decision in
-          language-agnostic inlining.
-graal.TruffleInliningExpandAllProximityBonus = 10                        [Integer]
-          Controls at what point few cutoff nodes are impactful on exploration
-          decisions in language-agnostic inlining.
-graal.TruffleInliningExpandAllProximityFactor = 0.5                       [Double]
-          Controls how impactful few cutoff nodes are on exploration decisions in
-          language-agnostic inlining.
-graal.TruffleInliningExpansionBudget = 60000                             [Integer]
+graal.TruffleInliningExpansionBudget = 30000                             [Integer]
           The base expansion budget for language-agnostic inlining.
-graal.TruffleInliningExpansionCounterPressure = 2000                     [Integer]
-          Controls how steep the exploration limit curve grows in
-          language-agnostic inlining.
-graal.TruffleInliningInliningBudget = 60000                              [Integer]
+graal.TruffleInliningInliningBudget = 30000                              [Integer]
           The base inlining budget for language-agnostic inlining
-graal.TruffleInliningInliningCounterPressure = 2000                      [Integer]
-          Controls how steep the inlining limit curve grows in language-agnostic
-          inlining
 graal.TruffleInliningMaxCallerSize = 2250                                [Integer]
           Stop inlining if caller's cumulative tree size would exceed this limit
-graal.TruffleInliningNodeCountPenalty = 0.01                              [Double]
-          Controls how impactful the size of the subtree is on exploration
-          decision in language-agnostic inlining.
 graal.TruffleInliningPolicy = ""                                          [String]
           Explicitly pick a inlining policy by name. Highest priority chosen by
           default.
@@ -966,7 +978,7 @@ graal.TruffleInvalidationReprofileCount = 3                              [Intege
           Delay compilation after an invalidation to allow for reprofiling
 graal.TruffleIterativePartialEscape = false                              [Boolean]
           Run the partial escape analysis iteratively in Truffle compilation.
-graal.TruffleLanguageAgnosticInlining = false                            [Boolean]
+graal.TruffleLanguageAgnosticInlining = true                             [Boolean]
           Use language-agnostic inlining (overrides the TruffleFunctionInlining
           setting, option is experimental).
 graal.TruffleMaximumGraalNodeCount = 400000                              [Integer]
@@ -1047,9 +1059,6 @@ graal.UseExceptionProbability = true                                     [Boolea
 graal.UseGraalStubs = true                                               [Boolean]
           Use Graal-generated stubs for complicated LIR operations instead of
           embedding all the emitted code.
-graal.UseIndexMasking = false                                            [Boolean]
-          Use index masking after bounds check to mitigate speculative execution
-          attacks.
 graal.UseLoopLimitChecks = true                                          [Boolean]
 graal.UseSnippetGraphCache = true                                        [Boolean]
           Use a cache for snippet graphs.
@@ -1059,8 +1068,8 @@ graal.UseTrappingNullChecks = true                                       [Boolea
           Use traps for null checks instead of explicit null-checks
 graal.UseTypeCheckHints = true                                           [Boolean]
 graal.UserRequestedGCThreshold = 16777216                                   [Long]
-          Defines the upper bound for the number of remaining bytes in the young
-          generation that cause a collection when `System.gc` is called.
+          With the skeptical policy for user-requested collections, the threshold
+          for the young generation size to cause a collection.
 graal.VerboseGC = false                                                  [Boolean]
           Print more information about the heap before and after each collection
 graal.Verify = null                                                       [String]

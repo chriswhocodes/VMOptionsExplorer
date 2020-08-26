@@ -50,6 +50,7 @@ public class VMData
 		case GRAAL_NATIVE_8:
 		case GRAAL_NATIVE_11:
 			builder.append(getSafeJDKName().toLowerCase()).append("_options");
+			break;
 		case OPENJ9:
 			builder.append("openj9_options");
 			break;

@@ -191,3 +191,10 @@ a, a:visited {
     font-size: 14px;
     font-weight: bold;
 }
+
+.foojay {
+	font-size:14px;
+	font-weight:normal;
+	text-align:left;
+	margin-top:8px;
+}
