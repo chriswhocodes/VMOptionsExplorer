@@ -4,6 +4,8 @@
  */
 package com.chrisnewland.vmoe.parser.intrinsic;
 
+import org.json.JSONObject;
+
 public class Intrinsic
 {
 	private String id;
@@ -62,6 +64,19 @@ public class Intrinsic
 	{
 		return "Intrinsic [id=" + id + ", klass=" + klass + ", name=" + name + ", signature=" + signature + ", flags=" + flags
 				+ "]";
+	}
+
+	public String serialise()
+	{
+		JSONObject jsonObject = new JSONObject();
+
+		jsonObject.put("id", id);
+		jsonObject.put("class", klass);
+		jsonObject.put("name", name);
+		jsonObject.put("signature", signature);
+		jsonObject.put("flags", flags);
+
+		return jsonObject.toString();
 	}
 
 	public static String getHeaderRow()

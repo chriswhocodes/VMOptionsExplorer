@@ -300,7 +300,7 @@ public class VMOptionsExplorer
 		{
 			Path serialisationPath = Paths.get(serialiseDir.getAbsolutePath(), vmData.getSafeJDKName() + ".json");
 
-			Serialiser.serialise(serialisationPath, switchInfoMap.values());
+			Serialiser.serialiseSwitchInfo(serialisationPath, switchInfoMap.values());
 		}
 
 		String template = new String(Files.readAllBytes(vmoeDir.resolve("templates/template.html")), StandardCharsets.UTF_8);
@@ -443,8 +443,8 @@ public class VMOptionsExplorer
 			String post13Usage = "../java.base/share/classes/sun/launcher/resources/launcher.properties";
 
 			explorer.addVM(new VMData("JDK6", baseDir.resolve("jdk6/hotspot").toFile(), VMType.HOTSPOT).addUsageFile(pre10Usage));
-			explorer.addVM(new VMData("JDK7", baseDir.resolve("jdk7u/hotspot").toFile(), VMType.HOTSPOT).addUsageFile(pre10Usage));
-			explorer.addVM(new VMData("JDK8", baseDir.resolve("jdk8u/hotspot").toFile(), VMType.HOTSPOT).addUsageFile(pre10Usage));
+			explorer.addVM(new VMData("JDK7", baseDir.resolve("jdk7/hotspot").toFile(), VMType.HOTSPOT).addUsageFile(pre10Usage));
+			explorer.addVM(new VMData("JDK8", baseDir.resolve("jdk8/hotspot").toFile(), VMType.HOTSPOT).addUsageFile(pre10Usage));
 			explorer.addVM(new VMData("JDK9", baseDir.resolve("jdk9/hotspot").toFile(), VMType.HOTSPOT).addUsageFile(pre10Usage));
 			explorer.addVM(
 					new VMData("JDK10", baseDir.resolve("jdk10/src/hotspot").toFile(), VMType.HOTSPOT).addUsageFile(post10Usage));
@@ -534,40 +534,29 @@ public class VMOptionsExplorer
 
 		if (processHotSpotIntrinsics)
 		{
-			IntrinsicParser intrinsicParser = new IntrinsicParser(graalVersion);
+			IntrinsicParser intrinsicParser = new IntrinsicParser(serialiseDir, graalVersion);
 
-			intrinsicParser.parseFile(baseDir.resolve("jdk6/hotspot/src/share/vm/classfile/vmSymbols.hpp"));
-			intrinsicParser.createHTMLForVM("JDK6");
+			intrinsicParser.processIntrinsics(baseDir.resolve("jdk6/hotspot/src/share/vm/classfile/vmSymbols.hpp"), "JDK6");
 
-			intrinsicParser.parseFile(baseDir.resolve("jdk7u/hotspot/src/share/vm/classfile/vmSymbols.hpp"));
-			intrinsicParser.createHTMLForVM("JDK7");
+			intrinsicParser.processIntrinsics(baseDir.resolve("jdk7/hotspot/src/share/vm/classfile/vmSymbols.hpp"), "JDK7");
 
-			intrinsicParser.parseFile(baseDir.resolve("jdk8u/hotspot/src/share/vm/classfile/vmSymbols.hpp"));
-			intrinsicParser.createHTMLForVM("JDK8");
+			intrinsicParser.processIntrinsics(baseDir.resolve("jdk8/hotspot/src/share/vm/classfile/vmSymbols.hpp"), "JDK8");
 
-			intrinsicParser.parseFile(baseDir.resolve("jdk9/hotspot/src/share/vm/classfile/vmSymbols.hpp"));
-			intrinsicParser.createHTMLForVM("JDK9");
+			intrinsicParser.processIntrinsics(baseDir.resolve("jdk9/hotspot/src/share/vm/classfile/vmSymbols.hpp"), "JDK9");
 
-			intrinsicParser.parseFile(baseDir.resolve("jdk10/src/hotspot/share/classfile/vmSymbols.hpp"));
-			intrinsicParser.createHTMLForVM("JDK10");
+			intrinsicParser.processIntrinsics(baseDir.resolve("jdk10/src/hotspot/share/classfile/vmSymbols.hpp"), "JDK10");
 
-			intrinsicParser.parseFile(baseDir.resolve("jdk11/src/hotspot/share/classfile/vmSymbols.hpp"));
-			intrinsicParser.createHTMLForVM("JDK11");
+			intrinsicParser.processIntrinsics(baseDir.resolve("jdk11/src/hotspot/share/classfile/vmSymbols.hpp"), "JDK11");
 
-			intrinsicParser.parseFile(baseDir.resolve("jdk12/src/hotspot/share/classfile/vmSymbols.hpp"));
-			intrinsicParser.createHTMLForVM("JDK12");
+			intrinsicParser.processIntrinsics(baseDir.resolve("jdk12/src/hotspot/share/classfile/vmSymbols.hpp"), "JDK12");
 
-			intrinsicParser.parseFile(baseDir.resolve("jdk13/src/hotspot/share/classfile/vmSymbols.hpp"));
-			intrinsicParser.createHTMLForVM("JDK13");
+			intrinsicParser.processIntrinsics(baseDir.resolve("jdk13/src/hotspot/share/classfile/vmSymbols.hpp"), "JDK13");
 
-			intrinsicParser.parseFile(baseDir.resolve("jdk14/src/hotspot/share/classfile/vmSymbols.hpp"));
-			intrinsicParser.createHTMLForVM("JDK14");
+			intrinsicParser.processIntrinsics(baseDir.resolve("jdk14/src/hotspot/share/classfile/vmSymbols.hpp"), "JDK14");
 
-			intrinsicParser.parseFile(baseDir.resolve("jdk15/src/hotspot/share/classfile/vmSymbols.hpp"));
-			intrinsicParser.createHTMLForVM("JDK15");
+			intrinsicParser.processIntrinsics(baseDir.resolve("jdk15/src/hotspot/share/classfile/vmSymbols.hpp"), "JDK15");
 
-			intrinsicParser.parseFile(baseDir.resolve("jdk16/src/hotspot/share/classfile/vmSymbols.hpp"));
-			intrinsicParser.createHTMLForVM("JDK16");
+			intrinsicParser.processIntrinsics(baseDir.resolve("jdk16/src/hotspot/share/classfile/vmSymbols.hpp"), "JDK16");
 		}
 	}
 }

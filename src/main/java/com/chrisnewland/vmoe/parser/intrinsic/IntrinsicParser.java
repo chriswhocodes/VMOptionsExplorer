@@ -16,6 +16,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import com.chrisnewland.vmoe.Serialiser;
 import com.chrisnewland.vmoe.parser.ParseUtil;
 
 public class IntrinsicParser
@@ -39,8 +40,12 @@ public class IntrinsicParser
 
 	private String graalVersion;
 
-	public IntrinsicParser(String graalVersion)
+	private Path serialisationPath;
+
+	public IntrinsicParser(Path serialisationPath, String graalVersion)
 	{
+		this.serialisationPath = serialisationPath;
+
 		this.graalVersion = graalVersion;
 	}
 
@@ -147,10 +152,9 @@ public class IntrinsicParser
 		{
 			Intrinsic substituted = substituteMappings(intrinsic);
 
-			// System.out.println(intrinsic);
-			// System.out.println(substituted);
-
-			// System.out.println();
+//			System.out.println(intrinsic);
+//			System.out.println(substituted);
+//			System.out.println();
 
 			result.add(substituted);
 		}
@@ -174,11 +178,11 @@ public class IntrinsicParser
 		mapAlias = new HashMap<String, String>();
 	}
 
-	public void parseFile(Path path) throws IOException
+	public void processIntrinsics(Path pathToVmSymbols, String jdkName) throws IOException
 	{
 		reset();
 
-		List<String> lines = splitMultipleTagsPerLine(Files.readAllLines(path));
+		List<String> lines = splitMultipleTagsPerLine(Files.readAllLines(pathToVmSymbols));
 
 		for (String line : lines)
 		{
@@ -216,6 +220,13 @@ public class IntrinsicParser
 					break;
 				}
 			}
+		}
+
+		createHTMLForVM(jdkName);
+
+		if (serialisationPath != null)
+		{
+			Serialiser.serialiseIntrinsics(serialisationPath.resolve(Paths.get(jdkName + "_instrinsics.json")), getIntrinsics());
 		}
 	}
 
@@ -378,7 +389,7 @@ public class IntrinsicParser
 		return new Intrinsic(id, actualKlass, actualName, actualSignature, flags);
 	}
 
-	public void createHTMLForVM(String jdkName) throws IOException
+	private void createHTMLForVM(String jdkName) throws IOException
 	{
 		String template = new String(Files.readAllBytes(Paths.get("templates/template_intrinsic.html")), StandardCharsets.UTF_8);
 		String headerHTML = new String(Files.readAllBytes(Paths.get("templates/header.html")), StandardCharsets.UTF_8);
@@ -406,7 +417,7 @@ public class IntrinsicParser
 		template = template.replace("$HEADER_HTML", headerHTML);
 
 		template = template.replace("$H1_TITLE", "$VMNAME Intrinsics for $JDK");
-                template = template.replace("$GRAAL_VERSION", graalVersion);
+		template = template.replace("$GRAAL_VERSION", graalVersion);
 		template = template.replace("$THEAD", Intrinsic.getHeaderRow());
 		template = template.replace("$VMNAME", "HotSpot");
 		template = template.replace("$JDK", jdkName);
