@@ -556,7 +556,7 @@ public class VMOptionsExplorer
 
 			intrinsicParser.processIntrinsics(baseDir.resolve("jdk15/src/hotspot/share/classfile/vmSymbols.hpp"), "JDK15");
 
-			intrinsicParser.processIntrinsics(baseDir.resolve("jdk16/src/hotspot/share/classfile/vmSymbols.hpp"), "JDK16");
+			intrinsicParser.processIntrinsics(baseDir.resolve("jdk16/src/hotspot/share/classfile/vmIntrinsics.hpp"), "JDK16");
 		}
 	}
 }
