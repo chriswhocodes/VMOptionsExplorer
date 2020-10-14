@@ -234,6 +234,8 @@ public class VMOptionsExplorer
 		case OPENJ9:
 			return new OpenJ9SwitchParser();
 		case HOTSPOT:
+		case SAPMACHINE:
+		case CORRETTO:
 			return new HotSpotSwitchParser();
 		case ZING:
 		case ZULU:
@@ -257,6 +259,10 @@ public class VMOptionsExplorer
 			return "OpenJ9";
 		case HOTSPOT:
 			return "HotSpot";
+		case SAPMACHINE:
+			return "SapMachine";
+		case CORRETTO:
+			return "Corretto";
 		case ZING:
 			return "Zing";
 		case ZULU:
@@ -377,6 +383,8 @@ public class VMOptionsExplorer
 			template = template.replace("$SORTCOLUMNS", "[ ]");
 			break;
 		case HOTSPOT:
+		case SAPMACHINE:
+		case CORRETTO:
 			template = template.replace("$TOPHEADER",
 					"<th></th><th>Since</th><th>Deprecated</th><th>Type</th><th>OS</th><th>CPU</th><th>Component</th><th></th><th>Availability</th><th></th><th></th>");
 			template = template.replace("$ALLCOLUMNS", "[ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 ]");
@@ -416,6 +424,8 @@ public class VMOptionsExplorer
 		boolean processOpenJ9 = true;
 		boolean processZing = true;
 		boolean processZulu = true;
+		boolean processSapMachine = true;
+		boolean processCorretto = true;
 
 		// parse deprecation info in JDK release order
 
@@ -436,12 +446,12 @@ public class VMOptionsExplorer
 
 		explorer.setGraalVersion(graalVersion);
 
+		String pre10Usage = "src/share/vm/Xusage.txt";
+		String post10Usage = "share/Xusage.txt";
+		String post13Usage = "../java.base/share/classes/sun/launcher/resources/launcher.properties";
+
 		if (processHotSpot)
 		{
-			String pre10Usage = "src/share/vm/Xusage.txt";
-			String post10Usage = "share/Xusage.txt";
-			String post13Usage = "../java.base/share/classes/sun/launcher/resources/launcher.properties";
-
 			explorer.addVM(new VMData("JDK6", baseDir.resolve("jdk6/hotspot").toFile(), VMType.HOTSPOT).addUsageFile(pre10Usage));
 			explorer.addVM(new VMData("JDK7", baseDir.resolve("jdk7/hotspot").toFile(), VMType.HOTSPOT).addUsageFile(pre10Usage));
 			explorer.addVM(new VMData("JDK8", baseDir.resolve("jdk8/hotspot").toFile(), VMType.HOTSPOT).addUsageFile(pre10Usage));
@@ -502,6 +512,23 @@ public class VMOptionsExplorer
 			explorer.addVM(new VMData("Zulu JDK13", vmoeDir.resolve("zulu13.out").toFile(), VMType.ZULU));
 			explorer.addVM(new VMData("Zulu JDK14", vmoeDir.resolve("zulu14.out").toFile(), VMType.ZULU));
 		}
+
+		if (processSapMachine)
+		{
+			explorer.addVM(
+					new VMData("SapMachine", baseDir.resolve("SapMachine/src/hotspot").toFile(), VMType.SAPMACHINE).addUsageFile(
+							post13Usage));
+		}
+
+		if (processCorretto)
+		{
+			explorer.addVM(new VMData("Corretto JDK8", baseDir.resolve("corretto-8/src/hotspot").toFile(), VMType.CORRETTO).addUsageFile(
+					pre10Usage));
+
+			explorer.addVM(new VMData("Corretto JDK11", baseDir.resolve("corretto-11/src/src/hotspot").toFile(), VMType.CORRETTO).addUsageFile(
+					post10Usage));
+		}
+
 		Path serialiseDir = baseDir.resolve("serialised");
 
 		explorer.process(serialiseDir);

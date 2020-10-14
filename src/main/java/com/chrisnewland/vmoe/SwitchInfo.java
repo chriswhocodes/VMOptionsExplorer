@@ -233,7 +233,9 @@ public class SwitchInfo implements Comparable<SwitchInfo>
 		builder.append("<tr>");
 		builder.append("<th>").append("Name").append("</th>");
 
-		if (vmType == VMType.HOTSPOT)
+		boolean isHotSpotBased = (vmType == VMType.HOTSPOT || vmType == VMType.SAPMACHINE || vmType == VMType.CORRETTO);
+
+		if (isHotSpotBased)
 		{
 			builder.append("<th>").append("Since").append("</th>");
 			builder.append("<th>").append("Deprecated").append("</th>");
@@ -244,7 +246,7 @@ public class SwitchInfo implements Comparable<SwitchInfo>
 			builder.append("<th>").append("Type").append("</th>");
 		}
 
-		if (vmType == VMType.HOTSPOT)
+		if (isHotSpotBased)
 		{
 			builder.append("<th>").append("OS").append("</th>");
 			builder.append("<th>").append("CPU").append("</th>");
@@ -256,7 +258,7 @@ public class SwitchInfo implements Comparable<SwitchInfo>
 			builder.append("<th>").append("Default").append("</th>");
 		}
 
-		if (vmType == VMType.HOTSPOT || vmType == VMType.GRAAL_NATIVE_8 || vmType == VMType.GRAAL_NATIVE_11)
+		if (isHotSpotBased || vmType == VMType.GRAAL_NATIVE_8 || vmType == VMType.GRAAL_NATIVE_11)
 		{
 			builder.append("<th>").append("Availability").append("</th>");
 		}
@@ -266,7 +268,7 @@ public class SwitchInfo implements Comparable<SwitchInfo>
 			builder.append("<th>").append("Description").append("</th>");
 		}
 
-		if (vmType == VMType.HOTSPOT)
+		if (isHotSpotBased)
 		{
 			builder.append("<th>").append("Defined in").append("</th>");
 		}
@@ -278,13 +280,15 @@ public class SwitchInfo implements Comparable<SwitchInfo>
 
 	public String toRow(VMType vmType)
 	{
+		boolean isHotSpotBased = (vmType == VMType.HOTSPOT || vmType == VMType.SAPMACHINE || vmType == VMType.CORRETTO);
+
 		StringBuilder builder = new StringBuilder();
 
 		builder.append("<tr>");
 
 		builder.append(getRow(name));
 
-		if (vmType == VMType.HOTSPOT)
+		if (isHotSpotBased)
 		{
 			builder.append(getRow(since));
 			builder.append(getRow(deprecation));
@@ -295,7 +299,7 @@ public class SwitchInfo implements Comparable<SwitchInfo>
 			builder.append(getRow(escapeHTMLEntities(type)));
 		}
 
-		if (vmType == VMType.HOTSPOT)
+		if (isHotSpotBased)
 		{
 			builder.append(getRow(os));
 			builder.append(getRow(cpu));
@@ -314,7 +318,7 @@ public class SwitchInfo implements Comparable<SwitchInfo>
 			}
 		}
 
-		if (vmType == VMType.HOTSPOT || vmType == VMType.GRAAL_NATIVE_8 || vmType == VMType.GRAAL_NATIVE_11)
+		if (isHotSpotBased || vmType == VMType.GRAAL_NATIVE_8 || vmType == VMType.GRAAL_NATIVE_11)
 		{
 			builder.append(getRow(availability));
 		}
@@ -339,7 +343,7 @@ public class SwitchInfo implements Comparable<SwitchInfo>
 			builder.append(getRow(escapeHTMLEntities(descriptionComment)));
 		}
 
-		if (vmType == VMType.HOTSPOT)
+		if (isHotSpotBased)
 		{
 			builder.append(getRow(definedIn));
 		}

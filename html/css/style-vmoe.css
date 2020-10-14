@@ -38,7 +38,7 @@ body {
 
 .sponsor a {
     color: blue;
-    font-size:18px;
+    font-size: 18px;
 }
 
 th, td {
@@ -59,19 +59,20 @@ th, td {
 
 .footer {
     margin-top: 12px;
-    text-align: center;    float: left;
+    text-align: center;
+    float: left;
     clear: none;
     font-weight: bold;
 }
 
 .deltaH2 {
     margin: 0px 0px 4px 0px;
-    font-size: 32px;
+    font-size: 24px;
 }
 
 .deltaH3 {
-    font-size: 20px;
-    margin:8px 0px;
+    font-size: 18px;
+    margin: 8px 0px;
 }
 
 .wrap {
@@ -145,6 +146,7 @@ a, a:visited {
     border-collapse: collapse;
     background-color: #ffee99;
     margin-bottom: 12px;
+    height: 130px;
 }
 
 .menucontainer {
@@ -161,15 +163,18 @@ a, a:visited {
 
 .menu th, .menu td {
     border: 1px solid black;
-    font-size: 24px;
+    font-size: 18px;
     text-align: center;
     padding: 8px;
+    background-color: #eee;
 }
 
 .menu td {
     font-size: 14px;
-    vertical-align: top;
+    vertical-align: middle;
     padding: 4px;
+    background-color: #fff;
+    height: 18px;
 }
 
 .row-heading {
@@ -193,8 +198,8 @@ a, a:visited {
 }
 
 .foojay {
-	font-size:14px;
-	font-weight:normal;
-	text-align:left;
-	margin-top:8px;
+    font-size: 14px;
+    font-weight: normal;
+    text-align: left;
+    margin-top: 8px;
 }
