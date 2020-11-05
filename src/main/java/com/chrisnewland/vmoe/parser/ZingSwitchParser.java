@@ -22,8 +22,7 @@ public class ZingSwitchParser extends AbstractSwitchParser
 		TYPE, NAME, DEFAULT, AVAILABILITY
 	}
 
-	@Override
-	public SwitchInfoMap process(File vmPath) throws IOException
+	@Override public SwitchInfoMap process(File vmPath) throws IOException
 	{
 		switchMap = new SwitchInfoMap();
 
@@ -36,6 +35,11 @@ public class ZingSwitchParser extends AbstractSwitchParser
 			// uintx ARTADebugFlags = 0 {product}
 			if (isValidSwitch(trimmed))
 			{
+				trimmed = trimmed.replace(":=", "=")
+								 .replace("{default}", "")
+								 .replace("{ergonomic}", "")
+								 .replace("{command line}", "");
+
 				String name = "";
 				String type = "";
 				String defaultValue = "";

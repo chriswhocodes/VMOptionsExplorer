@@ -203,3 +203,30 @@ a, a:visited {
     text-align: left;
     margin-top: 8px;
 }
+
+.fl_added > div {
+    float: left;
+    clear: none;
+    margin: 4px 4px 4px 0px;
+    padding: 4px;
+    background-color: #aaffaa;
+}
+
+.fl_changed > table {
+    border-collapse: collapse;
+    background-color: #ffee99;
+}
+
+.fl_changed * th, .fl_changed * td {
+    padding: 8px;
+    border: 1px solid black;
+}
+
+
+.fl_removed > div {
+    float: left;
+    clear: none;
+    margin: 4px 4px 4px 0px;
+    padding: 4px;
+    background-color: #ffcccc;
+}

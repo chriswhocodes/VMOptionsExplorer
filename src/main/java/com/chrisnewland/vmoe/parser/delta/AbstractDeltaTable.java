@@ -59,6 +59,6 @@ public abstract class AbstractDeltaTable implements IDeltaTable
 		jsonObject.put("added", added);
 		jsonObject.put("removed", removed);
 
-		return jsonObject.toString();
+		return jsonObject.toString(4);
 	}
 }

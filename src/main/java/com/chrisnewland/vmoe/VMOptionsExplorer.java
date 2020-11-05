@@ -10,12 +10,9 @@ import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
+import com.chrisnewland.vmoe.compare.VMDataComparator;
 import com.chrisnewland.vmoe.parser.*;
 import com.chrisnewland.vmoe.parser.delta.GraalDeltaTable;
 import com.chrisnewland.vmoe.parser.delta.HotSpotDeltaTable;
@@ -23,18 +20,13 @@ import com.chrisnewland.vmoe.parser.delta.IDeltaTable;
 import com.chrisnewland.vmoe.parser.deprecated.DeprecatedParser;
 import com.chrisnewland.vmoe.parser.intrinsic.IntrinsicParser;
 
-import java.util.Set;
-import java.util.HashSet;
-import java.util.Date;
-import java.util.HashMap;
-
 public class VMOptionsExplorer
 {
 	private File vmPath;
 
 	private File serialiseDir;
 
-	private List<VMData> vmDataList = new ArrayList<>();
+	private Map<String, VMData> vmDataMap = new TreeMap<>();
 
 	private Map<String, String> switchNameVersions = new HashMap<>();
 
@@ -47,7 +39,7 @@ public class VMOptionsExplorer
 
 	public void addVM(VMData data)
 	{
-		vmDataList.add(data);
+		vmDataMap.put(data.getJdkName(), data);
 	}
 
 	public void process(Path serialiseDir) throws Exception
@@ -59,7 +51,7 @@ public class VMOptionsExplorer
 
 		this.serialiseDir = serialiseDir.toFile();
 
-		for (VMData vmData : vmDataList)
+		for (VMData vmData : vmDataMap.values())
 		{
 			parseJDK(vmData);
 		}
@@ -132,9 +124,9 @@ public class VMOptionsExplorer
 	{
 		System.out.println("Calculating differences between " + earlier.getJdkName() + " and " + later.getJdkName());
 
-		SwitchInfoMap switchMapEarlier = getParser(earlier.getVmType()).process(earlier.getVmPath());
+		SwitchInfoMap switchMapEarlier = earlier.getVmType().getParser().process(earlier.getVmPath());
 
-		SwitchInfoMap switchMapLater = getParser(later.getVmType()).process(later.getVmPath());
+		SwitchInfoMap switchMapLater = later.getVmType().getParser().process(later.getVmPath());
 
 		Set<SwitchInfo> inEarlier = new HashSet<>(switchMapEarlier.values());
 
@@ -171,7 +163,7 @@ public class VMOptionsExplorer
 	{
 		List<VMData> result = new ArrayList<>();
 
-		for (VMData vmData : vmDataList)
+		for (VMData vmData : vmDataMap.values())
 		{
 			if (vmData.getVmType() == vmType)
 			{
@@ -221,28 +213,38 @@ public class VMOptionsExplorer
 		return result;
 	}
 
-	private ISwitchParser getParser(VMType vmType)
+	public void compareVMData(String vanilla, String flavour) throws IOException
 	{
-		switch (vmType)
-		{
-		case GRAAL_VM_8:
-		case GRAAL_VM_11:
-			return new GraalVMSwitchParser();
-		case GRAAL_NATIVE_8:
-		case GRAAL_NATIVE_11:
-			return new GraalNativeImageSwitchParser();
-		case OPENJ9:
-			return new OpenJ9SwitchParser();
-		case HOTSPOT:
-		case SAPMACHINE:
-		case CORRETTO:
-			return new HotSpotSwitchParser();
-		case ZING:
-		case ZULU:
-			return new ZingSwitchParser();
-		default:
-			throw new RuntimeException("Unexpected VM Type: " + vmType);
-		}
+		VMData vmDataVanilla = vmDataMap.get(vanilla);
+
+		VMData vmDataFlavour = vmDataMap.get(flavour);
+
+		StringBuilder[] result = VMDataComparator.compareVMData(vmDataVanilla, vmDataFlavour);
+
+		String template = new String(Files.readAllBytes(vmoeDir.resolve("templates/template_vanilla_vs_flavoured.html")),
+				StandardCharsets.UTF_8);
+
+		String headerHTML = new String(Files.readAllBytes(vmoeDir.resolve("templates/header.html")), StandardCharsets.UTF_8);
+
+		template = template.replace("$HEADER_HTML", headerHTML);
+
+		template = template.replace("$H1_TITLE", "Switch comparison of $VANILLA_NAME vs $FLAVOUR_NAME");
+
+		template = template.replace("$GRAAL_VERSION", graalVersion);
+
+		template = template.replace("$VANILLA_NAME", vmDataVanilla.getJdkName());
+		template = template.replace("$FLAVOUR_NAME", vmDataFlavour.getJdkName());
+
+		template = template.replace("$FLAVOUR_ADDED", result[0].length() == 0 ? "None" : result[0]);
+		template = template.replace("$FLAVOUR_CHANGED", result[1].length() == 0 ? "None" : result[1]);
+		template = template.replace("$FLAVOUR_REMOVED", result[2].length() == 0 ? "None" : result[2]);
+		template = template.replace("$DATE", new Date().toString());
+
+		String filename = "html/compare_" + vmDataVanilla.getSafeJDKName() + "_" + vmDataFlavour.getSafeJDKName() + ".html";
+
+		Path outputFile = vmoeDir.resolve(filename.toLowerCase());
+
+		Files.write(outputFile, template.getBytes(StandardCharsets.UTF_8));
 	}
 
 	private String getVMDisplayName(VMType vmType)
@@ -289,7 +291,7 @@ public class VMOptionsExplorer
 
 		String vmName = getVMDisplayName(vmData.getVmType());
 
-		ISwitchParser switchParser = getParser(vmData.getVmType());
+		ISwitchParser switchParser = vmData.getVmType().getParser();
 
 		SwitchInfoMap switchInfoMap = switchParser.process(vmPath);
 
@@ -452,24 +454,28 @@ public class VMOptionsExplorer
 
 		if (processHotSpot)
 		{
-			explorer.addVM(new VMData("JDK6", baseDir.resolve("jdk6/hotspot").toFile(), VMType.HOTSPOT).addUsageFile(pre10Usage));
-			explorer.addVM(new VMData("JDK7", baseDir.resolve("jdk7/hotspot").toFile(), VMType.HOTSPOT).addUsageFile(pre10Usage));
-			explorer.addVM(new VMData("JDK8", baseDir.resolve("jdk8/hotspot").toFile(), VMType.HOTSPOT).addUsageFile(pre10Usage));
-			explorer.addVM(new VMData("JDK9", baseDir.resolve("jdk9/hotspot").toFile(), VMType.HOTSPOT).addUsageFile(pre10Usage));
 			explorer.addVM(
-					new VMData("JDK10", baseDir.resolve("jdk10/src/hotspot").toFile(), VMType.HOTSPOT).addUsageFile(post10Usage));
+					new VMData("OpenJDK6", baseDir.resolve("jdk6/hotspot").toFile(), VMType.HOTSPOT).addUsageFile(pre10Usage));
 			explorer.addVM(
-					new VMData("JDK11", baseDir.resolve("jdk11/src/hotspot").toFile(), VMType.HOTSPOT).addUsageFile(post10Usage));
+					new VMData("OpenJDK7", baseDir.resolve("jdk7/hotspot").toFile(), VMType.HOTSPOT).addUsageFile(pre10Usage));
 			explorer.addVM(
-					new VMData("JDK12", baseDir.resolve("jdk12/src/hotspot").toFile(), VMType.HOTSPOT).addUsageFile(post10Usage));
+					new VMData("OpenJDK8", baseDir.resolve("jdk8/hotspot").toFile(), VMType.HOTSPOT).addUsageFile(pre10Usage));
 			explorer.addVM(
-					new VMData("JDK13", baseDir.resolve("jdk13/src/hotspot").toFile(), VMType.HOTSPOT).addUsageFile(post13Usage));
-			explorer.addVM(
-					new VMData("JDK14", baseDir.resolve("jdk14/src/hotspot").toFile(), VMType.HOTSPOT).addUsageFile(post13Usage));
-			explorer.addVM(
-					new VMData("JDK15", baseDir.resolve("jdk15/src/hotspot").toFile(), VMType.HOTSPOT).addUsageFile(post13Usage));
-			explorer.addVM(
-					new VMData("JDK16", baseDir.resolve("jdk16/src/hotspot").toFile(), VMType.HOTSPOT).addUsageFile(post13Usage));
+					new VMData("OpenJDK9", baseDir.resolve("jdk9/hotspot").toFile(), VMType.HOTSPOT).addUsageFile(pre10Usage));
+			explorer.addVM(new VMData("OpenJDK10", baseDir.resolve("jdk10/src/hotspot").toFile(), VMType.HOTSPOT).addUsageFile(
+					post10Usage));
+			explorer.addVM(new VMData("OpenJDK11", baseDir.resolve("jdk11/src/hotspot").toFile(), VMType.HOTSPOT).addUsageFile(
+					post10Usage));
+			explorer.addVM(new VMData("OpenJDK12", baseDir.resolve("jdk12/src/hotspot").toFile(), VMType.HOTSPOT).addUsageFile(
+					post10Usage));
+			explorer.addVM(new VMData("OpenJDK13", baseDir.resolve("jdk13/src/hotspot").toFile(), VMType.HOTSPOT).addUsageFile(
+					post13Usage));
+			explorer.addVM(new VMData("OpenJDK14", baseDir.resolve("jdk14/src/hotspot").toFile(), VMType.HOTSPOT).addUsageFile(
+					post13Usage));
+			explorer.addVM(new VMData("OpenJDK15", baseDir.resolve("jdk15/src/hotspot").toFile(), VMType.HOTSPOT).addUsageFile(
+					post13Usage));
+			explorer.addVM(new VMData("OpenJDK16", baseDir.resolve("jdk16/src/hotspot").toFile(), VMType.HOTSPOT).addUsageFile(
+					post13Usage));
 		}
 
 		if (processGraalVM)
@@ -498,10 +504,7 @@ public class VMOptionsExplorer
 
 		if (processZing)
 		{
-			// /opt/zing/zing-jdk8/bin/java \
-			// -XX:+PrintFlagsFinal >zing.out 2>/dev/null
 			explorer.addVM(new VMData("Zing JDK8", vmoeDir.resolve("zing8.out").toFile(), VMType.ZING));
-
 			explorer.addVM(new VMData("Zing JDK11", vmoeDir.resolve("zing11.out").toFile(), VMType.ZING));
 		}
 
@@ -510,7 +513,8 @@ public class VMOptionsExplorer
 			explorer.addVM(new VMData("Zulu JDK8", vmoeDir.resolve("zulu8.out").toFile(), VMType.ZULU));
 			explorer.addVM(new VMData("Zulu JDK11", vmoeDir.resolve("zulu11.out").toFile(), VMType.ZULU));
 			explorer.addVM(new VMData("Zulu JDK13", vmoeDir.resolve("zulu13.out").toFile(), VMType.ZULU));
-			explorer.addVM(new VMData("Zulu JDK14", vmoeDir.resolve("zulu14.out").toFile(), VMType.ZULU));
+			explorer.addVM(new VMData("Zulu JDK15", vmoeDir.resolve("zulu15.out").toFile(), VMType.ZULU));
+			explorer.addVM(new VMData("Zulu JDK16", vmoeDir.resolve("zulu16.out").toFile(), VMType.ZULU));
 		}
 
 		if (processSapMachine)
@@ -522,12 +526,27 @@ public class VMOptionsExplorer
 
 		if (processCorretto)
 		{
-			explorer.addVM(new VMData("Corretto JDK8", baseDir.resolve("corretto-8/src/hotspot").toFile(), VMType.CORRETTO).addUsageFile(
-					pre10Usage));
+			explorer.addVM(
+					new VMData("Corretto JDK8", baseDir.resolve("corretto-8/src/hotspot").toFile(), VMType.CORRETTO).addUsageFile(
+							pre10Usage));
 
-			explorer.addVM(new VMData("Corretto JDK11", baseDir.resolve("corretto-11/src/src/hotspot").toFile(), VMType.CORRETTO).addUsageFile(
-					post10Usage));
+			explorer.addVM(new VMData("Corretto JDK11", baseDir.resolve("corretto-11/src/src/hotspot").toFile(),
+					VMType.CORRETTO).addUsageFile(post10Usage));
 		}
+
+		explorer.compareVMData("OpenJDK8", "Corretto JDK8");
+		explorer.compareVMData("OpenJDK11", "Corretto JDK11");
+
+		explorer.compareVMData("OpenJDK8", "Zulu JDK8");
+		explorer.compareVMData("OpenJDK11", "Zulu JDK11");
+		explorer.compareVMData("OpenJDK13", "Zulu JDK13");
+		explorer.compareVMData("OpenJDK15", "Zulu JDK15");
+		explorer.compareVMData("OpenJDK16", "Zulu JDK16");
+
+		explorer.compareVMData("OpenJDK8", "Zing JDK8");
+		explorer.compareVMData("OpenJDK11", "Zing JDK11");
+
+		explorer.compareVMData("OpenJDK16", "SapMachine");
 
 		Path serialiseDir = baseDir.resolve("serialised");
 
@@ -563,27 +582,27 @@ public class VMOptionsExplorer
 		{
 			IntrinsicParser intrinsicParser = new IntrinsicParser(serialiseDir, graalVersion);
 
-			intrinsicParser.processIntrinsics(baseDir.resolve("jdk6/hotspot/src/share/vm/classfile/vmSymbols.hpp"), "JDK6");
+			intrinsicParser.processIntrinsics(baseDir.resolve("jdk6/hotspot/src/share/vm/classfile/vmSymbols.hpp"), "OpenJDK6");
 
-			intrinsicParser.processIntrinsics(baseDir.resolve("jdk7/hotspot/src/share/vm/classfile/vmSymbols.hpp"), "JDK7");
+			intrinsicParser.processIntrinsics(baseDir.resolve("jdk7/hotspot/src/share/vm/classfile/vmSymbols.hpp"), "OpenJDK7");
 
-			intrinsicParser.processIntrinsics(baseDir.resolve("jdk8/hotspot/src/share/vm/classfile/vmSymbols.hpp"), "JDK8");
+			intrinsicParser.processIntrinsics(baseDir.resolve("jdk8/hotspot/src/share/vm/classfile/vmSymbols.hpp"), "OpenJDK8");
 
-			intrinsicParser.processIntrinsics(baseDir.resolve("jdk9/hotspot/src/share/vm/classfile/vmSymbols.hpp"), "JDK9");
+			intrinsicParser.processIntrinsics(baseDir.resolve("jdk9/hotspot/src/share/vm/classfile/vmSymbols.hpp"), "OpenJDK9");
 
-			intrinsicParser.processIntrinsics(baseDir.resolve("jdk10/src/hotspot/share/classfile/vmSymbols.hpp"), "JDK10");
+			intrinsicParser.processIntrinsics(baseDir.resolve("jdk10/src/hotspot/share/classfile/vmSymbols.hpp"), "OpenJDK10");
 
-			intrinsicParser.processIntrinsics(baseDir.resolve("jdk11/src/hotspot/share/classfile/vmSymbols.hpp"), "JDK11");
+			intrinsicParser.processIntrinsics(baseDir.resolve("jdk11/src/hotspot/share/classfile/vmSymbols.hpp"), "OpenJDK11");
 
-			intrinsicParser.processIntrinsics(baseDir.resolve("jdk12/src/hotspot/share/classfile/vmSymbols.hpp"), "JDK12");
+			intrinsicParser.processIntrinsics(baseDir.resolve("jdk12/src/hotspot/share/classfile/vmSymbols.hpp"), "OpenJDK12");
 
-			intrinsicParser.processIntrinsics(baseDir.resolve("jdk13/src/hotspot/share/classfile/vmSymbols.hpp"), "JDK13");
+			intrinsicParser.processIntrinsics(baseDir.resolve("jdk13/src/hotspot/share/classfile/vmSymbols.hpp"), "OpenJDK13");
 
-			intrinsicParser.processIntrinsics(baseDir.resolve("jdk14/src/hotspot/share/classfile/vmSymbols.hpp"), "JDK14");
+			intrinsicParser.processIntrinsics(baseDir.resolve("jdk14/src/hotspot/share/classfile/vmSymbols.hpp"), "OpenJDK14");
 
-			intrinsicParser.processIntrinsics(baseDir.resolve("jdk15/src/hotspot/share/classfile/vmSymbols.hpp"), "JDK15");
+			intrinsicParser.processIntrinsics(baseDir.resolve("jdk15/src/hotspot/share/classfile/vmSymbols.hpp"), "OpenJDK15");
 
-			intrinsicParser.processIntrinsics(baseDir.resolve("jdk16/src/hotspot/share/classfile/vmIntrinsics.hpp"), "JDK16");
+			intrinsicParser.processIntrinsics(baseDir.resolve("jdk16/src/hotspot/share/classfile/vmIntrinsics.hpp"), "OpenJDK16");
 		}
 	}
 }
