@@ -17,6 +17,8 @@ jvmci.UseProfilingInformation = true                                     [Boolea
 graal.AOTInliningDepthToSizeRate = 2.5                                    [Double]
 graal.AOTInliningSizeMaximum = 300                                       [Integer]
 graal.AOTInliningSizeMinimum = 50                                        [Integer]
+graal.AOTVerifyOops = false                                              [Boolean]
+          Generate verify oop checks in AOT code
 graal.ASMInstructionProfiling = null                                      [String]
           Enables instruction profiling on assembler level. Valid values are a
           comma separated list of supported instructions. Compare with subclasses
@@ -27,6 +29,9 @@ graal.AbortOnBenchmarkCounterOverflow = false                            [Boolea
           option overflow. This feature is only supported on AMD64.
           WARNING: No descriptive error message will be printed! In case of an overflow,
           manual inspection of the emitted code is required.
+graal.ActiveProcessorCount = -1                                          [Integer]
+          Overwrites the available number of processors provided by the OS. Any
+          value <= 0 means using the processor count from the OS.
 graal.AggregatedMetricsFile = null                                        [String]
           File to which aggregated metrics are dumped at shutdown. A CSV format
           is used if the file ends with .csv otherwise a more human readable
@@ -54,6 +59,8 @@ graal.AnalysisSizeCutoff = 8                                             [Intege
           analysis. -1 indicates no limitation.
 graal.AnalysisStatisticsFile = null                                       [String]
           Analysis results statistics file.
+graal.BenchmarkCounterPrintingCutoff = true                              [Boolean]
+          Use a cutoff to print only most significant counters.
 graal.BenchmarkCountersDumpDynamic = true                                [Boolean]
           Dump dynamic counters
 graal.BenchmarkCountersDumpStatic = false                                [Boolean]
@@ -132,6 +139,9 @@ graal.CompilationFailureAction = Silent                                   [Strin
           * If "Diagnose" is set compilation will be retried with extra diagnostics enabled including dumping (see file:doc-files/DumpHelp.txt). 
             In such a scenario DiagnoseDumpLevel can be used to specify the dump level (DebugContext dump levels) accordingly.
                 
+graal.CompilationIsolateAddressSpaceSize = 0                                [Long]
+          Size of the reserved address space of each compilation isolate (0:
+          default for new isolates).
 graal.CompilationWatchDogStackTraceInterval = 60.0                        [Double]
           Interval in seconds between a watch dog reporting stack traces for long
           running compilations.
@@ -140,6 +150,9 @@ graal.CompilationWatchDogStartDelay = 0.0                                 [Doubl
           monitoring).
 graal.CompileGraalWithC1Only = true                                      [Boolean]
           In tiered mode compile Graal and JVMCI using optimized first tier code.
+graal.CompileInIsolates = true                                           [Boolean]
+          Activate runtime compilation in separate isolates (enable support
+          during image build with option SupportCompileInIsolates).
 graal.CompilerConfiguration = null                                        [String]
           Names the compiler configuration to use. If omitted, the compiler
           configuration with the highest auto-selection priority is used. To see
@@ -317,13 +330,13 @@ graal.HybridStaticContext = false                                        [Boolea
           Enable hybrid context for static methods, i.e. uses invocation site as
           context for static methods.
 graal.ImageObjectTreeExpandRoots = ""                                     [String]
-          Override the default suppression of specified roots. See: REPORTS.md.
+          Override the default suppression of specified roots. See: Reports.md.
 graal.ImageObjectTreeExpandTypes = ""                                     [String]
-          Override the default suppression of specified types. See: REPORTS.md.
+          Override the default suppression of specified types. See: Reports.md.
 graal.ImageObjectTreeSuppressRoots = ""                                   [String]
-          Suppress the expansion of specified roots. See: REPORTS.md.
+          Suppress the expansion of specified roots. See: Reports.md.
 graal.ImageObjectTreeSuppressTypes = ""                                   [String]
-          Suppress the expansion of specified types. See: REPORTS.md.
+          Suppress the expansion of specified types. See: Reports.md.
 graal.ImmutableCode = false                                              [Boolean]
           Try to avoid emitting code where patching is required
 graal.Inline = true                                                      [Boolean]
@@ -388,6 +401,9 @@ graal.LSRAOptSplitOnly = false                                           [Boolea
           LSRA optimization: Only split but do not reassign
 graal.LSRAOptimization = false                                           [Boolean]
           Enable LSRA optimization
+graal.LibGraalManagementDelay = 1000                                     [Integer]
+          Milliseconds to delay initialization of the libgraal JMX interface.
+          Specify a negative value to disable the interface altogether.
 graal.LimitInlinedInvokes = 5.0                                           [Double]
 graal.LimitObjectArrayLength = false                                     [Boolean]
           Enable a limit for the number of objects recorded for each type of a
@@ -418,6 +434,8 @@ graal.LoopHeaderAlignment = 16                                           [Intege
           Alignment in bytes for loop header blocks.
 graal.LoopMaxUnswitch = 3                                                [Integer]
 graal.LoopPeeling = true                                                 [Boolean]
+graal.LoopPredication = true                                             [Boolean]
+graal.LoopPredicationMainPath = true                                     [Boolean]
 graal.LoopUnswitch = true                                                [Boolean]
 graal.LoopUnswitchFrequencyBoost = 10.0                                   [Double]
 graal.LoopUnswitchMaxIncrease = 500                                      [Integer]
@@ -604,6 +622,10 @@ graal.PeelALot = false                                                   [Boolea
 graal.PercentTimeInIncrementalCollection = 50                            [Integer]
           Percentage of total collection time that should be spent on young
           generation collections.
+graal.PreferContainerQuotaForCPUCount = true                             [Boolean]
+          Calculate the container CPU availability based on the value of quotas
+          (if set), when true. Otherwise, use the CPU shares value, provided it
+          is less than quota.
 graal.PrintAnalysisCallTree = false                                      [Boolean]
           Print analysis call tree, a breadth-first tree reduction of the call
           graph.
@@ -676,10 +698,6 @@ graal.PrintProfilingInformation = false                                  [Boolea
           Print profiling information when parsing a method's bytecode
 graal.PrintSynchronizedAnalysis = false                                  [Boolean]
           Print types used for Java synchronization.
-graal.PrintTruffleExpansionHistogram = false                             [Boolean]
-          Prints a histogram of all expanded Java methods.
-graal.PrintTruffleTrees = true                                           [Boolean]
-          Enable dumping Truffle ASTs to the IdealGraphVisualizer.
 graal.ProbabilisticProfiling = true                                      [Boolean]
           Control probabilistic profiling on AMD64
 graal.ProfileAllocations = false                                         [Boolean]
@@ -709,7 +727,8 @@ graal.ProfileSimpleMethods = true                                        [Boolea
           Profile simple methods
 graal.RawConditionalElimination = true                                   [Boolean]
 graal.ReadEliminationMaxLoopVisits = 5                                   [Integer]
-graal.ReassociateInvariants = true                                       [Boolean]
+graal.ReassociateExpressions = true                                      [Boolean]
+          Re-associate loop invariants and constants.
 graal.ReduceDCE = true                                                   [Boolean]
           Disable optional dead code eliminations
 graal.RegisterPressure = null                                             [String]
@@ -762,12 +781,14 @@ graal.SpectrePHTBarriers = None                                           [Strin
                                    stopped using speculative execution barrier instructions.
                     GuardTargets - Branch targets relevant to Java memory safety are instrumented
                                    with barrier instructions. This option has less performance impact
-                                   than AllTargets. Note that memory accesses through UNSAFE are not
-                                   covered by this mitigation. This includes libraries built upon UNSAFE,
-                                   such as java.nio.ByteBuffer.
+                                   than AllTargets. 
             NonDeoptGuardTargets - Same as GuardTargets, except that branches which deoptimize are not
                                    protected since they can not be executed repeatedly and are thus less
                                    likely to be successfully exploited in an attack.
+          
+                                   
+          Note that all modes except "None" will also instrument branch target blocks containing UNSAFE memory accesses
+          with barrier instructions.
 graal.SpectrePHTIndexMasking = false                                     [Boolean]
           Mask indices to scope access to allocation size after bounds check.
 graal.StackSize = 0                                                         [Long]
@@ -858,32 +879,6 @@ graal.TraceMonitorsTypeFilter = null                                      [Strin
           Trace monitor operations on objects whose type contains this substring.
 graal.TraceParserPlugins = false                                         [Boolean]
           Traces use of plugins during bytecode parsing.
-graal.TraceTruffleAssumptions = false                                    [Boolean]
-          Print stack trace on assumption invalidation
-graal.TraceTruffleCompilation = false                                    [Boolean]
-          Print information for compilation results
-graal.TraceTruffleCompilationAST = false                                 [Boolean]
-          Print the entire AST after each compilation
-graal.TraceTruffleCompilationCallTree = false                            [Boolean]
-          Print the inlined call tree for each compiled method
-graal.TraceTruffleCompilationDetails = false                             [Boolean]
-          Print information for compilation queuing
-graal.TraceTruffleCompilationPolymorphism = false                        [Boolean]
-          Print all polymorphic and generic nodes after each compilation
-graal.TraceTruffleInlining = false                                       [Boolean]
-          Print information for inlining for each compilation.
-graal.TraceTruffleInliningDetails = false                                [Boolean]
-          Print detailed information for inlining (i.e. the entire explored call
-          tree).
-graal.TraceTrufflePerformanceWarnings = false                            [Boolean]
-          Print potential performance problems
-graal.TraceTruffleSplitting = false                                      [Boolean]
-          Print information for each splitted call site.
-graal.TraceTruffleStackTraceLimit = 20                                   [Integer]
-          Number of stack trace elements printed by
-          TraceTruffleTransferToInterpreter and TraceTruffleAssumptions
-graal.TraceTruffleTransferToInterpreter = false                          [Boolean]
-          Print stack trace on transfer to interpreter.
 graal.TraceUnwindStub = false                                            [Boolean]
           Trace execution of the stub that routes an exception to a handler in
           the calling frame.
@@ -902,131 +897,9 @@ graal.TrackNodeSourcePosition = false                                    [Boolea
 graal.TrivialInliningSize = 10                                           [Integer]
           Graphs with less than this number of nodes are trivial and therefore
           always inlined.
-graal.TruffleArgumentTypeSpeculation = true                              [Boolean]
-graal.TruffleBackgroundCompilation = true                                [Boolean]
-          Enable asynchronous truffle compilation in background thread
-graal.TruffleCompilation = true                                          [Boolean]
-          Enable or disable truffle compilation.
-graal.TruffleCompilationExceptionsAreFatal = false                       [Boolean]
-          Treat compilation exceptions as fatal exceptions that will exit the
-          application
-graal.TruffleCompilationExceptionsArePrinted = false                     [Boolean]
-          Prints the exception stack trace for compilation exceptions
-graal.TruffleCompilationExceptionsAreThrown = false                      [Boolean]
-          Treat compilation exceptions as thrown runtime exceptions
-graal.TruffleCompilationStatisticDetails = false                         [Boolean]
-          Print additional more verbose Truffle compilation statistics at the end
-          of a run.
-graal.TruffleCompilationStatistics = false                               [Boolean]
-          Print Truffle compilation statistics at the end of a run.
-graal.TruffleCompilationThreshold = 1000                                 [Integer]
-          Compile call target when call count exceeds this threshold.
-graal.TruffleCompileImmediately = false                                  [Boolean]
-          Compile immediately to test truffle compiler
-graal.TruffleCompileOnly = null                                           [String]
-          Restrict compilation to comma-separated list of includes (or excludes
-          prefixed with tilde).
-          EBNF format of argument value:  CompileOnly = Element, { ',', Element } ;
 graal.TruffleCompilerConfiguration = null                                 [String]
           Select a compiler configuration for Truffle compilation (default: use
           Graal system compiler configuration).
-graal.TruffleCompilerThreads = 0                                         [Integer]
-          Manually set the number of compiler threads
-graal.TruffleEnableInfopoints = false                                    [Boolean]
-          Enable support for simple infopoints in truffle partial evaluations.
-graal.TruffleExcludeAssertions = true                                    [Boolean]
-          Exclude assertion code from Truffle compilations
-graal.TruffleFirstTierCompilationThreshold = 100                         [Integer]
-          Compile call target in the first tier when call count exceeds this
-          threshold.
-graal.TruffleFirstTierMinInvokeThreshold = 1                             [Integer]
-          Minimum number of calls before a call target is compiled in the first
-          tier.
-graal.TruffleFunctionInlining = true                                     [Boolean]
-          Enable automatic inlining of call targets
-graal.TruffleInlineAcrossTruffleBoundary = false                         [Boolean]
-          Enable inlining across Truffle boundary
-graal.TruffleInliningExpansionBudget = 30000                             [Integer]
-          The base expansion budget for language-agnostic inlining.
-graal.TruffleInliningInliningBudget = 30000                              [Integer]
-          The base inlining budget for language-agnostic inlining
-graal.TruffleInliningMaxCallerSize = 2250                                [Integer]
-          Stop inlining if caller's cumulative tree size would exceed this limit
-graal.TruffleInliningPolicy = ""                                          [String]
-          Explicitly pick a inlining policy by name. Highest priority chosen by
-          default.
-graal.TruffleInstrumentBoundaries = false                                [Boolean]
-          Instrument Truffle boundaries and output profiling information to the
-          standard output.
-graal.TruffleInstrumentBoundariesPerInlineSite = false                   [Boolean]
-          Instrument Truffle boundaries by considering different inlining sites
-          as different branches.
-graal.TruffleInstrumentBranches = false                                  [Boolean]
-          Instrument branches and output profiling information to the standard
-          output.
-graal.TruffleInstrumentBranchesPerInlineSite = false                     [Boolean]
-          Instrument branches by considering different inlining sites as
-          different branches.
-graal.TruffleInstrumentFilter = "*.*.*"                                   [String]
-          Method filter for host methods in which to add instrumentation.
-graal.TruffleInstrumentationTableSize = 10000                            [Integer]
-          Maximum number of instrumentation counters available.
-graal.TruffleIntrinsifyFrameAccess = true                                [Boolean]
-          Intrinsify get/set/is methods of FrameWithoutBoxing to improve Truffle
-          compilation time
-graal.TruffleInvalidationReprofileCount = 3                              [Integer]
-          Delay compilation after an invalidation to allow for reprofiling
-graal.TruffleIterativePartialEscape = false                              [Boolean]
-          Run the partial escape analysis iteratively in Truffle compilation.
-graal.TruffleLanguageAgnosticInlining = true                             [Boolean]
-          Use language-agnostic inlining (overrides the TruffleFunctionInlining
-          setting, option is experimental).
-graal.TruffleMaximumGraalNodeCount = 400000                              [Integer]
-          Stop partial evaluation when the graph exceeded this many nodes.
-graal.TruffleMaximumInlineNodeCount = 150000                             [Integer]
-          Ignore further truffle inlining decisions when the graph exceeded this
-          many nodes.
-graal.TruffleMaximumRecursiveInlining = 2                                [Integer]
-          Maximum level of recursive inlining
-graal.TruffleMinInvokeThreshold = 3                                      [Integer]
-          Minimum number of calls before a call target is compiled
-graal.TruffleMultiTier = false                                           [Boolean]
-          Whether to use multiple Truffle compilation tiers by default.
-graal.TruffleOSR = true                                                  [Boolean]
-          Enable on stack replacement for Truffle loops.
-graal.TruffleOSRCompilationThreshold = 100000                            [Integer]
-          Number of loop iterations until on-stack-replacement compilation is
-          triggered.
-graal.TrufflePerformanceWarningsAreFatal = false                         [Boolean]
-          Treat performance warnings as fatal occurrences that will exit the
-          applications
-graal.TruffleProfilingEnabled = true                                     [Boolean]
-          Enable/disable builtin profiles in com.oracle.truffle.api.profiles.
-graal.TruffleReplaceReprofileCount = 3                                   [Integer]
-          Delay compilation after a node replacement
-graal.TruffleReturnTypeSpeculation = true                                [Boolean]
-graal.TruffleSplitting = true                                            [Boolean]
-          Enable call target splitting
-graal.TruffleSplittingAllowForcedSplits = true                           [Boolean]
-          Should forced splits be allowed.
-graal.TruffleSplittingDumpDecisions = false                              [Boolean]
-          Dumps to IGV information on polymorphic events
-graal.TruffleSplittingGrowthLimit = 1.5                                   [Double]
-          Disable call target splitting if the number of nodes created by
-          splitting exceeds this factor times node count
-graal.TruffleSplittingMaxCalleeSize = 100                                [Integer]
-          Disable call target splitting if tree size exceeds this limit
-graal.TruffleSplittingMaxNumberOfSplitNodes = 500000                     [Integer]
-          Disable call target splitting if number of nodes created by splitting
-          exceeds this limit
-graal.TruffleSplittingMaxPropagationDepth = 5                            [Integer]
-          Propagate info about a polymorphic specialize through maximum this many
-          call targets
-graal.TruffleSplittingTraceEvents = false                                [Boolean]
-          Trace details of splitting events and decisions.
-graal.TruffleTraceSplittingSummary = false                               [Boolean]
-          Used for debugging the splitting implementation. Prints splitting
-          summary directly to stdout on shutdown
 graal.TrustFinalDefaultFields = true                                     [Boolean]
           Determines whether to treat final fields with default values as
           constant.

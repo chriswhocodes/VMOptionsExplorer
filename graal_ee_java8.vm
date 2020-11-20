@@ -17,6 +17,8 @@ jvmci.UseProfilingInformation = true                                     [Boolea
 graal.AOTInliningDepthToSizeRate = 2.5                                    [Double]
 graal.AOTInliningSizeMaximum = 300                                       [Integer]
 graal.AOTInliningSizeMinimum = 50                                        [Integer]
+graal.AOTVerifyOops = false                                              [Boolean]
+          Generate verify oop checks in AOT code
 graal.ASMInstructionProfiling = null                                      [String]
           Enables instruction profiling on assembler level. Valid values are a
           comma separated list of supported instructions. Compare with subclasses
@@ -27,6 +29,9 @@ graal.AbortOnBenchmarkCounterOverflow = false                            [Boolea
           option overflow. This feature is only supported on AMD64.
           WARNING: No descriptive error message will be printed! In case of an overflow,
           manual inspection of the emitted code is required.
+graal.ActiveProcessorCount = -1                                          [Integer]
+          Overwrites the available number of processors provided by the OS. Any
+          value <= 0 means using the processor count from the OS.
 graal.AggregatedMetricsFile = null                                        [String]
           File to which aggregated metrics are dumped at shutdown. A CSV format
           is used if the file ends with .csv otherwise a more human readable
@@ -43,6 +48,8 @@ graal.AllocationSiteSensitiveHeap = false                                [Boolea
 graal.AlwaysInlineIntrinsics = false                                     [Boolean]
           Unconditionally inline intrinsics
 graal.AlwaysInlineVTableStubs = false                                    [Boolean]
+graal.AlwaysPreTouch = false                                             [Boolean]
+          Force all freshly committed pages to be pre-touched
 graal.AnalysisContextSensitivity = "insens"                               [String]
           Controls the static analysis context sensitivity. Available values:
           insens (context insensitive analysis), allocsens (context insensitive
@@ -57,6 +64,8 @@ graal.AnalysisStatisticsFile = null                                       [Strin
 graal.BaseTargetSpending = 120                                           [Integer]
           The base target spending used to estimate the inlining threshold; the
           higher, the likelier it is to inline.
+graal.BenchmarkCounterPrintingCutoff = true                              [Boolean]
+          Use a cutoff to print only most significant counters.
 graal.BenchmarkCountersDumpDynamic = true                                [Boolean]
           Dump dynamic counters
 graal.BenchmarkCountersDumpStatic = false                                [Boolean]
@@ -171,6 +180,8 @@ graal.CompilerConfiguration = null                                        [Strin
 graal.CompilerNodePenaltyCoefficient = 0.006                              [Double]
           Controls the likelihood of exploring subtrees that already have a lot
           of code during inlining.
+graal.ConcGCThreads = 0                                                  [Integer]
+          Number of threads concurrent gc will use
 graal.ConditionalElimination = true                                      [Boolean]
 graal.ConditionalEliminationMaxIterations = 4                            [Integer]
 graal.CostReductionFactor = 4.0                                           [Double]
@@ -214,6 +225,8 @@ graal.DiagnoseDumpLevel = 3                                              [Intege
           Specify the DumpLevel if CompilationFailureAction#Diagnose is used.See
           CompilationFailureAction for details.
           file:doc-files/CompilationFailureActionHelp.txt
+graal.DisableExplicitGC = false                                          [Boolean]
+          Ignore calls to System.gc()
 graal.DisableIntercept = false                                           [Boolean]
           Disable intercepting exceptions in debug scopes.
 graal.DivertParameterReturningMethod = true                              [Boolean]
@@ -297,7 +310,7 @@ graal.DuplicateALot = false                                              [Boolea
 graal.DuplicateIrreducibleLoops = true                                   [Boolean]
           When enabled, some limited amount of duplication will be performed in
           order compile code containing irreducible loops.
-graal.DuplicationBudgetFactor = 0.15                                      [Double]
+graal.DuplicationBudgetFactor = 0.25                                      [Double]
           Percentage in node cost graph size for the duplication budget. Computed
           relative to the methods code size.
 graal.DuplicationBudgetFactorLate = 0.5                                   [Double]
@@ -317,9 +330,12 @@ graal.EnterpriseCloneReadElimination = true                              [Boolea
           early read elimination.
 graal.EnterpriseEarlyReadElimination = true                              [Boolean]
           Run more read eliminations early in the compilation pipeline.
-graal.EnterprisePartialUnroll = false                                    [Boolean]
+graal.EnterprisePartialUnroll = true                                     [Boolean]
           Enable EE version of partial loop unrolling that considers more loop
           shapes for unrolling.
+graal.ErgoHeapSizeLimit = 0                                                 [Long]
+          Maximum ergonomically set heap size (in bytes); zero means use MaxRAM *
+          MaxRAMPercentage / 100
 graal.EscapeAnalysisIterations = 2                                       [Integer]
 graal.EscapeAnalysisLoopCutoff = 20                                      [Integer]
 graal.EscapeAnalyzeOnly = null                                            [String]
@@ -347,6 +363,8 @@ graal.ExpansionInertiaInvokeBonus = 14                                   [Intege
 graal.ExpansionInertiaMax = 2000                                         [Integer]
           The max slowness at which the expansion pressure grows with the code
           size.
+graal.ExplicitGCInvokesConcurrent = false                                [Boolean]
+          A System.gc() request invokes a concurrent collection
 graal.ExtendedAsserts = false                                            [Boolean]
           Enable extended asserts which slow down analysis.
 graal.FailedLoopExplosionIsFatal = false                                 [Boolean]
@@ -367,12 +385,104 @@ graal.FullUnrollConstantCompareBoost = 15                                [Intege
 graal.FullUnrollMaxApplication = 60                                      [Integer]
 graal.FullUnrollMaxIterations = 600                                      [Integer]
 graal.FullUnrollMaxNodes = 400                                           [Integer]
+graal.G1ConcMarkStepDurationMillis = 10.0                                 [Double]
+          Target duration of individual concurrent marking steps in milliseconds.
+graal.G1ConcRSHotCardLimit = 4                                              [Long]
+          The threshold that defines (>=) a hot card.
+graal.G1ConcRSLogCacheSize = 10                                             [Long]
+          Log base 2 of the length of conc RS hot-card cache.
+graal.G1ConcRefinementGreenZone = 0                                         [Long]
+          The number of update buffers that are left in the queue by the
+          concurrent processing threads. Will be selected ergonomically by
+          default.
+graal.G1ConcRefinementRedZone = 0                                           [Long]
+          Maximum number of enqueued update buffers before mutator threads start
+          processing new ones instead of enqueueing them. Will be selected
+          ergonomically by default.
+graal.G1ConcRefinementServiceIntervalMillis = 300                           [Long]
+          The last concurrent refinement thread wakes up every specified number
+          of milliseconds to do miscellaneous work.
+graal.G1ConcRefinementThreads = 0                                        [Integer]
+          The number of parallel rem set update threads. Will be set
+          ergonomically by default.
+graal.G1ConcRefinementThresholdStep = 2                                     [Long]
+          Each time the rset update queue increases by this amount activate the
+          next refinement thread if available. The actual step size will be
+          selected ergonomically by default, with this value used to determine a
+          lower bound.
+graal.G1ConcRefinementYellowZone = 0                                        [Long]
+          Number of enqueued update buffers that will trigger concurrent
+          processing. Will be selected ergonomically by default.
+graal.G1ConfidencePercent = 50                                           [Integer]
+          Confidence level for MMU/pause predictions.
+graal.G1HeapWastePercent = 5                                             [Integer]
+          Amount of space, expressed as a percentage of the heap size, that G1 is
+          willing not to collect to avoid expensive GCs.
+graal.G1MixedGCCountTarget = 8                                              [Long]
+          The target number of mixed GCs after a marking cycle.
+graal.G1PeriodicGCInterval = 0                                              [Long]
+          Number of milliseconds after a previous GC to wait before triggering a
+          periodic gc. A value of zero disables periodically enforced gc cycles.
+graal.G1PeriodicGCInvokesConcurrent = true                               [Boolean]
+          Determines the kind of periodic GC. Set to true to have G1 perform a
+          concurrent GC as periodic GC, otherwise use a STW Full GC.
+graal.G1PeriodicGCSystemLoadThreshold = 0.0                               [Double]
+          Maximum recent system wide load as returned by the 1m value of
+          getloadavg() at which G1 triggers a periodic GC. A load above this
+          value cancels a given periodic GC. A value of zero disables this check.
+graal.G1RSetRegionEntries = 0                                               [Long]
+          Max number of regions for which we keep bitmaps. Will be set
+          ergonomically by default
+graal.G1RSetSparseRegionEntries = 0                                         [Long]
+          Max number of entries per region in a sparse table. Will be set
+          ergonomically by default.
+graal.G1RSetUpdatingPauseTimePercent = 10                                [Integer]
+          A target percentage of time that is allowed to be spend on process RS
+          update buffers during the collection pause.
+graal.G1RefProcDrainInterval = 1000                                      [Integer]
+          The number of discovered reference objects to process before draining
+          concurrent marking work queues.
+graal.G1ReservePercent = 10                                              [Integer]
+          It determines the minimum reserve we should have in the heap to
+          minimize the probability of promotion failure.
+graal.G1SATBBufferEnqueueingThresholdPercent = 60                        [Integer]
+          Before enqueueing them, each mutator thread tries to do some filtering
+          on the SATB buffers it generates. If post-filtering the percentage of
+          retained entries is over this threshold the buffer will be enqueued for
+          processing. A value of 0 specifies that mutator threads should not do
+          such filtering.
+graal.G1SATBBufferSize = 1024                                               [Long]
+          Number of entries in an SATB log buffer.
+graal.G1UpdateBufferSize = 256                                              [Long]
+          Size of an update buffer.
+graal.G1UseAdaptiveConcRefinement = true                                 [Boolean]
+          Select green, yellow and red zones adaptively to meet the the pause
+          requirements.
+graal.G1UseAdaptiveIHOP = true                                           [Boolean]
+          Adaptively adjust the initiating heap occupancy from the initial value
+          of InitiatingHeapOccupancyPercent. The policy attempts to start marking
+          in time based on application behavior.
+graal.G1VerifyBitmaps = false                                            [Boolean]
+          Verifies the consistency of the marking bitmaps
+graal.G1VerifyHeapRegionCodeRoots = false                                [Boolean]
+          Verify the code root lists attached to each heap region.
+graal.G1VerifyRSetsDuringFullGC = false                                  [Boolean]
+          If true, perform verification of each heap region's remembered set when
+          verifying the heap during a full GC.
 graal.GCDebugStartCycle = -1                                             [Integer]
           Start tracing compiled GC barriers after N garbage collections
           (disabled if N <= 0).
+graal.GCDrainStackTargetSize = 64                                           [Long]
+          Number of entries we will try to leave on the stack during parallel gc
+graal.GCPauseIntervalMillis = 201                                           [Long]
+          Time slice for MMU specification
+graal.GCTimeRatio = 12                                                      [Long]
+          Adaptive size policy application time to GC time ratio
 graal.GenLoopSafepoints = true                                           [Boolean]
 graal.GeneratePIC = false                                                [Boolean]
           Generate position independent code
+graal.GenerateRuntimeDebugInfo = false                                   [Boolean]
+          Generate debuginfo for runtime-compiled code.
 graal.GenericDynamicCounters = false                                     [Boolean]
           Turn on the benchmark counters, and displays the results on VM shutdown
 graal.GraalArithmeticStubs = false                                       [Boolean]
@@ -385,6 +495,9 @@ graal.GraphCompressionThreshold = 70                                     [Intege
           Graal graph compression is performed when percent of live nodes falls
           below this value
 graal.GuardPriorities = true                                             [Boolean]
+graal.HeapSizePerGCThread = 44040192                                        [Long]
+          Size of heap (bytes) per GC thread used in calculating the number of GC
+          threads
 graal.HeapVerificationFailureIsFatal = true                              [Boolean]
           Failed verification of the heap (if enabled) causes termination.
 graal.HighTierPartialUnrolling = true                                    [Boolean]
@@ -401,15 +514,27 @@ graal.HybridStaticContext = false                                        [Boolea
 graal.IgnoreBadDuplications = true                                       [Boolean]
           Ignore duplications with a bad benefit cost relation.
 graal.ImageObjectTreeExpandRoots = ""                                     [String]
-          Override the default suppression of specified roots. See: REPORTS.md.
+          Override the default suppression of specified roots. See: Reports.md.
 graal.ImageObjectTreeExpandTypes = ""                                     [String]
-          Override the default suppression of specified types. See: REPORTS.md.
+          Override the default suppression of specified types. See: Reports.md.
 graal.ImageObjectTreeSuppressRoots = ""                                   [String]
-          Suppress the expansion of specified roots. See: REPORTS.md.
+          Suppress the expansion of specified roots. See: Reports.md.
 graal.ImageObjectTreeSuppressTypes = ""                                   [String]
-          Suppress the expansion of specified types. See: REPORTS.md.
+          Suppress the expansion of specified types. See: Reports.md.
 graal.ImmutableCode = false                                              [Boolean]
           Try to avoid emitting code where patching is required
+graal.InitialHeapSize = 0                                                   [Long]
+          Initial heap size (in bytes); zero means use ergonomics
+graal.InitialRAMPercentage = 1.5625                                       [Double]
+          Percentage of real memory used for initial heap size
+graal.InitiatingHeapOccupancyPercent = 45                                [Integer]
+          The percent occupancy (IHOP) of the current old generation capacity
+          above which a concurrent mark cycle will be initiated. Its value may
+          change over time if adaptive IHOP is enabled, otherwise the value
+          remains constant. In the latter case a value of 0 will result as
+          frequent as possible concurrent marking cycles. A value of 100 disables
+          concurrent marking. Fragmentation waste in the old generation is not
+          considered free space in this calculation.
 graal.Inline = true                                                      [Boolean]
           Enable inlining
 graal.InlineAllBonus = 1.0                                                [Double]
@@ -487,6 +612,9 @@ graal.LSRAOptimization = false                                           [Boolea
 graal.LargeChildrenCountPenaltyCoefficient = 0.005                        [Double]
           Reduces the likelihood of exploring call graphs that have a lot of
           children below the root.
+graal.LibGraalManagementDelay = 1000                                     [Integer]
+          Milliseconds to delay initialization of the libgraal JMX interface.
+          Specify a negative value to disable the interface altogether.
 graal.LimitInlinedInvokes = 5.0                                           [Double]
 graal.LimitObjectArrayLength = false                                     [Boolean]
           Enable a limit for the number of objects recorded for each type of a
@@ -519,10 +647,16 @@ graal.LoopInversion = false                                              [Boolea
           Convert loops into their zero trip form.
 graal.LoopMaxUnswitch = 3                                                [Integer]
 graal.LoopPeeling = true                                                 [Boolean]
+graal.LoopPredication = true                                             [Boolean]
+graal.LoopPredicationMainPath = true                                     [Boolean]
 graal.LoopUnswitch = true                                                [Boolean]
 graal.LoopUnswitchFrequencyBoost = 10.0                                   [Double]
 graal.LoopUnswitchMaxIncrease = 500                                      [Integer]
 graal.LoopUnswitchTrivial = 10                                           [Integer]
+graal.MarkStackSize = 4194304                                               [Long]
+          Size of marking stack
+graal.MarkStackSizeMax = 536870912                                          [Long]
+          Maximum size of marking stack
 graal.MatchExpressions = true                                            [Boolean]
           Allow backend to match complex expressions.
 graal.MaxCallingContextDepth = 0                                         [Integer]
@@ -539,12 +673,16 @@ graal.MaxConstantObjectsPerType = 100                                    [Intege
           merging the constants into one unique constant object per type. The
           analysis must be heap sensitive. It has a minimum value of 1.
 graal.MaxCpuLocalsPerCounter = 64                                        [Integer]
-          Upper bound on the number of cpu locals per counter
+          Upper bound on the number of cpu locals per counter. It has to be a
+          power of 2.
 graal.MaxDirectMemorySize = 0                                               [Long]
           Maximum total size of NIO direct-buffer allocations
 graal.MaxDuplicationFactor = 2.0                                          [Double]
           How much duplication can happen because of irreducible loops before
           bailing out.
+graal.MaxGCPauseMillis = 200                                                [Long]
+          Adaptive size policy maximum GC pause time goal in millisecond, or the
+          maximum GC time per MMU time slice
 graal.MaxGraphSizeNodeCost = 100000                                      [Integer]
           Maximum node cost graph size for duplication. If a graph is bigger
           duplication will stop.
@@ -558,6 +696,9 @@ graal.MaxHeapContextWidth = 0                                            [Intege
           different.
 graal.MaxHeapSize = 0                                                       [Long]
           The maximum heap size at run-time, in bytes.
+graal.MaxMispredictionCostIncreaseFactor = 2.0                            [Double]
+          Abstract measure of the cost of branch misprediction. Higher values
+          make generation of conditional moves more likely.
 graal.MaxNewSize = 0                                                        [Long]
           The maximum size of the young generation at run-time, in bytes
 graal.MaxObjectSetSize = 100                                             [Integer]
@@ -568,11 +709,17 @@ graal.MaxPolymorphicDispatches = 3                                       [Intege
           The maximum number of dispatches in guarded polymorphic inlining.
 graal.MaxPriorityInliningPeelingIterations = 10                          [Integer]
           Max number of precise inlining peeling iterations.
+graal.MaxRAM = 137438953472                                                 [Long]
+          Real memory size (in bytes) used to set maximum heap size
+graal.MaxRAMPercentage = 25.0                                             [Double]
+          Maximum percentage of real memory used for maximum heap size
 graal.MaxSimulationIterations = 2                                        [Integer]
           Maximum simulation-duplication iterations of the duplication
           optimization per invocation.
 graal.MaxSplitsPerNode = 32                                              [Integer]
 graal.MaxTemplatesPerSnippet = 50                                        [Integer]
+graal.MaxTenuringThreshold = 15                                             [Long]
+          Maximum value for tenuring threshold
 graal.MaxVectorAlignmentUnroll = 4                                       [Integer]
           Maximum number of unrolled alignment instructions
 graal.MaxVectorUnroll = 16                                               [Integer]
@@ -691,20 +838,39 @@ graal.MinHeapContextDepth = 0                                            [Intege
           The minimum length of the context used to model a heap object in
           addition to the allocation site; used only when ContextSensitiveHeap is
           enabled.
+graal.MinHeapDeltaBytes = 172032                                            [Long]
+          The minimum change in heap space due to GC (in bytes).
+graal.MinHeapFreeRatio = 40                                                 [Long]
+          The minimum percentage of heap free after GC to avoid expansion.
 graal.MinHeapSize = 0                                                       [Long]
           The minimum heap size at run-time, in bytes.
 graal.MinPolymorphicDispatchProbability = 0.1                             [Double]
           The minimum probability for using a dispatch in guarded polymorphic
           inlining.
+graal.MinRAMPercentage = 50.0                                             [Double]
+          Minimum percentage of real memory used for maximum heap size on systems
+          with small physical memory size
+graal.MinTLABSize = 2048                                                    [Long]
+          Minimum allowed TLAB size (in bytes)
 graal.MinimalBulkZeroingSize = 2048                                      [Integer]
           If applicable, use bulk zeroing instructions when the zeroing size in
           bytes exceeds this threshold.
 graal.MinimalRegions = true                                              [Boolean]
           Try to reduce duplication code size to the minimal amount of code.
 graal.MinimumPeelFrequency = 0.35                                          [Float]
+graal.MultiExitCostFactor = 32                                           [Integer]
+          Cost/Benefit heuristic for EE unrolling: If a loop has multiple exits,
+          cost is increased by this value for every none-sinking loop exit.
+graal.MultiExitCostFactorSink = 2                                        [Integer]
+          Cost/Benefit heuristic for EE unrolling: If a loop has multiple exits,
+          cost is increased by this value for every sinking loop exit.
 graal.NDCV = 0                                                           [Integer]
           Run level for NoDeadCodeVerifyHandler (0 = off, 1 = info, 2 = verbose,
           3 = fatal)
+graal.NewRatio = 2                                                          [Long]
+          Ratio of old/new generation sizes
+graal.NewSize = 1048576                                                     [Long]
+          Initial new generation size (in bytes)
 graal.NodeCounters = false                                               [Boolean]
           Counts the number of instances of each node class.
 graal.NonFatalIdenticalCompilationSnapshots = 20                         [Integer]
@@ -714,6 +880,10 @@ graal.ObjdumpExecutables = null                                           [Strin
           Comma separated list of candidate GNU objdump executables. If not
           specified, disassembling via GNU objdump is disabled. Otherwise, the
           first existing executable in the list is used.
+graal.OldPLABSize = 1024                                                    [Long]
+          Size of old gen promotion LAB's (in HeapWords)
+graal.OldSize = 5242880                                                     [Long]
+          Initial tenured generation size (in bytes)
 graal.OmitHotExceptionStacktrace = false                                 [Boolean]
 graal.OptAssumptions = true                                              [Boolean]
 graal.OptBulkAllocation = true                                           [Boolean]
@@ -750,6 +920,20 @@ graal.OptimizeLoopAccesses = true                                        [Boolea
           Enable access node optimizations for loops
 graal.PGOInstrument = null                                                [String]
           Dump information for Profile Guided Optimizations (true or file name)
+graal.PLABWeight = 75                                                    [Integer]
+          Percentage (0-100) used to weight the current sample when computing
+          exponentially decaying average for ResizePLAB
+graal.ParGCArrayScanChunk = 50                                           [Integer]
+          Scan a subset of object array and push remainder, if array is bigger
+          than this
+graal.ParallelGCBufferWastePct = 10                                      [Integer]
+          Wasted fraction of parallel allocation buffer
+graal.ParallelGCThreads = 0                                              [Integer]
+          Number of parallel threads parallel gc will use
+graal.ParallelRefProcBalancingEnabled = true                             [Boolean]
+          Enable balancing of reference processing queues
+graal.ParallelRefProcEnabled = true                                      [Boolean]
+          Enable parallel reference processing whenever possible
 graal.PartialEscapeAnalysis = true                                       [Boolean]
 graal.PartialRedundancyElimination = true                                [Boolean]
           Enable partial redundancy elimination
@@ -772,6 +956,9 @@ graal.PartialUnrollMaxSizeMidTier = 256                                  [Intege
           unrolling.
 graal.PartialUnrollMinFrequency = 2                                      [Integer]
           Minimal loop frequency to consider a loop for partial unrolling
+graal.PathProfileCutThreshold = 10                                       [Integer]
+          The limit on the number of paths at control-flow merges. Decreasing
+          this value reduces the number of paths, but also shortens them.
 graal.PathProfileDumpFile = null                                          [String]
           Dump information for path profile (null or file name). If set to null,
           then dumping is disabled.
@@ -786,9 +973,9 @@ graal.PathProfileLocalLowFrequencyRatio = 10.0                            [Doubl
           If the ratio of the merge's frequency with its inbound's frequency is
           greater than this threshold, then the inbound is considered infrequent.
 graal.PathProfileMaxTotalCounters = 4000000                              [Integer]
-          Maximum number of counters to use in path profiling for every
-          instrumented method.
-graal.PathProfileMode = None                                              [String]
+          Maximum number of counters to use in path profiling for all
+          instrumented methods.
+graal.PathProfilePolicy = None                                            [String]
           Enable or disable the path-profiling algorithm. If it enables it, it
           also allows to select which mode to execute.
 graal.PathProfileRegenerate = false                                      [Boolean]
@@ -807,6 +994,16 @@ graal.PerfDataSamplingInterval = 200                                     [Intege
           Jvmstat instrumentation sampling interval (in milliseconds)
 graal.PerfMaxStringConstLength = 1024                                    [Integer]
           Maximum PerfStringConstant string length before truncation
+graal.PreTouchParallelChunkSize = 1073741824                                [Long]
+          Per-thread chunk size for parallel memory pre-touch.
+graal.PreferContainerQuotaForCPUCount = true                             [Boolean]
+          Calculate the container CPU availability based on the value of quotas
+          (if set), when true. Otherwise, use the CPU shares value, provided it
+          is less than quota.
+graal.PrefetchCopyIntervalInBytes = -1                                      [Long]
+          How far ahead to prefetch destination area (<= 0 means off)
+graal.PrefetchScanIntervalInBytes = -1                                      [Long]
+          How far ahead to prefetch scan area (<= 0 means off)
 graal.PrintAnalysisCallTree = false                                      [Boolean]
           Print analysis call tree, a breadth-first tree reduction of the call
           graph.
@@ -879,10 +1076,6 @@ graal.PrintProfilingInformation = false                                  [Boolea
           Print profiling information when parsing a method's bytecode
 graal.PrintSynchronizedAnalysis = false                                  [Boolean]
           Print types used for Java synchronization.
-graal.PrintTruffleExpansionHistogram = false                             [Boolean]
-          Prints a histogram of all expanded Java methods.
-graal.PrintTruffleTrees = true                                           [Boolean]
-          Enable dumping Truffle ASTs to the IdealGraphVisualizer.
 graal.PriorityInliningPolicy = ""                                         [String]
           The policy to use, must be empty for automatic resolution.
 graal.PriorityInliningTuningPolicy = "DomainSpecific"                     [String]
@@ -919,17 +1112,27 @@ graal.ProfileLockElimination = false                                     [Boolea
 graal.ProfileMonitors = false                                            [Boolean]
           Enable profiling of monitor operations.
 graal.ProfileOptBulkAllocation = false                                   [Boolean]
+graal.ProfileSelfTime = true                                             [Boolean]
+          Excludes time spent in invoked methods; measures total time including
+          subcalls when turned off.
 graal.ProfileSimpleMethods = true                                        [Boolean]
           Profile simple methods
 graal.ProfilesDumpFile = "default.iprof"                                  [String]
           Value should point to a profile dump file.
 graal.PruneLargeDominatorUsageTrees = true                               [Boolean]
 graal.PullThroughPhiCodeSizeIncrease = 0.1                                [Double]
+graal.QueuedAllocationWarningCount = 0                                      [Long]
+          Number of times an allocation that queues behind a GC will retry before
+          printing a warning
 graal.RawConditionalElimination = true                                   [Boolean]
 graal.ReadEliminationMaxLoopVisits = 5                                   [Integer]
-graal.ReassociateInvariants = true                                       [Boolean]
+graal.ReassociateExpressions = true                                      [Boolean]
+          Re-associate loop invariants and constants.
 graal.ReduceDCE = true                                                   [Boolean]
           Disable optional dead code eliminations
+graal.RefDiscoveryPolicy = 0                                             [Integer]
+          Select type of reference discovery policy: reference-based(0) or
+          referent-based(1)
 graal.RegisterPressure = null                                             [String]
           Comma separated list of registers that register allocation is limited
           to.
@@ -943,6 +1146,10 @@ graal.RemoveNeverExecutedCode = true                                     [Boolea
 graal.RemoveSaturatedTypeFlows = true                                    [Boolean]
           Enable the type flow saturation analysis performance optimization.
 graal.ReplaceInputsWithConstantsBasedOnStamps = true                     [Boolean]
+graal.ResizePLAB = true                                                  [Boolean]
+          Dynamically resize (survivor space) promotion LAB's
+graal.ResizeTLAB = true                                                  [Boolean]
+          Dynamically resize TLAB size for threads
 graal.RespectVectorization = true                                        [Boolean]
           Try avoid unrolling vectorizable loops.
 graal.RuntimeSourceDestDir = null                                         [String]
@@ -987,6 +1194,8 @@ graal.SmallRootIrPenaltyCoefficient = 0.02                                [Doubl
           larger than the root.
 graal.SnippetCounters = false                                            [Boolean]
           Enable counters for various paths in snippets.
+graal.SoftRefLRUPolicyMSPerMB = 1000                                        [Long]
+          Number of milliseconds per MB of free space in the heap.
 graal.SpectrePHTBarriers = None                                           [String]
           Select a strategy to mitigate speculative bounds check bypass (aka
           Spectre-PHT or Spectre V1).
@@ -997,12 +1206,14 @@ graal.SpectrePHTBarriers = None                                           [Strin
                                    stopped using speculative execution barrier instructions.
                     GuardTargets - Branch targets relevant to Java memory safety are instrumented
                                    with barrier instructions. This option has less performance impact
-                                   than AllTargets. Note that memory accesses through UNSAFE are not
-                                   covered by this mitigation. This includes libraries built upon UNSAFE,
-                                   such as java.nio.ByteBuffer.
+                                   than AllTargets. 
             NonDeoptGuardTargets - Same as GuardTargets, except that branches which deoptimize are not
                                    protected since they can not be executed repeatedly and are thus less
                                    likely to be successfully exploited in an attack.
+          
+                                   
+          Note that all modes except "None" will also instrument branch target blocks containing UNSAFE memory accesses
+          with barrier instructions.
 graal.SpectrePHTIndexMasking = false                                     [Boolean]
           Mask indices to scope access to allocation size after bounds check.
 graal.SpeculativeStoreCheck = true                                       [Boolean]
@@ -1026,6 +1237,22 @@ graal.SupportOSRWithLocks = true                                         [Boolea
           per definition not have unbalanced enter/exits mappings. If
           DeoptAfterOSR is false insert artificial monitor enters after the
           OSRStart to have balanced enter/exits in the graph.
+graal.SurvivorRatio = 8                                                     [Long]
+          Ratio of eden/survivor space size
+graal.TLABAllocationWeight = 35                                          [Integer]
+          Allocation averaging weight
+graal.TLABRefillWasteFraction = 64                                          [Long]
+          Maximum TLAB waste at a refill (internal fragmentation)
+graal.TLABSize = 0                                                          [Long]
+          Starting TLAB size (in bytes); zero means set ergonomically
+graal.TLABWasteIncrement = 4                                                [Long]
+          Increment allowed waste at slow allocation
+graal.TLABWasteTargetPercent = 1                                         [Integer]
+          Percentage of Eden that can be wasted
+graal.TargetPLABWastePct = 10                                            [Integer]
+          Target wasted space in last buffer as percent of overall allocation
+graal.TargetSurvivorRatio = 50                                              [Long]
+          Desired percentage of survivor space used after scavenge
 graal.TearDownFailureNanos = 0                                              [Long]
           The number of nanoseconds before tearing down an isolate gives a
           failure message. 0 implies no message.
@@ -1049,6 +1276,8 @@ graal.Time = null                                                         [Strin
           Pattern for specifying scopes in which timing is enabled. See the Dump
           option for the pattern syntax. An empty value enables all timers
           unconditionally.
+graal.TimeStampProfiling = false                                         [Boolean]
+          Profile method execution time.
 graal.TimedDynamicCounters = -1                                          [Integer]
           Turn on the benchmark counters, and displays the results every n
           milliseconds
@@ -1097,32 +1326,6 @@ graal.TraceMonitorsTypeFilter = null                                      [Strin
           Trace monitor operations on objects whose type contains this substring.
 graal.TraceParserPlugins = false                                         [Boolean]
           Traces use of plugins during bytecode parsing.
-graal.TraceTruffleAssumptions = false                                    [Boolean]
-          Print stack trace on assumption invalidation
-graal.TraceTruffleCompilation = false                                    [Boolean]
-          Print information for compilation results
-graal.TraceTruffleCompilationAST = false                                 [Boolean]
-          Print the entire AST after each compilation
-graal.TraceTruffleCompilationCallTree = false                            [Boolean]
-          Print the inlined call tree for each compiled method
-graal.TraceTruffleCompilationDetails = false                             [Boolean]
-          Print information for compilation queuing
-graal.TraceTruffleCompilationPolymorphism = false                        [Boolean]
-          Print all polymorphic and generic nodes after each compilation
-graal.TraceTruffleInlining = false                                       [Boolean]
-          Print information for inlining for each compilation.
-graal.TraceTruffleInliningDetails = false                                [Boolean]
-          Print detailed information for inlining (i.e. the entire explored call
-          tree).
-graal.TraceTrufflePerformanceWarnings = false                            [Boolean]
-          Print potential performance problems
-graal.TraceTruffleSplitting = false                                      [Boolean]
-          Print information for each splitted call site.
-graal.TraceTruffleStackTraceLimit = 20                                   [Integer]
-          Number of stack trace elements printed by
-          TraceTruffleTransferToInterpreter and TraceTruffleAssumptions
-graal.TraceTruffleTransferToInterpreter = false                          [Boolean]
-          Print stack trace on transfer to interpreter.
 graal.TraceUnwindStub = false                                            [Boolean]
           Trace execution of the stub that routes an exception to a handler in
           the calling frame.
@@ -1153,131 +1356,9 @@ graal.TrivialLoopSizeLimitForPeeling = 512.0                              [Doubl
           peeling. Larger loops will only be considered for peeling if the
           simulated benefit of peeling is relatively high. The larger the loop,
           the greater the expected benefit has to be.
-graal.TruffleArgumentTypeSpeculation = true                              [Boolean]
-graal.TruffleBackgroundCompilation = true                                [Boolean]
-          Enable asynchronous truffle compilation in background thread
-graal.TruffleCompilation = true                                          [Boolean]
-          Enable or disable truffle compilation.
-graal.TruffleCompilationExceptionsAreFatal = false                       [Boolean]
-          Treat compilation exceptions as fatal exceptions that will exit the
-          application
-graal.TruffleCompilationExceptionsArePrinted = false                     [Boolean]
-          Prints the exception stack trace for compilation exceptions
-graal.TruffleCompilationExceptionsAreThrown = false                      [Boolean]
-          Treat compilation exceptions as thrown runtime exceptions
-graal.TruffleCompilationStatisticDetails = false                         [Boolean]
-          Print additional more verbose Truffle compilation statistics at the end
-          of a run.
-graal.TruffleCompilationStatistics = false                               [Boolean]
-          Print Truffle compilation statistics at the end of a run.
-graal.TruffleCompilationThreshold = 1000                                 [Integer]
-          Compile call target when call count exceeds this threshold.
-graal.TruffleCompileImmediately = false                                  [Boolean]
-          Compile immediately to test truffle compiler
-graal.TruffleCompileOnly = null                                           [String]
-          Restrict compilation to comma-separated list of includes (or excludes
-          prefixed with tilde).
-          EBNF format of argument value:  CompileOnly = Element, { ',', Element } ;
 graal.TruffleCompilerConfiguration = null                                 [String]
           Select a compiler configuration for Truffle compilation (default: use
           Graal system compiler configuration).
-graal.TruffleCompilerThreads = 0                                         [Integer]
-          Manually set the number of compiler threads
-graal.TruffleEnableInfopoints = false                                    [Boolean]
-          Enable support for simple infopoints in truffle partial evaluations.
-graal.TruffleExcludeAssertions = true                                    [Boolean]
-          Exclude assertion code from Truffle compilations
-graal.TruffleFirstTierCompilationThreshold = 100                         [Integer]
-          Compile call target in the first tier when call count exceeds this
-          threshold.
-graal.TruffleFirstTierMinInvokeThreshold = 1                             [Integer]
-          Minimum number of calls before a call target is compiled in the first
-          tier.
-graal.TruffleFunctionInlining = true                                     [Boolean]
-          Enable automatic inlining of call targets
-graal.TruffleInlineAcrossTruffleBoundary = false                         [Boolean]
-          Enable inlining across Truffle boundary
-graal.TruffleInliningExpansionBudget = 30000                             [Integer]
-          The base expansion budget for language-agnostic inlining.
-graal.TruffleInliningInliningBudget = 30000                              [Integer]
-          The base inlining budget for language-agnostic inlining
-graal.TruffleInliningMaxCallerSize = 2250                                [Integer]
-          Stop inlining if caller's cumulative tree size would exceed this limit
-graal.TruffleInliningPolicy = ""                                          [String]
-          Explicitly pick a inlining policy by name. Highest priority chosen by
-          default.
-graal.TruffleInstrumentBoundaries = false                                [Boolean]
-          Instrument Truffle boundaries and output profiling information to the
-          standard output.
-graal.TruffleInstrumentBoundariesPerInlineSite = false                   [Boolean]
-          Instrument Truffle boundaries by considering different inlining sites
-          as different branches.
-graal.TruffleInstrumentBranches = false                                  [Boolean]
-          Instrument branches and output profiling information to the standard
-          output.
-graal.TruffleInstrumentBranchesPerInlineSite = false                     [Boolean]
-          Instrument branches by considering different inlining sites as
-          different branches.
-graal.TruffleInstrumentFilter = "*.*.*"                                   [String]
-          Method filter for host methods in which to add instrumentation.
-graal.TruffleInstrumentationTableSize = 10000                            [Integer]
-          Maximum number of instrumentation counters available.
-graal.TruffleIntrinsifyFrameAccess = true                                [Boolean]
-          Intrinsify get/set/is methods of FrameWithoutBoxing to improve Truffle
-          compilation time
-graal.TruffleInvalidationReprofileCount = 3                              [Integer]
-          Delay compilation after an invalidation to allow for reprofiling
-graal.TruffleIterativePartialEscape = false                              [Boolean]
-          Run the partial escape analysis iteratively in Truffle compilation.
-graal.TruffleLanguageAgnosticInlining = true                             [Boolean]
-          Use language-agnostic inlining (overrides the TruffleFunctionInlining
-          setting, option is experimental).
-graal.TruffleMaximumGraalNodeCount = 400000                              [Integer]
-          Stop partial evaluation when the graph exceeded this many nodes.
-graal.TruffleMaximumInlineNodeCount = 150000                             [Integer]
-          Ignore further truffle inlining decisions when the graph exceeded this
-          many nodes.
-graal.TruffleMaximumRecursiveInlining = 2                                [Integer]
-          Maximum level of recursive inlining
-graal.TruffleMinInvokeThreshold = 3                                      [Integer]
-          Minimum number of calls before a call target is compiled
-graal.TruffleMultiTier = false                                           [Boolean]
-          Whether to use multiple Truffle compilation tiers by default.
-graal.TruffleOSR = true                                                  [Boolean]
-          Enable on stack replacement for Truffle loops.
-graal.TruffleOSRCompilationThreshold = 100000                            [Integer]
-          Number of loop iterations until on-stack-replacement compilation is
-          triggered.
-graal.TrufflePerformanceWarningsAreFatal = false                         [Boolean]
-          Treat performance warnings as fatal occurrences that will exit the
-          applications
-graal.TruffleProfilingEnabled = true                                     [Boolean]
-          Enable/disable builtin profiles in com.oracle.truffle.api.profiles.
-graal.TruffleReplaceReprofileCount = 3                                   [Integer]
-          Delay compilation after a node replacement
-graal.TruffleReturnTypeSpeculation = true                                [Boolean]
-graal.TruffleSplitting = true                                            [Boolean]
-          Enable call target splitting
-graal.TruffleSplittingAllowForcedSplits = true                           [Boolean]
-          Should forced splits be allowed.
-graal.TruffleSplittingDumpDecisions = false                              [Boolean]
-          Dumps to IGV information on polymorphic events
-graal.TruffleSplittingGrowthLimit = 1.5                                   [Double]
-          Disable call target splitting if the number of nodes created by
-          splitting exceeds this factor times node count
-graal.TruffleSplittingMaxCalleeSize = 100                                [Integer]
-          Disable call target splitting if tree size exceeds this limit
-graal.TruffleSplittingMaxNumberOfSplitNodes = 500000                     [Integer]
-          Disable call target splitting if number of nodes created by splitting
-          exceeds this limit
-graal.TruffleSplittingMaxPropagationDepth = 5                            [Integer]
-          Propagate info about a polymorphic specialize through maximum this many
-          call targets
-graal.TruffleSplittingTraceEvents = false                                [Boolean]
-          Trace details of splitting events and decisions.
-graal.TruffleTraceSplittingSummary = false                               [Boolean]
-          Used for debugging the splitting implementation. Prints splitting
-          summary directly to stdout on shutdown
 graal.TrustFinalDefaultFields = true                                     [Boolean]
           Determines whether to treat final fields with default values as
           constant.
@@ -1320,6 +1401,10 @@ graal.TypicalGraphSizeMax = 10000                                        [Intege
 graal.UnresolvedIsError = true                                           [Boolean]
           Report unresolved elements as errors.
 graal.UnrollMaxIterations = 16                                           [Integer]
+graal.UnrollMultiEndLoops = true                                         [Boolean]
+          Unroll loops with multiple loop ends.
+graal.UnrollMultiExitLoops = true                                        [Boolean]
+          Unroll loops with multiple loop exits.
 graal.UseBranchesWithin32ByteBoundary = false                            [Boolean]
           Force branch instructions to align with 32-bytes boundary, to mitigate
           the jcc erratum. See
@@ -1328,6 +1413,10 @@ graal.UseBranchesWithin32ByteBoundary = false                            [Boolea
           determined according to the CPU model.
 graal.UseCompilationStatistics = false                                   [Boolean]
           Enables CompilationStatistics.
+graal.UseDynamicNumberOfGCThreads = true                                 [Boolean]
+          Dynamically choose the number of threads up to a maximum of
+          ParallelGCThreads parallel collectors will use for garbage collection
+          work
 graal.UseEncodedGraphs = false                                           [Boolean]
           Encode and decode snippets and substitutions before parsing to test
           libgraal code path. This option is ignored in the context of libgraal.
@@ -1380,6 +1469,8 @@ graal.VectorizeNegativeStride = true                                     [Boolea
           Enable vectorization of loops with negative strides.
 graal.VectorizeSIMD = false                                              [Boolean]
           Enable detection of SIMD patterns
+graal.VectorizeSafepoints = true                                         [Boolean]
+          Enable vectorization of loops with safepoints.
 graal.VectorizeSequence = true                                           [Boolean]
           Enable vectorization of sequence values.
 graal.VerboseGC = false                                                  [Boolean]
@@ -1387,9 +1478,17 @@ graal.VerboseGC = false                                                  [Boolea
 graal.Verify = null                                                       [String]
           Pattern for specifying scopes in which logging is enabled. See the Dump
           option for the pattern syntax.
+graal.VerifyAfterGC = false                                              [Boolean]
+          Verify memory system after GC
 graal.VerifyBalancedMonitors = false                                     [Boolean]
           Emit extra code to dynamically check monitor operations are balanced.
+graal.VerifyBeforeGC = false                                             [Boolean]
+          Verify memory system before GC
 graal.VerifyDuplicationOperations = false                                [Boolean]
+graal.VerifyDuringGC = false                                             [Boolean]
+          Verify memory system during GC (between phases)
+graal.VerifyGCStartAt = 0                                                   [Long]
+          GC invoke count where +VerifyHeap kicks in
 graal.VerifyGraalGraphEdges = false                                      [Boolean]
           Perform expensive verification of graph inputs, usages, successors and
           predecessors
@@ -1403,8 +1502,14 @@ graal.VerifyHeapAtReturn = false                                         [Boolea
 graal.VerifyKillCFGUnusedNodes = false                                   [Boolean]
           Verify that there are no new unused nodes when performing killCFG
 graal.VerifyPhases = false                                               [Boolean]
+graal.VerifyRememberedSets = false                                       [Boolean]
+          Verify GC remembered sets
 graal.VerifyWriteBarrierElimination = false                              [Boolean]
           Add code to verify that eliminated barriers weren't needed.
 graal.WriteableCodeCache = false                                         [Boolean]
           Allocate code cache with write access, allowing inlining of objects
+graal.YoungPLABSize = 4096                                                  [Long]
+          Size of young gen promotion LAB's (in HeapWords)
 graal.ZapStackOnMethodEntry = false                                      [Boolean]
+graal.ZeroTLAB = false                                                   [Boolean]
+          Zero out the newly created TLAB
