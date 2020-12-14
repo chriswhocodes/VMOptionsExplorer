@@ -72,7 +72,7 @@ public class IntrinsicParser
 
 	private void mapSignature(String key, String value)
 	{
-		//System.out.println("Signature: '" + key + "'=>'" + value + "'");
+		System.out.println("Signature: '" + key + "'=>'" + value + "'");
 
 		mapSignature.put(key, value);
 	}
@@ -91,6 +91,7 @@ public class IntrinsicParser
 		instrinsics.add(intrinsic);
 	}
 
+	//   do_name(getCharAcquire_name,    "getCharAcquire")         do_name(putCharRelease_name,    "putCharRelease")           \
 	private List<String> splitMultipleTagsPerLine(List<String> lines)
 	{
 		List<String> result = new ArrayList<String>();
@@ -152,9 +153,9 @@ public class IntrinsicParser
 		{
 			Intrinsic substituted = substituteMappings(intrinsic);
 
-//			System.out.println(intrinsic);
-//			System.out.println(substituted);
-//			System.out.println();
+			System.out.println(intrinsic);
+			System.out.println(substituted);
+			System.out.println();
 
 			result.add(substituted);
 		}
@@ -178,15 +179,29 @@ public class IntrinsicParser
 		mapAlias = new HashMap<String, String>();
 	}
 
-	public void processIntrinsics(Path pathToVmSymbols, String jdkName) throws IOException
+	public void processIntrinsics(String jdkName, Path... filesToProcess) throws IOException
 	{
 		reset();
 
-		List<String> lines = splitMultipleTagsPerLine(Files.readAllLines(pathToVmSymbols));
-
-		for (String line : lines)
+		for (Path filePath : filesToProcess)
 		{
-			// System.out.println(line);
+			processFile(filePath, jdkName);
+		}
+	}
+
+
+	// don't split by line
+	// read chars
+
+	private void processFile(Path fileToProcess, String jdkName) throws IOException
+	{
+		List<String> lines = splitMultipleTagsPerLine(Files.readAllLines(fileToProcess));
+
+		for (int i = 0; i <lines.size(); i++)
+		{
+			String line = lines.get(i);
+
+			System.out.println(line);
 
 			int firstBracket = line.indexOf('(');
 
