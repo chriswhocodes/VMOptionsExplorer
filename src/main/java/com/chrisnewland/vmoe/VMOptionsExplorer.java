@@ -440,6 +440,7 @@ public class VMOptionsExplorer
 			DeprecatedParser.parseFile(baseDir.resolve("jdk14"));
 			DeprecatedParser.parseFile(baseDir.resolve("jdk15"));
 			DeprecatedParser.parseFile(baseDir.resolve("jdk16"));
+			DeprecatedParser.parseFile(baseDir.resolve("jdk17"));
 		}
 
 		String graalVersion = "20.3.0";
@@ -475,6 +476,9 @@ public class VMOptionsExplorer
 			explorer.addVM(new VMData("OpenJDK15", baseDir.resolve("jdk15/src/hotspot").toFile(), VMType.HOTSPOT).addUsageFile(
 					post13Usage));
 			explorer.addVM(new VMData("OpenJDK16", baseDir.resolve("jdk16/src/hotspot").toFile(), VMType.HOTSPOT).addUsageFile(
+					post13Usage));
+
+			explorer.addVM(new VMData("OpenJDK17", baseDir.resolve("jdk17/src/hotspot").toFile(), VMType.HOTSPOT).addUsageFile(
 					post13Usage));
 		}
 
@@ -530,8 +534,9 @@ public class VMOptionsExplorer
 					new VMData("Corretto JDK8", baseDir.resolve("corretto-8/src/hotspot").toFile(), VMType.CORRETTO).addUsageFile(
 							pre10Usage));
 
-			explorer.addVM(new VMData("Corretto JDK11", baseDir.resolve("corretto-11/src/hotspot").toFile(),
-					VMType.CORRETTO).addUsageFile(post13Usage));
+			explorer.addVM(
+					new VMData("Corretto JDK11", baseDir.resolve("corretto-11/src/hotspot").toFile(), VMType.CORRETTO).addUsageFile(
+							post13Usage));
 		}
 
 		explorer.compareVMData("OpenJDK8", "Corretto JDK8");
@@ -582,18 +587,24 @@ public class VMOptionsExplorer
 		{
 			IntrinsicParser intrinsicParser = new IntrinsicParser(serialiseDir, graalVersion);
 
-			intrinsicParser.processIntrinsics("OpenJDK6", baseDir.resolve("jdk6/hotspot/src/share/vm/classfile/vmSymbols.hpp"));
-			intrinsicParser.processIntrinsics("OpenJDK7", baseDir.resolve("jdk7/hotspot/src/share/vm/classfile/vmSymbols.hpp"));
-			intrinsicParser.processIntrinsics("OpenJDK8", baseDir.resolve("jdk8/hotspot/src/share/vm/classfile/vmSymbols.hpp"));
-			intrinsicParser.processIntrinsics("OpenJDK9", baseDir.resolve("jdk9/hotspot/src/share/vm/classfile/vmSymbols.hpp"));
-			intrinsicParser.processIntrinsics("OpenJDK10", baseDir.resolve("jdk10/src/hotspot/share/classfile/vmSymbols.hpp"));
-			intrinsicParser.processIntrinsics("OpenJDK11", baseDir.resolve("jdk11/src/hotspot/share/classfile/vmSymbols.hpp"));
-			intrinsicParser.processIntrinsics("OpenJDK12", baseDir.resolve("jdk12/src/hotspot/share/classfile/vmSymbols.hpp"));
-			intrinsicParser.processIntrinsics("OpenJDK13", baseDir.resolve("jdk13/src/hotspot/share/classfile/vmSymbols.hpp"));
-			intrinsicParser.processIntrinsics("OpenJDK14", baseDir.resolve("jdk14/src/hotspot/share/classfile/vmSymbols.hpp"));
-			intrinsicParser.processIntrinsics("OpenJDK15", baseDir.resolve("jdk15/src/hotspot/share/classfile/vmSymbols.hpp"));
-			intrinsicParser.processIntrinsics("OpenJDK16", baseDir.resolve("jdk16/src/hotspot/share/classfile/vmSymbols.hpp"),
-					baseDir.resolve("jdk16/src/hotspot/share/classfile/vmIntrinsics.hpp"));
+			String pre10vmSymbols = "hotspot/src/share/vm/classfile/vmSymbols.hpp";
+			String post10vmSymbols = "src/hotspot/share/classfile/vmSymbols.hpp";
+			String post16vmIntrinsics = "src/hotspot/share/classfile/vmIntrinsics.hpp";
+
+			intrinsicParser.processIntrinsics("OpenJDK6", baseDir.resolve("jdk6/" + pre10vmSymbols));
+			intrinsicParser.processIntrinsics("OpenJDK7", baseDir.resolve("jdk7/" + pre10vmSymbols));
+			intrinsicParser.processIntrinsics("OpenJDK8", baseDir.resolve("jdk8/" + pre10vmSymbols));
+			intrinsicParser.processIntrinsics("OpenJDK9", baseDir.resolve("jdk9/" + pre10vmSymbols));
+			intrinsicParser.processIntrinsics("OpenJDK10", baseDir.resolve("jdk10/" + post10vmSymbols));
+			intrinsicParser.processIntrinsics("OpenJDK11", baseDir.resolve("jdk11/" + post10vmSymbols));
+			intrinsicParser.processIntrinsics("OpenJDK12", baseDir.resolve("jdk12/" + post10vmSymbols));
+			intrinsicParser.processIntrinsics("OpenJDK13", baseDir.resolve("jdk13/" + post10vmSymbols));
+			intrinsicParser.processIntrinsics("OpenJDK14", baseDir.resolve("jdk14/" + post10vmSymbols));
+			intrinsicParser.processIntrinsics("OpenJDK15", baseDir.resolve("jdk15/" + post10vmSymbols));
+			intrinsicParser.processIntrinsics("OpenJDK16", baseDir.resolve("jdk16/" + post10vmSymbols),
+					baseDir.resolve("jdk16/" + post16vmIntrinsics));
+			intrinsicParser.processIntrinsics("OpenJDK17", baseDir.resolve("jdk17/" + post10vmSymbols),
+					baseDir.resolve("jdk17/" + post16vmIntrinsics));
 		}
 	}
 }
