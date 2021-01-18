@@ -24,7 +24,7 @@ public class VMOptionsExplorer
 {
 	private File vmPath;
 
-	private File serialiseDir;
+	private Path serialiseDir;
 
 	private Map<String, VMData> vmDataMap = new LinkedHashMap<>();
 
@@ -44,12 +44,9 @@ public class VMOptionsExplorer
 
 	public void process(Path serialiseDir) throws Exception
 	{
-		if (serialiseDir != null)
-		{
-			prepareSerialisationDir(serialiseDir);
-		}
+		this.serialiseDir = serialiseDir;
 
-		this.serialiseDir = serialiseDir.toFile();
+		prepareSerialisationDir();
 
 		for (VMData vmData : vmDataMap.values())
 		{
@@ -57,18 +54,21 @@ public class VMOptionsExplorer
 		}
 	}
 
-	private void prepareSerialisationDir(Path serialisePath)
+	private void prepareSerialisationDir()
 	{
-		File dir = serialisePath.toFile();
+		File rootDir = serialiseDir.toFile();
 
-		if (!dir.exists())
+		if (!rootDir.exists())
 		{
-			dir.mkdirs();
+			rootDir.mkdirs();
+			new File(rootDir, "options").mkdir();
+			new File(rootDir, "diffs").mkdir();
+			new File(rootDir, "intrinsics").mkdir();
 		}
 
-		if (!dir.exists() && dir.isDirectory())
+		if (!rootDir.exists() && rootDir.isDirectory())
 		{
-			throw new RuntimeException("Could not create serialisation dir: " + serialisePath);
+			throw new RuntimeException("Could not create serialisation dirs: " + serialiseDir);
 		}
 	}
 
@@ -154,7 +154,8 @@ public class VMOptionsExplorer
 
 		builder.append(deltaTable.toString());
 
-		Path serialisationPath = Paths.get(serialiseDir.getAbsolutePath(), later.getSafeJDKName() + "_diffs.json");
+		Path serialisationPath = Paths.get(serialiseDir.resolve(Paths.get("diffs")).toString(),
+				later.getSafeJDKName() + "_diffs.json");
 
 		Files.write(serialisationPath, deltaTable.toJSON().getBytes());
 	}
@@ -304,12 +305,9 @@ public class VMOptionsExplorer
 			switchInfoMap.putAll(mapXUsage);
 		}
 
-		if (serialiseDir != null)
-		{
-			Path serialisationPath = Paths.get(serialiseDir.getAbsolutePath(), vmData.getSafeJDKName() + ".json");
+		Path serialisationPath = Paths.get(serialiseDir.resolve("options").toString(), vmData.getSafeJDKName() + ".json");
 
-			Serialiser.serialiseSwitchInfo(serialisationPath, switchInfoMap.values());
-		}
+		Serialiser.serialiseSwitchInfo(serialisationPath, switchInfoMap.values());
 
 		String template = new String(Files.readAllBytes(vmoeDir.resolve("templates/template.html")), StandardCharsets.UTF_8);
 
@@ -407,17 +405,17 @@ public class VMOptionsExplorer
 
 	public static void main(String[] args) throws Exception
 	{
-		long before = Runtime.getRuntime().freeMemory();
-
-		if (args.length != 2)
+		if (args.length != 3)
 		{
-			System.err.println("VMOptionsExplorer <jdk base dir> <VMOptionsExplorer base dir>");
+			System.err.println("VMOptionsExplorer <jdk base dir> <VMOptionsExplorer base dir> <JSON output dir>");
 			System.exit(-1);
 		}
 
 		Path baseDir = Paths.get(args[0]);
 
 		Path vmoeDir = Paths.get(args[1]);
+
+		Path jsonOutputDir = Paths.get(args[2]);
 
 		boolean processHotSpot = true;
 		boolean processHotSpotDeprecated = true;
@@ -553,9 +551,7 @@ public class VMOptionsExplorer
 
 		explorer.compareVMData("OpenJDK16", "SapMachine");
 
-		Path serialiseDir = baseDir.resolve("serialised");
-
-		explorer.process(serialiseDir);
+		explorer.process(jsonOutputDir);
 
 		if (processHotSpot)
 		{
@@ -585,7 +581,7 @@ public class VMOptionsExplorer
 
 		if (processHotSpotIntrinsics)
 		{
-			IntrinsicParser intrinsicParser = new IntrinsicParser(serialiseDir, graalVersion);
+			IntrinsicParser intrinsicParser = new IntrinsicParser(jsonOutputDir.resolve(Paths.get("intrinsics")), graalVersion);
 
 			String pre10vmSymbols = "hotspot/src/share/vm/classfile/vmSymbols.hpp";
 			String post10vmSymbols = "src/hotspot/share/classfile/vmSymbols.hpp";

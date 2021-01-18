@@ -1,0 +1,2438 @@
+{
+    "removed": [],
+    "added": [
+        {
+            "defaultValue": "true",
+            "prefix": "-XX:",
+            "name": "AOTPriorityInline",
+            "description": "<pre>Enable use of priority inlining during AOT compilation.<\/pre>",
+            "availability": "Hosted",
+            "type": "bool",
+            "key": "AOTPriorityInline_null_null_null"
+        },
+        {
+            "defaultValue": "30",
+            "prefix": "-XX:",
+            "name": "AllowedNumberOfInaccurateProfiles",
+            "description": "<pre>Threshold for number of points with inaccurate profiles. <\/pre>",
+            "availability": "Hosted",
+            "type": "int",
+            "key": "AllowedNumberOfInaccurateProfiles_null_null_null"
+        },
+        {
+            "defaultValue": "false",
+            "prefix": "-XX:",
+            "name": "AlwaysPreTouch",
+            "description": "<pre>Force all freshly committed pages to be pre-touched.<\/pre>",
+            "availability": "Runtime",
+            "type": "bool",
+            "key": "AlwaysPreTouch_null_null_null"
+        },
+        {
+            "defaultValue": "false",
+            "prefix": "-XX:",
+            "name": "AuxiliaryEngineCache",
+            "description": "<pre>Enable the auxiliary engine cache features at runtime.<\/pre>",
+            "availability": "Hosted",
+            "type": "bool",
+            "key": "AuxiliaryEngineCache_null_null_null"
+        },
+        {
+            "defaultValue": "120",
+            "prefix": "-XX:",
+            "name": "BaseTargetSpending",
+            "description": "<pre>The base target spending used to estimate the inlining threshold; the higher, the likelier it is to inline. <\/pre>",
+            "availability": "Runtime",
+            "type": "int",
+            "key": "BaseTargetSpending_null_null_null"
+        },
+        {
+            "defaultValue": "512",
+            "prefix": "-XX:",
+            "name": "BlockZeroingLowLimit",
+            "description": "<pre>Minimum amount of bytes when block zeroing used. (SPARC only). <\/pre>",
+            "availability": "Runtime",
+            "type": "int",
+            "key": "BlockZeroingLowLimit_null_null_null"
+        },
+        {
+            "defaultValue": "true",
+            "prefix": "-XX:",
+            "name": "BreakChainedPhis",
+            "description": "<pre>Break chained phis.<\/pre>",
+            "availability": "Runtime",
+            "type": "bool",
+            "key": "BreakChainedPhis_null_null_null"
+        },
+        {
+            "defaultValue": "35000",
+            "prefix": "-XX:",
+            "name": "CallGraphCompilerNodeLimit",
+            "description": "<pre>Controls the maximum number of compiler nodes that can appear in the call graph. <\/pre>",
+            "availability": "Runtime",
+            "type": "int",
+            "key": "CallGraphCompilerNodeLimit_null_null_null"
+        },
+        {
+            "defaultValue": "1200",
+            "prefix": "-XX:",
+            "name": "CallGraphSizeLimit",
+            "description": "<pre>Controls the maximum size of the call graph before ceasing inlining. <\/pre>",
+            "availability": "Runtime",
+            "type": "int",
+            "key": "CallGraphSizeLimit_null_null_null"
+        },
+        {
+            "defaultValue": "0.001",
+            "prefix": "-XX:",
+            "name": "CallGraphSizePenaltyCoefficient",
+            "description": "<pre>Reduces the likelihood of exploring call graph subtrees that are large. <\/pre>",
+            "availability": "Runtime",
+            "type": "double",
+            "key": "CallGraphSizePenaltyCoefficient_null_null_null"
+        },
+        {
+            "defaultValue": "true",
+            "prefix": "-XX:",
+            "name": "CompileInPerThreadReusedIsolates",
+            "description": "<pre>Create one reusable isolate per compilation thread as opposed to one isolate per compilation (enable through \nCompileInIsolates).<\/pre>",
+            "availability": "Runtime",
+            "type": "bool",
+            "key": "CompileInPerThreadReusedIsolates_null_null_null"
+        },
+        {
+            "defaultValue": "0.006",
+            "prefix": "-XX:",
+            "name": "CompilerNodePenaltyCoefficient",
+            "description": "<pre>Controls the likelihood of exploring subtrees that already have a lot of code during inlining. <\/pre>",
+            "availability": "Runtime",
+            "type": "double",
+            "key": "CompilerNodePenaltyCoefficient_null_null_null"
+        },
+        {
+            "defaultValue": "0",
+            "prefix": "-XX:",
+            "name": "ConcGCThreads",
+            "description": "<pre>Number of threads concurrent gc will use. <\/pre>",
+            "availability": "Runtime",
+            "type": "int",
+            "key": "ConcGCThreads_null_null_null"
+        },
+        {
+            "defaultValue": "4.0",
+            "prefix": "-XX:",
+            "name": "CostReductionFactor",
+            "availability": "Runtime",
+            "type": "double",
+            "key": "CostReductionFactor_null_null_null"
+        },
+        {
+            "defaultValue": "1.0E-5",
+            "prefix": "-XX:",
+            "name": "CutoffCodeSizePenaltyCoefficient",
+            "description": "<pre>Controls the likelihood of further exploring subtrees with a lot of code during inlining. <\/pre>",
+            "availability": "Runtime",
+            "type": "String",
+            "key": "CutoffCodeSizePenaltyCoefficient_null_null_null"
+        },
+        {
+            "defaultValue": "0",
+            "prefix": "-XX:",
+            "name": "Debug",
+            "description": "<pre>Control debug information output: 0 - no debuginfo, 1 - AOT code debuginfo, 2 - AOT and runtime code debuginfo. <\/pre>",
+            "availability": "Hosted",
+            "type": "int",
+            "key": "Debug_null_null_null"
+        },
+        {
+            "defaultValue": "false",
+            "prefix": "-XX:",
+            "name": "DebugLoopInversion",
+            "description": "<pre>Debug the loop inversion transformation.<\/pre>",
+            "availability": "Runtime",
+            "type": "bool",
+            "key": "DebugLoopInversion_null_null_null"
+        },
+        {
+            "defaultValue": "false",
+            "prefix": "-XX:",
+            "name": "DebugPeelingSynonyms",
+            "description": "<pre>Debug simulation synonyms during simulation-based loop peeling.<\/pre>",
+            "availability": "Runtime",
+            "type": "bool",
+            "key": "DebugPeelingSynonyms_null_null_null"
+        },
+        {
+            "defaultValue": "false",
+            "prefix": "-XX:",
+            "name": "DisableExplicitGC",
+            "description": "<pre>Ignore calls to System.gc().<\/pre>",
+            "availability": "Runtime",
+            "type": "bool",
+            "key": "DisableExplicitGC_null_null_null"
+        },
+        {
+            "defaultValue": "16",
+            "prefix": "-XX:",
+            "name": "DominatorUsageTreeMaxDepth",
+            "availability": "Runtime",
+            "type": "int",
+            "key": "DominatorUsageTreeMaxDepth_null_null_null"
+        },
+        {
+            "defaultValue": "false",
+            "prefix": "-XX:",
+            "name": "DuplicateALot",
+            "description": "<pre>Perform Duplications as long as there is any sane improvement.<\/pre>",
+            "availability": "Runtime",
+            "type": "bool",
+            "key": "DuplicateALot_null_null_null"
+        },
+        {
+            "defaultValue": "0.25",
+            "prefix": "-XX:",
+            "name": "DuplicationBudgetFactor",
+            "description": "<pre>Percentage in node cost graph size for the duplication budget. Computed relative to the methods code size. <\/pre>",
+            "availability": "Runtime",
+            "type": "double",
+            "key": "DuplicationBudgetFactor_null_null_null"
+        },
+        {
+            "defaultValue": "0.5",
+            "prefix": "-XX:",
+            "name": "DuplicationBudgetFactorLate",
+            "description": "<pre>Percentage in node cost graph size for the late duplication budget. Computed relative to the methods code size. <\/pre>",
+            "availability": "Runtime",
+            "type": "double",
+            "key": "DuplicationBudgetFactorLate_null_null_null"
+        },
+        {
+            "defaultValue": "64",
+            "prefix": "-XX:",
+            "name": "DuplicationCostReductionFactor",
+            "description": "<pre>Cost/Benefit heuristic for EE simulation-based code duplication: reduce cost by a constant factor when comparing with \nrelative benefit.<\/pre>",
+            "availability": "Runtime",
+            "type": "int",
+            "key": "DuplicationCostReductionFactor_null_null_null"
+        },
+        {
+            "defaultValue": "0.66",
+            "prefix": "-XX:",
+            "name": "DuplicationMinBranchFrequency",
+            "description": "<pre>Ignore low frequency branches during duplication. <\/pre>",
+            "availability": "Runtime",
+            "type": "double",
+            "key": "DuplicationMinBranchFrequency_null_null_null"
+        },
+        {
+            "defaultValue": "true",
+            "prefix": "-XX:",
+            "name": "EnablePGOContextSensitivity",
+            "description": "<pre>Enables context sensitivity in PGO.<\/pre>",
+            "availability": "Hosted",
+            "type": "bool",
+            "key": "EnablePGOContextSensitivity_null_null_null"
+        },
+        {
+            "defaultValue": "true",
+            "prefix": "-XX:",
+            "name": "EnterpriseCloneReadElimination",
+            "description": "<pre>Try to eliminate array clone operations by handling clone operations in early read elimination.<\/pre>",
+            "availability": "Runtime",
+            "type": "bool",
+            "key": "EnterpriseCloneReadElimination_null_null_null"
+        },
+        {
+            "defaultValue": "true",
+            "prefix": "-XX:",
+            "name": "EnterpriseEarlyReadElimination",
+            "description": "<pre>Run more read eliminations early in the compilation pipeline.<\/pre>",
+            "availability": "Runtime",
+            "type": "bool",
+            "key": "EnterpriseEarlyReadElimination_null_null_null"
+        },
+        {
+            "defaultValue": "true",
+            "prefix": "-XX:",
+            "name": "EnterprisePartialUnroll",
+            "description": "<pre>Enable EE version of partial loop unrolling that considers more loop shapes for unrolling.<\/pre>",
+            "availability": "Runtime",
+            "type": "bool",
+            "key": "EnterprisePartialUnroll_null_null_null"
+        },
+        {
+            "defaultValue": "0",
+            "prefix": "-XX:",
+            "name": "ErgoHeapSizeLimit",
+            "description": "<pre>Maximum ergonomically set heap size (in bytes); zero means use MaxRAM * MaxRAMPercentage / 100. <\/pre>",
+            "availability": "Runtime",
+            "type": "int",
+            "key": "ErgoHeapSizeLimit_null_null_null"
+        },
+        {
+            "defaultValue": "None",
+            "prefix": "-XX:",
+            "name": "ExcludeFunctionFromDuplication",
+            "description": "<pre>Exclude compilations that MethodFilter.match this string from the duplication optimization.<\/pre>",
+            "availability": "Runtime",
+            "type": "String",
+            "key": "ExcludeFunctionFromDuplication_null_null_null"
+        },
+        {
+            "defaultValue": "6.0",
+            "prefix": "-XX:",
+            "name": "ExpandAllProximityBonus",
+            "description": "<pre>The decrease in call graph expansion pressure when there are few call nodes left to explore. <\/pre>",
+            "availability": "Runtime",
+            "type": "double",
+            "key": "ExpandAllProximityBonus_null_null_null"
+        },
+        {
+            "defaultValue": "2.0",
+            "prefix": "-XX:",
+            "name": "ExpandAllProximityBonusInertia",
+            "description": "<pre>The inertia at which the expand-all proximity bonus decreases with the number of yet unexpanded nodes. <\/pre>",
+            "availability": "Runtime",
+            "type": "double",
+            "key": "ExpandAllProximityBonusInertia_null_null_null"
+        },
+        {
+            "defaultValue": "550",
+            "prefix": "-XX:",
+            "name": "ExpansionInertiaBaseValue",
+            "description": "<pre>The slowness at which the expansion pressure grows with code size; the higher it is, the slower the pressure growth. <\/pre>",
+            "availability": "Runtime",
+            "type": "int",
+            "key": "ExpansionInertiaBaseValue_null_null_null"
+        },
+        {
+            "defaultValue": "14",
+            "prefix": "-XX:",
+            "name": "ExpansionInertiaInvokeBonus",
+            "description": "<pre>The extra slowness at which the expansion pressure grows with the code size, for each extra invoke node. <\/pre>",
+            "availability": "Runtime",
+            "type": "int",
+            "key": "ExpansionInertiaInvokeBonus_null_null_null"
+        },
+        {
+            "defaultValue": "2000",
+            "prefix": "-XX:",
+            "name": "ExpansionInertiaMax",
+            "description": "<pre>The max slowness at which the expansion pressure grows with the code size. <\/pre>",
+            "availability": "Runtime",
+            "type": "int",
+            "key": "ExpansionInertiaMax_null_null_null"
+        },
+        {
+            "defaultValue": "false",
+            "prefix": "-XX:",
+            "name": "ExplicitGCInvokesConcurrent",
+            "description": "<pre>A System.gc() request invokes a concurrent collection.<\/pre>",
+            "availability": "Runtime",
+            "type": "bool",
+            "key": "ExplicitGCInvokesConcurrent_null_null_null"
+        },
+        {
+            "defaultValue": "false",
+            "prefix": "-XX:",
+            "name": "ExtendedLinuxHeaders",
+            "description": "<pre>Enable support for linux-specific headers.<\/pre>",
+            "availability": "Hosted",
+            "type": "bool",
+            "key": "ExtendedLinuxHeaders_null_null_null"
+        },
+        {
+            "defaultValue": "false",
+            "prefix": "-XX:",
+            "name": "FlightRecorder",
+            "description": "<pre>Enable Java Flight Recorder.<\/pre>",
+            "availability": "Runtime",
+            "type": "bool",
+            "key": "FlightRecorder_null_null_null"
+        },
+        {
+            "defaultValue": "false",
+            "prefix": "-XX:",
+            "name": "ForceUnroll",
+            "description": "<pre>Force partial unrolling of loops if at all possible.<\/pre>",
+            "availability": "Runtime",
+            "type": "bool",
+            "key": "ForceUnroll_null_null_null"
+        },
+        {
+            "defaultValue": "true",
+            "prefix": "-XX:",
+            "name": "FullUnrollAsPEACleanup",
+            "description": "<pre>Perform full unrolling as a Partial Escape Analysis Cleanup.<\/pre>",
+            "availability": "Runtime",
+            "type": "bool",
+            "key": "FullUnrollAsPEACleanup_null_null_null"
+        },
+        {
+            "defaultValue": "10.0",
+            "prefix": "-XX:",
+            "name": "G1ConcMarkStepDurationMillis",
+            "description": "<pre>Target duration of individual concurrent marking steps in milliseconds. <\/pre>",
+            "availability": "Runtime",
+            "type": "double",
+            "key": "G1ConcMarkStepDurationMillis_null_null_null"
+        },
+        {
+            "defaultValue": "4",
+            "prefix": "-XX:",
+            "name": "G1ConcRSHotCardLimit",
+            "description": "<pre>The threshold that defines (>=) a hot card. <\/pre>",
+            "availability": "Runtime",
+            "type": "int",
+            "key": "G1ConcRSHotCardLimit_null_null_null"
+        },
+        {
+            "defaultValue": "10",
+            "prefix": "-XX:",
+            "name": "G1ConcRSLogCacheSize",
+            "description": "<pre>Log base 2 of the length of conc RS hot-card cache. <\/pre>",
+            "availability": "Runtime",
+            "type": "int",
+            "key": "G1ConcRSLogCacheSize_null_null_null"
+        },
+        {
+            "defaultValue": "0",
+            "prefix": "-XX:",
+            "name": "G1ConcRefinementGreenZone",
+            "description": "<pre>The number of update buffers that are left in the queue by the concurrent processing threads. Will be selected \nergonomically by default.<\/pre>",
+            "availability": "Runtime",
+            "type": "int",
+            "key": "G1ConcRefinementGreenZone_null_null_null"
+        },
+        {
+            "defaultValue": "0",
+            "prefix": "-XX:",
+            "name": "G1ConcRefinementRedZone",
+            "description": "<pre>Maximum number of enqueued update buffers before mutator threads start processing new ones instead of enqueueing them. \nWill be selected ergonomically by default.<\/pre>",
+            "availability": "Runtime",
+            "type": "int",
+            "key": "G1ConcRefinementRedZone_null_null_null"
+        },
+        {
+            "defaultValue": "300",
+            "prefix": "-XX:",
+            "name": "G1ConcRefinementServiceIntervalMillis",
+            "description": "<pre>The last concurrent refinement thread wakes up every specified number of milliseconds to do miscellaneous work. <\/pre>",
+            "availability": "Runtime",
+            "type": "int",
+            "key": "G1ConcRefinementServiceIntervalMillis_null_null_null"
+        },
+        {
+            "defaultValue": "0",
+            "prefix": "-XX:",
+            "name": "G1ConcRefinementThreads",
+            "description": "<pre>The number of parallel rem set update threads. Will be set ergonomically by default. <\/pre>",
+            "availability": "Runtime",
+            "type": "int",
+            "key": "G1ConcRefinementThreads_null_null_null"
+        },
+        {
+            "defaultValue": "2",
+            "prefix": "-XX:",
+            "name": "G1ConcRefinementThresholdStep",
+            "description": "<pre>Each time the rset update queue increases by this amount activate the next refinement thread if available. The actual \nstep size will be selected ergonomically by default, with this value used to determine a lower bound.<\/pre>",
+            "availability": "Runtime",
+            "type": "int",
+            "key": "G1ConcRefinementThresholdStep_null_null_null"
+        },
+        {
+            "defaultValue": "0",
+            "prefix": "-XX:",
+            "name": "G1ConcRefinementYellowZone",
+            "description": "<pre>Number of enqueued update buffers that will trigger concurrent processing. Will be selected ergonomically by default. <\/pre>",
+            "availability": "Runtime",
+            "type": "int",
+            "key": "G1ConcRefinementYellowZone_null_null_null"
+        },
+        {
+            "defaultValue": "50",
+            "prefix": "-XX:",
+            "name": "G1ConfidencePercent",
+            "description": "<pre>Confidence level for MMU/pause predictions. <\/pre>",
+            "availability": "Runtime",
+            "type": "int",
+            "key": "G1ConfidencePercent_null_null_null"
+        },
+        {
+            "defaultValue": "\"product\"",
+            "prefix": "-XX:",
+            "name": "G1DebugLevel",
+            "description": "<pre>Specifies the debug level of the linked G1 GC [product, fastdebug, or debug]. <\/pre>",
+            "availability": "Hosted",
+            "type": "String",
+            "key": "G1DebugLevel_null_null_null"
+        },
+        {
+            "defaultValue": "1048576",
+            "prefix": "-XX:",
+            "name": "G1HeapRegionSize",
+            "description": "<pre>Size of the G1 regions in bytes. Supported values are 1, 2, 4, 8, 16, or 32M. <\/pre>",
+            "availability": "Hosted",
+            "type": "int",
+            "key": "G1HeapRegionSize_null_null_null"
+        },
+        {
+            "defaultValue": "5",
+            "prefix": "-XX:",
+            "name": "G1HeapWastePercent",
+            "description": "<pre>Amount of space, expressed as a percentage of the heap size, that G1 is willing not to collect to avoid expensive GCs. <\/pre>",
+            "availability": "Runtime",
+            "type": "int",
+            "key": "G1HeapWastePercent_null_null_null"
+        },
+        {
+            "defaultValue": "8",
+            "prefix": "-XX:",
+            "name": "G1MixedGCCountTarget",
+            "description": "<pre>The target number of mixed GCs after a marking cycle. <\/pre>",
+            "availability": "Runtime",
+            "type": "int",
+            "key": "G1MixedGCCountTarget_null_null_null"
+        },
+        {
+            "defaultValue": "0",
+            "prefix": "-XX:",
+            "name": "G1PeriodicGCInterval",
+            "description": "<pre>Number of milliseconds after a previous GC to wait before triggering a periodic gc. A value of zero disables \nperiodically enforced gc cycles.<\/pre>",
+            "availability": "Runtime",
+            "type": "int",
+            "key": "G1PeriodicGCInterval_null_null_null"
+        },
+        {
+            "defaultValue": "true",
+            "prefix": "-XX:",
+            "name": "G1PeriodicGCInvokesConcurrent",
+            "description": "<pre>Determines the kind of periodic GC. Set to true to have G1 perform a concurrent GC as periodic GC, otherwise use a STW \nFull GC.<\/pre>",
+            "availability": "Runtime",
+            "type": "bool",
+            "key": "G1PeriodicGCInvokesConcurrent_null_null_null"
+        },
+        {
+            "defaultValue": "0.0",
+            "prefix": "-XX:",
+            "name": "G1PeriodicGCSystemLoadThreshold",
+            "description": "<pre>Maximum recent system wide load as returned by the 1m value of getloadavg() at which G1 triggers a periodic GC. A load \nabove this value cancels a given periodic GC. A value of zero disables this check.<\/pre>",
+            "availability": "Runtime",
+            "type": "double",
+            "key": "G1PeriodicGCSystemLoadThreshold_null_null_null"
+        },
+        {
+            "defaultValue": "0",
+            "prefix": "-XX:",
+            "name": "G1RSetRegionEntries",
+            "description": "<pre>Max number of regions for which we keep bitmaps. Will be set ergonomically by default. <\/pre>",
+            "availability": "Runtime",
+            "type": "int",
+            "key": "G1RSetRegionEntries_null_null_null"
+        },
+        {
+            "defaultValue": "0",
+            "prefix": "-XX:",
+            "name": "G1RSetSparseRegionEntries",
+            "description": "<pre>Max number of entries per region in a sparse table. Will be set ergonomically by default. <\/pre>",
+            "availability": "Runtime",
+            "type": "int",
+            "key": "G1RSetSparseRegionEntries_null_null_null"
+        },
+        {
+            "defaultValue": "10",
+            "prefix": "-XX:",
+            "name": "G1RSetUpdatingPauseTimePercent",
+            "description": "<pre>A target percentage of time that is allowed to be spend on process RS update buffers during the collection pause. <\/pre>",
+            "availability": "Runtime",
+            "type": "int",
+            "key": "G1RSetUpdatingPauseTimePercent_null_null_null"
+        },
+        {
+            "defaultValue": "1000",
+            "prefix": "-XX:",
+            "name": "G1RefProcDrainInterval",
+            "description": "<pre>The number of discovered reference objects to process before draining concurrent marking work queues. <\/pre>",
+            "availability": "Runtime",
+            "type": "int",
+            "key": "G1RefProcDrainInterval_null_null_null"
+        },
+        {
+            "defaultValue": "10",
+            "prefix": "-XX:",
+            "name": "G1ReservePercent",
+            "description": "<pre>It determines the minimum reserve we should have in the heap to minimize the probability of promotion failure. <\/pre>",
+            "availability": "Runtime",
+            "type": "int",
+            "key": "G1ReservePercent_null_null_null"
+        },
+        {
+            "defaultValue": "60",
+            "prefix": "-XX:",
+            "name": "G1SATBBufferEnqueueingThresholdPercent",
+            "description": "<pre>Before enqueueing them, each mutator thread tries to do some filtering on the SATB buffers it generates. If \npost-filtering the percentage of retained entries is over this threshold the buffer will be enqueued for processing. A\nvalue of 0 specifies that mutator threads should not do such filtering.<\/pre>",
+            "availability": "Runtime",
+            "type": "int",
+            "key": "G1SATBBufferEnqueueingThresholdPercent_null_null_null"
+        },
+        {
+            "defaultValue": "1024",
+            "prefix": "-XX:",
+            "name": "G1SATBBufferSize",
+            "description": "<pre>Number of entries in an SATB log buffer. <\/pre>",
+            "availability": "Runtime",
+            "type": "int",
+            "key": "G1SATBBufferSize_null_null_null"
+        },
+        {
+            "defaultValue": "256",
+            "prefix": "-XX:",
+            "name": "G1UpdateBufferSize",
+            "description": "<pre>Size of an update buffer. <\/pre>",
+            "availability": "Runtime",
+            "type": "int",
+            "key": "G1UpdateBufferSize_null_null_null"
+        },
+        {
+            "defaultValue": "true",
+            "prefix": "-XX:",
+            "name": "G1UseAdaptiveConcRefinement",
+            "description": "<pre>Select green, yellow and red zones adaptively to meet the the pause requirements.<\/pre>",
+            "availability": "Runtime",
+            "type": "bool",
+            "key": "G1UseAdaptiveConcRefinement_null_null_null"
+        },
+        {
+            "defaultValue": "true",
+            "prefix": "-XX:",
+            "name": "G1UseAdaptiveIHOP",
+            "description": "<pre>Adaptively adjust the initiating heap occupancy from the initial value of InitiatingHeapOccupancyPercent. The policy \nattempts to start marking in time based on application behavior.<\/pre>",
+            "availability": "Runtime",
+            "type": "bool",
+            "key": "G1UseAdaptiveIHOP_null_null_null"
+        },
+        {
+            "defaultValue": "false",
+            "prefix": "-XX:",
+            "name": "G1VerifyBitmaps",
+            "description": "<pre>Verifies the consistency of the marking bitmaps.<\/pre>",
+            "availability": "Runtime",
+            "type": "bool",
+            "key": "G1VerifyBitmaps_null_null_null"
+        },
+        {
+            "defaultValue": "false",
+            "prefix": "-XX:",
+            "name": "G1VerifyHeapRegionCodeRoots",
+            "description": "<pre>Verify the code root lists attached to each heap region.<\/pre>",
+            "availability": "Runtime",
+            "type": "bool",
+            "key": "G1VerifyHeapRegionCodeRoots_null_null_null"
+        },
+        {
+            "defaultValue": "false",
+            "prefix": "-XX:",
+            "name": "G1VerifyRSetsDuringFullGC",
+            "description": "<pre>If true, perform verification of each heap region's remembered set when verifying the heap during a full GC.<\/pre>",
+            "availability": "Runtime",
+            "type": "bool",
+            "key": "G1VerifyRSetsDuringFullGC_null_null_null"
+        },
+        {
+            "defaultValue": "64",
+            "prefix": "-XX:",
+            "name": "GCDrainStackTargetSize",
+            "description": "<pre>Number of entries we will try to leave on the stack during parallel gc. <\/pre>",
+            "availability": "Runtime",
+            "type": "int",
+            "key": "GCDrainStackTargetSize_null_null_null"
+        },
+        {
+            "defaultValue": "201",
+            "prefix": "-XX:",
+            "name": "GCPauseIntervalMillis",
+            "description": "<pre>Time slice for MMU specification. <\/pre>",
+            "availability": "Runtime",
+            "type": "int",
+            "key": "GCPauseIntervalMillis_null_null_null"
+        },
+        {
+            "defaultValue": "12",
+            "prefix": "-XX:",
+            "name": "GCTimeRatio",
+            "description": "<pre>Adaptive size policy application time to GC time ratio. <\/pre>",
+            "availability": "Runtime",
+            "type": "int",
+            "key": "GCTimeRatio_null_null_null"
+        },
+        {
+            "defaultValue": "false",
+            "prefix": "-XX:",
+            "name": "GenerateRuntimeDebugInfo",
+            "description": "<pre>Generate debuginfo for runtime-compiled code.<\/pre>",
+            "availability": "Runtime",
+            "type": "bool",
+            "key": "GenerateRuntimeDebugInfo_null_null_null"
+        },
+        {
+            "defaultValue": "44040192",
+            "prefix": "-XX:",
+            "name": "HeapSizePerGCThread",
+            "description": "<pre>Size of heap (bytes) per GC thread used in calculating the number of GC threads. <\/pre>",
+            "availability": "Runtime",
+            "type": "int",
+            "key": "HeapSizePerGCThread_null_null_null"
+        },
+        {
+            "defaultValue": "true",
+            "prefix": "-XX:",
+            "name": "HighTierPartialUnrolling",
+            "description": "<pre>Enable EE partial unrolling in high tier.<\/pre>",
+            "availability": "Runtime",
+            "type": "bool",
+            "key": "HighTierPartialUnrolling_null_null_null"
+        },
+        {
+            "defaultValue": "true",
+            "prefix": "-XX:",
+            "name": "IgnoreBadDuplications",
+            "description": "<pre>Ignore duplications with a bad benefit cost relation.<\/pre>",
+            "availability": "Runtime",
+            "type": "bool",
+            "key": "IgnoreBadDuplications_null_null_null"
+        },
+        {
+            "defaultValue": "0",
+            "prefix": "-XX:",
+            "name": "InitialHeapSize",
+            "description": "<pre>Initial heap size (in bytes); zero means use ergonomics. <\/pre>",
+            "availability": "Runtime",
+            "type": "int",
+            "key": "InitialHeapSize_null_null_null"
+        },
+        {
+            "defaultValue": "1.5625",
+            "prefix": "-XX:",
+            "name": "InitialRAMPercentage",
+            "description": "<pre>Percentage of real memory used for initial heap size. <\/pre>",
+            "availability": "Runtime",
+            "type": "double",
+            "key": "InitialRAMPercentage_null_null_null"
+        },
+        {
+            "defaultValue": "45",
+            "prefix": "-XX:",
+            "name": "InitiatingHeapOccupancyPercent",
+            "description": "<pre>The percent occupancy (IHOP) of the current old generation capacity above which a concurrent mark cycle will be \ninitiated. Its value may change over time if adaptive IHOP is enabled, otherwise the value remains constant. In the\nlatter case a value of 0 will result as frequent as possible concurrent marking cycles. A value of 100 disables\nconcurrent marking. Fragmentation waste in the old generation is not considered free space in this calculation.<\/pre>",
+            "availability": "Runtime",
+            "type": "int",
+            "key": "InitiatingHeapOccupancyPercent_null_null_null"
+        },
+        {
+            "defaultValue": "1.0",
+            "prefix": "-XX:",
+            "name": "InlineAllBonus",
+            "description": "<pre>The bonus applied to call nodes that can be fully inlined. <\/pre>",
+            "availability": "Runtime",
+            "type": "double",
+            "key": "InlineAllBonus_null_null_null"
+        },
+        {
+            "defaultValue": "false",
+            "prefix": "-XX:",
+            "name": "InlineAllExplored",
+            "description": "<pre>Inline everything previously explored.<\/pre>",
+            "availability": "Hosted",
+            "type": "bool",
+            "key": "InlineAllExplored_null_null_null"
+        },
+        {
+            "defaultValue": "20000",
+            "prefix": "-XX:",
+            "name": "InlinedCompilerNodeLimit",
+            "description": "<pre>Controls the maximum number of compiler nodes that can be inlined into the compiled method. <\/pre>",
+            "availability": "Runtime",
+            "type": "int",
+            "key": "InlinedCompilerNodeLimit_null_null_null"
+        },
+        {
+            "defaultValue": "0.02",
+            "prefix": "-XX:",
+            "name": "InliningCoefficient",
+            "description": "<pre>The coefficient used to compute the inlining threshold; the higher, the more to inline. <\/pre>",
+            "availability": "Runtime",
+            "type": "double",
+            "key": "InliningCoefficient_null_null_null"
+        },
+        {
+            "defaultValue": "false",
+            "prefix": "-XX:",
+            "name": "InsertPreMainPostOnly",
+            "description": "<pre>Do not unroll the main loop, only create pre-main-post.<\/pre>",
+            "availability": "Runtime",
+            "type": "bool",
+            "key": "InsertPreMainPostOnly_null_null_null"
+        },
+        {
+            "defaultValue": "false",
+            "prefix": "-XX:",
+            "name": "InspectGraphs",
+            "description": "<pre>Inspect analysis graphs.<\/pre>",
+            "availability": "Runtime",
+            "type": "bool",
+            "key": "InspectGraphs_null_null_null"
+        },
+        {
+            "defaultValue": "0.005",
+            "prefix": "-XX:",
+            "name": "LargeChildrenCountPenaltyCoefficient",
+            "description": "<pre>\nReduces the likelihood of exploring call graphs that have a lot of children below the root.<\/pre>",
+            "availability": "Runtime",
+            "type": "double",
+            "key": "LargeChildrenCountPenaltyCoefficient_null_null_null"
+        },
+        {
+            "defaultValue": "false",
+            "prefix": "-XX:",
+            "name": "LoopInversion",
+            "description": "<pre>Convert loops into their zero trip form.<\/pre>",
+            "availability": "Runtime",
+            "type": "bool",
+            "key": "LoopInversion_null_null_null"
+        },
+        {
+            "defaultValue": "4194304",
+            "prefix": "-XX:",
+            "name": "MarkStackSize",
+            "description": "<pre>Size of marking stack. <\/pre>",
+            "availability": "Runtime",
+            "type": "int",
+            "key": "MarkStackSize_null_null_null"
+        },
+        {
+            "defaultValue": "536870912",
+            "prefix": "-XX:",
+            "name": "MarkStackSizeMax",
+            "description": "<pre>Maximum size of marking stack. <\/pre>",
+            "availability": "Runtime",
+            "type": "int",
+            "key": "MarkStackSizeMax_null_null_null"
+        },
+        {
+            "defaultValue": "64",
+            "prefix": "-XX:",
+            "name": "MaxCpuLocalsPerCounter",
+            "description": "<pre>Upper bound on the number of cpu locals per counter. It has to be a power of 2. <\/pre>",
+            "availability": "Runtime",
+            "type": "int",
+            "key": "MaxCpuLocalsPerCounter_null_null_null"
+        },
+        {
+            "defaultValue": "200",
+            "prefix": "-XX:",
+            "name": "MaxGCPauseMillis",
+            "description": "<pre>Adaptive size policy maximum GC pause time goal in millisecond, or the maximum GC time per MMU time slice. <\/pre>",
+            "availability": "Runtime",
+            "type": "int",
+            "key": "MaxGCPauseMillis_null_null_null"
+        },
+        {
+            "defaultValue": "100000",
+            "prefix": "-XX:",
+            "name": "MaxGraphSizeNodeCost",
+            "description": "<pre>Maximum node cost graph size for duplication. If a graph is bigger duplication will stop. <\/pre>",
+            "availability": "Runtime",
+            "type": "int",
+            "key": "MaxGraphSizeNodeCost_null_null_null"
+        },
+        {
+            "defaultValue": "2.0",
+            "prefix": "-XX:",
+            "name": "MaxMispredictionCostIncreaseFactor",
+            "description": "<pre>Abstract measure of the cost of branch misprediction. Higher values make generation of conditional moves more likely. <\/pre>",
+            "availability": "Runtime",
+            "type": "double",
+            "key": "MaxMispredictionCostIncreaseFactor_null_null_null"
+        },
+        {
+            "defaultValue": "3",
+            "prefix": "-XX:",
+            "name": "MaxPolymorphicDispatches",
+            "description": "<pre>The maximum number of dispatches in guarded polymorphic inlining. <\/pre>",
+            "availability": "Runtime",
+            "type": "int",
+            "key": "MaxPolymorphicDispatches_null_null_null"
+        },
+        {
+            "defaultValue": "10",
+            "prefix": "-XX:",
+            "name": "MaxPriorityInliningPeelingIterations",
+            "description": "<pre>Max number of precise inlining peeling iterations. <\/pre>",
+            "availability": "Runtime",
+            "type": "int",
+            "key": "MaxPriorityInliningPeelingIterations_null_null_null"
+        },
+        {
+            "defaultValue": "137438953472",
+            "prefix": "-XX:",
+            "name": "MaxRAM",
+            "description": "<pre>Real memory size (in bytes) used to set maximum heap size. <\/pre>",
+            "availability": "Runtime",
+            "type": "int",
+            "key": "MaxRAM_null_null_null"
+        },
+        {
+            "defaultValue": "25.0",
+            "prefix": "-XX:",
+            "name": "MaxRAMPercentage",
+            "description": "<pre>Maximum percentage of real memory used for maximum heap size. <\/pre>",
+            "availability": "Runtime",
+            "type": "double",
+            "key": "MaxRAMPercentage_null_null_null"
+        },
+        {
+            "defaultValue": "2",
+            "prefix": "-XX:",
+            "name": "MaxSimulationIterations",
+            "description": "<pre>Maximum simulation-duplication iterations of the duplication optimization per invocation. <\/pre>",
+            "availability": "Runtime",
+            "type": "int",
+            "key": "MaxSimulationIterations_null_null_null"
+        },
+        {
+            "defaultValue": "32",
+            "prefix": "-XX:",
+            "name": "MaxSplitsPerNode",
+            "availability": "Runtime",
+            "type": "int",
+            "key": "MaxSplitsPerNode_null_null_null"
+        },
+        {
+            "defaultValue": "15",
+            "prefix": "-XX:",
+            "name": "MaxTenuringThreshold",
+            "description": "<pre>Maximum value for tenuring threshold. <\/pre>",
+            "availability": "Runtime",
+            "type": "int",
+            "key": "MaxTenuringThreshold_null_null_null"
+        },
+        {
+            "defaultValue": "20",
+            "prefix": "-XX:",
+            "name": "MaxThinLockRecursion",
+            "description": "<pre>Maximum recursive locking depth for thin locks. <\/pre>",
+            "availability": "Hosted",
+            "type": "int",
+            "key": "MaxThinLockRecursion_null_null_null"
+        },
+        {
+            "defaultValue": "4",
+            "prefix": "-XX:",
+            "name": "MaxVectorAlignmentUnroll",
+            "description": "<pre>Maximum number of unrolled alignment instructions. <\/pre>",
+            "availability": "Runtime",
+            "type": "int",
+            "key": "MaxVectorAlignmentUnroll_null_null_null"
+        },
+        {
+            "defaultValue": "16",
+            "prefix": "-XX:",
+            "name": "MaxVectorUnroll",
+            "description": "<pre>Maximum length of linear-code vector operations. <\/pre>",
+            "availability": "Runtime",
+            "type": "int",
+            "key": "MaxVectorUnroll_null_null_null"
+        },
+        {
+            "defaultValue": "2",
+            "prefix": "-XX:",
+            "name": "MaximumTransitiveEnabledPullFactor",
+            "availability": "Runtime",
+            "type": "int",
+            "key": "MaximumTransitiveEnabledPullFactor_null_null_null"
+        },
+        {
+            "defaultValue": "true",
+            "prefix": "-XX:",
+            "name": "MidTierPartialUnrolling",
+            "description": "<pre>Enable EE partial unrolling in mid tier.<\/pre>",
+            "availability": "Runtime",
+            "type": "bool",
+            "key": "MidTierPartialUnrolling_null_null_null"
+        },
+        {
+            "defaultValue": "0.66",
+            "prefix": "-XX:",
+            "name": "MinBlockFrequencyPull",
+            "availability": "Runtime",
+            "type": "double",
+            "key": "MinBlockFrequencyPull_null_null_null"
+        },
+        {
+            "defaultValue": "172032",
+            "prefix": "-XX:",
+            "name": "MinHeapDeltaBytes",
+            "description": "<pre>The minimum change in heap space due to GC (in bytes). <\/pre>",
+            "availability": "Runtime",
+            "type": "int",
+            "key": "MinHeapDeltaBytes_null_null_null"
+        },
+        {
+            "defaultValue": "40",
+            "prefix": "-XX:",
+            "name": "MinHeapFreeRatio",
+            "description": "<pre>The minimum percentage of heap free after GC to avoid expansion. <\/pre>",
+            "availability": "Runtime",
+            "type": "int",
+            "key": "MinHeapFreeRatio_null_null_null"
+        },
+        {
+            "defaultValue": "0.1",
+            "prefix": "-XX:",
+            "name": "MinPolymorphicDispatchProbability",
+            "description": "<pre>The minimum probability for using a dispatch in guarded polymorphic inlining. <\/pre>",
+            "availability": "Runtime",
+            "type": "double",
+            "key": "MinPolymorphicDispatchProbability_null_null_null"
+        },
+        {
+            "defaultValue": "50.0",
+            "prefix": "-XX:",
+            "name": "MinRAMPercentage",
+            "description": "<pre>Minimum percentage of real memory used for maximum heap size on systems with small physical memory size. <\/pre>",
+            "availability": "Runtime",
+            "type": "double",
+            "key": "MinRAMPercentage_null_null_null"
+        },
+        {
+            "defaultValue": "2048",
+            "prefix": "-XX:",
+            "name": "MinTLABSize",
+            "description": "<pre>Minimum allowed TLAB size (in bytes). <\/pre>",
+            "availability": "Runtime",
+            "type": "int",
+            "key": "MinTLABSize_null_null_null"
+        },
+        {
+            "defaultValue": "true",
+            "prefix": "-XX:",
+            "name": "MinimalRegions",
+            "description": "<pre>Try to reduce duplication code size to the minimal amount of code.<\/pre>",
+            "availability": "Runtime",
+            "type": "bool",
+            "key": "MinimalRegions_null_null_null"
+        },
+        {
+            "defaultValue": "32",
+            "prefix": "-XX:",
+            "name": "MultiExitCostFactor",
+            "description": "<pre>Cost/Benefit heuristic for EE unrolling: If a loop has multiple exits, cost is increased by this value for every \nnone-sinking loop exit.<\/pre>",
+            "availability": "Runtime",
+            "type": "int",
+            "key": "MultiExitCostFactor_null_null_null"
+        },
+        {
+            "defaultValue": "2",
+            "prefix": "-XX:",
+            "name": "MultiExitCostFactorSink",
+            "description": "<pre>Cost/Benefit heuristic for EE unrolling: If a loop has multiple exits, cost is increased by this value for every sinking \nloop exit.<\/pre>",
+            "availability": "Runtime",
+            "type": "int",
+            "key": "MultiExitCostFactorSink_null_null_null"
+        },
+        {
+            "defaultValue": "2",
+            "prefix": "-XX:",
+            "name": "NewRatio",
+            "description": "<pre>Ratio of old/new generation sizes. <\/pre>",
+            "availability": "Runtime",
+            "type": "int",
+            "key": "NewRatio_null_null_null"
+        },
+        {
+            "defaultValue": "1048576",
+            "prefix": "-XX:",
+            "name": "NewSize",
+            "description": "<pre>Initial new generation size (in bytes). <\/pre>",
+            "availability": "Runtime",
+            "type": "int",
+            "key": "NewSize_null_null_null"
+        },
+        {
+            "defaultValue": "1024",
+            "prefix": "-XX:",
+            "name": "OldPLABSize",
+            "description": "<pre>Size of old gen promotion LAB's (in HeapWords). <\/pre>",
+            "availability": "Runtime",
+            "type": "int",
+            "key": "OldPLABSize_null_null_null"
+        },
+        {
+            "defaultValue": "5242880",
+            "prefix": "-XX:",
+            "name": "OldSize",
+            "description": "<pre>Initial tenured generation size (in bytes). <\/pre>",
+            "availability": "Runtime",
+            "type": "int",
+            "key": "OldSize_null_null_null"
+        },
+        {
+            "defaultValue": "true",
+            "prefix": "-XX:",
+            "name": "OptBulkAllocation",
+            "description": "<pre><\/pre>",
+            "availability": "Runtime",
+            "type": "bool",
+            "key": "OptBulkAllocation_null_null_null"
+        },
+        {
+            "defaultValue": "true",
+            "prefix": "-XX:",
+            "name": "OptCompressedFrameStateValues",
+            "description": "<pre><\/pre>",
+            "availability": "Runtime",
+            "type": "bool",
+            "key": "OptCompressedFrameStateValues_null_null_null"
+        },
+        {
+            "defaultValue": "true",
+            "prefix": "-XX:",
+            "name": "OptConditionalMoves",
+            "description": "<pre>Optimize simple if branches with conditional moves.<\/pre>",
+            "availability": "Runtime",
+            "type": "bool",
+            "key": "OptConditionalMoves_null_null_null"
+        },
+        {
+            "defaultValue": "true",
+            "prefix": "-XX:",
+            "name": "OptDeDuplication",
+            "description": "<pre><\/pre>",
+            "availability": "Runtime",
+            "type": "bool",
+            "key": "OptDeDuplication_null_null_null"
+        },
+        {
+            "defaultValue": "true",
+            "prefix": "-XX:",
+            "name": "OptDuplication",
+            "description": "<pre><\/pre>",
+            "availability": "Runtime",
+            "type": "bool",
+            "key": "OptDuplication_null_null_null"
+        },
+        {
+            "defaultValue": "true",
+            "prefix": "-XX:",
+            "name": "OptExactArithmetic",
+            "description": "<pre><\/pre>",
+            "availability": "Runtime",
+            "type": "bool",
+            "key": "OptExactArithmetic_null_null_null"
+        },
+        {
+            "defaultValue": "true",
+            "prefix": "-XX:",
+            "name": "OptGuardRangeGrouping",
+            "description": "<pre><\/pre>",
+            "availability": "Runtime",
+            "type": "bool",
+            "key": "OptGuardRangeGrouping_null_null_null"
+        },
+        {
+            "defaultValue": "true",
+            "prefix": "-XX:",
+            "name": "OptInlineImageHeapConstants",
+            "description": "<pre>Optimize address operations that involve image heap constants.<\/pre>",
+            "availability": "Hosted",
+            "type": "bool",
+            "key": "OptInlineImageHeapConstants_null_null_null"
+        },
+        {
+            "defaultValue": "false",
+            "prefix": "-XX:",
+            "name": "OptLateDuplication",
+            "description": "<pre><\/pre>",
+            "availability": "Runtime",
+            "type": "bool",
+            "key": "OptLateDuplication_null_null_null"
+        },
+        {
+            "defaultValue": "true",
+            "prefix": "-XX:",
+            "name": "OptLockElimination",
+            "description": "<pre><\/pre>",
+            "availability": "Runtime",
+            "type": "bool",
+            "key": "OptLockElimination_null_null_null"
+        },
+        {
+            "defaultValue": "true",
+            "prefix": "-XX:",
+            "name": "OptLoopPhiStamps",
+            "description": "<pre>Inject stamps on induction variables.<\/pre>",
+            "availability": "Runtime",
+            "type": "bool",
+            "key": "OptLoopPhiStamps_null_null_null"
+        },
+        {
+            "defaultValue": "true",
+            "prefix": "-XX:",
+            "name": "OptPullThroughPhi",
+            "description": "<pre><\/pre>",
+            "availability": "Runtime",
+            "type": "bool",
+            "key": "OptPullThroughPhi_null_null_null"
+        },
+        {
+            "defaultValue": "true",
+            "prefix": "-XX:",
+            "name": "OptSpeculativeGuardMovement",
+            "availability": "Runtime",
+            "type": "bool",
+            "key": "OptSpeculativeGuardMovement_null_null_null"
+        },
+        {
+            "defaultValue": "true",
+            "prefix": "-XX:",
+            "name": "OptStringConcat",
+            "description": "<pre>Optimize StringBuilder construction.<\/pre>",
+            "availability": "Runtime",
+            "type": "bool",
+            "key": "OptStringConcat_null_null_null"
+        },
+        {
+            "defaultValue": "false",
+            "prefix": "-XX:",
+            "name": "OptStringConcatDump",
+            "description": "<pre>Dump graphs to help debug operation.<\/pre>",
+            "availability": "Runtime",
+            "type": "bool",
+            "key": "OptStringConcatDump_null_null_null"
+        },
+        {
+            "defaultValue": "true",
+            "prefix": "-XX:",
+            "name": "OptWriteBarrierElimination",
+            "description": "<pre>Eliminate redundant write barriers.<\/pre>",
+            "availability": "Runtime",
+            "type": "bool",
+            "key": "OptWriteBarrierElimination_null_null_null"
+        },
+        {
+            "defaultValue": "true",
+            "prefix": "-XX:",
+            "name": "OptimisticAliasingAnalysis",
+            "description": "<pre><\/pre>",
+            "availability": "Runtime",
+            "type": "bool",
+            "key": "OptimisticAliasingAnalysis_null_null_null"
+        },
+        {
+            "defaultValue": "true",
+            "prefix": "-XX:",
+            "name": "OptimizeLoopAccesses",
+            "description": "<pre>Enable access node optimizations for loops.<\/pre>",
+            "availability": "Runtime",
+            "type": "bool",
+            "key": "OptimizeLoopAccesses_null_null_null"
+        },
+        {
+            "defaultValue": "None",
+            "prefix": "-XX:",
+            "name": "PGOInstrument",
+            "description": "<pre>Dump information for Profile Guided Optimizations (true or file name).<\/pre>",
+            "availability": "Runtime",
+            "type": "String",
+            "key": "PGOInstrument_null_null_null"
+        },
+        {
+            "defaultValue": "false",
+            "prefix": "-XX:",
+            "name": "PGOPathProfile",
+            "description": "<pre>Replace PGO profiling counters with path-profiling counters.<\/pre>",
+            "availability": "Hosted",
+            "type": "bool",
+            "key": "PGOPathProfile_null_null_null"
+        },
+        {
+            "defaultValue": "false",
+            "prefix": "-XX:",
+            "name": "PGOPathProfileVerify",
+            "description": "<pre>Collect PGO counters, and verify that they match the path-profile counters.<\/pre>",
+            "availability": "Hosted",
+            "type": "bool",
+            "key": "PGOPathProfileVerify_null_null_null"
+        },
+        {
+            "defaultValue": "75",
+            "prefix": "-XX:",
+            "name": "PLABWeight",
+            "description": "<pre>Percentage (0-100) used to weight the current sample when computing exponentially decaying average for ResizePLAB. <\/pre>",
+            "availability": "Runtime",
+            "type": "int",
+            "key": "PLABWeight_null_null_null"
+        },
+        {
+            "defaultValue": "50",
+            "prefix": "-XX:",
+            "name": "ParGCArrayScanChunk",
+            "description": "<pre>Scan a subset of object array and push remainder, if array is bigger than this. <\/pre>",
+            "availability": "Runtime",
+            "type": "int",
+            "key": "ParGCArrayScanChunk_null_null_null"
+        },
+        {
+            "defaultValue": "10",
+            "prefix": "-XX:",
+            "name": "ParallelGCBufferWastePct",
+            "description": "<pre>Wasted fraction of parallel allocation buffer. <\/pre>",
+            "availability": "Runtime",
+            "type": "int",
+            "key": "ParallelGCBufferWastePct_null_null_null"
+        },
+        {
+            "defaultValue": "0",
+            "prefix": "-XX:",
+            "name": "ParallelGCThreads",
+            "description": "<pre>Number of parallel threads parallel gc will use. <\/pre>",
+            "availability": "Runtime",
+            "type": "int",
+            "key": "ParallelGCThreads_null_null_null"
+        },
+        {
+            "defaultValue": "true",
+            "prefix": "-XX:",
+            "name": "ParallelRefProcBalancingEnabled",
+            "description": "<pre>Enable balancing of reference processing queues.<\/pre>",
+            "availability": "Runtime",
+            "type": "bool",
+            "key": "ParallelRefProcBalancingEnabled_null_null_null"
+        },
+        {
+            "defaultValue": "true",
+            "prefix": "-XX:",
+            "name": "ParallelRefProcEnabled",
+            "description": "<pre>Enable parallel reference processing whenever possible.<\/pre>",
+            "availability": "Runtime",
+            "type": "bool",
+            "key": "ParallelRefProcEnabled_null_null_null"
+        },
+        {
+            "defaultValue": "true",
+            "prefix": "-XX:",
+            "name": "PartialRedundancyElimination",
+            "description": "<pre>Enable partial redundancy elimination.<\/pre>",
+            "availability": "Runtime",
+            "type": "bool",
+            "key": "PartialRedundancyElimination_null_null_null"
+        },
+        {
+            "defaultValue": "2",
+            "prefix": "-XX:",
+            "name": "PartialUnrollCostReductionFactorHighTier",
+            "description": "<pre>\nCost/Benefit heuristic for EE unrolling in high tier: reduce cost by a constant factor when comparing with relative\nbenefit.<\/pre>",
+            "availability": "Runtime",
+            "type": "int",
+            "key": "PartialUnrollCostReductionFactorHighTier_null_null_null"
+        },
+        {
+            "defaultValue": "8",
+            "prefix": "-XX:",
+            "name": "PartialUnrollCostReductionFactorMidTier",
+            "description": "<pre>Cost/Benefit heuristic for EE unrolling in mid tier: reduce cost by a constant factor when comparing with relative \nbenefit.<\/pre>",
+            "availability": "Runtime",
+            "type": "int",
+            "key": "PartialUnrollCostReductionFactorMidTier_null_null_null"
+        },
+        {
+            "defaultValue": "4",
+            "prefix": "-XX:",
+            "name": "PartialUnrollMaxIterationsHighTier",
+            "description": "<pre>Maximum number of iterations to unroll for a high tier main loop. <\/pre>",
+            "availability": "Runtime",
+            "type": "int",
+            "key": "PartialUnrollMaxIterationsHighTier_null_null_null"
+        },
+        {
+            "defaultValue": "16",
+            "prefix": "-XX:",
+            "name": "PartialUnrollMaxIterationsMidTier",
+            "description": "<pre>Maximum number of iterations to unroll for a mid tier main loop. <\/pre>",
+            "availability": "Runtime",
+            "type": "int",
+            "key": "PartialUnrollMaxIterationsMidTier_null_null_null"
+        },
+        {
+            "defaultValue": "256",
+            "prefix": "-XX:",
+            "name": "PartialUnrollMaxSizeHighTier",
+            "description": "<pre>Maximum node cost size of a loop to be considered for high tier unrolling. <\/pre>",
+            "availability": "Runtime",
+            "type": "int",
+            "key": "PartialUnrollMaxSizeHighTier_null_null_null"
+        },
+        {
+            "defaultValue": "256",
+            "prefix": "-XX:",
+            "name": "PartialUnrollMaxSizeMidTier",
+            "description": "<pre>Maximum node cost size of a loop to be considered for mid tier tier unrolling. <\/pre>",
+            "availability": "Runtime",
+            "type": "int",
+            "key": "PartialUnrollMaxSizeMidTier_null_null_null"
+        },
+        {
+            "defaultValue": "2",
+            "prefix": "-XX:",
+            "name": "PartialUnrollMinFrequency",
+            "description": "<pre>Minimal loop frequency to consider a loop for partial unrolling. <\/pre>",
+            "availability": "Runtime",
+            "type": "int",
+            "key": "PartialUnrollMinFrequency_null_null_null"
+        },
+        {
+            "defaultValue": "10",
+            "prefix": "-XX:",
+            "name": "PathProfileCutThreshold",
+            "description": "<pre>The limit on the number of paths at control-flow merges. Decreasing this value reduces the number of paths, but also \nshortens them.<\/pre>",
+            "availability": "Runtime",
+            "type": "int",
+            "key": "PathProfileCutThreshold_null_null_null"
+        },
+        {
+            "defaultValue": "None",
+            "prefix": "-XX:",
+            "name": "PathProfileDumpFile",
+            "description": "<pre>Dump information for path profile (null or file name). If set to null, then dumping is disabled.<\/pre>",
+            "availability": "Runtime",
+            "type": "String",
+            "key": "PathProfileDumpFile_null_null_null"
+        },
+        {
+            "defaultValue": "500",
+            "prefix": "-XX:",
+            "name": "PathProfileFrequentThreshold",
+            "description": "<pre>Maximum acceptable number of paths coming from the inbound of a merge if both of them are frequent. <\/pre>",
+            "availability": "Runtime",
+            "type": "int",
+            "key": "PathProfileFrequentThreshold_null_null_null"
+        },
+        {
+            "defaultValue": "0.1",
+            "prefix": "-XX:",
+            "name": "PathProfileGlobalLowFrequencyRatio",
+            "description": "<pre>If some block's relative frequency drops below this number times the maximum relative frequency in the graph, then the \nblock is considered infrequent.<\/pre>",
+            "availability": "Runtime",
+            "type": "double",
+            "key": "PathProfileGlobalLowFrequencyRatio_null_null_null"
+        },
+        {
+            "defaultValue": "10.0",
+            "prefix": "-XX:",
+            "name": "PathProfileLocalLowFrequencyRatio",
+            "description": "<pre>If the ratio of the merge's frequency with its inbound's frequency is greater than this threshold, then the inbound is \nconsidered infrequent.<\/pre>",
+            "availability": "Runtime",
+            "type": "double",
+            "key": "PathProfileLocalLowFrequencyRatio_null_null_null"
+        },
+        {
+            "defaultValue": "4000000",
+            "prefix": "-XX:",
+            "name": "PathProfileMaxTotalCounters",
+            "description": "<pre>Maximum number of counters to use in path profiling for all instrumented methods. <\/pre>",
+            "availability": "Runtime",
+            "type": "int",
+            "key": "PathProfileMaxTotalCounters_null_null_null"
+        },
+        {
+            "defaultValue": "None",
+            "prefix": "-XX:",
+            "name": "PathProfilePolicy",
+            "description": "<pre>Enable or disable the path-profiling algorithm. If it enables it, it also allows to select which mode to execute. <\/pre>",
+            "availability": "Runtime",
+            "type": "String",
+            "key": "PathProfilePolicy_null_null_null"
+        },
+        {
+            "defaultValue": "false",
+            "prefix": "-XX:",
+            "name": "PathProfileRegenerate",
+            "description": "<pre>Controls whether the path-regeneration algorithm is executed.<\/pre>",
+            "availability": "Runtime",
+            "type": "bool",
+            "key": "PathProfileRegenerate_null_null_null"
+        },
+        {
+            "defaultValue": "120",
+            "prefix": "-XX:",
+            "name": "PeelFoldFactor",
+            "availability": "Runtime",
+            "type": "int",
+            "key": "PeelFoldFactor_null_null_null"
+        },
+        {
+            "defaultValue": "4.0",
+            "prefix": "-XX:",
+            "name": "PeelingConsideredMinFrequency",
+            "description": "<pre>Minimal loop frequency necessary to consider peeling. <\/pre>",
+            "availability": "Runtime",
+            "type": "double",
+            "key": "PeelingConsideredMinFrequency_null_null_null"
+        },
+        {
+            "defaultValue": "32768",
+            "prefix": "-XX:",
+            "name": "PerfDataMemorySize",
+            "description": "<pre>Size of performance data memory region. Will be rounded up to a multiple of the native os page size. <\/pre>",
+            "availability": "Runtime",
+            "type": "int",
+            "key": "PerfDataMemorySize_null_null_null"
+        },
+        {
+            "defaultValue": "200",
+            "prefix": "-XX:",
+            "name": "PerfDataSamplingInterval",
+            "description": "<pre>Jvmstat instrumentation sampling interval (in milliseconds). <\/pre>",
+            "availability": "Runtime",
+            "type": "int",
+            "key": "PerfDataSamplingInterval_null_null_null"
+        },
+        {
+            "defaultValue": "1024",
+            "prefix": "-XX:",
+            "name": "PerfMaxStringConstLength",
+            "description": "<pre>Maximum PerfStringConstant string length before truncation. <\/pre>",
+            "availability": "Runtime",
+            "type": "int",
+            "key": "PerfMaxStringConstLength_null_null_null"
+        },
+        {
+            "defaultValue": "1073741824",
+            "prefix": "-XX:",
+            "name": "PreTouchParallelChunkSize",
+            "description": "<pre>Per-thread chunk size for parallel memory pre-touch. <\/pre>",
+            "availability": "Runtime",
+            "type": "int",
+            "key": "PreTouchParallelChunkSize_null_null_null"
+        },
+        {
+            "defaultValue": "-1",
+            "prefix": "-XX:",
+            "name": "PrefetchCopyIntervalInBytes",
+            "description": "<pre>How far ahead to prefetch destination area (<= 0 means off). <\/pre>",
+            "availability": "Runtime",
+            "type": "int",
+            "key": "PrefetchCopyIntervalInBytes_null_null_null"
+        },
+        {
+            "defaultValue": "-1",
+            "prefix": "-XX:",
+            "name": "PrefetchScanIntervalInBytes",
+            "description": "<pre>How far ahead to prefetch scan area (<= 0 means off). <\/pre>",
+            "availability": "Runtime",
+            "type": "int",
+            "key": "PrefetchScanIntervalInBytes_null_null_null"
+        },
+        {
+            "defaultValue": "false",
+            "prefix": "-XX:",
+            "name": "PrintPGOStatistics",
+            "description": "<pre>Print hit, miss and partial match counts after comparision with collected profiles. It is used for testing.<\/pre>",
+            "availability": "Hosted",
+            "type": "bool",
+            "key": "PrintPGOStatistics_null_null_null"
+        },
+        {
+            "defaultValue": "\"\"",
+            "prefix": "-XX:",
+            "name": "PriorityInliningPolicy",
+            "description": "<pre>The policy to use, must be empty for automatic resolution. <\/pre>",
+            "availability": "Runtime",
+            "type": "",
+            "key": "PriorityInliningPolicy_null_null_null"
+        },
+        {
+            "defaultValue": "\"DomainSpecific\"",
+            "prefix": "-XX:",
+            "name": "PriorityInliningTuningPolicy",
+            "description": "<pre>\nThe analysis policy for exploring the methods in the call graph and for inlining, empty for no policy.<\/pre>",
+            "availability": "Runtime",
+            "type": "String",
+            "key": "PriorityInliningTuningPolicy_null_null_null"
+        },
+        {
+            "defaultValue": "-1",
+            "prefix": "-XX:",
+            "name": "ProfileDumpPeriod",
+            "description": "<pre>Integer greater than zero representing the duration in seconds that will be used to trigger a profile capture. Any \ninteger less than one disables periodic dumps.<\/pre>",
+            "availability": "Runtime",
+            "type": "int",
+            "key": "ProfileDumpPeriod_null_null_null"
+        },
+        {
+            "defaultValue": "false",
+            "prefix": "-XX:",
+            "name": "ProfileLockElimination",
+            "description": "<pre><\/pre>",
+            "availability": "Runtime",
+            "type": "bool",
+            "key": "ProfileLockElimination_null_null_null"
+        },
+        {
+            "defaultValue": "false",
+            "prefix": "-XX:",
+            "name": "ProfileOptBulkAllocation",
+            "description": "<pre><\/pre>",
+            "availability": "Runtime",
+            "type": "bool",
+            "key": "ProfileOptBulkAllocation_null_null_null"
+        },
+        {
+            "defaultValue": "true",
+            "prefix": "-XX:",
+            "name": "ProfileSelfTime",
+            "description": "<pre>Excludes time spent in invoked methods; measures total time including subcalls when turned off.<\/pre>",
+            "availability": "Runtime",
+            "type": "bool",
+            "key": "ProfileSelfTime_null_null_null"
+        },
+        {
+            "defaultValue": "false",
+            "prefix": "-XX:",
+            "name": "ProfilesCollect",
+            "description": "<pre>Instrument AOT compiled code to collect data for profile-guided optimization into default.iprof file.<\/pre>",
+            "availability": "Hosted",
+            "type": "bool",
+            "key": "ProfilesCollect_null_null_null"
+        },
+        {
+            "defaultValue": "\"default.iprof\"",
+            "prefix": "-XX:",
+            "name": "ProfilesDumpFile",
+            "description": "<pre>Value should point to a profile dump file. <\/pre>",
+            "availability": "Runtime",
+            "type": "String",
+            "key": "ProfilesDumpFile_null_null_null"
+        },
+        {
+            "defaultValue": "None",
+            "prefix": "-XX:",
+            "name": "ProfilesUse",
+            "description": "<pre>A comma-separated list of files from which to read the data collected for profile-guided optimization of AOT compiled \ncode (reads from default.iprof if nothing is specified).<\/pre>",
+            "availability": "Hosted",
+            "type": "String",
+            "key": "ProfilesUse_null_null_null"
+        },
+        {
+            "defaultValue": "0",
+            "prefix": "-XX:",
+            "name": "ProfilingPointRequiredHitCount",
+            "description": "<pre>Lower bound for point hit count when compared to collected profiles. It is used for testing. <\/pre>",
+            "availability": "Hosted",
+            "type": "int",
+            "key": "ProfilingPointRequiredHitCount_null_null_null"
+        },
+        {
+            "defaultValue": "false",
+            "prefix": "-XX:",
+            "name": "ProtectionKeys",
+            "description": "<pre>Enable support for Memory Protection Keys.<\/pre>",
+            "availability": "Hosted",
+            "type": "bool",
+            "key": "ProtectionKeys_null_null_null"
+        },
+        {
+            "defaultValue": "true",
+            "prefix": "-XX:",
+            "name": "PruneLargeDominatorUsageTrees",
+            "description": "<pre><\/pre>",
+            "availability": "Runtime",
+            "type": "bool",
+            "key": "PruneLargeDominatorUsageTrees_null_null_null"
+        },
+        {
+            "defaultValue": "0.1",
+            "prefix": "-XX:",
+            "name": "PullThroughPhiCodeSizeIncrease",
+            "availability": "Runtime",
+            "type": "double",
+            "key": "PullThroughPhiCodeSizeIncrease_null_null_null"
+        },
+        {
+            "defaultValue": "0",
+            "prefix": "-XX:",
+            "name": "QueuedAllocationWarningCount",
+            "description": "<pre>Number of times an allocation that queues behind a GC will retry before printing a warning. <\/pre>",
+            "availability": "Runtime",
+            "type": "int",
+            "key": "QueuedAllocationWarningCount_null_null_null"
+        },
+        {
+            "defaultValue": "0",
+            "prefix": "-XX:",
+            "name": "RefDiscoveryPolicy",
+            "description": "<pre>Select type of reference discovery policy: reference-based(0) or referent-based(1). <\/pre>",
+            "availability": "Runtime",
+            "type": "int",
+            "key": "RefDiscoveryPolicy_null_null_null"
+        },
+        {
+            "defaultValue": "0.001",
+            "prefix": "-XX:",
+            "name": "RelativeBenefitInliningCoefficient",
+            "description": "<pre>The coefficient used to compute the inlining threshold; the higher, the hard to inline. <\/pre>",
+            "availability": "Runtime",
+            "type": "double",
+            "key": "RelativeBenefitInliningCoefficient_null_null_null"
+        },
+        {
+            "defaultValue": "0",
+            "prefix": "-XX:",
+            "name": "ReservedAuxiliaryImageBytes",
+            "description": "<pre>Size in bytes of an address space to reserve for auxiliary images. <\/pre>",
+            "availability": "Hosted",
+            "type": "int",
+            "key": "ReservedAuxiliaryImageBytes_null_null_null"
+        },
+        {
+            "defaultValue": "true",
+            "prefix": "-XX:",
+            "name": "ResizePLAB",
+            "description": "<pre>Dynamically resize (survivor space) promotion LAB's.<\/pre>",
+            "availability": "Runtime",
+            "type": "bool",
+            "key": "ResizePLAB_null_null_null"
+        },
+        {
+            "defaultValue": "true",
+            "prefix": "-XX:",
+            "name": "ResizeTLAB",
+            "description": "<pre>Dynamically resize TLAB size for threads.<\/pre>",
+            "availability": "Runtime",
+            "type": "bool",
+            "key": "ResizeTLAB_null_null_null"
+        },
+        {
+            "defaultValue": "true",
+            "prefix": "-XX:",
+            "name": "RespectVectorization",
+            "description": "<pre>Try avoid unrolling vectorizable loops.<\/pre>",
+            "availability": "Runtime",
+            "type": "bool",
+            "key": "RespectVectorization_null_null_null"
+        },
+        {
+            "defaultValue": "false",
+            "prefix": "-XX:",
+            "name": "RuntimeDebugInfo",
+            "description": "<pre>Provide debuginfo for runtime-compiled code.<\/pre>",
+            "availability": "Hosted",
+            "type": "bool",
+            "key": "RuntimeDebugInfo_null_null_null"
+        },
+        {
+            "defaultValue": "None",
+            "prefix": "-XX:",
+            "name": "RuntimeSourceDestDir",
+            "description": "<pre>Directory where Java source-files will be placed for the debugger.<\/pre>",
+            "availability": "Runtime",
+            "type": "String",
+            "key": "RuntimeSourceDestDir_null_null_null"
+        },
+        {
+            "defaultValue": "false",
+            "prefix": "-XX:",
+            "name": "ScheduledDuplicationSimulation",
+            "description": "<pre>Simulation can either only process fixed nodes or schedule the graph and also process floating nodes.<\/pre>",
+            "availability": "Runtime",
+            "type": "bool",
+            "key": "ScheduledDuplicationSimulation_null_null_null"
+        },
+        {
+            "defaultValue": "true",
+            "prefix": "-XX:",
+            "name": "SimulationBasedLoopPeeling",
+            "description": "<pre>Use DBDS algorithm to simulate the impact of peeling on a loop.<\/pre>",
+            "availability": "Runtime",
+            "type": "bool",
+            "key": "SimulationBasedLoopPeeling_null_null_null"
+        },
+        {
+            "defaultValue": "true",
+            "prefix": "-XX:",
+            "name": "SimulationPruneUnlikelyBranches",
+            "description": "<pre>Ignore low frequency branches during simulation.<\/pre>",
+            "availability": "Runtime",
+            "type": "bool",
+            "key": "SimulationPruneUnlikelyBranches_null_null_null"
+        },
+        {
+            "defaultValue": "0.02",
+            "prefix": "-XX:",
+            "name": "SmallRootIrPenaltyCoefficient",
+            "description": "<pre>Reduces the likelihood of exploring call graphs with IR size much larger than the root. <\/pre>",
+            "availability": "Runtime",
+            "type": "double",
+            "key": "SmallRootIrPenaltyCoefficient_null_null_null"
+        },
+        {
+            "defaultValue": "false",
+            "prefix": "-XX:",
+            "name": "SourceLevelDebug",
+            "description": "<pre>Preserve the local variable information for every Java source line to allow line-by-line stepping in the debugger. Allow \nthe lookup of Java-level method information, e.g., in stack traces.<\/pre>",
+            "availability": "Hosted",
+            "type": "bool",
+            "key": "SourceLevelDebug_null_null_null"
+        },
+        {
+            "defaultValue": "None",
+            "prefix": "-XX:",
+            "name": "SourceLevelDebugFilter",
+            "description": "<pre>Constrain debug info generation to the comma-separated list of package prefixes given to this option.<\/pre>",
+            "availability": "Hosted",
+            "type": "String",
+            "key": "SourceLevelDebugFilter_null_null_null"
+        },
+        {
+            "defaultValue": "None",
+            "prefix": "-XX:",
+            "name": "SourceSearchPath",
+            "description": "<pre>List of used-defined paths (separated by the system's path-separator character) in addition to automatic \nSourceSearchPath detection.<\/pre>",
+            "availability": "Hosted",
+            "type": "String",
+            "key": "SourceSearchPath_null_null_null"
+        },
+        {
+            "defaultValue": "true",
+            "prefix": "-XX:",
+            "name": "SpeculativeStoreCheck",
+            "description": "<pre>Speculates that arrays have exact type to optimize store checks.<\/pre>",
+            "availability": "Runtime",
+            "type": "bool",
+            "key": "SpeculativeStoreCheck_null_null_null"
+        },
+        {
+            "defaultValue": "\"\"",
+            "prefix": "-XX:",
+            "name": "StartFlightRecording",
+            "description": "<pre>Start flight recording with options. <\/pre>",
+            "availability": "Runtime",
+            "type": "",
+            "key": "StartFlightRecording_null_null_null"
+        },
+        {
+            "defaultValue": "true",
+            "prefix": "-XX:",
+            "name": "StripDebugInfo",
+            "description": "<pre>Strip debug info from the image.<\/pre>",
+            "availability": "Hosted",
+            "type": "bool",
+            "key": "StripDebugInfo_null_null_null"
+        },
+        {
+            "defaultValue": "8",
+            "prefix": "-XX:",
+            "name": "SurvivorRatio",
+            "description": "<pre>Ratio of eden/survivor space size. <\/pre>",
+            "availability": "Runtime",
+            "type": "int",
+            "key": "SurvivorRatio_null_null_null"
+        },
+        {
+            "defaultValue": "35",
+            "prefix": "-XX:",
+            "name": "TLABAllocationWeight",
+            "description": "<pre>Allocation averaging weight. <\/pre>",
+            "availability": "Runtime",
+            "type": "int",
+            "key": "TLABAllocationWeight_null_null_null"
+        },
+        {
+            "defaultValue": "64",
+            "prefix": "-XX:",
+            "name": "TLABRefillWasteFraction",
+            "description": "<pre>Maximum TLAB waste at a refill (internal fragmentation). <\/pre>",
+            "availability": "Runtime",
+            "type": "int",
+            "key": "TLABRefillWasteFraction_null_null_null"
+        },
+        {
+            "defaultValue": "0",
+            "prefix": "-XX:",
+            "name": "TLABSize",
+            "description": "<pre>Starting TLAB size (in bytes); zero means set ergonomically. <\/pre>",
+            "availability": "Runtime",
+            "type": "int",
+            "key": "TLABSize_null_null_null"
+        },
+        {
+            "defaultValue": "4",
+            "prefix": "-XX:",
+            "name": "TLABWasteIncrement",
+            "description": "<pre>Increment allowed waste at slow allocation. <\/pre>",
+            "availability": "Runtime",
+            "type": "int",
+            "key": "TLABWasteIncrement_null_null_null"
+        },
+        {
+            "defaultValue": "1",
+            "prefix": "-XX:",
+            "name": "TLABWasteTargetPercent",
+            "description": "<pre>Percentage of Eden that can be wasted. <\/pre>",
+            "availability": "Runtime",
+            "type": "int",
+            "key": "TLABWasteTargetPercent_null_null_null"
+        },
+        {
+            "defaultValue": "10",
+            "prefix": "-XX:",
+            "name": "TargetPLABWastePct",
+            "description": "<pre>Target wasted space in last buffer as percent of overall allocation. <\/pre>",
+            "availability": "Runtime",
+            "type": "int",
+            "key": "TargetPLABWastePct_null_null_null"
+        },
+        {
+            "defaultValue": "50",
+            "prefix": "-XX:",
+            "name": "TargetSurvivorRatio",
+            "description": "<pre>Desired percentage of survivor space used after scavenge. <\/pre>",
+            "availability": "Runtime",
+            "type": "int",
+            "key": "TargetSurvivorRatio_null_null_null"
+        },
+        {
+            "defaultValue": "false",
+            "prefix": "-XX:",
+            "name": "TimeStampProfiling",
+            "description": "<pre>Profile method execution time.<\/pre>",
+            "availability": "Runtime",
+            "type": "bool",
+            "key": "TimeStampProfiling_null_null_null"
+        },
+        {
+            "defaultValue": "false",
+            "prefix": "-XX:",
+            "name": "TraceAuxiliaryImages",
+            "description": "<pre>Enables detailed tracing of auxiliary image events.<\/pre>",
+            "availability": "Hosted",
+            "type": "bool",
+            "key": "TraceAuxiliaryImages_null_null_null"
+        },
+        {
+            "defaultValue": "false",
+            "prefix": "-XX:",
+            "name": "TrackGraphSizesInDuplication",
+            "description": "<pre>Enable (if Count is enabled) graph size tracking during every duplication iteration.<\/pre>",
+            "availability": "Runtime",
+            "type": "bool",
+            "key": "TrackGraphSizesInDuplication_null_null_null"
+        },
+        {
+            "defaultValue": "none",
+            "prefix": "-XX:",
+            "name": "TrackInliningStatistics",
+            "description": "<pre>Track inlining statistics (inlining duration, call tree size, compiler node counts, and the number of callsites). One \nof: none, interactive.<\/pre>",
+            "availability": "Runtime",
+            "type": "String",
+            "key": "TrackInliningStatistics_null_null_null"
+        },
+        {
+            "defaultValue": "512.0",
+            "prefix": "-XX:",
+            "name": "TrivialLoopSizeLimitForPeeling",
+            "description": "<pre>Loop peeling will consider any loop with a size (in terms of estimated machine instructions) below this value to be a \nprime candidate for peeling. Larger loops will only be considered for peeling if the simulated benefit of peeling is\nrelatively high. The larger the loop, the greater the expected benefit has to be.<\/pre>",
+            "availability": "Runtime",
+            "type": "double",
+            "key": "TrivialLoopSizeLimitForPeeling_null_null_null"
+        },
+        {
+            "defaultValue": "true",
+            "prefix": "-XX:",
+            "name": "TryExplodeOverPhis",
+            "description": "<pre><\/pre>",
+            "availability": "Runtime",
+            "type": "bool",
+            "key": "TryExplodeOverPhis_null_null_null"
+        },
+        {
+            "defaultValue": "true",
+            "prefix": "-XX:",
+            "name": "TryPhiPhiPulls",
+            "description": "<pre><\/pre>",
+            "availability": "Runtime",
+            "type": "bool",
+            "key": "TryPhiPhiPulls_null_null_null"
+        },
+        {
+            "defaultValue": "0.0",
+            "prefix": "-XX:",
+            "name": "TuneInlinerExploration",
+            "description": "<pre>Increases or decreases the time spent exploring inlining opportunities under the assumption that more time results in \nbetter peak performance and less time reduces time to reach (a lower) peak performance. The value of the option is\nclamped between -1 and 1 inclusive. Anything below 0, reduces the exploration time and anything above 0 increases\nexploration time. Note that this option is only a heuristic and should be tuned for any specific application.<\/pre>",
+            "availability": "Runtime",
+            "type": "double",
+            "key": "TuneInlinerExploration_null_null_null"
+        },
+        {
+            "defaultValue": "0",
+            "prefix": "-XX:",
+            "name": "TypeFlowPrinterInRadius",
+            "description": "<pre>How many levels of inputs to print. A value of 0 prints only the target flow. <\/pre>",
+            "availability": "Runtime",
+            "type": "int",
+            "key": "TypeFlowPrinterInRadius_null_null_null"
+        },
+        {
+            "defaultValue": "0",
+            "prefix": "-XX:",
+            "name": "TypeFlowPrinterOutRadius",
+            "description": "<pre>How many levels of outputs to print. A value of 0 prints only the target flow. <\/pre>",
+            "availability": "Runtime",
+            "type": "int",
+            "key": "TypeFlowPrinterOutRadius_null_null_null"
+        },
+        {
+            "defaultValue": "200",
+            "prefix": "-XX:",
+            "name": "TypicalCallGraphSize",
+            "description": "<pre>Denotes the call graph size that is considered medium size. <\/pre>",
+            "availability": "Runtime",
+            "type": "int",
+            "key": "TypicalCallGraphSize_null_null_null"
+        },
+        {
+            "defaultValue": "3250",
+            "prefix": "-XX:",
+            "name": "TypicalGraphSize",
+            "description": "<pre>The typical graph size at which inlining pressure must start growing. <\/pre>",
+            "availability": "Runtime",
+            "type": "int",
+            "key": "TypicalGraphSize_null_null_null"
+        },
+        {
+            "defaultValue": "70",
+            "prefix": "-XX:",
+            "name": "TypicalGraphSizeInvokeBonus",
+            "description": "<pre>The increase in estimated typical graph size after inlining, per each extra invoke. <\/pre>",
+            "availability": "Runtime",
+            "type": "int",
+            "key": "TypicalGraphSizeInvokeBonus_null_null_null"
+        },
+        {
+            "defaultValue": "10000",
+            "prefix": "-XX:",
+            "name": "TypicalGraphSizeMax",
+            "description": "<pre>The maximum in estimated inlined typical graph size. <\/pre>",
+            "availability": "Runtime",
+            "type": "int",
+            "key": "TypicalGraphSizeMax_null_null_null"
+        },
+        {
+            "defaultValue": "true",
+            "prefix": "-XX:",
+            "name": "UnrollMultiEndLoops",
+            "description": "<pre>Unroll loops with multiple loop ends.<\/pre>",
+            "availability": "Runtime",
+            "type": "bool",
+            "key": "UnrollMultiEndLoops_null_null_null"
+        },
+        {
+            "defaultValue": "true",
+            "prefix": "-XX:",
+            "name": "UnrollMultiExitLoops",
+            "description": "<pre>Unroll loops with multiple loop exits.<\/pre>",
+            "availability": "Runtime",
+            "type": "bool",
+            "key": "UnrollMultiExitLoops_null_null_null"
+        },
+        {
+            "defaultValue": "true",
+            "prefix": "-XX:",
+            "name": "UseCompressedReferenceShift",
+            "description": "<pre>Use bit-shifting to enlarge the address range with narrow references.<\/pre>",
+            "availability": "Hosted",
+            "type": "bool",
+            "key": "UseCompressedReferenceShift_null_null_null"
+        },
+        {
+            "defaultValue": "true",
+            "prefix": "-XX:",
+            "name": "UseCompressedReferences",
+            "description": "<pre>Use compressed references (32-bit instead of 64-bit references to Java objects).<\/pre>",
+            "availability": "Hosted",
+            "type": "bool",
+            "key": "UseCompressedReferences_null_null_null"
+        },
+        {
+            "defaultValue": "true",
+            "prefix": "-XX:",
+            "name": "UseDynamicNumberOfGCThreads",
+            "description": "<pre>Dynamically choose the number of threads up to a maximum of ParallelGCThreads parallel collectors will use for garbage \ncollection work.<\/pre>",
+            "availability": "Runtime",
+            "type": "bool",
+            "key": "UseDynamicNumberOfGCThreads_null_null_null"
+        },
+        {
+            "defaultValue": "false",
+            "prefix": "-XX:",
+            "name": "UseG1GC",
+            "description": "<pre>Determines if the G1 garbage collector should be used.<\/pre>",
+            "availability": "Hosted",
+            "type": "bool",
+            "key": "UseG1GC_null_null_null"
+        },
+        {
+            "defaultValue": "true",
+            "prefix": "-XX:",
+            "name": "UseGraphCache",
+            "description": "<pre>Turn on graph caching.<\/pre>",
+            "availability": "Runtime",
+            "type": "bool",
+            "key": "UseGraphCache_null_null_null"
+        },
+        {
+            "defaultValue": "None",
+            "prefix": "-XX:",
+            "name": "UseInlinedPythonHelper",
+            "description": "<pre>Embed python helper in binary.<\/pre>",
+            "availability": "Hosted",
+            "type": "String",
+            "key": "UseInlinedPythonHelper_null_null_null"
+        },
+        {
+            "defaultValue": "true",
+            "prefix": "-XX:",
+            "name": "UseMonitorFastPath",
+            "description": "<pre>Use thin locking fast path in snippets.<\/pre>",
+            "availability": "Hosted",
+            "type": "bool",
+            "key": "UseMonitorFastPath_null_null_null"
+        },
+        {
+            "defaultValue": "true",
+            "prefix": "-XX:",
+            "name": "UsePartialEscapeSelectiveInlining",
+            "description": "<pre>Use PartialEscapeSelectiveInliningPhase to give PartialEscape phase more opportunities.<\/pre>",
+            "availability": "Hosted",
+            "type": "bool",
+            "key": "UsePartialEscapeSelectiveInlining_null_null_null"
+        },
+        {
+            "defaultValue": "true",
+            "prefix": "-XX:",
+            "name": "UsePerfData",
+            "description": "<pre>Flag to disable jvmstat instrumentation for performance testing.<\/pre>",
+            "availability": "Runtime",
+            "type": "bool",
+            "key": "UsePerfData_null_null_null"
+        },
+        {
+            "defaultValue": "true",
+            "prefix": "-XX:",
+            "name": "UsePriorityInlining",
+            "description": "<pre>Use priority-based inlining.<\/pre>",
+            "availability": "Runtime",
+            "type": "bool",
+            "key": "UsePriorityInlining_null_null_null"
+        },
+        {
+            "defaultValue": "false",
+            "prefix": "-XX:",
+            "name": "UseStringInlining",
+            "description": "<pre>Determines if the string inlining optimization should be used.<\/pre>",
+            "availability": "Hosted",
+            "type": "bool",
+            "key": "UseStringInlining_null_null_null"
+        },
+        {
+            "defaultValue": "true",
+            "prefix": "-XX:",
+            "name": "UseTLAB",
+            "description": "<pre>Use thread-local object allocation.<\/pre>",
+            "availability": "Hosted",
+            "type": "bool",
+            "key": "UseTLAB_null_null_null"
+        },
+        {
+            "defaultValue": "true",
+            "prefix": "-XX:",
+            "name": "UseThinLocking",
+            "description": "<pre>Use thin locking to optimize monitor operations.<\/pre>",
+            "availability": "Hosted",
+            "type": "bool",
+            "key": "UseThinLocking_null_null_null"
+        },
+        {
+            "defaultValue": "true",
+            "prefix": "-XX:",
+            "name": "UseTypedArguments",
+            "description": "<pre>Use typed unboxed arguments for Truffle compilations.<\/pre>",
+            "availability": "Hosted",
+            "type": "bool",
+            "key": "UseTypedArguments_null_null_null"
+        },
+        {
+            "defaultValue": "false",
+            "prefix": "-XX:",
+            "name": "UseTypedResult",
+            "description": "<pre>Use typed unboxed return value for Truffle compilations.<\/pre>",
+            "availability": "Hosted",
+            "type": "bool",
+            "key": "UseTypedResult_null_null_null"
+        },
+        {
+            "defaultValue": "true",
+            "prefix": "-XX:",
+            "name": "VTuneAbsoluteFilenames",
+            "description": "<pre>Use absolute path for source-filenames in VTune events.<\/pre>",
+            "availability": "Runtime",
+            "type": "bool",
+            "key": "VTuneAbsoluteFilenames_null_null_null"
+        },
+        {
+            "defaultValue": "\"\"",
+            "prefix": "-XX:",
+            "name": "VTunePath",
+            "description": "<pre>Path to VTune installation (usually /opt/intel/vtune_amplifier). <\/pre>",
+            "availability": "Hosted",
+            "type": "",
+            "key": "VTunePath_null_null_null"
+        },
+        {
+            "defaultValue": "true",
+            "prefix": "-XX:",
+            "name": "VectorIntrinsics",
+            "description": "<pre>Enable vectorized array copy intrinsics.<\/pre>",
+            "availability": "Runtime",
+            "type": "bool",
+            "key": "VectorIntrinsics_null_null_null"
+        },
+        {
+            "defaultValue": "1",
+            "prefix": "-XX:",
+            "name": "VectorUnroll",
+            "description": "<pre>Unroll vectorized loops. <\/pre>",
+            "availability": "Runtime",
+            "type": "int",
+            "key": "VectorUnroll_null_null_null"
+        },
+        {
+            "defaultValue": "true",
+            "prefix": "-XX:",
+            "name": "Vectorization",
+            "description": "<pre>Enable vectorization.<\/pre>",
+            "availability": "Runtime",
+            "type": "bool",
+            "key": "Vectorization_null_null_null"
+        },
+        {
+            "defaultValue": "true",
+            "prefix": "-XX:",
+            "name": "VectorizeAllocation",
+            "description": "<pre>Enable vectorized array initialization.<\/pre>",
+            "availability": "Runtime",
+            "type": "bool",
+            "key": "VectorizeAllocation_null_null_null"
+        },
+        {
+            "defaultValue": "true",
+            "prefix": "-XX:",
+            "name": "VectorizeConditional",
+            "description": "<pre>Enable vectorization of conditional code.<\/pre>",
+            "availability": "Runtime",
+            "type": "bool",
+            "key": "VectorizeConditional_null_null_null"
+        },
+        {
+            "defaultValue": "true",
+            "prefix": "-XX:",
+            "name": "VectorizeDeopts",
+            "description": "<pre>Enable vectorization of loops with conditional deopts before writes.<\/pre>",
+            "availability": "Runtime",
+            "type": "bool",
+            "key": "VectorizeDeopts_null_null_null"
+        },
+        {
+            "defaultValue": "true",
+            "prefix": "-XX:",
+            "name": "VectorizeFoldShaped",
+            "description": "<pre>Enable vectorization of loops implementing a higher-order 'fold' function.<\/pre>",
+            "availability": "Runtime",
+            "type": "bool",
+            "key": "VectorizeFoldShaped_null_null_null"
+        },
+        {
+            "defaultValue": "true",
+            "prefix": "-XX:",
+            "name": "VectorizeGather",
+            "description": "<pre>Enable vectorization of vector gather operations.<\/pre>",
+            "availability": "Runtime",
+            "type": "bool",
+            "key": "VectorizeGather_null_null_null"
+        },
+        {
+            "defaultValue": "true",
+            "prefix": "-XX:",
+            "name": "VectorizeLoops",
+            "description": "<pre>Enable vectorization of loops.<\/pre>",
+            "availability": "Runtime",
+            "type": "bool",
+            "key": "VectorizeLoops_null_null_null"
+        },
+        {
+            "defaultValue": "true",
+            "prefix": "-XX:",
+            "name": "VectorizeMapShaped",
+            "description": "<pre>Enable vectorization of loops implementing a higher-order 'map' function.<\/pre>",
+            "availability": "Runtime",
+            "type": "bool",
+            "key": "VectorizeMapShaped_null_null_null"
+        },
+        {
+            "defaultValue": "true",
+            "prefix": "-XX:",
+            "name": "VectorizeNegativeStride",
+            "description": "<pre>Enable vectorization of loops with negative strides.<\/pre>",
+            "availability": "Runtime",
+            "type": "bool",
+            "key": "VectorizeNegativeStride_null_null_null"
+        },
+        {
+            "defaultValue": "false",
+            "prefix": "-XX:",
+            "name": "VectorizeSIMD",
+            "description": "<pre>Enable detection of SIMD patterns.<\/pre>",
+            "availability": "Runtime",
+            "type": "bool",
+            "key": "VectorizeSIMD_null_null_null"
+        },
+        {
+            "defaultValue": "true",
+            "prefix": "-XX:",
+            "name": "VectorizeSafepoints",
+            "description": "<pre>Enable vectorization of loops with safepoints.<\/pre>",
+            "availability": "Runtime",
+            "type": "bool",
+            "key": "VectorizeSafepoints_null_null_null"
+        },
+        {
+            "defaultValue": "true",
+            "prefix": "-XX:",
+            "name": "VectorizeSequence",
+            "description": "<pre>Enable vectorization of sequence values.<\/pre>",
+            "availability": "Runtime",
+            "type": "bool",
+            "key": "VectorizeSequence_null_null_null"
+        },
+        {
+            "defaultValue": "\"pgoVerification.log\"",
+            "prefix": "-XX:",
+            "name": "VerificationDumpFile",
+            "description": "<pre>\nValue should point to a file where we dump the output of the verification phase if mismatches were encountered.<\/pre>",
+            "availability": "Hosted",
+            "type": "String",
+            "key": "VerificationDumpFile_null_null_null"
+        },
+        {
+            "defaultValue": "false",
+            "prefix": "-XX:",
+            "name": "VerifyAfterGC",
+            "description": "<pre>Verify memory system after GC.<\/pre>",
+            "availability": "Runtime",
+            "type": "bool",
+            "key": "VerifyAfterGC_null_null_null"
+        },
+        {
+            "defaultValue": "false",
+            "prefix": "-XX:",
+            "name": "VerifyBeforeGC",
+            "description": "<pre>Verify memory system before GC.<\/pre>",
+            "availability": "Runtime",
+            "type": "bool",
+            "key": "VerifyBeforeGC_null_null_null"
+        },
+        {
+            "defaultValue": "false",
+            "prefix": "-XX:",
+            "name": "VerifyDuplicationOperations",
+            "description": "<pre><\/pre>",
+            "availability": "Runtime",
+            "type": "bool",
+            "key": "VerifyDuplicationOperations_null_null_null"
+        },
+        {
+            "defaultValue": "false",
+            "prefix": "-XX:",
+            "name": "VerifyDuringGC",
+            "description": "<pre>Verify memory system during GC (between phases).<\/pre>",
+            "availability": "Runtime",
+            "type": "bool",
+            "key": "VerifyDuringGC_null_null_null"
+        },
+        {
+            "defaultValue": "0",
+            "prefix": "-XX:",
+            "name": "VerifyGCStartAt",
+            "description": "<pre>GC invoke count where +VerifyHeap kicks in. <\/pre>",
+            "availability": "Runtime",
+            "type": "int",
+            "key": "VerifyGCStartAt_null_null_null"
+        },
+        {
+            "defaultValue": "false",
+            "prefix": "-XX:",
+            "name": "VerifyPGOProfiles",
+            "description": "<pre>Turn on a verification phase to check all probabilities injected in nodes match profiles.<\/pre>",
+            "availability": "Hosted",
+            "type": "bool",
+            "key": "VerifyPGOProfiles_null_null_null"
+        },
+        {
+            "defaultValue": "false",
+            "prefix": "-XX:",
+            "name": "VerifyRememberedSets",
+            "description": "<pre>Verify GC remembered sets.<\/pre>",
+            "availability": "Runtime",
+            "type": "bool",
+            "key": "VerifyRememberedSets_null_null_null"
+        },
+        {
+            "defaultValue": "false",
+            "prefix": "-XX:",
+            "name": "VerifyWriteBarrierElimination",
+            "description": "<pre>Add code to verify that eliminated barriers weren't needed.<\/pre>",
+            "availability": "Runtime",
+            "type": "bool",
+            "key": "VerifyWriteBarrierElimination_null_null_null"
+        },
+        {
+            "defaultValue": "\"\"",
+            "prefix": "-XX:",
+            "name": "Virtualize",
+            "description": "<pre>Build the native image for a virtualized environment. The argument is a path to a JSON file that specifies the \nvirtualized environment properties.<\/pre>",
+            "availability": "Hosted",
+            "type": "",
+            "key": "Virtualize_null_null_null"
+        },
+        {
+            "defaultValue": "4096",
+            "prefix": "-XX:",
+            "name": "YoungPLABSize",
+            "description": "<pre>Size of young gen promotion LAB's (in HeapWords). <\/pre>",
+            "availability": "Runtime",
+            "type": "int",
+            "key": "YoungPLABSize_null_null_null"
+        },
+        {
+            "defaultValue": "false",
+            "prefix": "-XX:",
+            "name": "ZeroTLAB",
+            "description": "<pre>Zero out the newly created TLAB. Default: - (disabled). <\/pre>",
+            "availability": "Runtime",
+            "type": "bool",
+            "key": "ZeroTLAB_null_null_null"
+        }
+    ],
+    "laterVM": "GraalVM_native_image_EE_JDK8",
+    "earlierVM": "GraalVM_native_image_CE_JDK8"
+}
