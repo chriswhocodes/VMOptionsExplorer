@@ -16,8 +16,6 @@ import com.chrisnewland.vmoe.SwitchInfoMap;
 
 public abstract class AbstractSwitchParser implements ISwitchParser
 {
-
-
 	protected SwitchInfoMap switchMap; //TODO list?
 
 	protected List<String> explodeLine(String line)

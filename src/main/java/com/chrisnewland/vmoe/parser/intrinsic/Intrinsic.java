@@ -6,6 +6,8 @@ package com.chrisnewland.vmoe.parser.intrinsic;
 
 import org.json.JSONObject;
 
+import java.util.Objects;
+
 public class Intrinsic
 {
 	private String id;
@@ -109,5 +111,22 @@ public class Intrinsic
 		builder.append("</tr>");
 
 		return builder.toString();
+	}
+
+	@Override public boolean equals(Object o)
+	{
+		if (this == o)
+			return true;
+		if (o == null || getClass() != o.getClass())
+			return false;
+		Intrinsic intrinsic = (Intrinsic) o;
+		return Objects.equals(id, intrinsic.id) && Objects.equals(klass, intrinsic.klass) && Objects.equals(name, intrinsic.name)
+				&& Objects.equals(signature, intrinsic.signature) && Objects.equals(flags, intrinsic.flags) && Objects.equals(since,
+				intrinsic.since);
+	}
+
+	@Override public int hashCode()
+	{
+		return Objects.hash(id, klass, name, signature, flags, since);
 	}
 }

@@ -10,6 +10,7 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public abstract class AbstractDeltaTable implements IDeltaTable
 {
@@ -60,5 +61,21 @@ public abstract class AbstractDeltaTable implements IDeltaTable
 		jsonObject.put("removed", removed);
 
 		return jsonObject.toString(4);
+	}
+
+	@Override public boolean equals(Object o)
+	{
+		if (this == o)
+			return true;
+		if (o == null || getClass() != o.getClass())
+			return false;
+		AbstractDeltaTable that = (AbstractDeltaTable) o;
+		return Objects.equals(added, that.added) && Objects.equals(removed, that.removed) && Objects.equals(earlierVM,
+				that.earlierVM) && Objects.equals(laterVM, that.laterVM);
+	}
+
+	@Override public int hashCode()
+	{
+		return Objects.hash(added, removed, earlierVM, laterVM);
 	}
 }

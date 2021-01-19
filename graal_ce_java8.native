@@ -12,6 +12,7 @@
   -H:±AddAllCharsets                           Make all hosted charsets available at run time. Default: - (disabled).
   -H:±AddAllFileSystemProviders                Make all supported providers returned by FileSystemProvider.installedProviders() available at run time. Default: +
                                                (enabled).
+  -H:AdditionalLinkerOptions=""                String which would be appended to the linker call.
   -H:AggregatedMetricsFile=...                 File to which aggregated metrics are dumped at shutdown. A CSV format is used if the file ends with .csv otherwise a
                                                more human readable format is used. If not specified, metrics are dumped to the console. Default: None
   -H:±AliasArrayTypeFlows                      Model all array type flows using a unique elements type flow abstraction. Default: + (enabled).
@@ -34,6 +35,8 @@
   -H:±AllowFoldMethods                         Allow MethodTypeFlow to see @Fold methods. Default: - (disabled).
   -H:±AllowIncompleteClasspath                 Allow image building with an incomplete class path: report type resolution errors at run time when they are accessed the
                                                first time, instead of during image building. Default: - (disabled).
+  -H:±AllowJRTFileSystem                       Enable support for reading Java modules (jimage format) and the jrt:// file system. Requires java.home to be set at
+                                               runtime. Default: - (disabled).
   -H:±AllowVMInspection                        Enables features that allow the VM to be inspected during runtime. Default: - (disabled).
   -H:±AlwaysInlineIntrinsics                   Unconditionally inline intrinsics. Default: - (disabled).
   -H:±AlwaysInlineVTableStubs                  Default: - (disabled).
@@ -60,8 +63,8 @@
   -H:CPUFeatures=...                           Comma separated list of CPU features that will be used for image generation. The specific options available are platform
                                                dependent. For AMD64, SSE and SSE2 are enabled by default. Available features are: CX8, CMOV, FXSR, HT, MMX,
                                                AMD_3DNOW_PREFETCH, SSE3, SSSE3, SSE4A, SSE4_1, SSE4_2, POPCNT, LZCNT, TSC, TSCINV, AVX, AVX2, AES, ERMS, CLMUL, BMI1,
-                                               BMI2, RTM, ADX, AVX512F, AVX512DQ, AVX512PF, AVX512ER, AVX512CD, AVX512BW, SHA, FMA. On AArch64, no features are
-                                               enabled by default. Available features are: FP, ASIMD, EVTSTRM, AES, PMULL, SHA1, SHA2, CRC32, LSE, STXR_PREFETCH,
+                                               BMI2, RTM, ADX, AVX512F, AVX512DQ, AVX512PF, AVX512ER, AVX512CD, AVX512BW, AVX512VL, SHA, FMA. On AArch64, no features
+                                               are enabled by default. Available features are: FP, ASIMD, EVTSTRM, AES, PMULL, SHA1, SHA2, CRC32, LSE, STXR_PREFETCH,
                                                A53MAC. Default: None
   -H:CStandard="C89"                           C standard to use in header files. Possible values are: [C89, C99, C11].
   -H:±CanOmitFrame                             Default: + (enabled).
@@ -225,9 +228,11 @@
   -H:IncludeResourceBundles=...                Comma separated list of bundles to be included into the image. Default: None
   -H:IncludeResources=...                      Regexp to match names of resources to be included in the image. Default: None
   -H:IncludeTimeZones=""                       The time zones, in addition to the default zone of the host, that will be pre-initialized in the image.
-  -H:InitialCollectionPolicy="com.oracle.svm.core.genscavenge.CollectionPolicy$ByTime"
+  -H:InitialCollectionPolicy="com.oracle.svm.core.genscavenge.CollectionPolicy$BySpaceAndTime"
                                                The initial garbage collection policy, as a fully-qualified class name (might require quotes or escaping).
   -H:±Inline                                   Enable inlining. Default: + (enabled).
+  -H:±InlineBeforeAnalysis                     Experimental: Inline methods which folds to constant during parsing before the static analysis. Default: - (disabled).
+  -H:InlineBeforeAnalysisMaxDepth=9            Maximum depth when inlining.
   -H:±InlineDuringParsing                      Inlines trivial methods during bytecode parsing. Default: + (enabled).
   -H:InlineDuringParsingMaxDepth=10            Maximum depth when inlining during bytecode parsing.
   -H:±InlineEverything                         Default: - (disabled).
@@ -311,7 +316,7 @@
   -H:MaxNodesInTrivialMethod=20                Maximum number of nodes in a method so that it is considered trivial.
   -H:MaxObjectSetSize=100                      The maximum number of objects recorded for each type of a type state before disabling heap sensitivity for that type.
                                                The analysis must be heap sensitive. It has a minimum value of 1.
-  -H:MaxReachableTypes=-1                      Maximum number of types allowed in the image. Used for tests where small number of types in necessary.
+  -H:MaxReachableTypes=-1                      Maximum number of types allowed in the image. Used for tests where small number of types is necessary.
   -H:MaxRuntimeCompileMethods=...              Maximum number of methods allowed for runtime compilation. Default: None
   -H:MaxSurvivorSpaces=0                       Maximum number of survivor spaces.
   -H:MaxTemplatesPerSnippet=50                 
@@ -457,6 +462,14 @@
   -H:RuntimeAssertions=...                     Enable or disable Java assert statements at run time. Default: None
   -H:±RuntimeSystemAssertions                  Enable or disable Java system assertions at run time. Default: - (disabled).
   -H:±ScanObjectsParallel                      Object scanning in parallel. Default: + (enabled).
+  -H:SerializationConfigurationFiles=...       One or several (comma-separated) paths to JSON files that specify lists of serialization configurations. Default: None
+                                               [Extra help available]
+  -H:SerializationConfigurationResources=...   Resources describing program elements to be made available for serialization (see SerializationConfigurationFiles).
+                                               Default: None
+  -H:SerializationDenyConfigurationFiles=...   One or several (comma-separated) paths to JSON files that specify lists of serialization configurations. Default: None
+                                               [Extra help available]
+  -H:SerializationDenyConfigurationResources=...
+                                               Resources describing program elements that must not be made available for serialization. Default: None
   -H:ServiceLoaderFeatureExcludeServiceProviders=...
                                                Comma-separated list of service providers that should be excluded. Default: None
   -H:ServiceLoaderFeatureExcludeServices=...   Comma-separated list of services that should be excluded. Default: None
@@ -499,6 +512,7 @@
   -H:±SupportRecurringCallback                 Support a per-thread timer that is called at a specific interval. Default: + (enabled).
   -H:±SuppressStderr                           Suppress console error output for unittests. Default: - (disabled).
   -H:±SuppressStdout                           Suppress console normal output for unittests. Default: - (disabled).
+  -H:TargetPlatform=""                         Selects native-image compilation target (in <OS>-<architecture> format). Defaults to host's OS-architecture pair.
   -H:TempDirectory=""                          Directory for temporary files generated during native image generation. If this option is specified, the temporary files
                                                are not deleted so that you can inspect them after native image generation.
   -H:TestFile=""                               
@@ -583,8 +597,7 @@
   -H:±UseExceptionProbability                  Default: + (enabled).
   -H:±UseGraalStubs                            Use Graal-generated stubs for complicated LIR operations instead of embedding all the emitted code. Default: +
                                                (enabled).
-  -H:±UseLegacyTypeCheck                       Revert to using previous native-image type check. Default: - (disabled).
-  -H:UseLibC="glibc"                           Selects the libc implementation to use. Available implementations: glibc, musl.
+  -H:UseLibC=...                               Selects the libc implementation to use. Available implementations: glibc, musl, bionic. Default: None
   -H:±UseLoopLimitChecks                       Default: + (enabled).
   -H:±UseReferenceHandlerThread                Populate reference queues in a separate thread rather than after a garbage collection. Default: - (disabled).
   -H:±UseServiceLoaderFeature                  Automatically register services for run-time lookup using ServiceLoader. Default: + (enabled).
@@ -592,8 +605,6 @@
   -H:±UseSnippetTemplateCache                  Use a LRU cache for snippet templates. Default: + (enabled).
   -H:±UseTrappingNullChecks                    Use traps for null checks instead of explicit null-checks. Default: + (enabled).
   -H:±UseTypeCheckHints                        Default: + (enabled).
-  -H:UserRequestedGCPolicy="com.oracle.svm.core.genscavenge.HeapPolicy$AlwaysCollectCompletely"
-                                               Policy used when user code requests garbage collection.
   -H:Verify=...                                Pattern for specifying scopes in which logging is enabled. See the Dump option for the pattern syntax. Default: None
   -H:±VerifyBalancedMonitors                   Emit extra code to dynamically check monitor operations are balanced. Default: - (disabled).
   -H:±VerifyDeoptimizationEntryPoints          Verify that all possible deoptimization entry points have been properly compiled and registered in the metadata.
@@ -654,6 +665,8 @@
   -R:±CanonicalGraphStringsExcludeVirtuals     Exclude virtual nodes when dumping canonical text for graphs. Default: + (enabled).
   -R:±CanonicalGraphStringsRemoveIdentities    Attempts to remove object identity hashes when dumping canonical text for graphs. Default: + (enabled).
   -R:±ClearMetricsAfterBootstrap               Clear the debug metrics after bootstrap. Default: - (disabled).
+  -R:±CollectYoungGenerationSeparately         Determines if a full GC collects the young generation separately or together with the old generation. Default: -
+                                               (disabled).
   -R:±CompilationBailoutAsFailure              Treat compilation bailouts like compilation failures. Default: - (disabled).
   -R:CompilationCountLimit=0                   The number of compilations allowed for any method before the VM exits (a value of 0 means there is no limit).
   -R:CompilationExcludePhases=...              Exclude certain phases from compilation, either unconditionally or with a method filter. Default: None
@@ -686,6 +699,7 @@
   -R:±DetailedAsserts                          Enable expensive assertions if normal assertions (i.e. -ea or -esa) are enabled. Default: - (disabled).
   -R:DiagnoseDumpLevel=3                       Specify the DumpLevel if CompilationFailureAction#Diagnose is used.See CompilationFailureAction for details.
                                                file:doc-files/CompilationFailureActionHelp.txt.
+  -R:±DisableExplicitGC                        Ignore calls to System.gc(). Default: - (disabled).
   -R:±DisableIntercept                         Disable intercepting exceptions in debug scopes. Default: - (disabled).
   -R:±DivertParameterReturningMethod           Analysis: Detect methods that return one of their parameters and hardwire the parameter straight to the return. Default:
                                                + (enabled).
@@ -808,6 +822,7 @@
   -R:MaxHeapContextWidth=0                     The maximum number of contexts to record for a heap object.  It only affects the analysis when the max and min calling
                                                context depth are different.
   -R:MaxHeapSize=0                             The maximum heap size at run-time, in bytes.
+  -R:MaxJavaStackTraceDepth=1024               The maximum number of lines in the stack trace for Java exceptions (0 means all).
   -R:MaxNewSize=0                              The maximum size of the young generation at run-time, in bytes.
   -R:MaxObjectSetSize=100                      The maximum number of objects recorded for each type of a type state before disabling heap sensitivity for that type.
                                                The analysis must be heap sensitive. It has a minimum value of 1.
@@ -996,8 +1011,6 @@
   -R:±UseSnippetTemplateCache                  Use a LRU cache for snippet templates. Default: + (enabled).
   -R:±UseTrappingNullChecks                    Use traps for null checks instead of explicit null-checks. Default: + (enabled).
   -R:±UseTypeCheckHints                        Default: + (enabled).
-  -R:UserRequestedGCThreshold=16777216         With the skeptical policy for user-requested collections, the threshold for the young generation size to cause a
-                                               collection.
   -R:±VerboseGC                                Print more information about the heap before and after each collection. Default: - (disabled).
   -R:Verify=...                                Pattern for specifying scopes in which logging is enabled. See the Dump option for the pattern syntax. Default: None
   -R:±VerifyBalancedMonitors                   Emit extra code to dynamically check monitor operations are balanced. Default: - (disabled).

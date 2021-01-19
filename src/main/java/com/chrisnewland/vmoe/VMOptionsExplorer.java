@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2018-2020 Chris Newland.
+ * Copyright (c) 2018-2021 Chris Newland.
  * Licensed under https://github.com/chriswhocodes/VMOptionsExplorer/blob/master/LICENSE
  */
 package com.chrisnewland.vmoe;
@@ -32,6 +32,8 @@ public class VMOptionsExplorer
 
 	private Path vmoeDir;
 
+	private Serialiser serialiser;
+
 	public VMOptionsExplorer(Path vmoeDir)
 	{
 		this.vmoeDir = vmoeDir;
@@ -42,9 +44,11 @@ public class VMOptionsExplorer
 		vmDataMap.put(data.getJdkName(), data);
 	}
 
-	public void process(Path serialiseDir) throws Exception
+	public void process(Path serialiseDir, Serialiser serialiser) throws Exception
 	{
 		this.serialiseDir = serialiseDir;
+
+		this.serialiser = serialiser;
 
 		prepareSerialisationDir();
 
@@ -72,7 +76,7 @@ public class VMOptionsExplorer
 		}
 	}
 
-	public void processVMDeltas(VMType vmType, String title, Path templatePath, Path outputFile) throws IOException
+	public void processVMDeltas(VMType vmType, String title, Path templatePath, Path outputFile) throws Exception
 	{
 		StringBuilder builder = new StringBuilder();
 
@@ -120,7 +124,7 @@ public class VMOptionsExplorer
 		}
 	}
 
-	private void addChangesBetweenVMs(VMData earlier, VMData later, StringBuilder builder) throws IOException
+	private void addChangesBetweenVMs(VMData earlier, VMData later, StringBuilder builder) throws Exception
 	{
 		System.out.println("Calculating differences between " + earlier.getJdkName() + " and " + later.getJdkName());
 
@@ -128,9 +132,11 @@ public class VMOptionsExplorer
 
 		SwitchInfoMap switchMapLater = later.getVmType().getParser().process(later.getVmPath());
 
-		Set<SwitchInfo> inEarlier = new HashSet<>(switchMapEarlier.values());
+		// TODO SwitchInfo equals and hashCode rely on name only
 
-		Set<SwitchInfo> inLater = new HashSet<>(switchMapLater.values());
+		Set<SwitchInfo> inEarlier = new TreeSet<>(switchMapEarlier.values());
+
+		Set<SwitchInfo> inLater = new TreeSet<>(switchMapLater.values());
 
 		IDeltaTable deltaTable = createDeltaTable(earlier, later);
 
@@ -157,7 +163,7 @@ public class VMOptionsExplorer
 		Path serialisationPath = Paths.get(serialiseDir.resolve(Paths.get("diffs")).toString(),
 				later.getSafeJDKName() + "_diffs.json");
 
-		Files.write(serialisationPath, deltaTable.toJSON().getBytes());
+		serialiser.serialiseDiffs(serialisationPath, deltaTable);
 	}
 
 	private List<VMData> getVMsOfType(VMType vmType)
@@ -282,7 +288,7 @@ public class VMOptionsExplorer
 		this.graalVersion = version;
 	}
 
-	private void parseJDK(VMData vmData) throws IOException
+	private void parseJDK(VMData vmData) throws Exception
 	{
 		this.vmPath = vmData.getVmPath();
 
@@ -307,7 +313,7 @@ public class VMOptionsExplorer
 
 		Path serialisationPath = Paths.get(serialiseDir.resolve("options").toString(), vmData.getSafeJDKName() + ".json");
 
-		Serialiser.serialiseSwitchInfo(serialisationPath, switchInfoMap.values());
+		serialiser.serialiseSwitchInfo(serialisationPath, switchInfoMap.values());
 
 		String template = new String(Files.readAllBytes(vmoeDir.resolve("templates/template.html")), StandardCharsets.UTF_8);
 
@@ -441,7 +447,7 @@ public class VMOptionsExplorer
 			DeprecatedParser.parseFile(baseDir.resolve("jdk17"));
 		}
 
-		String graalVersion = "20.3.0";
+		String graalVersion = "21.0.0";
 
 		VMOptionsExplorer explorer = new VMOptionsExplorer(vmoeDir);
 
@@ -551,7 +557,9 @@ public class VMOptionsExplorer
 
 		explorer.compareVMData("OpenJDK16", "SapMachine");
 
-		explorer.process(jsonOutputDir);
+		Serialiser serialiser = new Serialiser();
+
+		explorer.process(jsonOutputDir, serialiser);
 
 		if (processHotSpot)
 		{
@@ -581,7 +589,8 @@ public class VMOptionsExplorer
 
 		if (processHotSpotIntrinsics)
 		{
-			IntrinsicParser intrinsicParser = new IntrinsicParser(jsonOutputDir.resolve(Paths.get("intrinsics")), graalVersion);
+			IntrinsicParser intrinsicParser = new IntrinsicParser(jsonOutputDir.resolve(Paths.get("intrinsics")), serialiser,
+					graalVersion);
 
 			String pre10vmSymbols = "hotspot/src/share/vm/classfile/vmSymbols.hpp";
 			String post10vmSymbols = "src/hotspot/share/classfile/vmSymbols.hpp";
@@ -602,5 +611,7 @@ public class VMOptionsExplorer
 			intrinsicParser.processIntrinsics("OpenJDK17", baseDir.resolve("jdk17/" + post10vmSymbols),
 					baseDir.resolve("jdk17/" + post16vmIntrinsics));
 		}
+
+		serialiser.saveHashes(jsonOutputDir);
 	}
 }

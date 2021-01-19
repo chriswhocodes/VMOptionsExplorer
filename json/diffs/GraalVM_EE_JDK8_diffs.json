@@ -82,9 +82,26 @@
             "key": "ConcGCThreads_null_null_null"
         },
         {
-            "defaultValue": "4.0",
+            "defaultValue": "true",
+            "prefix": "-XX:",
+            "name": "ConsiderVectorizableLoops",
+            "description": "<pre>Consider the vectorizability of loop during the duplication of a merge\ninside a loop.There are rare cases where duplication can destroy\nvectorization.\n<\/pre>",
+            "type": "Boolean",
+            "key": "ConsiderVectorizableLoops_null_null_null"
+        },
+        {
+            "defaultValue": "4",
+            "prefix": "-XX:",
+            "name": "CostNewLiveVariable",
+            "description": "<pre>PullThroughPhiOptimization: Abstract cost for the creation of a new\nlive value: new values can have a negativeimpact on register\nallocation, therefore we penalize it.\n<\/pre>",
+            "type": "Integer",
+            "key": "CostNewLiveVariable_null_null_null"
+        },
+        {
+            "defaultValue": "32.0",
             "prefix": "-XX:",
             "name": "CostReductionFactor",
+            "description": "<pre>PullThroughPhiOptimization: Cost/Benefit heuristic for EE floating node\nduplication: reduce cost by a constant factor when comparing with\nrelative benefit.\n<\/pre>",
             "type": "Double",
             "key": "CostReductionFactor_null_null_null"
         },
@@ -111,14 +128,6 @@
             "description": "<pre>Debug simulation synonyms during simulation-based loop peeling.\n<\/pre>",
             "type": "Boolean",
             "key": "DebugPeelingSynonyms_null_null_null"
-        },
-        {
-            "defaultValue": "false",
-            "prefix": "-XX:",
-            "name": "DisableExplicitGC",
-            "description": "<pre>Ignore calls to System.gc()\n<\/pre>",
-            "type": "Boolean",
-            "key": "DisableExplicitGC_null_null_null"
         },
         {
             "defaultValue": "16",
@@ -762,6 +771,7 @@
             "defaultValue": "2",
             "prefix": "-XX:",
             "name": "MaximumTransitiveEnabledPullFactor",
+            "description": "<pre>PullThroughPhiOptimization: Maximum number of algorithm iterations per\noptimization invocation.\n<\/pre>",
             "type": "Integer",
             "key": "MaximumTransitiveEnabledPullFactor_null_null_null"
         },
@@ -777,6 +787,7 @@
             "defaultValue": "0.66",
             "prefix": "-XX:",
             "name": "MinBlockFrequencyPull",
+            "description": "<pre>PullThroughPhiOptimization: Ignore low frequency branches during\nduplication.\n<\/pre>",
             "type": "Double",
             "key": "MinBlockFrequencyPull_null_null_null"
         },
@@ -1201,6 +1212,14 @@
             "key": "PeelingConsideredMinFrequency_null_null_null"
         },
         {
+            "defaultValue": "true",
+            "prefix": "-XX:",
+            "name": "PenalizeComplexLoopControlFlow",
+            "description": "<pre>Increase the cost of duplicating control flow splits inside loops if\nthey are not foldable.The generally tend to complicate control flow and\ngenerate worse code in the backend.\n<\/pre>",
+            "type": "Boolean",
+            "key": "PenalizeComplexLoopControlFlow_null_null_null"
+        },
+        {
             "defaultValue": "32768",
             "prefix": "-XX:",
             "name": "PerfDataMemorySize",
@@ -1257,10 +1276,10 @@
             "key": "PriorityInliningPolicy_null_null_null"
         },
         {
-            "defaultValue": "\"DomainSpecific\"",
+            "defaultValue": "\"DomainSpecific,BytecodeInterpreter\"",
             "prefix": "-XX:",
             "name": "PriorityInliningTuningPolicy",
-            "description": "<pre>The analysis policy for exploring the methods in the call graph and for\ninlining, empty for no policy.\n<\/pre>",
+            "description": "<pre>Comma-separated list of analysis policies for exploring the methods in\nthe call graph and for inlining, empty for no policy.\n<\/pre>",
             "type": "String",
             "key": "PriorityInliningTuningPolicy_null_null_null"
         },
@@ -1313,6 +1332,7 @@
             "defaultValue": "0.1",
             "prefix": "-XX:",
             "name": "PullThroughPhiCodeSizeIncrease",
+            "description": "<pre>PullThroughPhiOptimization: Percentage in node cost graph size for the\nfloating node duplication budget. Computed relative to the method's\ngraph size.\n<\/pre>",
             "type": "Double",
             "key": "PullThroughPhiCodeSizeIncrease_null_null_null"
         },
@@ -1503,6 +1523,22 @@
         {
             "defaultValue": "false",
             "prefix": "-XX:",
+            "name": "TraceAuxiliaryImageClassHistogram",
+            "description": "<pre>Enables detailed tracing of auxiliary image events.\n<\/pre>",
+            "type": "Boolean",
+            "key": "TraceAuxiliaryImageClassHistogram_null_null_null"
+        },
+        {
+            "defaultValue": "false",
+            "prefix": "-XX:",
+            "name": "TraceAuxiliaryImageReferenceTree",
+            "description": "<pre>Enables detailed tracing of auxiliary image events.\n<\/pre>",
+            "type": "Boolean",
+            "key": "TraceAuxiliaryImageReferenceTree_null_null_null"
+        },
+        {
+            "defaultValue": "false",
+            "prefix": "-XX:",
             "name": "TrackGraphSizesInDuplication",
             "description": "<pre>Enable (if Count is enabled) graph size tracking during every\nduplication iteration.\n<\/pre>",
             "type": "Boolean",
@@ -1528,6 +1564,7 @@
             "defaultValue": "true",
             "prefix": "-XX:",
             "name": "TryExplodeOverPhis",
+            "description": "<pre>PullThroughPhiOptimization: Enable floating node duplication over\nmultiple phi nodes at once.\n<\/pre>",
             "type": "Boolean",
             "key": "TryExplodeOverPhis_null_null_null"
         },
@@ -1535,6 +1572,7 @@
             "defaultValue": "true",
             "prefix": "-XX:",
             "name": "TryPhiPhiPulls",
+            "description": "<pre>PullThroughPhiOptimization: Enable floating node duplication over phis\nwhere the target node has different phis as input.\n<\/pre>",
             "type": "Boolean",
             "key": "TryPhiPhiPulls_null_null_null"
         },

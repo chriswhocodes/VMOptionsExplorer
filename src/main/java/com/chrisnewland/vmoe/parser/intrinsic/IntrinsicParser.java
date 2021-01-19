@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2018-2019 Chris Newland.
+ * Copyright (c) 2018-2021 Chris Newland.
  * Licensed under https://github.com/chriswhocodes/VMOptionsExplorer/blob/master/LICENSE
  */
 package com.chrisnewland.vmoe.parser.intrinsic;
@@ -42,11 +42,15 @@ public class IntrinsicParser
 
 	private Path serialisationPath;
 
-	public IntrinsicParser(Path serialisationPath, String graalVersion)
+	private Serialiser serialiser;
+
+	public IntrinsicParser(Path serialisationPath, Serialiser serialiser, String graalVersion)
 	{
 		this.serialisationPath = serialisationPath;
 
 		this.graalVersion = graalVersion;
+
+		this.serialiser	= serialiser;
 	}
 
 	private void mapTemplate(String key, String value)
@@ -179,7 +183,7 @@ public class IntrinsicParser
 		mapAlias = new HashMap<String, String>();
 	}
 
-	public void processIntrinsics(String jdkName, Path... filesToProcess) throws IOException
+	public void processIntrinsics(String jdkName, Path... filesToProcess) throws Exception
 	{
 		reset();
 
@@ -193,7 +197,7 @@ public class IntrinsicParser
 	// don't split by line
 	// read chars
 
-	private void processFile(Path fileToProcess, String jdkName) throws IOException
+	private void processFile(Path fileToProcess, String jdkName) throws Exception
 	{
 		List<String> lines = splitMultipleTagsPerLine(Files.readAllLines(fileToProcess));
 
@@ -241,7 +245,7 @@ public class IntrinsicParser
 
 		if (serialisationPath != null)
 		{
-			Serialiser.serialiseIntrinsics(serialisationPath.resolve(Paths.get(jdkName + "_instrinsics.json")), getIntrinsics());
+			serialiser.serialiseIntrinsics(serialisationPath.resolve(Paths.get(jdkName + "_instrinsics.json")), getIntrinsics());
 		}
 	}
 

@@ -131,6 +131,9 @@ graal.CanonicalGraphStringsRemoveIdentities = true                       [Boolea
           for graphs.
 graal.ClearMetricsAfterBootstrap = false                                 [Boolean]
           Clear the debug metrics after bootstrap.
+graal.CollectYoungGenerationSeparately = false                           [Boolean]
+          Determines if a full GC collects the young generation separately or
+          together with the old generation.
 graal.CompilationBailoutAsFailure = false                                [Boolean]
           Treat compilation bailouts like compilation failures.
 graal.CompilationCountLimit = 0                                          [Integer]
@@ -184,7 +187,18 @@ graal.ConcGCThreads = 0                                                  [Intege
           Number of threads concurrent gc will use
 graal.ConditionalElimination = true                                      [Boolean]
 graal.ConditionalEliminationMaxIterations = 4                            [Integer]
-graal.CostReductionFactor = 4.0                                           [Double]
+graal.ConsiderVectorizableLoops = true                                   [Boolean]
+          Consider the vectorizability of loop during the duplication of a merge
+          inside a loop.There are rare cases where duplication can destroy
+          vectorization.
+graal.CostNewLiveVariable = 4                                            [Integer]
+          PullThroughPhiOptimization: Abstract cost for the creation of a new
+          live value: new values can have a negativeimpact on register
+          allocation, therefore we penalize it.
+graal.CostReductionFactor = 32.0                                          [Double]
+          PullThroughPhiOptimization: Cost/Benefit heuristic for EE floating node
+          duplication: reduce cost by a constant factor when comparing with
+          relative benefit.
 graal.Count = null                                                        [String]
           Pattern for specifying scopes in which counters are enabled. See the
           Dump option for the pattern syntax. An empty value enables all counters
@@ -696,6 +710,9 @@ graal.MaxHeapContextWidth = 0                                            [Intege
           different.
 graal.MaxHeapSize = 0                                                       [Long]
           The maximum heap size at run-time, in bytes.
+graal.MaxJavaStackTraceDepth = 1024                                      [Integer]
+          The maximum number of lines in the stack trace for Java exceptions (0
+          means all)
 graal.MaxMispredictionCostIncreaseFactor = 2.0                            [Double]
           Abstract measure of the cost of branch misprediction. Higher values
           make generation of conditional moves more likely.
@@ -738,6 +755,8 @@ graal.MaximumLoopExplosionCount = 10000                                  [Intege
 graal.MaximumRecursiveInlining = 5                                       [Integer]
           Maximum level of recursive inlining.
 graal.MaximumTransitiveEnabledPullFactor = 2                             [Integer]
+          PullThroughPhiOptimization: Maximum number of algorithm iterations per
+          optimization invocation.
 graal.MaximumYoungGenerationSizePercent = 10                             [Integer]
           The maximum size of the young generation as a percentage of the maximum
           heap size
@@ -832,6 +851,8 @@ graal.MetricsFile = null                                                  [Strin
 graal.MidTierPartialUnrolling = true                                     [Boolean]
           Enable EE partial unrolling in mid tier.
 graal.MinBlockFrequencyPull = 0.66                                        [Double]
+          PullThroughPhiOptimization: Ignore low frequency branches during
+          duplication.
 graal.MinCallingContextDepth = 0                                         [Integer]
           The minimum length of the methods context chains.
 graal.MinHeapContextDepth = 0                                            [Integer]
@@ -984,6 +1005,10 @@ graal.PeelALot = false                                                   [Boolea
 graal.PeelFoldFactor = 120                                               [Integer]
 graal.PeelingConsideredMinFrequency = 4.0                                 [Double]
           Minimal loop frequency necessary to consider peeling.
+graal.PenalizeComplexLoopControlFlow = true                              [Boolean]
+          Increase the cost of duplicating control flow splits inside loops if
+          they are not foldable.The generally tend to complicate control flow and
+          generate worse code in the backend.
 graal.PercentTimeInIncrementalCollection = 50                            [Integer]
           Percentage of total collection time that should be spent on young
           generation collections.
@@ -1078,9 +1103,9 @@ graal.PrintSynchronizedAnalysis = false                                  [Boolea
           Print types used for Java synchronization.
 graal.PriorityInliningPolicy = ""                                         [String]
           The policy to use, must be empty for automatic resolution.
-graal.PriorityInliningTuningPolicy = "DomainSpecific"                     [String]
-          The analysis policy for exploring the methods in the call graph and for
-          inlining, empty for no policy.
+graal.PriorityInliningTuningPolicy = "DomainSpecific,BytecodeInterpreter" [String]
+          Comma-separated list of analysis policies for exploring the methods in
+          the call graph and for inlining, empty for no policy.
 graal.ProbabilisticProfiling = true                                      [Boolean]
           Control probabilistic profiling on AMD64
 graal.ProfileAllocations = false                                         [Boolean]
@@ -1121,6 +1146,9 @@ graal.ProfilesDumpFile = "default.iprof"                                  [Strin
           Value should point to a profile dump file.
 graal.PruneLargeDominatorUsageTrees = true                               [Boolean]
 graal.PullThroughPhiCodeSizeIncrease = 0.1                                [Double]
+          PullThroughPhiOptimization: Percentage in node cost graph size for the
+          floating node duplication budget. Computed relative to the method's
+          graph size.
 graal.QueuedAllocationWarningCount = 0                                      [Long]
           Number of times an allocation that queues behind a GC will retry before
           printing a warning
@@ -1285,6 +1313,10 @@ graal.Timers = null                                                       [Strin
           Comma separated names of timers that are enabled irrespective of the
           value for Time option. An empty value enables all timers
           unconditionally.
+graal.TraceAuxiliaryImageClassHistogram = false                          [Boolean]
+          Enables detailed tracing of auxiliary image events.
+graal.TraceAuxiliaryImageReferenceTree = false                           [Boolean]
+          Enables detailed tracing of auxiliary image events.
 graal.TraceBytecodeParserLevel = 0                                       [Integer]
           The trace level for the bytecode parser. A value of 1 enables
           instruction tracing and any greater value emits a frame state trace
@@ -1363,7 +1395,11 @@ graal.TrustFinalDefaultFields = true                                     [Boolea
           Determines whether to treat final fields with default values as
           constant.
 graal.TryExplodeOverPhis = true                                          [Boolean]
+          PullThroughPhiOptimization: Enable floating node duplication over
+          multiple phi nodes at once.
 graal.TryPhiPhiPulls = true                                              [Boolean]
+          PullThroughPhiOptimization: Enable floating node duplication over phis
+          where the target node has different phis as input.
 graal.TuneInlinerExploration = 0.0                                        [Double]
           Increases or decreases the time spent exploring inlining opportunities
           under the assumption that more time results in better peak performance
@@ -1438,9 +1474,6 @@ graal.UseSnippetTemplateCache = true                                     [Boolea
 graal.UseTrappingNullChecks = true                                       [Boolean]
           Use traps for null checks instead of explicit null-checks
 graal.UseTypeCheckHints = true                                           [Boolean]
-graal.UserRequestedGCThreshold = 16777216                                   [Long]
-          With the skeptical policy for user-requested collections, the threshold
-          for the young generation size to cause a collection.
 graal.VTuneAbsoluteFilenames = true                                      [Boolean]
           Use absolute path for source-filenames in VTune events.
 graal.VectorIntrinsics = true                                            [Boolean]

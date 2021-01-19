@@ -13,6 +13,7 @@
   -H:±AddAllCharsets                           Make all hosted charsets available at run time. Default: - (disabled).
   -H:±AddAllFileSystemProviders                Make all supported providers returned by FileSystemProvider.installedProviders() available at run time. Default: +
                                                (enabled).
+  -H:AdditionalLinkerOptions=""                String which would be appended to the linker call.
   -H:AggregatedMetricsFile=...                 File to which aggregated metrics are dumped at shutdown. A CSV format is used if the file ends with .csv otherwise a
                                                more human readable format is used. If not specified, metrics are dumped to the console. Default: None
   -H:±AliasArrayTypeFlows                      Model all array type flows using a unique elements type flow abstraction. Default: + (enabled).
@@ -35,6 +36,8 @@
   -H:±AllowFoldMethods                         Allow MethodTypeFlow to see @Fold methods. Default: - (disabled).
   -H:±AllowIncompleteClasspath                 Allow image building with an incomplete class path: report type resolution errors at run time when they are accessed the
                                                first time, instead of during image building. Default: - (disabled).
+  -H:±AllowJRTFileSystem                       Enable support for reading Java modules (jimage format) and the jrt:// file system. Requires java.home to be set at
+                                               runtime. Default: - (disabled).
   -H:±AllowVMInspection                        Enables features that allow the VM to be inspected during runtime. Default: - (disabled).
   -H:AllowedNumberOfInaccurateProfiles=30      Threshold for number of points with inaccurate profiles.
   -H:±AlwaysInlineIntrinsics                   Unconditionally inline intrinsics. Default: - (disabled).
@@ -66,8 +69,8 @@
   -H:CPUFeatures=...                           Comma separated list of CPU features that will be used for image generation. The specific options available are platform
                                                dependent. For AMD64, SSE and SSE2 are enabled by default. Available features are: CX8, CMOV, FXSR, HT, MMX,
                                                AMD_3DNOW_PREFETCH, SSE3, SSSE3, SSE4A, SSE4_1, SSE4_2, POPCNT, LZCNT, TSC, TSCINV, AVX, AVX2, AES, ERMS, CLMUL, BMI1,
-                                               BMI2, RTM, ADX, AVX512F, AVX512DQ, AVX512PF, AVX512ER, AVX512CD, AVX512BW, SHA, FMA. On AArch64, no features are
-                                               enabled by default. Available features are: FP, ASIMD, EVTSTRM, AES, PMULL, SHA1, SHA2, CRC32, LSE, STXR_PREFETCH,
+                                               BMI2, RTM, ADX, AVX512F, AVX512DQ, AVX512PF, AVX512ER, AVX512CD, AVX512BW, AVX512VL, SHA, FMA. On AArch64, no features
+                                               are enabled by default. Available features are: FP, ASIMD, EVTSTRM, AES, PMULL, SHA1, SHA2, CRC32, LSE, STXR_PREFETCH,
                                                A53MAC. Default: None
   -H:CStandard="C89"                           C standard to use in header files. Possible values are: [C89, C99, C11].
   -H:CallGraphCompilerNodeLimit=35000          Controls the maximum number of compiler nodes that can appear in the call graph.
@@ -108,7 +111,12 @@
   -H:ConditionalEliminationMaxIterations=4     
   -H:ConfigurationFileDirectories=...          Directories directly containing configuration files for dynamic features at runtime. Default: None
   -H:ConfigurationResourceRoots=...            Resource path above configuration resources for dynamic features at runtime. Default: None
-  -H:CostReductionFactor=4.0                   
+  -H:±ConsiderVectorizableLoops                Consider the vectorizability of loop during the duplication of a merge inside a loop.There are rare cases where
+                                               duplication can destroy vectorization. Default: + (enabled).
+  -H:CostNewLiveVariable=4                     PullThroughPhiOptimization: Abstract cost for the creation of a new live value: new values can have a negativeimpact on
+                                               register allocation, therefore we penalize it.
+  -H:CostReductionFactor=32.0                  PullThroughPhiOptimization: Cost/Benefit heuristic for EE floating node duplication: reduce cost by a constant factor
+                                               when comparing with relative benefit.
   -H:Count=...                                 Pattern for specifying scopes in which counters are enabled. See the Dump option for the pattern syntax. An empty value
                                                enables all counters unconditionally. Default: None
   -H:±CountWriteBarriers                       Instrument write barriers with counters. Default: - (disabled).
@@ -264,11 +272,13 @@
   -H:IncludeResourceBundles=...                Comma separated list of bundles to be included into the image. Default: None
   -H:IncludeResources=...                      Regexp to match names of resources to be included in the image. Default: None
   -H:IncludeTimeZones=""                       The time zones, in addition to the default zone of the host, that will be pre-initialized in the image.
-  -H:InitialCollectionPolicy="com.oracle.svm.core.genscavenge.CollectionPolicy$ByTime"
+  -H:InitialCollectionPolicy="com.oracle.svm.core.genscavenge.CollectionPolicy$BySpaceAndTime"
                                                The initial garbage collection policy, as a fully-qualified class name (might require quotes or escaping).
   -H:±Inline                                   Enable inlining. Default: + (enabled).
   -H:InlineAllBonus=1.0                        The bonus applied to call nodes that can be fully inlined.
   -H:±InlineAllExplored                        Inline everything previously explored. Default: - (disabled).
+  -H:±InlineBeforeAnalysis                     Experimental: Inline methods which folds to constant during parsing before the static analysis. Default: - (disabled).
+  -H:InlineBeforeAnalysisMaxDepth=9            Maximum depth when inlining.
   -H:±InlineDuringParsing                      Inlines trivial methods during bytecode parsing. Default: + (enabled).
   -H:InlineDuringParsingMaxDepth=10            Maximum depth when inlining during bytecode parsing.
   -H:±InlineEverything                         Default: - (disabled).
@@ -364,7 +374,7 @@
                                                The analysis must be heap sensitive. It has a minimum value of 1.
   -H:MaxPolymorphicDispatches=3                The maximum number of dispatches in guarded polymorphic inlining.
   -H:MaxPriorityInliningPeelingIterations=10   Max number of precise inlining peeling iterations.
-  -H:MaxReachableTypes=-1                      Maximum number of types allowed in the image. Used for tests where small number of types in necessary.
+  -H:MaxReachableTypes=-1                      Maximum number of types allowed in the image. Used for tests where small number of types is necessary.
   -H:MaxRuntimeCompileMethods=...              Maximum number of methods allowed for runtime compilation. Default: None
   -H:MaxSimulationIterations=2                 Maximum simulation-duplication iterations of the duplication optimization per invocation.
   -H:MaxSplitsPerNode=32                       
@@ -379,7 +389,7 @@
   -H:MaximumInliningSize=300                   Inlining is explored up to this number of nodes in the graph for each call site.
   -H:MaximumLoopExplosionCount=10000           Max number of loop explosions per method.
   -H:MaximumRecursiveInlining=5                Maximum level of recursive inlining.
-  -H:MaximumTransitiveEnabledPullFactor=2      
+  -H:MaximumTransitiveEnabledPullFactor=2      PullThroughPhiOptimization: Maximum number of algorithm iterations per optimization invocation.
   -H:MegamorphicInliningMinMethodProbability=0.33
                                                Minimum probability for methods to be inlined for megamorphic type profiles.
   -H:MemUseTrackers=...                        Comma separated names of memory usage trackers that are enabled irrespective of the value for TrackMemUse option. An
@@ -391,7 +401,7 @@
   -H:MethodInlineBailoutLimit=5000             Per-compilation method inlining exploration limit before giving up (use 0 to disable).
   -H:MetricsFile=...                           File to which metrics are dumped per compilation. Default: None [Extra help available]
   -H:±MidTierPartialUnrolling                  Enable EE partial unrolling in mid tier. Default: + (enabled).
-  -H:MinBlockFrequencyPull=0.66                
+  -H:MinBlockFrequencyPull=0.66                PullThroughPhiOptimization: Ignore low frequency branches during duplication.
   -H:MinCallingContextDepth=0                  The minimum length of the methods context chains.
   -H:MinHeapContextDepth=0                     The minimum length of the context used to model a heap object in addition to the allocation site; used only when
                                                ContextSensitiveHeap is enabled.
@@ -486,6 +496,8 @@
   -H:±PeelALot                                 Default: - (disabled).
   -H:PeelFoldFactor=120                        
   -H:PeelingConsideredMinFrequency=4.0         Minimal loop frequency necessary to consider peeling.
+  -H:±PenalizeComplexLoopControlFlow           Increase the cost of duplicating control flow splits inside loops if they are not foldable.The generally tend to
+                                               complicate control flow and generate worse code in the backend. Default: + (enabled).
   -H:±PreserveFramePointer                     Saves stack base pointer on the stack on method entry. Default: - (disabled).
   -H:±PrintAOTCompilation                      Print logging information during compilation. Default: - (disabled).
   -H:±PrintAnalysisCallTree                    Print analysis call tree, a breadth-first tree reduction of the call graph. Default: - (disabled).
@@ -530,8 +542,9 @@
   -H:±PrintUninterruptibleCalleeDOTGraph       Print (to stderr) a DOT graph of the @Uninterruptible annotations. Default: - (disabled).
   -H:±PrintUniverse                            Print information about classes, methods, and fields that are present in the native image. Default: - (disabled).
   -H:PriorityInliningPolicy=""                 The policy to use, must be empty for automatic resolution.
-  -H:PriorityInliningTuningPolicy="DomainSpecific"
-                                               The analysis policy for exploring the methods in the call graph and for inlining, empty for no policy.
+  -H:PriorityInliningTuningPolicy="DomainSpecific,BytecodeInterpreter"
+                                               Comma-separated list of analysis policies for exploring the methods in the call graph and for inlining, empty for no
+                                               policy.
   -H:±ProbabilisticProfiling                   Control probabilistic profiling on AMD64. Default: + (enabled).
   -H:±ProfileAllocations                       Enable profiling of allocation sites. Default: - (disabled).
   -H:ProfileAllocationsContext=AllocatingMethod
@@ -554,7 +567,8 @@
   -H:ProfilingPointRequiredHitCount=0          Lower bound for point hit count when compared to collected profiles. It is used for testing.
   -H:±ProtectionKeys                           Enable support for Memory Protection Keys. Default: - (disabled).
   -H:±PruneLargeDominatorUsageTrees            Default: + (enabled).
-  -H:PullThroughPhiCodeSizeIncrease=0.1        
+  -H:PullThroughPhiCodeSizeIncrease=0.1        PullThroughPhiOptimization: Percentage in node cost graph size for the floating node duplication budget. Computed
+                                               relative to the method's graph size.
   -H:QueryCodeDir=""                           Directory where query code for target platform should be output.
   -H:±RawConditionalElimination                Default: + (enabled).
   -H:ReadEliminationMaxLoopVisits=5            
@@ -591,6 +605,14 @@
   -H:±ScanObjectsParallel                      Object scanning in parallel. Default: + (enabled).
   -H:±ScheduledDuplicationSimulation           Simulation can either only process fixed nodes or schedule the graph and also process floating nodes. Default: -
                                                (disabled).
+  -H:SerializationConfigurationFiles=...       One or several (comma-separated) paths to JSON files that specify lists of serialization configurations. Default: None
+                                               [Extra help available]
+  -H:SerializationConfigurationResources=...   Resources describing program elements to be made available for serialization (see SerializationConfigurationFiles).
+                                               Default: None
+  -H:SerializationDenyConfigurationFiles=...   One or several (comma-separated) paths to JSON files that specify lists of serialization configurations. Default: None
+                                               [Extra help available]
+  -H:SerializationDenyConfigurationResources=...
+                                               Resources describing program elements that must not be made available for serialization. Default: None
   -H:ServiceLoaderFeatureExcludeServiceProviders=...
                                                Comma-separated list of service providers that should be excluded. Default: None
   -H:ServiceLoaderFeatureExcludeServices=...   Comma-separated list of services that should be excluded. Default: None
@@ -643,6 +665,7 @@
   -H:±SupportRecurringCallback                 Support a per-thread timer that is called at a specific interval. Default: + (enabled).
   -H:±SuppressStderr                           Suppress console error output for unittests. Default: - (disabled).
   -H:±SuppressStdout                           Suppress console normal output for unittests. Default: - (disabled).
+  -H:TargetPlatform=""                         Selects native-image compilation target (in <OS>-<architecture> format). Defaults to host's OS-architecture pair.
   -H:TempDirectory=""                          Directory for temporary files generated during native image generation. If this option is specified, the temporary files
                                                are not deleted so that you can inspect them after native image generation.
   -H:TestFile=""                               
@@ -659,7 +682,6 @@
   -H:TimedDynamicCounters=-1                   Turn on the benchmark counters, and displays the results every n milliseconds.
   -H:Timers=...                                Comma separated names of timers that are enabled irrespective of the value for Time option. An empty value enables all
                                                timers unconditionally. Default: None
-  -H:±TraceAuxiliaryImages                     Enables detailed tracing of auxiliary image events. Default: - (disabled).
   -H:TraceBytecodeParserLevel=0                The trace level for the bytecode parser. A value of 1 enables instruction tracing and any greater value emits a frame
                                                state trace just prior to each instruction trace.Instruction tracing output from multiple compiler threads will be
                                                interleaved so use of this option make most sense for single threaded compilation. The MethodFilter option can be used
@@ -709,8 +731,9 @@
   -H:±TruffleMultiThreaded                     Enable support for Truffle background compilation. Default: + (enabled).
   -H:±TrufflePropagateCompilationErrors        Propagate Truffle compilation errors. Default: - (disabled).
   -H:±TrustFinalDefaultFields                  Determines whether to treat final fields with default values as constant. Default: + (enabled).
-  -H:±TryExplodeOverPhis                       Default: + (enabled).
-  -H:±TryPhiPhiPulls                           Default: + (enabled).
+  -H:±TryExplodeOverPhis                       PullThroughPhiOptimization: Enable floating node duplication over multiple phi nodes at once. Default: + (enabled).
+  -H:±TryPhiPhiPulls                           PullThroughPhiOptimization: Enable floating node duplication over phis where the target node has different phis as
+                                               input. Default: + (enabled).
   -H:TuneInlinerExploration=0.0                Increases or decreases the time spent exploring inlining opportunities under the assumption that more time results in
                                                better peak performance and less time reduces time to reach (a lower) peak performance. The value of the option is
                                                clamped between -1 and 1 inclusive. Anything below 0, reduces the exploration time and anything above 0 increases
@@ -754,8 +777,7 @@
                                                (enabled).
   -H:±UseGraphCache                            Turn on graph caching. Default: + (enabled).
   -H:UseInlinedPythonHelper=...                Embed python helper in binary. Default: None
-  -H:±UseLegacyTypeCheck                       Revert to using previous native-image type check. Default: - (disabled).
-  -H:UseLibC="glibc"                           Selects the libc implementation to use. Available implementations: glibc, musl.
+  -H:UseLibC=...                               Selects the libc implementation to use. Available implementations: glibc, musl, bionic. Default: None
   -H:±UseLoopLimitChecks                       Default: + (enabled).
   -H:±UseMonitorFastPath                       Use thin locking fast path in snippets. Default: + (enabled).
   -H:±UsePartialEscapeSelectiveInlining        Use PartialEscapeSelectiveInliningPhase to give PartialEscape phase more opportunities. Default: + (enabled).
@@ -771,8 +793,6 @@
   -H:±UseTypeCheckHints                        Default: + (enabled).
   -H:±UseTypedArguments                        Use typed unboxed arguments for Truffle compilations. Default: + (enabled).
   -H:±UseTypedResult                           Use typed unboxed return value for Truffle compilations. Default: - (disabled).
-  -H:UserRequestedGCPolicy="com.oracle.svm.core.genscavenge.HeapPolicy$AlwaysCollectCompletely"
-                                               Policy used when user code requests garbage collection.
   -H:VTunePath=""                              Path to VTune installation (usually /opt/intel/vtune_amplifier).
   -H:±VectorIntrinsics                         Enable vectorized array copy intrinsics. Default: + (enabled).
   -H:VectorUnroll=1                            Unroll vectorized loops.
@@ -862,6 +882,8 @@
   -R:±CanonicalGraphStringsExcludeVirtuals     Exclude virtual nodes when dumping canonical text for graphs. Default: + (enabled).
   -R:±CanonicalGraphStringsRemoveIdentities    Attempts to remove object identity hashes when dumping canonical text for graphs. Default: + (enabled).
   -R:±ClearMetricsAfterBootstrap               Clear the debug metrics after bootstrap. Default: - (disabled).
+  -R:±CollectYoungGenerationSeparately         Determines if a full GC collects the young generation separately or together with the old generation. Default: -
+                                               (disabled).
   -R:±CompilationBailoutAsFailure              Treat compilation bailouts like compilation failures. Default: - (disabled).
   -R:CompilationCountLimit=0                   The number of compilations allowed for any method before the VM exits (a value of 0 means there is no limit).
   -R:CompilationExcludePhases=...              Exclude certain phases from compilation, either unconditionally or with a method filter. Default: None
@@ -883,7 +905,12 @@
   -R:ConcGCThreads=0                           Number of threads concurrent gc will use.
   -R:±ConditionalElimination                   Default: + (enabled).
   -R:ConditionalEliminationMaxIterations=4     
-  -R:CostReductionFactor=4.0                   
+  -R:±ConsiderVectorizableLoops                Consider the vectorizability of loop during the duplication of a merge inside a loop.There are rare cases where
+                                               duplication can destroy vectorization. Default: + (enabled).
+  -R:CostNewLiveVariable=4                     PullThroughPhiOptimization: Abstract cost for the creation of a new live value: new values can have a negativeimpact on
+                                               register allocation, therefore we penalize it.
+  -R:CostReductionFactor=32.0                  PullThroughPhiOptimization: Cost/Benefit heuristic for EE floating node duplication: reduce cost by a constant factor
+                                               when comparing with relative benefit.
   -R:Count=...                                 Pattern for specifying scopes in which counters are enabled. See the Dump option for the pattern syntax. An empty value
                                                enables all counters unconditionally. Default: None
   -R:Counters=...                              Comma separated names of counters that are enabled irrespective of the value for Count option. An empty value enables
@@ -1110,6 +1137,7 @@
   -R:MaxHeapContextWidth=0                     The maximum number of contexts to record for a heap object.  It only affects the analysis when the max and min calling
                                                context depth are different.
   -R:MaxHeapSize=0                             The maximum heap size at run-time, in bytes.
+  -R:MaxJavaStackTraceDepth=1024               The maximum number of lines in the stack trace for Java exceptions (0 means all).
   -R:MaxMispredictionCostIncreaseFactor=2.0    Abstract measure of the cost of branch misprediction. Higher values make generation of conditional moves more likely.
   -R:MaxNewSize=0                              The maximum size of the young generation at run-time, in bytes.
   -R:MaxObjectSetSize=100                      The maximum number of objects recorded for each type of a type state before disabling heap sensitivity for that type.
@@ -1130,7 +1158,7 @@
   -R:MaximumInliningSize=300                   Inlining is explored up to this number of nodes in the graph for each call site.
   -R:MaximumLoopExplosionCount=10000           Max number of loop explosions per method.
   -R:MaximumRecursiveInlining=5                Maximum level of recursive inlining.
-  -R:MaximumTransitiveEnabledPullFactor=2      
+  -R:MaximumTransitiveEnabledPullFactor=2      PullThroughPhiOptimization: Maximum number of algorithm iterations per optimization invocation.
   -R:MaximumYoungGenerationSizePercent=10      The maximum size of the young generation as a percentage of the maximum heap size.
   -R:MegamorphicInliningMinMethodProbability=0.33
                                                Minimum probability for methods to be inlined for megamorphic type profiles.
@@ -1142,7 +1170,7 @@
   -R:MethodInlineBailoutLimit=5000             Per-compilation method inlining exploration limit before giving up (use 0 to disable).
   -R:MetricsFile=...                           File to which metrics are dumped per compilation. Default: None [Extra help available]
   -R:±MidTierPartialUnrolling                  Enable EE partial unrolling in mid tier. Default: + (enabled).
-  -R:MinBlockFrequencyPull=0.66                
+  -R:MinBlockFrequencyPull=0.66                PullThroughPhiOptimization: Ignore low frequency branches during duplication.
   -R:MinCallingContextDepth=0                  The minimum length of the methods context chains.
   -R:MinHeapContextDepth=0                     The minimum length of the context used to model a heap object in addition to the allocation site; used only when
                                                ContextSensitiveHeap is enabled.
@@ -1231,6 +1259,8 @@
   -R:±PeelALot                                 Default: - (disabled).
   -R:PeelFoldFactor=120                        
   -R:PeelingConsideredMinFrequency=4.0         Minimal loop frequency necessary to consider peeling.
+  -R:±PenalizeComplexLoopControlFlow           Increase the cost of duplicating control flow splits inside loops if they are not foldable.The generally tend to
+                                               complicate control flow and generate worse code in the backend. Default: + (enabled).
   -R:PercentTimeInIncrementalCollection=50     Percentage of total collection time that should be spent on young generation collections.
   -R:PerfDataMemorySize=32768                  Size of performance data memory region. Will be rounded up to a multiple of the native os page size.
   -R:PerfDataSamplingInterval=200              Jvmstat instrumentation sampling interval (in milliseconds).
@@ -1271,8 +1301,9 @@
   -R:±PrintProfilingInformation                Print profiling information when parsing a method's bytecode. Default: - (disabled).
   -R:±PrintSynchronizedAnalysis                Print types used for Java synchronization. Default: - (disabled).
   -R:PriorityInliningPolicy=""                 The policy to use, must be empty for automatic resolution.
-  -R:PriorityInliningTuningPolicy="DomainSpecific"
-                                               The analysis policy for exploring the methods in the call graph and for inlining, empty for no policy.
+  -R:PriorityInliningTuningPolicy="DomainSpecific,BytecodeInterpreter"
+                                               Comma-separated list of analysis policies for exploring the methods in the call graph and for inlining, empty for no
+                                               policy.
   -R:±ProbabilisticProfiling                   Control probabilistic profiling on AMD64. Default: + (enabled).
   -R:±ProfileAllocations                       Enable profiling of allocation sites. Default: - (disabled).
   -R:ProfileAllocationsContext=AllocatingMethod
@@ -1291,7 +1322,8 @@
   -R:±ProfileSimpleMethods                     Profile simple methods. Default: + (enabled).
   -R:ProfilesDumpFile="default.iprof"          Value should point to a profile dump file.
   -R:±PruneLargeDominatorUsageTrees            Default: + (enabled).
-  -R:PullThroughPhiCodeSizeIncrease=0.1        
+  -R:PullThroughPhiCodeSizeIncrease=0.1        PullThroughPhiOptimization: Percentage in node cost graph size for the floating node duplication budget. Computed
+                                               relative to the method's graph size.
   -R:QueuedAllocationWarningCount=0            Number of times an allocation that queues behind a GC will retry before printing a warning.
   -R:±RawConditionalElimination                Default: + (enabled).
   -R:ReadEliminationMaxLoopVisits=5            
@@ -1364,6 +1396,8 @@
   -R:TimedDynamicCounters=-1                   Turn on the benchmark counters, and displays the results every n milliseconds.
   -R:Timers=...                                Comma separated names of timers that are enabled irrespective of the value for Time option. An empty value enables all
                                                timers unconditionally. Default: None
+  -R:±TraceAuxiliaryImageClassHistogram        Enables detailed tracing of auxiliary image events. Default: - (disabled).
+  -R:±TraceAuxiliaryImageReferenceTree         Enables detailed tracing of auxiliary image events. Default: - (disabled).
   -R:TraceBytecodeParserLevel=0                The trace level for the bytecode parser. A value of 1 enables instruction tracing and any greater value emits a frame
                                                state trace just prior to each instruction trace.Instruction tracing output from multiple compiler threads will be
                                                interleaved so use of this option make most sense for single threaded compilation. The MethodFilter option can be used
@@ -1398,8 +1432,9 @@
   -R:TruffleCompilerConfiguration=...          Select a compiler configuration for Truffle compilation (default: use Graal system compiler configuration). Default:
                                                None
   -R:±TrustFinalDefaultFields                  Determines whether to treat final fields with default values as constant. Default: + (enabled).
-  -R:±TryExplodeOverPhis                       Default: + (enabled).
-  -R:±TryPhiPhiPulls                           Default: + (enabled).
+  -R:±TryExplodeOverPhis                       PullThroughPhiOptimization: Enable floating node duplication over multiple phi nodes at once. Default: + (enabled).
+  -R:±TryPhiPhiPulls                           PullThroughPhiOptimization: Enable floating node duplication over phis where the target node has different phis as
+                                               input. Default: + (enabled).
   -R:TuneInlinerExploration=0.0                Increases or decreases the time spent exploring inlining opportunities under the assumption that more time results in
                                                better peak performance and less time reduces time to reach (a lower) peak performance. The value of the option is
                                                clamped between -1 and 1 inclusive. Anything below 0, reduces the exploration time and anything above 0 increases
@@ -1439,8 +1474,6 @@
   -R:±UseSnippetTemplateCache                  Use a LRU cache for snippet templates. Default: + (enabled).
   -R:±UseTrappingNullChecks                    Use traps for null checks instead of explicit null-checks. Default: + (enabled).
   -R:±UseTypeCheckHints                        Default: + (enabled).
-  -R:UserRequestedGCThreshold=16777216         With the skeptical policy for user-requested collections, the threshold for the young generation size to cause a
-                                               collection.
   -R:±VTuneAbsoluteFilenames                   Use absolute path for source-filenames in VTune events. Default: + (enabled).
   -R:±VectorIntrinsics                         Enable vectorized array copy intrinsics. Default: + (enabled).
   -R:VectorUnroll=1                            Unroll vectorized loops.

@@ -115,6 +115,9 @@ graal.CanonicalGraphStringsRemoveIdentities = true                       [Boolea
           for graphs.
 graal.ClearMetricsAfterBootstrap = false                                 [Boolean]
           Clear the debug metrics after bootstrap.
+graal.CollectYoungGenerationSeparately = false                           [Boolean]
+          Determines if a full GC collects the young generation separately or
+          together with the old generation.
 graal.CompilationBailoutAsFailure = false                                [Boolean]
           Treat compilation bailouts like compilation failures.
 graal.CompilationCountLimit = 0                                          [Integer]
@@ -193,6 +196,8 @@ graal.DiagnoseDumpLevel = 3                                              [Intege
           Specify the DumpLevel if CompilationFailureAction#Diagnose is used.See
           CompilationFailureAction for details.
           file:doc-files/CompilationFailureActionHelp.txt
+graal.DisableExplicitGC = false                                          [Boolean]
+          Ignore calls to System.gc()
 graal.DisableIntercept = false                                           [Boolean]
           Disable intercepting exceptions in debug scopes.
 graal.DivertParameterReturningMethod = true                              [Boolean]
@@ -470,6 +475,9 @@ graal.MaxHeapContextWidth = 0                                            [Intege
           different.
 graal.MaxHeapSize = 0                                                       [Long]
           The maximum heap size at run-time, in bytes.
+graal.MaxJavaStackTraceDepth = 1024                                      [Integer]
+          The maximum number of lines in the stack trace for Java exceptions (0
+          means all)
 graal.MaxNewSize = 0                                                        [Long]
           The maximum size of the young generation at run-time, in bytes
 graal.MaxObjectSetSize = 100                                             [Integer]
@@ -940,9 +948,6 @@ graal.UseSnippetTemplateCache = true                                     [Boolea
 graal.UseTrappingNullChecks = true                                       [Boolean]
           Use traps for null checks instead of explicit null-checks
 graal.UseTypeCheckHints = true                                           [Boolean]
-graal.UserRequestedGCThreshold = 16777216                                   [Long]
-          With the skeptical policy for user-requested collections, the threshold
-          for the young generation size to cause a collection.
 graal.VerboseGC = false                                                  [Boolean]
           Print more information about the heap before and after each collection
 graal.Verify = null                                                       [String]
