@@ -1,9 +1,10 @@
 /*
- * Copyright (c) 2018-2019 Chris Newland.
+ * Copyright (c) 2018-2021 Chris Newland.
  * Licensed under https://github.com/chriswhocodes/VMOptionsExplorer/blob/master/LICENSE
  */
 package com.chrisnewland.vmoe.parser.intrinsic;
 
+import com.chrisnewland.vmoe.OrderedJSONObjectFactory;
 import org.json.JSONObject;
 
 import java.util.Objects;
@@ -70,7 +71,7 @@ public class Intrinsic
 
 	public String serialise()
 	{
-		JSONObject jsonObject = new JSONObject();
+		JSONObject jsonObject = OrderedJSONObjectFactory.getJSONObject();
 
 		jsonObject.put("id", id);
 		jsonObject.put("class", klass);

@@ -1,9 +1,10 @@
 /*
- * Copyright (c) 2018-2020 Chris Newland.
+ * Copyright (c) 2018-2021 Chris Newland.
  * Licensed under https://github.com/chriswhocodes/VMOptionsExplorer/blob/master/LICENSE
  */
 package com.chrisnewland.vmoe.parser.delta;
 
+import com.chrisnewland.vmoe.OrderedJSONObjectFactory;
 import com.chrisnewland.vmoe.SwitchInfo;
 import com.chrisnewland.vmoe.VMData;
 import org.json.JSONObject;
@@ -53,7 +54,7 @@ public abstract class AbstractDeltaTable implements IDeltaTable
 	@Override
 	public String toJSON()
 	{
-		JSONObject jsonObject = new JSONObject();
+		JSONObject jsonObject = OrderedJSONObjectFactory.getJSONObject();
 
 		jsonObject.put("earlierVM", earlierVM.getSafeJDKName());
 		jsonObject.put("laterVM", laterVM.getSafeJDKName());

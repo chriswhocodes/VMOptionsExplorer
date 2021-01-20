@@ -21,9 +21,4 @@ public class SwitchInfoMap extends TreeMap<String, SwitchInfo>
 
 		return result;
 	}
-
-	public SwitchInfo put(String key, SwitchInfo value)
-	{
-		return null;
-	}
 }

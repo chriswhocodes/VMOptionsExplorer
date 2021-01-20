@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2018-2020 Chris Newland.
+ * Copyright (c) 2018-2021 Chris Newland.
  * Licensed under https://github.com/chriswhocodes/VMOptionsExplorer/blob/master/LICENSE
  */
 package com.chrisnewland.vmoe;
@@ -31,7 +31,7 @@ public class SwitchInfo implements Comparable<SwitchInfo>
 
 	public String serialise()
 	{
-		JSONObject jsonObject = new JSONObject();
+		JSONObject jsonObject = OrderedJSONObjectFactory.getJSONObject();
 
 		jsonObject.put("prefix", prefix);
 		jsonObject.put("name", name);
