@@ -37,15 +37,15 @@ public class Serialiser
 		writeFile(pathToSerialisationFile, builder.toString());
 	}
 
-	public void serialiseIntrinsics(Path pathToSerialisationFile, Collection<Intrinsic> instrinsics) throws Exception
+	public void serialiseIntrinsics(Path pathToSerialisationFile, Collection<Intrinsic> intrinsics) throws Exception
 	{
 		StringBuilder builder = new StringBuilder();
 
 		builder.append("{ \"intrinsics\" : [ ");
 
-		for (Intrinsic instrinsic : instrinsics)
+		for (Intrinsic intrinsic : intrinsics)
 		{
-			builder.append(instrinsic.serialise()).append(",\n");
+			builder.append(intrinsic.serialise()).append(",\n");
 		}
 
 		builder.deleteCharAt(builder.length() - 2);

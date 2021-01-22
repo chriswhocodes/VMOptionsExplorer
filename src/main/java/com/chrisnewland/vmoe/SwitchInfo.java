@@ -5,6 +5,7 @@
 package com.chrisnewland.vmoe;
 
 import org.json.JSONObject;
+import org.json.JSONPropertyIgnore;
 
 import java.util.Objects;
 
@@ -102,6 +103,7 @@ public class SwitchInfo implements Comparable<SwitchInfo>
 		this.name = name;
 	}
 
+	@JSONPropertyIgnore
 	public String getKey()
 	{
 		return name + "_" + os + "_" + cpu + "_" + component;

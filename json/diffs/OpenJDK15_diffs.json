@@ -1,623 +1,569 @@
 {
     "removed": [
         {
-            "defaultValue": "0",
             "prefix": "-XX:",
             "definedIn": "cpu/sparc/globals_sparc.hpp",
+            "defaultValue": "0",
             "name": "ArraycopyDstPrefetchDistance",
             "cpu": "sparc",
             "description": "Distance to prefetch destination array in arraycopy",
             "availability": "product",
-            "type": "uintx",
-            "key": "ArraycopyDstPrefetchDistance_null_sparc_null"
+            "type": "uintx"
         },
         {
-            "defaultValue": "0",
             "prefix": "-XX:",
             "definedIn": "cpu/sparc/globals_sparc.hpp",
+            "defaultValue": "0",
             "name": "ArraycopySrcPrefetchDistance",
             "cpu": "sparc",
             "description": "Distance to prefetch source array in arraycopy",
             "availability": "product",
-            "type": "uintx",
-            "key": "ArraycopySrcPrefetchDistance_null_sparc_null"
+            "type": "uintx"
         },
         {
-            "defaultValue": "2048",
             "prefix": "-XX:",
             "definedIn": "cpu/sparc/globals_sparc.hpp",
+            "defaultValue": "2048",
             "name": "BlockCopyLowLimit",
             "range": "range(1, max_jint)",
             "cpu": "sparc",
             "description": "Minimum size in bytes when block copy will be used",
             "availability": "product",
-            "type": "intx",
-            "key": "BlockCopyLowLimit_null_sparc_null"
+            "type": "intx"
         },
         {
             "component": "c2",
-            "defaultValue": "false",
             "prefix": "-XX:",
             "definedIn": "share/opto/c2_globals.hpp",
+            "defaultValue": "false",
             "name": "BranchOnRegister",
             "description": "Use Sparc V9 branch-on-register opcodes",
             "availability": "product",
-            "type": "bool",
             "deprecation": "<span style=\"white-space:nowrap\">Obsoleted in JDK15<\/span><br><span style=\"white-space:nowrap\">Expired in JDK16<\/span>",
-            "key": "BranchOnRegister_null_null_c2"
+            "type": "bool"
         },
         {
             "component": "runtime",
-            "defaultValue": "true",
             "prefix": "-XX:",
             "definedIn": "share/runtime/globals.hpp",
+            "defaultValue": "true",
             "name": "CompactFields",
             "description": "(Deprecated) Allocate nonstatic fields in gaps between previous fields",
             "availability": "product",
-            "type": "bool",
             "deprecation": "<span style=\"white-space:nowrap\">Deprecated in JDK14<\/span><br><span style=\"white-space:nowrap\">Obsoleted in JDK15<\/span><br><span style=\"white-space:nowrap\">Expired in JDK16<\/span>",
-            "key": "CompactFields_null_null_runtime"
+            "type": "bool"
         },
         {
             "component": "runtime",
-            "defaultValue": "1",
             "prefix": "-XX:",
             "definedIn": "share/runtime/globals.hpp",
+            "defaultValue": "1",
             "name": "FieldsAllocationStyle",
             "range": "range(0, 2)",
             "description": "(Deprecated) 0 - type based with oops first, <br>1 - with oops last, <br>2 - oops in super and sub classes are together",
             "availability": "product",
-            "type": "intx",
             "deprecation": "<span style=\"white-space:nowrap\">Deprecated in JDK14<\/span><br><span style=\"white-space:nowrap\">Obsoleted in JDK15<\/span><br><span style=\"white-space:nowrap\">Expired in JDK16<\/span>",
-            "key": "FieldsAllocationStyle_null_null_runtime"
+            "type": "intx"
         },
         {
             "component": "gc",
-            "defaultValue": "false",
             "prefix": "-XX:",
             "definedIn": "share/gc/shared/gc_globals.hpp",
+            "defaultValue": "false",
             "name": "ForceDynamicNumberOfGCThreads",
             "description": "Force dynamic selection of the number of parallel threads parallel gc will use to aid debugging",
             "availability": "diagnostic",
-            "type": "bool",
-            "key": "ForceDynamicNumberOfGCThreads_null_null_gc"
+            "type": "bool"
         },
         {
             "component": "gc",
-            "defaultValue": "64",
             "prefix": "-XX:",
             "definedIn": "share/gc/g1/g1_globals.hpp",
+            "defaultValue": "64",
             "name": "G1RSetScanBlockSize",
             "range": "range(1, max_uintx)",
             "description": "Size of a work unit of cards claimed by a worker threadduring RSet scanning.",
             "availability": "product",
-            "type": "size_t",
             "deprecation": "<span style=\"white-space:nowrap\">Deprecated in JDK14<\/span><br><span style=\"white-space:nowrap\">Obsoleted in JDK15<\/span><br><span style=\"white-space:nowrap\">Expired in JDK16<\/span>",
-            "key": "G1RSetScanBlockSize_null_null_gc"
+            "type": "size_t"
         },
         {
-            "defaultValue": "false",
             "prefix": "-XX:",
             "definedIn": "cpu/aarch64/c1_globals_aarch64.hpp",
+            "defaultValue": "false",
             "name": "LIRFillDelaySlots",
             "cpu": "aarch64",
             "availability": "define_pd_global",
-            "type": "bool",
             "deprecation": "<span style=\"white-space:nowrap\">Obsoleted in JDK15<\/span><br><span style=\"white-space:nowrap\">Expired in JDK16<\/span>",
-            "key": "LIRFillDelaySlots_null_aarch64_null"
+            "type": "bool"
         },
         {
             "component": "jvmci",
-            "defaultValue": "0",
             "prefix": "-XX:",
             "definedIn": "share/jvmci/jvmci_globals.hpp",
+            "defaultValue": "0",
             "name": "MethodProfileWidth",
             "description": "Number of methods to record in call profile",
             "availability": "experimental",
-            "type": "intx",
-            "key": "MethodProfileWidth_null_null_jvmci"
+            "type": "intx"
         },
         {
             "component": "runtime",
-            "defaultValue": "0",
             "prefix": "-XX:",
             "definedIn": "share/runtime/globals.hpp",
+            "defaultValue": "0",
             "name": "MonitorBound",
             "range": "range(0, max_jint)",
             "description": "(Deprecated) Bound Monitor population",
             "availability": "product",
-            "type": "intx",
             "deprecation": "<span style=\"white-space:nowrap\">Deprecated in JDK14<\/span><br><span style=\"white-space:nowrap\">Obsoleted in JDK15<\/span><br><span style=\"white-space:nowrap\">Expired in JDK16<\/span>",
-            "key": "MonitorBound_null_null_runtime"
+            "type": "intx"
         },
         {
-            "defaultValue": "true",
             "prefix": "-XX:",
             "definedIn": "cpu/aarch64/c1_globals_aarch64.hpp",
+            "defaultValue": "true",
             "name": "RoundFPResults",
             "cpu": "aarch64",
             "availability": "define_pd_global",
-            "type": "bool",
-            "key": "RoundFPResults_null_aarch64_null"
+            "type": "bool"
         },
         {
             "component": "gc",
-            "defaultValue": "false",
             "prefix": "-XX:",
             "definedIn": "share/gc/shenandoah/shenandoah_globals.hpp",
+            "defaultValue": "false",
             "name": "ShenandoahCriticalControlThreadPriority",
             "description": "Run control thread runs at critical scheduling priority.",
             "availability": "experimental",
-            "type": "bool",
-            "key": "ShenandoahCriticalControlThreadPriority_null_null_gc"
+            "type": "bool"
         },
         {
             "component": "gc",
-            "defaultValue": "true",
             "prefix": "-XX:",
             "definedIn": "share/gc/shenandoah/shenandoah_globals.hpp",
+            "defaultValue": "true",
             "name": "ShenandoahOptimizeStaticFinals",
             "description": "Optimize barriers on static final fields. Turn it off for maximum compatibility with reflection or JNI code that manipulates final fields.",
             "availability": "diagnostic",
-            "type": "bool",
-            "key": "ShenandoahOptimizeStaticFinals_null_null_gc"
+            "type": "bool"
         },
         {
             "component": "c2",
-            "defaultValue": "true",
             "prefix": "-XX:",
             "definedIn": "share/opto/c2_globals.hpp",
+            "defaultValue": "true",
             "name": "SparcV9RegsHiBitsZero",
             "description": "Assume Sparc V9 I&L registers on V8+ systems are zero-extended",
             "availability": "develop",
-            "type": "bool",
-            "key": "SparcV9RegsHiBitsZero_null_null_c2"
+            "type": "bool"
         },
         {
             "component": "runtime",
-            "defaultValue": "false",
             "prefix": "-XX:",
             "definedIn": "share/runtime/globals.hpp",
+            "defaultValue": "false",
             "name": "TraceInvokeDynamic",
             "description": "trace internal invoke dynamic operations",
             "availability": "develop",
-            "type": "bool",
             "deprecation": "<span style=\"white-space:nowrap\">Obsoleted in JDK16<\/span><br><span style=\"white-space:nowrap\">Expired in JDK17<\/span>",
-            "key": "TraceInvokeDynamic_null_null_runtime"
+            "type": "bool"
         },
         {
             "component": "runtime",
-            "defaultValue": "false",
             "prefix": "-XX:",
             "definedIn": "share/runtime/globals.hpp",
+            "defaultValue": "false",
             "name": "TraceMethodHandles",
             "description": "trace internal method handle operations",
             "availability": "develop",
-            "type": "bool",
             "deprecation": "<span style=\"white-space:nowrap\">Obsoleted in JDK16<\/span><br><span style=\"white-space:nowrap\">Expired in JDK17<\/span>",
-            "key": "TraceMethodHandles_null_null_runtime"
+            "type": "bool"
         },
         {
             "component": "gc",
-            "defaultValue": "false",
             "prefix": "-XX:",
             "definedIn": "share/gc/parallel/parallel_globals.hpp",
+            "defaultValue": "false",
             "name": "TraceParallelOldGCDensePrefix",
             "description": "Trace dense prefix computation for ParallelOldGC",
             "availability": "develop",
-            "type": "bool",
-            "key": "TraceParallelOldGCDensePrefix_null_null_gc"
+            "type": "bool"
         },
         {
             "component": "gc",
-            "defaultValue": "false",
             "prefix": "-XX:",
             "definedIn": "share/gc/parallel/parallel_globals.hpp",
+            "defaultValue": "false",
             "name": "TraceParallelOldGCMarkingPhase",
             "description": "Trace marking phase in ParallelOldGC",
             "availability": "develop",
-            "type": "bool",
-            "key": "TraceParallelOldGCMarkingPhase_null_null_gc"
+            "type": "bool"
         },
         {
-            "defaultValue": "true",
             "prefix": "-XX:",
             "definedIn": "cpu/ppc/globals_ppc.hpp",
+            "defaultValue": "true",
             "name": "TrapBasedNotEntrantChecks",
             "cpu": "ppc",
             "description": "Raise and handle SIGTRAP if calling not entrant or zombie method.",
             "availability": "product",
-            "type": "bool",
-            "key": "TrapBasedNotEntrantChecks_null_ppc_null"
+            "type": "bool"
         },
         {
             "component": "c2",
-            "defaultValue": "true",
             "prefix": "-XX:",
             "definedIn": "share/opto/c2_globals.hpp",
+            "defaultValue": "true",
             "name": "Use24BitFP",
             "description": "use FP instructions that produce 24-bit precise results",
             "availability": "develop",
-            "type": "bool",
-            "key": "Use24BitFP_null_null_c2"
+            "type": "bool"
         },
         {
             "component": "c2",
-            "defaultValue": "true",
             "prefix": "-XX:",
             "definedIn": "share/opto/c2_globals.hpp",
+            "defaultValue": "true",
             "name": "Use24BitFPMode",
             "description": "Set 24-bit FPU mode on a per-compile basis",
             "availability": "develop",
-            "type": "bool",
-            "key": "Use24BitFPMode_null_null_c2"
+            "type": "bool"
         },
         {
             "component": "gc",
-            "defaultValue": "false",
             "prefix": "-XX:",
             "definedIn": "share/gc/shared/gc_globals.hpp",
+            "defaultValue": "false",
             "name": "UseAdaptiveGCBoundary",
             "description": "Allow young-old boundary to move",
             "availability": "product",
-            "type": "bool",
             "deprecation": "<span style=\"white-space:nowrap\">Obsoleted in JDK15<\/span><br><span style=\"white-space:nowrap\">Expired in JDK16<\/span>",
-            "key": "UseAdaptiveGCBoundary_null_null_gc"
+            "type": "bool"
         },
         {
-            "defaultValue": "false",
             "prefix": "-XX:",
             "definedIn": "cpu/aarch64/globals_aarch64.hpp",
+            "defaultValue": "false",
             "name": "UseBarriersForVolatile",
             "cpu": "aarch64",
             "description": "Use memory barriers to implement volatile accesses",
             "availability": "product",
-            "type": "bool",
             "deprecation": "<span style=\"white-space:nowrap\">Obsoleted in JDK15<\/span><br><span style=\"white-space:nowrap\">Expired in JDK16<\/span>",
-            "key": "UseBarriersForVolatile_null_aarch64_null"
+            "type": "bool"
         },
         {
-            "defaultValue": "false",
             "prefix": "-XX:",
             "definedIn": "cpu/sparc/globals_sparc.hpp",
+            "defaultValue": "false",
             "name": "UseBlockCopy",
             "cpu": "sparc",
             "description": "Use special cpu instructions for block copy",
             "availability": "product",
-            "type": "bool",
-            "key": "UseBlockCopy_null_sparc_null"
+            "type": "bool"
         },
         {
-            "defaultValue": "false",
             "prefix": "-XX:",
             "definedIn": "cpu/sparc/globals_sparc.hpp",
+            "defaultValue": "false",
             "name": "UseCASForSwap",
             "cpu": "sparc",
             "description": "Do not use swap instructions, but only CAS (in a loop) on SPARC",
             "availability": "develop",
-            "type": "bool",
-            "key": "UseCASForSwap_null_sparc_null"
+            "type": "bool"
         },
         {
-            "defaultValue": "false",
             "prefix": "-XX:",
             "definedIn": "cpu/sparc/globals_sparc.hpp",
+            "defaultValue": "false",
             "name": "UseCBCond",
             "cpu": "sparc",
             "description": "Use compare and branch instruction on SPARC",
             "availability": "product",
-            "type": "bool",
-            "key": "UseCBCond_null_sparc_null"
+            "type": "bool"
         },
         {
             "component": "runtime",
-            "defaultValue": "true",
             "prefix": "-XX:",
             "definedIn": "share/runtime/globals.hpp",
+            "defaultValue": "true",
             "name": "UseDetachedThreads",
             "description": "Use detached threads that are recycled upon termination (for Solaris only)",
             "availability": "develop",
-            "type": "bool",
-            "key": "UseDetachedThreads_null_null_runtime"
+            "type": "bool"
         },
         {
             "os": "solaris",
-            "defaultValue": "true",
             "prefix": "-XX:",
             "definedIn": "os/solaris/globals_solaris.hpp",
+            "defaultValue": "true",
             "name": "UseExtendedFileIO",
             "description": "Enable workaround for limitations of stdio FILE structure",
             "availability": "product",
-            "type": "bool",
-            "key": "UseExtendedFileIO_solaris_null_null"
+            "type": "bool"
         },
         {
             "component": "runtime",
-            "defaultValue": "true",
             "prefix": "-XX:",
             "definedIn": "share/runtime/globals.hpp",
+            "defaultValue": "true",
             "name": "UseLWPSynchronization",
             "description": "Use LWP-based instead of libthread-based synchronization (SPARC only)",
             "availability": "product",
-            "type": "bool",
             "deprecation": "<span style=\"white-space:nowrap\">Obsoleted in JDK15<\/span><br><span style=\"white-space:nowrap\">Expired in JDK16<\/span>",
-            "key": "UseLWPSynchronization_null_null_runtime"
+            "type": "bool"
         },
         {
-            "defaultValue": "false",
             "prefix": "-XX:",
             "definedIn": "cpu/sparc/globals_sparc.hpp",
+            "defaultValue": "false",
             "name": "UseMPMUL",
             "cpu": "sparc",
             "description": "Use multi-precision multiply instruction (mpmul) on SPARC",
             "availability": "product",
-            "type": "bool",
-            "key": "UseMPMUL_null_sparc_null"
+            "type": "bool"
         },
         {
-            "defaultValue": "false",
             "prefix": "-XX:",
             "definedIn": "cpu/sparc/globals_sparc.hpp",
+            "defaultValue": "false",
             "name": "UseNiagaraInstrs",
             "cpu": "sparc",
             "description": "Use Niagara-efficient instruction subset",
             "availability": "product",
-            "type": "bool",
-            "key": "UseNiagaraInstrs_null_sparc_null"
+            "type": "bool"
         },
         {
             "component": "gc",
-            "defaultValue": "true",
             "prefix": "-XX:",
             "definedIn": "share/gc/shared/gc_globals.hpp",
+            "defaultValue": "true",
             "name": "UseOWSTTaskTerminator",
             "description": "Use Optimized Work Stealing Threads task termination protocol",
             "availability": "diagnostic",
-            "type": "bool",
-            "key": "UseOWSTTaskTerminator_null_null_gc"
+            "type": "bool"
         },
         {
             "component": "gc",
-            "defaultValue": "false",
             "prefix": "-XX:",
             "definedIn": "share/gc/shared/gc_globals.hpp",
+            "defaultValue": "false",
             "name": "UseParallelOldGC",
             "description": "Use the Parallel or Serial garbage collector when collecting the old generation. Deprecated.",
             "availability": "product",
-            "type": "bool",
             "deprecation": "<span style=\"white-space:nowrap\">Deprecated in JDK14<\/span><br><span style=\"white-space:nowrap\">Obsoleted in JDK15<\/span><br><span style=\"white-space:nowrap\">Expired in JDK16<\/span>",
-            "key": "UseParallelOldGC_null_null_gc"
+            "type": "bool"
         },
         {
             "component": "runtime",
-            "defaultValue": "false",
             "prefix": "-XX:",
             "definedIn": "share/runtime/globals.hpp",
+            "defaultValue": "false",
             "name": "UsePthreads",
             "description": "Use pthread-based instead of libthread-based synchronization (SPARC only)",
             "availability": "develop",
-            "type": "bool",
-            "key": "UsePthreads_null_null_runtime"
+            "type": "bool"
         },
         {
             "component": "runtime",
-            "defaultValue": "true",
             "prefix": "-XX:",
             "definedIn": "share/runtime/globals.hpp",
+            "defaultValue": "true",
             "name": "UseStrictFP",
             "description": "use strict fp if modifier strictfp is set",
             "availability": "develop",
-            "type": "bool",
-            "key": "UseStrictFP_null_null_runtime"
+            "type": "bool"
         },
         {
-            "defaultValue": "99",
             "prefix": "-XX:",
             "definedIn": "cpu/sparc/globals_sparc.hpp",
+            "defaultValue": "99",
             "name": "UseVIS",
             "range": "range(0, 99)",
             "cpu": "sparc",
             "description": "Highest supported VIS instructions set on SPARC",
             "availability": "product",
-            "type": "intx",
-            "key": "UseVIS_null_sparc_null"
+            "type": "intx"
         },
         {
             "component": "gc",
-            "defaultValue": "NULL",
             "prefix": "-XX:",
             "definedIn": "share/gc/z/z_globals.hpp",
+            "defaultValue": "NULL",
             "name": "ZPath",
             "description": "Filesystem path for Java heap backing storage (must be a tmpfs or a hugetlbfs filesystem)",
             "availability": "experimental",
-            "type": "ccstr",
-            "key": "ZPath_null_null_gc"
+            "type": "ccstr"
         }
     ],
     "added": [
         {
             "component": "runtime",
-            "defaultValue": "true",
             "prefix": "-XX:",
             "definedIn": "share/runtime/globals.hpp",
+            "defaultValue": "true",
             "name": "AsyncDeflateIdleMonitors",
             "description": "Deflate idle monitors using the ServiceThread.",
             "availability": "diagnostic",
-            "type": "bool",
-            "key": "AsyncDeflateIdleMonitors_null_null_runtime"
+            "type": "bool"
         },
         {
             "component": "runtime",
-            "defaultValue": "250",
             "prefix": "-XX:",
             "definedIn": "share/runtime/globals.hpp",
+            "defaultValue": "250",
             "name": "AsyncDeflationInterval",
             "range": "range(0, max_jint)",
             "description": "Async deflate idle monitors every so many milliseconds when MonitorUsedDeflationThreshold is exceeded (0 is off).",
             "availability": "diagnostic",
-            "type": "intx",
-            "key": "AsyncDeflationInterval_null_null_runtime"
+            "type": "intx"
         },
         {
             "component": "c1",
-            "defaultValue": "10",
             "prefix": "-XX:",
             "definedIn": "share/c1/c1_globals.hpp",
+            "defaultValue": "10",
             "name": "C1InlineStackLimit",
             "range": "range(0, max_jint)",
             "description": "inlining only allowed for methods which don't exceed this number of expression stack and local slots",
             "availability": "product",
-            "type": "intx",
-            "key": "C1InlineStackLimit_null_null_c1"
+            "type": "intx"
         },
         {
             "component": "c1",
-            "defaultValue": "9",
             "prefix": "-XX:",
             "definedIn": "share/c1/c1_globals.hpp",
+            "defaultValue": "9",
             "name": "C1MaxInlineLevel",
             "range": "range(0, max_jint)",
             "description": "The maximum number of nested calls that are inlined by C1",
             "availability": "product",
-            "type": "intx",
-            "key": "C1MaxInlineLevel_null_null_c1"
+            "type": "intx"
         },
         {
             "component": "c1",
-            "defaultValue": "35",
             "prefix": "-XX:",
             "definedIn": "share/c1/c1_globals.hpp",
+            "defaultValue": "35",
             "name": "C1MaxInlineSize",
             "range": "range(0, max_jint)",
             "description": "The maximum bytecode size of a method to be inlined by C1",
             "availability": "product",
-            "type": "intx",
-            "key": "C1MaxInlineSize_null_null_c1"
+            "type": "intx"
         },
         {
             "component": "c1",
-            "defaultValue": "1",
             "prefix": "-XX:",
             "definedIn": "share/c1/c1_globals.hpp",
+            "defaultValue": "1",
             "name": "C1MaxRecursiveInlineLevel",
             "range": "range(0, max_jint)",
             "description": "maximum number of nested recursive calls that are inlined by C1",
             "availability": "product",
-            "type": "intx",
-            "key": "C1MaxRecursiveInlineLevel_null_null_c1"
+            "type": "intx"
         },
         {
             "component": "c1",
-            "defaultValue": "6",
             "prefix": "-XX:",
             "definedIn": "share/c1/c1_globals.hpp",
+            "defaultValue": "6",
             "name": "C1MaxTrivialSize",
             "range": "range(0, max_jint)",
             "description": "The maximum bytecode size of a trivial method to be inlined by C1",
             "availability": "product",
-            "type": "intx",
-            "key": "C1MaxTrivialSize_null_null_c1"
+            "type": "intx"
         },
         {
             "component": "runtime",
-            "defaultValue": "false",
             "prefix": "-XX:",
             "definedIn": "share/runtime/globals.hpp",
+            "defaultValue": "false",
             "name": "DeoptimizeNMethodBarriersALot",
             "description": "Make nmethod barriers deoptimise a lot.",
             "availability": "diagnostic",
-            "type": "bool",
-            "key": "DeoptimizeNMethodBarriersALot_null_null_runtime"
+            "type": "bool"
         },
         {
             "component": "c2",
-            "defaultValue": "false",
             "prefix": "-XX:",
             "definedIn": "share/opto/c2_globals.hpp",
+            "defaultValue": "false",
             "name": "ExpandSubTypeCheckAtParseTime",
             "description": "Do not use subtype check macro node",
             "availability": "diagnostic",
-            "type": "bool",
-            "key": "ExpandSubTypeCheckAtParseTime_null_null_c2"
+            "type": "bool"
         },
         {
-            "defaultValue": "true",
             "prefix": "-XX:",
             "definedIn": "cpu/x86/globals_x86.hpp",
+            "defaultValue": "true",
             "name": "IntelJccErratumMitigation",
             "cpu": "x86",
             "description": "Turn off JVM mitigations related to Intel micro code mitigations for the Intel JCC erratum",
             "availability": "diagnostic",
-            "type": "bool",
-            "key": "IntelJccErratumMitigation_null_x86_null"
+            "type": "bool"
         },
         {
             "component": "runtime",
-            "defaultValue": "0.5",
             "prefix": "-XX:",
             "definedIn": "share/runtime/globals.hpp",
+            "defaultValue": "0.5",
             "name": "SweeperThreshold",
             "range": "range(0.0, 100.0)",
             "description": "Threshold controlling when code cache sweeper is invoked.Value is percentage of ReservedCodeCacheSize.",
             "availability": "product",
-            "type": "double",
-            "key": "SweeperThreshold_null_null_runtime"
+            "type": "double"
         },
         {
             "component": "runtime",
-            "defaultValue": "true",
             "prefix": "-XX:",
             "definedIn": "share/runtime/globals.hpp",
+            "defaultValue": "true",
             "name": "UseEmptySlotsInSupers",
             "description": "Allow allocating fields in empty slots of super-classes",
             "availability": "product",
-            "type": "bool",
-            "key": "UseEmptySlotsInSupers_null_null_runtime"
+            "type": "bool"
         },
         {
             "component": "runtime",
-            "defaultValue": "false",
             "prefix": "-XX:",
             "definedIn": "share/runtime/globals.hpp",
+            "defaultValue": "false",
             "name": "UseLegacyJNINameEscaping",
             "description": "Use the original JNI name escaping scheme",
             "availability": "product",
-            "type": "bool",
-            "key": "UseLegacyJNINameEscaping_null_null_runtime"
+            "type": "bool"
         },
         {
             "component": "runtime",
-            "defaultValue": "true",
             "prefix": "-XX:",
             "definedIn": "share/runtime/globals.hpp",
+            "defaultValue": "true",
             "name": "UseNewFieldLayout",
             "description": "(Deprecated) Use new algorithm to compute field layouts",
             "availability": "product",
-            "type": "bool",
             "deprecation": "<span style=\"white-space:nowrap\">Deprecated in JDK15<\/span><br><span style=\"white-space:nowrap\">Obsoleted in JDK16<\/span><br><span style=\"white-space:nowrap\">Expired in JDK17<\/span>",
-            "key": "UseNewFieldLayout_null_null_runtime"
+            "type": "bool"
         },
         {
-            "defaultValue": "false",
             "prefix": "-XX:",
             "definedIn": "cpu/ppc/globals_ppc.hpp",
+            "defaultValue": "false",
             "name": "UseVectorByteReverseInstructionsPPC64",
             "cpu": "ppc",
             "description": "Use Power9 xxbr* vector byte reverse instructions.",
             "availability": "product",
-            "type": "bool",
-            "key": "UseVectorByteReverseInstructionsPPC64_null_ppc_null"
+            "type": "bool"
         },
         {
             "component": "c2",
-            "defaultValue": "true",
             "prefix": "-XX:",
             "definedIn": "share/opto/c2_globals.hpp",
+            "defaultValue": "true",
             "name": "UseVectorMacroLogic",
             "description": "Use ternary macro logic instructions",
             "availability": "diagnostic",
-            "type": "bool",
-            "key": "UseVectorMacroLogic_null_null_c2"
+            "type": "bool"
         }
     ],
     "laterVM": "OpenJDK15",

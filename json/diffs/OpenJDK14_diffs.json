@@ -2,1857 +2,1702 @@
     "removed": [
         {
             "component": "runtime",
-            "defaultValue": "false",
             "prefix": "-XX:",
             "definedIn": "share/runtime/globals.hpp",
+            "defaultValue": "false",
             "name": "AllowJNIEnvProxy",
             "description": "(Deprecated) Allow JNIEnv proxies for jdbx",
             "availability": "product",
-            "type": "bool",
             "deprecation": "<span style=\"white-space:nowrap\">Deprecated in JDK13<\/span><br><span style=\"white-space:nowrap\">Obsoleted in JDK14<\/span><br><span style=\"white-space:nowrap\">Expired in JDK15<\/span>",
-            "key": "AllowJNIEnvProxy_null_null_runtime"
+            "type": "bool"
         },
         {
             "component": "gc",
-            "defaultValue": "false",
             "prefix": "-XX:",
             "definedIn": "share/gc/cms/cms_globals.hpp",
+            "defaultValue": "false",
             "name": "BindCMSThreadToCPU",
             "description": "Bind CMS Thread to CPU if possible",
             "availability": "diagnostic",
-            "type": "bool",
-            "key": "BindCMSThreadToCPU_null_null_gc"
+            "type": "bool"
         },
         {
             "component": "gc",
-            "defaultValue": "false",
             "prefix": "-XX:",
             "definedIn": "share/gc/shared/gc_globals.hpp",
+            "defaultValue": "false",
             "name": "BindGCTaskThreadsToCPUs",
             "description": "Bind GCTaskThreads to CPUs if possible",
             "availability": "product",
-            "type": "bool",
             "deprecation": "<span style=\"white-space:nowrap\">Obsoleted in JDK14<\/span><br><span style=\"white-space:nowrap\">Expired in JDK16<\/span>",
-            "key": "BindGCTaskThreadsToCPUs_null_null_gc"
+            "type": "bool"
         },
         {
             "component": "gc",
-            "defaultValue": "false",
             "prefix": "-XX:",
             "definedIn": "share/gc/shared/gc_globals.hpp",
+            "defaultValue": "false",
             "name": "BlockOffsetArrayUseUnallocatedBlock",
             "description": "Maintain _unallocated_block in BlockOffsetArray (currently applicable only to CMS collector)",
             "availability": "diagnostic",
-            "type": "bool",
-            "key": "BlockOffsetArrayUseUnallocatedBlock_null_null_gc"
+            "type": "bool"
         },
         {
             "component": "gc",
-            "defaultValue": "false",
             "prefix": "-XX:",
             "definedIn": "share/gc/cms/cms_globals.hpp",
+            "defaultValue": "false",
             "name": "CMSAbortSemantics",
             "description": "Whether abort-on-overflow semantics is implemented",
             "availability": "product",
-            "type": "bool",
             "deprecation": "<span style=\"white-space:nowrap\">Obsoleted in JDK14<\/span><br><span style=\"white-space:nowrap\">Expired in JDK15<\/span>",
-            "key": "CMSAbortSemantics_null_null_gc"
+            "type": "bool"
         },
         {
             "component": "gc",
-            "defaultValue": "100",
             "prefix": "-XX:",
             "definedIn": "share/gc/cms/cms_globals.hpp",
+            "defaultValue": "100",
             "name": "CMSAbortablePrecleanMinWorkPerIteration",
             "range": "range(0, max_uintx)",
             "description": "Nominal minimum work per abortable preclean iteration",
             "availability": "product",
-            "type": "uintx",
             "deprecation": "<span style=\"white-space:nowrap\">Obsoleted in JDK14<\/span><br><span style=\"white-space:nowrap\">Expired in JDK15<\/span>",
-            "key": "CMSAbortablePrecleanMinWorkPerIteration_null_null_gc"
+            "type": "uintx"
         },
         {
             "component": "gc",
-            "defaultValue": "100",
             "prefix": "-XX:",
             "definedIn": "share/gc/cms/cms_globals.hpp",
+            "defaultValue": "100",
             "name": "CMSAbortablePrecleanWaitMillis",
             "range": "range(0, max_intx)",
             "description": "Time that we sleep between iterations when not given enough work per iteration",
             "availability": "manageable",
-            "type": "intx",
-            "key": "CMSAbortablePrecleanWaitMillis_null_null_gc"
+            "type": "intx"
         },
         {
             "component": "gc",
-            "defaultValue": "10*M",
             "prefix": "-XX:",
             "definedIn": "share/gc/cms/cms_globals.hpp",
+            "defaultValue": "10*M",
             "name": "CMSBitMapYieldQuantum",
             "range": "range(1, max_uintx)",
             "description": "Bitmap operations should process at most this many bits between yields",
             "availability": "product",
-            "type": "size_t",
             "deprecation": "<span style=\"white-space:nowrap\">Obsoleted in JDK14<\/span><br><span style=\"white-space:nowrap\">Expired in JDK15<\/span>",
-            "key": "CMSBitMapYieldQuantum_null_null_gc"
+            "type": "size_t"
         },
         {
             "component": "gc",
-            "defaultValue": "50",
             "prefix": "-XX:",
             "definedIn": "share/gc/cms/cms_globals.hpp",
+            "defaultValue": "50",
             "name": "CMSBootstrapOccupancy",
             "range": "range(0, 100)",
             "description": "Percentage CMS generation occupancy at which to initiate CMS collection for bootstrapping collection stats",
             "availability": "product",
-            "type": "uintx",
             "deprecation": "<span style=\"white-space:nowrap\">Obsoleted in JDK14<\/span><br><span style=\"white-space:nowrap\">Expired in JDK15<\/span>",
-            "key": "CMSBootstrapOccupancy_null_null_gc"
+            "type": "uintx"
         },
         {
             "component": "gc",
-            "defaultValue": "1000",
             "prefix": "-XX:",
             "definedIn": "share/gc/cms/cms_globals.hpp",
+            "defaultValue": "1000",
             "name": "CMSCheckInterval",
             "description": "Interval in milliseconds that CMS thread checks if it should start a collection cycle",
             "availability": "develop",
-            "type": "uintx",
-            "key": "CMSCheckInterval_null_null_gc"
+            "type": "uintx"
         },
         {
             "component": "gc",
-            "defaultValue": "true",
             "prefix": "-XX:",
             "definedIn": "share/gc/cms/cms_globals.hpp",
+            "defaultValue": "true",
             "name": "CMSClassUnloadingEnabled",
             "description": "Whether class unloading enabled when using CMS GC",
             "availability": "product",
-            "type": "bool",
             "deprecation": "<span style=\"white-space:nowrap\">Obsoleted in JDK14<\/span><br><span style=\"white-space:nowrap\">Expired in JDK15<\/span>",
-            "key": "CMSClassUnloadingEnabled_null_null_gc"
+            "type": "bool"
         },
         {
             "component": "gc",
-            "defaultValue": "0",
             "prefix": "-XX:",
             "definedIn": "share/gc/cms/cms_globals.hpp",
+            "defaultValue": "0",
             "name": "CMSClassUnloadingMaxInterval",
             "range": "range(0, max_uintx)",
             "description": "When CMS class unloading is enabled, the maximum CMS cycle count for which classes may not be unloaded",
             "availability": "product",
-            "type": "uintx",
             "deprecation": "<span style=\"white-space:nowrap\">Obsoleted in JDK14<\/span><br><span style=\"white-space:nowrap\">Expired in JDK15<\/span>",
-            "key": "CMSClassUnloadingMaxInterval_null_null_gc"
+            "type": "uintx"
         },
         {
             "component": "gc",
-            "defaultValue": "true",
             "prefix": "-XX:",
             "definedIn": "share/gc/cms/cms_globals.hpp",
+            "defaultValue": "true",
             "name": "CMSCleanOnEnter",
             "description": "Clean-on-enter optimization for reducing number of dirty cards",
             "availability": "product",
-            "type": "bool",
             "deprecation": "<span style=\"white-space:nowrap\">Obsoleted in JDK14<\/span><br><span style=\"white-space:nowrap\">Expired in JDK15<\/span>",
-            "key": "CMSCleanOnEnter_null_null_gc"
+            "type": "bool"
         },
         {
             "component": "gc",
-            "defaultValue": "32",
             "prefix": "-XX:",
             "definedIn": "share/gc/cms/cms_globals.hpp",
+            "defaultValue": "32",
             "name": "CMSConcMarkMultiple",
             "range": "range(1, SIZE_MAX / 4096)",
             "description": "Size (in cards) of CMS concurrent MT marking task",
             "availability": "product",
-            "type": "size_t",
             "deprecation": "<span style=\"white-space:nowrap\">Obsoleted in JDK14<\/span><br><span style=\"white-space:nowrap\">Expired in JDK15<\/span>",
-            "key": "CMSConcMarkMultiple_null_null_gc"
+            "type": "size_t"
         },
         {
             "component": "gc",
-            "defaultValue": "true",
             "prefix": "-XX:",
             "definedIn": "share/gc/cms/cms_globals.hpp",
+            "defaultValue": "true",
             "name": "CMSConcurrentMTEnabled",
             "description": "Whether multi-threaded concurrent work enabled (effective only if ParNewGC)",
             "availability": "product",
-            "type": "bool",
             "deprecation": "<span style=\"white-space:nowrap\">Obsoleted in JDK14<\/span><br><span style=\"white-space:nowrap\">Expired in JDK15<\/span>",
-            "key": "CMSConcurrentMTEnabled_null_null_gc"
+            "type": "bool"
         },
         {
             "component": "gc",
-            "defaultValue": "10",
             "prefix": "-XX:",
             "definedIn": "share/gc/cms/cms_globals.hpp",
+            "defaultValue": "10",
             "name": "CMSCoordinatorYieldSleepCount",
             "range": "range(0, max_juint)",
             "description": "Number of times the coordinator GC thread will sleep while yielding before giving up and resuming GC",
             "availability": "product",
-            "type": "uintx",
             "deprecation": "<span style=\"white-space:nowrap\">Obsoleted in JDK14<\/span><br><span style=\"white-space:nowrap\">Expired in JDK15<\/span>",
-            "key": "CMSCoordinatorYieldSleepCount_null_null_gc"
+            "type": "uintx"
         },
         {
             "component": "gc",
-            "defaultValue": "true",
             "prefix": "-XX:",
             "definedIn": "share/gc/cms/cms_globals.hpp",
+            "defaultValue": "true",
             "name": "CMSEdenChunksRecordAlways",
             "description": "Always record eden chunks used for the parallel initial mark or remark of eden",
             "availability": "product",
-            "type": "bool",
             "deprecation": "<span style=\"white-space:nowrap\">Obsoleted in JDK14<\/span><br><span style=\"white-space:nowrap\">Expired in JDK15<\/span>",
-            "key": "CMSEdenChunksRecordAlways_null_null_gc"
+            "type": "bool"
         },
         {
             "component": "gc",
-            "defaultValue": "50",
             "prefix": "-XX:",
             "definedIn": "share/gc/cms/cms_globals.hpp",
+            "defaultValue": "50",
             "name": "CMSExpAvgFactor",
             "range": "range(0, 100)",
             "description": "Percentage (0-100) used to weight the current sample when computing exponential averages for CMS statistics",
             "availability": "product",
-            "type": "uintx",
             "deprecation": "<span style=\"white-space:nowrap\">Obsoleted in JDK14<\/span><br><span style=\"white-space:nowrap\">Expired in JDK15<\/span>",
-            "key": "CMSExpAvgFactor_null_null_gc"
+            "type": "uintx"
         },
         {
             "component": "gc",
-            "defaultValue": "false",
             "prefix": "-XX:",
             "definedIn": "share/gc/cms/cms_globals.hpp",
+            "defaultValue": "false",
             "name": "CMSExtrapolateSweep",
             "description": "CMS: cushion for block demand during sweep",
             "availability": "product",
-            "type": "bool",
             "deprecation": "<span style=\"white-space:nowrap\">Obsoleted in JDK14<\/span><br><span style=\"white-space:nowrap\">Expired in JDK15<\/span>",
-            "key": "CMSExtrapolateSweep_null_null_gc"
+            "type": "bool"
         },
         {
             "component": "gc",
-            "defaultValue": "10",
             "prefix": "-XX:",
             "definedIn": "share/gc/cms/cms_globals.hpp",
+            "defaultValue": "10",
             "name": "CMSIncrementalSafetyFactor",
             "range": "range(0, 100)",
             "description": "Percentage (0-100) used to add conservatism when computing the duty cycle",
             "availability": "product",
-            "type": "uintx",
             "deprecation": "<span style=\"white-space:nowrap\">Obsoleted in JDK14<\/span><br><span style=\"white-space:nowrap\">Expired in JDK15<\/span>",
-            "key": "CMSIncrementalSafetyFactor_null_null_gc"
+            "type": "uintx"
         },
         {
             "component": "gc",
-            "defaultValue": "4",
             "prefix": "-XX:",
             "definedIn": "share/gc/cms/cms_globals.hpp",
+            "defaultValue": "4",
             "name": "CMSIndexedFreeListReplenish",
             "range": "range(1, max_uintx)",
             "description": "Replenish an indexed free list with this number of chunks",
             "availability": "product",
-            "type": "uintx",
             "deprecation": "<span style=\"white-space:nowrap\">Obsoleted in JDK14<\/span><br><span style=\"white-space:nowrap\">Expired in JDK15<\/span>",
-            "key": "CMSIndexedFreeListReplenish_null_null_gc"
+            "type": "uintx"
         },
         {
             "component": "gc",
-            "defaultValue": "-1",
             "prefix": "-XX:",
             "definedIn": "share/gc/cms/cms_globals.hpp",
+            "defaultValue": "-1",
             "name": "CMSInitiatingOccupancyFraction",
             "range": "range(min_intx, 100)",
             "description": "Percentage CMS generation occupancy to start a CMS collection cycle. A negative value means that CMSTriggerRatio is used",
             "availability": "product",
-            "type": "intx",
             "deprecation": "<span style=\"white-space:nowrap\">Obsoleted in JDK14<\/span><br><span style=\"white-space:nowrap\">Expired in JDK15<\/span>",
-            "key": "CMSInitiatingOccupancyFraction_null_null_gc"
+            "type": "intx"
         },
         {
             "component": "gc",
-            "defaultValue": "98",
             "prefix": "-XX:",
             "definedIn": "share/gc/cms/cms_globals.hpp",
+            "defaultValue": "98",
             "name": "CMSIsTooFullPercentage",
             "range": "range(0, 100)",
             "description": "An absolute ceiling above which CMS will always consider the unloading of classes when class unloading is enabled",
             "availability": "product",
-            "type": "uintx",
             "deprecation": "<span style=\"white-space:nowrap\">Obsoleted in JDK14<\/span><br><span style=\"white-space:nowrap\">Expired in JDK15<\/span>",
-            "key": "CMSIsTooFullPercentage_null_null_gc"
+            "type": "uintx"
         },
         {
             "component": "gc",
-            "defaultValue": "0.95",
             "prefix": "-XX:",
             "definedIn": "share/gc/cms/cms_globals.hpp",
+            "defaultValue": "0.95",
             "name": "CMSLargeCoalSurplusPercent",
             "range": "range(0.0, DBL_MAX)",
             "description": "CMS: the factor by which to inflate estimated demand of large block sizes to prevent coalescing with an adjoining block",
             "availability": "product",
-            "type": "double",
             "deprecation": "<span style=\"white-space:nowrap\">Obsoleted in JDK14<\/span><br><span style=\"white-space:nowrap\">Expired in JDK15<\/span>",
-            "key": "CMSLargeCoalSurplusPercent_null_null_gc"
+            "type": "double"
         },
         {
             "component": "gc",
-            "defaultValue": "1.00",
             "prefix": "-XX:",
             "definedIn": "share/gc/cms/cms_globals.hpp",
+            "defaultValue": "1.00",
             "name": "CMSLargeSplitSurplusPercent",
             "range": "range(0.0, DBL_MAX)",
             "description": "CMS: the factor by which to inflate estimated demand of large block sizes to prevent splitting to supply demand for smaller blocks",
             "availability": "product",
-            "type": "double",
             "deprecation": "<span style=\"white-space:nowrap\">Obsoleted in JDK14<\/span><br><span style=\"white-space:nowrap\">Expired in JDK15<\/span>",
-            "key": "CMSLargeSplitSurplusPercent_null_null_gc"
+            "type": "double"
         },
         {
             "component": "gc",
-            "defaultValue": "false",
             "prefix": "-XX:",
             "definedIn": "share/gc/cms/cms_globals.hpp",
+            "defaultValue": "false",
             "name": "CMSLoopWarn",
             "description": "Warn in case of excessive CMS looping",
             "availability": "product",
-            "type": "bool",
             "deprecation": "<span style=\"white-space:nowrap\">Obsoleted in JDK14<\/span><br><span style=\"white-space:nowrap\">Expired in JDK15<\/span>",
-            "key": "CMSLoopWarn_null_null_gc"
+            "type": "bool"
         },
         {
             "component": "gc",
-            "defaultValue": "false",
             "prefix": "-XX:",
             "definedIn": "share/gc/cms/cms_globals.hpp",
+            "defaultValue": "false",
             "name": "CMSMarkStackOverflowALot",
             "description": "Simulate frequent marking stack / work queue overflow",
             "availability": "notproduct",
-            "type": "bool",
-            "key": "CMSMarkStackOverflowALot_null_null_gc"
+            "type": "bool"
         },
         {
             "component": "gc",
-            "defaultValue": "1000",
             "prefix": "-XX:",
             "definedIn": "share/gc/cms/cms_globals.hpp",
+            "defaultValue": "1000",
             "name": "CMSMarkStackOverflowInterval",
             "description": "An 'interval' counter that determines how frequently to simulate overflow; a smaller number increases frequency",
             "availability": "notproduct",
-            "type": "uintx",
-            "key": "CMSMarkStackOverflowInterval_null_null_gc"
+            "type": "uintx"
         },
         {
             "component": "gc",
-            "defaultValue": "0",
             "prefix": "-XX:",
             "definedIn": "share/gc/cms/cms_globals.hpp",
+            "defaultValue": "0",
             "name": "CMSMaxAbortablePrecleanLoops",
             "range": "range(0, max_uintx)",
             "description": "Maximum number of abortable preclean iterations, if > 0",
             "availability": "product",
-            "type": "uintx",
             "deprecation": "<span style=\"white-space:nowrap\">Obsoleted in JDK14<\/span><br><span style=\"white-space:nowrap\">Expired in JDK15<\/span>",
-            "key": "CMSMaxAbortablePrecleanLoops_null_null_gc"
+            "type": "uintx"
         },
         {
             "component": "gc",
-            "defaultValue": "5000",
             "prefix": "-XX:",
             "definedIn": "share/gc/cms/cms_globals.hpp",
+            "defaultValue": "5000",
             "name": "CMSMaxAbortablePrecleanTime",
             "range": "range(0, max_intx)",
             "description": "Maximum time in abortable preclean (in milliseconds)",
             "availability": "product",
-            "type": "intx",
             "deprecation": "<span style=\"white-space:nowrap\">Obsoleted in JDK14<\/span><br><span style=\"white-space:nowrap\">Expired in JDK15<\/span>",
-            "key": "CMSMaxAbortablePrecleanTime_null_null_gc"
+            "type": "intx"
         },
         {
             "component": "gc",
-            "defaultValue": "1024",
             "prefix": "-XX:",
             "definedIn": "share/gc/cms/cms_globals.hpp",
+            "defaultValue": "1024",
             "name": "CMSOldPLABMax",
             "range": "range(1, max_uintx)",
             "description": "Maximum size of CMS gen promotion LAB caches per worker per block size",
             "availability": "product",
-            "type": "size_t",
             "deprecation": "<span style=\"white-space:nowrap\">Obsoleted in JDK14<\/span><br><span style=\"white-space:nowrap\">Expired in JDK15<\/span>",
-            "key": "CMSOldPLABMax_null_null_gc"
+            "type": "size_t"
         },
         {
             "component": "gc",
-            "defaultValue": "16",
             "prefix": "-XX:",
             "definedIn": "share/gc/cms/cms_globals.hpp",
+            "defaultValue": "16",
             "name": "CMSOldPLABMin",
             "range": "range(1, max_uintx)",
             "description": "Minimum size of CMS gen promotion LAB caches per worker per block size",
             "availability": "product",
-            "type": "size_t",
             "deprecation": "<span style=\"white-space:nowrap\">Obsoleted in JDK14<\/span><br><span style=\"white-space:nowrap\">Expired in JDK15<\/span>",
-            "key": "CMSOldPLABMin_null_null_gc"
+            "type": "size_t"
         },
         {
             "component": "gc",
-            "defaultValue": "4",
             "prefix": "-XX:",
             "definedIn": "share/gc/cms/cms_globals.hpp",
+            "defaultValue": "4",
             "name": "CMSOldPLABNumRefills",
             "range": "range(1, max_uintx)",
             "description": "Nominal number of refills of CMS gen promotion LAB cache per worker per block size",
             "availability": "product",
-            "type": "uintx",
             "deprecation": "<span style=\"white-space:nowrap\">Obsoleted in JDK14<\/span><br><span style=\"white-space:nowrap\">Expired in JDK15<\/span>",
-            "key": "CMSOldPLABNumRefills_null_null_gc"
+            "type": "uintx"
         },
         {
             "component": "gc",
-            "defaultValue": "2",
             "prefix": "-XX:",
             "definedIn": "share/gc/cms/cms_globals.hpp",
+            "defaultValue": "2",
             "name": "CMSOldPLABReactivityFactor",
             "range": "range(1, max_uintx)",
             "description": "The gain in the feedback loop for on-the-fly PLAB resizing during a scavenge",
             "availability": "product",
-            "type": "uintx",
             "deprecation": "<span style=\"white-space:nowrap\">Obsoleted in JDK14<\/span><br><span style=\"white-space:nowrap\">Expired in JDK15<\/span>",
-            "key": "CMSOldPLABReactivityFactor_null_null_gc"
+            "type": "uintx"
         },
         {
             "component": "gc",
-            "defaultValue": "false",
             "prefix": "-XX:",
             "definedIn": "share/gc/cms/cms_globals.hpp",
+            "defaultValue": "false",
             "name": "CMSOldPLABResizeQuicker",
             "description": "React on-the-fly during a scavenge to a sudden change in block demand rate",
             "availability": "product",
-            "type": "bool",
             "deprecation": "<span style=\"white-space:nowrap\">Obsoleted in JDK14<\/span><br><span style=\"white-space:nowrap\">Expired in JDK15<\/span>",
-            "key": "CMSOldPLABResizeQuicker_null_null_gc"
+            "type": "bool"
         },
         {
             "component": "gc",
-            "defaultValue": "4",
             "prefix": "-XX:",
             "definedIn": "share/gc/cms/cms_globals.hpp",
+            "defaultValue": "4",
             "name": "CMSOldPLABToleranceFactor",
             "range": "range(1, max_uintx)",
             "description": "The tolerance of the phase-change detector for on-the-fly PLAB resizing during a scavenge",
             "availability": "product",
-            "type": "uintx",
             "deprecation": "<span style=\"white-space:nowrap\">Obsoleted in JDK14<\/span><br><span style=\"white-space:nowrap\">Expired in JDK15<\/span>",
-            "key": "CMSOldPLABToleranceFactor_null_null_gc"
+            "type": "uintx"
         },
         {
             "component": "gc",
-            "defaultValue": "true",
             "prefix": "-XX:",
             "definedIn": "share/gc/cms/cms_globals.hpp",
+            "defaultValue": "true",
             "name": "CMSPLABRecordAlways",
             "description": "Always record survivor space PLAB boundaries (effective only if CMSParallelSurvivorRemarkEnabled)",
             "availability": "product",
-            "type": "bool",
             "deprecation": "<span style=\"white-space:nowrap\">Obsoleted in JDK14<\/span><br><span style=\"white-space:nowrap\">Expired in JDK15<\/span>",
-            "key": "CMSPLABRecordAlways_null_null_gc"
+            "type": "bool"
         },
         {
             "component": "gc",
-            "defaultValue": "true",
             "prefix": "-XX:",
             "definedIn": "share/gc/cms/cms_globals.hpp",
+            "defaultValue": "true",
             "name": "CMSParallelInitialMarkEnabled",
             "description": "Use the parallel initial mark.",
             "availability": "product",
-            "type": "bool",
             "deprecation": "<span style=\"white-space:nowrap\">Obsoleted in JDK14<\/span><br><span style=\"white-space:nowrap\">Expired in JDK15<\/span>",
-            "key": "CMSParallelInitialMarkEnabled_null_null_gc"
+            "type": "bool"
         },
         {
             "component": "gc",
-            "defaultValue": "true",
             "prefix": "-XX:",
             "definedIn": "share/gc/cms/cms_globals.hpp",
+            "defaultValue": "true",
             "name": "CMSParallelRemarkEnabled",
             "description": "Whether parallel remark enabled (only if ParNewGC)",
             "availability": "product",
-            "type": "bool",
             "deprecation": "<span style=\"white-space:nowrap\">Obsoleted in JDK14<\/span><br><span style=\"white-space:nowrap\">Expired in JDK15<\/span>",
-            "key": "CMSParallelRemarkEnabled_null_null_gc"
+            "type": "bool"
         },
         {
             "component": "gc",
-            "defaultValue": "true",
             "prefix": "-XX:",
             "definedIn": "share/gc/cms/cms_globals.hpp",
+            "defaultValue": "true",
             "name": "CMSParallelSurvivorRemarkEnabled",
             "description": "Whether parallel remark of survivor space enabled (effective only if CMSParallelRemarkEnabled)",
             "availability": "product",
-            "type": "bool",
             "deprecation": "<span style=\"white-space:nowrap\">Obsoleted in JDK14<\/span><br><span style=\"white-space:nowrap\">Expired in JDK15<\/span>",
-            "key": "CMSParallelSurvivorRemarkEnabled_null_null_gc"
+            "type": "bool"
         },
         {
             "component": "gc",
-            "defaultValue": "3",
             "prefix": "-XX:",
             "definedIn": "share/gc/cms/cms_globals.hpp",
+            "defaultValue": "3",
             "name": "CMSPrecleanDenominator",
             "range": "range(1, max_uintx)",
             "description": "CMSPrecleanNumerator:CMSPrecleanDenominator yields convergence ratio",
             "availability": "product",
-            "type": "uintx",
             "deprecation": "<span style=\"white-space:nowrap\">Obsoleted in JDK14<\/span><br><span style=\"white-space:nowrap\">Expired in JDK15<\/span>",
-            "key": "CMSPrecleanDenominator_null_null_gc"
+            "type": "uintx"
         },
         {
             "component": "gc",
-            "defaultValue": "3",
             "prefix": "-XX:",
             "definedIn": "share/gc/cms/cms_globals.hpp",
+            "defaultValue": "3",
             "name": "CMSPrecleanIter",
             "range": "range(0, 9)",
             "description": "Maximum number of precleaning iteration passes",
             "availability": "product",
-            "type": "uintx",
             "deprecation": "<span style=\"white-space:nowrap\">Obsoleted in JDK14<\/span><br><span style=\"white-space:nowrap\">Expired in JDK15<\/span>",
-            "key": "CMSPrecleanIter_null_null_gc"
+            "type": "uintx"
         },
         {
             "component": "gc",
-            "defaultValue": "2",
             "prefix": "-XX:",
             "definedIn": "share/gc/cms/cms_globals.hpp",
+            "defaultValue": "2",
             "name": "CMSPrecleanNumerator",
             "range": "range(0, max_uintx-1)",
             "description": "CMSPrecleanNumerator:CMSPrecleanDenominator yields convergence ratio",
             "availability": "product",
-            "type": "uintx",
             "deprecation": "<span style=\"white-space:nowrap\">Obsoleted in JDK14<\/span><br><span style=\"white-space:nowrap\">Expired in JDK15<\/span>",
-            "key": "CMSPrecleanNumerator_null_null_gc"
+            "type": "uintx"
         },
         {
             "component": "gc",
-            "defaultValue": "true",
             "prefix": "-XX:",
             "definedIn": "share/gc/cms/cms_globals.hpp",
+            "defaultValue": "true",
             "name": "CMSPrecleanRefLists1",
             "description": "Preclean ref lists during (initial) preclean phase",
             "availability": "product",
-            "type": "bool",
             "deprecation": "<span style=\"white-space:nowrap\">Obsoleted in JDK14<\/span><br><span style=\"white-space:nowrap\">Expired in JDK15<\/span>",
-            "key": "CMSPrecleanRefLists1_null_null_gc"
+            "type": "bool"
         },
         {
             "component": "gc",
-            "defaultValue": "false",
             "prefix": "-XX:",
             "definedIn": "share/gc/cms/cms_globals.hpp",
+            "defaultValue": "false",
             "name": "CMSPrecleanRefLists2",
             "description": "Preclean ref lists during abortable preclean phase",
             "availability": "product",
-            "type": "bool",
             "deprecation": "<span style=\"white-space:nowrap\">Obsoleted in JDK14<\/span><br><span style=\"white-space:nowrap\">Expired in JDK15<\/span>",
-            "key": "CMSPrecleanRefLists2_null_null_gc"
+            "type": "bool"
         },
         {
             "component": "gc",
-            "defaultValue": "false",
             "prefix": "-XX:",
             "definedIn": "share/gc/cms/cms_globals.hpp",
+            "defaultValue": "false",
             "name": "CMSPrecleanSurvivors1",
             "description": "Preclean survivors during (initial) preclean phase",
             "availability": "product",
-            "type": "bool",
             "deprecation": "<span style=\"white-space:nowrap\">Obsoleted in JDK14<\/span><br><span style=\"white-space:nowrap\">Expired in JDK15<\/span>",
-            "key": "CMSPrecleanSurvivors1_null_null_gc"
+            "type": "bool"
         },
         {
             "component": "gc",
-            "defaultValue": "true",
             "prefix": "-XX:",
             "definedIn": "share/gc/cms/cms_globals.hpp",
+            "defaultValue": "true",
             "name": "CMSPrecleanSurvivors2",
             "description": "Preclean survivors during abortable preclean phase",
             "availability": "product",
-            "type": "bool",
             "deprecation": "<span style=\"white-space:nowrap\">Obsoleted in JDK14<\/span><br><span style=\"white-space:nowrap\">Expired in JDK15<\/span>",
-            "key": "CMSPrecleanSurvivors2_null_null_gc"
+            "type": "bool"
         },
         {
             "component": "gc",
-            "defaultValue": "1000",
             "prefix": "-XX:",
             "definedIn": "share/gc/cms/cms_globals.hpp",
+            "defaultValue": "1000",
             "name": "CMSPrecleanThreshold",
             "range": "range(100, max_uintx)",
             "description": "Do not iterate again if number of dirty cards is less than this",
             "availability": "product",
-            "type": "uintx",
             "deprecation": "<span style=\"white-space:nowrap\">Obsoleted in JDK14<\/span><br><span style=\"white-space:nowrap\">Expired in JDK15<\/span>",
-            "key": "CMSPrecleanThreshold_null_null_gc"
+            "type": "uintx"
         },
         {
             "component": "gc",
-            "defaultValue": "true",
             "prefix": "-XX:",
             "definedIn": "share/gc/cms/cms_globals.hpp",
+            "defaultValue": "true",
             "name": "CMSPrecleaningEnabled",
             "description": "Whether concurrent precleaning enabled",
             "availability": "product",
-            "type": "bool",
             "deprecation": "<span style=\"white-space:nowrap\">Obsoleted in JDK14<\/span><br><span style=\"white-space:nowrap\">Expired in JDK15<\/span>",
-            "key": "CMSPrecleaningEnabled_null_null_gc"
+            "type": "bool"
         },
         {
             "component": "gc",
-            "defaultValue": "false",
             "prefix": "-XX:",
             "definedIn": "share/gc/cms/cms_globals.hpp",
+            "defaultValue": "false",
             "name": "CMSPrintChunksInDump",
             "description": "If logging for the 'gc' and 'promotion' tags is enabled ontrace level include more detailed information about thefree chunks",
             "availability": "product",
-            "type": "bool",
             "deprecation": "<span style=\"white-space:nowrap\">Obsoleted in JDK14<\/span><br><span style=\"white-space:nowrap\">Expired in JDK15<\/span>",
-            "key": "CMSPrintChunksInDump_null_null_gc"
+            "type": "bool"
         },
         {
             "component": "gc",
-            "defaultValue": "false",
             "prefix": "-XX:",
             "definedIn": "share/gc/cms/cms_globals.hpp",
+            "defaultValue": "false",
             "name": "CMSPrintObjectsInDump",
             "description": "If logging for the 'gc' and 'promotion' tags is enabled ontrace level include more detailed information about theallocated objects",
             "availability": "product",
-            "type": "bool",
             "deprecation": "<span style=\"white-space:nowrap\">Obsoleted in JDK14<\/span><br><span style=\"white-space:nowrap\">Expired in JDK15<\/span>",
-            "key": "CMSPrintObjectsInDump_null_null_gc"
+            "type": "bool"
         },
         {
             "component": "gc",
-            "defaultValue": "1",
             "prefix": "-XX:",
             "definedIn": "share/gc/cms/cms_globals.hpp",
+            "defaultValue": "1",
             "name": "CMSRemarkVerifyVariant",
             "range": "range(1, 2)",
             "description": "Choose variant (1,2) of verification following remark",
             "availability": "product",
-            "type": "uintx",
             "deprecation": "<span style=\"white-space:nowrap\">Obsoleted in JDK14<\/span><br><span style=\"white-space:nowrap\">Expired in JDK15<\/span>",
-            "key": "CMSRemarkVerifyVariant_null_null_gc"
+            "type": "uintx"
         },
         {
             "component": "gc",
-            "defaultValue": "true",
             "prefix": "-XX:",
             "definedIn": "share/gc/cms/cms_globals.hpp",
+            "defaultValue": "true",
             "name": "CMSReplenishIntermediate",
             "description": "Replenish all intermediate free-list caches",
             "availability": "product",
-            "type": "bool",
             "deprecation": "<span style=\"white-space:nowrap\">Obsoleted in JDK14<\/span><br><span style=\"white-space:nowrap\">Expired in JDK15<\/span>",
-            "key": "CMSReplenishIntermediate_null_null_gc"
+            "type": "bool"
         },
         {
             "component": "gc",
-            "defaultValue": "32",
             "prefix": "-XX:",
             "definedIn": "share/gc/cms/cms_globals.hpp",
+            "defaultValue": "32",
             "name": "CMSRescanMultiple",
             "range": "range(1, SIZE_MAX / 4096)",
             "description": "Size (in cards) of CMS parallel rescan task",
             "availability": "product",
-            "type": "size_t",
             "deprecation": "<span style=\"white-space:nowrap\">Obsoleted in JDK14<\/span><br><span style=\"white-space:nowrap\">Expired in JDK15<\/span>",
-            "key": "CMSRescanMultiple_null_null_gc"
+            "type": "size_t"
         },
         {
             "component": "gc",
-            "defaultValue": "16*K",
             "prefix": "-XX:",
             "definedIn": "share/gc/cms/cms_globals.hpp",
+            "defaultValue": "16*K",
             "name": "CMSSamplingGrain",
             "range": "range(ObjectAlignmentInBytes, max_uintx)",
             "description": "The minimum distance between eden samples for CMS (see above)",
             "availability": "product",
-            "type": "uintx",
             "deprecation": "<span style=\"white-space:nowrap\">Obsoleted in JDK14<\/span><br><span style=\"white-space:nowrap\">Expired in JDK15<\/span>",
-            "key": "CMSSamplingGrain_null_null_gc"
+            "type": "uintx"
         },
         {
             "component": "gc",
-            "defaultValue": "false",
             "prefix": "-XX:",
             "definedIn": "share/gc/cms/cms_globals.hpp",
+            "defaultValue": "false",
             "name": "CMSScavengeBeforeRemark",
             "description": "Attempt scavenge before the CMS remark step",
             "availability": "product",
-            "type": "bool",
             "deprecation": "<span style=\"white-space:nowrap\">Obsoleted in JDK14<\/span><br><span style=\"white-space:nowrap\">Expired in JDK15<\/span>",
-            "key": "CMSScavengeBeforeRemark_null_null_gc"
+            "type": "bool"
         },
         {
             "component": "gc",
-            "defaultValue": "50",
             "prefix": "-XX:",
             "definedIn": "share/gc/cms/cms_globals.hpp",
+            "defaultValue": "50",
             "name": "CMSScheduleRemarkEdenPenetration",
             "range": "range(0, 100)",
             "description": "The Eden occupancy percentage (0-100) at which to try and schedule remark pause",
             "availability": "product",
-            "type": "uintx",
             "deprecation": "<span style=\"white-space:nowrap\">Obsoleted in JDK14<\/span><br><span style=\"white-space:nowrap\">Expired in JDK15<\/span>",
-            "key": "CMSScheduleRemarkEdenPenetration_null_null_gc"
+            "type": "uintx"
         },
         {
             "component": "gc",
-            "defaultValue": "2*M",
             "prefix": "-XX:",
             "definedIn": "share/gc/cms/cms_globals.hpp",
+            "defaultValue": "2*M",
             "name": "CMSScheduleRemarkEdenSizeThreshold",
             "range": "range(0, max_uintx)",
             "description": "If Eden size is below this, do not try to schedule remark",
             "availability": "product",
-            "type": "size_t",
             "deprecation": "<span style=\"white-space:nowrap\">Obsoleted in JDK14<\/span><br><span style=\"white-space:nowrap\">Expired in JDK15<\/span>",
-            "key": "CMSScheduleRemarkEdenSizeThreshold_null_null_gc"
+            "type": "size_t"
         },
         {
             "component": "gc",
-            "defaultValue": "5",
             "prefix": "-XX:",
             "definedIn": "share/gc/cms/cms_globals.hpp",
+            "defaultValue": "5",
             "name": "CMSScheduleRemarkSamplingRatio",
             "range": "range(1, max_uintx)",
             "description": "Start sampling eden top at least before young gen occupancy reaches 1/<ratio> of the size at which we plan to schedule remark",
             "availability": "product",
-            "type": "uintx",
             "deprecation": "<span style=\"white-space:nowrap\">Obsoleted in JDK14<\/span><br><span style=\"white-space:nowrap\">Expired in JDK15<\/span>",
-            "key": "CMSScheduleRemarkSamplingRatio_null_null_gc"
+            "type": "uintx"
         },
         {
             "component": "gc",
-            "defaultValue": "1.05",
             "prefix": "-XX:",
             "definedIn": "share/gc/cms/cms_globals.hpp",
+            "defaultValue": "1.05",
             "name": "CMSSmallCoalSurplusPercent",
             "range": "range(0.0, DBL_MAX)",
             "description": "CMS: the factor by which to inflate estimated demand of small block sizes to prevent coalescing with an adjoining block",
             "availability": "product",
-            "type": "double",
             "deprecation": "<span style=\"white-space:nowrap\">Obsoleted in JDK14<\/span><br><span style=\"white-space:nowrap\">Expired in JDK15<\/span>",
-            "key": "CMSSmallCoalSurplusPercent_null_null_gc"
+            "type": "double"
         },
         {
             "component": "gc",
-            "defaultValue": "1.10",
             "prefix": "-XX:",
             "definedIn": "share/gc/cms/cms_globals.hpp",
+            "defaultValue": "1.10",
             "name": "CMSSmallSplitSurplusPercent",
             "range": "range(0.0, DBL_MAX)",
             "description": "CMS: the factor by which to inflate estimated demand of small block sizes to prevent splitting to supply demand for smaller blocks",
             "availability": "product",
-            "type": "double",
             "deprecation": "<span style=\"white-space:nowrap\">Obsoleted in JDK14<\/span><br><span style=\"white-space:nowrap\">Expired in JDK15<\/span>",
-            "key": "CMSSmallSplitSurplusPercent_null_null_gc"
+            "type": "double"
         },
         {
             "component": "gc",
-            "defaultValue": "true",
             "prefix": "-XX:",
             "definedIn": "share/gc/cms/cms_globals.hpp",
+            "defaultValue": "true",
             "name": "CMSSplitIndexedFreeListBlocks",
             "description": "When satisfying batched demand, split blocks from the IndexedFreeList whose size is a multiple of requested size",
             "availability": "product",
-            "type": "bool",
             "deprecation": "<span style=\"white-space:nowrap\">Obsoleted in JDK14<\/span><br><span style=\"white-space:nowrap\">Expired in JDK15<\/span>",
-            "key": "CMSSplitIndexedFreeListBlocks_null_null_gc"
+            "type": "bool"
         },
         {
             "component": "gc",
-            "defaultValue": "false",
             "prefix": "-XX:",
             "definedIn": "share/gc/cms/cms_globals.hpp",
+            "defaultValue": "false",
             "name": "CMSTestInFreeList",
             "description": "Check if the coalesced range is already in the free lists as claimed",
             "availability": "develop",
-            "type": "bool",
-            "key": "CMSTestInFreeList_null_null_gc"
+            "type": "bool"
         },
         {
             "component": "gc",
-            "defaultValue": "-1",
             "prefix": "-XX:",
             "definedIn": "share/gc/cms/cms_globals.hpp",
+            "defaultValue": "-1",
             "name": "CMSTriggerInterval",
             "range": "range(-1, max_intx)",
             "description": "Commence a CMS collection cycle (at least) every so many milliseconds (0 permanently, -1 disabled)",
             "availability": "manageable",
-            "type": "intx",
-            "key": "CMSTriggerInterval_null_null_gc"
+            "type": "intx"
         },
         {
             "component": "gc",
-            "defaultValue": "80",
             "prefix": "-XX:",
             "definedIn": "share/gc/cms/cms_globals.hpp",
+            "defaultValue": "80",
             "name": "CMSTriggerRatio",
             "range": "range(0, 100)",
             "description": "Percentage of MinHeapFreeRatio in CMS generation that is allocated before a CMS collection cycle commences",
             "availability": "product",
-            "type": "uintx",
             "deprecation": "<span style=\"white-space:nowrap\">Obsoleted in JDK14<\/span><br><span style=\"white-space:nowrap\">Expired in JDK15<\/span>",
-            "key": "CMSTriggerRatio_null_null_gc"
+            "type": "uintx"
         },
         {
             "component": "gc",
-            "defaultValue": "false",
             "prefix": "-XX:",
             "definedIn": "share/gc/cms/cms_globals.hpp",
+            "defaultValue": "false",
             "name": "CMSVerifyReturnedBytes",
             "description": "Check that all the garbage collected was returned to the free lists",
             "availability": "notproduct",
-            "type": "bool",
-            "key": "CMSVerifyReturnedBytes_null_null_gc"
+            "type": "bool"
         },
         {
             "component": "gc",
-            "defaultValue": "2000",
             "prefix": "-XX:",
             "definedIn": "share/gc/cms/cms_globals.hpp",
+            "defaultValue": "2000",
             "name": "CMSWaitDuration",
             "range": "range(min_jint, max_jint)",
             "description": "Time in milliseconds that CMS thread waits for young GC",
             "availability": "manageable",
-            "type": "intx",
-            "key": "CMSWaitDuration_null_null_gc"
+            "type": "intx"
         },
         {
             "component": "gc",
-            "defaultValue": "10",
             "prefix": "-XX:",
             "definedIn": "share/gc/cms/cms_globals.hpp",
+            "defaultValue": "10",
             "name": "CMSWorkQueueDrainThreshold",
             "range": "range(1, max_juint)",
             "description": "Don't drain below this size per parallel worker/thief",
             "availability": "product",
-            "type": "uintx",
             "deprecation": "<span style=\"white-space:nowrap\">Obsoleted in JDK14<\/span><br><span style=\"white-space:nowrap\">Expired in JDK15<\/span>",
-            "key": "CMSWorkQueueDrainThreshold_null_null_gc"
+            "type": "uintx"
         },
         {
             "component": "gc",
-            "defaultValue": "true",
             "prefix": "-XX:",
             "definedIn": "share/gc/cms/cms_globals.hpp",
+            "defaultValue": "true",
             "name": "CMSYield",
             "description": "Yield between steps of CMS",
             "availability": "product",
-            "type": "bool",
             "deprecation": "<span style=\"white-space:nowrap\">Obsoleted in JDK14<\/span><br><span style=\"white-space:nowrap\">Expired in JDK15<\/span>",
-            "key": "CMSYield_null_null_gc"
+            "type": "bool"
         },
         {
             "component": "gc",
-            "defaultValue": "0",
             "prefix": "-XX:",
             "definedIn": "share/gc/cms/cms_globals.hpp",
+            "defaultValue": "0",
             "name": "CMSYieldSleepCount",
             "range": "range(0, max_juint)",
             "description": "Number of times a GC thread (minus the coordinator) will sleep while yielding before giving up and resuming GC",
             "availability": "product",
-            "type": "uintx",
             "deprecation": "<span style=\"white-space:nowrap\">Obsoleted in JDK14<\/span><br><span style=\"white-space:nowrap\">Expired in JDK15<\/span>",
-            "key": "CMSYieldSleepCount_null_null_gc"
+            "type": "uintx"
         },
         {
-            "defaultValue": "64*M",
             "prefix": "-XX:",
             "definedIn": "cpu/aarch64/globals_aarch64.hpp",
+            "defaultValue": "64*M",
             "name": "CMSYoungGenPerWorker",
             "cpu": "aarch64",
             "comment": "// default max size of CMS young gen, per GC worker thread",
             "availability": "define_pd_global",
-            "type": "uintx",
             "deprecation": "<span style=\"white-space:nowrap\">Obsoleted in JDK14<\/span><br><span style=\"white-space:nowrap\">Expired in JDK15<\/span>",
-            "key": "CMSYoungGenPerWorker_null_aarch64_null"
+            "type": "uintx"
         },
         {
             "component": "gc",
-            "defaultValue": "1",
             "prefix": "-XX:",
             "definedIn": "share/gc/cms/cms_globals.hpp",
+            "defaultValue": "1",
             "name": "CMS_FLSPadding",
             "range": "range(0, max_juint)",
             "description": "The multiple of deviation from mean to use for buffering against volatility in free list demand",
             "availability": "product",
-            "type": "uintx",
             "deprecation": "<span style=\"white-space:nowrap\">Obsoleted in JDK14<\/span><br><span style=\"white-space:nowrap\">Expired in JDK15<\/span>",
-            "key": "CMS_FLSPadding_null_null_gc"
+            "type": "uintx"
         },
         {
             "component": "gc",
-            "defaultValue": "75",
             "prefix": "-XX:",
             "definedIn": "share/gc/cms/cms_globals.hpp",
+            "defaultValue": "75",
             "name": "CMS_FLSWeight",
             "range": "range(0, 100)",
             "description": "Percentage (0-100) used to weight the current sample when computing exponentially decaying averages for CMS FLS statistics",
             "availability": "product",
-            "type": "uintx",
             "deprecation": "<span style=\"white-space:nowrap\">Obsoleted in JDK14<\/span><br><span style=\"white-space:nowrap\">Expired in JDK15<\/span>",
-            "key": "CMS_FLSWeight_null_null_gc"
+            "type": "uintx"
         },
         {
             "component": "gc",
-            "defaultValue": "1",
             "prefix": "-XX:",
             "definedIn": "share/gc/cms/cms_globals.hpp",
+            "defaultValue": "1",
             "name": "CMS_SweepPadding",
             "range": "range(0, max_juint)",
             "description": "The multiple of deviation from mean to use for buffering against volatility in inter-sweep duration",
             "availability": "product",
-            "type": "uintx",
             "deprecation": "<span style=\"white-space:nowrap\">Obsoleted in JDK14<\/span><br><span style=\"white-space:nowrap\">Expired in JDK15<\/span>",
-            "key": "CMS_SweepPadding_null_null_gc"
+            "type": "uintx"
         },
         {
             "component": "gc",
-            "defaultValue": "10",
             "prefix": "-XX:",
             "definedIn": "share/gc/cms/cms_globals.hpp",
+            "defaultValue": "10",
             "name": "CMS_SweepTimerThresholdMillis",
             "range": "range(0, max_uintx)",
             "description": "Skip block flux-rate sampling for an epoch unless inter-sweep duration exceeds this threshold in milliseconds",
             "availability": "product",
-            "type": "uintx",
             "deprecation": "<span style=\"white-space:nowrap\">Obsoleted in JDK14<\/span><br><span style=\"white-space:nowrap\">Expired in JDK15<\/span>",
-            "key": "CMS_SweepTimerThresholdMillis_null_null_gc"
+            "type": "uintx"
         },
         {
             "component": "gc",
-            "defaultValue": "75",
             "prefix": "-XX:",
             "definedIn": "share/gc/cms/cms_globals.hpp",
+            "defaultValue": "75",
             "name": "CMS_SweepWeight",
             "range": "range(0, 100)",
             "description": "Percentage (0-100) used to weight the current sample when computing exponentially decaying average for inter-sweep duration",
             "availability": "product",
-            "type": "uintx",
             "deprecation": "<span style=\"white-space:nowrap\">Obsoleted in JDK14<\/span><br><span style=\"white-space:nowrap\">Expired in JDK15<\/span>",
-            "key": "CMS_SweepWeight_null_null_gc"
+            "type": "uintx"
         },
         {
             "component": "gc",
-            "defaultValue": "0",
             "prefix": "-XX:",
             "definedIn": "share/gc/cms/cms_globals.hpp",
+            "defaultValue": "0",
             "name": "CPUForCMSThread",
             "range": "range(0, max_juint)",
             "description": "When BindCMSThreadToCPU is true, the CPU to bind CMS thread to",
             "availability": "diagnostic",
-            "type": "uintx",
-            "key": "CPUForCMSThread_null_null_gc"
+            "type": "uintx"
         },
         {
             "component": "runtime",
-            "defaultValue": "0",
             "prefix": "-XX:",
             "definedIn": "share/runtime/globals.hpp",
+            "defaultValue": "0",
             "name": "CompilationPolicyChoice",
             "range": "range(0, 2)",
             "description": "which compilation policy (0-2)",
             "availability": "product",
-            "type": "intx",
             "deprecation": "<span style=\"white-space:nowrap\">Deprecated in JDK13<\/span><br><span style=\"white-space:nowrap\">Obsoleted in JDK14<\/span><br><span style=\"white-space:nowrap\">Expired in JDK15<\/span>",
-            "key": "CompilationPolicyChoice_null_null_runtime"
+            "type": "intx"
         },
         {
             "component": "gc",
-            "defaultValue": "false",
             "prefix": "-XX:",
             "definedIn": "share/gc/cms/cms_globals.hpp",
+            "defaultValue": "false",
             "name": "FLSAlwaysCoalesceLarge",
             "description": "CMS: larger free blocks are always available for coalescing",
             "availability": "product",
-            "type": "bool",
             "deprecation": "<span style=\"white-space:nowrap\">Obsoleted in JDK14<\/span><br><span style=\"white-space:nowrap\">Expired in JDK15<\/span>",
-            "key": "FLSAlwaysCoalesceLarge_null_null_gc"
+            "type": "bool"
         },
         {
             "component": "gc",
-            "defaultValue": "2",
             "prefix": "-XX:",
             "definedIn": "share/gc/cms/cms_globals.hpp",
+            "defaultValue": "2",
             "name": "FLSCoalescePolicy",
             "range": "range(0, 4)",
             "description": "CMS: aggressiveness level for coalescing, increasing from 0 to 4",
             "availability": "product",
-            "type": "uintx",
             "deprecation": "<span style=\"white-space:nowrap\">Obsoleted in JDK14<\/span><br><span style=\"white-space:nowrap\">Expired in JDK15<\/span>",
-            "key": "FLSCoalescePolicy_null_null_gc"
+            "type": "uintx"
         },
         {
             "component": "gc",
-            "defaultValue": "0.99",
             "prefix": "-XX:",
             "definedIn": "share/gc/cms/cms_globals.hpp",
+            "defaultValue": "0.99",
             "name": "FLSLargestBlockCoalesceProximity",
             "range": "range(0.0, 1.0)",
             "description": "CMS: the smaller the percentage the greater the coalescing force",
             "availability": "product",
-            "type": "double",
             "deprecation": "<span style=\"white-space:nowrap\">Obsoleted in JDK14<\/span><br><span style=\"white-space:nowrap\">Expired in JDK15<\/span>",
-            "key": "FLSLargestBlockCoalesceProximity_null_null_gc"
+            "type": "double"
         },
         {
             "component": "gc",
-            "defaultValue": "false",
             "prefix": "-XX:",
             "definedIn": "share/gc/cms/cms_globals.hpp",
+            "defaultValue": "false",
             "name": "FLSVerifyAllHeapReferences",
             "description": "Verify that all references across the FLS boundary are to valid objects",
             "availability": "diagnostic",
-            "type": "bool",
-            "key": "FLSVerifyAllHeapReferences_null_null_gc"
+            "type": "bool"
         },
         {
             "component": "gc",
-            "defaultValue": "false",
             "prefix": "-XX:",
             "definedIn": "share/gc/cms/cms_globals.hpp",
+            "defaultValue": "false",
             "name": "FLSVerifyIndexTable",
             "description": "Do lots of (expensive) FLS index table verification",
             "availability": "diagnostic",
-            "type": "bool",
-            "key": "FLSVerifyIndexTable_null_null_gc"
+            "type": "bool"
         },
         {
             "component": "gc",
-            "defaultValue": "false",
             "prefix": "-XX:",
             "definedIn": "share/gc/cms/cms_globals.hpp",
+            "defaultValue": "false",
             "name": "FLSVerifyLists",
             "description": "Do lots of (expensive) FreeListSpace verification",
             "availability": "diagnostic",
-            "type": "bool",
-            "key": "FLSVerifyLists_null_null_gc"
+            "type": "bool"
         },
         {
             "component": "runtime",
-            "defaultValue": "true",
             "prefix": "-XX:",
             "definedIn": "share/runtime/globals.hpp",
+            "defaultValue": "true",
             "name": "FailOverToOldVerifier",
             "description": "Fail over to old verifier when split verifier fails",
             "availability": "product",
-            "type": "bool",
             "deprecation": "<span style=\"white-space:nowrap\">Obsoleted in JDK14<\/span><br><span style=\"white-space:nowrap\">Expired in JDK15<\/span>",
-            "key": "FailOverToOldVerifier_null_null_runtime"
+            "type": "bool"
         },
         {
             "component": "gc",
-            "defaultValue": "false",
             "prefix": "-XX:",
             "definedIn": "share/gc/g1/g1_globals.hpp",
+            "defaultValue": "false",
             "name": "G1PretouchAuxiliaryMemory",
             "description": "Pre-touch large auxiliary data structures used by the GC.",
             "availability": "experimental",
-            "type": "bool",
-            "key": "G1PretouchAuxiliaryMemory_null_null_gc"
+            "type": "bool"
         },
         {
             "component": "gc",
-            "defaultValue": "false",
             "prefix": "-XX:",
             "definedIn": "share/gc/shared/gc_globals.hpp",
+            "defaultValue": "false",
             "name": "GCLockerInvokesConcurrent",
             "description": "The exit of a JNI critical section necessitating a scavenge, also kicks off a background concurrent collection",
             "availability": "product",
-            "type": "bool",
             "deprecation": "<span style=\"white-space:nowrap\">Obsoleted in JDK14<\/span><br><span style=\"white-space:nowrap\">Expired in JDK15<\/span>",
-            "key": "GCLockerInvokesConcurrent_null_null_gc"
+            "type": "bool"
         },
         {
             "component": "gc",
-            "defaultValue": "200",
             "prefix": "-XX:",
             "definedIn": "share/gc/shared/gc_globals.hpp",
+            "defaultValue": "200",
             "name": "GCTaskTimeStampEntries",
             "range": "range(1, max_jint)",
             "description": "Number of time stamp entries per gc worker thread",
             "availability": "product",
-            "type": "uint",
             "deprecation": "<span style=\"white-space:nowrap\">Obsoleted in JDK14<\/span><br><span style=\"white-space:nowrap\">Expired in JDK16<\/span>",
-            "key": "GCTaskTimeStampEntries_null_null_gc"
+            "type": "uint"
         },
         {
             "component": "runtime",
-            "defaultValue": "false",
             "prefix": "-XX:",
             "definedIn": "share/runtime/globals.hpp",
+            "defaultValue": "false",
             "name": "IgnoreLockingAssertions",
             "description": "disable locking assertions (for speed)",
             "availability": "notproduct",
-            "type": "bool",
-            "key": "IgnoreLockingAssertions_null_null_runtime"
+            "type": "bool"
         },
         {
             "component": "runtime",
-            "defaultValue": "3",
             "prefix": "-XX:",
             "definedIn": "share/runtime/globals.hpp",
+            "defaultValue": "3",
             "name": "MaxInterpretedSearchLength",
             "description": "The maximum number of interpreted frames to skip when searching for recompilee",
             "availability": "develop",
-            "type": "intx",
-            "key": "MaxInterpretedSearchLength_null_null_runtime"
+            "type": "intx"
         },
         {
             "component": "runtime",
-            "defaultValue": "10",
             "prefix": "-XX:",
             "definedIn": "share/runtime/globals.hpp",
+            "defaultValue": "10",
             "name": "MaxRecompilationSearchLength",
             "description": "The maximum number of frames to inspect when searching for recompilee",
             "availability": "develop",
-            "type": "intx",
-            "key": "MaxRecompilationSearchLength_null_null_runtime"
+            "type": "intx"
         },
         {
             "component": "gc",
-            "defaultValue": "50",
             "prefix": "-XX:",
             "definedIn": "share/gc/shared/gc_globals.hpp",
+            "defaultValue": "50",
             "name": "OldPLABWeight",
             "range": "range(0, 100)",
             "description": "Percentage (0-100) used to weight the current sample when computing exponentially decaying average for resizing OldPLABSize",
             "availability": "product",
-            "type": "uintx",
             "deprecation": "<span style=\"white-space:nowrap\">Obsoleted in JDK14<\/span><br><span style=\"white-space:nowrap\">Expired in JDK15<\/span>",
-            "key": "OldPLABWeight_null_null_gc"
+            "type": "uintx"
         },
         {
             "component": "gc",
-            "defaultValue": "256",
             "prefix": "-XX:",
             "definedIn": "share/gc/cms/cms_globals.hpp",
+            "defaultValue": "256",
             "name": "ParGCCardsPerStrideChunk",
             "range": "range(1, max_intx)",
             "description": "The number of cards in each chunk of the parallel chunks used during card table scanning",
             "availability": "diagnostic",
-            "type": "intx",
-            "key": "ParGCCardsPerStrideChunk_null_null_gc"
+            "type": "intx"
         },
         {
             "component": "gc",
-            "defaultValue": "20",
             "prefix": "-XX:",
             "definedIn": "share/gc/cms/cms_globals.hpp",
+            "defaultValue": "20",
             "name": "ParGCDesiredObjsFromOverflowList",
             "range": "range(0, max_uintx)",
             "description": "The desired number of objects to claim from the overflow list",
             "availability": "product",
-            "type": "uintx",
             "deprecation": "<span style=\"white-space:nowrap\">Obsoleted in JDK14<\/span><br><span style=\"white-space:nowrap\">Expired in JDK15<\/span>",
-            "key": "ParGCDesiredObjsFromOverflowList_null_null_gc"
+            "type": "uintx"
         },
         {
             "component": "gc",
-            "defaultValue": "2",
             "prefix": "-XX:",
             "definedIn": "share/gc/cms/cms_globals.hpp",
+            "defaultValue": "2",
             "name": "ParGCStridesPerThread",
             "range": "range(1, max_uintx)",
             "description": "The number of strides per worker thread that we divide up the card table scanning work into",
             "availability": "diagnostic",
-            "type": "uintx",
-            "key": "ParGCStridesPerThread_null_null_gc"
+            "type": "uintx"
         },
         {
             "component": "gc",
-            "defaultValue": "true",
             "prefix": "-XX:",
             "definedIn": "share/gc/cms/cms_globals.hpp",
+            "defaultValue": "true",
             "name": "ParGCTrimOverflow",
             "description": "Eagerly trim the local overflow lists (when ParGCUseLocalOverflow)",
             "availability": "product",
-            "type": "bool",
             "deprecation": "<span style=\"white-space:nowrap\">Obsoleted in JDK14<\/span><br><span style=\"white-space:nowrap\">Expired in JDK15<\/span>",
-            "key": "ParGCTrimOverflow_null_null_gc"
+            "type": "bool"
         },
         {
             "component": "gc",
-            "defaultValue": "false",
             "prefix": "-XX:",
             "definedIn": "share/gc/cms/cms_globals.hpp",
+            "defaultValue": "false",
             "name": "ParGCUseLocalOverflow",
             "description": "Instead of a global overflow list, use local overflow stacks",
             "availability": "product",
-            "type": "bool",
             "deprecation": "<span style=\"white-space:nowrap\">Obsoleted in JDK14<\/span><br><span style=\"white-space:nowrap\">Expired in JDK15<\/span>",
-            "key": "ParGCUseLocalOverflow_null_null_gc"
+            "type": "bool"
         },
         {
             "component": "gc",
-            "defaultValue": "false",
             "prefix": "-XX:",
             "definedIn": "share/gc/cms/cms_globals.hpp",
+            "defaultValue": "false",
             "name": "ParGCWorkQueueOverflowALot",
             "description": "Simulate work queue overflow in ParNew",
             "availability": "notproduct",
-            "type": "bool",
-            "key": "ParGCWorkQueueOverflowALot_null_null_gc"
+            "type": "bool"
         },
         {
             "component": "gc",
-            "defaultValue": "1000",
             "prefix": "-XX:",
             "definedIn": "share/gc/cms/cms_globals.hpp",
+            "defaultValue": "1000",
             "name": "ParGCWorkQueueOverflowInterval",
             "description": "An `interval' counter that determines how frequently we simulate overflow; a smaller number increases frequency",
             "availability": "notproduct",
-            "type": "uintx",
-            "key": "ParGCWorkQueueOverflowInterval_null_null_gc"
+            "type": "uintx"
         },
         {
             "component": "runtime",
-            "defaultValue": "false",
             "prefix": "-XX:",
             "definedIn": "share/runtime/globals.hpp",
+            "defaultValue": "false",
             "name": "PrintJNIResolving",
             "description": "Used to implement -v:jni",
             "availability": "product",
-            "type": "bool",
             "deprecation": "<span style=\"white-space:nowrap\">Obsoleted in JDK16<\/span><br><span style=\"white-space:nowrap\">Expired in JDK17<\/span>",
-            "key": "PrintJNIResolving_null_null_runtime"
+            "type": "bool"
         },
         {
             "component": "runtime",
-            "defaultValue": "false",
             "prefix": "-XX:",
             "definedIn": "share/runtime/globals.hpp",
+            "defaultValue": "false",
             "name": "PrintMallocStatistics",
             "description": "Print malloc/free statistics",
             "availability": "develop",
-            "type": "bool",
-            "key": "PrintMallocStatistics_null_null_runtime"
+            "type": "bool"
         },
         {
             "component": "gc",
-            "defaultValue": "true",
             "prefix": "-XX:",
             "definedIn": "share/gc/shared/gc_globals.hpp",
+            "defaultValue": "true",
             "name": "ResizeOldPLAB",
             "description": "Dynamically resize (old gen) promotion LAB's",
             "availability": "product",
-            "type": "bool",
             "deprecation": "<span style=\"white-space:nowrap\">Obsoleted in JDK14<\/span><br><span style=\"white-space:nowrap\">Expired in JDK15<\/span>",
-            "key": "ResizeOldPLAB_null_null_gc"
+            "type": "bool"
         },
         {
             "component": "gc",
-            "defaultValue": "10000",
             "prefix": "-XX:",
             "definedIn": "share/gc/shenandoah/shenandoah_globals.hpp",
+            "defaultValue": "10000",
             "name": "ShenandoahAllocationStallThreshold",
             "description": "When allocation tracing is enabled, the allocation stalls larger than this threshold would be reported as warnings. Time is in microseconds.",
             "availability": "diagnostic",
-            "type": "intx",
-            "key": "ShenandoahAllocationStallThreshold_null_null_gc"
+            "type": "intx"
         },
         {
             "component": "gc",
-            "defaultValue": "false",
             "prefix": "-XX:",
             "definedIn": "share/gc/shenandoah/shenandoah_globals.hpp",
+            "defaultValue": "false",
             "name": "ShenandoahAllocationTrace",
             "description": "Trace allocation latencies and stalls. Can be expensive when lots of allocations happen, and may introduce scalability bottlenecks.",
             "availability": "diagnostic",
-            "type": "bool",
-            "key": "ShenandoahAllocationTrace_null_null_gc"
+            "type": "bool"
         },
         {
             "component": "gc",
-            "defaultValue": "true",
             "prefix": "-XX:",
             "definedIn": "share/gc/shenandoah/shenandoah_globals.hpp",
+            "defaultValue": "true",
             "name": "ShenandoahAllowMixedAllocs",
             "description": "Allow mixing mutator and collector allocations in a single region",
             "availability": "diagnostic",
-            "type": "bool",
-            "key": "ShenandoahAllowMixedAllocs_null_null_gc"
+            "type": "bool"
         },
         {
             "component": "gc",
-            "defaultValue": "false",
             "prefix": "-XX:",
             "definedIn": "share/gc/shenandoah/shenandoah_globals.hpp",
+            "defaultValue": "false",
             "name": "ShenandoahAlwaysPreTouch",
             "description": "Pre-touch heap memory, overrides global AlwaysPreTouch",
             "availability": "diagnostic",
-            "type": "bool",
-            "key": "ShenandoahAlwaysPreTouch_null_null_gc"
+            "type": "bool"
         },
         {
             "component": "gc",
-            "defaultValue": "false",
             "prefix": "-XX:",
             "definedIn": "share/gc/shenandoah/shenandoah_globals.hpp",
+            "defaultValue": "false",
             "name": "ShenandoahCommonGCStateLoads",
             "description": "Enable commonming for GC state loads in generated code.",
             "availability": "experimental",
-            "type": "bool",
-            "key": "ShenandoahCommonGCStateLoads_null_null_gc"
+            "type": "bool"
         },
         {
             "component": "gc",
-            "defaultValue": "true",
             "prefix": "-XX:",
             "definedIn": "share/gc/shenandoah/shenandoah_globals.hpp",
+            "defaultValue": "true",
             "name": "ShenandoahConcurrentScanCodeRoots",
             "description": "Scan code roots concurrently, instead of during a pause",
             "availability": "experimental",
-            "type": "bool",
-            "key": "ShenandoahConcurrentScanCodeRoots_null_null_gc"
+            "type": "bool"
         },
         {
             "component": "gc",
-            "defaultValue": "10",
             "prefix": "-XX:",
             "definedIn": "share/gc/shenandoah/shenandoah_globals.hpp",
+            "defaultValue": "10",
             "name": "ShenandoahEvacAssist",
             "description": "How many objects to evacuate on LRB assist path. Use zero to disable.",
             "availability": "experimental",
-            "type": "uintx",
-            "key": "ShenandoahEvacAssist_null_null_gc"
+            "type": "uintx"
         },
         {
             "component": "gc",
-            "defaultValue": "10",
             "prefix": "-XX:",
             "definedIn": "share/gc/shenandoah/shenandoah_globals.hpp",
+            "defaultValue": "10",
             "name": "ShenandoahFreeThreshold",
             "range": "range(0,100)",
             "description": "Set the percentage of free heap at which a GC cycle is started. Does not apply to all heuristics.",
             "availability": "experimental",
-            "type": "uintx",
-            "key": "ShenandoahFreeThreshold_null_null_gc"
+            "type": "uintx"
         },
         {
             "component": "gc",
-            "defaultValue": "0",
             "prefix": "-XX:",
             "definedIn": "share/gc/shenandoah/shenandoah_globals.hpp",
+            "defaultValue": "0",
             "name": "ShenandoahHeapRegionSize",
             "description": "Size of the Shenandoah regions. Set to zero to detect automatically.",
             "availability": "experimental",
-            "type": "size_t",
-            "key": "ShenandoahHeapRegionSize_null_null_gc"
+            "type": "size_t"
         },
         {
             "component": "gc",
-            "defaultValue": "true",
             "prefix": "-XX:",
             "definedIn": "share/gc/shenandoah/shenandoah_globals.hpp",
+            "defaultValue": "true",
             "name": "ShenandoahKeepAliveBarrier",
             "description": "Turn on/off keep alive barriers in Shenandoah",
             "availability": "diagnostic",
-            "type": "bool",
-            "key": "ShenandoahKeepAliveBarrier_null_null_gc"
+            "type": "bool"
         },
         {
             "component": "gc",
-            "defaultValue": "200",
             "prefix": "-XX:",
             "definedIn": "share/gc/shenandoah/shenandoah_globals.hpp",
+            "defaultValue": "200",
             "name": "ShenandoahMergeUpdateRefsMaxGap",
             "description": "If GC is currently running in merged update-refs mode this numbers gives the threshold when to switch to separate update-refs mode. Number is percentage relative to duration(marking)+duration(update-refs).",
             "availability": "experimental",
-            "type": "uintx",
-            "key": "ShenandoahMergeUpdateRefsMaxGap_null_null_gc"
+            "type": "uintx"
         },
         {
             "component": "gc",
-            "defaultValue": "100",
             "prefix": "-XX:",
             "definedIn": "share/gc/shenandoah/shenandoah_globals.hpp",
+            "defaultValue": "100",
             "name": "ShenandoahMergeUpdateRefsMinGap",
             "description": "If GC is currently running in separate update-refs mode this numbers gives the threshold when to switch to merged update-refs mode. Number is percentage relative toduration(marking)+duration(update-refs).",
             "availability": "experimental",
-            "type": "uintx",
-            "key": "ShenandoahMergeUpdateRefsMinGap_null_null_gc"
+            "type": "uintx"
         },
         {
             "component": "gc",
-            "defaultValue": "false",
             "prefix": "-XX:",
             "definedIn": "share/gc/shenandoah/shenandoah_globals.hpp",
+            "defaultValue": "false",
             "name": "ShenandoahOptimizeInstanceFinals",
             "description": "Optimize barriers on final instance fields.Turn it off for maximum compatibility with reflection or JNI code that manipulates final fields.",
             "availability": "experimental",
-            "type": "bool",
-            "key": "ShenandoahOptimizeInstanceFinals_null_null_gc"
+            "type": "bool"
         },
         {
             "component": "gc",
-            "defaultValue": "false",
             "prefix": "-XX:",
             "definedIn": "share/gc/shenandoah/shenandoah_globals.hpp",
+            "defaultValue": "false",
             "name": "ShenandoahOptimizeStableFinals",
             "description": "Optimize barriers on stable fields.Turn it off for maximum compatibility with reflection or JNI code that manipulates final fields.",
             "availability": "experimental",
-            "type": "bool",
-            "key": "ShenandoahOptimizeStableFinals_null_null_gc"
+            "type": "bool"
         },
         {
             "component": "gc",
-            "defaultValue": "4",
             "prefix": "-XX:",
             "definedIn": "share/gc/shenandoah/shenandoah_globals.hpp",
+            "defaultValue": "4",
             "name": "ShenandoahParallelSafepointThreads",
             "description": "Number of parallel threads used for safepoint prolog/epilog",
             "availability": "experimental",
-            "type": "uint",
-            "key": "ShenandoahParallelSafepointThreads_null_null_gc"
+            "type": "uint"
         },
         {
             "component": "gc",
-            "defaultValue": "false",
             "prefix": "-XX:",
             "definedIn": "share/gc/shenandoah/shenandoah_globals.hpp",
+            "defaultValue": "false",
             "name": "ShenandoahStoreCheck",
             "description": "Emit additional code that checks objects are written to only in to-space",
             "availability": "diagnostic",
-            "type": "bool",
-            "key": "ShenandoahStoreCheck_null_null_gc"
+            "type": "bool"
         },
         {
             "component": "gc",
-            "defaultValue": "false",
             "prefix": "-XX:",
             "definedIn": "share/gc/shenandoah/shenandoah_globals.hpp",
+            "defaultValue": "false",
             "name": "ShenandoahTerminationTrace",
             "description": "Tracing task termination timings",
             "availability": "diagnostic",
-            "type": "bool",
-            "key": "ShenandoahTerminationTrace_null_null_gc"
+            "type": "bool"
         },
         {
             "component": "gc",
-            "defaultValue": "adaptive",
             "prefix": "-XX:",
             "definedIn": "share/gc/shenandoah/shenandoah_globals.hpp",
+            "defaultValue": "adaptive",
             "name": "ShenandoahUpdateRefsEarly",
             "description": "Run a separate concurrent reference updating phase afterconcurrent evacuation. Possible values: 'on', 'off', 'adaptive'",
             "availability": "experimental",
-            "type": "ccstr",
-            "key": "ShenandoahUpdateRefsEarly_null_null_gc"
+            "type": "ccstr"
         },
         {
             "component": "gc",
-            "defaultValue": "false",
             "prefix": "-XX:",
             "definedIn": "share/gc/shenandoah/shenandoah_globals.hpp",
+            "defaultValue": "false",
             "name": "ShenandoahVerifyObjectEquals",
             "description": "Verify that == and != are not used on oops. Only in fastdebug",
             "availability": "develop",
-            "type": "bool",
-            "key": "ShenandoahVerifyObjectEquals_null_null_gc"
+            "type": "bool"
         },
         {
             "component": "runtime",
-            "defaultValue": "trueInDebug",
             "prefix": "-XX:",
             "definedIn": "share/runtime/globals.hpp",
+            "defaultValue": "trueInDebug",
             "name": "StrictSafepointChecks",
             "description": "Enable strict checks that safepoints cannot happen for threads that use NoSafepointVerifier",
             "availability": "notproduct",
-            "type": "bool",
-            "key": "StrictSafepointChecks_null_null_runtime"
+            "type": "bool"
         },
         {
-            "defaultValue": "true",
             "prefix": "-XX:",
             "definedIn": "cpu/aarch64/globals_aarch64.hpp",
+            "defaultValue": "true",
             "name": "ThreadLocalHandshakes",
             "cpu": "aarch64",
             "availability": "define_pd_global",
-            "type": "bool",
             "deprecation": "<span style=\"white-space:nowrap\">Deprecated in JDK13<\/span><br><span style=\"white-space:nowrap\">Obsoleted in JDK14<\/span><br><span style=\"white-space:nowrap\">Expired in JDK15<\/span>",
-            "key": "ThreadLocalHandshakes_null_aarch64_null"
+            "type": "bool"
         },
         {
             "component": "gc",
-            "defaultValue": "false",
             "prefix": "-XX:",
             "definedIn": "share/gc/parallel/parallel_globals.hpp",
+            "defaultValue": "false",
             "name": "TraceGCTaskManager",
             "description": "Trace actions of the GC task manager",
             "availability": "develop",
-            "type": "bool",
-            "key": "TraceGCTaskManager_null_null_gc"
+            "type": "bool"
         },
         {
             "component": "gc",
-            "defaultValue": "false",
             "prefix": "-XX:",
             "definedIn": "share/gc/parallel/parallel_globals.hpp",
+            "defaultValue": "false",
             "name": "TraceGCTaskQueue",
             "description": "Trace actions of the GC task queues",
             "availability": "develop",
-            "type": "bool",
-            "key": "TraceGCTaskQueue_null_null_gc"
+            "type": "bool"
         },
         {
             "component": "runtime",
-            "defaultValue": "false",
             "prefix": "-XX:",
             "definedIn": "share/runtime/globals.hpp",
+            "defaultValue": "false",
             "name": "TraceNMethodInstalls",
             "description": "Trace nmethod installation",
             "availability": "diagnostic",
-            "type": "bool",
             "deprecation": "<span style=\"white-space:nowrap\">Deprecated in JDK13<\/span><br><span style=\"white-space:nowrap\">Obsoleted in JDK14<\/span><br><span style=\"white-space:nowrap\">Expired in JDK15<\/span>",
-            "key": "TraceNMethodInstalls_null_null_runtime"
+            "type": "bool"
         },
         {
             "component": "gc",
-            "defaultValue": "true",
             "prefix": "-XX:",
             "definedIn": "share/gc/cms/cms_globals.hpp",
+            "defaultValue": "true",
             "name": "UseCMSBestFit",
             "description": "Use CMS best fit allocation strategy",
             "availability": "product",
-            "type": "bool",
             "deprecation": "<span style=\"white-space:nowrap\">Obsoleted in JDK14<\/span><br><span style=\"white-space:nowrap\">Expired in JDK15<\/span>",
-            "key": "UseCMSBestFit_null_null_gc"
+            "type": "bool"
         },
         {
             "component": "gc",
-            "defaultValue": "false",
             "prefix": "-XX:",
             "definedIn": "share/gc/cms/cms_globals.hpp",
+            "defaultValue": "false",
             "name": "UseCMSInitiatingOccupancyOnly",
             "description": "Only use occupancy as a criterion for starting a CMS collection",
             "availability": "product",
-            "type": "bool",
             "deprecation": "<span style=\"white-space:nowrap\">Obsoleted in JDK14<\/span><br><span style=\"white-space:nowrap\">Expired in JDK15<\/span>",
-            "key": "UseCMSInitiatingOccupancyOnly_null_null_gc"
+            "type": "bool"
         },
         {
             "component": "gc",
-            "defaultValue": "false",
             "prefix": "-XX:",
             "definedIn": "share/gc/shared/gc_globals.hpp",
+            "defaultValue": "false",
             "name": "UseConcMarkSweepGC",
             "description": "Use Concurrent Mark-Sweep GC in the old generation",
             "availability": "product",
-            "type": "bool",
             "deprecation": "<span style=\"white-space:nowrap\">Obsoleted in JDK14<\/span><br><span style=\"white-space:nowrap\">Expired in JDK15<\/span>",
-            "key": "UseConcMarkSweepGC_null_null_gc"
+            "type": "bool"
         },
         {
             "component": "runtime",
-            "defaultValue": "false",
             "prefix": "-XX:",
             "definedIn": "share/runtime/globals.hpp",
+            "defaultValue": "false",
             "name": "UseCriticalCMSThreadPriority",
             "description": "ConcurrentMarkSweep thread runs at critical scheduling priority",
             "availability": "experimental",
-            "type": "bool",
-            "key": "UseCriticalCMSThreadPriority_null_null_runtime"
+            "type": "bool"
         },
         {
             "component": "gc",
-            "defaultValue": "false",
             "prefix": "-XX:",
             "definedIn": "share/gc/shared/gc_globals.hpp",
+            "defaultValue": "false",
             "name": "UseGCTaskAffinity",
             "description": "Use worker affinity when asking for GCTasks",
             "availability": "product",
-            "type": "bool",
             "deprecation": "<span style=\"white-space:nowrap\">Obsoleted in JDK14<\/span><br><span style=\"white-space:nowrap\">Expired in JDK16<\/span>",
-            "key": "UseGCTaskAffinity_null_null_gc"
+            "type": "bool"
         },
         {
             "component": "runtime",
-            "defaultValue": "false",
             "prefix": "-XX:",
             "definedIn": "share/runtime/globals.hpp",
+            "defaultValue": "false",
             "name": "UseLegacyJNINameEscaping",
             "description": "Use the original JNI name escaping scheme",
             "availability": "product",
-            "type": "bool",
-            "key": "UseLegacyJNINameEscaping_null_null_runtime"
+            "type": "bool"
         },
         {
             "component": "gc",
-            "defaultValue": "false",
             "prefix": "-XX:",
             "definedIn": "share/gc/shared/gc_globals.hpp",
+            "defaultValue": "false",
             "name": "VerifyBlockOffsetArray",
             "description": "Do (expensive) block offset array verification",
             "availability": "develop",
-            "type": "bool",
-            "key": "VerifyBlockOffsetArray_null_null_gc"
+            "type": "bool"
         },
         {
             "component": "c2",
-            "defaultValue": "false",
             "prefix": "-XX:",
             "definedIn": "share/opto/c2_globals.hpp",
+            "defaultValue": "false",
             "name": "VerifyOpto",
             "description": "Apply more time consuming verification during compilation",
             "availability": "notproduct",
-            "type": "bool",
-            "key": "VerifyOpto_null_null_c2"
+            "type": "bool"
         },
         {
             "component": "gc",
-            "defaultValue": "false",
             "prefix": "-XX:",
             "definedIn": "share/gc/z/z_globals.hpp",
+            "defaultValue": "false",
             "name": "ZStatisticsForceTrace",
             "description": "Force tracing of ZStats",
             "availability": "diagnostic",
-            "type": "bool",
-            "key": "ZStatisticsForceTrace_null_null_gc"
+            "type": "bool"
         },
         {
             "component": "gc",
-            "defaultValue": "false",
             "prefix": "-XX:",
             "definedIn": "share/gc/z/z_globals.hpp",
+            "defaultValue": "false",
             "name": "ZVerifyLoadBarriers",
             "description": "Verify that reference loads are followed by barriers",
             "availability": "develop",
-            "type": "bool",
-            "key": "ZVerifyLoadBarriers_null_null_gc"
+            "type": "bool"
         }
     ],
     "added": [
         {
             "os": "linux",
-            "defaultValue": "false",
             "prefix": "-XX:",
             "definedIn": "os/linux/globals_linux.hpp",
+            "defaultValue": "false",
             "name": "AdjustStackSizeForTLS",
             "description": "Increase the thread stack size to include space for glibc static thread-local storage (TLS) if true",
             "availability": "product",
-            "type": "bool",
-            "key": "AdjustStackSizeForTLS_linux_null_null"
+            "type": "bool"
         },
         {
             "component": "runtime",
-            "defaultValue": "0",
             "prefix": "-XX:",
             "definedIn": "share/runtime/globals.hpp",
+            "defaultValue": "0",
             "name": "ArchiveRelocationMode",
             "range": "range(0, 2)",
             "description": "(0) first map at preferred address, and if unsuccessful, map at alternative address (default); (1) always map at alternative address; (2) always map at preferred address, and if unsuccessful, do not map the archive",
             "availability": "diagnostic",
-            "type": "intx",
-            "key": "ArchiveRelocationMode_null_null_runtime"
+            "type": "intx"
         },
         {
             "component": "runtime",
-            "defaultValue": "default",
             "prefix": "-XX:",
             "definedIn": "share/runtime/globals.hpp",
+            "defaultValue": "default",
             "name": "CompilationMode",
             "description": "Compilation modes: default: normal tiered compilation; quick-only: C1-only mode; high-only: C2/JVMCI-only mode; high-only-quick-internal: C2/JVMCI-only mode, with JVMCI compiler compiled with C1.",
             "availability": "product",
-            "type": "ccstr",
-            "key": "CompilationMode_null_null_runtime"
+            "type": "ccstr"
         },
         {
             "component": "jvmci",
-            "defaultValue": "false",
             "prefix": "-XX:",
             "definedIn": "share/jvmci/jvmci_globals.hpp",
+            "defaultValue": "false",
             "name": "EnableJVMCIProduct",
             "description": "Allow JVMCI to be used in product mode. This alters a subset of JVMCI flags to be non-experimental, defaults UseJVMCICompiler and EnableJVMCI to true and defaults UseJVMCINativeLibrary to true if a JVMCI native library is available.",
             "availability": "experimental",
-            "type": "bool",
-            "key": "EnableJVMCIProduct_null_null_jvmci"
+            "type": "bool"
         },
         {
             "component": "gc",
-            "defaultValue": "satb",
             "prefix": "-XX:",
             "definedIn": "share/gc/shenandoah/shenandoah_globals.hpp",
+            "defaultValue": "satb",
             "name": "ShenandoahGCMode",
             "description": "GC mode to use. Among other things, this defines which barriers are in in use. Possible values are: satb - snapshot-at-the-beginning concurrent GC (three pass mark-evac-update); iu - incremental-update concurrent GC (three pass mark-evac-update); passive - stop the world GC only (either degenerated or full)",
             "availability": "experimental",
-            "type": "ccstr",
-            "key": "ShenandoahGCMode_null_null_gc"
+            "type": "ccstr"
         },
         {
             "component": "gc",
-            "defaultValue": "0",
             "prefix": "-XX:",
             "definedIn": "share/gc/shenandoah/shenandoah_globals.hpp",
+            "defaultValue": "0",
             "name": "ShenandoahRegionSize",
             "description": "Static heap region size. Set zero to enable automatic sizing.",
             "availability": "experimental",
-            "type": "size_t",
-            "key": "ShenandoahRegionSize_null_null_gc"
+            "type": "size_t"
         },
         {
             "component": "gc",
-            "defaultValue": "true",
             "prefix": "-XX:",
             "definedIn": "share/gc/shenandoah/shenandoah_globals.hpp",
+            "defaultValue": "true",
             "name": "ShenandoahSelfFixing",
             "description": "Fix references with load reference barrier. Disabling this might degrade performance.",
             "availability": "diagnostic",
-            "type": "bool",
-            "key": "ShenandoahSelfFixing_null_null_gc"
+            "type": "bool"
         },
         {
             "component": "runtime",
-            "defaultValue": "false",
             "prefix": "-XX:",
             "definedIn": "share/runtime/globals.hpp",
+            "defaultValue": "false",
             "name": "ShowCodeDetailsInExceptionMessages",
             "description": "Show exception messages from RuntimeExceptions that contain snippets of the failing code. Disable this to improve privacy.",
             "availability": "manageable",
-            "type": "bool",
-            "key": "ShowCodeDetailsInExceptionMessages_null_null_runtime"
+            "type": "bool"
         },
         {
             "component": "runtime",
-            "defaultValue": "60000",
             "prefix": "-XX:",
             "definedIn": "share/runtime/globals.hpp",
+            "defaultValue": "60000",
             "name": "Tier0AOTBackEdgeThreshold",
             "range": "range(0, max_jint)",
             "description": "Back edge threshold at which to switch to interpreter to profile if coming from AOT (applicable only with CompilationMode=high-only|high-only-quick-internal)",
             "availability": "diagnostic",
-            "type": "intx",
-            "key": "Tier0AOTBackEdgeThreshold_null_null_runtime"
+            "type": "intx"
         },
         {
             "component": "runtime",
-            "defaultValue": "2000",
             "prefix": "-XX:",
             "definedIn": "share/runtime/globals.hpp",
+            "defaultValue": "2000",
             "name": "Tier0AOTCompileThreshold",
             "range": "range(0, max_jint)",
             "description": "Threshold at which to switch to interpreter to profile if coming from AOT (invocation minimum must be satisfied, applicable only with CompilationMode=high-only|high-only-quick-internal)",
             "availability": "diagnostic",
-            "type": "intx",
-            "key": "Tier0AOTCompileThreshold_null_null_runtime"
+            "type": "intx"
         },
         {
             "component": "runtime",
-            "defaultValue": "200",
             "prefix": "-XX:",
             "definedIn": "share/runtime/globals.hpp",
+            "defaultValue": "200",
             "name": "Tier0AOTInvocationThreshold",
             "range": "range(0, max_jint)",
             "description": "Switch to interpreter to profile if the number of method invocations crosses this threshold if coming from AOT (applicable only with CompilationMode=high-only|high-only-quick-internal)",
             "availability": "diagnostic",
-            "type": "intx",
-            "key": "Tier0AOTInvocationThreshold_null_null_runtime"
+            "type": "intx"
         },
         {
             "component": "runtime",
-            "defaultValue": "100",
             "prefix": "-XX:",
             "definedIn": "share/runtime/globals.hpp",
+            "defaultValue": "100",
             "name": "Tier0AOTMinInvocationThreshold",
             "range": "range(0, max_jint)",
             "description": "Minimum number of invocations to switch to interpreter to profile if coming from AOT (applicable only with CompilationMode=high-only|high-only-quick-internal)",
             "availability": "diagnostic",
-            "type": "intx",
-            "key": "Tier0AOTMinInvocationThreshold_null_null_runtime"
+            "type": "intx"
         },
         {
             "component": "runtime",
-            "defaultValue": "5",
             "prefix": "-XX:",
             "definedIn": "share/runtime/globals.hpp",
+            "defaultValue": "5",
             "name": "Tier0Delay",
             "range": "range(0, max_jint)",
             "description": "If C2 queue size grows over this amount per compiler thread do not start profiling in the interpreter (applicable only with CompilationMode=high-only|high-only-quick-internal)",
             "availability": "diagnostic",
-            "type": "intx",
-            "key": "Tier0Delay_null_null_runtime"
+            "type": "intx"
         },
         {
             "component": "runtime",
-            "defaultValue": "15000",
             "prefix": "-XX:",
             "definedIn": "share/runtime/globals.hpp",
+            "defaultValue": "15000",
             "name": "Tier40BackEdgeThreshold",
             "range": "range(0, max_jint)",
             "description": "Back edge threshold at which tier 4 OSR compilation is invoked (applicable only with CompilationMode=high-only|high-only-quick-internal)",
             "availability": "diagnostic",
-            "type": "intx",
-            "key": "Tier40BackEdgeThreshold_null_null_runtime"
+            "type": "intx"
         },
         {
             "component": "runtime",
-            "defaultValue": "10000",
             "prefix": "-XX:",
             "definedIn": "share/runtime/globals.hpp",
+            "defaultValue": "10000",
             "name": "Tier40CompileThreshold",
             "range": "range(0, max_jint)",
             "description": "Threshold at which tier 4 compilation is invoked (invocation minimum must be satisfied, applicable only with CompilationMode=high-only|high-only-quick-internal)",
             "availability": "diagnostic",
-            "type": "intx",
-            "key": "Tier40CompileThreshold_null_null_runtime"
+            "type": "intx"
         },
         {
             "component": "runtime",
-            "defaultValue": "5000",
             "prefix": "-XX:",
             "definedIn": "share/runtime/globals.hpp",
+            "defaultValue": "5000",
             "name": "Tier40InvocationThreshold",
             "range": "range(0, max_jint)",
             "description": "Compile if number of method invocations crosses this threshold (applicable only with CompilationMode=high-only|high-only-quick-internal)",
             "availability": "diagnostic",
-            "type": "intx",
-            "key": "Tier40InvocationThreshold_null_null_runtime"
+            "type": "intx"
         },
         {
             "component": "runtime",
-            "defaultValue": "600",
             "prefix": "-XX:",
             "definedIn": "share/runtime/globals.hpp",
+            "defaultValue": "600",
             "name": "Tier40MinInvocationThreshold",
             "range": "range(0, max_jint)",
             "description": "Minimum number of invocations to compile at tier 4 (applicable only with CompilationMode=high-only|high-only-quick-internal)",
             "availability": "diagnostic",
-            "type": "intx",
-            "key": "Tier40MinInvocationThreshold_null_null_runtime"
+            "type": "intx"
         },
         {
             "component": "runtime",
-            "defaultValue": "false",
             "prefix": "-XX:",
             "definedIn": "share/runtime/globals.hpp",
+            "defaultValue": "false",
             "name": "TraceMemoryWriteback",
             "description": "Trace memory writeback operations",
             "availability": "develop",
-            "type": "bool",
-            "key": "TraceMemoryWriteback_null_null_runtime"
+            "type": "bool"
         },
         {
             "component": "runtime",
-            "defaultValue": "true",
             "prefix": "-XX:",
             "definedIn": "share/runtime/globals.hpp",
+            "defaultValue": "true",
             "name": "UseNotificationThread",
             "description": "Use Notification Thread",
             "availability": "product",
-            "type": "bool",
-            "key": "UseNotificationThread_null_null_runtime"
+            "type": "bool"
         }
     ],
     "laterVM": "OpenJDK14",

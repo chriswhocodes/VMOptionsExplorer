@@ -2,205 +2,187 @@
     "removed": [
         {
             "component": "runtime",
-            "defaultValue": "false",
             "prefix": "-XX:",
             "definedIn": "share/runtime/globals.hpp",
+            "defaultValue": "false",
             "name": "BreakAtWarning",
             "description": "Execute breakpoint upon encountering VM warning",
             "availability": "develop",
-            "type": "bool",
-            "key": "BreakAtWarning_null_null_runtime"
+            "type": "bool"
         },
         {
             "component": "runtime",
-            "defaultValue": "true",
             "prefix": "-XX:",
             "definedIn": "share/runtime/globals.hpp",
+            "defaultValue": "true",
             "name": "CleanChunkPoolAsync",
             "description": "Clean the chunk pool asynchronously",
             "availability": "develop",
-            "type": "bool",
-            "key": "CleanChunkPoolAsync_null_null_runtime"
+            "type": "bool"
         },
         {
             "component": "runtime",
-            "defaultValue": "false",
             "prefix": "-XX:",
             "definedIn": "share/runtime/globals.hpp",
+            "defaultValue": "false",
             "name": "CountJNICalls",
             "description": "Count jni method invocations",
             "availability": "develop",
-            "type": "bool",
-            "key": "CountJNICalls_null_null_runtime"
+            "type": "bool"
         },
         {
             "component": "runtime",
-            "defaultValue": "false",
             "prefix": "-XX:",
             "definedIn": "share/runtime/globals.hpp",
+            "defaultValue": "false",
             "name": "CountJVMCalls",
             "description": "Count jvm method invocations",
             "availability": "notproduct",
-            "type": "bool",
-            "key": "CountJVMCalls_null_null_runtime"
+            "type": "bool"
         },
         {
             "component": "runtime",
-            "defaultValue": "false",
             "prefix": "-XX:",
             "definedIn": "share/runtime/globals.hpp",
+            "defaultValue": "false",
             "name": "CountRemovableExceptions",
             "description": "Count exceptions that could be replaced by branches due to inlining",
             "availability": "notproduct",
-            "type": "bool",
-            "key": "CountRemovableExceptions_null_null_runtime"
+            "type": "bool"
         },
         {
             "component": "runtime",
-            "defaultValue": "false",
             "prefix": "-XX:",
             "definedIn": "share/runtime/globals.hpp",
+            "defaultValue": "false",
             "name": "CountRuntimeCalls",
             "description": "Count VM runtime calls",
             "availability": "notproduct",
-            "type": "bool",
-            "key": "CountRuntimeCalls_null_null_runtime"
+            "type": "bool"
         },
         {
             "component": "runtime",
-            "defaultValue": "false",
             "prefix": "-XX:",
             "definedIn": "share/runtime/globals.hpp",
+            "defaultValue": "false",
             "name": "DisableStartThread",
             "description": "Disable starting of additional Java threads (for debugging only)",
             "availability": "develop",
-            "type": "bool",
-            "key": "DisableStartThread_null_null_runtime"
+            "type": "bool"
         },
         {
             "component": "runtime",
-            "defaultValue": "false",
             "prefix": "-XX:",
             "definedIn": "share/runtime/globals.hpp",
+            "defaultValue": "false",
             "name": "ExitVMOnVerifyError",
             "description": "standard exit from VM if bytecode verify error (only in debug mode)",
             "availability": "notproduct",
-            "type": "bool",
-            "key": "ExitVMOnVerifyError_null_null_runtime"
+            "type": "bool"
         },
         {
             "component": "runtime",
-            "defaultValue": "trueInDebug",
             "prefix": "-XX:",
             "definedIn": "share/runtime/globals.hpp",
+            "defaultValue": "trueInDebug",
             "name": "ForceFloatExceptions",
             "description": "Force exceptions on FP stack under/overflow",
             "availability": "develop",
-            "type": "bool",
-            "key": "ForceFloatExceptions_null_null_runtime"
+            "type": "bool"
         },
         {
             "component": "runtime",
-            "defaultValue": "false",
             "prefix": "-XX:",
             "definedIn": "share/runtime/globals.hpp",
+            "defaultValue": "false",
             "name": "IgnoreRewrites",
             "description": "Suppress rewrites of bytecodes in the oopmap generator. This is unsafe!",
             "availability": "develop",
-            "type": "bool",
-            "key": "IgnoreRewrites_null_null_runtime"
+            "type": "bool"
         },
         {
             "component": "gc",
-            "defaultValue": "false",
             "prefix": "-XX:",
             "definedIn": "share/gc/shenandoah/shenandoah_globals.hpp",
+            "defaultValue": "false",
             "name": "ShenandoahStoreValEnqueueBarrier",
             "description": "DIAGNOSTIC",
             "availability": "product",
-            "type": "bool",
-            "key": "ShenandoahStoreValEnqueueBarrier_null_null_gc"
+            "type": "bool"
         },
         {
             "component": "runtime",
-            "defaultValue": "true",
             "prefix": "-XX:",
             "definedIn": "share/runtime/globals.hpp",
+            "defaultValue": "true",
             "name": "UseStackBanging",
             "description": "use stack banging for stack overflow checks (required for proper StackOverflow handling; disable only to measure cost of stackbanging)",
             "availability": "develop",
-            "type": "bool",
-            "key": "UseStackBanging_null_null_runtime"
+            "type": "bool"
         },
         {
             "component": "runtime",
-            "defaultValue": "0",
             "prefix": "-XX:",
             "definedIn": "share/runtime/globals.hpp",
+            "defaultValue": "0",
             "name": "WarnOnStalledSpinLock",
             "description": "Print warnings for stalled SpinLocks",
             "availability": "notproduct",
-            "type": "uintx",
-            "key": "WarnOnStalledSpinLock_null_null_runtime"
+            "type": "uintx"
         }
     ],
     "added": [
         {
             "component": "c2",
-            "defaultValue": "512",
             "prefix": "-XX:",
             "definedIn": "share/opto/c2_globals.hpp",
+            "defaultValue": "512",
             "name": "EliminateAllocationFieldsLimit",
             "range": "range(0, max_jint)",
             "description": "DIAGNOSTIC",
             "availability": "product",
-            "type": "intx",
-            "key": "EliminateAllocationFieldsLimit_null_null_c2"
+            "type": "intx"
         },
         {
             "component": "runtime",
-            "defaultValue": "true",
             "prefix": "-XX:",
             "definedIn": "share/runtime/globals.hpp",
+            "defaultValue": "true",
             "name": "EnableJVMTIStackDepthAsserts",
             "description": "Enable JVMTI asserts related to stack depth checks",
             "availability": "notproduct",
-            "type": "bool",
-            "key": "EnableJVMTIStackDepthAsserts_null_null_runtime"
+            "type": "bool"
         },
         {
             "component": "runtime",
-            "defaultValue": "3",
             "prefix": "-XX:",
             "definedIn": "share/runtime/globals.hpp",
+            "defaultValue": "3",
             "name": "NoAsyncDeflationProgressMax",
             "range": "range(0, max_uintx)",
             "description": "DIAGNOSTIC",
             "availability": "product",
-            "type": "uintx",
-            "key": "NoAsyncDeflationProgressMax_null_null_runtime"
+            "type": "uintx"
         },
         {
             "component": "gc",
-            "defaultValue": "false",
             "prefix": "-XX:",
             "definedIn": "share/gc/shenandoah/shenandoah_globals.hpp",
+            "defaultValue": "false",
             "name": "ShenandoahIUBarrier",
             "description": "DIAGNOSTIC",
             "availability": "product",
-            "type": "bool",
-            "key": "ShenandoahIUBarrier_null_null_gc"
+            "type": "bool"
         },
         {
             "component": "c2",
-            "defaultValue": "false",
             "prefix": "-XX:",
             "definedIn": "share/opto/c2_globals.hpp",
+            "defaultValue": "false",
             "name": "StressCCP",
             "description": "DIAGNOSTIC",
             "availability": "product",
-            "type": "bool",
-            "key": "StressCCP_null_null_c2"
+            "type": "bool"
         }
     ],
     "laterVM": "OpenJDK17",

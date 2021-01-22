@@ -245,7 +245,7 @@ public class IntrinsicParser
 
 		if (serialisationPath != null)
 		{
-			serialiser.serialiseIntrinsics(serialisationPath.resolve(Paths.get(jdkName + "_instrinsics.json")), getIntrinsics());
+			serialiser.serialiseIntrinsics(serialisationPath.resolve(Paths.get(jdkName + "_intrinsics.json")), getIntrinsics());
 		}
 	}
 
