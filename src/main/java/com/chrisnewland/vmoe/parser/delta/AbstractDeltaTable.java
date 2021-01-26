@@ -27,41 +27,78 @@ public abstract class AbstractDeltaTable implements IDeltaTable
 		this.laterVM = laterVM;
 	}
 
-	@Override
-	public void recordAddition(SwitchInfo switchInfo)
+	@Override public void recordAddition(SwitchInfo switchInfo)
 	{
 		added.add(switchInfo);
 	}
 
-	@Override
-	public void recordRemoval(SwitchInfo switchInfo)
+	@Override public void recordRemoval(SwitchInfo switchInfo)
 	{
 		removed.add(switchInfo);
 	}
 
-	@Override
-	public int getAdditionCount()
+	@Override public int getAdditionCount()
 	{
 		return added.size();
 	}
 
-	@Override
-	public int getRemovalCount()
+	@Override public int getRemovalCount()
 	{
 		return removed.size();
 	}
 
-	@Override
-	public String toJSON()
+	@Override public String toJSON()
 	{
-		JSONObject jsonObject = OrderedJSONObjectFactory.getJSONObject();
+		StringBuilder builder = new StringBuilder();
 
-		jsonObject.put("earlierVM", earlierVM.getSafeJDKName());
-		jsonObject.put("laterVM", laterVM.getSafeJDKName());
-		jsonObject.put("added", added);
-		jsonObject.put("removed", removed);
+		builder.append('{');
 
-		return jsonObject.toString(4);
+		builder.append(putJSONKeyValue("earlierVM", earlierVM.getSafeJDKName()));
+		builder.append(putJSONKeyValue("laterVM", laterVM.getSafeJDKName()));
+		builder.append(putJSONKeyValueList("added", added));
+		builder.append(putJSONKeyValueList("removed", removed));
+
+		builder.deleteCharAt(builder.length() - 1).append('}');
+
+		return builder.toString();
+	}
+
+	private String putJSONKeyValue(String key, String value)
+	{
+		StringBuilder builder = new StringBuilder();
+
+		builder.append('"').append(key).append("\": \"").append(value).append("\",");
+
+		return builder.toString();
+	}
+
+	private String putJSONKeyValueList(String key, List<SwitchInfo> list)
+	{
+		StringBuilder builder = new StringBuilder();
+
+		builder.append('"').append(key).append("\":").append(listToOrderedJSONString(list)).append(",");
+
+		return builder.toString();
+	}
+
+	private String listToOrderedJSONString(List<SwitchInfo> list)
+	{
+		StringBuilder builder = new StringBuilder();
+
+		builder.append('[');
+
+		for (SwitchInfo switchInfo : list)
+		{
+			//builder.append('{');
+
+			builder.append(switchInfo.serialise());
+
+			builder.append(",");
+		}
+
+		builder.deleteCharAt(builder.length() - 1).append(']');
+
+		return builder.toString();
 	}
 
 	@Override public boolean equals(Object o)

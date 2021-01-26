@@ -7,7 +7,8 @@ package com.chrisnewland.vmoe;
 import org.json.JSONObject;
 
 import java.lang.reflect.Field;
-import java.util.LinkedHashMap;
+
+import java.util.TreeMap;
 
 public class OrderedJSONObjectFactory
 {
@@ -19,7 +20,7 @@ public class OrderedJSONObjectFactory
 		{
 			Field changeMap = jsonObject.getClass().getDeclaredField("map");
 			changeMap.setAccessible(true);
-			changeMap.set(jsonObject, new LinkedHashMap<>());
+			changeMap.set(jsonObject, new TreeMap<>());
 			changeMap.setAccessible(false);
 		}
 		catch (IllegalAccessException | NoSuchFieldException e)
