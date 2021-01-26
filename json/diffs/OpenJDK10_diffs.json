@@ -1,386 +1,12 @@
 {
-    "removed": [
-        {
-            "component": "runtime",
-            "prefix": "-XX:",
-            "definedIn": "src/share/vm/runtime/globals.hpp",
-            "defaultValue": "5000",
-            "name": "AutoGCSelectPauseMillis",
-            "range": "range(0, max_uintx)",
-            "description": "Automatic GC selection pause threshold in milliseconds",
-            "availability": "product",
-            "type": "uintx"
-        },
-        {
-            "component": "c1",
-            "prefix": "-XX:",
-            "definedIn": "src/cpu/aarch64/vm/c1_globals_aarch64.hpp",
-            "defaultValue": "100000",
-            "name": "BackEdgeThreshold",
-            "cpu": "aarch64",
-            "availability": "define_pd_global",
-            "type": "intx"
-        },
-        {
-            "component": "runtime",
-            "prefix": "-XX:",
-            "definedIn": "src/share/vm/runtime/globals.hpp",
-            "defaultValue": "0",
-            "name": "ClearFPUAtPark",
-            "description": "(Unsafe, Unstable)",
-            "availability": "experimental",
-            "type": "intx"
-        },
-        {
-            "component": "runtime",
-            "prefix": "-XX:",
-            "definedIn": "src/share/vm/runtime/globals.hpp",
-            "defaultValue": "true",
-            "name": "ConvertSleepToYield",
-            "description": "Convert sleep(0) to thread yield",
-            "availability": "product",
-            "deprecation": "<span style=\"white-space:nowrap\">Deprecated in JDK9<\/span><br><span style=\"white-space:nowrap\">Obsoleted in JDK10<\/span><br><span style=\"white-space:nowrap\">Expired in JDK11<\/span>",
-            "type": "bool"
-        },
-        {
-            "component": "runtime",
-            "prefix": "-XX:",
-            "definedIn": "src/share/vm/runtime/globals.hpp",
-            "defaultValue": "false",
-            "name": "ConvertYieldToSleep",
-            "description": "Convert yield to a sleep of MinSleepInterval to simulate Win32 behavior",
-            "availability": "product",
-            "deprecation": "<span style=\"white-space:nowrap\">Deprecated in JDK9<\/span><br><span style=\"white-space:nowrap\">Obsoleted in JDK10<\/span><br><span style=\"white-space:nowrap\">Expired in JDK11<\/span>",
-            "type": "bool"
-        },
-        {
-            "component": "runtime",
-            "prefix": "-XX:",
-            "definedIn": "src/share/vm/runtime/globals.hpp",
-            "defaultValue": "false",
-            "name": "ExplicitGCInvokesConcurrentAndUnloadsClasses",
-            "description": "A System.gc() request invokes a concurrent collection and also unloads classes during such a concurrent gc cycle (effective only when UseConcMarkSweepGC)",
-            "availability": "product",
-            "type": "bool"
-        },
-        {
-            "component": "gc",
-            "prefix": "-XX:",
-            "definedIn": "src/share/vm/gc/g1/g1_globals.hpp",
-            "defaultValue": "false",
-            "name": "G1HRRSFlushLogBuffersOnVerify",
-            "description": "Forces flushing of log buffers before verification.",
-            "availability": "develop",
-            "type": "bool"
-        },
-        {
-            "component": "gc",
-            "prefix": "-XX:",
-            "definedIn": "src/share/vm/gc/g1/g1_globals.hpp",
-            "defaultValue": "0",
-            "name": "G1MarkingOverheadPercent",
-            "range": "range(0, 100)",
-            "description": "Overhead of concurrent marking",
-            "availability": "develop",
-            "type": "intx"
-        },
-        {
-            "prefix": "-XX:",
-            "definedIn": "src/cpu/ppc/vm/globals_ppc.hpp",
-            "defaultValue": "false",
-            "name": "LoadPollAddressFromThread",
-            "cpu": "ppc",
-            "description": "Load polling page address from thread object (required for per-thread safepoints on platforms != IA64)",
-            "availability": "product",
-            "type": "bool"
-        },
-        {
-            "component": "runtime",
-            "prefix": "-XX:",
-            "definedIn": "src/share/vm/runtime/globals.hpp",
-            "defaultValue": "1",
-            "name": "MinSleepInterval",
-            "description": "Minimum sleep() interval (milliseconds) when ConvertSleepToYield is off (used for Solaris)",
-            "availability": "develop",
-            "deprecation": "<span style=\"white-space:nowrap\">Deprecated in JDK9<\/span><br><span style=\"white-space:nowrap\">Obsoleted in JDK10<\/span><br><span style=\"white-space:nowrap\">Expired in JDK11<\/span>",
-            "type": "intx"
-        },
-        {
-            "component": "runtime",
-            "prefix": "-XX:",
-            "definedIn": "src/share/vm/runtime/globals.hpp",
-            "defaultValue": "false",
-            "name": "PerfTraceDataCreation",
-            "description": "Trace creation of Performance Data Entries",
-            "availability": "develop",
-            "type": "bool"
-        },
-        {
-            "component": "runtime",
-            "prefix": "-XX:",
-            "definedIn": "src/share/vm/runtime/globals.hpp",
-            "defaultValue": "false",
-            "name": "PerfTraceMemOps",
-            "description": "Trace PerfMemory create/attach/detach calls",
-            "availability": "develop",
-            "type": "bool"
-        },
-        {
-            "component": "runtime",
-            "prefix": "-XX:",
-            "definedIn": "src/share/vm/runtime/globals.hpp",
-            "defaultValue": "0",
-            "name": "PredictedLoadedClassCount",
-            "description": "Experimental: Tune loaded class cache starting size",
-            "availability": "experimental",
-            "type": "intx"
-        },
-        {
-            "component": "runtime",
-            "prefix": "-XX:",
-            "definedIn": "src/share/vm/runtime/globals.hpp",
-            "defaultValue": "false",
-            "name": "PrintSharedSpaces",
-            "description": "Print usage of shared spaces",
-            "availability": "product",
-            "deprecation": "<span style=\"white-space:nowrap\">Obsoleted in JDK16<\/span><br><span style=\"white-space:nowrap\">Expired in JDK17<\/span>",
-            "type": "bool"
-        },
-        {
-            "component": "c1",
-            "prefix": "-XX:",
-            "definedIn": "src/cpu/aarch64/vm/c1_globals_aarch64.hpp",
-            "defaultValue": "0",
-            "name": "SafepointPollOffset",
-            "cpu": "aarch64",
-            "availability": "define_pd_global",
-            "type": "intx"
-        },
-        {
-            "component": "runtime",
-            "prefix": "-XX:",
-            "definedIn": "src/share/vm/runtime/globals.hpp",
-            "defaultValue": "DEFAULT_SHARED_MISC_CODE_SIZE",
-            "name": "SharedMiscCodeSize",
-            "range": "range(MIN_SHARED_MISC_CODE_SIZE, MAX_SHARED_MISC_CODE_SIZE)",
-            "description": "Size of the shared miscellaneous code area (in bytes)",
-            "availability": "product",
-            "deprecation": "<span style=\"white-space:nowrap\">Obsoleted in JDK10<\/span>",
-            "type": "size_t"
-        },
-        {
-            "component": "runtime",
-            "prefix": "-XX:",
-            "definedIn": "src/share/vm/runtime/globals.hpp",
-            "defaultValue": "DEFAULT_SHARED_MISC_DATA_SIZE",
-            "name": "SharedMiscDataSize",
-            "range": "range(MIN_SHARED_MISC_DATA_SIZE, MAX_SHARED_MISC_DATA_SIZE)",
-            "description": "Size of the shared miscellaneous data area (in bytes)",
-            "availability": "product",
-            "deprecation": "<span style=\"white-space:nowrap\">Obsoleted in JDK10<\/span>",
-            "type": "size_t"
-        },
-        {
-            "component": "runtime",
-            "prefix": "-XX:",
-            "definedIn": "src/share/vm/runtime/globals.hpp",
-            "defaultValue": "DEFAULT_SHARED_READ_ONLY_SIZE",
-            "name": "SharedReadOnlySize",
-            "range": "range(MIN_SHARED_READ_ONLY_SIZE, MAX_SHARED_READ_ONLY_SIZE)",
-            "description": "Size of read-only space for metadata (in bytes)",
-            "availability": "product",
-            "deprecation": "<span style=\"white-space:nowrap\">Obsoleted in JDK10<\/span>",
-            "type": "size_t"
-        },
-        {
-            "component": "runtime",
-            "prefix": "-XX:",
-            "definedIn": "src/share/vm/runtime/globals.hpp",
-            "defaultValue": "DEFAULT_SHARED_READ_WRITE_SIZE",
-            "name": "SharedReadWriteSize",
-            "range": "range(MIN_SHARED_READ_WRITE_SIZE, MAX_SHARED_READ_WRITE_SIZE)",
-            "description": "Size of read-write space for metadata (in bytes)",
-            "availability": "product",
-            "deprecation": "<span style=\"white-space:nowrap\">Obsoleted in JDK10<\/span>",
-            "type": "size_t"
-        },
-        {
-            "component": "shark",
-            "prefix": "-XX:",
-            "definedIn": "src/share/vm/shark/shark_globals.hpp",
-            "defaultValue": "32",
-            "name": "SharkMaxInlineSize",
-            "description": "Maximum bytecode size of methods to inline when using Shark",
-            "availability": "product",
-            "type": "intx"
-        },
-        {
-            "component": "shark",
-            "prefix": "-XX:",
-            "definedIn": "src/share/vm/shark/shark_globals.hpp",
-            "defaultValue": "Default",
-            "name": "SharkOptimizationLevel",
-            "description": "The optimization level passed to LLVM, possible values: None, Less, Default and Agressive",
-            "availability": "product",
-            "type": "ccstr"
-        },
-        {
-            "component": "shark",
-            "prefix": "-XX:",
-            "definedIn": "src/share/vm/shark/shark_globals.hpp",
-            "defaultValue": "false",
-            "name": "SharkPerformanceWarnings",
-            "description": "Warn about things that could be made faster",
-            "availability": "diagnostic",
-            "type": "bool"
-        },
-        {
-            "component": "shark",
-            "prefix": "-XX:",
-            "definedIn": "src/share/vm/shark/shark_globals.hpp",
-            "defaultValue": "NULL",
-            "name": "SharkPrintAsmOf",
-            "description": "Print the asm of the specified method",
-            "availability": "diagnostic",
-            "type": "ccstr"
-        },
-        {
-            "component": "shark",
-            "prefix": "-XX:",
-            "definedIn": "src/share/vm/shark/shark_globals.hpp",
-            "defaultValue": "NULL",
-            "name": "SharkPrintBitcodeOf",
-            "description": "Print the LLVM bitcode of the specified method",
-            "availability": "diagnostic",
-            "type": "ccstr"
-        },
-        {
-            "component": "shark",
-            "prefix": "-XX:",
-            "definedIn": "src/share/vm/shark/shark_globals.hpp",
-            "defaultValue": "NULL",
-            "name": "SharkPrintTypeflowOf",
-            "description": "Print the typeflow of the specified method",
-            "availability": "develop",
-            "type": "ccstr"
-        },
-        {
-            "component": "shark",
-            "prefix": "-XX:",
-            "definedIn": "src/share/vm/shark/shark_globals.hpp",
-            "defaultValue": "false",
-            "name": "SharkTraceBytecodes",
-            "description": "Trace bytecode compilation",
-            "availability": "develop",
-            "type": "bool"
-        },
-        {
-            "component": "shark",
-            "prefix": "-XX:",
-            "definedIn": "src/share/vm/shark/shark_globals.hpp",
-            "defaultValue": "false",
-            "name": "SharkTraceInstalls",
-            "description": "Trace method installation",
-            "availability": "diagnostic",
-            "type": "bool"
-        },
-        {
-            "component": "shark",
-            "prefix": "-XX:",
-            "definedIn": "src/share/vm/shark/shark_globals.hpp",
-            "defaultValue": "NULL",
-            "name": "SharkVerifyFunction",
-            "description": "Runs LLVM verify over LLVM IR",
-            "availability": "develop",
-            "type": "ccstr"
-        },
-        {
-            "component": "runtime",
-            "prefix": "-XX:",
-            "definedIn": "src/share/vm/runtime/globals.hpp",
-            "defaultValue": "false",
-            "name": "TraceOldGenTime",
-            "description": "Trace accumulated time for old collection",
-            "availability": "product",
-            "type": "bool"
-        },
-        {
-            "component": "runtime",
-            "prefix": "-XX:",
-            "definedIn": "src/share/vm/runtime/globals.hpp",
-            "defaultValue": "false",
-            "name": "TraceOopMapGeneration",
-            "description": "Show OopMapGeneration",
-            "availability": "develop",
-            "type": "bool"
-        },
-        {
-            "component": "runtime",
-            "prefix": "-XX:",
-            "definedIn": "src/share/vm/runtime/globals.hpp",
-            "defaultValue": "false",
-            "name": "TraceYoungGenTime",
-            "description": "Trace accumulated time for young collection",
-            "availability": "product",
-            "type": "bool"
-        },
-        {
-            "component": "runtime",
-            "prefix": "-XX:",
-            "definedIn": "src/share/vm/runtime/globals.hpp",
-            "defaultValue": "false",
-            "name": "UseAutoGCSelectPolicy",
-            "description": "Use automatic collection selection policy",
-            "availability": "product",
-            "type": "bool"
-        },
-        {
-            "component": "runtime",
-            "prefix": "-XX:",
-            "definedIn": "src/share/vm/runtime/globals.hpp",
-            "defaultValue": "false",
-            "name": "UseParNewGC",
-            "description": "Use parallel threads in the new generation",
-            "availability": "product",
-            "type": "bool"
-        },
-        {
-            "component": "runtime",
-            "prefix": "-XX:",
-            "definedIn": "src/share/vm/runtime/globals.hpp",
-            "defaultValue": "false",
-            "name": "UseRelocIndex",
-            "description": "Use an index to speed random access to relocations",
-            "availability": "develop",
-            "type": "bool"
-        },
-        {
-            "prefix": "-XX:",
-            "definedIn": "src/cpu/sparc/vm/globals_sparc.hpp",
-            "defaultValue": "false",
-            "name": "UseV8InstrsOnly",
-            "cpu": "sparc",
-            "description": "Use SPARC-V8 Compliant instruction subset",
-            "availability": "develop",
-            "type": "bool"
-        },
-        {
-            "component": "runtime",
-            "prefix": "-XX:",
-            "definedIn": "src/share/vm/runtime/globals.hpp",
-            "defaultValue": "trueInDebug",
-            "name": "ZapJNIHandleArea",
-            "description": "Zap freed JNI handle space with 0xFEFEFEFE",
-            "availability": "develop",
-            "type": "bool"
-        }
-    ],
+    "earlierVM": "OpenJDK9",
+    "laterVM": "OpenJDK10",
     "added": [
         {
             "component": "runtime",
+            "defaultValue": "-1",
             "prefix": "-XX:",
             "definedIn": "share/runtime/globals.hpp",
-            "defaultValue": "-1",
             "name": "ActiveProcessorCount",
             "description": "Specify the CPU count the VM should use and report as active",
             "availability": "product",
@@ -388,9 +14,9 @@
         },
         {
             "component": "runtime",
+            "defaultValue": "false",
             "prefix": "-XX:",
             "definedIn": "share/runtime/globals.hpp",
-            "defaultValue": "false",
             "name": "AggressiveHeap",
             "description": "Optimize heap options for long-running memory intensive apps",
             "availability": "product",
@@ -398,9 +24,9 @@
         },
         {
             "component": "runtime",
+            "defaultValue": "NULL",
             "prefix": "-XX:",
             "definedIn": "share/runtime/globals.hpp",
-            "defaultValue": "NULL",
             "name": "AllocateHeapAt",
             "description": "Path to the directoy where a temporary file will be created to use as the backing store for Java Heap.",
             "availability": "product",
@@ -408,9 +34,9 @@
         },
         {
             "component": "runtime",
+            "defaultValue": "false",
             "prefix": "-XX:",
             "definedIn": "share/runtime/globals.hpp",
-            "defaultValue": "false",
             "name": "CalculateClassFingerprint",
             "description": "Calculate class fingerprint",
             "availability": "product",
@@ -418,9 +44,9 @@
         },
         {
             "component": "runtime",
+            "defaultValue": "false",
             "prefix": "-XX:",
             "definedIn": "share/runtime/globals.hpp",
-            "defaultValue": "false",
             "name": "DisablePrimordialThreadGuardPages",
             "description": "Disable the use of stack guard pages if the JVM is loaded on the primordial process thread",
             "availability": "experimental",
@@ -428,9 +54,9 @@
         },
         {
             "component": "runtime",
+            "defaultValue": "true",
             "prefix": "-XX:",
             "definedIn": "share/runtime/globals.hpp",
-            "defaultValue": "true",
             "name": "DynamicallyResizeSystemDictionaries",
             "description": "Dynamically resize system dictionaries as needed",
             "availability": "diagnostic",
@@ -438,9 +64,9 @@
         },
         {
             "component": "runtime",
+            "defaultValue": "true",
             "prefix": "-XX:",
             "definedIn": "share/runtime/globals.hpp",
-            "defaultValue": "true",
             "name": "EnableThreadSMRExtraValidityChecks",
             "description": "Enable Thread SMR extra validity checks",
             "availability": "diagnostic",
@@ -448,9 +74,9 @@
         },
         {
             "component": "runtime",
+            "defaultValue": "trueInDebug",
             "prefix": "-XX:",
             "definedIn": "share/runtime/globals.hpp",
-            "defaultValue": "trueInDebug",
             "name": "EnableThreadSMRStatistics",
             "description": "Enable Thread SMR Statistics",
             "availability": "diagnostic",
@@ -458,9 +84,9 @@
         },
         {
             "component": "runtime",
+            "defaultValue": "0",
             "prefix": "-XX:",
             "definedIn": "share/runtime/globals.hpp",
-            "defaultValue": "0",
             "name": "HandshakeTimeout",
             "description": "If nonzero set a timeout in milliseconds for handshakes",
             "availability": "diagnostic",
@@ -468,9 +94,9 @@
         },
         {
             "component": "runtime",
+            "defaultValue": "1.5625",
             "prefix": "-XX:",
             "definedIn": "share/runtime/globals.hpp",
-            "defaultValue": "1.5625",
             "name": "InitialRAMPercentage",
             "range": "range(0.0, 100.0)",
             "description": "Percentage of real memory used for initial heap size",
@@ -479,9 +105,9 @@
         },
         {
             "component": "c2",
+            "defaultValue": "0",
             "prefix": "-XX:",
             "definedIn": "share/opto/c2_globals.hpp",
-            "defaultValue": "0",
             "name": "LoopStripMiningIter",
             "range": "range(0, max_juint)",
             "description": "Number of iterations in strip mined loop",
@@ -490,9 +116,9 @@
         },
         {
             "component": "c2",
+            "defaultValue": "0",
             "prefix": "-XX:",
             "definedIn": "share/opto/c2_globals.hpp",
-            "defaultValue": "0",
             "name": "LoopStripMiningIterShortLoop",
             "range": "range(0, max_juint)",
             "description": "Loop with fewer iterations are not strip mined",
@@ -501,9 +127,9 @@
         },
         {
             "component": "runtime",
+            "defaultValue": "25.0",
             "prefix": "-XX:",
             "definedIn": "share/runtime/globals.hpp",
-            "defaultValue": "25.0",
             "name": "MaxRAMPercentage",
             "range": "range(0.0, 100.0)",
             "description": "Maximum percentage of real memory used for maximum heap size",
@@ -512,9 +138,9 @@
         },
         {
             "component": "runtime",
+            "defaultValue": "50.0",
             "prefix": "-XX:",
             "definedIn": "share/runtime/globals.hpp",
-            "defaultValue": "50.0",
             "name": "MinRAMPercentage",
             "range": "range(0.0, 100.0)",
             "description": "Minimum percentage of real memory used for maximum heapsize on systems with small physical memory size",
@@ -523,9 +149,9 @@
         },
         {
             "component": "runtime",
+            "defaultValue": "90",
             "prefix": "-XX:",
             "definedIn": "share/runtime/globals.hpp",
-            "defaultValue": "90",
             "name": "MonitorUsedDeflationThreshold",
             "range": "range(0, 100)",
             "description": "Percentage of used monitors before triggering cleanup safepoint which deflates monitors (0 is off). The check is performed on GuaranteedSafepointInterval.",
@@ -534,18 +160,18 @@
         },
         {
             "component": "runtime",
+            "defaultValue": "NULL",
             "prefix": "-XX:",
             "definedIn": "share/runtime/globals.hpp",
-            "defaultValue": "NULL",
             "name": "SharedArchiveConfigFile",
             "description": "Data to add to the CDS archive file",
             "availability": "product",
             "type": "ccstr"
         },
         {
+            "defaultValue": "-1",
             "prefix": "-XX:",
             "definedIn": "cpu/aarch64/globals_aarch64.hpp",
-            "defaultValue": "-1",
             "name": "SoftwarePrefetchHintDistance",
             "range": "range(-1, 32760)",
             "cpu": "aarch64",
@@ -554,9 +180,9 @@
             "type": "int"
         },
         {
+            "defaultValue": "false",
             "prefix": "-XX:",
             "definedIn": "cpu/ppc/globals_ppc.hpp",
-            "defaultValue": "false",
             "name": "SuperwordUseVSX",
             "cpu": "ppc",
             "description": "Use Power8 VSX instructions for superword optimization.",
@@ -565,49 +191,49 @@
         },
         {
             "component": "runtime",
+            "defaultValue": "false",
             "prefix": "-XX:",
             "definedIn": "share/runtime/globals.hpp",
-            "defaultValue": "false",
             "name": "TestUnresponsiveErrorHandler",
             "description": "If true, simulates an unresponsive error handler.",
             "availability": "notproduct",
             "type": "bool"
         },
         {
+            "defaultValue": "true",
             "prefix": "-XX:",
             "definedIn": "cpu/aarch64/globals_aarch64.hpp",
-            "defaultValue": "true",
             "name": "ThreadLocalHandshakes",
             "cpu": "aarch64",
             "availability": "define_pd_global",
-            "deprecation": "<span style=\"white-space:nowrap\">Deprecated in JDK13<\/span><br><span style=\"white-space:nowrap\">Obsoleted in JDK14<\/span><br><span style=\"white-space:nowrap\">Expired in JDK15<\/span>",
-            "type": "bool"
+            "type": "bool",
+            "deprecation": "<span style=\"white-space:nowrap\">Deprecated in JDK13<\/span><br><span style=\"white-space:nowrap\">Obsoleted in JDK14<\/span><br><span style=\"white-space:nowrap\">Expired in JDK15<\/span>"
         },
         {
             "component": "runtime",
+            "defaultValue": "false",
             "prefix": "-XX:",
             "definedIn": "share/runtime/globals.hpp",
-            "defaultValue": "false",
             "name": "UseAppCDS",
             "description": "Enable Application Class Data Sharing when using shared spaces",
             "availability": "product",
-            "deprecation": "<span style=\"white-space:nowrap\">Obsoleted in JDK11<\/span><br><span style=\"white-space:nowrap\">Expired in JDK12<\/span>",
-            "type": "bool"
+            "type": "bool",
+            "deprecation": "<span style=\"white-space:nowrap\">Obsoleted in JDK11<\/span><br><span style=\"white-space:nowrap\">Expired in JDK12<\/span>"
         },
         {
             "os": "linux",
+            "defaultValue": "true",
             "prefix": "-XX:",
             "definedIn": "os/linux/globals_linux.hpp",
-            "defaultValue": "true",
             "name": "UseContainerSupport",
             "description": "Enable detection and runtime container configuration support",
             "availability": "product",
             "type": "bool"
         },
         {
+            "defaultValue": "false",
             "prefix": "-XX:",
             "definedIn": "cpu/sparc/globals_sparc.hpp",
-            "defaultValue": "false",
             "name": "UseMPMUL",
             "cpu": "sparc",
             "description": "Use multi-precision multiply instruction (mpmul) on SPARC",
@@ -616,9 +242,9 @@
         },
         {
             "component": "c2",
+            "defaultValue": "true",
             "prefix": "-XX:",
             "definedIn": "share/opto/c2_globals.hpp",
-            "defaultValue": "true",
             "name": "UseSubwordForMaxVector",
             "description": "Use Subword Analysis to set maximum vector size",
             "availability": "product",
@@ -626,9 +252,9 @@
         },
         {
             "component": "c2",
+            "defaultValue": "false",
             "prefix": "-XX:",
             "definedIn": "share/opto/c2_globals.hpp",
-            "defaultValue": "false",
             "name": "UseVectorCmov",
             "description": "Use Vectorized Cmov",
             "availability": "product",
@@ -636,14 +262,388 @@
         },
         {
             "component": "runtime",
+            "defaultValue": "GC type(s) to verify when Verify*GC is enabled.Available types are collector specific.",
             "prefix": "-XX:",
             "definedIn": "share/runtime/globals.hpp",
-            "defaultValue": "GC type(s) to verify when Verify*GC is enabled.Available types are collector specific.",
             "name": "VerifyGCType",
             "availability": "diagnostic",
             "type": "ccstrlist"
         }
     ],
-    "laterVM": "OpenJDK10",
-    "earlierVM": "OpenJDK9"
+    "removed": [
+        {
+            "component": "runtime",
+            "defaultValue": "5000",
+            "prefix": "-XX:",
+            "definedIn": "src/share/vm/runtime/globals.hpp",
+            "name": "AutoGCSelectPauseMillis",
+            "range": "range(0, max_uintx)",
+            "description": "Automatic GC selection pause threshold in milliseconds",
+            "availability": "product",
+            "type": "uintx"
+        },
+        {
+            "component": "c1",
+            "defaultValue": "100000",
+            "prefix": "-XX:",
+            "definedIn": "src/cpu/aarch64/vm/c1_globals_aarch64.hpp",
+            "name": "BackEdgeThreshold",
+            "cpu": "aarch64",
+            "availability": "define_pd_global",
+            "type": "intx"
+        },
+        {
+            "component": "runtime",
+            "defaultValue": "0",
+            "prefix": "-XX:",
+            "definedIn": "src/share/vm/runtime/globals.hpp",
+            "name": "ClearFPUAtPark",
+            "description": "(Unsafe, Unstable)",
+            "availability": "experimental",
+            "type": "intx"
+        },
+        {
+            "component": "runtime",
+            "defaultValue": "true",
+            "prefix": "-XX:",
+            "definedIn": "src/share/vm/runtime/globals.hpp",
+            "name": "ConvertSleepToYield",
+            "description": "Convert sleep(0) to thread yield",
+            "availability": "product",
+            "type": "bool",
+            "deprecation": "<span style=\"white-space:nowrap\">Deprecated in JDK9<\/span><br><span style=\"white-space:nowrap\">Obsoleted in JDK10<\/span><br><span style=\"white-space:nowrap\">Expired in JDK11<\/span>"
+        },
+        {
+            "component": "runtime",
+            "defaultValue": "false",
+            "prefix": "-XX:",
+            "definedIn": "src/share/vm/runtime/globals.hpp",
+            "name": "ConvertYieldToSleep",
+            "description": "Convert yield to a sleep of MinSleepInterval to simulate Win32 behavior",
+            "availability": "product",
+            "type": "bool",
+            "deprecation": "<span style=\"white-space:nowrap\">Deprecated in JDK9<\/span><br><span style=\"white-space:nowrap\">Obsoleted in JDK10<\/span><br><span style=\"white-space:nowrap\">Expired in JDK11<\/span>"
+        },
+        {
+            "component": "runtime",
+            "defaultValue": "false",
+            "prefix": "-XX:",
+            "definedIn": "src/share/vm/runtime/globals.hpp",
+            "name": "ExplicitGCInvokesConcurrentAndUnloadsClasses",
+            "description": "A System.gc() request invokes a concurrent collection and also unloads classes during such a concurrent gc cycle (effective only when UseConcMarkSweepGC)",
+            "availability": "product",
+            "type": "bool"
+        },
+        {
+            "component": "gc",
+            "defaultValue": "false",
+            "prefix": "-XX:",
+            "definedIn": "src/share/vm/gc/g1/g1_globals.hpp",
+            "name": "G1HRRSFlushLogBuffersOnVerify",
+            "description": "Forces flushing of log buffers before verification.",
+            "availability": "develop",
+            "type": "bool"
+        },
+        {
+            "component": "gc",
+            "defaultValue": "0",
+            "prefix": "-XX:",
+            "definedIn": "src/share/vm/gc/g1/g1_globals.hpp",
+            "name": "G1MarkingOverheadPercent",
+            "range": "range(0, 100)",
+            "description": "Overhead of concurrent marking",
+            "availability": "develop",
+            "type": "intx"
+        },
+        {
+            "defaultValue": "false",
+            "prefix": "-XX:",
+            "definedIn": "src/cpu/ppc/vm/globals_ppc.hpp",
+            "name": "LoadPollAddressFromThread",
+            "cpu": "ppc",
+            "description": "Load polling page address from thread object (required for per-thread safepoints on platforms != IA64)",
+            "availability": "product",
+            "type": "bool"
+        },
+        {
+            "component": "runtime",
+            "defaultValue": "1",
+            "prefix": "-XX:",
+            "definedIn": "src/share/vm/runtime/globals.hpp",
+            "name": "MinSleepInterval",
+            "description": "Minimum sleep() interval (milliseconds) when ConvertSleepToYield is off (used for Solaris)",
+            "availability": "develop",
+            "type": "intx",
+            "deprecation": "<span style=\"white-space:nowrap\">Deprecated in JDK9<\/span><br><span style=\"white-space:nowrap\">Obsoleted in JDK10<\/span><br><span style=\"white-space:nowrap\">Expired in JDK11<\/span>"
+        },
+        {
+            "component": "runtime",
+            "defaultValue": "false",
+            "prefix": "-XX:",
+            "definedIn": "src/share/vm/runtime/globals.hpp",
+            "name": "PerfTraceDataCreation",
+            "description": "Trace creation of Performance Data Entries",
+            "availability": "develop",
+            "type": "bool"
+        },
+        {
+            "component": "runtime",
+            "defaultValue": "false",
+            "prefix": "-XX:",
+            "definedIn": "src/share/vm/runtime/globals.hpp",
+            "name": "PerfTraceMemOps",
+            "description": "Trace PerfMemory create/attach/detach calls",
+            "availability": "develop",
+            "type": "bool"
+        },
+        {
+            "component": "runtime",
+            "defaultValue": "0",
+            "prefix": "-XX:",
+            "definedIn": "src/share/vm/runtime/globals.hpp",
+            "name": "PredictedLoadedClassCount",
+            "description": "Experimental: Tune loaded class cache starting size",
+            "availability": "experimental",
+            "type": "intx"
+        },
+        {
+            "component": "runtime",
+            "defaultValue": "false",
+            "prefix": "-XX:",
+            "definedIn": "src/share/vm/runtime/globals.hpp",
+            "name": "PrintSharedSpaces",
+            "description": "Print usage of shared spaces",
+            "availability": "product",
+            "type": "bool",
+            "deprecation": "<span style=\"white-space:nowrap\">Obsoleted in JDK16<\/span><br><span style=\"white-space:nowrap\">Expired in JDK17<\/span>"
+        },
+        {
+            "component": "c1",
+            "defaultValue": "0",
+            "prefix": "-XX:",
+            "definedIn": "src/cpu/aarch64/vm/c1_globals_aarch64.hpp",
+            "name": "SafepointPollOffset",
+            "cpu": "aarch64",
+            "availability": "define_pd_global",
+            "type": "intx"
+        },
+        {
+            "component": "runtime",
+            "defaultValue": "DEFAULT_SHARED_MISC_CODE_SIZE",
+            "prefix": "-XX:",
+            "definedIn": "src/share/vm/runtime/globals.hpp",
+            "name": "SharedMiscCodeSize",
+            "range": "range(MIN_SHARED_MISC_CODE_SIZE, MAX_SHARED_MISC_CODE_SIZE)",
+            "description": "Size of the shared miscellaneous code area (in bytes)",
+            "availability": "product",
+            "type": "size_t",
+            "deprecation": "<span style=\"white-space:nowrap\">Obsoleted in JDK10<\/span>"
+        },
+        {
+            "component": "runtime",
+            "defaultValue": "DEFAULT_SHARED_MISC_DATA_SIZE",
+            "prefix": "-XX:",
+            "definedIn": "src/share/vm/runtime/globals.hpp",
+            "name": "SharedMiscDataSize",
+            "range": "range(MIN_SHARED_MISC_DATA_SIZE, MAX_SHARED_MISC_DATA_SIZE)",
+            "description": "Size of the shared miscellaneous data area (in bytes)",
+            "availability": "product",
+            "type": "size_t",
+            "deprecation": "<span style=\"white-space:nowrap\">Obsoleted in JDK10<\/span>"
+        },
+        {
+            "component": "runtime",
+            "defaultValue": "DEFAULT_SHARED_READ_ONLY_SIZE",
+            "prefix": "-XX:",
+            "definedIn": "src/share/vm/runtime/globals.hpp",
+            "name": "SharedReadOnlySize",
+            "range": "range(MIN_SHARED_READ_ONLY_SIZE, MAX_SHARED_READ_ONLY_SIZE)",
+            "description": "Size of read-only space for metadata (in bytes)",
+            "availability": "product",
+            "type": "size_t",
+            "deprecation": "<span style=\"white-space:nowrap\">Obsoleted in JDK10<\/span>"
+        },
+        {
+            "component": "runtime",
+            "defaultValue": "DEFAULT_SHARED_READ_WRITE_SIZE",
+            "prefix": "-XX:",
+            "definedIn": "src/share/vm/runtime/globals.hpp",
+            "name": "SharedReadWriteSize",
+            "range": "range(MIN_SHARED_READ_WRITE_SIZE, MAX_SHARED_READ_WRITE_SIZE)",
+            "description": "Size of read-write space for metadata (in bytes)",
+            "availability": "product",
+            "type": "size_t",
+            "deprecation": "<span style=\"white-space:nowrap\">Obsoleted in JDK10<\/span>"
+        },
+        {
+            "component": "shark",
+            "defaultValue": "32",
+            "prefix": "-XX:",
+            "definedIn": "src/share/vm/shark/shark_globals.hpp",
+            "name": "SharkMaxInlineSize",
+            "description": "Maximum bytecode size of methods to inline when using Shark",
+            "availability": "product",
+            "type": "intx"
+        },
+        {
+            "component": "shark",
+            "defaultValue": "Default",
+            "prefix": "-XX:",
+            "definedIn": "src/share/vm/shark/shark_globals.hpp",
+            "name": "SharkOptimizationLevel",
+            "description": "The optimization level passed to LLVM, possible values: None, Less, Default and Agressive",
+            "availability": "product",
+            "type": "ccstr"
+        },
+        {
+            "component": "shark",
+            "defaultValue": "false",
+            "prefix": "-XX:",
+            "definedIn": "src/share/vm/shark/shark_globals.hpp",
+            "name": "SharkPerformanceWarnings",
+            "description": "Warn about things that could be made faster",
+            "availability": "diagnostic",
+            "type": "bool"
+        },
+        {
+            "component": "shark",
+            "defaultValue": "NULL",
+            "prefix": "-XX:",
+            "definedIn": "src/share/vm/shark/shark_globals.hpp",
+            "name": "SharkPrintAsmOf",
+            "description": "Print the asm of the specified method",
+            "availability": "diagnostic",
+            "type": "ccstr"
+        },
+        {
+            "component": "shark",
+            "defaultValue": "NULL",
+            "prefix": "-XX:",
+            "definedIn": "src/share/vm/shark/shark_globals.hpp",
+            "name": "SharkPrintBitcodeOf",
+            "description": "Print the LLVM bitcode of the specified method",
+            "availability": "diagnostic",
+            "type": "ccstr"
+        },
+        {
+            "component": "shark",
+            "defaultValue": "NULL",
+            "prefix": "-XX:",
+            "definedIn": "src/share/vm/shark/shark_globals.hpp",
+            "name": "SharkPrintTypeflowOf",
+            "description": "Print the typeflow of the specified method",
+            "availability": "develop",
+            "type": "ccstr"
+        },
+        {
+            "component": "shark",
+            "defaultValue": "false",
+            "prefix": "-XX:",
+            "definedIn": "src/share/vm/shark/shark_globals.hpp",
+            "name": "SharkTraceBytecodes",
+            "description": "Trace bytecode compilation",
+            "availability": "develop",
+            "type": "bool"
+        },
+        {
+            "component": "shark",
+            "defaultValue": "false",
+            "prefix": "-XX:",
+            "definedIn": "src/share/vm/shark/shark_globals.hpp",
+            "name": "SharkTraceInstalls",
+            "description": "Trace method installation",
+            "availability": "diagnostic",
+            "type": "bool"
+        },
+        {
+            "component": "shark",
+            "defaultValue": "NULL",
+            "prefix": "-XX:",
+            "definedIn": "src/share/vm/shark/shark_globals.hpp",
+            "name": "SharkVerifyFunction",
+            "description": "Runs LLVM verify over LLVM IR",
+            "availability": "develop",
+            "type": "ccstr"
+        },
+        {
+            "component": "runtime",
+            "defaultValue": "false",
+            "prefix": "-XX:",
+            "definedIn": "src/share/vm/runtime/globals.hpp",
+            "name": "TraceOldGenTime",
+            "description": "Trace accumulated time for old collection",
+            "availability": "product",
+            "type": "bool"
+        },
+        {
+            "component": "runtime",
+            "defaultValue": "false",
+            "prefix": "-XX:",
+            "definedIn": "src/share/vm/runtime/globals.hpp",
+            "name": "TraceOopMapGeneration",
+            "description": "Show OopMapGeneration",
+            "availability": "develop",
+            "type": "bool"
+        },
+        {
+            "component": "runtime",
+            "defaultValue": "false",
+            "prefix": "-XX:",
+            "definedIn": "src/share/vm/runtime/globals.hpp",
+            "name": "TraceYoungGenTime",
+            "description": "Trace accumulated time for young collection",
+            "availability": "product",
+            "type": "bool"
+        },
+        {
+            "component": "runtime",
+            "defaultValue": "false",
+            "prefix": "-XX:",
+            "definedIn": "src/share/vm/runtime/globals.hpp",
+            "name": "UseAutoGCSelectPolicy",
+            "description": "Use automatic collection selection policy",
+            "availability": "product",
+            "type": "bool"
+        },
+        {
+            "component": "runtime",
+            "defaultValue": "false",
+            "prefix": "-XX:",
+            "definedIn": "src/share/vm/runtime/globals.hpp",
+            "name": "UseParNewGC",
+            "description": "Use parallel threads in the new generation",
+            "availability": "product",
+            "type": "bool"
+        },
+        {
+            "component": "runtime",
+            "defaultValue": "false",
+            "prefix": "-XX:",
+            "definedIn": "src/share/vm/runtime/globals.hpp",
+            "name": "UseRelocIndex",
+            "description": "Use an index to speed random access to relocations",
+            "availability": "develop",
+            "type": "bool"
+        },
+        {
+            "defaultValue": "false",
+            "prefix": "-XX:",
+            "definedIn": "src/cpu/sparc/vm/globals_sparc.hpp",
+            "name": "UseV8InstrsOnly",
+            "cpu": "sparc",
+            "description": "Use SPARC-V8 Compliant instruction subset",
+            "availability": "develop",
+            "type": "bool"
+        },
+        {
+            "component": "runtime",
+            "defaultValue": "trueInDebug",
+            "prefix": "-XX:",
+            "definedIn": "src/share/vm/runtime/globals.hpp",
+            "name": "ZapJNIHandleArea",
+            "description": "Zap freed JNI handle space with 0xFEFEFEFE",
+            "availability": "develop",
+            "type": "bool"
+        }
+    ]
 }

@@ -1,404 +1,11 @@
 {
-    "removed": [
-        {
-            "component": "gc",
-            "prefix": "-XX:",
-            "definedIn": "share/gc/shared/gc_globals.hpp",
-            "defaultValue": "5",
-            "name": "AdaptiveSizePolicyGCTimeLimitThreshold",
-            "range": "range(1, max_uintx)",
-            "description": "Number of consecutive collections before gc time limit fires",
-            "availability": "develop",
-            "type": "uintx"
-        },
-        {
-            "component": "runtime",
-            "prefix": "-XX:",
-            "definedIn": "share/runtime/globals.hpp",
-            "defaultValue": "-1",
-            "name": "CIFireOOMAt",
-            "description": "Fire OutOfMemoryErrors throughout CI for testing the compiler (non-negative value throws OOM after this many CI accesses in each compile)",
-            "availability": "develop",
-            "type": "intx"
-        },
-        {
-            "component": "runtime",
-            "prefix": "-XX:",
-            "definedIn": "share/runtime/globals.hpp",
-            "defaultValue": "true",
-            "name": "DelayCompilationDuringStartup",
-            "description": "Delay invoking the compiler until main application class is loaded",
-            "availability": "develop",
-            "type": "bool"
-        },
-        {
-            "prefix": "-XX:",
-            "definedIn": "cpu/aarch64/globals_aarch64.hpp",
-            "defaultValue": "true",
-            "name": "DisableBCCheck",
-            "cpu": "aarch64",
-            "description": "tell sim not to invoke bccheck callback",
-            "availability": "product",
-            "type": "bool"
-        },
-        {
-            "component": "runtime",
-            "prefix": "-XX:",
-            "definedIn": "share/runtime/globals.hpp",
-            "defaultValue": "8",
-            "name": "FastSuperclassLimit",
-            "description": "Depth of hardwired instanceof accelerator array",
-            "availability": "develop",
-            "type": "intx"
-        },
-        {
-            "component": "runtime",
-            "prefix": "-XX:",
-            "definedIn": "share/runtime/globals.hpp",
-            "defaultValue": "true",
-            "name": "FillDelaySlots",
-            "description": "Fill delay slots (on SPARC only)",
-            "availability": "develop",
-            "type": "bool"
-        },
-        {
-            "component": "runtime",
-            "prefix": "-XX:",
-            "definedIn": "share/runtime/globals.hpp",
-            "defaultValue": "false",
-            "name": "IgnoreLibthreadGPFault",
-            "description": "Suppress workaround for libthread GP fault",
-            "availability": "develop",
-            "type": "bool"
-        },
-        {
-            "prefix": "-XX:",
-            "definedIn": "cpu/aarch64/globals_aarch64.hpp",
-            "defaultValue": "false",
-            "name": "NeedsDeoptSuspend",
-            "cpu": "aarch64",
-            "comment": "// only register window machines need this",
-            "availability": "define_pd_global",
-            "deprecation": "<span style=\"white-space:nowrap\">Obsoleted in JDK13<\/span><br><span style=\"white-space:nowrap\">Expired in JDK14<\/span>",
-            "type": "bool"
-        },
-        {
-            "prefix": "-XX:",
-            "definedIn": "cpu/aarch64/globals_aarch64.hpp",
-            "defaultValue": "UseBuiltinSim",
-            "name": "NotifySimulator",
-            "cpu": "aarch64",
-            "description": "tell the AArch64 sim where we are in method code",
-            "availability": "product",
-            "type": "bool"
-        },
-        {
-            "component": "runtime",
-            "prefix": "-XX:",
-            "definedIn": "share/runtime/globals.hpp",
-            "defaultValue": "false",
-            "name": "ProfileIntervals",
-            "description": "Print profiles for each interval (see ProfileIntervalsTicks)",
-            "availability": "product",
-            "deprecation": "<span style=\"white-space:nowrap\">Obsoleted in JDK13<\/span><br><span style=\"white-space:nowrap\">Expired in JDK14<\/span>",
-            "type": "bool"
-        },
-        {
-            "component": "runtime",
-            "prefix": "-XX:",
-            "definedIn": "share/runtime/globals.hpp",
-            "defaultValue": "100",
-            "name": "ProfileIntervalsTicks",
-            "range": "range(0, max_intx)",
-            "description": "Number of ticks between printing of interval profile (+ProfileIntervals)",
-            "availability": "product",
-            "deprecation": "<span style=\"white-space:nowrap\">Obsoleted in JDK13<\/span><br><span style=\"white-space:nowrap\">Expired in JDK14<\/span>",
-            "type": "intx"
-        },
-        {
-            "component": "runtime",
-            "prefix": "-XX:",
-            "definedIn": "share/runtime/globals.hpp",
-            "defaultValue": "false",
-            "name": "ProfileVM",
-            "description": "Profile ticks that fall within VM (either in the VM Thread or VM code called through stubs)",
-            "availability": "product",
-            "deprecation": "<span style=\"white-space:nowrap\">Obsoleted in JDK13<\/span><br><span style=\"white-space:nowrap\">Expired in JDK14<\/span>",
-            "type": "bool"
-        },
-        {
-            "component": "runtime",
-            "prefix": "-XX:",
-            "definedIn": "share/runtime/globals.hpp",
-            "defaultValue": "false",
-            "name": "ProfilerCheckIntervals",
-            "description": "Collect and print information on spacing of profiler ticks",
-            "availability": "notproduct",
-            "deprecation": "<span style=\"white-space:nowrap\">Obsoleted in JDK13<\/span><br><span style=\"white-space:nowrap\">Expired in JDK14<\/span>",
-            "type": "bool"
-        },
-        {
-            "component": "runtime",
-            "prefix": "-XX:",
-            "definedIn": "share/runtime/globals.hpp",
-            "defaultValue": "25",
-            "name": "ProfilerNumberOfCompiledMethods",
-            "description": "Number of compiled methods to show in profile",
-            "availability": "diagnostic",
-            "deprecation": "<span style=\"white-space:nowrap\">Obsoleted in JDK13<\/span><br><span style=\"white-space:nowrap\">Expired in JDK14<\/span>",
-            "type": "intx"
-        },
-        {
-            "component": "runtime",
-            "prefix": "-XX:",
-            "definedIn": "share/runtime/globals.hpp",
-            "defaultValue": "25",
-            "name": "ProfilerNumberOfInterpretedMethods",
-            "description": "Number of interpreted methods to show in profile",
-            "availability": "diagnostic",
-            "deprecation": "<span style=\"white-space:nowrap\">Obsoleted in JDK13<\/span><br><span style=\"white-space:nowrap\">Expired in JDK14<\/span>",
-            "type": "intx"
-        },
-        {
-            "component": "runtime",
-            "prefix": "-XX:",
-            "definedIn": "share/runtime/globals.hpp",
-            "defaultValue": "25",
-            "name": "ProfilerNumberOfRuntimeStubNodes",
-            "description": "Number of runtime stub nodes to show in profile",
-            "availability": "diagnostic",
-            "deprecation": "<span style=\"white-space:nowrap\">Obsoleted in JDK13<\/span><br><span style=\"white-space:nowrap\">Expired in JDK14<\/span>",
-            "type": "intx"
-        },
-        {
-            "component": "runtime",
-            "prefix": "-XX:",
-            "definedIn": "share/runtime/globals.hpp",
-            "defaultValue": "25",
-            "name": "ProfilerNumberOfStubMethods",
-            "description": "Number of stub methods to show in profile",
-            "availability": "diagnostic",
-            "deprecation": "<span style=\"white-space:nowrap\">Obsoleted in JDK13<\/span><br><span style=\"white-space:nowrap\">Expired in JDK14<\/span>",
-            "type": "intx"
-        },
-        {
-            "component": "runtime",
-            "prefix": "-XX:",
-            "definedIn": "share/runtime/globals.hpp",
-            "defaultValue": "15",
-            "name": "ProfilerPCTickThreshold",
-            "description": "Number of ticks in a PC buckets to be a hotspot",
-            "availability": "develop",
-            "type": "intx"
-        },
-        {
-            "component": "runtime",
-            "prefix": "-XX:",
-            "definedIn": "share/runtime/globals.hpp",
-            "defaultValue": "false",
-            "name": "ProfilerPrintByteCodeStatistics",
-            "description": "Print bytecode statistics when dumping profiler output",
-            "availability": "product",
-            "deprecation": "<span style=\"white-space:nowrap\">Obsoleted in JDK13<\/span><br><span style=\"white-space:nowrap\">Expired in JDK14<\/span>",
-            "type": "bool"
-        },
-        {
-            "component": "runtime",
-            "prefix": "-XX:",
-            "definedIn": "share/runtime/globals.hpp",
-            "defaultValue": "false",
-            "name": "ProfilerRecordPC",
-            "description": "Collect ticks for each 16 byte interval of compiled code",
-            "availability": "product",
-            "deprecation": "<span style=\"white-space:nowrap\">Obsoleted in JDK13<\/span><br><span style=\"white-space:nowrap\">Expired in JDK14<\/span>",
-            "type": "bool"
-        },
-        {
-            "prefix": "-XX:",
-            "definedIn": "cpu/aarch64/globals_aarch64.hpp",
-            "defaultValue": "true",
-            "name": "ShareVtableStubs",
-            "cpu": "aarch64",
-            "availability": "define_pd_global",
-            "type": "bool"
-        },
-        {
-            "component": "gc",
-            "prefix": "-XX:",
-            "definedIn": "share/gc/shenandoah/shenandoah_globals.hpp",
-            "defaultValue": "true",
-            "name": "ShenandoahAcmpBarrier",
-            "description": "Turn on/off acmp barriers in Shenandoah",
-            "availability": "diagnostic",
-            "type": "bool"
-        },
-        {
-            "component": "gc",
-            "prefix": "-XX:",
-            "definedIn": "share/gc/shenandoah/shenandoah_globals.hpp",
-            "defaultValue": "false",
-            "name": "ShenandoahDecreaseRegisterPressure",
-            "description": "Try to reuse after-barrier values to reduce register pressure",
-            "availability": "diagnostic",
-            "type": "bool"
-        },
-        {
-            "component": "gc",
-            "prefix": "-XX:",
-            "definedIn": "share/gc/shenandoah/shenandoah_globals.hpp",
-            "defaultValue": "true",
-            "name": "ShenandoahDontIncreaseWBFreq",
-            "description": "Common 2 WriteBarriers or WriteBarrier and a ReadBarrier only if the resulting WriteBarrier isn't executed more frequently",
-            "availability": "experimental",
-            "type": "bool"
-        },
-        {
-            "component": "gc",
-            "prefix": "-XX:",
-            "definedIn": "share/gc/shenandoah/shenandoah_globals.hpp",
-            "defaultValue": "true",
-            "name": "ShenandoahReadBarrier",
-            "description": "Turn on/off read barriers in Shenandoah",
-            "availability": "diagnostic",
-            "type": "bool"
-        },
-        {
-            "component": "gc",
-            "prefix": "-XX:",
-            "definedIn": "share/gc/shenandoah/shenandoah_globals.hpp",
-            "defaultValue": "true",
-            "name": "ShenandoahStoreValReadBarrier",
-            "description": "Turn on/off store val read barriers in Shenandoah",
-            "availability": "diagnostic",
-            "type": "bool"
-        },
-        {
-            "component": "gc",
-            "prefix": "-XX:",
-            "definedIn": "share/gc/shenandoah/shenandoah_globals.hpp",
-            "defaultValue": "true",
-            "name": "ShenandoahWriteBarrier",
-            "description": "Turn on/off write barriers in Shenandoah",
-            "availability": "diagnostic",
-            "type": "bool"
-        },
-        {
-            "component": "runtime",
-            "prefix": "-XX:",
-            "definedIn": "share/runtime/globals.hpp",
-            "defaultValue": "false",
-            "name": "TimeCompilationPolicy",
-            "description": "Time the compilation policy",
-            "availability": "develop",
-            "type": "bool"
-        },
-        {
-            "component": "runtime",
-            "prefix": "-XX:",
-            "definedIn": "share/runtime/globals.hpp",
-            "defaultValue": "false",
-            "name": "TimeLivenessAnalysis",
-            "description": "Time computation of bytecode liveness analysis",
-            "availability": "develop",
-            "type": "bool"
-        },
-        {
-            "component": "runtime",
-            "prefix": "-XX:",
-            "definedIn": "share/runtime/globals.hpp",
-            "defaultValue": "false",
-            "name": "TraceCompilationPolicy",
-            "description": "Trace compilation policy",
-            "availability": "develop",
-            "type": "bool"
-        },
-        {
-            "component": "jvmci",
-            "prefix": "-XX:",
-            "definedIn": "share/jvmci/jvmci_globals.hpp",
-            "defaultValue": "false",
-            "name": "TraceUncollectedSpeculations",
-            "description": "Print message when a failed speculation was not collected",
-            "availability": "develop",
-            "type": "bool"
-        },
-        {
-            "component": "runtime",
-            "prefix": "-XX:",
-            "definedIn": "share/runtime/globals.hpp",
-            "defaultValue": "false",
-            "name": "UseFakeTimers",
-            "description": "Tell whether the VM should use system time or a fake timer",
-            "availability": "develop",
-            "type": "bool"
-        },
-        {
-            "component": "c2",
-            "prefix": "-XX:",
-            "definedIn": "share/opto/c2_globals.hpp",
-            "defaultValue": "true",
-            "name": "UseImplicitStableValues",
-            "description": "Mark well-known stable fields as such (e.g. String.value)",
-            "availability": "diagnostic",
-            "deprecation": "<span style=\"white-space:nowrap\">Obsoleted in JDK13<\/span><br><span style=\"white-space:nowrap\">Expired in JDK14<\/span>",
-            "type": "bool"
-        },
-        {
-            "prefix": "-XX:",
-            "definedIn": "cpu/aarch64/globals_aarch64.hpp",
-            "defaultValue": "false",
-            "name": "UseSimulatorCache",
-            "cpu": "aarch64",
-            "description": "tell sim to cache memory updates until exclusive op occurs",
-            "availability": "product",
-            "type": "bool"
-        },
-        {
-            "component": "runtime",
-            "prefix": "-XX:",
-            "definedIn": "share/runtime/globals.hpp",
-            "defaultValue": "false",
-            "name": "VerifyMetaspace",
-            "description": "Verify metaspace on chunk movements.",
-            "availability": "develop",
-            "type": "bool"
-        },
-        {
-            "component": "gc",
-            "prefix": "-XX:",
-            "definedIn": "share/gc/z/z_globals.hpp",
-            "defaultValue": "true",
-            "name": "ZOptimizeLoadBarriers",
-            "description": "Apply load barrier optimizations",
-            "availability": "diagnostic",
-            "type": "bool"
-        },
-        {
-            "component": "gc",
-            "prefix": "-XX:",
-            "definedIn": "share/gc/z/z_globals.hpp",
-            "defaultValue": "true",
-            "name": "ZStallOnOutOfMemory",
-            "description": "Allow Java threads to stall and wait for GC to complete instead of immediately throwing an OutOfMemoryError",
-            "availability": "product",
-            "type": "bool"
-        },
-        {
-            "component": "gc",
-            "prefix": "-XX:",
-            "definedIn": "share/gc/z/z_globals.hpp",
-            "defaultValue": "false",
-            "name": "ZUnmapBadViews",
-            "description": "Unmap bad (inactive) heap views",
-            "availability": "diagnostic",
-            "type": "bool"
-        }
-    ],
+    "earlierVM": "OpenJDK12",
+    "laterVM": "OpenJDK13",
     "added": [
         {
+            "defaultValue": "4096",
             "prefix": "-XX:",
             "definedIn": "cpu/x86/globals_x86.hpp",
-            "defaultValue": "4096",
             "name": "AVX3Threshold",
             "range": "range(0, max_jint)",
             "cpu": "x86",
@@ -408,20 +15,20 @@
         },
         {
             "component": "runtime",
+            "defaultValue": "false",
             "prefix": "-XX:",
             "definedIn": "share/runtime/globals.hpp",
-            "defaultValue": "false",
             "name": "AllowRedefinitionToAddDeleteMethods",
             "description": "(Deprecated) Allow redefinition to add and delete private static or final methods for compatibility with old releases",
             "availability": "product",
-            "deprecation": "<span style=\"white-space:nowrap\">Deprecated in JDK13<\/span>",
-            "type": "bool"
+            "type": "bool",
+            "deprecation": "<span style=\"white-space:nowrap\">Deprecated in JDK13<\/span>"
         },
         {
             "component": "runtime",
+            "defaultValue": "NULL",
             "prefix": "-XX:",
             "definedIn": "share/runtime/globals.hpp",
-            "defaultValue": "NULL",
             "name": "ArchiveClassesAtExit",
             "description": "The path and name of the dynamic archive file",
             "availability": "product",
@@ -429,9 +36,9 @@
         },
         {
             "os": "linux",
+            "defaultValue": "true",
             "prefix": "-XX:",
             "definedIn": "os/linux/globals_linux.hpp",
-            "defaultValue": "true",
             "name": "DumpSharedMappingsInCore",
             "description": "If true, sets bit 3 of /proc/PID/coredump_filter, thus resulting in file-backed shared mappings of the process to be dumped into the corefile.",
             "availability": "diagnostic",
@@ -439,9 +46,9 @@
         },
         {
             "component": "runtime",
+            "defaultValue": "false",
             "prefix": "-XX:",
             "definedIn": "share/runtime/globals.hpp",
-            "defaultValue": "false",
             "name": "DynamicDumpSharedSpaces",
             "description": "Dynamic archive",
             "availability": "product",
@@ -449,9 +56,9 @@
         },
         {
             "component": "runtime",
+            "defaultValue": "false",
             "prefix": "-XX:",
             "definedIn": "share/runtime/globals.hpp",
-            "defaultValue": "false",
             "name": "ErrorFileToStderr",
             "description": "If true, error data is printed to stderr instead of a file",
             "availability": "product",
@@ -459,9 +66,9 @@
         },
         {
             "component": "runtime",
+            "defaultValue": "false",
             "prefix": "-XX:",
             "definedIn": "share/runtime/globals.hpp",
-            "defaultValue": "false",
             "name": "ErrorFileToStdout",
             "description": "If true, error data is printed to stdout instead of a file",
             "availability": "product",
@@ -469,9 +76,9 @@
         },
         {
             "component": "gc",
+            "defaultValue": "5",
             "prefix": "-XX:",
             "definedIn": "share/gc/shared/gc_globals.hpp",
-            "defaultValue": "5",
             "name": "GCOverheadLimitThreshold",
             "range": "range(1, max_uintx)",
             "description": "Number of consecutive collections before gc time limit fires",
@@ -480,9 +87,9 @@
         },
         {
             "component": "runtime",
+            "defaultValue": "false",
             "prefix": "-XX:",
             "definedIn": "share/runtime/globals.hpp",
-            "defaultValue": "false",
             "name": "HandshakeALot",
             "description": "Generate a lot of handshakes. This works with GuaranteedSafepointInterval",
             "availability": "diagnostic",
@@ -490,9 +97,9 @@
         },
         {
             "component": "jvmci",
+            "defaultValue": "NULL",
             "prefix": "-XX:",
             "definedIn": "share/jvmci/jvmci_globals.hpp",
-            "defaultValue": "NULL",
             "name": "JVMCILibDumpJNIConfig",
             "description": "Dumps to the given file a description of the classes, fields and methods the JVMCI shared library must provide",
             "availability": "experimental",
@@ -500,9 +107,9 @@
         },
         {
             "component": "jvmci",
+            "defaultValue": "NULL",
             "prefix": "-XX:",
             "definedIn": "share/jvmci/jvmci_globals.hpp",
-            "defaultValue": "NULL",
             "name": "JVMCILibPath",
             "description": "LD path for loading the JVMCI shared library",
             "availability": "experimental",
@@ -510,9 +117,9 @@
         },
         {
             "component": "gc",
+            "defaultValue": "0",
             "prefix": "-XX:",
             "definedIn": "share/gc/shared/gc_globals.hpp",
-            "defaultValue": "0",
             "name": "MinHeapSize",
             "description": "Minimum heap size (in bytes); zero means use ergonomics",
             "availability": "product",
@@ -520,9 +127,9 @@
         },
         {
             "component": "gc",
+            "defaultValue": "true",
             "prefix": "-XX:",
             "definedIn": "share/gc/shenandoah/shenandoah_globals.hpp",
-            "defaultValue": "true",
             "name": "ShenandoahLoadRefBarrier",
             "description": "Turn on/off load-reference barriers in Shenandoah",
             "availability": "diagnostic",
@@ -530,9 +137,9 @@
         },
         {
             "component": "gc",
+            "defaultValue": "0",
             "prefix": "-XX:",
             "definedIn": "share/gc/shared/gc_globals.hpp",
-            "defaultValue": "0",
             "name": "SoftMaxHeapSize",
             "description": "Soft limit for maximum heap size (in bytes)",
             "availability": "manageable",
@@ -540,9 +147,9 @@
         },
         {
             "component": "jvmci",
+            "defaultValue": "false",
             "prefix": "-XX:",
             "definedIn": "share/jvmci/jvmci_globals.hpp",
-            "defaultValue": "false",
             "name": "UseJVMCINativeLibrary",
             "description": "Execute JVMCI Java code from a shared library instead of loading it from class files and executing it on the HotSpot heap",
             "availability": "experimental",
@@ -550,9 +157,9 @@
         },
         {
             "component": "runtime",
+            "defaultValue": "false",
             "prefix": "-XX:",
             "definedIn": "share/runtime/globals.hpp",
-            "defaultValue": "false",
             "name": "UseLegacyJNINameEscaping",
             "description": "Use the original JNI name escaping scheme",
             "availability": "product",
@@ -560,9 +167,9 @@
         },
         {
             "component": "runtime",
+            "defaultValue": "DEBUG_ONLY(500) NOT_DEBUG(0)",
             "prefix": "-XX:",
             "definedIn": "share/runtime/globals.hpp",
-            "defaultValue": "DEBUG_ONLY(500) NOT_DEBUG(0)",
             "name": "VerifyMetaspaceInterval",
             "description": "Run periodic metaspace verifications (0 - none, <br>1 - always, >1 every nth interval)",
             "availability": "develop",
@@ -570,9 +177,9 @@
         },
         {
             "component": "gc",
+            "defaultValue": "true",
             "prefix": "-XX:",
             "definedIn": "share/gc/z/z_globals.hpp",
-            "defaultValue": "true",
             "name": "ZUncommit",
             "description": "Uncommit unused memory",
             "availability": "experimental",
@@ -580,9 +187,9 @@
         },
         {
             "component": "gc",
+            "defaultValue": "5 * 60",
             "prefix": "-XX:",
             "definedIn": "share/gc/z/z_globals.hpp",
-            "defaultValue": "5 * 60",
             "name": "ZUncommitDelay",
             "description": "Uncommit memory if it has been unused for the specified amount of time (in seconds)",
             "availability": "experimental",
@@ -590,9 +197,9 @@
         },
         {
             "component": "gc",
+            "defaultValue": "false",
             "prefix": "-XX:",
             "definedIn": "share/gc/z/z_globals.hpp",
-            "defaultValue": "false",
             "name": "ZVerifyObjects",
             "description": "Verify objects",
             "availability": "diagnostic",
@@ -600,9 +207,9 @@
         },
         {
             "component": "gc",
+            "defaultValue": "trueInDebug",
             "prefix": "-XX:",
             "definedIn": "share/gc/z/z_globals.hpp",
-            "defaultValue": "trueInDebug",
             "name": "ZVerifyRoots",
             "description": "Verify roots",
             "availability": "diagnostic",
@@ -610,15 +217,408 @@
         },
         {
             "component": "gc",
+            "defaultValue": "false",
             "prefix": "-XX:",
             "definedIn": "share/gc/z/z_globals.hpp",
-            "defaultValue": "false",
             "name": "ZVerifyViews",
             "description": "Verify heap view accesses",
             "availability": "diagnostic",
             "type": "bool"
         }
     ],
-    "laterVM": "OpenJDK13",
-    "earlierVM": "OpenJDK12"
+    "removed": [
+        {
+            "component": "gc",
+            "defaultValue": "5",
+            "prefix": "-XX:",
+            "definedIn": "share/gc/shared/gc_globals.hpp",
+            "name": "AdaptiveSizePolicyGCTimeLimitThreshold",
+            "range": "range(1, max_uintx)",
+            "description": "Number of consecutive collections before gc time limit fires",
+            "availability": "develop",
+            "type": "uintx"
+        },
+        {
+            "component": "runtime",
+            "defaultValue": "-1",
+            "prefix": "-XX:",
+            "definedIn": "share/runtime/globals.hpp",
+            "name": "CIFireOOMAt",
+            "description": "Fire OutOfMemoryErrors throughout CI for testing the compiler (non-negative value throws OOM after this many CI accesses in each compile)",
+            "availability": "develop",
+            "type": "intx"
+        },
+        {
+            "component": "runtime",
+            "defaultValue": "true",
+            "prefix": "-XX:",
+            "definedIn": "share/runtime/globals.hpp",
+            "name": "DelayCompilationDuringStartup",
+            "description": "Delay invoking the compiler until main application class is loaded",
+            "availability": "develop",
+            "type": "bool"
+        },
+        {
+            "defaultValue": "true",
+            "prefix": "-XX:",
+            "definedIn": "cpu/aarch64/globals_aarch64.hpp",
+            "name": "DisableBCCheck",
+            "cpu": "aarch64",
+            "description": "tell sim not to invoke bccheck callback",
+            "availability": "product",
+            "type": "bool"
+        },
+        {
+            "component": "runtime",
+            "defaultValue": "8",
+            "prefix": "-XX:",
+            "definedIn": "share/runtime/globals.hpp",
+            "name": "FastSuperclassLimit",
+            "description": "Depth of hardwired instanceof accelerator array",
+            "availability": "develop",
+            "type": "intx"
+        },
+        {
+            "component": "runtime",
+            "defaultValue": "true",
+            "prefix": "-XX:",
+            "definedIn": "share/runtime/globals.hpp",
+            "name": "FillDelaySlots",
+            "description": "Fill delay slots (on SPARC only)",
+            "availability": "develop",
+            "type": "bool"
+        },
+        {
+            "component": "runtime",
+            "defaultValue": "false",
+            "prefix": "-XX:",
+            "definedIn": "share/runtime/globals.hpp",
+            "name": "IgnoreLibthreadGPFault",
+            "description": "Suppress workaround for libthread GP fault",
+            "availability": "develop",
+            "type": "bool"
+        },
+        {
+            "defaultValue": "false",
+            "prefix": "-XX:",
+            "definedIn": "cpu/aarch64/globals_aarch64.hpp",
+            "name": "NeedsDeoptSuspend",
+            "cpu": "aarch64",
+            "comment": "// only register window machines need this",
+            "availability": "define_pd_global",
+            "type": "bool",
+            "deprecation": "<span style=\"white-space:nowrap\">Obsoleted in JDK13<\/span><br><span style=\"white-space:nowrap\">Expired in JDK14<\/span>"
+        },
+        {
+            "defaultValue": "UseBuiltinSim",
+            "prefix": "-XX:",
+            "definedIn": "cpu/aarch64/globals_aarch64.hpp",
+            "name": "NotifySimulator",
+            "cpu": "aarch64",
+            "description": "tell the AArch64 sim where we are in method code",
+            "availability": "product",
+            "type": "bool"
+        },
+        {
+            "component": "runtime",
+            "defaultValue": "false",
+            "prefix": "-XX:",
+            "definedIn": "share/runtime/globals.hpp",
+            "name": "ProfileIntervals",
+            "description": "Print profiles for each interval (see ProfileIntervalsTicks)",
+            "availability": "product",
+            "type": "bool",
+            "deprecation": "<span style=\"white-space:nowrap\">Obsoleted in JDK13<\/span><br><span style=\"white-space:nowrap\">Expired in JDK14<\/span>"
+        },
+        {
+            "component": "runtime",
+            "defaultValue": "100",
+            "prefix": "-XX:",
+            "definedIn": "share/runtime/globals.hpp",
+            "name": "ProfileIntervalsTicks",
+            "range": "range(0, max_intx)",
+            "description": "Number of ticks between printing of interval profile (+ProfileIntervals)",
+            "availability": "product",
+            "type": "intx",
+            "deprecation": "<span style=\"white-space:nowrap\">Obsoleted in JDK13<\/span><br><span style=\"white-space:nowrap\">Expired in JDK14<\/span>"
+        },
+        {
+            "component": "runtime",
+            "defaultValue": "false",
+            "prefix": "-XX:",
+            "definedIn": "share/runtime/globals.hpp",
+            "name": "ProfileVM",
+            "description": "Profile ticks that fall within VM (either in the VM Thread or VM code called through stubs)",
+            "availability": "product",
+            "type": "bool",
+            "deprecation": "<span style=\"white-space:nowrap\">Obsoleted in JDK13<\/span><br><span style=\"white-space:nowrap\">Expired in JDK14<\/span>"
+        },
+        {
+            "component": "runtime",
+            "defaultValue": "false",
+            "prefix": "-XX:",
+            "definedIn": "share/runtime/globals.hpp",
+            "name": "ProfilerCheckIntervals",
+            "description": "Collect and print information on spacing of profiler ticks",
+            "availability": "notproduct",
+            "type": "bool",
+            "deprecation": "<span style=\"white-space:nowrap\">Obsoleted in JDK13<\/span><br><span style=\"white-space:nowrap\">Expired in JDK14<\/span>"
+        },
+        {
+            "component": "runtime",
+            "defaultValue": "25",
+            "prefix": "-XX:",
+            "definedIn": "share/runtime/globals.hpp",
+            "name": "ProfilerNumberOfCompiledMethods",
+            "description": "Number of compiled methods to show in profile",
+            "availability": "diagnostic",
+            "type": "intx",
+            "deprecation": "<span style=\"white-space:nowrap\">Obsoleted in JDK13<\/span><br><span style=\"white-space:nowrap\">Expired in JDK14<\/span>"
+        },
+        {
+            "component": "runtime",
+            "defaultValue": "25",
+            "prefix": "-XX:",
+            "definedIn": "share/runtime/globals.hpp",
+            "name": "ProfilerNumberOfInterpretedMethods",
+            "description": "Number of interpreted methods to show in profile",
+            "availability": "diagnostic",
+            "type": "intx",
+            "deprecation": "<span style=\"white-space:nowrap\">Obsoleted in JDK13<\/span><br><span style=\"white-space:nowrap\">Expired in JDK14<\/span>"
+        },
+        {
+            "component": "runtime",
+            "defaultValue": "25",
+            "prefix": "-XX:",
+            "definedIn": "share/runtime/globals.hpp",
+            "name": "ProfilerNumberOfRuntimeStubNodes",
+            "description": "Number of runtime stub nodes to show in profile",
+            "availability": "diagnostic",
+            "type": "intx",
+            "deprecation": "<span style=\"white-space:nowrap\">Obsoleted in JDK13<\/span><br><span style=\"white-space:nowrap\">Expired in JDK14<\/span>"
+        },
+        {
+            "component": "runtime",
+            "defaultValue": "25",
+            "prefix": "-XX:",
+            "definedIn": "share/runtime/globals.hpp",
+            "name": "ProfilerNumberOfStubMethods",
+            "description": "Number of stub methods to show in profile",
+            "availability": "diagnostic",
+            "type": "intx",
+            "deprecation": "<span style=\"white-space:nowrap\">Obsoleted in JDK13<\/span><br><span style=\"white-space:nowrap\">Expired in JDK14<\/span>"
+        },
+        {
+            "component": "runtime",
+            "defaultValue": "15",
+            "prefix": "-XX:",
+            "definedIn": "share/runtime/globals.hpp",
+            "name": "ProfilerPCTickThreshold",
+            "description": "Number of ticks in a PC buckets to be a hotspot",
+            "availability": "develop",
+            "type": "intx"
+        },
+        {
+            "component": "runtime",
+            "defaultValue": "false",
+            "prefix": "-XX:",
+            "definedIn": "share/runtime/globals.hpp",
+            "name": "ProfilerPrintByteCodeStatistics",
+            "description": "Print bytecode statistics when dumping profiler output",
+            "availability": "product",
+            "type": "bool",
+            "deprecation": "<span style=\"white-space:nowrap\">Obsoleted in JDK13<\/span><br><span style=\"white-space:nowrap\">Expired in JDK14<\/span>"
+        },
+        {
+            "component": "runtime",
+            "defaultValue": "false",
+            "prefix": "-XX:",
+            "definedIn": "share/runtime/globals.hpp",
+            "name": "ProfilerRecordPC",
+            "description": "Collect ticks for each 16 byte interval of compiled code",
+            "availability": "product",
+            "type": "bool",
+            "deprecation": "<span style=\"white-space:nowrap\">Obsoleted in JDK13<\/span><br><span style=\"white-space:nowrap\">Expired in JDK14<\/span>"
+        },
+        {
+            "defaultValue": "true",
+            "prefix": "-XX:",
+            "definedIn": "cpu/aarch64/globals_aarch64.hpp",
+            "name": "ShareVtableStubs",
+            "cpu": "aarch64",
+            "availability": "define_pd_global",
+            "type": "bool"
+        },
+        {
+            "component": "gc",
+            "defaultValue": "true",
+            "prefix": "-XX:",
+            "definedIn": "share/gc/shenandoah/shenandoah_globals.hpp",
+            "name": "ShenandoahAcmpBarrier",
+            "description": "Turn on/off acmp barriers in Shenandoah",
+            "availability": "diagnostic",
+            "type": "bool"
+        },
+        {
+            "component": "gc",
+            "defaultValue": "false",
+            "prefix": "-XX:",
+            "definedIn": "share/gc/shenandoah/shenandoah_globals.hpp",
+            "name": "ShenandoahDecreaseRegisterPressure",
+            "description": "Try to reuse after-barrier values to reduce register pressure",
+            "availability": "diagnostic",
+            "type": "bool"
+        },
+        {
+            "component": "gc",
+            "defaultValue": "true",
+            "prefix": "-XX:",
+            "definedIn": "share/gc/shenandoah/shenandoah_globals.hpp",
+            "name": "ShenandoahDontIncreaseWBFreq",
+            "description": "Common 2 WriteBarriers or WriteBarrier and a ReadBarrier only if the resulting WriteBarrier isn't executed more frequently",
+            "availability": "experimental",
+            "type": "bool"
+        },
+        {
+            "component": "gc",
+            "defaultValue": "true",
+            "prefix": "-XX:",
+            "definedIn": "share/gc/shenandoah/shenandoah_globals.hpp",
+            "name": "ShenandoahReadBarrier",
+            "description": "Turn on/off read barriers in Shenandoah",
+            "availability": "diagnostic",
+            "type": "bool"
+        },
+        {
+            "component": "gc",
+            "defaultValue": "true",
+            "prefix": "-XX:",
+            "definedIn": "share/gc/shenandoah/shenandoah_globals.hpp",
+            "name": "ShenandoahStoreValReadBarrier",
+            "description": "Turn on/off store val read barriers in Shenandoah",
+            "availability": "diagnostic",
+            "type": "bool"
+        },
+        {
+            "component": "gc",
+            "defaultValue": "true",
+            "prefix": "-XX:",
+            "definedIn": "share/gc/shenandoah/shenandoah_globals.hpp",
+            "name": "ShenandoahWriteBarrier",
+            "description": "Turn on/off write barriers in Shenandoah",
+            "availability": "diagnostic",
+            "type": "bool"
+        },
+        {
+            "component": "runtime",
+            "defaultValue": "false",
+            "prefix": "-XX:",
+            "definedIn": "share/runtime/globals.hpp",
+            "name": "TimeCompilationPolicy",
+            "description": "Time the compilation policy",
+            "availability": "develop",
+            "type": "bool"
+        },
+        {
+            "component": "runtime",
+            "defaultValue": "false",
+            "prefix": "-XX:",
+            "definedIn": "share/runtime/globals.hpp",
+            "name": "TimeLivenessAnalysis",
+            "description": "Time computation of bytecode liveness analysis",
+            "availability": "develop",
+            "type": "bool"
+        },
+        {
+            "component": "runtime",
+            "defaultValue": "false",
+            "prefix": "-XX:",
+            "definedIn": "share/runtime/globals.hpp",
+            "name": "TraceCompilationPolicy",
+            "description": "Trace compilation policy",
+            "availability": "develop",
+            "type": "bool"
+        },
+        {
+            "component": "jvmci",
+            "defaultValue": "false",
+            "prefix": "-XX:",
+            "definedIn": "share/jvmci/jvmci_globals.hpp",
+            "name": "TraceUncollectedSpeculations",
+            "description": "Print message when a failed speculation was not collected",
+            "availability": "develop",
+            "type": "bool"
+        },
+        {
+            "component": "runtime",
+            "defaultValue": "false",
+            "prefix": "-XX:",
+            "definedIn": "share/runtime/globals.hpp",
+            "name": "UseFakeTimers",
+            "description": "Tell whether the VM should use system time or a fake timer",
+            "availability": "develop",
+            "type": "bool"
+        },
+        {
+            "component": "c2",
+            "defaultValue": "true",
+            "prefix": "-XX:",
+            "definedIn": "share/opto/c2_globals.hpp",
+            "name": "UseImplicitStableValues",
+            "description": "Mark well-known stable fields as such (e.g. String.value)",
+            "availability": "diagnostic",
+            "type": "bool",
+            "deprecation": "<span style=\"white-space:nowrap\">Obsoleted in JDK13<\/span><br><span style=\"white-space:nowrap\">Expired in JDK14<\/span>"
+        },
+        {
+            "defaultValue": "false",
+            "prefix": "-XX:",
+            "definedIn": "cpu/aarch64/globals_aarch64.hpp",
+            "name": "UseSimulatorCache",
+            "cpu": "aarch64",
+            "description": "tell sim to cache memory updates until exclusive op occurs",
+            "availability": "product",
+            "type": "bool"
+        },
+        {
+            "component": "runtime",
+            "defaultValue": "false",
+            "prefix": "-XX:",
+            "definedIn": "share/runtime/globals.hpp",
+            "name": "VerifyMetaspace",
+            "description": "Verify metaspace on chunk movements.",
+            "availability": "develop",
+            "type": "bool"
+        },
+        {
+            "component": "gc",
+            "defaultValue": "true",
+            "prefix": "-XX:",
+            "definedIn": "share/gc/z/z_globals.hpp",
+            "name": "ZOptimizeLoadBarriers",
+            "description": "Apply load barrier optimizations",
+            "availability": "diagnostic",
+            "type": "bool"
+        },
+        {
+            "component": "gc",
+            "defaultValue": "true",
+            "prefix": "-XX:",
+            "definedIn": "share/gc/z/z_globals.hpp",
+            "name": "ZStallOnOutOfMemory",
+            "description": "Allow Java threads to stall and wait for GC to complete instead of immediately throwing an OutOfMemoryError",
+            "availability": "product",
+            "type": "bool"
+        },
+        {
+            "component": "gc",
+            "defaultValue": "false",
+            "prefix": "-XX:",
+            "definedIn": "share/gc/z/z_globals.hpp",
+            "name": "ZUnmapBadViews",
+            "description": "Unmap bad (inactive) heap views",
+            "availability": "diagnostic",
+            "type": "bool"
+        }
+    ]
 }

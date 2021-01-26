@@ -15,17 +15,17 @@ public class OrderedJSONObjectFactory
 	public static JSONObject getJSONObject()
 	{
 		JSONObject jsonObject = new JSONObject();
-//		try
-//		{
-//			Field changeMap = jsonObject.getClass().getDeclaredField("map");
-//			changeMap.setAccessible(true);
-//			changeMap.set(jsonObject, new LinkedHashMap<>());
-//			changeMap.setAccessible(false);
-//		}
-//		catch (IllegalAccessException | NoSuchFieldException e)
-//		{
-//			e.printStackTrace();
-//		}
+		try
+		{
+			Field changeMap = jsonObject.getClass().getDeclaredField("map");
+			changeMap.setAccessible(true);
+			changeMap.set(jsonObject, new LinkedHashMap<>());
+			changeMap.setAccessible(false);
+		}
+		catch (IllegalAccessException | NoSuchFieldException e)
+		{
+			e.printStackTrace();
+		}
 
 		return jsonObject;
 	}

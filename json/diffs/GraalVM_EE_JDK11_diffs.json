@@ -1,1641 +1,1641 @@
 {
-    "removed": [],
+    "earlierVM": "GraalVM_CE_JDK11",
+    "laterVM": "GraalVM_EE_JDK11",
     "added": [
         {
-            "prefix": "-XX:",
             "defaultValue": "false",
+            "prefix": "-XX:",
             "name": "AlwaysPreTouch",
             "description": "<pre>Force all freshly committed pages to be pre-touched\n<\/pre>",
             "type": "Boolean"
         },
         {
-            "prefix": "-XX:",
             "defaultValue": "120",
+            "prefix": "-XX:",
             "name": "BaseTargetSpending",
             "description": "<pre>The base target spending used to estimate the inlining threshold; the\nhigher, the likelier it is to inline.\n<\/pre>",
             "type": "Integer"
         },
         {
-            "prefix": "-XX:",
             "defaultValue": "512",
+            "prefix": "-XX:",
             "name": "BlockZeroingLowLimit",
             "description": "<pre>Minimum amount of bytes when block zeroing used. (SPARC only)\n<\/pre>",
             "type": "Integer"
         },
         {
-            "prefix": "-XX:",
             "defaultValue": "true",
+            "prefix": "-XX:",
             "name": "BreakChainedPhis",
             "description": "<pre>Break chained phis\n<\/pre>",
             "type": "Boolean"
         },
         {
-            "prefix": "-XX:",
             "defaultValue": "35000",
+            "prefix": "-XX:",
             "name": "CallGraphCompilerNodeLimit",
             "description": "<pre>Controls the maximum number of compiler nodes that can appear in the\ncall graph\n<\/pre>",
             "type": "Integer"
         },
         {
-            "prefix": "-XX:",
             "defaultValue": "1200",
+            "prefix": "-XX:",
             "name": "CallGraphSizeLimit",
             "description": "<pre>Controls the maximum size of the call graph before ceasing inlining.\n<\/pre>",
             "type": "Integer"
         },
         {
-            "prefix": "-XX:",
             "defaultValue": "0.001",
+            "prefix": "-XX:",
             "name": "CallGraphSizePenaltyCoefficient",
             "description": "<pre>Reduces the likelihood of exploring call graph subtrees that are large.\n<\/pre>",
             "type": "Double"
         },
         {
-            "prefix": "-XX:",
             "defaultValue": "true",
+            "prefix": "-XX:",
             "name": "CompileInPerThreadReusedIsolates",
             "description": "<pre>Create one reusable isolate per compilation thread as opposed to one\nisolate per compilation (enable through CompileInIsolates).\n<\/pre>",
             "type": "Boolean"
         },
         {
-            "prefix": "-XX:",
             "defaultValue": "0.006",
+            "prefix": "-XX:",
             "name": "CompilerNodePenaltyCoefficient",
             "description": "<pre>Controls the likelihood of exploring subtrees that already have a lot\nof code during inlining.\n<\/pre>",
             "type": "Double"
         },
         {
-            "prefix": "-XX:",
             "defaultValue": "0",
+            "prefix": "-XX:",
             "name": "ConcGCThreads",
             "description": "<pre>Number of threads concurrent gc will use\n<\/pre>",
             "type": "Integer"
         },
         {
-            "prefix": "-XX:",
             "defaultValue": "true",
+            "prefix": "-XX:",
             "name": "ConsiderVectorizableLoops",
             "description": "<pre>Consider the vectorizability of loop during the duplication of a merge\ninside a loop.There are rare cases where duplication can destroy\nvectorization.\n<\/pre>",
             "type": "Boolean"
         },
         {
-            "prefix": "-XX:",
             "defaultValue": "4",
+            "prefix": "-XX:",
             "name": "CostNewLiveVariable",
             "description": "<pre>PullThroughPhiOptimization: Abstract cost for the creation of a new\nlive value: new values can have a negativeimpact on register\nallocation, therefore we penalize it.\n<\/pre>",
             "type": "Integer"
         },
         {
-            "prefix": "-XX:",
             "defaultValue": "32.0",
+            "prefix": "-XX:",
             "name": "CostReductionFactor",
             "description": "<pre>PullThroughPhiOptimization: Cost/Benefit heuristic for EE floating node\nduplication: reduce cost by a constant factor when comparing with\nrelative benefit.\n<\/pre>",
             "type": "Double"
         },
         {
-            "prefix": "-XX:",
             "defaultValue": "1.0E-5",
+            "prefix": "-XX:",
             "name": "CutoffCodeSizePenaltyCoefficient",
             "description": "<pre>Controls the likelihood of further exploring subtrees with a lot of\ncode during inlining.\n<\/pre>",
             "type": "Double"
         },
         {
-            "prefix": "-XX:",
             "defaultValue": "false",
+            "prefix": "-XX:",
             "name": "DebugLoopInversion",
             "description": "<pre>Debug the loop inversion transformation.\n<\/pre>",
             "type": "Boolean"
         },
         {
-            "prefix": "-XX:",
             "defaultValue": "false",
+            "prefix": "-XX:",
             "name": "DebugPeelingSynonyms",
             "description": "<pre>Debug simulation synonyms during simulation-based loop peeling.\n<\/pre>",
             "type": "Boolean"
         },
         {
-            "prefix": "-XX:",
             "defaultValue": "16",
+            "prefix": "-XX:",
             "name": "DominatorUsageTreeMaxDepth",
             "type": "Integer"
         },
         {
-            "prefix": "-XX:",
             "defaultValue": "false",
+            "prefix": "-XX:",
             "name": "DuplicateALot",
             "description": "<pre>Perform Duplications as long as there is any sane improvement.\n<\/pre>",
             "type": "Boolean"
         },
         {
-            "prefix": "-XX:",
             "defaultValue": "0.25",
+            "prefix": "-XX:",
             "name": "DuplicationBudgetFactor",
             "description": "<pre>Percentage in node cost graph size for the duplication budget. Computed\nrelative to the methods code size.\n<\/pre>",
             "type": "Double"
         },
         {
-            "prefix": "-XX:",
             "defaultValue": "0.5",
+            "prefix": "-XX:",
             "name": "DuplicationBudgetFactorLate",
             "description": "<pre>Percentage in node cost graph size for the late duplication budget.\nComputed relative to the methods code size.\n<\/pre>",
             "type": "Double"
         },
         {
-            "prefix": "-XX:",
             "defaultValue": "64",
+            "prefix": "-XX:",
             "name": "DuplicationCostReductionFactor",
             "description": "<pre>Cost/Benefit heuristic for EE simulation-based code duplication: reduce\ncost by a constant factor when comparing with relative benefit.\n<\/pre>",
             "type": "Integer"
         },
         {
-            "prefix": "-XX:",
             "defaultValue": "0.66",
+            "prefix": "-XX:",
             "name": "DuplicationMinBranchFrequency",
             "description": "<pre>Ignore low frequency branches during duplication.\n<\/pre>",
             "type": "Double"
         },
         {
-            "prefix": "-XX:",
             "defaultValue": "true",
+            "prefix": "-XX:",
             "name": "EnterpriseCloneReadElimination",
             "description": "<pre>Try to eliminate array clone operations by handling clone operations in\nearly read elimination.\n<\/pre>",
             "type": "Boolean"
         },
         {
-            "prefix": "-XX:",
             "defaultValue": "true",
+            "prefix": "-XX:",
             "name": "EnterpriseEarlyReadElimination",
             "description": "<pre>Run more read eliminations early in the compilation pipeline.\n<\/pre>",
             "type": "Boolean"
         },
         {
-            "prefix": "-XX:",
             "defaultValue": "true",
+            "prefix": "-XX:",
             "name": "EnterprisePartialUnroll",
             "description": "<pre>Enable EE version of partial loop unrolling that considers more loop\nshapes for unrolling.\n<\/pre>",
             "type": "Boolean"
         },
         {
-            "prefix": "-XX:",
             "defaultValue": "0",
+            "prefix": "-XX:",
             "name": "ErgoHeapSizeLimit",
             "description": "<pre>Maximum ergonomically set heap size (in bytes); zero means use MaxRAM *\nMaxRAMPercentage / 100\n<\/pre>",
             "type": "Long"
         },
         {
-            "prefix": "-XX:",
             "defaultValue": "null",
+            "prefix": "-XX:",
             "name": "ExcludeFunctionFromDuplication",
             "description": "<pre>Exclude compilations that MethodFilter.match this string from the\nduplication optimization.\n<\/pre>",
             "type": "String"
         },
         {
-            "prefix": "-XX:",
             "defaultValue": "6.0",
+            "prefix": "-XX:",
             "name": "ExpandAllProximityBonus",
             "description": "<pre>The decrease in call graph expansion pressure when there are few call\nnodes left to explore.\n<\/pre>",
             "type": "Double"
         },
         {
-            "prefix": "-XX:",
             "defaultValue": "2.0",
+            "prefix": "-XX:",
             "name": "ExpandAllProximityBonusInertia",
             "description": "<pre>The inertia at which the expand-all proximity bonus decreases with the\nnumber of yet unexpanded nodes.\n<\/pre>",
             "type": "Double"
         },
         {
-            "prefix": "-XX:",
             "defaultValue": "550",
+            "prefix": "-XX:",
             "name": "ExpansionInertiaBaseValue",
             "description": "<pre>The slowness at which the expansion pressure grows with code size; the\nhigher it is, the slower the pressure growth.\n<\/pre>",
             "type": "Integer"
         },
         {
-            "prefix": "-XX:",
             "defaultValue": "14",
+            "prefix": "-XX:",
             "name": "ExpansionInertiaInvokeBonus",
             "description": "<pre>The extra slowness at which the expansion pressure grows with the code\nsize, for each extra invoke node.\n<\/pre>",
             "type": "Integer"
         },
         {
-            "prefix": "-XX:",
             "defaultValue": "2000",
+            "prefix": "-XX:",
             "name": "ExpansionInertiaMax",
             "description": "<pre>The max slowness at which the expansion pressure grows with the code\nsize.\n<\/pre>",
             "type": "Integer"
         },
         {
-            "prefix": "-XX:",
             "defaultValue": "false",
+            "prefix": "-XX:",
             "name": "ExplicitGCInvokesConcurrent",
             "description": "<pre>A System.gc() request invokes a concurrent collection\n<\/pre>",
             "type": "Boolean"
         },
         {
-            "prefix": "-XX:",
             "defaultValue": "false",
+            "prefix": "-XX:",
             "name": "FlightRecorder",
             "description": "<pre>Enable Java Flight Recorder.\n<\/pre>",
             "type": "Boolean"
         },
         {
-            "prefix": "-XX:",
             "defaultValue": "false",
+            "prefix": "-XX:",
             "name": "ForceUnroll",
             "description": "<pre>Force partial unrolling of loops if at all possible.\n<\/pre>",
             "type": "Boolean"
         },
         {
-            "prefix": "-XX:",
             "defaultValue": "true",
+            "prefix": "-XX:",
             "name": "FullUnrollAsPEACleanup",
             "description": "<pre>Perform full unrolling as a Partial Escape Analysis Cleanup\n<\/pre>",
             "type": "Boolean"
         },
         {
-            "prefix": "-XX:",
             "defaultValue": "10.0",
+            "prefix": "-XX:",
             "name": "G1ConcMarkStepDurationMillis",
             "description": "<pre>Target duration of individual concurrent marking steps in milliseconds.\n<\/pre>",
             "type": "Double"
         },
         {
-            "prefix": "-XX:",
             "defaultValue": "4",
+            "prefix": "-XX:",
             "name": "G1ConcRSHotCardLimit",
             "description": "<pre>The threshold that defines (>=) a hot card.\n<\/pre>",
             "type": "Long"
         },
         {
-            "prefix": "-XX:",
             "defaultValue": "10",
+            "prefix": "-XX:",
             "name": "G1ConcRSLogCacheSize",
             "description": "<pre>Log base 2 of the length of conc RS hot-card cache.\n<\/pre>",
             "type": "Long"
         },
         {
-            "prefix": "-XX:",
             "defaultValue": "0",
+            "prefix": "-XX:",
             "name": "G1ConcRefinementGreenZone",
             "description": "<pre>The number of update buffers that are left in the queue by the\nconcurrent processing threads. Will be selected ergonomically by\ndefault.\n<\/pre>",
             "type": "Long"
         },
         {
-            "prefix": "-XX:",
             "defaultValue": "0",
+            "prefix": "-XX:",
             "name": "G1ConcRefinementRedZone",
             "description": "<pre>Maximum number of enqueued update buffers before mutator threads start\nprocessing new ones instead of enqueueing them. Will be selected\nergonomically by default.\n<\/pre>",
             "type": "Long"
         },
         {
-            "prefix": "-XX:",
             "defaultValue": "300",
+            "prefix": "-XX:",
             "name": "G1ConcRefinementServiceIntervalMillis",
             "description": "<pre>The last concurrent refinement thread wakes up every specified number\nof milliseconds to do miscellaneous work.\n<\/pre>",
             "type": "Long"
         },
         {
-            "prefix": "-XX:",
             "defaultValue": "0",
+            "prefix": "-XX:",
             "name": "G1ConcRefinementThreads",
             "description": "<pre>The number of parallel rem set update threads. Will be set\nergonomically by default.\n<\/pre>",
             "type": "Integer"
         },
         {
-            "prefix": "-XX:",
             "defaultValue": "2",
+            "prefix": "-XX:",
             "name": "G1ConcRefinementThresholdStep",
             "description": "<pre>Each time the rset update queue increases by this amount activate the\nnext refinement thread if available. The actual step size will be\nselected ergonomically by default, with this value used to determine a\nlower bound.\n<\/pre>",
             "type": "Long"
         },
         {
-            "prefix": "-XX:",
             "defaultValue": "0",
+            "prefix": "-XX:",
             "name": "G1ConcRefinementYellowZone",
             "description": "<pre>Number of enqueued update buffers that will trigger concurrent\nprocessing. Will be selected ergonomically by default.\n<\/pre>",
             "type": "Long"
         },
         {
-            "prefix": "-XX:",
             "defaultValue": "50",
+            "prefix": "-XX:",
             "name": "G1ConfidencePercent",
             "description": "<pre>Confidence level for MMU/pause predictions.\n<\/pre>",
             "type": "Integer"
         },
         {
-            "prefix": "-XX:",
             "defaultValue": "5",
+            "prefix": "-XX:",
             "name": "G1HeapWastePercent",
             "description": "<pre>Amount of space, expressed as a percentage of the heap size, that G1 is\nwilling not to collect to avoid expensive GCs.\n<\/pre>",
             "type": "Integer"
         },
         {
-            "prefix": "-XX:",
             "defaultValue": "8",
+            "prefix": "-XX:",
             "name": "G1MixedGCCountTarget",
             "description": "<pre>The target number of mixed GCs after a marking cycle.\n<\/pre>",
             "type": "Long"
         },
         {
-            "prefix": "-XX:",
             "defaultValue": "0",
+            "prefix": "-XX:",
             "name": "G1PeriodicGCInterval",
             "description": "<pre>Number of milliseconds after a previous GC to wait before triggering a\nperiodic gc. A value of zero disables periodically enforced gc cycles.\n<\/pre>",
             "type": "Long"
         },
         {
-            "prefix": "-XX:",
             "defaultValue": "true",
+            "prefix": "-XX:",
             "name": "G1PeriodicGCInvokesConcurrent",
             "description": "<pre>Determines the kind of periodic GC. Set to true to have G1 perform a\nconcurrent GC as periodic GC, otherwise use a STW Full GC.\n<\/pre>",
             "type": "Boolean"
         },
         {
-            "prefix": "-XX:",
             "defaultValue": "0.0",
+            "prefix": "-XX:",
             "name": "G1PeriodicGCSystemLoadThreshold",
             "description": "<pre>Maximum recent system wide load as returned by the 1m value of\ngetloadavg() at which G1 triggers a periodic GC. A load above this\nvalue cancels a given periodic GC. A value of zero disables this check.\n<\/pre>",
             "type": "Double"
         },
         {
-            "prefix": "-XX:",
             "defaultValue": "0",
+            "prefix": "-XX:",
             "name": "G1RSetRegionEntries",
             "description": "<pre>Max number of regions for which we keep bitmaps. Will be set\nergonomically by default\n<\/pre>",
             "type": "Long"
         },
         {
-            "prefix": "-XX:",
             "defaultValue": "0",
+            "prefix": "-XX:",
             "name": "G1RSetSparseRegionEntries",
             "description": "<pre>Max number of entries per region in a sparse table. Will be set\nergonomically by default.\n<\/pre>",
             "type": "Long"
         },
         {
-            "prefix": "-XX:",
             "defaultValue": "10",
+            "prefix": "-XX:",
             "name": "G1RSetUpdatingPauseTimePercent",
             "description": "<pre>A target percentage of time that is allowed to be spend on process RS\nupdate buffers during the collection pause.\n<\/pre>",
             "type": "Integer"
         },
         {
-            "prefix": "-XX:",
             "defaultValue": "1000",
+            "prefix": "-XX:",
             "name": "G1RefProcDrainInterval",
             "description": "<pre>The number of discovered reference objects to process before draining\nconcurrent marking work queues.\n<\/pre>",
             "type": "Integer"
         },
         {
-            "prefix": "-XX:",
             "defaultValue": "10",
+            "prefix": "-XX:",
             "name": "G1ReservePercent",
             "description": "<pre>It determines the minimum reserve we should have in the heap to\nminimize the probability of promotion failure.\n<\/pre>",
             "type": "Integer"
         },
         {
-            "prefix": "-XX:",
             "defaultValue": "60",
+            "prefix": "-XX:",
             "name": "G1SATBBufferEnqueueingThresholdPercent",
             "description": "<pre>Before enqueueing them, each mutator thread tries to do some filtering\non the SATB buffers it generates. If post-filtering the percentage of\nretained entries is over this threshold the buffer will be enqueued for\nprocessing. A value of 0 specifies that mutator threads should not do\nsuch filtering.\n<\/pre>",
             "type": "Integer"
         },
         {
-            "prefix": "-XX:",
             "defaultValue": "1024",
+            "prefix": "-XX:",
             "name": "G1SATBBufferSize",
             "description": "<pre>Number of entries in an SATB log buffer.\n<\/pre>",
             "type": "Long"
         },
         {
-            "prefix": "-XX:",
             "defaultValue": "256",
+            "prefix": "-XX:",
             "name": "G1UpdateBufferSize",
             "description": "<pre>Size of an update buffer.\n<\/pre>",
             "type": "Long"
         },
         {
-            "prefix": "-XX:",
             "defaultValue": "true",
+            "prefix": "-XX:",
             "name": "G1UseAdaptiveConcRefinement",
             "description": "<pre>Select green, yellow and red zones adaptively to meet the the pause\nrequirements.\n<\/pre>",
             "type": "Boolean"
         },
         {
-            "prefix": "-XX:",
             "defaultValue": "true",
+            "prefix": "-XX:",
             "name": "G1UseAdaptiveIHOP",
             "description": "<pre>Adaptively adjust the initiating heap occupancy from the initial value\nof InitiatingHeapOccupancyPercent. The policy attempts to start marking\nin time based on application behavior.\n<\/pre>",
             "type": "Boolean"
         },
         {
-            "prefix": "-XX:",
             "defaultValue": "false",
+            "prefix": "-XX:",
             "name": "G1VerifyBitmaps",
             "description": "<pre>Verifies the consistency of the marking bitmaps\n<\/pre>",
             "type": "Boolean"
         },
         {
-            "prefix": "-XX:",
             "defaultValue": "false",
+            "prefix": "-XX:",
             "name": "G1VerifyHeapRegionCodeRoots",
             "description": "<pre>Verify the code root lists attached to each heap region.\n<\/pre>",
             "type": "Boolean"
         },
         {
-            "prefix": "-XX:",
             "defaultValue": "false",
+            "prefix": "-XX:",
             "name": "G1VerifyRSetsDuringFullGC",
             "description": "<pre>If true, perform verification of each heap region's remembered set when\nverifying the heap during a full GC.\n<\/pre>",
             "type": "Boolean"
         },
         {
-            "prefix": "-XX:",
             "defaultValue": "64",
+            "prefix": "-XX:",
             "name": "GCDrainStackTargetSize",
             "description": "<pre>Number of entries we will try to leave on the stack during parallel gc\n<\/pre>",
             "type": "Long"
         },
         {
-            "prefix": "-XX:",
             "defaultValue": "201",
+            "prefix": "-XX:",
             "name": "GCPauseIntervalMillis",
             "description": "<pre>Time slice for MMU specification\n<\/pre>",
             "type": "Long"
         },
         {
-            "prefix": "-XX:",
             "defaultValue": "12",
+            "prefix": "-XX:",
             "name": "GCTimeRatio",
             "description": "<pre>Adaptive size policy application time to GC time ratio\n<\/pre>",
             "type": "Long"
         },
         {
-            "prefix": "-XX:",
             "defaultValue": "false",
+            "prefix": "-XX:",
             "name": "GenerateRuntimeDebugInfo",
             "description": "<pre>Generate debuginfo for runtime-compiled code.\n<\/pre>",
             "type": "Boolean"
         },
         {
-            "prefix": "-XX:",
             "defaultValue": "44040192",
+            "prefix": "-XX:",
             "name": "HeapSizePerGCThread",
             "description": "<pre>Size of heap (bytes) per GC thread used in calculating the number of GC\nthreads\n<\/pre>",
             "type": "Long"
         },
         {
-            "prefix": "-XX:",
             "defaultValue": "true",
+            "prefix": "-XX:",
             "name": "HighTierPartialUnrolling",
             "description": "<pre>Enable EE partial unrolling in high tier.\n<\/pre>",
             "type": "Boolean"
         },
         {
-            "prefix": "-XX:",
             "defaultValue": "true",
+            "prefix": "-XX:",
             "name": "IgnoreBadDuplications",
             "description": "<pre>Ignore duplications with a bad benefit cost relation.\n<\/pre>",
             "type": "Boolean"
         },
         {
-            "prefix": "-XX:",
             "defaultValue": "0",
+            "prefix": "-XX:",
             "name": "InitialHeapSize",
             "description": "<pre>Initial heap size (in bytes); zero means use ergonomics\n<\/pre>",
             "type": "Long"
         },
         {
-            "prefix": "-XX:",
             "defaultValue": "1.5625",
+            "prefix": "-XX:",
             "name": "InitialRAMPercentage",
             "description": "<pre>Percentage of real memory used for initial heap size\n<\/pre>",
             "type": "Double"
         },
         {
-            "prefix": "-XX:",
             "defaultValue": "45",
+            "prefix": "-XX:",
             "name": "InitiatingHeapOccupancyPercent",
             "description": "<pre>The percent occupancy (IHOP) of the current old generation capacity\nabove which a concurrent mark cycle will be initiated. Its value may\nchange over time if adaptive IHOP is enabled, otherwise the value\nremains constant. In the latter case a value of 0 will result as\nfrequent as possible concurrent marking cycles. A value of 100 disables\nconcurrent marking. Fragmentation waste in the old generation is not\nconsidered free space in this calculation.\n<\/pre>",
             "type": "Integer"
         },
         {
-            "prefix": "-XX:",
             "defaultValue": "1.0",
+            "prefix": "-XX:",
             "name": "InlineAllBonus",
             "description": "<pre>The bonus applied to call nodes that can be fully inlined.\n<\/pre>",
             "type": "Double"
         },
         {
-            "prefix": "-XX:",
             "defaultValue": "20000",
+            "prefix": "-XX:",
             "name": "InlinedCompilerNodeLimit",
             "description": "<pre>Controls the maximum number of compiler nodes that can be inlined into\nthe compiled method.\n<\/pre>",
             "type": "Integer"
         },
         {
-            "prefix": "-XX:",
             "defaultValue": "0.02",
+            "prefix": "-XX:",
             "name": "InliningCoefficient",
             "description": "<pre>The coefficient used to compute the inlining threshold; the higher, the\nmore to inline.\n<\/pre>",
             "type": "Double"
         },
         {
-            "prefix": "-XX:",
             "defaultValue": "false",
+            "prefix": "-XX:",
             "name": "InsertPreMainPostOnly",
             "description": "<pre>Do not unroll the main loop, only create pre-main-post.\n<\/pre>",
             "type": "Boolean"
         },
         {
-            "prefix": "-XX:",
             "defaultValue": "false",
+            "prefix": "-XX:",
             "name": "InspectGraphs",
             "description": "<pre>Inspect analysis graphs.\n<\/pre>",
             "type": "Boolean"
         },
         {
-            "prefix": "-XX:",
             "defaultValue": "0.005",
+            "prefix": "-XX:",
             "name": "LargeChildrenCountPenaltyCoefficient",
             "description": "<pre>Reduces the likelihood of exploring call graphs that have a lot of\nchildren below the root.\n<\/pre>",
             "type": "Double"
         },
         {
-            "prefix": "-XX:",
             "defaultValue": "false",
+            "prefix": "-XX:",
             "name": "LoopInversion",
             "description": "<pre>Convert loops into their zero trip form.\n<\/pre>",
             "type": "Boolean"
         },
         {
-            "prefix": "-XX:",
             "defaultValue": "4194304",
+            "prefix": "-XX:",
             "name": "MarkStackSize",
             "description": "<pre>Size of marking stack\n<\/pre>",
             "type": "Long"
         },
         {
-            "prefix": "-XX:",
             "defaultValue": "536870912",
+            "prefix": "-XX:",
             "name": "MarkStackSizeMax",
             "description": "<pre>Maximum size of marking stack\n<\/pre>",
             "type": "Long"
         },
         {
-            "prefix": "-XX:",
             "defaultValue": "64",
+            "prefix": "-XX:",
             "name": "MaxCpuLocalsPerCounter",
             "description": "<pre>Upper bound on the number of cpu locals per counter. It has to be a\npower of 2.\n<\/pre>",
             "type": "Integer"
         },
         {
-            "prefix": "-XX:",
             "defaultValue": "200",
+            "prefix": "-XX:",
             "name": "MaxGCPauseMillis",
             "description": "<pre>Adaptive size policy maximum GC pause time goal in millisecond, or the\nmaximum GC time per MMU time slice\n<\/pre>",
             "type": "Long"
         },
         {
-            "prefix": "-XX:",
             "defaultValue": "100000",
+            "prefix": "-XX:",
             "name": "MaxGraphSizeNodeCost",
             "description": "<pre>Maximum node cost graph size for duplication. If a graph is bigger\nduplication will stop.\n<\/pre>",
             "type": "Integer"
         },
         {
-            "prefix": "-XX:",
             "defaultValue": "2.0",
+            "prefix": "-XX:",
             "name": "MaxMispredictionCostIncreaseFactor",
             "description": "<pre>Abstract measure of the cost of branch misprediction. Higher values\nmake generation of conditional moves more likely.\n<\/pre>",
             "type": "Double"
         },
         {
-            "prefix": "-XX:",
             "defaultValue": "3",
+            "prefix": "-XX:",
             "name": "MaxPolymorphicDispatches",
             "description": "<pre>The maximum number of dispatches in guarded polymorphic inlining.\n<\/pre>",
             "type": "Integer"
         },
         {
-            "prefix": "-XX:",
             "defaultValue": "10",
+            "prefix": "-XX:",
             "name": "MaxPriorityInliningPeelingIterations",
             "description": "<pre>Max number of precise inlining peeling iterations.\n<\/pre>",
             "type": "Integer"
         },
         {
-            "prefix": "-XX:",
             "defaultValue": "137438953472",
+            "prefix": "-XX:",
             "name": "MaxRAM",
             "description": "<pre>Real memory size (in bytes) used to set maximum heap size\n<\/pre>",
             "type": "Long"
         },
         {
-            "prefix": "-XX:",
             "defaultValue": "25.0",
+            "prefix": "-XX:",
             "name": "MaxRAMPercentage",
             "description": "<pre>Maximum percentage of real memory used for maximum heap size\n<\/pre>",
             "type": "Double"
         },
         {
-            "prefix": "-XX:",
             "defaultValue": "2",
+            "prefix": "-XX:",
             "name": "MaxSimulationIterations",
             "description": "<pre>Maximum simulation-duplication iterations of the duplication\noptimization per invocation.\n<\/pre>",
             "type": "Integer"
         },
         {
-            "prefix": "-XX:",
             "defaultValue": "32",
+            "prefix": "-XX:",
             "name": "MaxSplitsPerNode",
             "type": "Integer"
         },
         {
-            "prefix": "-XX:",
             "defaultValue": "15",
+            "prefix": "-XX:",
             "name": "MaxTenuringThreshold",
             "description": "<pre>Maximum value for tenuring threshold\n<\/pre>",
             "type": "Long"
         },
         {
-            "prefix": "-XX:",
             "defaultValue": "4",
+            "prefix": "-XX:",
             "name": "MaxVectorAlignmentUnroll",
             "description": "<pre>Maximum number of unrolled alignment instructions\n<\/pre>",
             "type": "Integer"
         },
         {
-            "prefix": "-XX:",
             "defaultValue": "16",
+            "prefix": "-XX:",
             "name": "MaxVectorUnroll",
             "description": "<pre>Maximum length of linear-code vector operations\n<\/pre>",
             "type": "Integer"
         },
         {
-            "prefix": "-XX:",
             "defaultValue": "2",
+            "prefix": "-XX:",
             "name": "MaximumTransitiveEnabledPullFactor",
             "description": "<pre>PullThroughPhiOptimization: Maximum number of algorithm iterations per\noptimization invocation.\n<\/pre>",
             "type": "Integer"
         },
         {
-            "prefix": "-XX:",
             "defaultValue": "true",
+            "prefix": "-XX:",
             "name": "MidTierPartialUnrolling",
             "description": "<pre>Enable EE partial unrolling in mid tier.\n<\/pre>",
             "type": "Boolean"
         },
         {
-            "prefix": "-XX:",
             "defaultValue": "0.66",
+            "prefix": "-XX:",
             "name": "MinBlockFrequencyPull",
             "description": "<pre>PullThroughPhiOptimization: Ignore low frequency branches during\nduplication.\n<\/pre>",
             "type": "Double"
         },
         {
-            "prefix": "-XX:",
             "defaultValue": "172032",
+            "prefix": "-XX:",
             "name": "MinHeapDeltaBytes",
             "description": "<pre>The minimum change in heap space due to GC (in bytes).\n<\/pre>",
             "type": "Long"
         },
         {
-            "prefix": "-XX:",
             "defaultValue": "40",
+            "prefix": "-XX:",
             "name": "MinHeapFreeRatio",
             "description": "<pre>The minimum percentage of heap free after GC to avoid expansion.\n<\/pre>",
             "type": "Long"
         },
         {
-            "prefix": "-XX:",
             "defaultValue": "0.1",
+            "prefix": "-XX:",
             "name": "MinPolymorphicDispatchProbability",
             "description": "<pre>The minimum probability for using a dispatch in guarded polymorphic\ninlining.\n<\/pre>",
             "type": "Double"
         },
         {
-            "prefix": "-XX:",
             "defaultValue": "50.0",
+            "prefix": "-XX:",
             "name": "MinRAMPercentage",
             "description": "<pre>Minimum percentage of real memory used for maximum heap size on systems\nwith small physical memory size\n<\/pre>",
             "type": "Double"
         },
         {
-            "prefix": "-XX:",
             "defaultValue": "2048",
+            "prefix": "-XX:",
             "name": "MinTLABSize",
             "description": "<pre>Minimum allowed TLAB size (in bytes)\n<\/pre>",
             "type": "Long"
         },
         {
-            "prefix": "-XX:",
             "defaultValue": "true",
+            "prefix": "-XX:",
             "name": "MinimalRegions",
             "description": "<pre>Try to reduce duplication code size to the minimal amount of code.\n<\/pre>",
             "type": "Boolean"
         },
         {
-            "prefix": "-XX:",
             "defaultValue": "32",
+            "prefix": "-XX:",
             "name": "MultiExitCostFactor",
             "description": "<pre>Cost/Benefit heuristic for EE unrolling: If a loop has multiple exits,\ncost is increased by this value for every none-sinking loop exit.\n<\/pre>",
             "type": "Integer"
         },
         {
-            "prefix": "-XX:",
             "defaultValue": "2",
+            "prefix": "-XX:",
             "name": "MultiExitCostFactorSink",
             "description": "<pre>Cost/Benefit heuristic for EE unrolling: If a loop has multiple exits,\ncost is increased by this value for every sinking loop exit.\n<\/pre>",
             "type": "Integer"
         },
         {
-            "prefix": "-XX:",
             "defaultValue": "2",
+            "prefix": "-XX:",
             "name": "NewRatio",
             "description": "<pre>Ratio of old/new generation sizes\n<\/pre>",
             "type": "Long"
         },
         {
-            "prefix": "-XX:",
             "defaultValue": "1048576",
+            "prefix": "-XX:",
             "name": "NewSize",
             "description": "<pre>Initial new generation size (in bytes)\n<\/pre>",
             "type": "Long"
         },
         {
-            "prefix": "-XX:",
             "defaultValue": "1024",
+            "prefix": "-XX:",
             "name": "OldPLABSize",
             "description": "<pre>Size of old gen promotion LAB's (in HeapWords)\n<\/pre>",
             "type": "Long"
         },
         {
-            "prefix": "-XX:",
             "defaultValue": "5242880",
+            "prefix": "-XX:",
             "name": "OldSize",
             "description": "<pre>Initial tenured generation size (in bytes)\n<\/pre>",
             "type": "Long"
         },
         {
-            "prefix": "-XX:",
             "defaultValue": "true",
+            "prefix": "-XX:",
             "name": "OptBulkAllocation",
             "type": "Boolean"
         },
         {
-            "prefix": "-XX:",
             "defaultValue": "true",
+            "prefix": "-XX:",
             "name": "OptCompressedFrameStateValues",
             "type": "Boolean"
         },
         {
-            "prefix": "-XX:",
             "defaultValue": "true",
+            "prefix": "-XX:",
             "name": "OptConditionalMoves",
             "description": "<pre>Optimize simple if branches with conditional moves\n<\/pre>",
             "type": "Boolean"
         },
         {
-            "prefix": "-XX:",
             "defaultValue": "true",
+            "prefix": "-XX:",
             "name": "OptDeDuplication",
             "type": "Boolean"
         },
         {
-            "prefix": "-XX:",
             "defaultValue": "true",
+            "prefix": "-XX:",
             "name": "OptDuplication",
             "type": "Boolean"
         },
         {
-            "prefix": "-XX:",
             "defaultValue": "true",
+            "prefix": "-XX:",
             "name": "OptExactArithmetic",
             "type": "Boolean"
         },
         {
-            "prefix": "-XX:",
             "defaultValue": "true",
+            "prefix": "-XX:",
             "name": "OptGuardRangeGrouping",
             "type": "Boolean"
         },
         {
-            "prefix": "-XX:",
             "defaultValue": "false",
+            "prefix": "-XX:",
             "name": "OptLateDuplication",
             "type": "Boolean"
         },
         {
-            "prefix": "-XX:",
             "defaultValue": "true",
+            "prefix": "-XX:",
             "name": "OptLockElimination",
             "type": "Boolean"
         },
         {
-            "prefix": "-XX:",
             "defaultValue": "true",
+            "prefix": "-XX:",
             "name": "OptLoopPhiStamps",
             "description": "<pre>Inject stamps on induction variables.\n<\/pre>",
             "type": "Boolean"
         },
         {
-            "prefix": "-XX:",
             "defaultValue": "true",
+            "prefix": "-XX:",
             "name": "OptPullThroughPhi",
             "type": "Boolean"
         },
         {
-            "prefix": "-XX:",
             "defaultValue": "true",
+            "prefix": "-XX:",
             "name": "OptSpeculativeGuardMovement",
             "type": "Boolean"
         },
         {
-            "prefix": "-XX:",
             "defaultValue": "true",
+            "prefix": "-XX:",
             "name": "OptStringConcat",
             "description": "<pre>Optimize StringBuilder construction\n<\/pre>",
             "type": "Boolean"
         },
         {
-            "prefix": "-XX:",
             "defaultValue": "false",
+            "prefix": "-XX:",
             "name": "OptStringConcatDump",
             "description": "<pre>Dump graphs to help debug operation\n<\/pre>",
             "type": "Boolean"
         },
         {
-            "prefix": "-XX:",
             "defaultValue": "true",
+            "prefix": "-XX:",
             "name": "OptWriteBarrierElimination",
             "description": "<pre>Eliminate redundant write barriers.\n<\/pre>",
             "type": "Boolean"
         },
         {
-            "prefix": "-XX:",
             "defaultValue": "true",
+            "prefix": "-XX:",
             "name": "OptimisticAliasingAnalysis",
             "type": "Boolean"
         },
         {
-            "prefix": "-XX:",
             "defaultValue": "true",
+            "prefix": "-XX:",
             "name": "OptimizeLoopAccesses",
             "description": "<pre>Enable access node optimizations for loops\n<\/pre>",
             "type": "Boolean"
         },
         {
-            "prefix": "-XX:",
             "defaultValue": "null",
+            "prefix": "-XX:",
             "name": "PGOInstrument",
             "description": "<pre>Dump information for Profile Guided Optimizations (true or file name)\n<\/pre>",
             "type": "String"
         },
         {
-            "prefix": "-XX:",
             "defaultValue": "75",
+            "prefix": "-XX:",
             "name": "PLABWeight",
             "description": "<pre>Percentage (0-100) used to weight the current sample when computing\nexponentially decaying average for ResizePLAB\n<\/pre>",
             "type": "Integer"
         },
         {
-            "prefix": "-XX:",
             "defaultValue": "50",
+            "prefix": "-XX:",
             "name": "ParGCArrayScanChunk",
             "description": "<pre>Scan a subset of object array and push remainder, if array is bigger\nthan this\n<\/pre>",
             "type": "Integer"
         },
         {
-            "prefix": "-XX:",
             "defaultValue": "10",
+            "prefix": "-XX:",
             "name": "ParallelGCBufferWastePct",
             "description": "<pre>Wasted fraction of parallel allocation buffer\n<\/pre>",
             "type": "Integer"
         },
         {
-            "prefix": "-XX:",
             "defaultValue": "0",
+            "prefix": "-XX:",
             "name": "ParallelGCThreads",
             "description": "<pre>Number of parallel threads parallel gc will use\n<\/pre>",
             "type": "Integer"
         },
         {
-            "prefix": "-XX:",
             "defaultValue": "true",
+            "prefix": "-XX:",
             "name": "ParallelRefProcBalancingEnabled",
             "description": "<pre>Enable balancing of reference processing queues\n<\/pre>",
             "type": "Boolean"
         },
         {
-            "prefix": "-XX:",
             "defaultValue": "true",
+            "prefix": "-XX:",
             "name": "ParallelRefProcEnabled",
             "description": "<pre>Enable parallel reference processing whenever possible\n<\/pre>",
             "type": "Boolean"
         },
         {
-            "prefix": "-XX:",
             "defaultValue": "true",
+            "prefix": "-XX:",
             "name": "PartialRedundancyElimination",
             "description": "<pre>Enable partial redundancy elimination\n<\/pre>",
             "type": "Boolean"
         },
         {
-            "prefix": "-XX:",
             "defaultValue": "2",
+            "prefix": "-XX:",
             "name": "PartialUnrollCostReductionFactorHighTier",
             "description": "<pre>Cost/Benefit heuristic for EE unrolling in high tier: reduce cost by a\nconstant factor when comparing with relative benefit.\n<\/pre>",
             "type": "Integer"
         },
         {
-            "prefix": "-XX:",
             "defaultValue": "8",
+            "prefix": "-XX:",
             "name": "PartialUnrollCostReductionFactorMidTier",
             "description": "<pre>Cost/Benefit heuristic for EE unrolling in mid tier: reduce cost by a\nconstant factor when comparing with relative benefit.\n<\/pre>",
             "type": "Integer"
         },
         {
-            "prefix": "-XX:",
             "defaultValue": "4",
+            "prefix": "-XX:",
             "name": "PartialUnrollMaxIterationsHighTier",
             "description": "<pre>Maximum number of iterations to unroll for a high tier main loop.\n<\/pre>",
             "type": "Integer"
         },
         {
-            "prefix": "-XX:",
             "defaultValue": "16",
+            "prefix": "-XX:",
             "name": "PartialUnrollMaxIterationsMidTier",
             "description": "<pre>Maximum number of iterations to unroll for a mid tier main loop.\n<\/pre>",
             "type": "Integer"
         },
         {
-            "prefix": "-XX:",
             "defaultValue": "256",
+            "prefix": "-XX:",
             "name": "PartialUnrollMaxSizeHighTier",
             "description": "<pre>Maximum node cost size of a loop to be considered for high tier\nunrolling.\n<\/pre>",
             "type": "Integer"
         },
         {
-            "prefix": "-XX:",
             "defaultValue": "256",
+            "prefix": "-XX:",
             "name": "PartialUnrollMaxSizeMidTier",
             "description": "<pre>Maximum node cost size of a loop to be considered for mid tier tier\nunrolling.\n<\/pre>",
             "type": "Integer"
         },
         {
-            "prefix": "-XX:",
             "defaultValue": "2",
+            "prefix": "-XX:",
             "name": "PartialUnrollMinFrequency",
             "description": "<pre>Minimal loop frequency to consider a loop for partial unrolling\n<\/pre>",
             "type": "Integer"
         },
         {
-            "prefix": "-XX:",
             "defaultValue": "10",
+            "prefix": "-XX:",
             "name": "PathProfileCutThreshold",
             "description": "<pre>The limit on the number of paths at control-flow merges. Decreasing\nthis value reduces the number of paths, but also shortens them.\n<\/pre>",
             "type": "Integer"
         },
         {
-            "prefix": "-XX:",
             "defaultValue": "null",
+            "prefix": "-XX:",
             "name": "PathProfileDumpFile",
             "description": "<pre>Dump information for path profile (null or file name). If set to null,\nthen dumping is disabled.\n<\/pre>",
             "type": "String"
         },
         {
-            "prefix": "-XX:",
             "defaultValue": "500",
+            "prefix": "-XX:",
             "name": "PathProfileFrequentThreshold",
             "description": "<pre>Maximum acceptable number of paths coming from the inbound of a merge\nif both of them are frequent.\n<\/pre>",
             "type": "Long"
         },
         {
-            "prefix": "-XX:",
             "defaultValue": "0.1",
+            "prefix": "-XX:",
             "name": "PathProfileGlobalLowFrequencyRatio",
             "description": "<pre>If some block's relative frequency drops below this number times the\nmaximum relative frequency in the graph, then the block is considered\ninfrequent.\n<\/pre>",
             "type": "Double"
         },
         {
-            "prefix": "-XX:",
             "defaultValue": "10.0",
+            "prefix": "-XX:",
             "name": "PathProfileLocalLowFrequencyRatio",
             "description": "<pre>If the ratio of the merge's frequency with its inbound's frequency is\ngreater than this threshold, then the inbound is considered infrequent.\n<\/pre>",
             "type": "Double"
         },
         {
-            "prefix": "-XX:",
             "defaultValue": "4000000",
+            "prefix": "-XX:",
             "name": "PathProfileMaxTotalCounters",
             "description": "<pre>Maximum number of counters to use in path profiling for all\ninstrumented methods.\n<\/pre>",
             "type": "Integer"
         },
         {
-            "prefix": "-XX:",
             "defaultValue": "None",
+            "prefix": "-XX:",
             "name": "PathProfilePolicy",
             "description": "<pre>Enable or disable the path-profiling algorithm. If it enables it, it\nalso allows to select which mode to execute.\n<\/pre>",
             "type": "String"
         },
         {
-            "prefix": "-XX:",
             "defaultValue": "false",
+            "prefix": "-XX:",
             "name": "PathProfileRegenerate",
             "description": "<pre>Controls whether the path-regeneration algorithm is executed.\n<\/pre>",
             "type": "Boolean"
         },
         {
-            "prefix": "-XX:",
             "defaultValue": "120",
+            "prefix": "-XX:",
             "name": "PeelFoldFactor",
             "type": "Integer"
         },
         {
-            "prefix": "-XX:",
             "defaultValue": "4.0",
+            "prefix": "-XX:",
             "name": "PeelingConsideredMinFrequency",
             "description": "<pre>Minimal loop frequency necessary to consider peeling.\n<\/pre>",
             "type": "Double"
         },
         {
-            "prefix": "-XX:",
             "defaultValue": "true",
+            "prefix": "-XX:",
             "name": "PenalizeComplexLoopControlFlow",
             "description": "<pre>Increase the cost of duplicating control flow splits inside loops if\nthey are not foldable.The generally tend to complicate control flow and\ngenerate worse code in the backend.\n<\/pre>",
             "type": "Boolean"
         },
         {
-            "prefix": "-XX:",
             "defaultValue": "32768",
+            "prefix": "-XX:",
             "name": "PerfDataMemorySize",
             "description": "<pre>Size of performance data memory region. Will be rounded up to a\nmultiple of the native os page size.\n<\/pre>",
             "type": "Integer"
         },
         {
-            "prefix": "-XX:",
             "defaultValue": "200",
+            "prefix": "-XX:",
             "name": "PerfDataSamplingInterval",
             "description": "<pre>Jvmstat instrumentation sampling interval (in milliseconds)\n<\/pre>",
             "type": "Integer"
         },
         {
-            "prefix": "-XX:",
             "defaultValue": "1024",
+            "prefix": "-XX:",
             "name": "PerfMaxStringConstLength",
             "description": "<pre>Maximum PerfStringConstant string length before truncation\n<\/pre>",
             "type": "Integer"
         },
         {
-            "prefix": "-XX:",
             "defaultValue": "1073741824",
+            "prefix": "-XX:",
             "name": "PreTouchParallelChunkSize",
             "description": "<pre>Per-thread chunk size for parallel memory pre-touch.\n<\/pre>",
             "type": "Long"
         },
         {
-            "prefix": "-XX:",
             "defaultValue": "-1",
+            "prefix": "-XX:",
             "name": "PrefetchCopyIntervalInBytes",
             "description": "<pre>How far ahead to prefetch destination area (<= 0 means off)\n<\/pre>",
             "type": "Long"
         },
         {
-            "prefix": "-XX:",
             "defaultValue": "-1",
+            "prefix": "-XX:",
             "name": "PrefetchScanIntervalInBytes",
             "description": "<pre>How far ahead to prefetch scan area (<= 0 means off)\n<\/pre>",
             "type": "Long"
         },
         {
-            "prefix": "-XX:",
             "defaultValue": "\"\"",
+            "prefix": "-XX:",
             "name": "PriorityInliningPolicy",
             "description": "<pre>The policy to use, must be empty for automatic resolution.\n<\/pre>",
             "type": "String"
         },
         {
-            "prefix": "-XX:",
             "defaultValue": "\"DomainSpecific,BytecodeInterpreter\"",
+            "prefix": "-XX:",
             "name": "PriorityInliningTuningPolicy",
             "description": "<pre>Comma-separated list of analysis policies for exploring the methods in\nthe call graph and for inlining, empty for no policy.\n<\/pre>",
             "type": "String"
         },
         {
-            "prefix": "-XX:",
             "defaultValue": "-1",
+            "prefix": "-XX:",
             "name": "ProfileDumpPeriod",
             "description": "<pre>Integer greater than zero representing the duration in seconds that\nwill be used to trigger a profile capture. Any integer less than one\ndisables periodic dumps\n<\/pre>",
             "type": "Integer"
         },
         {
-            "prefix": "-XX:",
             "defaultValue": "false",
+            "prefix": "-XX:",
             "name": "ProfileLockElimination",
             "type": "Boolean"
         },
         {
-            "prefix": "-XX:",
             "defaultValue": "false",
+            "prefix": "-XX:",
             "name": "ProfileOptBulkAllocation",
             "type": "Boolean"
         },
         {
-            "prefix": "-XX:",
             "defaultValue": "true",
+            "prefix": "-XX:",
             "name": "ProfileSelfTime",
             "description": "<pre>Excludes time spent in invoked methods; measures total time including\nsubcalls when turned off.\n<\/pre>",
             "type": "Boolean"
         },
         {
-            "prefix": "-XX:",
             "defaultValue": "\"default.iprof\"",
+            "prefix": "-XX:",
             "name": "ProfilesDumpFile",
             "description": "<pre>Value should point to a profile dump file.\n<\/pre>",
             "type": "String"
         },
         {
-            "prefix": "-XX:",
             "defaultValue": "true",
+            "prefix": "-XX:",
             "name": "PruneLargeDominatorUsageTrees",
             "type": "Boolean"
         },
         {
-            "prefix": "-XX:",
             "defaultValue": "0.1",
+            "prefix": "-XX:",
             "name": "PullThroughPhiCodeSizeIncrease",
             "description": "<pre>PullThroughPhiOptimization: Percentage in node cost graph size for the\nfloating node duplication budget. Computed relative to the method's\ngraph size.\n<\/pre>",
             "type": "Double"
         },
         {
-            "prefix": "-XX:",
             "defaultValue": "0",
+            "prefix": "-XX:",
             "name": "QueuedAllocationWarningCount",
             "description": "<pre>Number of times an allocation that queues behind a GC will retry before\nprinting a warning\n<\/pre>",
             "type": "Long"
         },
         {
-            "prefix": "-XX:",
             "defaultValue": "0",
+            "prefix": "-XX:",
             "name": "RefDiscoveryPolicy",
             "description": "<pre>Select type of reference discovery policy: reference-based(0) or\nreferent-based(1)\n<\/pre>",
             "type": "Integer"
         },
         {
-            "prefix": "-XX:",
             "defaultValue": "0.001",
+            "prefix": "-XX:",
             "name": "RelativeBenefitInliningCoefficient",
             "description": "<pre>The coefficient used to compute the inlining threshold; the higher, the\nhard to inline.\n<\/pre>",
             "type": "Double"
         },
         {
-            "prefix": "-XX:",
             "defaultValue": "true",
+            "prefix": "-XX:",
             "name": "ResizePLAB",
             "description": "<pre>Dynamically resize (survivor space) promotion LAB's\n<\/pre>",
             "type": "Boolean"
         },
         {
-            "prefix": "-XX:",
             "defaultValue": "true",
+            "prefix": "-XX:",
             "name": "ResizeTLAB",
             "description": "<pre>Dynamically resize TLAB size for threads\n<\/pre>",
             "type": "Boolean"
         },
         {
-            "prefix": "-XX:",
             "defaultValue": "true",
+            "prefix": "-XX:",
             "name": "RespectVectorization",
             "description": "<pre>Try avoid unrolling vectorizable loops.\n<\/pre>",
             "type": "Boolean"
         },
         {
-            "prefix": "-XX:",
             "defaultValue": "null",
+            "prefix": "-XX:",
             "name": "RuntimeSourceDestDir",
             "description": "<pre>Directory where Java source-files will be placed for the debugger\n<\/pre>",
             "type": "String"
         },
         {
-            "prefix": "-XX:",
             "defaultValue": "false",
+            "prefix": "-XX:",
             "name": "ScheduledDuplicationSimulation",
             "description": "<pre>Simulation can either only process fixed nodes or schedule the graph\nand also process floating nodes.\n<\/pre>",
             "type": "Boolean"
         },
         {
-            "prefix": "-XX:",
             "defaultValue": "true",
+            "prefix": "-XX:",
             "name": "SimulationBasedLoopPeeling",
             "description": "<pre>Use DBDS algorithm to simulate the impact of peeling on a loop.\n<\/pre>",
             "type": "Boolean"
         },
         {
-            "prefix": "-XX:",
             "defaultValue": "true",
+            "prefix": "-XX:",
             "name": "SimulationPruneUnlikelyBranches",
             "description": "<pre>Ignore low frequency branches during simulation.\n<\/pre>",
             "type": "Boolean"
         },
         {
-            "prefix": "-XX:",
             "defaultValue": "0.02",
+            "prefix": "-XX:",
             "name": "SmallRootIrPenaltyCoefficient",
             "description": "<pre>Reduces the likelihood of exploring call graphs with IR size much\nlarger than the root.\n<\/pre>",
             "type": "Double"
         },
         {
-            "prefix": "-XX:",
             "defaultValue": "1000",
+            "prefix": "-XX:",
             "name": "SoftRefLRUPolicyMSPerMB",
             "description": "<pre>Number of milliseconds per MB of free space in the heap.\n<\/pre>",
             "type": "Long"
         },
         {
-            "prefix": "-XX:",
             "defaultValue": "true",
+            "prefix": "-XX:",
             "name": "SpeculativeStoreCheck",
             "description": "<pre>Speculates that arrays have exact type to optimize store checks\n<\/pre>",
             "type": "Boolean"
         },
         {
-            "prefix": "-XX:",
             "defaultValue": "\"\"",
+            "prefix": "-XX:",
             "name": "StartFlightRecording",
             "description": "<pre>Start flight recording with options.\n<\/pre>",
             "type": "String"
         },
         {
-            "prefix": "-XX:",
             "defaultValue": "8",
+            "prefix": "-XX:",
             "name": "SurvivorRatio",
             "description": "<pre>Ratio of eden/survivor space size\n<\/pre>",
             "type": "Long"
         },
         {
-            "prefix": "-XX:",
             "defaultValue": "35",
+            "prefix": "-XX:",
             "name": "TLABAllocationWeight",
             "description": "<pre>Allocation averaging weight\n<\/pre>",
             "type": "Integer"
         },
         {
-            "prefix": "-XX:",
             "defaultValue": "64",
+            "prefix": "-XX:",
             "name": "TLABRefillWasteFraction",
             "description": "<pre>Maximum TLAB waste at a refill (internal fragmentation)\n<\/pre>",
             "type": "Long"
         },
         {
-            "prefix": "-XX:",
             "defaultValue": "0",
+            "prefix": "-XX:",
             "name": "TLABSize",
             "description": "<pre>Starting TLAB size (in bytes); zero means set ergonomically\n<\/pre>",
             "type": "Long"
         },
         {
-            "prefix": "-XX:",
             "defaultValue": "4",
+            "prefix": "-XX:",
             "name": "TLABWasteIncrement",
             "description": "<pre>Increment allowed waste at slow allocation\n<\/pre>",
             "type": "Long"
         },
         {
-            "prefix": "-XX:",
             "defaultValue": "1",
+            "prefix": "-XX:",
             "name": "TLABWasteTargetPercent",
             "description": "<pre>Percentage of Eden that can be wasted\n<\/pre>",
             "type": "Integer"
         },
         {
-            "prefix": "-XX:",
             "defaultValue": "10",
+            "prefix": "-XX:",
             "name": "TargetPLABWastePct",
             "description": "<pre>Target wasted space in last buffer as percent of overall allocation\n<\/pre>",
             "type": "Integer"
         },
         {
-            "prefix": "-XX:",
             "defaultValue": "50",
+            "prefix": "-XX:",
             "name": "TargetSurvivorRatio",
             "description": "<pre>Desired percentage of survivor space used after scavenge\n<\/pre>",
             "type": "Long"
         },
         {
-            "prefix": "-XX:",
             "defaultValue": "false",
+            "prefix": "-XX:",
             "name": "TimeStampProfiling",
             "description": "<pre>Profile method execution time.\n<\/pre>",
             "type": "Boolean"
         },
         {
-            "prefix": "-XX:",
             "defaultValue": "false",
+            "prefix": "-XX:",
             "name": "TraceAuxiliaryImageClassHistogram",
             "description": "<pre>Enables detailed tracing of auxiliary image events.\n<\/pre>",
             "type": "Boolean"
         },
         {
-            "prefix": "-XX:",
             "defaultValue": "false",
+            "prefix": "-XX:",
             "name": "TraceAuxiliaryImageReferenceTree",
             "description": "<pre>Enables detailed tracing of auxiliary image events.\n<\/pre>",
             "type": "Boolean"
         },
         {
-            "prefix": "-XX:",
             "defaultValue": "false",
+            "prefix": "-XX:",
             "name": "TrackGraphSizesInDuplication",
             "description": "<pre>Enable (if Count is enabled) graph size tracking during every\nduplication iteration.\n<\/pre>",
             "type": "Boolean"
         },
         {
-            "prefix": "-XX:",
             "defaultValue": "none",
+            "prefix": "-XX:",
             "name": "TrackInliningStatistics",
             "description": "<pre>Track inlining statistics (inlining duration, call tree size, compiler\nnode counts, and the number of callsites). One of: none, interactive\n<\/pre>",
             "type": "String"
         },
         {
-            "prefix": "-XX:",
             "defaultValue": "512.0",
+            "prefix": "-XX:",
             "name": "TrivialLoopSizeLimitForPeeling",
             "description": "<pre>Loop peeling will consider any loop with a size (in terms of estimated\nmachine instructions) below this value to be a prime candidate for\npeeling. Larger loops will only be considered for peeling if the\nsimulated benefit of peeling is relatively high. The larger the loop,\nthe greater the expected benefit has to be.\n<\/pre>",
             "type": "Double"
         },
         {
-            "prefix": "-XX:",
             "defaultValue": "true",
+            "prefix": "-XX:",
             "name": "TryExplodeOverPhis",
             "description": "<pre>PullThroughPhiOptimization: Enable floating node duplication over\nmultiple phi nodes at once.\n<\/pre>",
             "type": "Boolean"
         },
         {
-            "prefix": "-XX:",
             "defaultValue": "true",
+            "prefix": "-XX:",
             "name": "TryPhiPhiPulls",
             "description": "<pre>PullThroughPhiOptimization: Enable floating node duplication over phis\nwhere the target node has different phis as input.\n<\/pre>",
             "type": "Boolean"
         },
         {
-            "prefix": "-XX:",
             "defaultValue": "0.0",
+            "prefix": "-XX:",
             "name": "TuneInlinerExploration",
             "description": "<pre>Increases or decreases the time spent exploring inlining opportunities\nunder the assumption that more time results in better peak performance\nand less time reduces time to reach (a lower) peak performance. The\nvalue of the option is clamped between -1 and 1 inclusive. Anything\nbelow 0, reduces the exploration time and anything above 0 increases\nexploration time. Note that this option is only a heuristic and should\nbe tuned for any specific application.\n<\/pre>",
             "type": "Double"
         },
         {
-            "prefix": "-XX:",
             "defaultValue": "0",
+            "prefix": "-XX:",
             "name": "TypeFlowPrinterInRadius",
             "description": "<pre>How many levels of inputs to print. A value of 0 prints only the target\nflow.\n<\/pre>",
             "type": "Integer"
         },
         {
-            "prefix": "-XX:",
             "defaultValue": "0",
+            "prefix": "-XX:",
             "name": "TypeFlowPrinterOutRadius",
             "description": "<pre>How many levels of outputs to print. A value of 0 prints only the\ntarget flow.\n<\/pre>",
             "type": "Integer"
         },
         {
-            "prefix": "-XX:",
             "defaultValue": "200",
+            "prefix": "-XX:",
             "name": "TypicalCallGraphSize",
             "description": "<pre>Denotes the call graph size that is considered medium size.\n<\/pre>",
             "type": "Integer"
         },
         {
-            "prefix": "-XX:",
             "defaultValue": "3250",
+            "prefix": "-XX:",
             "name": "TypicalGraphSize",
             "description": "<pre>The typical graph size at which inlining pressure must start growing.\n<\/pre>",
             "type": "Integer"
         },
         {
-            "prefix": "-XX:",
             "defaultValue": "70",
+            "prefix": "-XX:",
             "name": "TypicalGraphSizeInvokeBonus",
             "description": "<pre>The increase in estimated typical graph size after inlining, per each\nextra invoke.\n<\/pre>",
             "type": "Integer"
         },
         {
-            "prefix": "-XX:",
             "defaultValue": "10000",
+            "prefix": "-XX:",
             "name": "TypicalGraphSizeMax",
             "description": "<pre>The maximum in estimated inlined typical graph size.\n<\/pre>",
             "type": "Integer"
         },
         {
-            "prefix": "-XX:",
             "defaultValue": "true",
+            "prefix": "-XX:",
             "name": "UnrollMultiEndLoops",
             "description": "<pre>Unroll loops with multiple loop ends.\n<\/pre>",
             "type": "Boolean"
         },
         {
-            "prefix": "-XX:",
             "defaultValue": "true",
+            "prefix": "-XX:",
             "name": "UnrollMultiExitLoops",
             "description": "<pre>Unroll loops with multiple loop exits.\n<\/pre>",
             "type": "Boolean"
         },
         {
-            "prefix": "-XX:",
             "defaultValue": "true",
+            "prefix": "-XX:",
             "name": "UseDynamicNumberOfGCThreads",
             "description": "<pre>Dynamically choose the number of threads up to a maximum of\nParallelGCThreads parallel collectors will use for garbage collection\nwork\n<\/pre>",
             "type": "Boolean"
         },
         {
-            "prefix": "-XX:",
             "defaultValue": "true",
+            "prefix": "-XX:",
             "name": "UseGraphCache",
             "description": "<pre>Turn on graph caching.\n<\/pre>",
             "type": "Boolean"
         },
         {
-            "prefix": "-XX:",
             "defaultValue": "true",
+            "prefix": "-XX:",
             "name": "UsePerfData",
             "description": "<pre>Flag to disable jvmstat instrumentation for performance testing.\n<\/pre>",
             "type": "Boolean"
         },
         {
-            "prefix": "-XX:",
             "defaultValue": "true",
+            "prefix": "-XX:",
             "name": "UsePriorityInlining",
             "description": "<pre>Use priority-based inlining.\n<\/pre>",
             "type": "Boolean"
         },
         {
-            "prefix": "-XX:",
             "defaultValue": "true",
+            "prefix": "-XX:",
             "name": "VTuneAbsoluteFilenames",
             "description": "<pre>Use absolute path for source-filenames in VTune events.\n<\/pre>",
             "type": "Boolean"
         },
         {
-            "prefix": "-XX:",
             "defaultValue": "true",
+            "prefix": "-XX:",
             "name": "VectorIntrinsics",
             "description": "<pre>Enable vectorized array copy intrinsics\n<\/pre>",
             "type": "Boolean"
         },
         {
-            "prefix": "-XX:",
             "defaultValue": "1",
+            "prefix": "-XX:",
             "name": "VectorUnroll",
             "description": "<pre>Unroll vectorized loops\n<\/pre>",
             "type": "Integer"
         },
         {
-            "prefix": "-XX:",
             "defaultValue": "true",
+            "prefix": "-XX:",
             "name": "Vectorization",
             "description": "<pre>Enable vectorization.\n<\/pre>",
             "type": "Boolean"
         },
         {
-            "prefix": "-XX:",
             "defaultValue": "true",
+            "prefix": "-XX:",
             "name": "VectorizeAllocation",
             "description": "<pre>Enable vectorized array initialization\n<\/pre>",
             "type": "Boolean"
         },
         {
-            "prefix": "-XX:",
             "defaultValue": "true",
+            "prefix": "-XX:",
             "name": "VectorizeConditional",
             "description": "<pre>Enable vectorization of conditional code.\n<\/pre>",
             "type": "Boolean"
         },
         {
-            "prefix": "-XX:",
             "defaultValue": "true",
+            "prefix": "-XX:",
             "name": "VectorizeDeopts",
             "description": "<pre>Enable vectorization of loops with conditional deopts before writes.\n<\/pre>",
             "type": "Boolean"
         },
         {
-            "prefix": "-XX:",
             "defaultValue": "true",
+            "prefix": "-XX:",
             "name": "VectorizeFoldShaped",
             "description": "<pre>Enable vectorization of loops implementing a higher-order 'fold'\nfunction.\n<\/pre>",
             "type": "Boolean"
         },
         {
-            "prefix": "-XX:",
             "defaultValue": "true",
+            "prefix": "-XX:",
             "name": "VectorizeGather",
             "description": "<pre>Enable vectorization of vector gather operations.\n<\/pre>",
             "type": "Boolean"
         },
         {
-            "prefix": "-XX:",
             "defaultValue": "true",
+            "prefix": "-XX:",
             "name": "VectorizeLoops",
             "description": "<pre>Enable vectorization of loops\n<\/pre>",
             "type": "Boolean"
         },
         {
-            "prefix": "-XX:",
             "defaultValue": "true",
+            "prefix": "-XX:",
             "name": "VectorizeMapShaped",
             "description": "<pre>Enable vectorization of loops implementing a higher-order 'map'\nfunction.\n<\/pre>",
             "type": "Boolean"
         },
         {
-            "prefix": "-XX:",
             "defaultValue": "true",
+            "prefix": "-XX:",
             "name": "VectorizeNegativeStride",
             "description": "<pre>Enable vectorization of loops with negative strides.\n<\/pre>",
             "type": "Boolean"
         },
         {
-            "prefix": "-XX:",
             "defaultValue": "false",
+            "prefix": "-XX:",
             "name": "VectorizeSIMD",
             "description": "<pre>Enable detection of SIMD patterns\n<\/pre>",
             "type": "Boolean"
         },
         {
-            "prefix": "-XX:",
             "defaultValue": "true",
+            "prefix": "-XX:",
             "name": "VectorizeSafepoints",
             "description": "<pre>Enable vectorization of loops with safepoints.\n<\/pre>",
             "type": "Boolean"
         },
         {
-            "prefix": "-XX:",
             "defaultValue": "true",
+            "prefix": "-XX:",
             "name": "VectorizeSequence",
             "description": "<pre>Enable vectorization of sequence values.\n<\/pre>",
             "type": "Boolean"
         },
         {
-            "prefix": "-XX:",
             "defaultValue": "false",
+            "prefix": "-XX:",
             "name": "VerifyAfterGC",
             "description": "<pre>Verify memory system after GC\n<\/pre>",
             "type": "Boolean"
         },
         {
-            "prefix": "-XX:",
             "defaultValue": "false",
+            "prefix": "-XX:",
             "name": "VerifyBeforeGC",
             "description": "<pre>Verify memory system before GC\n<\/pre>",
             "type": "Boolean"
         },
         {
-            "prefix": "-XX:",
             "defaultValue": "false",
+            "prefix": "-XX:",
             "name": "VerifyDuplicationOperations",
             "type": "Boolean"
         },
         {
-            "prefix": "-XX:",
             "defaultValue": "false",
+            "prefix": "-XX:",
             "name": "VerifyDuringGC",
             "description": "<pre>Verify memory system during GC (between phases)\n<\/pre>",
             "type": "Boolean"
         },
         {
-            "prefix": "-XX:",
             "defaultValue": "0",
+            "prefix": "-XX:",
             "name": "VerifyGCStartAt",
             "description": "<pre>GC invoke count where +VerifyHeap kicks in\n<\/pre>",
             "type": "Long"
         },
         {
-            "prefix": "-XX:",
             "defaultValue": "false",
+            "prefix": "-XX:",
             "name": "VerifyRememberedSets",
             "description": "<pre>Verify GC remembered sets\n<\/pre>",
             "type": "Boolean"
         },
         {
-            "prefix": "-XX:",
             "defaultValue": "false",
+            "prefix": "-XX:",
             "name": "VerifyWriteBarrierElimination",
             "description": "<pre>Add code to verify that eliminated barriers weren't needed.\n<\/pre>",
             "type": "Boolean"
         },
         {
-            "prefix": "-XX:",
             "defaultValue": "4096",
+            "prefix": "-XX:",
             "name": "YoungPLABSize",
             "description": "<pre>Size of young gen promotion LAB's (in HeapWords)\n<\/pre>",
             "type": "Long"
         },
         {
-            "prefix": "-XX:",
             "defaultValue": "false",
+            "prefix": "-XX:",
             "name": "ZeroTLAB",
             "description": "<pre>Zero out the newly created TLAB\n<\/pre>",
             "type": "Boolean"
         }
     ],
-    "laterVM": "GraalVM_EE_JDK11",
-    "earlierVM": "GraalVM_CE_JDK11"
+    "removed": []
 }

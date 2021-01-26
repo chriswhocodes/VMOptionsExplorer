@@ -1,9 +1,416 @@
 {
+    "earlierVM": "OpenJDK11",
+    "laterVM": "OpenJDK12",
+    "added": [
+        {
+            "component": "runtime",
+            "defaultValue": "NULL",
+            "prefix": "-XX:",
+            "definedIn": "share/runtime/globals.hpp",
+            "name": "AllocateOldGenAt",
+            "description": "Path to the directoy where a temporary file will be created to use as the backing store for old generation.File of size Xmx is pre-allocated for performance reason, sowe need that much space available",
+            "availability": "experimental",
+            "type": "ccstr"
+        },
+        {
+            "component": "runtime",
+            "defaultValue": "false",
+            "prefix": "-XX:",
+            "definedIn": "share/runtime/globals.hpp",
+            "name": "AllowArchivingWithJavaAgent",
+            "description": "Allow Java agent to be run with CDS dumping",
+            "availability": "diagnostic",
+            "type": "bool"
+        },
+        {
+            "defaultValue": "true",
+            "prefix": "-XX:",
+            "definedIn": "cpu/aarch64/globals_aarch64.hpp",
+            "name": "DisableBCCheck",
+            "cpu": "aarch64",
+            "description": "tell sim not to invoke bccheck callback",
+            "availability": "product",
+            "type": "bool"
+        },
+        {
+            "component": "gc",
+            "defaultValue": "0",
+            "prefix": "-XX:",
+            "definedIn": "share/gc/g1/g1_globals.hpp",
+            "name": "G1PeriodicGCInterval",
+            "description": "Number of milliseconds after a previous GC to wait before triggering a periodic gc. A value of zero disables periodically enforced gc cycles.",
+            "availability": "manageable",
+            "type": "uintx"
+        },
+        {
+            "component": "gc",
+            "defaultValue": "true",
+            "prefix": "-XX:",
+            "definedIn": "share/gc/g1/g1_globals.hpp",
+            "name": "G1PeriodicGCInvokesConcurrent",
+            "description": "Determines the kind of periodic GC. Set to true to have G1 perform a concurrent GC as periodic GC, otherwise use a STW Full GC.",
+            "availability": "product",
+            "type": "bool"
+        },
+        {
+            "component": "gc",
+            "defaultValue": "0.0",
+            "prefix": "-XX:",
+            "definedIn": "share/gc/g1/g1_globals.hpp",
+            "name": "G1PeriodicGCSystemLoadThreshold",
+            "range": "range(0.0, (double)max_uintx)",
+            "description": "Maximum recent system wide load as returned by the 1m value of getloadavg() at which G1 triggers a periodic GC. A load above this value cancels a given periodic GC. A value of zero disables this check.",
+            "availability": "manageable",
+            "type": "double"
+        },
+        {
+            "component": "gc",
+            "defaultValue": "10",
+            "prefix": "-XX:",
+            "definedIn": "share/gc/g1/g1_globals.hpp",
+            "name": "G1YoungExpansionBufferPercent",
+            "range": "range(0, 100)",
+            "description": "When heterogenous heap is enabled by AllocateOldGenAt option, after every GC, young gen is re-sized which involves system calls to commit/uncommit memory. To reduce these calls, we keep a buffer of extra regions to absorb small changes in young gen length. This flag takes the buffer size as an percentage of young gen length",
+            "availability": "experimental",
+            "type": "uintx"
+        },
+        {
+            "defaultValue": "UseBuiltinSim",
+            "prefix": "-XX:",
+            "definedIn": "cpu/aarch64/globals_aarch64.hpp",
+            "name": "NotifySimulator",
+            "cpu": "aarch64",
+            "description": "tell the AArch64 sim where we are in method code",
+            "availability": "product",
+            "type": "bool"
+        },
+        {
+            "component": "runtime",
+            "defaultValue": "false",
+            "prefix": "-XX:",
+            "definedIn": "share/runtime/globals.hpp",
+            "name": "PrintCodeHeapAnalytics",
+            "description": "Print code heap usage statistics on exit and on full condition",
+            "availability": "diagnostic",
+            "type": "bool"
+        },
+        {
+            "defaultValue": "true",
+            "prefix": "-XX:",
+            "definedIn": "cpu/aarch64/globals_aarch64.hpp",
+            "name": "ShareVtableStubs",
+            "cpu": "aarch64",
+            "availability": "define_pd_global",
+            "type": "bool"
+        },
+        {
+            "component": "gc",
+            "defaultValue": "true",
+            "prefix": "-XX:",
+            "definedIn": "share/gc/shenandoah/shenandoah_globals.hpp",
+            "name": "ShenandoahAcmpBarrier",
+            "description": "Turn on/off acmp barriers in Shenandoah",
+            "availability": "diagnostic",
+            "type": "bool"
+        },
+        {
+            "component": "gc",
+            "defaultValue": "10000",
+            "prefix": "-XX:",
+            "definedIn": "share/gc/shenandoah/shenandoah_globals.hpp",
+            "name": "ShenandoahAllocationStallThreshold",
+            "description": "When allocation tracing is enabled, the allocation stalls larger than this threshold would be reported as warnings. Time is in microseconds.",
+            "availability": "diagnostic",
+            "type": "intx"
+        },
+        {
+            "component": "gc",
+            "defaultValue": "false",
+            "prefix": "-XX:",
+            "definedIn": "share/gc/shenandoah/shenandoah_globals.hpp",
+            "name": "ShenandoahAllocationTrace",
+            "description": "Trace allocation latencies and stalls. Can be expensive when lots of allocations happen, and may introduce scalability bottlenecks.",
+            "availability": "diagnostic",
+            "type": "bool"
+        },
+        {
+            "component": "gc",
+            "defaultValue": "true",
+            "prefix": "-XX:",
+            "definedIn": "share/gc/shenandoah/shenandoah_globals.hpp",
+            "name": "ShenandoahAllowMixedAllocs",
+            "description": "Allow mixing mutator and collector allocations in a single region",
+            "availability": "diagnostic",
+            "type": "bool"
+        },
+        {
+            "component": "gc",
+            "defaultValue": "false",
+            "prefix": "-XX:",
+            "definedIn": "share/gc/shenandoah/shenandoah_globals.hpp",
+            "name": "ShenandoahAlwaysPreTouch",
+            "description": "Pre-touch heap memory, overrides global AlwaysPreTouch",
+            "availability": "diagnostic",
+            "type": "bool"
+        },
+        {
+            "component": "gc",
+            "defaultValue": "false",
+            "prefix": "-XX:",
+            "definedIn": "share/gc/shenandoah/shenandoah_globals.hpp",
+            "name": "ShenandoahCommonGCStateLoads",
+            "description": "Enable commonming for GC state loads in generated code.",
+            "availability": "experimental",
+            "type": "bool"
+        },
+        {
+            "component": "gc",
+            "defaultValue": "true",
+            "prefix": "-XX:",
+            "definedIn": "share/gc/shenandoah/shenandoah_globals.hpp",
+            "name": "ShenandoahConcurrentScanCodeRoots",
+            "description": "Scan code roots concurrently, instead of during a pause",
+            "availability": "experimental",
+            "type": "bool"
+        },
+        {
+            "component": "gc",
+            "defaultValue": "false",
+            "prefix": "-XX:",
+            "definedIn": "share/gc/shenandoah/shenandoah_globals.hpp",
+            "name": "ShenandoahCriticalControlThreadPriority",
+            "description": "Shenandoah control thread runs at critical scheduling priority.",
+            "availability": "experimental",
+            "type": "bool"
+        },
+        {
+            "component": "gc",
+            "defaultValue": "false",
+            "prefix": "-XX:",
+            "definedIn": "share/gc/shenandoah/shenandoah_globals.hpp",
+            "name": "ShenandoahDecreaseRegisterPressure",
+            "description": "Try to reuse after-barrier values to reduce register pressure",
+            "availability": "diagnostic",
+            "type": "bool"
+        },
+        {
+            "component": "gc",
+            "defaultValue": "true",
+            "prefix": "-XX:",
+            "definedIn": "share/gc/shenandoah/shenandoah_globals.hpp",
+            "name": "ShenandoahDontIncreaseWBFreq",
+            "description": "Common 2 WriteBarriers or WriteBarrier and a ReadBarrier only if the resulting WriteBarrier isn't executed more frequently",
+            "availability": "experimental",
+            "type": "bool"
+        },
+        {
+            "component": "gc",
+            "defaultValue": "10",
+            "prefix": "-XX:",
+            "definedIn": "share/gc/shenandoah/shenandoah_globals.hpp",
+            "name": "ShenandoahEvacAssist",
+            "description": "How many objects to evacuate on WB assist path. Use zero to disable.",
+            "availability": "experimental",
+            "type": "uintx"
+        },
+        {
+            "component": "gc",
+            "defaultValue": "10",
+            "prefix": "-XX:",
+            "definedIn": "share/gc/shenandoah/shenandoah_globals.hpp",
+            "name": "ShenandoahFreeThreshold",
+            "range": "range(0,100)",
+            "description": "Set the percentage of free heap at which a GC cycle is started. Does not apply to all heuristics.",
+            "availability": "experimental",
+            "type": "uintx"
+        },
+        {
+            "component": "gc",
+            "defaultValue": "0",
+            "prefix": "-XX:",
+            "definedIn": "share/gc/shenandoah/shenandoah_globals.hpp",
+            "name": "ShenandoahHeapRegionSize",
+            "description": "Size of the Shenandoah regions. Set to zero to detect automatically.",
+            "availability": "experimental",
+            "type": "size_t"
+        },
+        {
+            "component": "gc",
+            "defaultValue": "true",
+            "prefix": "-XX:",
+            "definedIn": "share/gc/shenandoah/shenandoah_globals.hpp",
+            "name": "ShenandoahKeepAliveBarrier",
+            "description": "Turn on/off keep alive barriers in Shenandoah",
+            "availability": "diagnostic",
+            "type": "bool"
+        },
+        {
+            "component": "gc",
+            "defaultValue": "200",
+            "prefix": "-XX:",
+            "definedIn": "share/gc/shenandoah/shenandoah_globals.hpp",
+            "name": "ShenandoahMergeUpdateRefsMaxGap",
+            "description": "If GC is currently running in merged update-refs mode this numbers gives the threshold when to switch to separate update-refs mode. Number is percentage relative to duration(marking)+duration(update-refs).",
+            "availability": "experimental",
+            "type": "uintx"
+        },
+        {
+            "component": "gc",
+            "defaultValue": "100",
+            "prefix": "-XX:",
+            "definedIn": "share/gc/shenandoah/shenandoah_globals.hpp",
+            "name": "ShenandoahMergeUpdateRefsMinGap",
+            "description": "If GC is currently running in separate update-refs mode this numbers gives the threshold when to switch to merged update-refs mode. Number is percentage relative toduration(marking)+duration(update-refs).",
+            "availability": "experimental",
+            "type": "uintx"
+        },
+        {
+            "component": "gc",
+            "defaultValue": "false",
+            "prefix": "-XX:",
+            "definedIn": "share/gc/shenandoah/shenandoah_globals.hpp",
+            "name": "ShenandoahOptimizeInstanceFinals",
+            "description": "Optimize barriers on final instance fields.Turn it off for maximum compatibility with reflection or JNI code that manipulates final fields.",
+            "availability": "experimental",
+            "type": "bool"
+        },
+        {
+            "component": "gc",
+            "defaultValue": "false",
+            "prefix": "-XX:",
+            "definedIn": "share/gc/shenandoah/shenandoah_globals.hpp",
+            "name": "ShenandoahOptimizeStableFinals",
+            "description": "Optimize barriers on stable fields.Turn it off for maximum compatibility with reflection or JNI code that manipulates final fields.",
+            "availability": "experimental",
+            "type": "bool"
+        },
+        {
+            "component": "gc",
+            "defaultValue": "4",
+            "prefix": "-XX:",
+            "definedIn": "share/gc/shenandoah/shenandoah_globals.hpp",
+            "name": "ShenandoahParallelSafepointThreads",
+            "description": "Number of parallel threads used for safepoint prolog/epilog",
+            "availability": "experimental",
+            "type": "uint"
+        },
+        {
+            "component": "gc",
+            "defaultValue": "true",
+            "prefix": "-XX:",
+            "definedIn": "share/gc/shenandoah/shenandoah_globals.hpp",
+            "name": "ShenandoahReadBarrier",
+            "description": "Turn on/off read barriers in Shenandoah",
+            "availability": "diagnostic",
+            "type": "bool"
+        },
+        {
+            "component": "gc",
+            "defaultValue": "false",
+            "prefix": "-XX:",
+            "definedIn": "share/gc/shenandoah/shenandoah_globals.hpp",
+            "name": "ShenandoahStoreCheck",
+            "description": "Emit additional code that checks objects are written to only in to-space",
+            "availability": "diagnostic",
+            "type": "bool"
+        },
+        {
+            "component": "gc",
+            "defaultValue": "true",
+            "prefix": "-XX:",
+            "definedIn": "share/gc/shenandoah/shenandoah_globals.hpp",
+            "name": "ShenandoahStoreValReadBarrier",
+            "description": "Turn on/off store val read barriers in Shenandoah",
+            "availability": "diagnostic",
+            "type": "bool"
+        },
+        {
+            "component": "gc",
+            "defaultValue": "false",
+            "prefix": "-XX:",
+            "definedIn": "share/gc/shenandoah/shenandoah_globals.hpp",
+            "name": "ShenandoahTerminationTrace",
+            "description": "Tracing task termination timings",
+            "availability": "diagnostic",
+            "type": "bool"
+        },
+        {
+            "component": "gc",
+            "defaultValue": "adaptive",
+            "prefix": "-XX:",
+            "definedIn": "share/gc/shenandoah/shenandoah_globals.hpp",
+            "name": "ShenandoahUpdateRefsEarly",
+            "description": "Run a separate concurrent reference updating phase afterconcurrent evacuation. Possible values: 'on', 'off', 'adaptive'",
+            "availability": "experimental",
+            "type": "ccstr"
+        },
+        {
+            "component": "gc",
+            "defaultValue": "false",
+            "prefix": "-XX:",
+            "definedIn": "share/gc/shenandoah/shenandoah_globals.hpp",
+            "name": "ShenandoahVerifyObjectEquals",
+            "description": "Verify that == and != are not used on oops. Only in fastdebug",
+            "availability": "develop",
+            "type": "bool"
+        },
+        {
+            "component": "gc",
+            "defaultValue": "true",
+            "prefix": "-XX:",
+            "definedIn": "share/gc/shenandoah/shenandoah_globals.hpp",
+            "name": "ShenandoahWriteBarrier",
+            "description": "Turn on/off write barriers in Shenandoah",
+            "availability": "diagnostic",
+            "type": "bool"
+        },
+        {
+            "component": "gc",
+            "defaultValue": "true",
+            "prefix": "-XX:",
+            "definedIn": "share/gc/shared/gc_globals.hpp",
+            "name": "UseOWSTTaskTerminator",
+            "description": "Use Optimized Work Stealing Threads task termination protocol",
+            "availability": "diagnostic",
+            "type": "bool"
+        },
+        {
+            "component": "gc",
+            "defaultValue": "false",
+            "prefix": "-XX:",
+            "definedIn": "share/gc/shared/gc_globals.hpp",
+            "name": "UseShenandoahGC",
+            "description": "Use the Shenandoah garbage collector",
+            "availability": "experimental",
+            "type": "bool"
+        },
+        {
+            "defaultValue": "false",
+            "prefix": "-XX:",
+            "definedIn": "cpu/aarch64/globals_aarch64.hpp",
+            "name": "UseSimulatorCache",
+            "cpu": "aarch64",
+            "description": "tell sim to cache memory updates until exclusive op occurs",
+            "availability": "product",
+            "type": "bool"
+        },
+        {
+            "component": "gc",
+            "defaultValue": "8*G",
+            "prefix": "-XX:",
+            "definedIn": "share/gc/z/z_globals.hpp",
+            "name": "ZMarkStackSpaceLimit",
+            "range": "range(32*M, 1024*G)",
+            "description": "Maximum number of bytes allocated for mark stacks",
+            "availability": "product",
+            "type": "size_t"
+        }
+    ],
     "removed": [
         {
+            "defaultValue": "4096",
             "prefix": "-XX:",
             "definedIn": "cpu/x86/globals_x86.hpp",
-            "defaultValue": "4096",
             "name": "AVX3Threshold",
             "range": "range(0, max_jint)",
             "cpu": "x86",
@@ -13,42 +420,42 @@
         },
         {
             "component": "runtime",
+            "defaultValue": "false",
             "prefix": "-XX:",
             "definedIn": "share/runtime/globals.hpp",
-            "defaultValue": "false",
             "name": "AggressiveOpts",
             "description": "(Deprecated) Enable aggressive optimizations - see arguments.cpp",
             "availability": "product",
-            "deprecation": "<span style=\"white-space:nowrap\">Deprecated in JDK11<\/span><br><span style=\"white-space:nowrap\">Obsoleted in JDK12<\/span><br><span style=\"white-space:nowrap\">Expired in JDK13<\/span>",
-            "type": "bool"
+            "type": "bool",
+            "deprecation": "<span style=\"white-space:nowrap\">Deprecated in JDK11<\/span><br><span style=\"white-space:nowrap\">Obsoleted in JDK12<\/span><br><span style=\"white-space:nowrap\">Expired in JDK13<\/span>"
         },
         {
             "component": "runtime",
+            "defaultValue": "false",
             "prefix": "-XX:",
             "definedIn": "share/runtime/globals.hpp",
-            "defaultValue": "false",
             "name": "AllowNonVirtualCalls",
             "description": "Obey the ACC_SUPER flag and allow invokenonvirtual calls",
             "availability": "product",
-            "deprecation": "<span style=\"white-space:nowrap\">Deprecated in JDK11<\/span><br><span style=\"white-space:nowrap\">Obsoleted in JDK12<\/span><br><span style=\"white-space:nowrap\">Expired in JDK13<\/span>",
-            "type": "bool"
+            "type": "bool",
+            "deprecation": "<span style=\"white-space:nowrap\">Deprecated in JDK11<\/span><br><span style=\"white-space:nowrap\">Obsoleted in JDK12<\/span><br><span style=\"white-space:nowrap\">Expired in JDK13<\/span>"
         },
         {
             "component": "runtime",
+            "defaultValue": "true",
             "prefix": "-XX:",
             "definedIn": "share/runtime/globals.hpp",
-            "defaultValue": "true",
             "name": "AssumeMP",
             "description": "(Deprecated) Instruct the VM to assume multiple processors are available",
             "availability": "product",
-            "deprecation": "<span style=\"white-space:nowrap\">Deprecated in JDK10<\/span><br><span style=\"white-space:nowrap\">Obsoleted in JDK12<\/span><br><span style=\"white-space:nowrap\">Expired in JDK13<\/span>",
-            "type": "bool"
+            "type": "bool",
+            "deprecation": "<span style=\"white-space:nowrap\">Deprecated in JDK10<\/span><br><span style=\"white-space:nowrap\">Obsoleted in JDK12<\/span><br><span style=\"white-space:nowrap\">Expired in JDK13<\/span>"
         },
         {
             "component": "runtime",
+            "defaultValue": "false",
             "prefix": "-XX:",
             "definedIn": "share/runtime/globals.hpp",
-            "defaultValue": "false",
             "name": "CompileTheWorld",
             "description": "Compile all methods in all classes in bootstrap class path (stress test)",
             "availability": "develop",
@@ -56,9 +463,9 @@
         },
         {
             "component": "runtime",
+            "defaultValue": "true",
             "prefix": "-XX:",
             "definedIn": "share/runtime/globals.hpp",
-            "defaultValue": "true",
             "name": "CompileTheWorldPreloadClasses",
             "description": "Preload all classes used by a class before start loading",
             "availability": "develop",
@@ -66,9 +473,9 @@
         },
         {
             "component": "runtime",
+            "defaultValue": "100",
             "prefix": "-XX:",
             "definedIn": "share/runtime/globals.hpp",
-            "defaultValue": "100",
             "name": "CompileTheWorldSafepointInterval",
             "description": "Force a safepoint every n compiles so sweeper can keep up",
             "availability": "notproduct",
@@ -76,9 +483,9 @@
         },
         {
             "component": "runtime",
+            "defaultValue": "1",
             "prefix": "-XX:",
             "definedIn": "share/runtime/globals.hpp",
-            "defaultValue": "1",
             "name": "CompileTheWorldStartAt",
             "description": "First class to consider when using +CompileTheWorld",
             "availability": "notproduct",
@@ -86,9 +493,9 @@
         },
         {
             "component": "runtime",
+            "defaultValue": "max_jint",
             "prefix": "-XX:",
             "definedIn": "share/runtime/globals.hpp",
-            "defaultValue": "max_jint",
             "name": "CompileTheWorldStopAt",
             "description": "Last class to consider when using +CompileTheWorld",
             "availability": "notproduct",
@@ -96,20 +503,20 @@
         },
         {
             "component": "runtime",
+            "defaultValue": "false",
             "prefix": "-XX:",
             "definedIn": "share/runtime/globals.hpp",
-            "defaultValue": "false",
             "name": "CompilerThreadHintNoPreempt",
             "description": "(Solaris only) Give compiler threads an extra quanta",
             "availability": "product",
-            "deprecation": "<span style=\"white-space:nowrap\">Deprecated in JDK11<\/span><br><span style=\"white-space:nowrap\">Obsoleted in JDK12<\/span><br><span style=\"white-space:nowrap\">Expired in JDK13<\/span>",
-            "type": "bool"
+            "type": "bool",
+            "deprecation": "<span style=\"white-space:nowrap\">Deprecated in JDK11<\/span><br><span style=\"white-space:nowrap\">Obsoleted in JDK12<\/span><br><span style=\"white-space:nowrap\">Expired in JDK13<\/span>"
         },
         {
             "os": "linux",
+            "defaultValue": "true",
             "prefix": "-XX:",
             "definedIn": "os/linux/globals_linux.hpp",
-            "defaultValue": "true",
             "name": "DumpSharedMappingsInCore",
             "description": "If true, sets bit 3 of /proc/PID/coredump_filter, thus resulting in file-backed shared mappings of the process to be dumped into the corefile.",
             "availability": "diagnostic",
@@ -117,20 +524,20 @@
         },
         {
             "component": "runtime",
+            "defaultValue": "0",
             "prefix": "-XX:",
             "definedIn": "share/runtime/globals.hpp",
-            "defaultValue": "0",
             "name": "EmitSync",
             "description": "(Unsafe, Unstable) Control emission of inline sync fast-path code",
             "availability": "experimental",
-            "deprecation": "<span style=\"white-space:nowrap\">Obsoleted in JDK12<\/span><br><span style=\"white-space:nowrap\">Expired in JDK13<\/span>",
-            "type": "intx"
+            "type": "intx",
+            "deprecation": "<span style=\"white-space:nowrap\">Obsoleted in JDK12<\/span><br><span style=\"white-space:nowrap\">Expired in JDK13<\/span>"
         },
         {
             "component": "runtime",
+            "defaultValue": "false",
             "prefix": "-XX:",
             "definedIn": "share/runtime/globals.hpp",
-            "defaultValue": "false",
             "name": "ErrorFileToStderr",
             "description": "If true, error data is printed to stderr instead of a file",
             "availability": "product",
@@ -138,9 +545,9 @@
         },
         {
             "component": "runtime",
+            "defaultValue": "false",
             "prefix": "-XX:",
             "definedIn": "share/runtime/globals.hpp",
-            "defaultValue": "false",
             "name": "ErrorFileToStdout",
             "description": "If true, error data is printed to stdout instead of a file",
             "availability": "product",
@@ -148,20 +555,20 @@
         },
         {
             "component": "runtime",
+            "defaultValue": "NULL",
             "prefix": "-XX:",
             "definedIn": "share/runtime/globals.hpp",
-            "defaultValue": "NULL",
             "name": "ErrorReportServer",
             "description": "Override built-in error report server address",
             "availability": "product",
-            "deprecation": "<span style=\"white-space:nowrap\">Obsoleted in JDK12<\/span><br><span style=\"white-space:nowrap\">Expired in JDK13<\/span>",
-            "type": "ccstr"
+            "type": "ccstr",
+            "deprecation": "<span style=\"white-space:nowrap\">Obsoleted in JDK12<\/span><br><span style=\"white-space:nowrap\">Expired in JDK13<\/span>"
         },
         {
             "component": "gc",
+            "defaultValue": "false",
             "prefix": "-XX:",
             "definedIn": "share/gc/shared/gc_globals.hpp",
-            "defaultValue": "false",
             "name": "ExecuteInternalVMTests",
             "description": "Enable execution of internal VM tests",
             "availability": "notproduct",
@@ -169,9 +576,9 @@
         },
         {
             "component": "gc",
+            "defaultValue": "true",
             "prefix": "-XX:",
             "definedIn": "share/gc/g1/g1_globals.hpp",
-            "defaultValue": "true",
             "name": "G1HRRSUseSparseTable",
             "description": "When true, use sparse table to save space.",
             "availability": "develop",
@@ -179,65 +586,65 @@
         },
         {
             "component": "runtime",
+            "defaultValue": "true",
             "prefix": "-XX:",
             "definedIn": "share/runtime/globals.hpp",
-            "defaultValue": "true",
             "name": "IgnoreUnverifiableClassesDuringDump",
             "description": "Do not quit -Xshare:dump even if we encounter unverifiable classes. Just exclude them from the shared dictionary.",
             "availability": "diagnostic",
-            "deprecation": "<span style=\"white-space:nowrap\">Deprecated in JDK10<\/span><br><span style=\"white-space:nowrap\">Obsoleted in JDK12<\/span><br><span style=\"white-space:nowrap\">Expired in JDK13<\/span>",
-            "type": "bool"
+            "type": "bool",
+            "deprecation": "<span style=\"white-space:nowrap\">Deprecated in JDK10<\/span><br><span style=\"white-space:nowrap\">Obsoleted in JDK12<\/span><br><span style=\"white-space:nowrap\">Expired in JDK13<\/span>"
         },
         {
             "component": "runtime",
+            "defaultValue": "true",
             "prefix": "-XX:",
             "definedIn": "share/runtime/globals.hpp",
-            "defaultValue": "true",
             "name": "MonitorInUseLists",
             "description": "Track Monitors for Deflation",
             "availability": "product",
-            "deprecation": "<span style=\"white-space:nowrap\">Deprecated in JDK10<\/span><br><span style=\"white-space:nowrap\">Obsoleted in JDK12<\/span><br><span style=\"white-space:nowrap\">Expired in JDK13<\/span>",
-            "type": "bool"
+            "type": "bool",
+            "deprecation": "<span style=\"white-space:nowrap\">Deprecated in JDK10<\/span><br><span style=\"white-space:nowrap\">Obsoleted in JDK12<\/span><br><span style=\"white-space:nowrap\">Expired in JDK13<\/span>"
         },
         {
             "component": "runtime",
+            "defaultValue": "false",
             "prefix": "-XX:",
             "definedIn": "share/runtime/globals.hpp",
-            "defaultValue": "false",
             "name": "PrintSafepointStatistics",
             "description": "(Deprecated) Print statistics about safepoint synchronization",
             "availability": "product",
-            "deprecation": "<span style=\"white-space:nowrap\">Deprecated in JDK11<\/span><br><span style=\"white-space:nowrap\">Obsoleted in JDK12<\/span><br><span style=\"white-space:nowrap\">Expired in JDK13<\/span>",
-            "type": "bool"
+            "type": "bool",
+            "deprecation": "<span style=\"white-space:nowrap\">Deprecated in JDK11<\/span><br><span style=\"white-space:nowrap\">Obsoleted in JDK12<\/span><br><span style=\"white-space:nowrap\">Expired in JDK13<\/span>"
         },
         {
             "component": "runtime",
+            "defaultValue": "300",
             "prefix": "-XX:",
             "definedIn": "share/runtime/globals.hpp",
-            "defaultValue": "300",
             "name": "PrintSafepointStatisticsCount",
             "range": "range(1, max_intx)",
             "description": "(Deprecated) Total number of safepoint statistics collected before printing them out",
             "availability": "product",
-            "deprecation": "<span style=\"white-space:nowrap\">Deprecated in JDK11<\/span><br><span style=\"white-space:nowrap\">Obsoleted in JDK12<\/span><br><span style=\"white-space:nowrap\">Expired in JDK13<\/span>",
-            "type": "intx"
+            "type": "intx",
+            "deprecation": "<span style=\"white-space:nowrap\">Deprecated in JDK11<\/span><br><span style=\"white-space:nowrap\">Obsoleted in JDK12<\/span><br><span style=\"white-space:nowrap\">Expired in JDK13<\/span>"
         },
         {
             "component": "runtime",
+            "defaultValue": "-1",
             "prefix": "-XX:",
             "definedIn": "share/runtime/globals.hpp",
-            "defaultValue": "-1",
             "name": "PrintSafepointStatisticsTimeout",
             "description": "(Deprecated) Print safepoint statistics only when safepoint takes more than PrintSafepointSatisticsTimeout in millis",
             "availability": "product",
-            "deprecation": "<span style=\"white-space:nowrap\">Deprecated in JDK11<\/span><br><span style=\"white-space:nowrap\">Obsoleted in JDK12<\/span><br><span style=\"white-space:nowrap\">Expired in JDK13<\/span>",
-            "type": "intx"
+            "type": "intx",
+            "deprecation": "<span style=\"white-space:nowrap\">Deprecated in JDK11<\/span><br><span style=\"white-space:nowrap\">Obsoleted in JDK12<\/span><br><span style=\"white-space:nowrap\">Expired in JDK13<\/span>"
         },
         {
             "component": "gc",
+            "defaultValue": "satb",
             "prefix": "-XX:",
             "definedIn": "share/gc/shenandoah/shenandoah_globals.hpp",
-            "defaultValue": "satb",
             "name": "ShenandoahGCMode",
             "description": "GC mode to use. Among other things, this defines which barriers are in in use. Possible values are: satb - snapshot-at-the-beginning concurrent GC (three pass mark-evac-update); iu - incremental-update concurrent GC (three pass mark-evac-update); passive - stop the world GC only (either degenerated or full)",
             "availability": "product",
@@ -245,9 +652,9 @@
         },
         {
             "component": "gc",
+            "defaultValue": "true",
             "prefix": "-XX:",
             "definedIn": "share/gc/shenandoah/shenandoah_globals.hpp",
-            "defaultValue": "true",
             "name": "ShenandoahLoadRefBarrier",
             "description": "Turn on/off load-reference barriers in Shenandoah",
             "availability": "diagnostic",
@@ -255,9 +662,9 @@
         },
         {
             "component": "gc",
+            "defaultValue": "0",
             "prefix": "-XX:",
             "definedIn": "share/gc/shenandoah/shenandoah_globals.hpp",
-            "defaultValue": "0",
             "name": "ShenandoahRegionSize",
             "description": "Static heap region size. Set zero to enable automatic sizing.",
             "availability": "experimental",
@@ -265,9 +672,9 @@
         },
         {
             "component": "gc",
+            "defaultValue": "true",
             "prefix": "-XX:",
             "definedIn": "share/gc/shenandoah/shenandoah_globals.hpp",
-            "defaultValue": "true",
             "name": "ShenandoahSelfFixing",
             "description": "Fix references with load reference barrier. Disabling this might degrade performance.",
             "availability": "diagnostic",
@@ -275,9 +682,9 @@
         },
         {
             "component": "gc",
+            "defaultValue": "0",
             "prefix": "-XX:",
             "definedIn": "share/gc/shenandoah/shenandoah_globals.hpp",
-            "defaultValue": "0",
             "name": "ShenandoahSoftMaxHeapSize",
             "description": "Soft limit for maximum heap size (in bytes)",
             "availability": "manageable",
@@ -285,63 +692,63 @@
         },
         {
             "component": "runtime",
+            "defaultValue": "0",
             "prefix": "-XX:",
             "definedIn": "share/runtime/globals.hpp",
-            "defaultValue": "0",
             "name": "SyncFlags",
             "description": "(Unsafe, Unstable) Experimental Sync flags",
             "availability": "experimental",
-            "deprecation": "<span style=\"white-space:nowrap\">Obsoleted in JDK12<\/span><br><span style=\"white-space:nowrap\">Expired in JDK13<\/span>",
-            "type": "intx"
+            "type": "intx",
+            "deprecation": "<span style=\"white-space:nowrap\">Obsoleted in JDK12<\/span><br><span style=\"white-space:nowrap\">Expired in JDK13<\/span>"
         },
         {
             "component": "runtime",
+            "defaultValue": "NULL",
             "prefix": "-XX:",
             "definedIn": "share/runtime/globals.hpp",
-            "defaultValue": "NULL",
             "name": "SyncKnobs",
             "description": "(Unstable) Various monitor synchronization tunables",
             "availability": "experimental",
-            "deprecation": "<span style=\"white-space:nowrap\">Obsoleted in JDK12<\/span><br><span style=\"white-space:nowrap\">Expired in JDK13<\/span>",
-            "type": "ccstr"
+            "type": "ccstr",
+            "deprecation": "<span style=\"white-space:nowrap\">Obsoleted in JDK12<\/span><br><span style=\"white-space:nowrap\">Expired in JDK13<\/span>"
         },
         {
             "component": "runtime",
+            "defaultValue": "0",
             "prefix": "-XX:",
             "definedIn": "share/runtime/globals.hpp",
-            "defaultValue": "0",
             "name": "SyncVerbose",
             "description": "(Unstable)",
             "availability": "experimental",
-            "deprecation": "<span style=\"white-space:nowrap\">Obsoleted in JDK12<\/span><br><span style=\"white-space:nowrap\">Expired in JDK13<\/span>",
-            "type": "intx"
+            "type": "intx",
+            "deprecation": "<span style=\"white-space:nowrap\">Obsoleted in JDK12<\/span><br><span style=\"white-space:nowrap\">Expired in JDK13<\/span>"
         },
         {
             "component": "runtime",
+            "defaultValue": "false",
             "prefix": "-XX:",
             "definedIn": "share/runtime/globals.hpp",
-            "defaultValue": "false",
             "name": "TransmitErrorReport",
             "description": "Enable error report transmission on erroneous termination",
             "availability": "product",
-            "deprecation": "<span style=\"white-space:nowrap\">Obsoleted in JDK12<\/span><br><span style=\"white-space:nowrap\">Expired in JDK13<\/span>",
-            "type": "bool"
+            "type": "bool",
+            "deprecation": "<span style=\"white-space:nowrap\">Obsoleted in JDK12<\/span><br><span style=\"white-space:nowrap\">Expired in JDK13<\/span>"
         },
         {
             "component": "runtime",
+            "defaultValue": "false",
             "prefix": "-XX:",
             "definedIn": "share/runtime/globals.hpp",
-            "defaultValue": "false",
             "name": "UnlinkSymbolsALot",
             "description": "Unlink unreferenced symbols from the symbol table at safepoints",
             "availability": "product",
-            "deprecation": "<span style=\"white-space:nowrap\">Deprecated in JDK11<\/span><br><span style=\"white-space:nowrap\">Obsoleted in JDK12<\/span><br><span style=\"white-space:nowrap\">Expired in JDK13<\/span>",
-            "type": "bool"
+            "type": "bool",
+            "deprecation": "<span style=\"white-space:nowrap\">Deprecated in JDK11<\/span><br><span style=\"white-space:nowrap\">Obsoleted in JDK12<\/span><br><span style=\"white-space:nowrap\">Expired in JDK13<\/span>"
         },
         {
+            "defaultValue": "false",
             "prefix": "-XX:",
             "definedIn": "cpu/ppc/globals_ppc.hpp",
-            "defaultValue": "false",
             "name": "UseByteReverseInstructions",
             "cpu": "ppc",
             "description": "Use byte reverse instructions.",
@@ -350,49 +757,49 @@
         },
         {
             "component": "runtime",
+            "defaultValue": "false",
             "prefix": "-XX:",
             "definedIn": "share/runtime/globals.hpp",
-            "defaultValue": "false",
             "name": "UseLegacyJNINameEscaping",
             "description": "Use the original JNI name escaping scheme",
             "availability": "product",
             "type": "bool"
         },
         {
+            "defaultValue": "true",
             "prefix": "-XX:",
             "definedIn": "cpu/aarch64/globals_aarch64.hpp",
-            "defaultValue": "true",
             "name": "UseMembar",
             "cpu": "aarch64",
             "availability": "define_pd_global",
-            "deprecation": "<span style=\"white-space:nowrap\">Deprecated in JDK10<\/span><br><span style=\"white-space:nowrap\">Obsoleted in JDK12<\/span>",
-            "type": "bool"
+            "type": "bool",
+            "deprecation": "<span style=\"white-space:nowrap\">Deprecated in JDK10<\/span><br><span style=\"white-space:nowrap\">Obsoleted in JDK12<\/span>"
         },
         {
             "component": "runtime",
+            "defaultValue": "false",
             "prefix": "-XX:",
             "definedIn": "share/runtime/globals.hpp",
-            "defaultValue": "false",
             "name": "VMThreadHintNoPreempt",
             "description": "(Solaris only) Give VM thread an extra quanta",
             "availability": "product",
-            "deprecation": "<span style=\"white-space:nowrap\">Deprecated in JDK11<\/span><br><span style=\"white-space:nowrap\">Obsoleted in JDK12<\/span><br><span style=\"white-space:nowrap\">Expired in JDK13<\/span>",
-            "type": "bool"
+            "type": "bool",
+            "deprecation": "<span style=\"white-space:nowrap\">Deprecated in JDK11<\/span><br><span style=\"white-space:nowrap\">Obsoleted in JDK12<\/span><br><span style=\"white-space:nowrap\">Expired in JDK13<\/span>"
         },
         {
             "component": "gc",
+            "defaultValue": "false",
             "prefix": "-XX:",
             "definedIn": "share/gc/shared/gc_globals.hpp",
-            "defaultValue": "false",
             "name": "VerboseInternalVMTests",
             "description": "Turn on logging for internal VM tests.",
             "availability": "notproduct",
             "type": "bool"
         },
         {
+            "defaultValue": "false",
             "prefix": "-XX:",
             "definedIn": "cpu/arm/globals_arm.hpp",
-            "defaultValue": "false",
             "name": "VerifyInterpreterStackTop",
             "cpu": "arm",
             "description": "Verify interpreter stack top at every stack expansion (AArch64 only)",
@@ -401,9 +808,9 @@
         },
         {
             "component": "gc",
+            "defaultValue": "true",
             "prefix": "-XX:",
             "definedIn": "share/gc/z/z_globals.hpp",
-            "defaultValue": "true",
             "name": "ZConcurrentJNIWeakGlobalHandles",
             "description": "Clean JNI WeakGlobalRefs concurrently",
             "availability": "diagnostic",
@@ -411,9 +818,9 @@
         },
         {
             "component": "gc",
+            "defaultValue": "true",
             "prefix": "-XX:",
             "definedIn": "share/gc/z/z_globals.hpp",
-            "defaultValue": "true",
             "name": "ZConcurrentStringTable",
             "description": "Clean StringTable concurrently",
             "availability": "diagnostic",
@@ -421,9 +828,9 @@
         },
         {
             "component": "gc",
+            "defaultValue": "true",
             "prefix": "-XX:",
             "definedIn": "share/gc/z/z_globals.hpp",
-            "defaultValue": "true",
             "name": "ZConcurrentVMWeakHandles",
             "description": "Clean VM WeakHandles concurrently",
             "availability": "diagnostic",
@@ -431,9 +838,9 @@
         },
         {
             "component": "gc",
+            "defaultValue": "NOT_LP64(512*M) LP64_ONLY(8*G)",
             "prefix": "-XX:",
             "definedIn": "share/gc/z/z_globals.hpp",
-            "defaultValue": "NOT_LP64(512*M) LP64_ONLY(8*G)",
             "name": "ZMarkStacksMax",
             "range": "range(32*M, NOT_LP64(512*M) LP64_ONLY(1024*G))",
             "description": "Maximum number of bytes allocated for marking stacks",
@@ -442,9 +849,9 @@
         },
         {
             "component": "gc",
+            "defaultValue": "false",
             "prefix": "-XX:",
             "definedIn": "share/gc/z/z_globals.hpp",
-            "defaultValue": "false",
             "name": "ZSymbolTableUnloading",
             "description": "Unload unused VM symbols",
             "availability": "diagnostic",
@@ -452,430 +859,23 @@
         },
         {
             "component": "gc",
+            "defaultValue": "true",
             "prefix": "-XX:",
             "definedIn": "share/gc/z/z_globals.hpp",
-            "defaultValue": "true",
             "name": "ZWeakRoots",
             "description": "Treat JNI WeakGlobalRefs and StringTable as weak roots",
             "availability": "diagnostic",
             "type": "bool"
         },
         {
+            "defaultValue": "false",
             "prefix": "-XX:",
             "definedIn": "cpu/arm/globals_arm.hpp",
-            "defaultValue": "false",
             "name": "ZapHighNonSignificantBits",
             "cpu": "arm",
             "description": "Zap high non-significant bits of values (AArch64 only)",
             "availability": "develop",
             "type": "bool"
         }
-    ],
-    "added": [
-        {
-            "component": "runtime",
-            "prefix": "-XX:",
-            "definedIn": "share/runtime/globals.hpp",
-            "defaultValue": "NULL",
-            "name": "AllocateOldGenAt",
-            "description": "Path to the directoy where a temporary file will be created to use as the backing store for old generation.File of size Xmx is pre-allocated for performance reason, sowe need that much space available",
-            "availability": "experimental",
-            "type": "ccstr"
-        },
-        {
-            "component": "runtime",
-            "prefix": "-XX:",
-            "definedIn": "share/runtime/globals.hpp",
-            "defaultValue": "false",
-            "name": "AllowArchivingWithJavaAgent",
-            "description": "Allow Java agent to be run with CDS dumping",
-            "availability": "diagnostic",
-            "type": "bool"
-        },
-        {
-            "prefix": "-XX:",
-            "definedIn": "cpu/aarch64/globals_aarch64.hpp",
-            "defaultValue": "true",
-            "name": "DisableBCCheck",
-            "cpu": "aarch64",
-            "description": "tell sim not to invoke bccheck callback",
-            "availability": "product",
-            "type": "bool"
-        },
-        {
-            "component": "gc",
-            "prefix": "-XX:",
-            "definedIn": "share/gc/g1/g1_globals.hpp",
-            "defaultValue": "0",
-            "name": "G1PeriodicGCInterval",
-            "description": "Number of milliseconds after a previous GC to wait before triggering a periodic gc. A value of zero disables periodically enforced gc cycles.",
-            "availability": "manageable",
-            "type": "uintx"
-        },
-        {
-            "component": "gc",
-            "prefix": "-XX:",
-            "definedIn": "share/gc/g1/g1_globals.hpp",
-            "defaultValue": "true",
-            "name": "G1PeriodicGCInvokesConcurrent",
-            "description": "Determines the kind of periodic GC. Set to true to have G1 perform a concurrent GC as periodic GC, otherwise use a STW Full GC.",
-            "availability": "product",
-            "type": "bool"
-        },
-        {
-            "component": "gc",
-            "prefix": "-XX:",
-            "definedIn": "share/gc/g1/g1_globals.hpp",
-            "defaultValue": "0.0",
-            "name": "G1PeriodicGCSystemLoadThreshold",
-            "range": "range(0.0, (double)max_uintx)",
-            "description": "Maximum recent system wide load as returned by the 1m value of getloadavg() at which G1 triggers a periodic GC. A load above this value cancels a given periodic GC. A value of zero disables this check.",
-            "availability": "manageable",
-            "type": "double"
-        },
-        {
-            "component": "gc",
-            "prefix": "-XX:",
-            "definedIn": "share/gc/g1/g1_globals.hpp",
-            "defaultValue": "10",
-            "name": "G1YoungExpansionBufferPercent",
-            "range": "range(0, 100)",
-            "description": "When heterogenous heap is enabled by AllocateOldGenAt option, after every GC, young gen is re-sized which involves system calls to commit/uncommit memory. To reduce these calls, we keep a buffer of extra regions to absorb small changes in young gen length. This flag takes the buffer size as an percentage of young gen length",
-            "availability": "experimental",
-            "type": "uintx"
-        },
-        {
-            "prefix": "-XX:",
-            "definedIn": "cpu/aarch64/globals_aarch64.hpp",
-            "defaultValue": "UseBuiltinSim",
-            "name": "NotifySimulator",
-            "cpu": "aarch64",
-            "description": "tell the AArch64 sim where we are in method code",
-            "availability": "product",
-            "type": "bool"
-        },
-        {
-            "component": "runtime",
-            "prefix": "-XX:",
-            "definedIn": "share/runtime/globals.hpp",
-            "defaultValue": "false",
-            "name": "PrintCodeHeapAnalytics",
-            "description": "Print code heap usage statistics on exit and on full condition",
-            "availability": "diagnostic",
-            "type": "bool"
-        },
-        {
-            "prefix": "-XX:",
-            "definedIn": "cpu/aarch64/globals_aarch64.hpp",
-            "defaultValue": "true",
-            "name": "ShareVtableStubs",
-            "cpu": "aarch64",
-            "availability": "define_pd_global",
-            "type": "bool"
-        },
-        {
-            "component": "gc",
-            "prefix": "-XX:",
-            "definedIn": "share/gc/shenandoah/shenandoah_globals.hpp",
-            "defaultValue": "true",
-            "name": "ShenandoahAcmpBarrier",
-            "description": "Turn on/off acmp barriers in Shenandoah",
-            "availability": "diagnostic",
-            "type": "bool"
-        },
-        {
-            "component": "gc",
-            "prefix": "-XX:",
-            "definedIn": "share/gc/shenandoah/shenandoah_globals.hpp",
-            "defaultValue": "10000",
-            "name": "ShenandoahAllocationStallThreshold",
-            "description": "When allocation tracing is enabled, the allocation stalls larger than this threshold would be reported as warnings. Time is in microseconds.",
-            "availability": "diagnostic",
-            "type": "intx"
-        },
-        {
-            "component": "gc",
-            "prefix": "-XX:",
-            "definedIn": "share/gc/shenandoah/shenandoah_globals.hpp",
-            "defaultValue": "false",
-            "name": "ShenandoahAllocationTrace",
-            "description": "Trace allocation latencies and stalls. Can be expensive when lots of allocations happen, and may introduce scalability bottlenecks.",
-            "availability": "diagnostic",
-            "type": "bool"
-        },
-        {
-            "component": "gc",
-            "prefix": "-XX:",
-            "definedIn": "share/gc/shenandoah/shenandoah_globals.hpp",
-            "defaultValue": "true",
-            "name": "ShenandoahAllowMixedAllocs",
-            "description": "Allow mixing mutator and collector allocations in a single region",
-            "availability": "diagnostic",
-            "type": "bool"
-        },
-        {
-            "component": "gc",
-            "prefix": "-XX:",
-            "definedIn": "share/gc/shenandoah/shenandoah_globals.hpp",
-            "defaultValue": "false",
-            "name": "ShenandoahAlwaysPreTouch",
-            "description": "Pre-touch heap memory, overrides global AlwaysPreTouch",
-            "availability": "diagnostic",
-            "type": "bool"
-        },
-        {
-            "component": "gc",
-            "prefix": "-XX:",
-            "definedIn": "share/gc/shenandoah/shenandoah_globals.hpp",
-            "defaultValue": "false",
-            "name": "ShenandoahCommonGCStateLoads",
-            "description": "Enable commonming for GC state loads in generated code.",
-            "availability": "experimental",
-            "type": "bool"
-        },
-        {
-            "component": "gc",
-            "prefix": "-XX:",
-            "definedIn": "share/gc/shenandoah/shenandoah_globals.hpp",
-            "defaultValue": "true",
-            "name": "ShenandoahConcurrentScanCodeRoots",
-            "description": "Scan code roots concurrently, instead of during a pause",
-            "availability": "experimental",
-            "type": "bool"
-        },
-        {
-            "component": "gc",
-            "prefix": "-XX:",
-            "definedIn": "share/gc/shenandoah/shenandoah_globals.hpp",
-            "defaultValue": "false",
-            "name": "ShenandoahCriticalControlThreadPriority",
-            "description": "Shenandoah control thread runs at critical scheduling priority.",
-            "availability": "experimental",
-            "type": "bool"
-        },
-        {
-            "component": "gc",
-            "prefix": "-XX:",
-            "definedIn": "share/gc/shenandoah/shenandoah_globals.hpp",
-            "defaultValue": "false",
-            "name": "ShenandoahDecreaseRegisterPressure",
-            "description": "Try to reuse after-barrier values to reduce register pressure",
-            "availability": "diagnostic",
-            "type": "bool"
-        },
-        {
-            "component": "gc",
-            "prefix": "-XX:",
-            "definedIn": "share/gc/shenandoah/shenandoah_globals.hpp",
-            "defaultValue": "true",
-            "name": "ShenandoahDontIncreaseWBFreq",
-            "description": "Common 2 WriteBarriers or WriteBarrier and a ReadBarrier only if the resulting WriteBarrier isn't executed more frequently",
-            "availability": "experimental",
-            "type": "bool"
-        },
-        {
-            "component": "gc",
-            "prefix": "-XX:",
-            "definedIn": "share/gc/shenandoah/shenandoah_globals.hpp",
-            "defaultValue": "10",
-            "name": "ShenandoahEvacAssist",
-            "description": "How many objects to evacuate on WB assist path. Use zero to disable.",
-            "availability": "experimental",
-            "type": "uintx"
-        },
-        {
-            "component": "gc",
-            "prefix": "-XX:",
-            "definedIn": "share/gc/shenandoah/shenandoah_globals.hpp",
-            "defaultValue": "10",
-            "name": "ShenandoahFreeThreshold",
-            "range": "range(0,100)",
-            "description": "Set the percentage of free heap at which a GC cycle is started. Does not apply to all heuristics.",
-            "availability": "experimental",
-            "type": "uintx"
-        },
-        {
-            "component": "gc",
-            "prefix": "-XX:",
-            "definedIn": "share/gc/shenandoah/shenandoah_globals.hpp",
-            "defaultValue": "0",
-            "name": "ShenandoahHeapRegionSize",
-            "description": "Size of the Shenandoah regions. Set to zero to detect automatically.",
-            "availability": "experimental",
-            "type": "size_t"
-        },
-        {
-            "component": "gc",
-            "prefix": "-XX:",
-            "definedIn": "share/gc/shenandoah/shenandoah_globals.hpp",
-            "defaultValue": "true",
-            "name": "ShenandoahKeepAliveBarrier",
-            "description": "Turn on/off keep alive barriers in Shenandoah",
-            "availability": "diagnostic",
-            "type": "bool"
-        },
-        {
-            "component": "gc",
-            "prefix": "-XX:",
-            "definedIn": "share/gc/shenandoah/shenandoah_globals.hpp",
-            "defaultValue": "200",
-            "name": "ShenandoahMergeUpdateRefsMaxGap",
-            "description": "If GC is currently running in merged update-refs mode this numbers gives the threshold when to switch to separate update-refs mode. Number is percentage relative to duration(marking)+duration(update-refs).",
-            "availability": "experimental",
-            "type": "uintx"
-        },
-        {
-            "component": "gc",
-            "prefix": "-XX:",
-            "definedIn": "share/gc/shenandoah/shenandoah_globals.hpp",
-            "defaultValue": "100",
-            "name": "ShenandoahMergeUpdateRefsMinGap",
-            "description": "If GC is currently running in separate update-refs mode this numbers gives the threshold when to switch to merged update-refs mode. Number is percentage relative toduration(marking)+duration(update-refs).",
-            "availability": "experimental",
-            "type": "uintx"
-        },
-        {
-            "component": "gc",
-            "prefix": "-XX:",
-            "definedIn": "share/gc/shenandoah/shenandoah_globals.hpp",
-            "defaultValue": "false",
-            "name": "ShenandoahOptimizeInstanceFinals",
-            "description": "Optimize barriers on final instance fields.Turn it off for maximum compatibility with reflection or JNI code that manipulates final fields.",
-            "availability": "experimental",
-            "type": "bool"
-        },
-        {
-            "component": "gc",
-            "prefix": "-XX:",
-            "definedIn": "share/gc/shenandoah/shenandoah_globals.hpp",
-            "defaultValue": "false",
-            "name": "ShenandoahOptimizeStableFinals",
-            "description": "Optimize barriers on stable fields.Turn it off for maximum compatibility with reflection or JNI code that manipulates final fields.",
-            "availability": "experimental",
-            "type": "bool"
-        },
-        {
-            "component": "gc",
-            "prefix": "-XX:",
-            "definedIn": "share/gc/shenandoah/shenandoah_globals.hpp",
-            "defaultValue": "4",
-            "name": "ShenandoahParallelSafepointThreads",
-            "description": "Number of parallel threads used for safepoint prolog/epilog",
-            "availability": "experimental",
-            "type": "uint"
-        },
-        {
-            "component": "gc",
-            "prefix": "-XX:",
-            "definedIn": "share/gc/shenandoah/shenandoah_globals.hpp",
-            "defaultValue": "true",
-            "name": "ShenandoahReadBarrier",
-            "description": "Turn on/off read barriers in Shenandoah",
-            "availability": "diagnostic",
-            "type": "bool"
-        },
-        {
-            "component": "gc",
-            "prefix": "-XX:",
-            "definedIn": "share/gc/shenandoah/shenandoah_globals.hpp",
-            "defaultValue": "false",
-            "name": "ShenandoahStoreCheck",
-            "description": "Emit additional code that checks objects are written to only in to-space",
-            "availability": "diagnostic",
-            "type": "bool"
-        },
-        {
-            "component": "gc",
-            "prefix": "-XX:",
-            "definedIn": "share/gc/shenandoah/shenandoah_globals.hpp",
-            "defaultValue": "true",
-            "name": "ShenandoahStoreValReadBarrier",
-            "description": "Turn on/off store val read barriers in Shenandoah",
-            "availability": "diagnostic",
-            "type": "bool"
-        },
-        {
-            "component": "gc",
-            "prefix": "-XX:",
-            "definedIn": "share/gc/shenandoah/shenandoah_globals.hpp",
-            "defaultValue": "false",
-            "name": "ShenandoahTerminationTrace",
-            "description": "Tracing task termination timings",
-            "availability": "diagnostic",
-            "type": "bool"
-        },
-        {
-            "component": "gc",
-            "prefix": "-XX:",
-            "definedIn": "share/gc/shenandoah/shenandoah_globals.hpp",
-            "defaultValue": "adaptive",
-            "name": "ShenandoahUpdateRefsEarly",
-            "description": "Run a separate concurrent reference updating phase afterconcurrent evacuation. Possible values: 'on', 'off', 'adaptive'",
-            "availability": "experimental",
-            "type": "ccstr"
-        },
-        {
-            "component": "gc",
-            "prefix": "-XX:",
-            "definedIn": "share/gc/shenandoah/shenandoah_globals.hpp",
-            "defaultValue": "false",
-            "name": "ShenandoahVerifyObjectEquals",
-            "description": "Verify that == and != are not used on oops. Only in fastdebug",
-            "availability": "develop",
-            "type": "bool"
-        },
-        {
-            "component": "gc",
-            "prefix": "-XX:",
-            "definedIn": "share/gc/shenandoah/shenandoah_globals.hpp",
-            "defaultValue": "true",
-            "name": "ShenandoahWriteBarrier",
-            "description": "Turn on/off write barriers in Shenandoah",
-            "availability": "diagnostic",
-            "type": "bool"
-        },
-        {
-            "component": "gc",
-            "prefix": "-XX:",
-            "definedIn": "share/gc/shared/gc_globals.hpp",
-            "defaultValue": "true",
-            "name": "UseOWSTTaskTerminator",
-            "description": "Use Optimized Work Stealing Threads task termination protocol",
-            "availability": "diagnostic",
-            "type": "bool"
-        },
-        {
-            "component": "gc",
-            "prefix": "-XX:",
-            "definedIn": "share/gc/shared/gc_globals.hpp",
-            "defaultValue": "false",
-            "name": "UseShenandoahGC",
-            "description": "Use the Shenandoah garbage collector",
-            "availability": "experimental",
-            "type": "bool"
-        },
-        {
-            "prefix": "-XX:",
-            "definedIn": "cpu/aarch64/globals_aarch64.hpp",
-            "defaultValue": "false",
-            "name": "UseSimulatorCache",
-            "cpu": "aarch64",
-            "description": "tell sim to cache memory updates until exclusive op occurs",
-            "availability": "product",
-            "type": "bool"
-        },
-        {
-            "component": "gc",
-            "prefix": "-XX:",
-            "definedIn": "share/gc/z/z_globals.hpp",
-            "defaultValue": "8*G",
-            "name": "ZMarkStackSpaceLimit",
-            "range": "range(32*M, 1024*G)",
-            "description": "Maximum number of bytes allocated for mark stacks",
-            "availability": "product",
-            "type": "size_t"
-        }
-    ],
-    "laterVM": "OpenJDK12",
-    "earlierVM": "OpenJDK11"
+    ]
 }

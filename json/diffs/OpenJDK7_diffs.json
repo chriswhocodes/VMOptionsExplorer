@@ -1,532 +1,12 @@
 {
-    "removed": [
-        {
-            "component": "runtime",
-            "prefix": "-XX:",
-            "definedIn": "src/share/vm/runtime/globals.hpp",
-            "defaultValue": "4",
-            "name": "AlignEntryCode",
-            "description": "aligns entry code to specified value (in bytes)",
-            "availability": "develop",
-            "type": "intx"
-        },
-        {
-            "component": "runtime",
-            "prefix": "-XX:",
-            "definedIn": "src/share/vm/runtime/globals.hpp",
-            "defaultValue": "false",
-            "name": "AllowInvokeGeneric",
-            "description": "accept MethodHandle.invoke and MethodHandle.invokeGeneric as equivalent methods",
-            "availability": "experimental",
-            "type": "bool"
-        },
-        {
-            "component": "runtime",
-            "prefix": "-XX:",
-            "definedIn": "src/share/vm/runtime/globals.hpp",
-            "defaultValue": "0",
-            "name": "AlwaysInflate",
-            "description": "(Unstable) Force inflation",
-            "availability": "product",
-            "type": "intx"
-        },
-        {
-            "component": "runtime",
-            "prefix": "-XX:",
-            "definedIn": "src/share/vm/runtime/globals.hpp",
-            "defaultValue": "false",
-            "name": "AnonymousClasses",
-            "description": "support sun.misc.Unsafe.defineAnonymousClass (deprecated)",
-            "availability": "product",
-            "type": "bool"
-        },
-        {
-            "component": "runtime",
-            "prefix": "-XX:",
-            "definedIn": "src/share/vm/runtime/globals.hpp",
-            "defaultValue": "100",
-            "name": "CICloneLoopTestLimit",
-            "description": "size limit for blocks heuristically cloned in ciTypeFlow",
-            "availability": "develop",
-            "type": "intx"
-        },
-        {
-            "component": "runtime",
-            "prefix": "-XX:",
-            "definedIn": "src/share/vm/runtime/globals.hpp",
-            "defaultValue": "-1",
-            "name": "CIFireOOMAtDelay",
-            "description": "Wait for this many CI accesses to occur in all compiles before beginning to throw OutOfMemoryErrors in each compile",
-            "availability": "develop",
-            "type": "intx"
-        },
-        {
-            "component": "runtime",
-            "prefix": "-XX:",
-            "definedIn": "src/share/vm/runtime/globals.hpp",
-            "defaultValue": "10",
-            "name": "CMSOldPLABReactivityCeiling",
-            "description": "The clamping of the gain in the feedback loop for on-the-fly PLAB resizing during a scavenge",
-            "availability": "product",
-            "type": "uintx"
-        },
-        {
-            "component": "c1",
-            "prefix": "-XX:",
-            "definedIn": "src/share/vm/c1/c1_globals.hpp",
-            "defaultValue": "false",
-            "name": "CanonicalizeExperimental",
-            "description": "Canonicalize graph nodes, experimental code",
-            "availability": "develop",
-            "type": "bool"
-        },
-        {
-            "component": "c1",
-            "prefix": "-XX:",
-            "definedIn": "src/share/vm/c1/c1_globals.hpp",
-            "defaultValue": "0",
-            "name": "CompilationRepeat",
-            "description": "Number of times to recompile method before returning result",
-            "availability": "product",
-            "type": "intx"
-        },
-        {
-            "component": "runtime",
-            "prefix": "-XX:",
-            "definedIn": "src/share/vm/runtime/globals.hpp",
-            "defaultValue": "false",
-            "name": "EnableMethodHandles",
-            "description": "support method handles (deprecated)",
-            "availability": "experimental",
-            "type": "bool"
-        },
-        {
-            "component": "runtime",
-            "prefix": "-XX:",
-            "definedIn": "src/share/vm/runtime/globals.hpp",
-            "defaultValue": "2000",
-            "name": "EventLogLength",
-            "description": "maximum nof events in event log",
-            "availability": "product",
-            "type": "intx"
-        },
-        {
-            "component": "runtime",
-            "prefix": "-XX:",
-            "definedIn": "src/share/vm/runtime/globals.hpp",
-            "defaultValue": "0",
-            "name": "ExitAfterGCNum",
-            "description": "If non-zero, exit after this GC.",
-            "availability": "develop",
-            "type": "uintx"
-        },
-        {
-            "component": "runtime",
-            "prefix": "-XX:",
-            "definedIn": "src/share/vm/runtime/globals.hpp",
-            "defaultValue": "true",
-            "name": "FullProfileOnReInterpret",
-            "description": "On re-interpret unc-trap compile next at CompLevel_fast_compile",
-            "availability": "diagnostic",
-            "type": "bool"
-        },
-        {
-            "component": "gc",
-            "prefix": "-XX:",
-            "definedIn": "src/share/vm/gc_implementation/g1/g1_globals.hpp",
-            "defaultValue": "80",
-            "name": "G1DefaultMaxNewGenPercent",
-            "description": "Percentage (0-100) of the heap size to use as maximum young gen size.",
-            "availability": "develop",
-            "type": "uintx"
-        },
-        {
-            "component": "gc",
-            "prefix": "-XX:",
-            "definedIn": "src/share/vm/gc_implementation/g1/g1_globals.hpp",
-            "defaultValue": "20",
-            "name": "G1DefaultMinNewGenPercent",
-            "description": "Percentage (0-100) of the heap size to use as minimum young gen size.",
-            "availability": "develop",
-            "type": "uintx"
-        },
-        {
-            "component": "gc",
-            "prefix": "-XX:",
-            "definedIn": "src/share/vm/gc_implementation/g1/g1_globals.hpp",
-            "defaultValue": "1024 * 1024",
-            "name": "G1MarkRegionStackSize",
-            "description": "Size of the region stack for concurrent marking.",
-            "availability": "product",
-            "type": "intx"
-        },
-        {
-            "component": "gc",
-            "prefix": "-XX:",
-            "definedIn": "src/share/vm/gc_implementation/g1/g1_globals.hpp",
-            "defaultValue": "4",
-            "name": "G1MaxMixedGCNum",
-            "description": "The maximum desired number of mixed GCs after a marking cycle.",
-            "availability": "develop",
-            "type": "uintx"
-        },
-        {
-            "component": "gc",
-            "prefix": "-XX:",
-            "definedIn": "src/share/vm/gc_implementation/g1/g1_globals.hpp",
-            "defaultValue": "95",
-            "name": "G1OldCSetRegionLiveThresholdPercent",
-            "description": "Threshold for regions to be added to the collection set. Regions with more live bytes that this will not be collected.",
-            "availability": "develop",
-            "type": "uintx"
-        },
-        {
-            "component": "gc",
-            "prefix": "-XX:",
-            "definedIn": "src/share/vm/gc_implementation/g1/g1_globals.hpp",
-            "defaultValue": "1",
-            "name": "G1OldReclaimableThresholdPercent",
-            "description": "Threshold for the remaining old reclaimable bytes, expressed as a percentage of the heap size. If the old reclaimable bytes are under this we will not collect them with more mixed GCs.",
-            "availability": "develop",
-            "type": "uintx"
-        },
-        {
-            "component": "gc",
-            "prefix": "-XX:",
-            "definedIn": "src/share/vm/gc_implementation/g1/g1_globals.hpp",
-            "defaultValue": "false",
-            "name": "G1PrintParCleanupStats",
-            "description": "When true, print extra stats about parallel cleanup.",
-            "availability": "develop",
-            "type": "bool"
-        },
-        {
-            "component": "runtime",
-            "prefix": "-XX:",
-            "definedIn": "src/share/vm/runtime/globals.hpp",
-            "defaultValue": "false",
-            "name": "GCOverheadReporting",
-            "description": "Enables the GC overhead reporting facility",
-            "availability": "product",
-            "type": "bool"
-        },
-        {
-            "component": "runtime",
-            "prefix": "-XX:",
-            "definedIn": "src/share/vm/runtime/globals.hpp",
-            "defaultValue": "100",
-            "name": "GCOverheadReportingPeriodMS",
-            "description": "Reporting period for conc GC overhead reporting, in ms",
-            "availability": "product",
-            "type": "intx"
-        },
-        {
-            "component": "runtime",
-            "prefix": "-XX:",
-            "definedIn": "src/share/vm/runtime/globals.hpp",
-            "defaultValue": "NULL",
-            "name": "HPILibPath",
-            "description": "Specify alternate path to HPI library",
-            "availability": "product",
-            "type": "ccstr"
-        },
-        {
-            "component": "runtime",
-            "prefix": "-XX:",
-            "definedIn": "src/share/vm/runtime/globals.hpp",
-            "defaultValue": "false",
-            "name": "InitialCompileFast",
-            "description": "Initial compile at CompLevel_fast_compile",
-            "availability": "diagnostic",
-            "type": "bool"
-        },
-        {
-            "component": "runtime",
-            "prefix": "-XX:",
-            "definedIn": "src/share/vm/runtime/globals.hpp",
-            "defaultValue": "false",
-            "name": "InitialCompileReallyFast",
-            "description": "Initial compile at CompLevel_really_fast_compile (no profile)",
-            "availability": "diagnostic",
-            "type": "bool"
-        },
-        {
-            "component": "runtime",
-            "prefix": "-XX:",
-            "definedIn": "src/share/vm/runtime/globals.hpp",
-            "defaultValue": "true",
-            "name": "InlineAtomicLong",
-            "description": "inline sun.misc.AtomicLong",
-            "availability": "develop",
-            "type": "bool"
-        },
-        {
-            "component": "runtime",
-            "prefix": "-XX:",
-            "definedIn": "src/share/vm/runtime/globals.hpp",
-            "defaultValue": "false",
-            "name": "LinkWellKnownClasses",
-            "description": "Resolve a well known class as soon as its name is seen",
-            "availability": "diagnostic",
-            "type": "bool"
-        },
-        {
-            "component": "runtime",
-            "prefix": "-XX:",
-            "definedIn": "src/share/vm/runtime/globals.hpp",
-            "defaultValue": "false",
-            "name": "LogMultipleMutexLocking",
-            "description": "log locking and unlocking of mutexes (only if multiple locks are held)",
-            "availability": "notproduct",
-            "type": "bool"
-        },
-        {
-            "component": "runtime",
-            "prefix": "-XX:",
-            "definedIn": "src/share/vm/runtime/globals.hpp",
-            "defaultValue": "3",
-            "name": "MethodHandlePushLimit",
-            "description": "number of additional stack slots a method handle may push",
-            "availability": "diagnostic",
-            "type": "intx"
-        },
-        {
-            "component": "runtime",
-            "prefix": "-XX:",
-            "definedIn": "src/share/vm/runtime/globals.hpp",
-            "defaultValue": "true",
-            "name": "OptimizeMethodHandles",
-            "description": "when constructing method handles, try to improve them",
-            "availability": "diagnostic",
-            "type": "bool"
-        },
-        {
-            "component": "runtime",
-            "prefix": "-XX:",
-            "definedIn": "src/share/vm/runtime/globals.hpp",
-            "defaultValue": "true",
-            "name": "PostSpinYield",
-            "description": "Yield after inner spinning loop",
-            "availability": "product",
-            "type": "bool"
-        },
-        {
-            "component": "runtime",
-            "prefix": "-XX:",
-            "definedIn": "src/share/vm/runtime/globals.hpp",
-            "defaultValue": "10",
-            "name": "PreBlockSpin",
-            "description": "Number of times to spin in an inflated lock before going to an OS lock",
-            "availability": "product",
-            "type": "intx"
-        },
-        {
-            "component": "runtime",
-            "prefix": "-XX:",
-            "definedIn": "src/share/vm/runtime/globals.hpp",
-            "defaultValue": "false",
-            "name": "PreSpinYield",
-            "description": "Yield before inner spinning loop",
-            "availability": "product",
-            "type": "bool"
-        },
-        {
-            "component": "runtime",
-            "prefix": "-XX:",
-            "definedIn": "src/share/vm/runtime/globals.hpp",
-            "defaultValue": "1024",
-            "name": "PreserveMarkStackSize",
-            "description": "Size for stack used in promotion failure handling",
-            "availability": "product",
-            "type": "uintx"
-        },
-        {
-            "component": "runtime",
-            "prefix": "-XX:",
-            "definedIn": "src/share/vm/runtime/globals.hpp",
-            "defaultValue": "100",
-            "name": "ReadSpinIterations",
-            "description": "Number of read attempts before a yield (spin inner loop)",
-            "availability": "product",
-            "type": "intx"
-        },
-        {
-            "component": "runtime",
-            "prefix": "-XX:",
-            "definedIn": "src/share/vm/runtime/globals.hpp",
-            "defaultValue": "false",
-            "name": "StressMethodHandleWalk",
-            "description": "Process all method handles with MethodHandleWalk",
-            "availability": "develop",
-            "type": "bool"
-        },
-        {
-            "component": "runtime",
-            "prefix": "-XX:",
-            "definedIn": "src/share/vm/runtime/globals.hpp",
-            "defaultValue": "false",
-            "name": "StressTieredRuntime",
-            "description": "Alternate client and server compiler on compile requests",
-            "availability": "product",
-            "type": "bool"
-        },
-        {
-            "component": "c2",
-            "prefix": "-XX:",
-            "definedIn": "src/share/vm/opto/c2_globals.hpp",
-            "defaultValue": "true",
-            "name": "Tier1CountInvocations",
-            "description": "Generate code, during tier 1, to update invocation counter",
-            "availability": "develop",
-            "type": "bool"
-        },
-        {
-            "component": "c2",
-            "prefix": "-XX:",
-            "definedIn": "src/share/vm/opto/c2_globals.hpp",
-            "defaultValue": "35",
-            "name": "Tier1FreqInlineSize",
-            "description": "max bytecode size of a frequent method to be inlined, tier 1",
-            "availability": "product",
-            "type": "intx"
-        },
-        {
-            "component": "c2",
-            "prefix": "-XX:",
-            "definedIn": "src/share/vm/opto/c2_globals.hpp",
-            "defaultValue": "false",
-            "name": "Tier1Inline",
-            "description": "enable inlining during tier 1",
-            "availability": "product",
-            "type": "intx"
-        },
-        {
-            "component": "c2",
-            "prefix": "-XX:",
-            "definedIn": "src/share/vm/opto/c2_globals.hpp",
-            "defaultValue": "0",
-            "name": "Tier1LoopOptsCount",
-            "description": "Set level of loop optimization for tier 1 compiles",
-            "availability": "product",
-            "type": "intx"
-        },
-        {
-            "component": "c2",
-            "prefix": "-XX:",
-            "definedIn": "src/share/vm/opto/c2_globals.hpp",
-            "defaultValue": "8",
-            "name": "Tier1MaxInlineSize",
-            "description": "maximum bytecode size of a method to be inlined, during tier 1",
-            "availability": "product",
-            "type": "intx"
-        },
-        {
-            "component": "runtime",
-            "prefix": "-XX:",
-            "definedIn": "src/share/vm/runtime/globals.hpp",
-            "defaultValue": "false",
-            "name": "TraceCompileTriggered",
-            "description": "Trace compile triggered",
-            "availability": "diagnostic",
-            "type": "bool"
-        },
-        {
-            "component": "runtime",
-            "prefix": "-XX:",
-            "definedIn": "src/share/vm/runtime/globals.hpp",
-            "defaultValue": "false",
-            "name": "TraceOSRBreakpoint",
-            "description": "Trace OSR Breakpoint",
-            "availability": "diagnostic",
-            "type": "bool"
-        },
-        {
-            "component": "runtime",
-            "prefix": "-XX:",
-            "definedIn": "src/share/vm/runtime/globals.hpp",
-            "defaultValue": "false",
-            "name": "TraceRedundantCompiles",
-            "description": "Have compile broker print when a request already in the queue is requested again",
-            "availability": "diagnostic",
-            "type": "bool"
-        },
-        {
-            "component": "runtime",
-            "prefix": "-XX:",
-            "definedIn": "src/share/vm/runtime/globals.hpp",
-            "defaultValue": "false",
-            "name": "TraceRegionTasksQueuing",
-            "description": "Trace the queuing of the region tasks",
-            "availability": "develop",
-            "type": "bool"
-        },
-        {
-            "component": "runtime",
-            "prefix": "-XX:",
-            "definedIn": "src/share/vm/runtime/globals.hpp",
-            "defaultValue": "false",
-            "name": "TraceTriggers",
-            "description": "Trace triggers",
-            "availability": "diagnostic",
-            "type": "bool"
-        },
-        {
-            "component": "runtime",
-            "prefix": "-XX:",
-            "definedIn": "src/share/vm/runtime/globals.hpp",
-            "defaultValue": "true",
-            "name": "UpdateHotSpotCompilerFileOnError",
-            "description": "Should the system attempt to update the compiler file when an error occurs?",
-            "availability": "develop",
-            "type": "bool"
-        },
-        {
-            "component": "c1",
-            "prefix": "-XX:",
-            "definedIn": "src/share/vm/c1/c1_globals.hpp",
-            "defaultValue": "true",
-            "name": "UseFastExceptionHandling",
-            "description": "Faster handling of exceptions",
-            "availability": "develop",
-            "type": "bool"
-        },
-        {
-            "component": "runtime",
-            "prefix": "-XX:",
-            "definedIn": "src/share/vm/runtime/globals.hpp",
-            "defaultValue": "true",
-            "name": "UsePrefetchQueue",
-            "description": "Use the prefetch queue during PS promotion",
-            "availability": "develop",
-            "type": "bool"
-        },
-        {
-            "component": "runtime",
-            "prefix": "-XX:",
-            "definedIn": "src/share/vm/runtime/globals.hpp",
-            "defaultValue": "false",
-            "name": "UseSpinning",
-            "description": "Use spinning in monitor inflation and before entry",
-            "availability": "product",
-            "type": "bool"
-        },
-        {
-            "component": "c1",
-            "prefix": "-XX:",
-            "definedIn": "src/share/vm/c1/c1_globals.hpp",
-            "defaultValue": "true",
-            "name": "ValueStackPinStackAll",
-            "description": "Pinning in ValueStack pin everything",
-            "availability": "develop",
-            "type": "bool"
-        }
-    ],
+    "earlierVM": "OpenJDK6",
+    "laterVM": "OpenJDK7",
     "added": [
         {
             "component": "c2",
+            "defaultValue": "true",
             "prefix": "-XX:",
             "definedIn": "src/share/vm/opto/c2_globals.hpp",
-            "defaultValue": "true",
             "name": "AlignVector",
             "description": "Perform vector store/load alignment in loop",
             "availability": "product",
@@ -534,9 +14,9 @@
         },
         {
             "component": "c2",
+            "defaultValue": "false",
             "prefix": "-XX:",
             "definedIn": "src/share/vm/opto/c2_globals.hpp",
-            "defaultValue": "false",
             "name": "AlwaysIncrementalInline",
             "description": "do all inlining incrementally",
             "availability": "develop",
@@ -544,9 +24,9 @@
         },
         {
             "component": "runtime",
+            "defaultValue": "SOLARIS_ONLY(64*K) NOT_SOLARIS(max_uintx)",
             "prefix": "-XX:",
             "definedIn": "src/share/vm/runtime/globals.hpp",
-            "defaultValue": "SOLARIS_ONLY(64*K) NOT_SOLARIS(max_uintx)",
             "name": "ArrayAllocatorMallocLimit",
             "description": "Allocation less than this value will be allocated using malloc. Larger allocations will use mmap.",
             "availability": "experimental",
@@ -554,18 +34,18 @@
         },
         {
             "os": "aix",
+            "defaultValue": "1000",
             "prefix": "-XX:",
             "definedIn": "src/os/aix/vm/globals_aix.hpp",
-            "defaultValue": "1000",
             "name": "AttachListenerTimeout",
             "availability": "define_pd_global",
             "type": "intx"
         },
         {
             "component": "runtime",
+            "defaultValue": "true",
             "prefix": "-XX:",
             "definedIn": "src/share/vm/runtime/globals.hpp",
-            "defaultValue": "true",
             "name": "AutoShutdownNMT",
             "description": "Automatically shutdown native memory tracking under stress situation. When set to false, native memory tracking tries to stay alive at the expense of JVM performance",
             "availability": "diagnostic",
@@ -573,31 +53,31 @@
         },
         {
             "component": "runtime",
+            "defaultValue": "false",
             "prefix": "-XX:",
             "definedIn": "src/share/vm/runtime/globals.hpp",
-            "defaultValue": "false",
             "name": "CMSEdenChunksRecordAlways",
             "description": "Whether to always record eden chunks used for the parallel initial mark or remark of eden",
             "availability": "product",
-            "deprecation": "<span style=\"white-space:nowrap\">Obsoleted in JDK14<\/span><br><span style=\"white-space:nowrap\">Expired in JDK15<\/span>",
-            "type": "bool"
+            "type": "bool",
+            "deprecation": "<span style=\"white-space:nowrap\">Obsoleted in JDK14<\/span><br><span style=\"white-space:nowrap\">Expired in JDK15<\/span>"
         },
         {
             "component": "runtime",
+            "defaultValue": "false",
             "prefix": "-XX:",
             "definedIn": "src/share/vm/runtime/globals.hpp",
-            "defaultValue": "false",
             "name": "CMSParallelInitialMarkEnabled",
             "description": "Use the parallel initial mark.",
             "availability": "product",
-            "deprecation": "<span style=\"white-space:nowrap\">Obsoleted in JDK14<\/span><br><span style=\"white-space:nowrap\">Expired in JDK15<\/span>",
-            "type": "bool"
+            "type": "bool",
+            "deprecation": "<span style=\"white-space:nowrap\">Obsoleted in JDK14<\/span><br><span style=\"white-space:nowrap\">Expired in JDK15<\/span>"
         },
         {
             "component": "runtime",
+            "defaultValue": "false",
             "prefix": "-XX:",
             "definedIn": "src/share/vm/runtime/globals.hpp",
-            "defaultValue": "false",
             "name": "CMSPrintEdenSurvivorChunks",
             "description": "Print the eden and the survivor chunks used for the parallel initial mark or remark of the eden/survivor spaces",
             "availability": "product",
@@ -605,31 +85,31 @@
         },
         {
             "component": "runtime",
+            "defaultValue": "false",
             "prefix": "-XX:",
             "definedIn": "src/share/vm/runtime/globals.hpp",
-            "defaultValue": "false",
             "name": "CheckEndorsedAndExtDirs",
             "description": "Verify the endorsed and extension directories are not used",
             "availability": "product",
-            "deprecation": "<span style=\"white-space:nowrap\">Deprecated in JDK10<\/span><br><span style=\"white-space:nowrap\">Obsoleted in JDK11<\/span><br><span style=\"white-space:nowrap\">Expired in JDK12<\/span>",
-            "type": "bool"
+            "type": "bool",
+            "deprecation": "<span style=\"white-space:nowrap\">Deprecated in JDK10<\/span><br><span style=\"white-space:nowrap\">Obsoleted in JDK11<\/span><br><span style=\"white-space:nowrap\">Expired in JDK12<\/span>"
         },
         {
             "component": "runtime",
+            "defaultValue": "false",
             "prefix": "-XX:",
             "definedIn": "src/share/vm/runtime/globals.hpp",
-            "defaultValue": "false",
             "name": "EnableTracing",
             "description": "Enable event-based tracing",
             "availability": "product",
-            "deprecation": "<span style=\"white-space:nowrap\">Obsoleted in JDK11<\/span><br><span style=\"white-space:nowrap\">Expired in JDK12<\/span>",
-            "type": "bool"
+            "type": "bool",
+            "deprecation": "<span style=\"white-space:nowrap\">Obsoleted in JDK11<\/span><br><span style=\"white-space:nowrap\">Expired in JDK12<\/span>"
         },
         {
             "component": "c2",
+            "defaultValue": "20. DEBUG_ONLY(+40.)",
             "prefix": "-XX:",
             "definedIn": "src/share/vm/opto/c2_globals.hpp",
-            "defaultValue": "20. DEBUG_ONLY(+40.)",
             "name": "EscapeAnalysisTimeout",
             "description": "Abort EA when it reaches time limit (in sec)",
             "availability": "product",
@@ -637,9 +117,9 @@
         },
         {
             "component": "c2",
+            "defaultValue": "true",
             "prefix": "-XX:",
             "definedIn": "src/share/vm/opto/c2_globals.hpp",
-            "defaultValue": "true",
             "name": "ExitEscapeAnalysisOnTimeout",
             "description": "Exit or throw assert in EA when it reaches time limit",
             "availability": "develop",
@@ -647,9 +127,9 @@
         },
         {
             "component": "gc",
+            "defaultValue": "false",
             "prefix": "-XX:",
             "definedIn": "src/share/vm/gc_implementation/g1/g1_globals.hpp",
-            "defaultValue": "false",
             "name": "G1EvacuationFailureALot",
             "description": "Force use of evacuation failure handling during certain evacuation pauses",
             "availability": "notproduct",
@@ -657,9 +137,9 @@
         },
         {
             "component": "gc",
+            "defaultValue": "1000",
             "prefix": "-XX:",
             "definedIn": "src/share/vm/gc_implementation/g1/g1_globals.hpp",
-            "defaultValue": "1000",
             "name": "G1EvacuationFailureALotCount",
             "description": "Number of successful evacuations between evacuation failures occurring at object copying",
             "availability": "develop",
@@ -667,9 +147,9 @@
         },
         {
             "component": "gc",
+            "defaultValue": "true",
             "prefix": "-XX:",
             "definedIn": "src/share/vm/gc_implementation/g1/g1_globals.hpp",
-            "defaultValue": "true",
             "name": "G1EvacuationFailureALotDuringConcMark",
             "description": "Force use of evacuation failure handling during evacuation pauses when marking is in progress",
             "availability": "develop",
@@ -677,9 +157,9 @@
         },
         {
             "component": "gc",
+            "defaultValue": "true",
             "prefix": "-XX:",
             "definedIn": "src/share/vm/gc_implementation/g1/g1_globals.hpp",
-            "defaultValue": "true",
             "name": "G1EvacuationFailureALotDuringInitialMark",
             "description": "Force use of evacuation failure handling during initial mark evacuation pauses",
             "availability": "develop",
@@ -687,9 +167,9 @@
         },
         {
             "component": "gc",
+            "defaultValue": "true",
             "prefix": "-XX:",
             "definedIn": "src/share/vm/gc_implementation/g1/g1_globals.hpp",
-            "defaultValue": "true",
             "name": "G1EvacuationFailureALotDuringMixedGC",
             "description": "Force use of evacuation failure handling during mixed evacuation pauses",
             "availability": "develop",
@@ -697,9 +177,9 @@
         },
         {
             "component": "gc",
+            "defaultValue": "true",
             "prefix": "-XX:",
             "definedIn": "src/share/vm/gc_implementation/g1/g1_globals.hpp",
-            "defaultValue": "true",
             "name": "G1EvacuationFailureALotDuringYoungGC",
             "description": "Force use of evacuation failure handling during young evacuation pauses",
             "availability": "develop",
@@ -707,9 +187,9 @@
         },
         {
             "component": "gc",
+            "defaultValue": "5",
             "prefix": "-XX:",
             "definedIn": "src/share/vm/gc_implementation/g1/g1_globals.hpp",
-            "defaultValue": "5",
             "name": "G1EvacuationFailureALotInterval",
             "description": "Total collections between forced triggering of evacuation failures",
             "availability": "develop",
@@ -717,9 +197,9 @@
         },
         {
             "component": "gc",
+            "defaultValue": "10",
             "prefix": "-XX:",
             "definedIn": "src/share/vm/gc_implementation/g1/g1_globals.hpp",
-            "defaultValue": "10",
             "name": "G1HeapWastePercent",
             "description": "Amount of space, expressed as a percentage of the heap size, that G1 is willing not to collect to avoid expensive GCs.",
             "availability": "product",
@@ -727,9 +207,9 @@
         },
         {
             "component": "gc",
+            "defaultValue": "NULL",
             "prefix": "-XX:",
             "definedIn": "src/share/vm/gc_implementation/g1/g1_globals.hpp",
-            "defaultValue": "NULL",
             "name": "G1LogLevel",
             "description": "Log level for G1 logging: fine, finer, finest",
             "availability": "experimental",
@@ -737,9 +217,9 @@
         },
         {
             "component": "gc",
+            "defaultValue": "60",
             "prefix": "-XX:",
             "definedIn": "src/share/vm/gc_implementation/g1/g1_globals.hpp",
-            "defaultValue": "60",
             "name": "G1MaxNewSizePercent",
             "description": "Percentage (0-100) of the heap size to use as default maximum young gen size.",
             "availability": "experimental",
@@ -747,9 +227,9 @@
         },
         {
             "component": "gc",
+            "defaultValue": "8",
             "prefix": "-XX:",
             "definedIn": "src/share/vm/gc_implementation/g1/g1_globals.hpp",
-            "defaultValue": "8",
             "name": "G1MixedGCCountTarget",
             "description": "The target number of mixed GCs after a marking cycle.",
             "availability": "product",
@@ -757,9 +237,9 @@
         },
         {
             "component": "gc",
+            "defaultValue": "65",
             "prefix": "-XX:",
             "definedIn": "src/share/vm/gc_implementation/g1/g1_globals.hpp",
-            "defaultValue": "65",
             "name": "G1MixedGCLiveThresholdPercent",
             "description": "Threshold for regions to be considered for inclusion in the collection set of mixed GCs. Regions with live bytes exceeding this will not be collected.",
             "availability": "experimental",
@@ -767,9 +247,9 @@
         },
         {
             "component": "gc",
+            "defaultValue": "5",
             "prefix": "-XX:",
             "definedIn": "src/share/vm/gc_implementation/g1/g1_globals.hpp",
-            "defaultValue": "5",
             "name": "G1NewSizePercent",
             "description": "Percentage (0-100) of the heap size to use as default minimum young gen size.",
             "availability": "experimental",
@@ -777,9 +257,9 @@
         },
         {
             "component": "gc",
+            "defaultValue": "false",
             "prefix": "-XX:",
             "definedIn": "src/share/vm/gc_implementation/g1/g1_globals.hpp",
-            "defaultValue": "false",
             "name": "G1TraceHeapRegionRememberedSet",
             "description": "Enables heap region remembered set debug logs",
             "availability": "develop",
@@ -787,9 +267,9 @@
         },
         {
             "component": "gc",
+            "defaultValue": "false",
             "prefix": "-XX:",
             "definedIn": "src/share/vm/gc_implementation/g1/g1_globals.hpp",
-            "defaultValue": "false",
             "name": "G1TraceStringSymbolTableScrubbing",
             "description": "Trace information string and symbol table scrubbing.",
             "availability": "experimental",
@@ -797,9 +277,9 @@
         },
         {
             "component": "gc",
+            "defaultValue": "false",
             "prefix": "-XX:",
             "definedIn": "src/share/vm/gc_implementation/g1/g1_globals.hpp",
-            "defaultValue": "false",
             "name": "G1VerifyHeapRegionCodeRoots",
             "description": "Verify the code root lists attached to each heap region.",
             "availability": "diagnostic",
@@ -807,9 +287,9 @@
         },
         {
             "component": "gc",
+            "defaultValue": "false",
             "prefix": "-XX:",
             "definedIn": "src/share/vm/gc_implementation/g1/g1_globals.hpp",
-            "defaultValue": "false",
             "name": "G1VerifyRSetsDuringFullGC",
             "description": "If true, perform verification of each heap region's remembered set when verifying the heap during a full GC.",
             "availability": "diagnostic",
@@ -817,18 +297,18 @@
         },
         {
             "component": "c2",
+            "defaultValue": "true",
             "prefix": "-XX:",
             "definedIn": "src/share/vm/opto/c2_globals.hpp",
-            "defaultValue": "true",
             "name": "IncrementalInline",
             "description": "do post parse inlining",
             "availability": "product",
             "type": "bool"
         },
         {
+            "defaultValue": "false",
             "prefix": "-XX:",
             "definedIn": "src/cpu/ppc/vm/globals_ppc.hpp",
-            "defaultValue": "false",
             "name": "InsertEndGroupPPC64",
             "cpu": "ppc",
             "description": "Insert EndGroup instructions to optimize for Power6.",
@@ -837,9 +317,9 @@
         },
         {
             "component": "c2",
+            "defaultValue": "20000",
             "prefix": "-XX:",
             "definedIn": "src/share/vm/opto/c2_globals.hpp",
-            "defaultValue": "20000",
             "name": "LiveNodeCountInliningCutoff",
             "description": "max number of live nodes in a method",
             "availability": "product",
@@ -847,18 +327,18 @@
         },
         {
             "os": "linux",
+            "defaultValue": "true",
             "prefix": "-XX:",
             "definedIn": "src/os/linux/vm/globals_linux.hpp",
-            "defaultValue": "true",
             "name": "LoadExecStackDllInVMThread",
             "description": "Load DLLs with executable-stack attribute in the VM Thread",
             "availability": "product",
             "type": "bool"
         },
         {
+            "defaultValue": "false",
             "prefix": "-XX:",
             "definedIn": "src/cpu/ppc/vm/globals_ppc.hpp",
-            "defaultValue": "false",
             "name": "LoadPollAddressFromThread",
             "cpu": "ppc",
             "description": "Load polling page address from thread object (required for per-thread safepoints on platforms != IA64)",
@@ -867,9 +347,9 @@
         },
         {
             "component": "c2",
+            "defaultValue": "16",
             "prefix": "-XX:",
             "definedIn": "src/share/vm/opto/c2_globals.hpp",
-            "defaultValue": "16",
             "name": "LoopMaxUnroll",
             "description": "Maximum number of unrolls for main loop",
             "availability": "product",
@@ -877,9 +357,9 @@
         },
         {
             "component": "runtime",
+            "defaultValue": "100",
             "prefix": "-XX:",
             "definedIn": "src/share/vm/runtime/globals.hpp",
-            "defaultValue": "100",
             "name": "MaxForceInlineLevel",
             "description": "maximum number of nested @ForceInline calls that are inlined",
             "availability": "develop",
@@ -887,9 +367,9 @@
         },
         {
             "component": "c2",
+            "defaultValue": "32",
             "prefix": "-XX:",
             "definedIn": "src/share/vm/opto/c2_globals.hpp",
-            "defaultValue": "32",
             "name": "MaxVectorSize",
             "description": "Max vector size in bytes, actual size could be less depending on elements type",
             "availability": "product",
@@ -897,9 +377,9 @@
         },
         {
             "component": "runtime",
+            "defaultValue": "2",
             "prefix": "-XX:",
             "definedIn": "src/share/vm/runtime/globals.hpp",
-            "defaultValue": "2",
             "name": "MaxVirtMemFraction",
             "description": "Maximum fraction (1/n) of virtual memory used for ergonomicallydetermining maximum heap size",
             "availability": "develop",
@@ -907,9 +387,9 @@
         },
         {
             "component": "runtime",
+            "defaultValue": "off",
             "prefix": "-XX:",
             "definedIn": "src/share/vm/runtime/globals.hpp",
-            "defaultValue": "off",
             "name": "NativeMemoryTracking",
             "description": "Native memory tracking options",
             "availability": "product",
@@ -917,9 +397,9 @@
         },
         {
             "component": "runtime",
+            "defaultValue": "0.5",
             "prefix": "-XX:",
             "definedIn": "src/share/vm/runtime/globals.hpp",
-            "defaultValue": "0.5",
             "name": "ObjectCountCutOffPercent",
             "description": "The percentage of the used heap that the instances of a class must occupy for the class to generate a trace event.",
             "availability": "experimental",
@@ -927,9 +407,9 @@
         },
         {
             "component": "c2",
+            "defaultValue": "true",
             "prefix": "-XX:",
             "definedIn": "src/share/vm/opto/c2_globals.hpp",
-            "defaultValue": "true",
             "name": "OptimizeExpensiveOps",
             "description": "Find best control for expensive operations",
             "availability": "diagnostic",
@@ -937,17 +417,17 @@
         },
         {
             "os": "aix",
+            "defaultValue": "true",
             "prefix": "-XX:",
             "definedIn": "src/os/aix/vm/globals_aix.hpp",
-            "defaultValue": "true",
             "name": "OptimizePollingPageLocation",
             "availability": "define_pd_global",
             "type": "bool"
         },
         {
+            "defaultValue": "0",
             "prefix": "-XX:",
             "definedIn": "src/cpu/ppc/vm/globals_ppc.hpp",
-            "defaultValue": "0",
             "name": "PowerArchitecturePPC64",
             "cpu": "ppc",
             "description": "CPU Version: x for PowerX. Currently recognizes Power5 to Power7. Default is 0. CPUs newer than Power7 will be recognized as Power7.",
@@ -956,9 +436,9 @@
         },
         {
             "component": "runtime",
+            "defaultValue": "true",
             "prefix": "-XX:",
             "definedIn": "src/share/vm/runtime/globals.hpp",
-            "defaultValue": "true",
             "name": "PrintGCCause",
             "description": "Include GC cause in GC logging",
             "availability": "product",
@@ -966,9 +446,9 @@
         },
         {
             "component": "c2",
+            "defaultValue": "false",
             "prefix": "-XX:",
             "definedIn": "src/share/vm/opto/c2_globals.hpp",
-            "defaultValue": "false",
             "name": "PrintIdealNodeCount",
             "description": "Print liveness counts of ideal nodes",
             "availability": "notproduct",
@@ -976,18 +456,18 @@
         },
         {
             "component": "runtime",
+            "defaultValue": "false",
             "prefix": "-XX:",
             "definedIn": "src/share/vm/runtime/globals.hpp",
-            "defaultValue": "false",
             "name": "PrintNMTStatistics",
             "description": "Print native memory tracking summary data if it is on",
             "availability": "diagnostic",
             "type": "bool"
         },
         {
+            "defaultValue": "true",
             "prefix": "-XX:",
             "definedIn": "src/cpu/ppc/vm/globals_ppc.hpp",
-            "defaultValue": "true",
             "name": "ReoptimizeCallSequences",
             "cpu": "ppc",
             "description": "Reoptimize code-sequences of calls at runtime.",
@@ -996,9 +476,9 @@
         },
         {
             "component": "runtime",
+            "defaultValue": "false",
             "prefix": "-XX:",
             "definedIn": "src/share/vm/runtime/globals.hpp",
-            "defaultValue": "false",
             "name": "ShowHiddenFrames",
             "description": "show method handle implementation frames (usually hidden)",
             "availability": "diagnostic",
@@ -1006,9 +486,9 @@
         },
         {
             "component": "runtime",
+            "defaultValue": "false",
             "prefix": "-XX:",
             "definedIn": "src/share/vm/runtime/globals.hpp",
-            "defaultValue": "false",
             "name": "StressCompiledExceptionHandlers",
             "description": "Exercise compiled exception handlers",
             "availability": "develop",
@@ -1016,9 +496,9 @@
         },
         {
             "component": "c2",
+            "defaultValue": "false",
             "prefix": "-XX:",
             "definedIn": "src/share/vm/opto/c2_globals.hpp",
-            "defaultValue": "false",
             "name": "TraceLateExpand",
             "description": "Trace late expand of nodes.",
             "availability": "develop",
@@ -1026,9 +506,9 @@
         },
         {
             "component": "c2",
+            "defaultValue": "false",
             "prefix": "-XX:",
             "definedIn": "src/share/vm/opto/c2_globals.hpp",
-            "defaultValue": "false",
             "name": "TraceNewVectors",
             "description": "Trace creation of Vector nodes",
             "availability": "notproduct",
@@ -1036,18 +516,18 @@
         },
         {
             "component": "runtime",
+            "defaultValue": "false",
             "prefix": "-XX:",
             "definedIn": "src/share/vm/runtime/globals.hpp",
-            "defaultValue": "false",
             "name": "TraceProfileInterpreter",
             "description": "Trace profiling at the bytecode level during interpretation. This outputs the profiling information collected to improve jit compilation.",
             "availability": "develop",
             "type": "bool"
         },
         {
+            "defaultValue": "false",
             "prefix": "-XX:",
             "definedIn": "src/cpu/ppc/vm/globals_ppc.hpp",
-            "defaultValue": "false",
             "name": "TraceTraps",
             "cpu": "ppc",
             "description": "Trace all traps the signal handlerhandles.",
@@ -1055,9 +535,9 @@
             "type": "bool"
         },
         {
+            "defaultValue": "true",
             "prefix": "-XX:",
             "definedIn": "src/cpu/ppc/vm/globals_ppc.hpp",
-            "defaultValue": "true",
             "name": "TrapBasedICMissChecks",
             "cpu": "ppc",
             "description": "Raise and handle SIGTRAP if inline cache miss detected.",
@@ -1065,9 +545,9 @@
             "type": "bool"
         },
         {
+            "defaultValue": "true",
             "prefix": "-XX:",
             "definedIn": "src/cpu/ppc/vm/globals_ppc.hpp",
-            "defaultValue": "true",
             "name": "TrapBasedNotEntrantChecks",
             "cpu": "ppc",
             "description": "Raise and handle SIGTRAP if calling not entrant or zombie method.",
@@ -1075,9 +555,9 @@
             "type": "bool"
         },
         {
+            "defaultValue": "true",
             "prefix": "-XX:",
             "definedIn": "src/cpu/ppc/vm/globals_ppc.hpp",
-            "defaultValue": "true",
             "name": "TrapBasedNullChecks",
             "cpu": "ppc",
             "description": "Generate code for null checks that uses a cmp and trap instruction raising SIGTRAP. This is only used if an access tonull (+offset) will not raise a SIGSEGV.",
@@ -1085,9 +565,9 @@
             "type": "bool"
         },
         {
+            "defaultValue": "true",
             "prefix": "-XX:",
             "definedIn": "src/cpu/ppc/vm/globals_ppc.hpp",
-            "defaultValue": "true",
             "name": "TrapBasedRangeChecks",
             "cpu": "ppc",
             "description": "Raise and handle SIGTRAP if array out of bounds check fails.",
@@ -1096,18 +576,18 @@
         },
         {
             "os": "aix",
+            "defaultValue": "false",
             "prefix": "-XX:",
             "definedIn": "src/os/aix/vm/globals_aix.hpp",
-            "defaultValue": "false",
             "name": "Use16MPages",
             "availability": "define_pd_global",
             "type": "bool"
         },
         {
             "component": "runtime",
+            "defaultValue": "false",
             "prefix": "-XX:",
             "definedIn": "src/share/vm/runtime/globals.hpp",
-            "defaultValue": "false",
             "name": "UseAES",
             "description": "Control whether AES instructions can be used on x86/x64",
             "availability": "product",
@@ -1115,9 +595,9 @@
         },
         {
             "component": "runtime",
+            "defaultValue": "false",
             "prefix": "-XX:",
             "definedIn": "src/share/vm/runtime/globals.hpp",
-            "defaultValue": "false",
             "name": "UseAESIntrinsics",
             "description": "use intrinsics for AES versions of crypto",
             "availability": "product",
@@ -1125,19 +605,19 @@
         },
         {
             "component": "runtime",
+            "defaultValue": "false",
             "prefix": "-XX:",
             "definedIn": "src/share/vm/runtime/globals.hpp",
-            "defaultValue": "false",
             "name": "UseCGroupMemoryLimitForHeap",
             "description": "Use CGroup memory limit as physical memory limit for heap sizing",
             "availability": "experimental",
-            "deprecation": "<span style=\"white-space:nowrap\">Deprecated in JDK10<\/span><br><span style=\"white-space:nowrap\">Expired in JDK11<\/span>",
-            "type": "bool"
+            "type": "bool",
+            "deprecation": "<span style=\"white-space:nowrap\">Deprecated in JDK10<\/span><br><span style=\"white-space:nowrap\">Expired in JDK11<\/span>"
         },
         {
+            "defaultValue": "true",
             "prefix": "-XX:",
             "definedIn": "src/cpu/ppc/vm/globals_ppc.hpp",
-            "defaultValue": "true",
             "name": "UseCountLeadingZerosInstructionsPPC64",
             "cpu": "ppc",
             "description": "Use count leading zeros instructions.",
@@ -1146,18 +626,18 @@
         },
         {
             "component": "c2",
+            "defaultValue": "false",
             "prefix": "-XX:",
             "definedIn": "src/share/vm/opto/c2_globals.hpp",
-            "defaultValue": "false",
             "name": "UseCountedLoopSafepoints",
             "description": "Force counted loops to keep a safepoint",
             "availability": "product",
             "type": "bool"
         },
         {
+            "defaultValue": "false",
             "prefix": "-XX:",
             "definedIn": "src/cpu/ppc/vm/globals_ppc.hpp",
-            "defaultValue": "false",
             "name": "UseExtendedLoadAndReserveInstructionsPPC64",
             "cpu": "ppc",
             "description": "Use extended versions of load-and-reserve instructions.",
@@ -1165,9 +645,9 @@
             "type": "bool"
         },
         {
+            "defaultValue": "false",
             "prefix": "-XX:",
             "definedIn": "src/cpu/x86/vm/globals_x86.hpp",
-            "defaultValue": "false",
             "name": "UseFastStosb",
             "cpu": "x86",
             "description": "Use fast-string operation for zeroing: rep stosb",
@@ -1175,9 +655,9 @@
             "type": "bool"
         },
         {
+            "defaultValue": "false",
             "prefix": "-XX:",
             "definedIn": "src/cpu/ppc/vm/globals_ppc.hpp",
-            "defaultValue": "false",
             "name": "UseLoadInstructionsForStackBangingPPC64",
             "cpu": "ppc",
             "description": "Use load instructions for stack banging.",
@@ -1186,19 +666,19 @@
         },
         {
             "component": "runtime",
+            "defaultValue": "false",
             "prefix": "-XX:",
             "definedIn": "src/share/vm/runtime/globals.hpp",
-            "defaultValue": "false",
             "name": "UseLockedTracing",
             "description": "Use locked-tracing when doing event-based tracing",
             "availability": "product",
-            "deprecation": "<span style=\"white-space:nowrap\">Obsoleted in JDK11<\/span><br><span style=\"white-space:nowrap\">Expired in JDK12<\/span>",
-            "type": "bool"
+            "type": "bool",
+            "deprecation": "<span style=\"white-space:nowrap\">Obsoleted in JDK11<\/span><br><span style=\"white-space:nowrap\">Expired in JDK12<\/span>"
         },
         {
+            "defaultValue": "false",
             "prefix": "-XX:",
             "definedIn": "src/cpu/ppc/vm/globals_ppc.hpp",
-            "defaultValue": "false",
             "name": "UsePower6SchedulerPPC64",
             "cpu": "ppc",
             "description": "Use Power6 Scheduler.",
@@ -1206,9 +686,9 @@
             "type": "bool"
         },
         {
+            "defaultValue": "true",
             "prefix": "-XX:",
             "definedIn": "src/cpu/ppc/vm/globals_ppc.hpp",
-            "defaultValue": "true",
             "name": "UseRotateAndMaskInstructionsPPC64",
             "cpu": "ppc",
             "description": "Use rotate and mask instructions.",
@@ -1216,9 +696,9 @@
             "type": "bool"
         },
         {
+            "defaultValue": "true",
             "prefix": "-XX:",
             "definedIn": "src/cpu/ppc/vm/globals_ppc.hpp",
-            "defaultValue": "true",
             "name": "UseSIGTRAP",
             "cpu": "ppc",
             "description": "Allow trap instructions that make use of SIGTRAP. Use this to switch off all optimizations requiring SIGTRAP.",
@@ -1226,9 +706,9 @@
             "type": "bool"
         },
         {
+            "defaultValue": "false",
             "prefix": "-XX:",
             "definedIn": "src/cpu/ppc/vm/globals_ppc.hpp",
-            "defaultValue": "false",
             "name": "UseStaticBranchPredictionForUncommonPathsPPC64",
             "cpu": "ppc",
             "description": "Use static branch prediction hints for uncommon paths.",
@@ -1236,9 +716,9 @@
             "type": "bool"
         },
         {
+            "defaultValue": "true",
             "prefix": "-XX:",
             "definedIn": "src/cpu/ppc/vm/globals_ppc.hpp",
-            "defaultValue": "true",
             "name": "UseStaticBranchPredictionInCompareAndSwapPPC64",
             "cpu": "ppc",
             "description": "Use static branch prediction hints in CAS operations.",
@@ -1247,9 +727,9 @@
         },
         {
             "os": "linux",
+            "defaultValue": "false",
             "prefix": "-XX:",
             "definedIn": "src/os/linux/vm/globals_linux.hpp",
-            "defaultValue": "false",
             "name": "UseTransparentHugePages",
             "description": "Use MADV_HUGEPAGE for large pages",
             "availability": "product",
@@ -1257,9 +737,9 @@
         },
         {
             "component": "runtime",
+            "defaultValue": "false",
             "prefix": "-XX:",
             "definedIn": "src/share/vm/runtime/globals.hpp",
-            "defaultValue": "false",
             "name": "VerboseInternalVMTests",
             "description": "Turn on logging for internal VM tests.",
             "availability": "notproduct",
@@ -1267,9 +747,9 @@
         },
         {
             "component": "runtime",
+            "defaultValue": "trueInDebug",
             "prefix": "-XX:",
             "definedIn": "src/share/vm/runtime/globals.hpp",
-            "defaultValue": "trueInDebug",
             "name": "VerifyAdapterCalls",
             "description": "Verify that i2c/c2i adapters are called properly",
             "availability": "diagnostic",
@@ -1277,9 +757,9 @@
         },
         {
             "component": "c2",
+            "defaultValue": "true",
             "prefix": "-XX:",
             "definedIn": "src/share/vm/opto/c2_globals.hpp",
-            "defaultValue": "true",
             "name": "VerifyConnectionGraph",
             "description": "Verify Connection Graph construction in Escape Analysis",
             "availability": "notproduct",
@@ -1287,9 +767,9 @@
         },
         {
             "component": "runtime",
+            "defaultValue": "false",
             "prefix": "-XX:",
             "definedIn": "src/share/vm/runtime/globals.hpp",
-            "defaultValue": "false",
             "name": "VerifyDuringStartup",
             "description": "Verify memory system before executing any Java code during VM initialization",
             "availability": "diagnostic",
@@ -1297,9 +777,9 @@
         },
         {
             "component": "c2",
+            "defaultValue": "false",
             "prefix": "-XX:",
             "definedIn": "src/share/vm/opto/c2_globals.hpp",
-            "defaultValue": "false",
             "name": "VerifyIdealNodeCount",
             "description": "Verify that tracked dead ideal node count is accurate",
             "availability": "notproduct",
@@ -1307,9 +787,9 @@
         },
         {
             "component": "runtime",
+            "defaultValue": "false",
             "prefix": "-XX:",
             "definedIn": "src/share/vm/runtime/globals.hpp",
-            "defaultValue": "false",
             "name": "VerifySilently",
             "description": "Don't print print the verification progress",
             "availability": "diagnostic",
@@ -1317,18 +797,18 @@
         },
         {
             "component": "runtime",
+            "defaultValue": "false",
             "prefix": "-XX:",
             "definedIn": "src/share/vm/runtime/globals.hpp",
-            "defaultValue": "false",
             "name": "WhiteBoxAPI",
             "description": "Enable internal testing APIs",
             "availability": "diagnostic",
             "type": "bool"
         },
         {
+            "defaultValue": "false",
             "prefix": "-XX:",
             "definedIn": "src/cpu/ppc/vm/globals_ppc.hpp",
-            "defaultValue": "false",
             "name": "ZapMemory",
             "cpu": "ppc",
             "description": "Write 0x0101... to empty memory. Use this to ease debugging.",
@@ -1336,6 +816,526 @@
             "type": "bool"
         }
     ],
-    "laterVM": "OpenJDK7",
-    "earlierVM": "OpenJDK6"
+    "removed": [
+        {
+            "component": "runtime",
+            "defaultValue": "4",
+            "prefix": "-XX:",
+            "definedIn": "src/share/vm/runtime/globals.hpp",
+            "name": "AlignEntryCode",
+            "description": "aligns entry code to specified value (in bytes)",
+            "availability": "develop",
+            "type": "intx"
+        },
+        {
+            "component": "runtime",
+            "defaultValue": "false",
+            "prefix": "-XX:",
+            "definedIn": "src/share/vm/runtime/globals.hpp",
+            "name": "AllowInvokeGeneric",
+            "description": "accept MethodHandle.invoke and MethodHandle.invokeGeneric as equivalent methods",
+            "availability": "experimental",
+            "type": "bool"
+        },
+        {
+            "component": "runtime",
+            "defaultValue": "0",
+            "prefix": "-XX:",
+            "definedIn": "src/share/vm/runtime/globals.hpp",
+            "name": "AlwaysInflate",
+            "description": "(Unstable) Force inflation",
+            "availability": "product",
+            "type": "intx"
+        },
+        {
+            "component": "runtime",
+            "defaultValue": "false",
+            "prefix": "-XX:",
+            "definedIn": "src/share/vm/runtime/globals.hpp",
+            "name": "AnonymousClasses",
+            "description": "support sun.misc.Unsafe.defineAnonymousClass (deprecated)",
+            "availability": "product",
+            "type": "bool"
+        },
+        {
+            "component": "runtime",
+            "defaultValue": "100",
+            "prefix": "-XX:",
+            "definedIn": "src/share/vm/runtime/globals.hpp",
+            "name": "CICloneLoopTestLimit",
+            "description": "size limit for blocks heuristically cloned in ciTypeFlow",
+            "availability": "develop",
+            "type": "intx"
+        },
+        {
+            "component": "runtime",
+            "defaultValue": "-1",
+            "prefix": "-XX:",
+            "definedIn": "src/share/vm/runtime/globals.hpp",
+            "name": "CIFireOOMAtDelay",
+            "description": "Wait for this many CI accesses to occur in all compiles before beginning to throw OutOfMemoryErrors in each compile",
+            "availability": "develop",
+            "type": "intx"
+        },
+        {
+            "component": "runtime",
+            "defaultValue": "10",
+            "prefix": "-XX:",
+            "definedIn": "src/share/vm/runtime/globals.hpp",
+            "name": "CMSOldPLABReactivityCeiling",
+            "description": "The clamping of the gain in the feedback loop for on-the-fly PLAB resizing during a scavenge",
+            "availability": "product",
+            "type": "uintx"
+        },
+        {
+            "component": "c1",
+            "defaultValue": "false",
+            "prefix": "-XX:",
+            "definedIn": "src/share/vm/c1/c1_globals.hpp",
+            "name": "CanonicalizeExperimental",
+            "description": "Canonicalize graph nodes, experimental code",
+            "availability": "develop",
+            "type": "bool"
+        },
+        {
+            "component": "c1",
+            "defaultValue": "0",
+            "prefix": "-XX:",
+            "definedIn": "src/share/vm/c1/c1_globals.hpp",
+            "name": "CompilationRepeat",
+            "description": "Number of times to recompile method before returning result",
+            "availability": "product",
+            "type": "intx"
+        },
+        {
+            "component": "runtime",
+            "defaultValue": "false",
+            "prefix": "-XX:",
+            "definedIn": "src/share/vm/runtime/globals.hpp",
+            "name": "EnableMethodHandles",
+            "description": "support method handles (deprecated)",
+            "availability": "experimental",
+            "type": "bool"
+        },
+        {
+            "component": "runtime",
+            "defaultValue": "2000",
+            "prefix": "-XX:",
+            "definedIn": "src/share/vm/runtime/globals.hpp",
+            "name": "EventLogLength",
+            "description": "maximum nof events in event log",
+            "availability": "product",
+            "type": "intx"
+        },
+        {
+            "component": "runtime",
+            "defaultValue": "0",
+            "prefix": "-XX:",
+            "definedIn": "src/share/vm/runtime/globals.hpp",
+            "name": "ExitAfterGCNum",
+            "description": "If non-zero, exit after this GC.",
+            "availability": "develop",
+            "type": "uintx"
+        },
+        {
+            "component": "runtime",
+            "defaultValue": "true",
+            "prefix": "-XX:",
+            "definedIn": "src/share/vm/runtime/globals.hpp",
+            "name": "FullProfileOnReInterpret",
+            "description": "On re-interpret unc-trap compile next at CompLevel_fast_compile",
+            "availability": "diagnostic",
+            "type": "bool"
+        },
+        {
+            "component": "gc",
+            "defaultValue": "80",
+            "prefix": "-XX:",
+            "definedIn": "src/share/vm/gc_implementation/g1/g1_globals.hpp",
+            "name": "G1DefaultMaxNewGenPercent",
+            "description": "Percentage (0-100) of the heap size to use as maximum young gen size.",
+            "availability": "develop",
+            "type": "uintx"
+        },
+        {
+            "component": "gc",
+            "defaultValue": "20",
+            "prefix": "-XX:",
+            "definedIn": "src/share/vm/gc_implementation/g1/g1_globals.hpp",
+            "name": "G1DefaultMinNewGenPercent",
+            "description": "Percentage (0-100) of the heap size to use as minimum young gen size.",
+            "availability": "develop",
+            "type": "uintx"
+        },
+        {
+            "component": "gc",
+            "defaultValue": "1024 * 1024",
+            "prefix": "-XX:",
+            "definedIn": "src/share/vm/gc_implementation/g1/g1_globals.hpp",
+            "name": "G1MarkRegionStackSize",
+            "description": "Size of the region stack for concurrent marking.",
+            "availability": "product",
+            "type": "intx"
+        },
+        {
+            "component": "gc",
+            "defaultValue": "4",
+            "prefix": "-XX:",
+            "definedIn": "src/share/vm/gc_implementation/g1/g1_globals.hpp",
+            "name": "G1MaxMixedGCNum",
+            "description": "The maximum desired number of mixed GCs after a marking cycle.",
+            "availability": "develop",
+            "type": "uintx"
+        },
+        {
+            "component": "gc",
+            "defaultValue": "95",
+            "prefix": "-XX:",
+            "definedIn": "src/share/vm/gc_implementation/g1/g1_globals.hpp",
+            "name": "G1OldCSetRegionLiveThresholdPercent",
+            "description": "Threshold for regions to be added to the collection set. Regions with more live bytes that this will not be collected.",
+            "availability": "develop",
+            "type": "uintx"
+        },
+        {
+            "component": "gc",
+            "defaultValue": "1",
+            "prefix": "-XX:",
+            "definedIn": "src/share/vm/gc_implementation/g1/g1_globals.hpp",
+            "name": "G1OldReclaimableThresholdPercent",
+            "description": "Threshold for the remaining old reclaimable bytes, expressed as a percentage of the heap size. If the old reclaimable bytes are under this we will not collect them with more mixed GCs.",
+            "availability": "develop",
+            "type": "uintx"
+        },
+        {
+            "component": "gc",
+            "defaultValue": "false",
+            "prefix": "-XX:",
+            "definedIn": "src/share/vm/gc_implementation/g1/g1_globals.hpp",
+            "name": "G1PrintParCleanupStats",
+            "description": "When true, print extra stats about parallel cleanup.",
+            "availability": "develop",
+            "type": "bool"
+        },
+        {
+            "component": "runtime",
+            "defaultValue": "false",
+            "prefix": "-XX:",
+            "definedIn": "src/share/vm/runtime/globals.hpp",
+            "name": "GCOverheadReporting",
+            "description": "Enables the GC overhead reporting facility",
+            "availability": "product",
+            "type": "bool"
+        },
+        {
+            "component": "runtime",
+            "defaultValue": "100",
+            "prefix": "-XX:",
+            "definedIn": "src/share/vm/runtime/globals.hpp",
+            "name": "GCOverheadReportingPeriodMS",
+            "description": "Reporting period for conc GC overhead reporting, in ms",
+            "availability": "product",
+            "type": "intx"
+        },
+        {
+            "component": "runtime",
+            "defaultValue": "NULL",
+            "prefix": "-XX:",
+            "definedIn": "src/share/vm/runtime/globals.hpp",
+            "name": "HPILibPath",
+            "description": "Specify alternate path to HPI library",
+            "availability": "product",
+            "type": "ccstr"
+        },
+        {
+            "component": "runtime",
+            "defaultValue": "false",
+            "prefix": "-XX:",
+            "definedIn": "src/share/vm/runtime/globals.hpp",
+            "name": "InitialCompileFast",
+            "description": "Initial compile at CompLevel_fast_compile",
+            "availability": "diagnostic",
+            "type": "bool"
+        },
+        {
+            "component": "runtime",
+            "defaultValue": "false",
+            "prefix": "-XX:",
+            "definedIn": "src/share/vm/runtime/globals.hpp",
+            "name": "InitialCompileReallyFast",
+            "description": "Initial compile at CompLevel_really_fast_compile (no profile)",
+            "availability": "diagnostic",
+            "type": "bool"
+        },
+        {
+            "component": "runtime",
+            "defaultValue": "true",
+            "prefix": "-XX:",
+            "definedIn": "src/share/vm/runtime/globals.hpp",
+            "name": "InlineAtomicLong",
+            "description": "inline sun.misc.AtomicLong",
+            "availability": "develop",
+            "type": "bool"
+        },
+        {
+            "component": "runtime",
+            "defaultValue": "false",
+            "prefix": "-XX:",
+            "definedIn": "src/share/vm/runtime/globals.hpp",
+            "name": "LinkWellKnownClasses",
+            "description": "Resolve a well known class as soon as its name is seen",
+            "availability": "diagnostic",
+            "type": "bool"
+        },
+        {
+            "component": "runtime",
+            "defaultValue": "false",
+            "prefix": "-XX:",
+            "definedIn": "src/share/vm/runtime/globals.hpp",
+            "name": "LogMultipleMutexLocking",
+            "description": "log locking and unlocking of mutexes (only if multiple locks are held)",
+            "availability": "notproduct",
+            "type": "bool"
+        },
+        {
+            "component": "runtime",
+            "defaultValue": "3",
+            "prefix": "-XX:",
+            "definedIn": "src/share/vm/runtime/globals.hpp",
+            "name": "MethodHandlePushLimit",
+            "description": "number of additional stack slots a method handle may push",
+            "availability": "diagnostic",
+            "type": "intx"
+        },
+        {
+            "component": "runtime",
+            "defaultValue": "true",
+            "prefix": "-XX:",
+            "definedIn": "src/share/vm/runtime/globals.hpp",
+            "name": "OptimizeMethodHandles",
+            "description": "when constructing method handles, try to improve them",
+            "availability": "diagnostic",
+            "type": "bool"
+        },
+        {
+            "component": "runtime",
+            "defaultValue": "true",
+            "prefix": "-XX:",
+            "definedIn": "src/share/vm/runtime/globals.hpp",
+            "name": "PostSpinYield",
+            "description": "Yield after inner spinning loop",
+            "availability": "product",
+            "type": "bool"
+        },
+        {
+            "component": "runtime",
+            "defaultValue": "10",
+            "prefix": "-XX:",
+            "definedIn": "src/share/vm/runtime/globals.hpp",
+            "name": "PreBlockSpin",
+            "description": "Number of times to spin in an inflated lock before going to an OS lock",
+            "availability": "product",
+            "type": "intx"
+        },
+        {
+            "component": "runtime",
+            "defaultValue": "false",
+            "prefix": "-XX:",
+            "definedIn": "src/share/vm/runtime/globals.hpp",
+            "name": "PreSpinYield",
+            "description": "Yield before inner spinning loop",
+            "availability": "product",
+            "type": "bool"
+        },
+        {
+            "component": "runtime",
+            "defaultValue": "1024",
+            "prefix": "-XX:",
+            "definedIn": "src/share/vm/runtime/globals.hpp",
+            "name": "PreserveMarkStackSize",
+            "description": "Size for stack used in promotion failure handling",
+            "availability": "product",
+            "type": "uintx"
+        },
+        {
+            "component": "runtime",
+            "defaultValue": "100",
+            "prefix": "-XX:",
+            "definedIn": "src/share/vm/runtime/globals.hpp",
+            "name": "ReadSpinIterations",
+            "description": "Number of read attempts before a yield (spin inner loop)",
+            "availability": "product",
+            "type": "intx"
+        },
+        {
+            "component": "runtime",
+            "defaultValue": "false",
+            "prefix": "-XX:",
+            "definedIn": "src/share/vm/runtime/globals.hpp",
+            "name": "StressMethodHandleWalk",
+            "description": "Process all method handles with MethodHandleWalk",
+            "availability": "develop",
+            "type": "bool"
+        },
+        {
+            "component": "runtime",
+            "defaultValue": "false",
+            "prefix": "-XX:",
+            "definedIn": "src/share/vm/runtime/globals.hpp",
+            "name": "StressTieredRuntime",
+            "description": "Alternate client and server compiler on compile requests",
+            "availability": "product",
+            "type": "bool"
+        },
+        {
+            "component": "c2",
+            "defaultValue": "true",
+            "prefix": "-XX:",
+            "definedIn": "src/share/vm/opto/c2_globals.hpp",
+            "name": "Tier1CountInvocations",
+            "description": "Generate code, during tier 1, to update invocation counter",
+            "availability": "develop",
+            "type": "bool"
+        },
+        {
+            "component": "c2",
+            "defaultValue": "35",
+            "prefix": "-XX:",
+            "definedIn": "src/share/vm/opto/c2_globals.hpp",
+            "name": "Tier1FreqInlineSize",
+            "description": "max bytecode size of a frequent method to be inlined, tier 1",
+            "availability": "product",
+            "type": "intx"
+        },
+        {
+            "component": "c2",
+            "defaultValue": "false",
+            "prefix": "-XX:",
+            "definedIn": "src/share/vm/opto/c2_globals.hpp",
+            "name": "Tier1Inline",
+            "description": "enable inlining during tier 1",
+            "availability": "product",
+            "type": "intx"
+        },
+        {
+            "component": "c2",
+            "defaultValue": "0",
+            "prefix": "-XX:",
+            "definedIn": "src/share/vm/opto/c2_globals.hpp",
+            "name": "Tier1LoopOptsCount",
+            "description": "Set level of loop optimization for tier 1 compiles",
+            "availability": "product",
+            "type": "intx"
+        },
+        {
+            "component": "c2",
+            "defaultValue": "8",
+            "prefix": "-XX:",
+            "definedIn": "src/share/vm/opto/c2_globals.hpp",
+            "name": "Tier1MaxInlineSize",
+            "description": "maximum bytecode size of a method to be inlined, during tier 1",
+            "availability": "product",
+            "type": "intx"
+        },
+        {
+            "component": "runtime",
+            "defaultValue": "false",
+            "prefix": "-XX:",
+            "definedIn": "src/share/vm/runtime/globals.hpp",
+            "name": "TraceCompileTriggered",
+            "description": "Trace compile triggered",
+            "availability": "diagnostic",
+            "type": "bool"
+        },
+        {
+            "component": "runtime",
+            "defaultValue": "false",
+            "prefix": "-XX:",
+            "definedIn": "src/share/vm/runtime/globals.hpp",
+            "name": "TraceOSRBreakpoint",
+            "description": "Trace OSR Breakpoint",
+            "availability": "diagnostic",
+            "type": "bool"
+        },
+        {
+            "component": "runtime",
+            "defaultValue": "false",
+            "prefix": "-XX:",
+            "definedIn": "src/share/vm/runtime/globals.hpp",
+            "name": "TraceRedundantCompiles",
+            "description": "Have compile broker print when a request already in the queue is requested again",
+            "availability": "diagnostic",
+            "type": "bool"
+        },
+        {
+            "component": "runtime",
+            "defaultValue": "false",
+            "prefix": "-XX:",
+            "definedIn": "src/share/vm/runtime/globals.hpp",
+            "name": "TraceRegionTasksQueuing",
+            "description": "Trace the queuing of the region tasks",
+            "availability": "develop",
+            "type": "bool"
+        },
+        {
+            "component": "runtime",
+            "defaultValue": "false",
+            "prefix": "-XX:",
+            "definedIn": "src/share/vm/runtime/globals.hpp",
+            "name": "TraceTriggers",
+            "description": "Trace triggers",
+            "availability": "diagnostic",
+            "type": "bool"
+        },
+        {
+            "component": "runtime",
+            "defaultValue": "true",
+            "prefix": "-XX:",
+            "definedIn": "src/share/vm/runtime/globals.hpp",
+            "name": "UpdateHotSpotCompilerFileOnError",
+            "description": "Should the system attempt to update the compiler file when an error occurs?",
+            "availability": "develop",
+            "type": "bool"
+        },
+        {
+            "component": "c1",
+            "defaultValue": "true",
+            "prefix": "-XX:",
+            "definedIn": "src/share/vm/c1/c1_globals.hpp",
+            "name": "UseFastExceptionHandling",
+            "description": "Faster handling of exceptions",
+            "availability": "develop",
+            "type": "bool"
+        },
+        {
+            "component": "runtime",
+            "defaultValue": "true",
+            "prefix": "-XX:",
+            "definedIn": "src/share/vm/runtime/globals.hpp",
+            "name": "UsePrefetchQueue",
+            "description": "Use the prefetch queue during PS promotion",
+            "availability": "develop",
+            "type": "bool"
+        },
+        {
+            "component": "runtime",
+            "defaultValue": "false",
+            "prefix": "-XX:",
+            "definedIn": "src/share/vm/runtime/globals.hpp",
+            "name": "UseSpinning",
+            "description": "Use spinning in monitor inflation and before entry",
+            "availability": "product",
+            "type": "bool"
+        },
+        {
+            "component": "c1",
+            "defaultValue": "true",
+            "prefix": "-XX:",
+            "definedIn": "src/share/vm/c1/c1_globals.hpp",
+            "name": "ValueStackPinStackAll",
+            "description": "Pinning in ValueStack pin everything",
+            "availability": "develop",
+            "type": "bool"
+        }
+    ]
 }
