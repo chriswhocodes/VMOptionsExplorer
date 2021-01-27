@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2018-2019 Chris Newland.
+ * Copyright (c) 2018-2021 Chris Newland.
  * Licensed under https://github.com/chriswhocodes/VMOptionsExplorer/blob/master/LICENSE
  */
 package com.chrisnewland.vmoe.parser;
@@ -19,8 +19,7 @@ import com.chrisnewland.vmoe.parser.deprecated.DeprecatedParser;
 
 public class HotSpotSwitchParser extends AbstractSwitchParser
 {
-	@Override
-	public SwitchInfoMap process(File vmPath) throws IOException
+	@Override public SwitchInfoMap process(File vmPath) throws IOException
 	{
 		switchMap = new SwitchInfoMap();
 
@@ -72,15 +71,16 @@ public class HotSpotSwitchParser extends AbstractSwitchParser
 					defaultValueField = 2;
 					expectedLineEnding = ");";
 				}
-				else if ("product_pd".equals(availability) || "develop_pd".equals(availability) || "diagnostic_pd".equals(availability))
+				else if ("product_pd".equals(availability) || "develop_pd".equals(availability) || "diagnostic_pd".equals(
+						availability))
 				{
 					inLine = true;
 					expectedLineEnding = "\")";
 					descriptionField = 2;
 				}
-				else if ("product".equals(availability) || "product_rw".equals(availability) || "develop".equals(availability) || "lp64_product".equals(availability)
-						|| "notproduct".equals(availability) || "diagnostic".equals(availability)
-						|| "experimental".equals(availability) || "manageable".equals(availability))
+				else if ("product".equals(availability) || "product_rw".equals(availability) || "develop".equals(availability)
+						|| "lp64_product".equals(availability) || "notproduct".equals(availability) || "diagnostic".equals(
+						availability) || "experimental".equals(availability) || "manageable".equals(availability))
 				{
 					inLine = true;
 					expectedLineEnding = "\")";
@@ -96,7 +96,8 @@ public class HotSpotSwitchParser extends AbstractSwitchParser
 				}
 				else
 				{
-					if (!availability.contains("//") && !availability.contains("*") && !availability.contains("#") && !availability.equals("constraint"))
+					if (!availability.contains("//") && !availability.contains("*") && !availability.contains("#")
+							&& !availability.equals("constraint"))
 					{
 						//System.out.println("Unhandled availability mode:" + availability);
 					}
@@ -153,9 +154,8 @@ public class HotSpotSwitchParser extends AbstractSwitchParser
 						info.setType(type);
 						info.setAvailability(availability);
 						info.setComment(comment);
-						info
-							.setDefinedIn(
-									hotspotFile.getCanonicalPath().substring(vmPath.getCanonicalFile().toString().length() + 1));
+						info.setDefinedIn(
+								hotspotFile.getCanonicalPath().substring(vmPath.getCanonicalFile().toString().length() + 1));
 					}
 
 					setFieldsFromPath(info, hotspotFile);
@@ -186,12 +186,14 @@ public class HotSpotSwitchParser extends AbstractSwitchParser
 					}
 
 					DeprecatedInfo deprecatedInfo = DeprecatedParser.getDeprecatedInfo(name);
-					
+
 					if (deprecatedInfo != null)
 					{
-						info.setDeprecation(deprecatedInfo.toHTMLStringVertical());
+						info.setDeprecated(deprecatedInfo.getDeprecatedInJDK());
+						info.setObsoleted(deprecatedInfo.getObsoletedInJDK());
+						info.setExpired(deprecatedInfo.getExpiredInJDK());
 					}
-					
+
 					switchMap.put(info.getKey(), info);
 
 					descriptionField = -1;

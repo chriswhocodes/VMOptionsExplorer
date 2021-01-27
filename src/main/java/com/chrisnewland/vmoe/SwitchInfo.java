@@ -28,7 +28,10 @@ public class SwitchInfo implements Comparable<SwitchInfo>
 	private String definedIn;
 	private String since;
 	private String range;
-	private String deprecation;
+
+	private String deprecated;
+	private String obsoleted;
+	private String expired;
 
 	public String serialise()
 	{
@@ -47,7 +50,9 @@ public class SwitchInfo implements Comparable<SwitchInfo>
 		jsonObject.put("definedIn", definedIn);
 		jsonObject.put("since", since);
 		jsonObject.put("range", range);
-		jsonObject.put("deprecation", deprecation);
+		jsonObject.put("deprecated", deprecated);
+		jsonObject.put("obsoleted", obsoleted);
+		jsonObject.put("expired", expired);
 
 		return jsonObject.toString();
 	}
@@ -71,7 +76,9 @@ public class SwitchInfo implements Comparable<SwitchInfo>
 		switchInfo.setDefinedIn(jsonObject.optString("definedIn", null));
 		switchInfo.setSince(jsonObject.optString("since", null));
 		switchInfo.setRange(jsonObject.optString("range", null));
-		switchInfo.setDeprecation(jsonObject.optString("deprecation", null));
+		switchInfo.setDeprecated(jsonObject.optString("deprecated", null));
+		switchInfo.setObsoleted(jsonObject.optString("obsoleted", null));
+		switchInfo.setExpired(jsonObject.optString("expired", null));
 
 		return switchInfo;
 	}
@@ -103,8 +110,7 @@ public class SwitchInfo implements Comparable<SwitchInfo>
 		this.name = name;
 	}
 
-	@JSONPropertyIgnore
-	public String getKey()
+	@JSONPropertyIgnore public String getKey()
 	{
 		return name + "_" + os + "_" + cpu + "_" + component;
 	}
@@ -184,14 +190,34 @@ public class SwitchInfo implements Comparable<SwitchInfo>
 		this.description = description;
 	}
 
-	public String getDeprecation()
+	public String getDeprecated()
 	{
-		return deprecation;
+		return deprecated;
 	}
 
-	public void setDeprecation(String deprecation)
+	public void setDeprecated(String deprecated)
 	{
-		this.deprecation = deprecation;
+		this.deprecated = deprecated;
+	}
+
+	public String getObsoleted()
+	{
+		return obsoleted;
+	}
+
+	public void setObsoleted(String obsoleted)
+	{
+		this.obsoleted = obsoleted;
+	}
+
+	public String getExpired()
+	{
+		return expired;
+	}
+
+	public void setExpired(String expired)
+	{
+		this.expired = expired;
 	}
 
 	public String getPrefix()
@@ -224,164 +250,8 @@ public class SwitchInfo implements Comparable<SwitchInfo>
 		return "SwitchInfo{" + "prefix='" + prefix + '\'' + ", name='" + name + '\'' + ", type='" + type + '\'' + ", os='" + os
 				+ '\'' + ", cpu='" + cpu + '\'' + ", component='" + component + '\'' + ", defaultValue='" + defaultValue + '\''
 				+ ", availability='" + availability + '\'' + ", description='" + description + '\'' + ", comment='" + comment + '\''
-				+ ", definedIn='" + definedIn + '\'' + ", since='" + since + '\'' + ", range='" + range + '\'' + ", deprecation='"
-				+ deprecation + '\'' + '}';
-	}
-
-	public static String getHeaderRow(VMType vmType)
-	{
-		StringBuilder builder = new StringBuilder();
-
-		builder.append("<tr>");
-		builder.append("<th>").append("Name").append("</th>");
-
-		boolean isHotSpotBased = (vmType == VMType.HOTSPOT || vmType == VMType.SAPMACHINE || vmType == VMType.CORRETTO);
-
-		if (isHotSpotBased)
-		{
-			builder.append("<th>").append("Since").append("</th>");
-			builder.append("<th>").append("Deprecated").append("</th>");
-		}
-
-		if (vmType != VMType.OPENJ9)
-		{
-			builder.append("<th>").append("Type").append("</th>");
-		}
-
-		if (isHotSpotBased)
-		{
-			builder.append("<th>").append("OS").append("</th>");
-			builder.append("<th>").append("CPU").append("</th>");
-			builder.append("<th>").append("Component").append("</th>");
-		}
-
-		if (vmType != VMType.OPENJ9)
-		{
-			builder.append("<th>").append("Default").append("</th>");
-		}
-
-		if (isHotSpotBased || vmType == VMType.GRAAL_NATIVE_8 || vmType == VMType.GRAAL_NATIVE_11)
-		{
-			builder.append("<th>").append("Availability").append("</th>");
-		}
-
-		if (vmType != VMType.ZING && vmType != VMType.ZULU)
-		{
-			builder.append("<th>").append("Description").append("</th>");
-		}
-
-		if (isHotSpotBased)
-		{
-			builder.append("<th>").append("Defined in").append("</th>");
-		}
-
-		builder.append("</tr>");
-
-		return builder.toString();
-	}
-
-	public String toRow(VMType vmType)
-	{
-		boolean isHotSpotBased = (vmType == VMType.HOTSPOT || vmType == VMType.SAPMACHINE || vmType == VMType.CORRETTO);
-
-		StringBuilder builder = new StringBuilder();
-
-		builder.append("<tr>");
-
-		builder.append(getRow(name));
-
-		if (isHotSpotBased)
-		{
-			builder.append(getRow(since));
-			builder.append(getRow(deprecation));
-		}
-
-		if (vmType != VMType.OPENJ9)
-		{
-			builder.append(getRow(escapeHTMLEntities(type)));
-		}
-
-		if (isHotSpotBased)
-		{
-			builder.append(getRow(os));
-			builder.append(getRow(cpu));
-			builder.append(getRow(component));
-		}
-
-		if (vmType != VMType.OPENJ9)
-		{
-			if (defaultValue != null)
-			{
-				builder.append(getRow(defaultValue + ((range == null) ? "" : "<br>" + range)));
-			}
-			else
-			{
-				builder.append(getRow(""));
-			}
-		}
-
-		if (isHotSpotBased || vmType == VMType.GRAAL_NATIVE_8 || vmType == VMType.GRAAL_NATIVE_11)
-		{
-			builder.append(getRow(availability));
-		}
-
-		if (vmType != VMType.ZING && vmType != VMType.ZULU)
-		{
-			String descriptionComment = "";
-
-			if (description != null)
-			{
-				descriptionComment += description;
-				if (comment != null)
-				{
-					descriptionComment += "<br>" + comment;
-				}
-			}
-			else if (comment != null)
-			{
-				descriptionComment += comment;
-			}
-
-			builder.append(getRow(escapeHTMLEntities(descriptionComment)));
-		}
-
-		if (isHotSpotBased)
-		{
-			builder.append(getRow(definedIn));
-		}
-
-		builder.append("</tr>");
-
-		return builder.toString();
-	}
-
-	public static String escapeHTMLEntities(String raw)
-	{
-		if (raw == null)
-		{
-			return "";
-		}
-
-		return raw.toString()
-				  .replace("<br>", "SAFE_BR")
-				  .replace("<pre>", "SAFE_PRE_OPEN")
-				  .replace("</pre>", "SAFE_PRE_CLOSE")
-				  .replace("&", "&amp;")
-				  .replace("<", "&lt;")
-				  .replace(">", "&gt;")
-				  .replace("\"", "&quot;")
-				  .replace("SAFE_BR", "<br>")
-				  .replace("SAFE_PRE_OPEN", "<pre>")
-				  .replace("SAFE_PRE_CLOSE", "</pre>");
-	}
-
-	private String getRow(String value)
-	{
-		StringBuilder builder = new StringBuilder();
-
-		builder.append("<td>").append(value == null ? "" : value).append("</td>");
-
-		return builder.toString();
+				+ ", definedIn='" + definedIn + '\'' + ", since='" + since + '\'' + ", range='" + range + '\'' + ", deprecated='"
+				+ deprecated + '\'' + ", obsoleted='" + obsoleted + '\'' + ", expired='" + expired + '\'' + '}';
 	}
 
 	@Override public boolean equals(Object o)

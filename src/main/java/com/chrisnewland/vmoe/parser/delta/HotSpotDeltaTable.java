@@ -94,21 +94,33 @@ public class HotSpotDeltaTable extends AbstractDeltaTable
 			DeprecatedInfo deprecatedInfo = DeprecatedParser.getDeprecatedInfo(name);
 
 			builder.append("<td>");
-			builder.append(deprecatedInfo == null ? "" : deprecatedInfo.getDeprecatedInJDK());
+			builder.append(deprecatedInfo == null ? "" : getJDKStringOrEmpty(deprecatedInfo.getDeprecatedInJDK()));
 			builder.append("</td>");
 
 			builder.append("<td>");
-			builder.append(deprecatedInfo == null ? "" : deprecatedInfo.getObsoletedInJDK());
+			builder.append(deprecatedInfo == null ? "" : getJDKStringOrEmpty(deprecatedInfo.getObsoletedInJDK()));
 			builder.append("</td>");
 
 			builder.append("<td>");
-			builder.append(deprecatedInfo == null ? "" : deprecatedInfo.getExpiredInJDK());
+			builder.append(deprecatedInfo == null ? "" : getJDKStringOrEmpty(deprecatedInfo.getExpiredInJDK()));
 			builder.append("</td>");
 
 			builder.append("</tr>\n");
 		}
 
 		builder.append("</table>");
+	}
+
+	private String getJDKStringOrEmpty(String value)
+	{
+		if (value != null && !value.isEmpty())
+		{
+			return "JDK" + value;
+		}
+		else
+		{
+			return "";
+		}
 	}
 
 	private void appendTableAdded(StringBuilder builder)

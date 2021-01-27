@@ -4,10 +4,8 @@
  */
 package com.chrisnewland.vmoe.parser.delta;
 
-import com.chrisnewland.vmoe.OrderedJSONObjectFactory;
 import com.chrisnewland.vmoe.SwitchInfo;
 import com.chrisnewland.vmoe.VMData;
-import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -58,7 +56,7 @@ public abstract class AbstractDeltaTable implements IDeltaTable
 		builder.append(putJSONKeyValueList("added", added));
 		builder.append(putJSONKeyValueList("removed", removed));
 
-		builder.deleteCharAt(builder.length() - 1).append('}');
+		builder.deleteCharAt(builder.length() - 2).append('}');
 
 		return builder.toString();
 	}
@@ -67,7 +65,7 @@ public abstract class AbstractDeltaTable implements IDeltaTable
 	{
 		StringBuilder builder = new StringBuilder();
 
-		builder.append('"').append(key).append("\": \"").append(value).append("\",");
+		builder.append('"').append(key).append("\": \"").append(value).append("\",\n");
 
 		return builder.toString();
 	}
@@ -76,7 +74,7 @@ public abstract class AbstractDeltaTable implements IDeltaTable
 	{
 		StringBuilder builder = new StringBuilder();
 
-		builder.append('"').append(key).append("\":").append(listToOrderedJSONString(list)).append(",");
+		builder.append('"').append(key).append("\":").append(listToOrderedJSONString(list)).append(",\n");
 
 		return builder.toString();
 	}
@@ -93,10 +91,15 @@ public abstract class AbstractDeltaTable implements IDeltaTable
 
 			builder.append(switchInfo.serialise());
 
-			builder.append(",");
+			builder.append(",\n");
 		}
 
-		builder.deleteCharAt(builder.length() - 1).append(']');
+		if (!list.isEmpty())
+		{
+			builder.deleteCharAt(builder.length() - 2);
+		}
+
+		builder.append(']');
 
 		return builder.toString();
 	}

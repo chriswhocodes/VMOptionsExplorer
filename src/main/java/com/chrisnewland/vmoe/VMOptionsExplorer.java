@@ -13,6 +13,7 @@ import java.nio.file.Paths;
 import java.util.*;
 
 import com.chrisnewland.vmoe.compare.VMDataComparator;
+import com.chrisnewland.vmoe.html.HTMLUtil;
 import com.chrisnewland.vmoe.parser.*;
 import com.chrisnewland.vmoe.parser.delta.GraalDeltaTable;
 import com.chrisnewland.vmoe.parser.delta.HotSpotDeltaTable;
@@ -22,8 +23,6 @@ import com.chrisnewland.vmoe.parser.intrinsic.IntrinsicParser;
 
 public class VMOptionsExplorer
 {
-	private File vmPath;
-
 	private Path serialiseDir;
 
 	private Map<String, VMData> vmDataMap = new LinkedHashMap<>();
@@ -290,7 +289,7 @@ public class VMOptionsExplorer
 
 	private void parseJDK(VMData vmData) throws Exception
 	{
-		this.vmPath = vmData.getVmPath();
+		File vmPath = vmData.getVmPath();
 
 		String jdkName = vmData.getJdkName();
 
@@ -343,7 +342,7 @@ public class VMOptionsExplorer
 				info.setSince(firstSeenInJDK);
 			}
 
-			htmlBuilder.append(info.toRow(vmType)).append("\n");
+			htmlBuilder.append(HTMLUtil.renderSwitchInfoRow(vmType, info)).append("\n");
 
 			switchNames.add(switchName);
 		}
@@ -359,7 +358,7 @@ public class VMOptionsExplorer
 
 		template = template.replace("$H1_TITLE", title);
 		template = template.replace("$GRAAL_VERSION", graalVersion);
-		template = template.replace("$THEAD", SwitchInfo.getHeaderRow(vmType));
+		template = template.replace("$THEAD", HTMLUtil.getHeaderRow(vmType));
 		template = template.replace("$VMNAME", vmName);
 		template = template.replace("$JDK", jdkName);
 		template = template.replace("$COUNT", Integer.toString(switchNames.size()));
