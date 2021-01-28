@@ -54,6 +54,16 @@ public class HotSpotSwitchParser extends AbstractSwitchParser
 
 			// System.out.println(trimmed);
 
+			// PD = platform dependent
+
+			// Flags must be declared with the following number of parameters:
+			// non-pd flags:
+			//    (type, name, default_value, doc), or
+			//    (type, name, default_value, extra_attrs, doc)
+			// pd flags:
+			//    (type, name, doc), or
+			//    (type, name, extra_attrs, doc)
+
 			if (!inLine)
 			{
 				int bracketPos = trimmed.indexOf('(');
@@ -71,8 +81,7 @@ public class HotSpotSwitchParser extends AbstractSwitchParser
 					defaultValueField = 2;
 					expectedLineEnding = ");";
 				}
-				else if ("product_pd".equals(availability) || "develop_pd".equals(availability) || "diagnostic_pd".equals(
-						availability))
+				else if (availability.contains("_pd")) // platform dependent
 				{
 					inLine = true;
 					expectedLineEnding = "\")";
@@ -176,12 +185,25 @@ public class HotSpotSwitchParser extends AbstractSwitchParser
 
 						if (description != null)
 						{
-							if (description.startsWith("<br>"))
+							switch (description)
 							{
-								description = description.substring(4);
+							case "DIAGNOSTIC":
+							case "EXPERIMENTAL":
+							case "MANAGEABLE":
+								// extra_attrs
+								descriptionField++;
+								description = partCount > descriptionField ? parts.get(descriptionField) : null;
 							}
 
-							info.setDescription(description);
+							if (description != null)
+							{
+								if (description.startsWith("<br>"))
+								{
+									description = description.substring(4);
+								}
+
+								info.setDescription(description);
+							}
 						}
 					}
 

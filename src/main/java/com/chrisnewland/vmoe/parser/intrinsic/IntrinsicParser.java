@@ -76,7 +76,7 @@ public class IntrinsicParser
 
 	private void mapSignature(String key, String value)
 	{
-		System.out.println("Signature: '" + key + "'=>'" + value + "'");
+		//System.out.println("Signature: '" + key + "'=>'" + value + "'");
 
 		mapSignature.put(key, value);
 	}
@@ -157,9 +157,9 @@ public class IntrinsicParser
 		{
 			Intrinsic substituted = substituteMappings(intrinsic);
 
-			System.out.println(intrinsic);
-			System.out.println(substituted);
-			System.out.println();
+//			System.out.println(intrinsic);
+//			System.out.println(substituted);
+//			System.out.println();
 
 			result.add(substituted);
 		}
@@ -205,7 +205,7 @@ public class IntrinsicParser
 		{
 			String line = lines.get(i);
 
-			System.out.println(line);
+			//System.out.println(line);
 
 			int firstBracket = line.indexOf('(');
 
