@@ -187,6 +187,7 @@
 {"name":"-Xdump","prefix":"-XX:"},
 {"name":"-Xfastresolve","prefix":"-XX:"},
 {"description":"<pre>enable strictest checks, anticipating future default<\/pre>","name":"-Xfuture","prefix":"-XX:"},
+{"name":"-Xgcmaxthreads","prefix":"-XX:"},
 {"description":"<pre>enable soft realtime<\/pre>","name":"-Xgcpolicy:metronome -Xnortsj","prefix":"-XX:"},
 {"description":"<pre>enable soft realtime<\/pre>","name":"-Xgcpolicy:metronome","prefix":"-XX:"},
 {"description":"<pre>set number of GC threads<\/pre>","name":"-Xgcthreads&lt;x&gt;","prefix":"-XX:"},
