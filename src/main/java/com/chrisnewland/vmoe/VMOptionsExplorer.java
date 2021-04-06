@@ -267,6 +267,8 @@ public class VMOptionsExplorer
 			return "OpenJ9";
 		case HOTSPOT:
 			return "HotSpot";
+		case MICROSOFT:
+			return "Microsoft";
 		case SAPMACHINE:
 			return "SapMachine";
 		case CORRETTO:
@@ -388,6 +390,7 @@ public class VMOptionsExplorer
 			template = template.replace("$SORTCOLUMNS", "[ ]");
 			break;
 		case HOTSPOT:
+		case MICROSOFT:
 		case SAPMACHINE:
 		case CORRETTO:
 			template = template.replace("$TOPHEADER",
@@ -431,6 +434,7 @@ public class VMOptionsExplorer
 		boolean processZulu = true;
 		boolean processSapMachine = true;
 		boolean processCorretto = true;
+		boolean processMicrosoft = true;
 
 		// parse deprecation info in JDK release order
 
@@ -542,6 +546,13 @@ public class VMOptionsExplorer
 							post13Usage));
 		}
 
+		if (processMicrosoft)
+		{
+			explorer.addVM(
+					new VMData("Microsoft JDK11", baseDir.resolve("microsoft-11/src/hotspot").toFile(), VMType.MICROSOFT).addUsageFile(
+							post10Usage));
+		}
+
 		explorer.compareVMData("OpenJDK8", "Corretto JDK8");
 		explorer.compareVMData("OpenJDK11", "Corretto JDK11");
 
@@ -555,6 +566,9 @@ public class VMOptionsExplorer
 		explorer.compareVMData("OpenJDK11", "Zing JDK11");
 
 		explorer.compareVMData("OpenJDK16", "SapMachine");
+
+		explorer.compareVMData("OpenJDK11", "Microsoft JDK11");
+
 
 		Serialiser serialiser = new Serialiser();
 

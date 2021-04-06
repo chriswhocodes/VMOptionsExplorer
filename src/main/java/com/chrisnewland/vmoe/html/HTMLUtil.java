@@ -46,7 +46,8 @@ public class HTMLUtil
 		builder.append("<tr>");
 		builder.append("<th>").append("Name").append("</th>");
 
-		boolean isHotSpotBased = (vmType == VMType.HOTSPOT || vmType == VMType.SAPMACHINE || vmType == VMType.CORRETTO);
+		boolean isHotSpotBased = (vmType == VMType.HOTSPOT || vmType == VMType.SAPMACHINE || vmType == VMType.CORRETTO
+				|| vmType == VMType.MICROSOFT);
 
 		if (isHotSpotBased)
 		{
@@ -93,7 +94,8 @@ public class HTMLUtil
 
 	public static String renderSwitchInfoRow(VMType vmType, SwitchInfo switchInfo)
 	{
-		boolean isHotSpotBased = (vmType == VMType.HOTSPOT || vmType == VMType.SAPMACHINE || vmType == VMType.CORRETTO);
+		boolean isHotSpotBased = (vmType == VMType.HOTSPOT || vmType == VMType.SAPMACHINE || vmType == VMType.CORRETTO
+				|| vmType == VMType.MICROSOFT);
 
 		StringBuilder builder = new StringBuilder();
 

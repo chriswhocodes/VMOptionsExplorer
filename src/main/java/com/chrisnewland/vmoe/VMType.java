@@ -8,7 +8,7 @@ import com.chrisnewland.vmoe.parser.*;
 
 public enum VMType
 {
-	HOTSPOT, GRAAL_VM_8, GRAAL_VM_11, GRAAL_NATIVE_8, GRAAL_NATIVE_11, OPENJ9, ZING, ZULU, SAPMACHINE, CORRETTO;
+	HOTSPOT, GRAAL_VM_8, GRAAL_VM_11, GRAAL_NATIVE_8, GRAAL_NATIVE_11, MICROSOFT, OPENJ9, ZING, ZULU, SAPMACHINE, CORRETTO;
 
 	public ISwitchParser getParser()
 	{
@@ -22,9 +22,10 @@ public enum VMType
 			return new GraalNativeImageSwitchParser();
 		case OPENJ9:
 			return new OpenJ9SwitchParser();
-		case HOTSPOT:
-		case SAPMACHINE:
 		case CORRETTO:
+		case HOTSPOT:
+		case MICROSOFT:
+		case SAPMACHINE:
 			return new HotSpotSwitchParser();
 		case ZING:
 		case ZULU:
