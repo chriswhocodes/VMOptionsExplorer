@@ -51,6 +51,7 @@ public class VMData
 		case GRAAL_NATIVE_11:
 		case CORRETTO:
 		case MICROSOFT:
+		case DRAGONWELL:
 			builder.append(getSafeJDKName().toLowerCase()).append("_options");
 			break;
 		case OPENJ9:

@@ -253,35 +253,6 @@ public class VMOptionsExplorer
 		Files.write(outputFile, template.getBytes(StandardCharsets.UTF_8));
 	}
 
-	private String getVMDisplayName(VMType vmType)
-	{
-		switch (vmType)
-		{
-		case GRAAL_VM_8:
-		case GRAAL_VM_11:
-			return "GraalVM";
-		case GRAAL_NATIVE_8:
-		case GRAAL_NATIVE_11:
-			return "Graal Native";
-		case OPENJ9:
-			return "OpenJ9";
-		case HOTSPOT:
-			return "HotSpot";
-		case MICROSOFT:
-			return "Microsoft";
-		case SAPMACHINE:
-			return "SapMachine";
-		case CORRETTO:
-			return "Corretto";
-		case ZING:
-			return "Zing";
-		case ZULU:
-			return "Zulu";
-		default:
-			throw new RuntimeException("Unexpected VM Type: " + vmType);
-		}
-	}
-
 	private String graalVersion;
 
 	public void setGraalVersion(String version)
@@ -297,7 +268,7 @@ public class VMOptionsExplorer
 
 		VMType vmType = vmData.getVmType();
 
-		String vmName = getVMDisplayName(vmData.getVmType());
+		String vmName = vmData.getVmType().getDisplayName();
 
 		ISwitchParser switchParser = vmData.getVmType().getParser();
 
@@ -393,6 +364,7 @@ public class VMOptionsExplorer
 		case MICROSOFT:
 		case SAPMACHINE:
 		case CORRETTO:
+		case DRAGONWELL:
 			template = template.replace("$TOPHEADER",
 					"<th></th><th>Since</th><th>Deprecated</th><th>Type</th><th>OS</th><th>CPU</th><th>Component</th><th></th><th>Availability</th><th></th><th></th>");
 			template = template.replace("$ALLCOLUMNS", "[ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 ]");
@@ -435,6 +407,7 @@ public class VMOptionsExplorer
 		boolean processSapMachine = true;
 		boolean processCorretto = true;
 		boolean processMicrosoft = true;
+		boolean processDragonwell = true;
 
 		// parse deprecation info in JDK release order
 
@@ -553,6 +526,17 @@ public class VMOptionsExplorer
 							post10Usage));
 		}
 
+		if (processDragonwell)
+		{
+			explorer.addVM(
+					new VMData("Dragonwell JDK8", baseDir.resolve("dragonwell8/hotspot").toFile(), VMType.DRAGONWELL).addUsageFile(
+							pre10Usage));
+
+			explorer.addVM(
+					new VMData("Dragonwell JDK11", baseDir.resolve("dragonwell11/src/hotspot").toFile(), VMType.DRAGONWELL).addUsageFile(
+							post10Usage));
+		}
+
 		explorer.compareVMData("OpenJDK8", "Corretto JDK8");
 		explorer.compareVMData("OpenJDK11", "Corretto JDK11");
 
@@ -569,6 +553,8 @@ public class VMOptionsExplorer
 
 		explorer.compareVMData("OpenJDK11", "Microsoft JDK11");
 
+		explorer.compareVMData("OpenJDK8", "Dragonwell JDK8");
+		explorer.compareVMData("OpenJDK11", "Dragonwell JDK11");
 
 		Serialiser serialiser = new Serialiser();
 

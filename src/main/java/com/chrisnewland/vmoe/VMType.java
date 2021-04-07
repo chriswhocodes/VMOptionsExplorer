@@ -8,7 +8,9 @@ import com.chrisnewland.vmoe.parser.*;
 
 public enum VMType
 {
-	HOTSPOT, GRAAL_VM_8, GRAAL_VM_11, GRAAL_NATIVE_8, GRAAL_NATIVE_11, MICROSOFT, OPENJ9, ZING, ZULU, SAPMACHINE, CORRETTO;
+	DRAGONWELL("Dragonwell"), HOTSPOT("HotSpot"), GRAAL_VM_8("GraalVM"), GRAAL_VM_11("GraalVM"), GRAAL_NATIVE_8(
+		"Graal Native"), GRAAL_NATIVE_11("Graal Native"), MICROSOFT("Microsoft"), OPENJ9("OpenJ9"), ZING("Zing"), ZULU(
+		"Zulu"), SAPMACHINE("SapMachine"), CORRETTO("Corretto");
 
 	public ISwitchParser getParser()
 	{
@@ -23,6 +25,7 @@ public enum VMType
 		case OPENJ9:
 			return new OpenJ9SwitchParser();
 		case CORRETTO:
+		case DRAGONWELL:
 		case HOTSPOT:
 		case MICROSOFT:
 		case SAPMACHINE:
@@ -33,5 +36,32 @@ public enum VMType
 		default:
 			throw new RuntimeException("Unexpected VM Type: " + this);
 		}
+	}
+
+	public boolean isHotSpotBased()
+	{
+		switch (this)
+		{
+		case CORRETTO:
+		case DRAGONWELL:
+		case HOTSPOT:
+		case MICROSOFT:
+		case SAPMACHINE:
+			return true;
+		default:
+			return false;
+		}
+	}
+
+	private String displayName;
+
+	private VMType(String displayName)
+	{
+		this.displayName = displayName;
+	}
+
+	public String getDisplayName()
+	{
+		return displayName;
 	}
 }
