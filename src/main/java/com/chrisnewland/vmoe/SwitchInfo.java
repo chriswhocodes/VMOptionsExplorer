@@ -32,6 +32,7 @@ public class SwitchInfo implements Comparable<SwitchInfo>
 	private String deprecated;
 	private String obsoleted;
 	private String expired;
+	private String macro;
 
 	public String serialise()
 	{
@@ -53,6 +54,7 @@ public class SwitchInfo implements Comparable<SwitchInfo>
 		jsonObject.put("deprecated", deprecated);
 		jsonObject.put("obsoleted", obsoleted);
 		jsonObject.put("expired", expired);
+		jsonObject.put("macro", macro);
 
 		return jsonObject.toString();
 	}
@@ -79,6 +81,7 @@ public class SwitchInfo implements Comparable<SwitchInfo>
 		switchInfo.setDeprecated(jsonObject.optString("deprecated", null));
 		switchInfo.setObsoleted(jsonObject.optString("obsoleted", null));
 		switchInfo.setExpired(jsonObject.optString("expired", null));
+		switchInfo.setMacro(jsonObject.optString("macro", null));
 
 		return switchInfo;
 	}
@@ -112,7 +115,7 @@ public class SwitchInfo implements Comparable<SwitchInfo>
 
 	@JSONPropertyIgnore public String getKey()
 	{
-		return name + "_" + os + "_" + cpu + "_" + component;
+		return name + "_" + os + "_" + cpu + "_" + component + (macro != null ? ("_" + macro) : "");
 	}
 
 	public String getName()
@@ -245,13 +248,24 @@ public class SwitchInfo implements Comparable<SwitchInfo>
 		this.definedIn = definedIn;
 	}
 
+	public String getMacro()
+	{
+		return macro;
+	}
+
+	public void setMacro(String macro)
+	{
+		this.macro = macro;
+	}
+
 	@Override public String toString()
 	{
 		return "SwitchInfo{" + "prefix='" + prefix + '\'' + ", name='" + name + '\'' + ", type='" + type + '\'' + ", os='" + os
 				+ '\'' + ", cpu='" + cpu + '\'' + ", component='" + component + '\'' + ", defaultValue='" + defaultValue + '\''
 				+ ", availability='" + availability + '\'' + ", description='" + description + '\'' + ", comment='" + comment + '\''
 				+ ", definedIn='" + definedIn + '\'' + ", since='" + since + '\'' + ", range='" + range + '\'' + ", deprecated='"
-				+ deprecated + '\'' + ", obsoleted='" + obsoleted + '\'' + ", expired='" + expired + '\'' + '}';
+				+ deprecated + '\'' + ", obsoleted='" + obsoleted + '\'' + ", expired='" + expired + '\'' + ", macro='" + macro
+				+ '\'' + '}';
 	}
 
 	@Override public boolean equals(Object o)

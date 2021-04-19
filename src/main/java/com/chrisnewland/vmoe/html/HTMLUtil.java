@@ -123,9 +123,14 @@ public class HTMLUtil
 		{
 			if (switchInfo.getDefaultValue() != null)
 			{
-				builder.append(getRow(switchInfo.getDefaultValue() + ((switchInfo.getRange() == null) ?
-						"" :
-						"<br>" + switchInfo.getRange())));
+				String defaultValue = switchInfo.getDefaultValue();
+
+				if (switchInfo.getMacro() != null)
+				{
+					defaultValue = switchInfo.getMacro() + ": " + defaultValue;
+				}
+
+				builder.append(getRow(defaultValue + ((switchInfo.getRange() == null) ? "" : "<br>" + switchInfo.getRange())));
 			}
 			else
 			{

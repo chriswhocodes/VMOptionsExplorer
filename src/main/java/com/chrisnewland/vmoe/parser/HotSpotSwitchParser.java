@@ -48,11 +48,13 @@ public class HotSpotSwitchParser extends AbstractSwitchParser
 
 		SwitchInfo info = null;
 
+		String macroName = null;
+
 		for (String line : lines)
 		{
 			String trimmed = line.replace("\\\"", "'").replace("\\", "").replace("\" )", "\")").replace("JFR_ONLY(", "").trim();
 
-			// System.out.println(trimmed);
+			//System.out.println(trimmed);
 
 			// PD = platform dependent
 
@@ -74,6 +76,23 @@ public class HotSpotSwitchParser extends AbstractSwitchParser
 				}
 
 				availability = trimmed.substring(0, bracketPos);
+
+				boolean allowedMacro = isAllowedMacro(availability);
+
+				if (allowedMacro)
+				{
+					macroName = availability;
+
+					int nextBracketPos = trimmed.indexOf('(', bracketPos + 1);
+
+					System.out.println("Allowed macro '" + macroName + "'");
+
+					availability = trimmed.substring(bracketPos + 1, nextBracketPos);
+
+					System.out.println("new availability '" + availability + "'");
+
+					trimmed = trimmed.substring(macroName.length() + 1);
+				}
 
 				if ("define_pd_global".equals(availability))
 				{
@@ -111,6 +130,11 @@ public class HotSpotSwitchParser extends AbstractSwitchParser
 						//System.out.println("Unhandled availability mode:" + availability);
 					}
 					continue;
+				}
+
+				if (allowedMacro)
+				{
+					expectedLineEnding = expectedLineEnding.replace(")", "))");
 				}
 			}
 
@@ -165,6 +189,7 @@ public class HotSpotSwitchParser extends AbstractSwitchParser
 						info.setComment(comment);
 						info.setDefinedIn(
 								hotspotFile.getCanonicalPath().substring(vmPath.getCanonicalFile().toString().length() + 1));
+						info.setMacro(macroName);
 					}
 
 					setFieldsFromPath(info, hotspotFile);
@@ -225,6 +250,11 @@ public class HotSpotSwitchParser extends AbstractSwitchParser
 				}
 			}
 		} // for
+	}
+
+	private boolean isAllowedMacro(String token)
+	{
+		return "NOT_EMBEDDED".equals(token) || "EMBEDDED_ONLY".equals(token);
 	}
 
 	private boolean looksLikeListItem(String line)
