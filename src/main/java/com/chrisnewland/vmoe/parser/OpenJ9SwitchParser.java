@@ -18,15 +18,14 @@ import com.chrisnewland.vmoe.SwitchInfoMap;
 
 public class OpenJ9SwitchParser extends AbstractSwitchParser
 {
-	@Override
-	public SwitchInfoMap process(File vmPath) throws IOException
+	@Override public SwitchInfoMap process(File vmPath) throws IOException
 	{
 		switchMap = new SwitchInfoMap();
-		
+
 		parseJVMInitHeader(new File(vmPath, "runtime/oti/jvminit.h"));
-		
+
 		parseNLSFile(new File(vmPath, "runtime/nls/exel/exelib.nls"));
-		
+
 		return switchMap;
 	}
 
@@ -41,7 +40,7 @@ public class OpenJ9SwitchParser extends AbstractSwitchParser
 			if (isJVMInitSwitch(trimmed))
 			{
 				trimmed = trimmed.replace("<", "&lt;").replace(">", "&gt;");
-				
+
 				String name = cleanName(ParseUtil.getBetween(trimmed, "\"", "\""));
 
 				SwitchInfo info = new SwitchInfo(PREFIX_XX, name.trim());
@@ -90,17 +89,17 @@ public class OpenJ9SwitchParser extends AbstractSwitchParser
 				String name = cleanName(switchBuilder.toString().trim());
 
 				SwitchInfo info = new SwitchInfo(PREFIX_XX, name);
-				info.setDescription("<pre>" + descriptionBuilder.toString().trim() + "</pre>");
+				info.setDescription(descriptionBuilder.toString().trim());
 
 				switchMap.put(info.getKey(), info);
 
 				cleanDupsEnding(name, "&lt;x&gt;", switchMap);
-				
+
 				cleanDupsEnding(name, ":&lt;path&gt;", switchMap);
 			}
 		}
 	}
-	
+
 	private void cleanDupsEnding(String name, String ending, Map<String, SwitchInfo> switchMap)
 	{
 		if (name.endsWith(ending))

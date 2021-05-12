@@ -74,7 +74,7 @@ public class GraalNativeImageSwitchParser extends AbstractSwitchParser
 
 						//System.out.println("Setting description on previous info '" + description + "'");
 
-						info.setDescription("<pre>" + description + "</pre>");
+						info.setDescription(description);
 						builder.setLength(0);
 					}
 
@@ -169,7 +169,7 @@ public class GraalNativeImageSwitchParser extends AbstractSwitchParser
 
 			//System.out.println("Setting description on info '" + description + "'");
 
-			info.setDescription("<pre>" + description + "</pre>");
+			info.setDescription(description);
 			builder.setLength(0);
 		}
 

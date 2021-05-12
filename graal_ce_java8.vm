@@ -128,8 +128,8 @@ graal.CompilationExcludePhases = null                                     [Strin
           a method filter
 graal.CompilationExpirationPeriod = 300                                  [Integer]
           Time limit in seconds before a compilation expires (0 to disable the
-          limit). The compilation alarm will be implicitly disabled if assertions
-          are enabled.
+          limit). A non-zero value for this option is doubled if assertions are
+          enabled and quadrupled if DetailedAsserts is true.
 graal.CompilationFailureAction = Silent                                   [String]
           Specifies the action to take when compilation fails.
           
@@ -282,6 +282,8 @@ graal.DynamicCountersPrintGroupSeparator = true                          [Boolea
           Use grouping separators for number printing
 graal.EagerSnippets := true                                              [Boolean]
           Eagerly construct extra snippet info.
+graal.EmitStringSubstitutions = true                                     [Boolean]
+          Emit substitutions for String methods
 graal.EscapeAnalysisIterations = 2                                       [Integer]
 graal.EscapeAnalysisLoopCutoff = 20                                      [Integer]
 graal.EscapeAnalyzeOnly = null                                            [String]
@@ -295,7 +297,7 @@ graal.ExtendedAsserts = false                                            [Boolea
           Enable extended asserts which slow down analysis.
 graal.FailedLoopExplosionIsFatal = false                                 [Boolean]
           Do not bail out but throw an exception on failed loop explosion.
-graal.FallbackExecutorRuntimeJavaArg = ""                               [String[]]
+graal.FallbackExecutorRuntimeJavaArg = <string>*                         [Strings]
           Internal option used to specify runtime java arguments for
           FallbackExecutor.
 graal.ForceDumpGraphsBeforeCompilation = false                           [Boolean]
@@ -601,6 +603,9 @@ graal.MinimalBulkZeroingSize = 2048                                      [Intege
           If applicable, use bulk zeroing instructions when the zeroing size in
           bytes exceeds this threshold.
 graal.MinimumPeelFrequency = 0.35                                          [Float]
+graal.MoveGuardsUpwards = true                                           [Boolean]
+          Move guard nodes to earlier places in the dominator tree if all
+          successors of basic block share a common guard condition.
 graal.NDCV = 0                                                           [Integer]
           Run level for NoDeadCodeVerifyHandler (0 = off, 1 = info, 2 = verbose,
           3 = fatal)
@@ -697,7 +702,7 @@ graal.PrintHeapShape = false                                             [Boolea
 graal.PrintIRWithLIR = false                                             [Boolean]
           Print HIR along side LIR as the latter is generated
 graal.PrintImageObjectTree = false                                       [Boolean]
-          Print boot image object hierarchy.
+          Print image object hierarchy.
 graal.PrintLIRWithAssembly = false                                       [Boolean]
           Include the LIR as comments with the final assembly.
 graal.PrintPointsToStatistics = false                                    [Boolean]

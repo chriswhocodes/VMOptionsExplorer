@@ -71,7 +71,7 @@ public class HTMLUtil
 			builder.append("<th>").append("Default").append("</th>");
 		}
 
-		if (isHotSpotBased || vmType == VMType.GRAAL_NATIVE_8 || vmType == VMType.GRAAL_NATIVE_11)
+		if (isHotSpotBased || vmType == VMType.GRAAL_NATIVE)
 		{
 			builder.append("<th>").append("Availability").append("</th>");
 		}
@@ -138,7 +138,7 @@ public class HTMLUtil
 			}
 		}
 
-		if (isHotSpotBased || vmType == VMType.GRAAL_NATIVE_8 || vmType == VMType.GRAAL_NATIVE_11)
+		if (isHotSpotBased || vmType == VMType.GRAAL_NATIVE)
 		{
 			builder.append(getRow(switchInfo.getAvailability()));
 		}
@@ -161,7 +161,7 @@ public class HTMLUtil
 				descriptionComment += switchInfo.getComment();
 			}
 
-			builder.append(getRow(escapeHTMLEntities(descriptionComment)));
+			builder.append(getRow("<pre>" +/*escapeHTMLEntities(*/descriptionComment) + "</pre>"/*)*/);
 		}
 
 		if (isHotSpotBased)

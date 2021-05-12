@@ -1875,7 +1875,7 @@
 {"availability":"notproduct","component":"runtime","defaultValue":"5","definedIn":"share/runtime/globals.hpp","description":"Number of exits until ZombieALot kicks in","name":"ZombieALotInterval","prefix":"-XX:","type":"intx"},
 {"availability":"notproduct","component":"runtime","defaultValue":"false","definedIn":"share/runtime/globals.hpp","description":"Create zombies (non-entrant) at exit from the runtime system","name":"ZombieALot","prefix":"-XX:","type":"bool"},
 {"definedIn":"launcher.properties","description":"disable background compilation","name":"batch","prefix":"-X"},
-{"definedIn":"launcher.properties","description":"\nappend to end of bootstrap class path","name":"bootclasspath/a","prefix":"-X","type":"<directories and zip/jar files separated by :>"},
+{"definedIn":"launcher.properties","description":"\nappend to end of bootstrap class path","name":"bootclasspath/a","prefix":"-X","type":"<dirs/jars>"},
 {"definedIn":"launcher.properties","description":"perform additional checks for JNI functions","name":"check:jni","prefix":"-X"},
 {"definedIn":"launcher.properties","description":"forces compilation of methods on first invocation","name":"comp","prefix":"-X"},
 {"definedIn":"launcher.properties","description":"does nothing. Provided for backward compatibility.","name":"debug","prefix":"-X"},
@@ -1902,5 +1902,5 @@
 {"definedIn":"launcher.properties","description":"\nshow all vm related settings and continue","name":"showSettings:vm","prefix":"-X"},
 {"definedIn":"launcher.properties","description":"show all settings and continue","name":"showSettings","prefix":"-X"},
 {"definedIn":"launcher.properties","description":"set java thread stack size","name":"ss","prefix":"-X","type":"<size>"},
-{"definedIn":"launcher.properties","description":"<pre>sets the mode of the bytecode verifier\nNote that option -Xverify:none is deprecated and\nmay be removed in a future release.<\/pre>","name":"verify","prefix":"-X"}
+{"definedIn":"launcher.properties","description":"sets the mode of the bytecode verifier\nNote that option -Xverify:none is deprecated and\nmay be removed in a future release.","name":"verify","prefix":"-X"}
 ] }

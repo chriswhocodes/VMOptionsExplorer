@@ -85,11 +85,11 @@ public class HotSpotSwitchParser extends AbstractSwitchParser
 
 					int nextBracketPos = trimmed.indexOf('(', bracketPos + 1);
 
-					System.out.println("Allowed macro '" + macroName + "'");
+					//System.out.println("Allowed macro '" + macroName + "'");
 
 					availability = trimmed.substring(bracketPos + 1, nextBracketPos);
 
-					System.out.println("new availability '" + availability + "'");
+					//System.out.println("new availability '" + availability + "'");
 
 					trimmed = trimmed.substring(macroName.length() + 1);
 				}

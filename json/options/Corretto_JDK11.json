@@ -434,7 +434,7 @@
 {"availability":"product","component":"runtime","defaultValue":"false","definedIn":"share/runtime/globals.hpp","description":"Enable performance-impacting dtrace probes","name":"ExtendedDTraceProbes","prefix":"-XX:","type":"bool"},
 {"availability":"product","component":"runtime","defaultValue":"PRODUCT_ONLY(false) NOT_PRODUCT(true)","definedIn":"share/runtime/globals.hpp","description":"Error reports are more extensive.","name":"ExtensiveErrorReports","prefix":"-XX:","type":"bool"},
 {"availability":"product","component":"runtime","defaultValue":"NULL","definedIn":"share/runtime/globals.hpp","description":"Extra classlist for building the CDS archive file","name":"ExtraSharedClassListFile","prefix":"-XX:","type":"ccstr"},
-{"availability":"define_pd_global","cpu":"aarch64","defaultValue":"64","definedIn":"cpu/aarch64/c2_globals_aarch64.hpp","name":"FLOATPRESSURE","prefix":"-XX:","type":"intx"},
+{"availability":"define_pd_global","cpu":"aarch64","defaultValue":"32","definedIn":"cpu/aarch64/c2_globals_aarch64.hpp","name":"FLOATPRESSURE","prefix":"-XX:","type":"intx"},
 {"availability":"define_pd_global","cpu":"arm","defaultValue":"30","definedIn":"cpu/arm/c2_globals_arm.hpp","name":"FLOATPRESSURE","prefix":"-XX:","type":"intx"},
 {"availability":"develop_pd","component":"c2","definedIn":"share/opto/c2_globals.hpp","description":"Number of float LRG's that constitute high register pressure","name":"FLOATPRESSURE","prefix":"-XX:","range":"range(0, max_jint)","type":"intx"},
 {"availability":"define_pd_global","cpu":"ppc","defaultValue":"28","definedIn":"cpu/ppc/c2_globals_ppc.hpp","name":"FLOATPRESSURE","prefix":"-XX:","type":"intx"},
@@ -2027,7 +2027,7 @@
 {"availability":"notproduct","component":"runtime","defaultValue":"5","definedIn":"share/runtime/globals.hpp","description":"Number of exits until ZombieALot kicks in","name":"ZombieALotInterval","prefix":"-XX:","type":"intx"},
 {"availability":"notproduct","component":"runtime","defaultValue":"false","definedIn":"share/runtime/globals.hpp","description":"Create zombies (non-entrant) at exit from the runtime system","name":"ZombieALot","prefix":"-XX:","type":"bool"},
 {"definedIn":"launcher.properties","description":"disable background compilation","name":"batch","prefix":"-X"},
-{"definedIn":"launcher.properties","description":"\nappend to end of bootstrap class path","name":"bootclasspath/a","prefix":"-X","type":"<directories and zip/jar files separated by :>"},
+{"definedIn":"launcher.properties","description":"\nappend to end of bootstrap class path","name":"bootclasspath/a","prefix":"-X","type":"<dirs/jars>"},
 {"definedIn":"launcher.properties","description":"perform additional checks for JNI functions","name":"check:jni","prefix":"-X"},
 {"definedIn":"launcher.properties","description":"forces compilation of methods on first invocation","name":"comp","prefix":"-X"},
 {"definedIn":"launcher.properties","description":"provided for backward compatibility","name":"debug","prefix":"-X"},
@@ -2053,5 +2053,5 @@
 {"definedIn":"launcher.properties","description":"\nshow all vm related settings and continue","name":"showSettings:vm","prefix":"-X"},
 {"definedIn":"launcher.properties","description":"show all settings and continue","name":"showSettings","prefix":"-X"},
 {"definedIn":"launcher.properties","description":"set java thread stack size","name":"ss","prefix":"-X","type":"<size>"},
-{"definedIn":"launcher.properties","description":"<pre>sets the mode of the bytecode verifier<\/pre>","name":"verify","prefix":"-X"}
+{"definedIn":"launcher.properties","description":"sets the mode of the bytecode verifier","name":"verify","prefix":"-X"}
 ] }

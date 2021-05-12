@@ -51,7 +51,7 @@ public class GraalVMSwitchParser extends AbstractSwitchParser
 				{
 					String description = builder.toString();
 
-					info.setDescription("<pre>" + description + "</pre>");
+					info.setDescription(description);
 					builder.setLength(0);
 				}
 
@@ -101,7 +101,7 @@ public class GraalVMSwitchParser extends AbstractSwitchParser
 		{
 			String description = builder.toString();
 
-			info.setDescription("<pre>" + description + "</pre>");
+			info.setDescription(description);
 			builder.setLength(0);
 		}
 		

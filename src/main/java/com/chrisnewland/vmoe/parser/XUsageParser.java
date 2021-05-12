@@ -133,7 +133,7 @@ public class XUsageParser extends AbstractSwitchParser
 
 			//System.out.println("Setting description on info '" + description + "'");
 
-			info.setDescription("<pre>" + description + "</pre>");
+			info.setDescription(description);
 			descriptionBuilder.setLength(0);
 		}
 

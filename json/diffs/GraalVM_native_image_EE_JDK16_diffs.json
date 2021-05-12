@@ -1,5 +1,5 @@
-{"earlierVM": "GraalVM_native_image_CE_JDK8",
-"laterVM": "GraalVM_native_image_EE_JDK8",
+{"earlierVM": "GraalVM_native_image_CE_JDK16",
+"laterVM": "GraalVM_native_image_EE_JDK16",
 "added":[{"availability":"Hosted","defaultValue":"true","description":"Enable use of priority inlining during AOT compilation.","name":"AOTPriorityInline","prefix":"-XX:","type":"bool"},
 {"availability":"Hosted","defaultValue":"30","description":"Threshold for number of points with inaccurate profiles. ","name":"AllowedNumberOfInaccurateProfiles","prefix":"-XX:","type":"int"},
 {"availability":"Runtime","defaultValue":"false","description":"Force all freshly committed pages to be pre-touched.","name":"AlwaysPreTouch","prefix":"-XX:","type":"bool"},

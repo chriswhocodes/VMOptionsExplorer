@@ -1,5 +1,5 @@
-{"earlierVM": "GraalVM_CE_JDK11",
-"laterVM": "GraalVM_EE_JDK11",
+{"earlierVM": "GraalVM_CE_JDK16",
+"laterVM": "GraalVM_EE_JDK16",
 "added":[{"defaultValue":"false","description":"Force all freshly committed pages to be pre-touched\n","name":"AlwaysPreTouch","prefix":"-XX:","type":"Boolean"},
 {"defaultValue":"120","description":"The base target spending used to estimate the inlining threshold; the\nhigher, the likelier it is to inline.\n","name":"BaseTargetSpending","prefix":"-XX:","type":"Integer"},
 {"defaultValue":"true","description":"Break chained phis\n","name":"BreakChainedPhis","prefix":"-XX:","type":"Boolean"},

@@ -130,6 +130,12 @@ public class SwitchInfo implements Comparable<SwitchInfo>
 
 	public void setType(String type)
 	{
+		// shorten to avoid wide type column
+		if (type != null && type.contains("<directories and zip/jar files"))
+		{
+			type = "<dirs/jars>";
+		}
+
 		this.type = type;
 	}
 

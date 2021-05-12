@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2018-2019 Chris Newland.
+ * Copyright (c) 2018-2021 Chris Newland.
  * Licensed under https://github.com/chriswhocodes/VMOptionsExplorer/blob/master/LICENSE
  */
 package com.chrisnewland.vmoe;
@@ -8,19 +8,16 @@ import com.chrisnewland.vmoe.parser.*;
 
 public enum VMType
 {
-	DRAGONWELL("Dragonwell"), HOTSPOT("HotSpot"), GRAAL_VM_8("GraalVM"), GRAAL_VM_11("GraalVM"), GRAAL_NATIVE_8(
-		"Graal Native"), GRAAL_NATIVE_11("Graal Native"), MICROSOFT("Microsoft"), OPENJ9("OpenJ9"), ZING("Zing"), ZULU(
+	DRAGONWELL("Dragonwell"), HOTSPOT("HotSpot"), GRAAL_VM("GraalVM"), GRAAL_NATIVE("Graal Native"), MICROSOFT("Microsoft"), OPENJ9("OpenJ9"), ZING("Zing"), ZULU(
 		"Zulu"), SAPMACHINE("SapMachine"), CORRETTO("Corretto");
 
 	public ISwitchParser getParser()
 	{
 		switch (this)
 		{
-		case GRAAL_VM_8:
-		case GRAAL_VM_11:
+		case GRAAL_VM:
 			return new GraalVMSwitchParser();
-		case GRAAL_NATIVE_8:
-		case GRAAL_NATIVE_11:
+		case GRAAL_NATIVE:
 			return new GraalNativeImageSwitchParser();
 		case OPENJ9:
 			return new OpenJ9SwitchParser();

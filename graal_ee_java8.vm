@@ -102,8 +102,6 @@ graal.BenchmarkDynamicCounters = null                                     [Strin
           
           We highly recommend the use of -Dgraal.AbortOnBenchmarkCounterOverflow=true to
           detect counter overflows eagerly.
-graal.BlockZeroingLowLimit = 512                                         [Integer]
-          Minimum amount of bytes when block zeroing used. (SPARC only)
 graal.BootstrapInitializeOnly = false                                    [Boolean]
           Do not compile anything on bootstrap but just initialize the compiler.
 graal.BootstrapTimeout = 15.0                                             [Double]
@@ -144,8 +142,8 @@ graal.CompilationExcludePhases = null                                     [Strin
           a method filter
 graal.CompilationExpirationPeriod = 300                                  [Integer]
           Time limit in seconds before a compilation expires (0 to disable the
-          limit). The compilation alarm will be implicitly disabled if assertions
-          are enabled.
+          limit). A non-zero value for this option is doubled if assertions are
+          enabled and quadrupled if DetailedAsserts is true.
 graal.CompilationFailureAction = Silent                                   [String]
           Specifies the action to take when compilation fails.
           
@@ -221,8 +219,6 @@ graal.CrashAtIsFatal = false                                             [Boolea
 graal.CutoffCodeSizePenaltyCoefficient = 1.0E-5                           [Double]
           Controls the likelihood of further exploring subtrees with a lot of
           code during inlining.
-graal.DebugLoopInversion = false                                         [Boolean]
-          Debug the loop inversion transformation.
 graal.DebugPeelingSynonyms = false                                       [Boolean]
           Debug simulation synonyms during simulation-based loop peeling.
 graal.DebugStubsAndSnippets = false                                      [Boolean]
@@ -235,6 +231,7 @@ graal.DeoptsToDisableOptimisticOptimization = 40                         [Intege
 graal.DetailedAsserts = false                                            [Boolean]
           Enable expensive assertions if normal assertions (i.e. -ea or -esa) are
           enabled.
+graal.DetectInvertedLoopsAsCounted = true                                [Boolean]
 graal.DiagnoseDumpLevel = 3                                              [Integer]
           Specify the DumpLevel if CompilationFailureAction#Diagnose is used.See
           CompilationFailureAction for details.
@@ -339,6 +336,8 @@ graal.DynamicCountersPrintGroupSeparator = true                          [Boolea
           Use grouping separators for number printing
 graal.EagerSnippets := true                                              [Boolean]
           Eagerly construct extra snippet info.
+graal.EmitStringSubstitutions = true                                     [Boolean]
+          Emit substitutions for String methods
 graal.EnterpriseCloneReadElimination = true                              [Boolean]
           Try to eliminate array clone operations by handling clone operations in
           early read elimination.
@@ -383,7 +382,7 @@ graal.ExtendedAsserts = false                                            [Boolea
           Enable extended asserts which slow down analysis.
 graal.FailedLoopExplosionIsFatal = false                                 [Boolean]
           Do not bail out but throw an exception on failed loop explosion.
-graal.FallbackExecutorRuntimeJavaArg = ""                               [String[]]
+graal.FallbackExecutorRuntimeJavaArg = <string>*                         [Strings]
           Internal option used to specify runtime java arguments for
           FallbackExecutor.
 graal.FlightRecorder = false                                             [Boolean]
@@ -514,6 +513,7 @@ graal.HeapSizePerGCThread = 44040192                                        [Lon
           threads
 graal.HeapVerificationFailureIsFatal = true                              [Boolean]
           Failed verification of the heap (if enabled) causes termination.
+graal.HighTierInversion = false                                          [Boolean]
 graal.HighTierPartialUnrolling = true                                    [Boolean]
           Enable EE partial unrolling in high tier.
 graal.HotSpotDeoptExplicitExceptions = false                             [Boolean]
@@ -527,6 +527,7 @@ graal.HybridStaticContext = false                                        [Boolea
           context for static methods.
 graal.IgnoreBadDuplications = true                                       [Boolean]
           Ignore duplications with a bad benefit cost relation.
+graal.IgnoreDeoptUsages = true                                           [Boolean]
 graal.ImageObjectTreeExpandRoots = ""                                     [String]
           Override the default suppression of specified roots. See: Reports.md.
 graal.ImageObjectTreeExpandTypes = ""                                     [String]
@@ -596,6 +597,9 @@ graal.InterceptBailout = false                                           [Boolea
           Intercept also bailout exceptions
 graal.Intrinsify = true                                                  [Boolean]
           Use compiler intrinsifications.
+graal.InvertMultiEndLoops = false                                        [Boolean]
+graal.InvertNonLeafLoops = false                                         [Boolean]
+graal.InvertVectorizableLoops = false                                    [Boolean]
 graal.LIRDynMoveProfileMethod = false                                    [Boolean]
           Enable dynamic move profiling per method.
 graal.LIROptConstantLoadOptimization = true                              [Boolean]
@@ -657,8 +661,7 @@ graal.LogVerbose = false                                                 [Boolea
           Enable more verbose log output when available
 graal.LoopHeaderAlignment = 16                                           [Integer]
           Alignment in bytes for loop header blocks.
-graal.LoopInversion = false                                              [Boolean]
-          Convert loops into their zero trip form.
+graal.LoopInversion = true                                               [Boolean]
 graal.LoopMaxUnswitch = 3                                                [Integer]
 graal.LoopPeeling = true                                                 [Boolean]
 graal.LoopPredication = true                                             [Boolean]
@@ -848,6 +851,7 @@ graal.MetricsFile = null                                                  [Strin
                  compilation_id - runtime issued identifier for the compilation
                     metric_name - name of metric
                    metric_value - value of metric
+graal.MidTierInversion = true                                            [Boolean]
 graal.MidTierPartialUnrolling = true                                     [Boolean]
           Enable EE partial unrolling in mid tier.
 graal.MinBlockFrequencyPull = 0.66                                        [Double]
@@ -873,12 +877,17 @@ graal.MinRAMPercentage = 50.0                                             [Doubl
           with small physical memory size
 graal.MinTLABSize = 2048                                                    [Long]
           Minimum allowed TLAB size (in bytes)
+graal.MinifyInvertedPhis = true                                          [Boolean]
+          Break chained phis
 graal.MinimalBulkZeroingSize = 2048                                      [Integer]
           If applicable, use bulk zeroing instructions when the zeroing size in
           bytes exceeds this threshold.
 graal.MinimalRegions = true                                              [Boolean]
           Try to reduce duplication code size to the minimal amount of code.
 graal.MinimumPeelFrequency = 0.35                                          [Float]
+graal.MoveGuardsUpwards = true                                           [Boolean]
+          Move guard nodes to earlier places in the dominator tree if all
+          successors of basic block share a common guard condition.
 graal.MultiExitCostFactor = 32                                           [Integer]
           Cost/Benefit heuristic for EE unrolling: If a loop has multiple exits,
           cost is increased by this value for every none-sinking loop exit.
@@ -926,6 +935,8 @@ graal.OptLateDuplication = false                                         [Boolea
 graal.OptLockElimination = true                                          [Boolean]
 graal.OptLoopPhiStamps = true                                            [Boolean]
           Inject stamps on induction variables.
+graal.OptPropagateEquality = true                                        [Boolean]
+          Propagate equality into dominated nodes.
 graal.OptPullThroughPhi = true                                           [Boolean]
 graal.OptReadElimination = true                                          [Boolean]
 graal.OptScheduleOutOfLoops = true                                       [Boolean]
@@ -1019,6 +1030,8 @@ graal.PerfDataSamplingInterval = 200                                     [Intege
           Jvmstat instrumentation sampling interval (in milliseconds)
 graal.PerfMaxStringConstLength = 1024                                    [Integer]
           Maximum PerfStringConstant string length before truncation
+graal.PhiMinificationMinimalLoopFrequency = 2.0                           [Double]
+          Minimal loop frequency to consider a loop for inverted phi minifaction.
 graal.PreTouchParallelChunkSize = 1073741824                                [Long]
           Per-thread chunk size for parallel memory pre-touch.
 graal.PreferContainerQuotaForCPUCount = true                             [Boolean]
@@ -1092,7 +1105,7 @@ graal.PrintHeapShape = false                                             [Boolea
 graal.PrintIRWithLIR = false                                             [Boolean]
           Print HIR along side LIR as the latter is generated
 graal.PrintImageObjectTree = false                                       [Boolean]
-          Print boot image object hierarchy.
+          Print image object hierarchy.
 graal.PrintLIRWithAssembly = false                                       [Boolean]
           Include the LIR as comments with the final assembly.
 graal.PrintPointsToStatistics = false                                    [Boolean]
@@ -1144,6 +1157,8 @@ graal.ProfileSimpleMethods = true                                        [Boolea
           Profile simple methods
 graal.ProfilesDumpFile = "default.iprof"                                  [String]
           Value should point to a profile dump file.
+graal.PropagateEqualityDepth = 6                                         [Integer]
+          Maximum depth of dependency when propagating equals property.
 graal.PruneLargeDominatorUsageTrees = true                               [Boolean]
 graal.PullThroughPhiCodeSizeIncrease = 0.1                                [Double]
           PullThroughPhiOptimization: Percentage in node cost graph size for the
@@ -1182,6 +1197,8 @@ graal.RespectVectorization = true                                        [Boolea
           Try avoid unrolling vectorizable loops.
 graal.RuntimeSourceDestDir = null                                         [String]
           Directory where Java source-files will be placed for the debugger
+graal.SIMDVectorizationWindowSize = 4                                    [Integer]
+          Set the number of dominating and dominated blocks scanned per block
 graal.SafepointPromptnessFailureNanos = 0                                   [Long]
           Exit the VM if I can not come to a safepoint in this many nanoseconds.
           0 implies forever.
@@ -1436,6 +1453,10 @@ graal.TypicalGraphSizeMax = 10000                                        [Intege
           The maximum in estimated inlined typical graph size.
 graal.UnresolvedIsError = true                                           [Boolean]
           Report unresolved elements as errors.
+graal.UnrollEmptyLoops = false                                           [Boolean]
+          Unroll empty loops.
+graal.UnrollInvertedLoops = true                                         [Boolean]
+          Unroll inverted (tail counted) loops.
 graal.UnrollMaxIterations = 16                                           [Integer]
 graal.UnrollMultiEndLoops = true                                         [Boolean]
           Unroll loops with multiple loop ends.
@@ -1476,6 +1497,9 @@ graal.UseTrappingNullChecks = true                                       [Boolea
 graal.UseTypeCheckHints = true                                           [Boolean]
 graal.VTuneAbsoluteFilenames = true                                      [Boolean]
           Use absolute path for source-filenames in VTune events.
+graal.VectorFoldMinIterations = 2                                        [Integer]
+          Only generate SIMD loops for vector folds expected to iterate at least
+          this many times.
 graal.VectorIntrinsics = true                                            [Boolean]
           Enable vectorized array copy intrinsics
 graal.VectorUnroll = 1                                                   [Integer]
@@ -1493,6 +1517,8 @@ graal.VectorizeFoldShaped = true                                         [Boolea
           function.
 graal.VectorizeGather = true                                             [Boolean]
           Enable vectorization of vector gather operations.
+graal.VectorizeHashes = true                                             [Boolean]
+          Enable vectorization of hashCode patterns.
 graal.VectorizeLoops = true                                              [Boolean]
           Enable vectorization of loops
 graal.VectorizeMapShaped = true                                          [Boolean]
@@ -1534,6 +1560,8 @@ graal.VerifyHeapAtReturn = false                                         [Boolea
           Perform platform dependent validation of the Java heap at returns
 graal.VerifyKillCFGUnusedNodes = false                                   [Boolean]
           Verify that there are no new unused nodes when performing killCFG
+graal.VerifyLoopVectorization = false                                    [Boolean]
+          Run expensive checks to verify the graph after loop vectorization.
 graal.VerifyPhases = false                                               [Boolean]
 graal.VerifyRememberedSets = false                                       [Boolean]
           Verify GC remembered sets

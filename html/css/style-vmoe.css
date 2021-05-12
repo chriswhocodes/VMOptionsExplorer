@@ -147,6 +147,7 @@ a, a:visited {
     background-color: #ffee99;
     margin-bottom: 12px;
     height: 130px;
+    min-height: 140px;
 }
 
 .menucontainer {

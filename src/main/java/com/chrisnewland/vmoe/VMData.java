@@ -45,10 +45,8 @@ public class VMData
 		case HOTSPOT:
 			builder.append("hotspot_options_").append(getSafeJDKName().toLowerCase());
 			break;
-		case GRAAL_VM_8:
-		case GRAAL_VM_11:
-		case GRAAL_NATIVE_8:
-		case GRAAL_NATIVE_11:
+		case GRAAL_VM:
+		case GRAAL_NATIVE:
 		case CORRETTO:
 		case MICROSOFT:
 		case DRAGONWELL:

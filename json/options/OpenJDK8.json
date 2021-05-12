@@ -1846,9 +1846,9 @@
 {"availability":"notproduct","component":"runtime","defaultValue":"5","definedIn":"src/share/vm/runtime/globals.hpp","description":"Number of exits until ZombieALot kicks in","macro":"EMBEDDED_ONLY","name":"ZombieALotInterval","prefix":"-XX:","type":"intx"},
 {"availability":"notproduct","component":"runtime","defaultValue":"false","definedIn":"src/share/vm/runtime/globals.hpp","description":"Create zombies (non-entrant) at exit from the runtime system","name":"ZombieALot","prefix":"-XX:","type":"bool"},
 {"definedIn":"Xusage.txt","description":"disable background compilation","name":"batch","prefix":"-X"},
-{"definedIn":"Xusage.txt","description":"\nappend to end of bootstrap class path","name":"bootclasspath/a","prefix":"-X","type":"<directories and zip/jar files separated by ;>"},
-{"definedIn":"Xusage.txt","description":"\nprepend in front of bootstrap class path","name":"bootclasspath/p","prefix":"-X","type":"<directories and zip/jar files separated by ;>"},
-{"definedIn":"Xusage.txt","description":"\nset search path for bootstrap classes and resources","name":"bootclasspath","prefix":"-X","type":"<directories and zip/jar files separated by ;>"},
+{"definedIn":"Xusage.txt","description":"\nappend to end of bootstrap class path","name":"bootclasspath/a","prefix":"-X","type":"<dirs/jars>"},
+{"definedIn":"Xusage.txt","description":"\nprepend in front of bootstrap class path","name":"bootclasspath/p","prefix":"-X","type":"<dirs/jars>"},
+{"definedIn":"Xusage.txt","description":"\nset search path for bootstrap classes and resources","name":"bootclasspath","prefix":"-X","type":"<dirs/jars>"},
 {"definedIn":"Xusage.txt","description":"perform additional checks for JNI functions","name":"check:jni","prefix":"-X"},
 {"definedIn":"Xusage.txt","description":"enable strictest checks, anticipating future default","name":"future","prefix":"-X"},
 {"availability":"product","component":"runtime","defaultValue":"5","definedIn":"src/share/vm/runtime/globals.hpp","description":"(Unstable) select hashCode generation algorithm","name":"hashCode","prefix":"-XX:","type":"intx"},
@@ -1863,6 +1863,6 @@
 {"definedIn":"Xusage.txt","description":"reduce use of OS signals by Java/VM (see documentation)","name":"rs","prefix":"-X"},
 {"definedIn":"Xusage.txt","description":"use shared class data if possible (default)","name":"share:auto","prefix":"-X"},
 {"definedIn":"Xusage.txt","description":"do not attempt to use shared class data","name":"share:off","prefix":"-X"},
-{"definedIn":"Xusage.txt","description":"<pre>require using shared class data, otherwise fail.\n\nThe -X options are non-standard and subject to change without notice.<\/pre>","name":"share:on","prefix":"-X"},
+{"definedIn":"Xusage.txt","description":"require using shared class data, otherwise fail.\n\nThe -X options are non-standard and subject to change without notice.","name":"share:on","prefix":"-X"},
 {"definedIn":"Xusage.txt","description":"set java thread stack size","name":"ss","prefix":"-X","type":"<size>"}
 ] }

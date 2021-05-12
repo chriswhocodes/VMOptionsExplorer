@@ -161,6 +161,7 @@
 {"class":"java.lang.invoke.MethodHandleImpl","flags":"F_S","id":"_profileBoolean","name":"profileBoolean","signature":"(Z[I)Z"},
 {"class":"java.lang.invoke.MethodHandleImpl","flags":"F_S","id":"_isCompileConstant","name":"isCompileConstant","signature":"(Ljava/lang/Object;)Z"},
 {"class":"sun.instrument.InstrumentationImpl","flags":"F_RN","id":"_getObjectSize","name":"getObjectSize0","signature":"(JLjava/lang/Object;)J"},
+{"class":"java.lang.Object","flags":"F_S","id":"_blackhole","name":"&lt;blackhole&gt;","signature":"*"},
 {"class":"jdk.internal.misc.Unsafe","flags":"F_RN","id":"_getReference","name":"getReference","signature":"(Ljava/lang/Object;J)Ljava/lang/Object;"},
 {"class":"jdk.internal.misc.Unsafe","flags":"F_RN","id":"_getBoolean","name":"getBoolean","signature":"(Ljava/lang/Object;J)Z"},
 {"class":"jdk.internal.misc.Unsafe","flags":"F_RN","id":"_getByte","name":"getByte","signature":"(Ljava/lang/Object;J)B"},
