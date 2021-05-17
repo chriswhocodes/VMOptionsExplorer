@@ -152,7 +152,7 @@ public class HotSpotSwitchParser extends AbstractSwitchParser
 
 				if (trimmed.contains(expectedLineEnding))
 				{
-					String result = lineBuilder.toString().replace("\"\"", "").replace("\n", "").replaceAll("\\s+", " ");
+					String result = lineBuilder.toString().replace("\"\"", "<br>").replaceAll("\\s+", " ");
 
 					int lineEndingPos = result.indexOf(expectedLineEnding);
 
@@ -227,7 +227,7 @@ public class HotSpotSwitchParser extends AbstractSwitchParser
 									description = description.substring(4);
 								}
 
-								info.setDescription(description);
+								info.setDescription(description.replace("<br>", "\n"));
 							}
 						}
 					}
