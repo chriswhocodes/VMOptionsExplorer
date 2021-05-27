@@ -311,6 +311,7 @@
 {"class":"jdk.internal.vm.vector.VectorSupport","flags":"F_S","id":"_VectorGatherOp","name":"loadWithMap"},
 {"class":"jdk.internal.vm.vector.VectorSupport","flags":"F_S","id":"_VectorScatterOp","name":"storeWithMap"},
 {"class":"jdk.internal.vm.vector.VectorSupport","flags":"F_S","id":"_VectorRebox","name":"maybeRebox","signature":"(Ljava/lang/Object;)Ljava/lang/Object;"},
+{"class":"jdk.internal.vm.vector.VectorSupport","flags":"F_S","id":"_VectorMaskOp","name":"maskReductionCoerced"},
 {"class":"jdk.internal.misc.Unsafe","flags":"F_R","id":"_park","name":"park","signature":"(ZJ)V"},
 {"class":"jdk.internal.misc.Unsafe","flags":"F_R","id":"_unpark","name":"unpark","signature":"(Ljava/lang/Object;)V"},
 {"class":"java.lang.StringBuilder","flags":"F_R","id":"_StringBuilder_void","name":"&lt;init&gt;","signature":"()V"},

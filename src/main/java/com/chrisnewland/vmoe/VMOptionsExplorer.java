@@ -60,6 +60,7 @@ public class VMOptionsExplorer
 	private static final String ZULU_JDK16 = "Zulu JDK16";
 
 	private static final String MICROSOFT_JDK11 = "Microsoft JDK11";
+	private static final String MICROSOFT_JDK16 = "Microsoft JDK16";
 
 	private static final String CORRETTO_JDK8 = "Corretto JDK8";
 	private static final String CORRETTO_JDK11 = "Corretto JDK11";
@@ -600,6 +601,9 @@ public class VMOptionsExplorer
 		{
 			explorer.addVM(new VMData(MICROSOFT_JDK11, baseDir.resolve("microsoft-11/src/hotspot").toFile(),
 					VMType.MICROSOFT).addUsageFile(post10Usage));
+
+			explorer.addVM(new VMData(MICROSOFT_JDK16, baseDir.resolve("microsoft-16/src/hotspot").toFile(),
+					VMType.MICROSOFT).addUsageFile(post13Usage));
 		}
 
 		if (processDragonwell)
@@ -627,6 +631,7 @@ public class VMOptionsExplorer
 		explorer.compareVMData(OPENJDK16, SAPMACHINE);
 
 		explorer.compareVMData(OPENJDK11, MICROSOFT_JDK11);
+		explorer.compareVMData(OPENJDK16, MICROSOFT_JDK16);
 
 		explorer.compareVMData(OPENJDK8, DRAGONWELL_JDK8);
 		explorer.compareVMData(OPENJDK11, DRAGONWELL_JDK11);
