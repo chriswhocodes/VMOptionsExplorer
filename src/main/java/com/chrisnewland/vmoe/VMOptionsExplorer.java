@@ -35,6 +35,7 @@ public class VMOptionsExplorer
 	private static final String OPENJDK15 = "OpenJDK15";
 	private static final String OPENJDK16 = "OpenJDK16";
 	private static final String OPENJDK17 = "OpenJDK17";
+	private static final String OPENJDK18 = "OpenJDK18";
 
 	private static final String GRAAL_VM_CE_JDK_8 = "GraalVM CE JDK8";
 	private static final String GRAAL_VM_EE_JDK_8 = "GraalVM EE JDK8";
@@ -234,7 +235,7 @@ public class VMOptionsExplorer
 
 		System.out.println("Removed " + deltaTable.getRemovalCount() + " Added " + deltaTable.getAdditionCount());
 
-		builder.append(deltaTable.toString());
+		builder.insert(0, deltaTable.toString());
 
 		Path serialisationPath = Paths.get(serialiseDir.resolve(Paths.get("diffs")).toString(),
 				later.getSafeJDKName() + "_diffs.json");
@@ -495,6 +496,7 @@ public class VMOptionsExplorer
 			DeprecatedParser.parseFile(baseDir.resolve("jdk15"));
 			DeprecatedParser.parseFile(baseDir.resolve("jdk16"));
 			DeprecatedParser.parseFile(baseDir.resolve("jdk17"));
+			DeprecatedParser.parseFile(baseDir.resolve("jdk18"));
 		}
 
 		String graalVersion = "21.1.0";
@@ -527,9 +529,10 @@ public class VMOptionsExplorer
 					new VMData(OPENJDK15, baseDir.resolve("jdk15/src/hotspot").toFile(), VMType.HOTSPOT).addUsageFile(post13Usage));
 			explorer.addVM(
 					new VMData(OPENJDK16, baseDir.resolve("jdk16/src/hotspot").toFile(), VMType.HOTSPOT).addUsageFile(post13Usage));
-
 			explorer.addVM(
 					new VMData(OPENJDK17, baseDir.resolve("jdk17/src/hotspot").toFile(), VMType.HOTSPOT).addUsageFile(post13Usage));
+			explorer.addVM(
+					new VMData(OPENJDK18, baseDir.resolve("jdk18/src/hotspot").toFile(), VMType.HOTSPOT).addUsageFile(post13Usage));
 		}
 
 		if (processGraalVM)
@@ -702,6 +705,8 @@ public class VMOptionsExplorer
 					baseDir.resolve("jdk16/" + post16vmIntrinsics));
 			intrinsicParser.processIntrinsics(OPENJDK17, baseDir.resolve("jdk17/" + post10vmSymbols),
 					baseDir.resolve("jdk17/" + post16vmIntrinsics));
+			intrinsicParser.processIntrinsics(OPENJDK18, baseDir.resolve("jdk18/" + post10vmSymbols),
+					baseDir.resolve("jdk18/" + post16vmIntrinsics));
 		}
 
 		serialiser.saveHashes(jsonOutputDir);

@@ -1,0 +1,6 @@
+{"earlierVM": "OpenJDK17",
+"laterVM": "OpenJDK18",
+"added":[],
+"removed":[{"availability":"product","component":"c1","defaultValue":"true","definedIn":"share/c1/c1_globals.hpp","description":"Intrinsify java.nio.Buffer.checkIndex","name":"InlineNIOCheckIndex","prefix":"-XX:","type":"bool"}
+]
+}
