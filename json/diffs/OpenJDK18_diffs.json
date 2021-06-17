@@ -1,6 +1,7 @@
 {"earlierVM": "OpenJDK17",
 "laterVM": "OpenJDK18",
 "added":[],
-"removed":[{"availability":"product","component":"c1","defaultValue":"true","definedIn":"share/c1/c1_globals.hpp","description":"Intrinsify java.nio.Buffer.checkIndex","name":"InlineNIOCheckIndex","prefix":"-XX:","type":"bool"}
+"removed":[{"availability":"product","component":"runtime","defaultValue":"false","definedIn":"share/runtime/globals.hpp","deprecated":"17","description":"(Deprecated) Require the VM to acquire the class loader lock \nbefore calling loadClass() even for class loaders registering \nas parallel capable","expired":"19","name":"AlwaysLockClassLoader","obsoleted":"18","prefix":"-XX:","type":"bool"},
+{"availability":"product","component":"c1","defaultValue":"true","definedIn":"share/c1/c1_globals.hpp","description":"Intrinsify java.nio.Buffer.checkIndex","name":"InlineNIOCheckIndex","prefix":"-XX:","type":"bool"}
 ]
 }

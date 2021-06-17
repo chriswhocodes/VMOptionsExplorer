@@ -44,6 +44,12 @@ public class HTMLUtil
 		StringBuilder builder = new StringBuilder();
 
 		builder.append("<tr>");
+
+		if (vmType == VMType.OPENJ9)
+		{
+			builder.append("<th>").append("Prefix").append("</th>");
+		}
+
 		builder.append("<th>").append("Name").append("</th>");
 
 		boolean isHotSpotBased = vmType.isHotSpotBased();
@@ -98,6 +104,11 @@ public class HTMLUtil
 		StringBuilder builder = new StringBuilder();
 
 		builder.append("<tr>");
+
+		if (vmType == VMType.OPENJ9)
+		{
+			builder.append(getRow(switchInfo.getPrefix()));
+		}
 
 		builder.append(getRow(switchInfo.getName()));
 

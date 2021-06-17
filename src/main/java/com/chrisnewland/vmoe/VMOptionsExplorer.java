@@ -431,9 +431,9 @@ public class VMOptionsExplorer
 			template = template.replace("$SORTCOLUMNS", "[ 1,3 ]");
 			break;
 		case OPENJ9:
-			template = template.replace("$TOPHEADER", "<th></th><th></th>");
-			template = template.replace("$ALLCOLUMNS", "[ 0,1 ]");
-			template = template.replace("$SORTCOLUMNS", "[ ]");
+			template = template.replace("$TOPHEADER", "<th>Prefix</th><th></th><th></th>");
+			template = template.replace("$ALLCOLUMNS", "[ 0,1,2 ]");
+			template = template.replace("$SORTCOLUMNS", "[0]");
 			break;
 		case HOTSPOT:
 		case MICROSOFT:

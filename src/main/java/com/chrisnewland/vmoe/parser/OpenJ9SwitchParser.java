@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2018-2019 Chris Newland.
+ * Copyright (c) 2018-2021 Chris Newland.
  * Licensed under https://github.com/chriswhocodes/VMOptionsExplorer/blob/master/LICENSE
  */
 package com.chrisnewland.vmoe.parser;
@@ -37,13 +37,40 @@ public class OpenJ9SwitchParser extends AbstractSwitchParser
 		{
 			String trimmed = line.trim();
 
+			String prefix;
+
 			if (isJVMInitSwitch(trimmed))
 			{
 				trimmed = trimmed.replace("<", "&lt;").replace(">", "&gt;");
 
 				String name = cleanName(ParseUtil.getBetween(trimmed, "\"", "\""));
 
-				SwitchInfo info = new SwitchInfo(PREFIX_XX, name.trim());
+				if (name.startsWith(PREFIX_XX))
+				{
+					prefix = PREFIX_XX;
+
+					name = name.substring(prefix.length());
+
+					if (name.charAt(0) == '+')
+					{
+						name = name.substring(1);
+
+					}
+					else if (name.charAt(0) == '-')
+					{
+						continue;
+					}
+				}
+				else
+				{
+					prefix = PREFIX_X;
+					name = name.substring(prefix.length());
+
+				}
+
+				SwitchInfo info = new SwitchInfo(prefix, name.trim());
+
+				//System.out.println("init " + trimmed + "\n" + info);
 
 				switchMap.put(info.getKey(), info);
 			}
@@ -72,11 +99,22 @@ public class OpenJ9SwitchParser extends AbstractSwitchParser
 				boolean seenFirstSwitch = false;
 				boolean inDescription = false;
 
+				String prefix = null;
+
+				// remove +/- and change verb to "control"
+
 				for (String part : parts)
 				{
-					if (part.startsWith(PREFIX_X) && !inDescription)
+					if (part.startsWith(PREFIX_XX) && !inDescription)
 					{
-						switchBuilder.append(part).append(" ");
+						prefix = PREFIX_XX;
+						switchBuilder.append(part.substring(PREFIX_XX.length())).append(" ");
+						seenFirstSwitch = true;
+					}
+					else if (part.startsWith(PREFIX_X) && !inDescription)
+					{
+						prefix = PREFIX_X;
+						switchBuilder.append(part.substring(PREFIX_X.length())).append(" ");
 						seenFirstSwitch = true;
 					}
 					else if (seenFirstSwitch)
@@ -88,10 +126,25 @@ public class OpenJ9SwitchParser extends AbstractSwitchParser
 
 				String name = cleanName(switchBuilder.toString().trim());
 
-				SwitchInfo info = new SwitchInfo(PREFIX_XX, name);
+				if (PREFIX_XX.equals(prefix))
+				{
+					if (name.charAt(0) == '+')
+					{
+						name = name.substring(1);
+
+					}
+					else if (name.charAt(0) == '-')
+					{
+						continue;
+					}
+				}
+
+				SwitchInfo info = new SwitchInfo(prefix, name);
 				info.setDescription(descriptionBuilder.toString().trim());
 
 				switchMap.put(info.getKey(), info);
+
+				//System.out.println("nls " + trimmed + "\n" + info);
 
 				cleanDupsEnding(name, "&lt;x&gt;", switchMap);
 
@@ -115,7 +168,7 @@ public class OpenJ9SwitchParser extends AbstractSwitchParser
 			name = name.substring(0, name.length() - 1);
 		}
 
-		return name;
+		return name.trim();
 	}
 
 	private boolean isNLSSwitch(String line)
