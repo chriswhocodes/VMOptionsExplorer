@@ -52,7 +52,7 @@ th, td {
 
 .dataTables_filter input {
     height: 32px;
-    width: 480px;
+    width: 600px;
     font-size: 24px;
     border: 2px solid black;
 }

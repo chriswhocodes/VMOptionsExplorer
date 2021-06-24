@@ -27,7 +27,8 @@
 {"availability":"product","component":"runtime","defaultValue":"7.0","definedIn":"share/runtime/globals.hpp","description":"Desired entries per bucket when resizing the table","name":"StringDeduplicationTargetTableLoad","prefix":"-XX:","range":"range(0.01, 1000.0)","type":"double"},
 {"availability":"develop","component":"runtime","defaultValue":"false","definedIn":"share/runtime/globals.hpp","description":"Trace optimized upcall stub generation","name":"TraceOptimizedUpcallStubs","prefix":"-XX:","type":"bool"},
 {"availability":"product","component":"c2","defaultValue":"false","definedIn":"share/opto/c2_globals.hpp","description":"Use stubs for vector transcendental operations","name":"UseVectorStubs","prefix":"-XX:","type":"bool"},
-{"availability":"product","component":"runtime","defaultValue":"true","definedIn":"share/runtime/globals.hpp","description":"Use vtable information during CHA","name":"UseVtableBasedCHA","prefix":"-XX:","type":"bool"}
+{"availability":"product","component":"runtime","defaultValue":"true","definedIn":"share/runtime/globals.hpp","description":"Use vtable information during CHA","name":"UseVtableBasedCHA","prefix":"-XX:","type":"bool"},
+{"availability":"product","component":"c2","defaultValue":"trueInDebug","definedIn":"share/opto/c2_globals.hpp","description":"Verify receiver types at runtime","name":"VerifyReceiverTypes","prefix":"-XX:","type":"bool"}
 ],
 "removed":[{"availability":"product","component":"runtime","defaultValue":"NULL","definedIn":"share/runtime/globals.hpp","description":"AOT library","name":"AOTLibrary","prefix":"-XX:","type":"ccstrlist"},
 {"availability":"product","component":"c2","defaultValue":"-1","definedIn":"share/opto/c2_globals.hpp","description":"Partial inline size used for array copy acceleration.","name":"ArrayCopyPartialInlineSize","prefix":"-XX:","range":"range(-1, 64)","type":"intx"},
