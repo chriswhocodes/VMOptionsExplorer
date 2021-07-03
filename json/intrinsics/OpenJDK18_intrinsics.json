@@ -139,7 +139,7 @@
 {"class":"sun.security.provider.SHA3","flags":"F_R","id":"_sha3_implCompress","name":"implCompress0","signature":"([BI)V"},
 {"class":"sun.security.provider.DigestBase","flags":"F_R","id":"_digestBase_implCompressMB","name":"implCompressMultiBlock0","signature":"([BII)I"},
 {"class":"java.util.Base64$Encoder","flags":"F_R","id":"_base64_encodeBlock","name":"encodeBlock","signature":"([BII[BIZ)V"},
-{"class":"java.util.Base64$Decoder","flags":"F_R","id":"_base64_decodeBlock","name":"decodeBlock","signature":"([BII[BIZ)I"},
+{"class":"java.util.Base64$Decoder","flags":"F_R","id":"_base64_decodeBlock","name":"decodeBlock","signature":"([BII[BIZZ)I"},
 {"class":"com.sun.crypto.provider.GHASH","flags":"F_S","id":"_ghash_processBlocks","name":"processBlocks","signature":"([BII[J[J)V"},
 {"class":"java.util.zip.CRC32","flags":"F_SN","id":"_updateCRC32","name":"update","signature":"(II)I"},
 {"class":"java.util.zip.CRC32","flags":"F_SN","id":"_updateBytesCRC32","name":"updateBytes0","signature":"(I[BII)I"},
